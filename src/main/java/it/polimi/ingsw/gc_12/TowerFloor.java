@@ -1,10 +1,11 @@
 package it.polimi.ingsw.gc_12;
 
+import it.polimi.ingsw.gc_12.resource.Resource;
+
 public class TowerFloor {
 	private final int floorNum;
 	private final int value;
 	private final Resource[] resources;
-	private boolean occupied = false;
 	private Card card;
 	private FamilyMember occupier;
 
@@ -32,11 +33,7 @@ public class TowerFloor {
 	}
 
 	public boolean isOccupied() {
-		return occupied;
-	}
-
-	public void setOccupied(boolean occupied) {
-		this.occupied = occupied;
+		return occupier != null;
 	}
 
 	public Card getCard() {

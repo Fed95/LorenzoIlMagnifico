@@ -20,7 +20,7 @@ public class Match {
 		//setta le risorse base distriuendo monete servitori legna pietra-->creo changeresources
 		
 	}
-	private void givingInitialResource(){
+	private void giveInitialResource(){
 		
 	}
 	public GameMode getGameMode(){

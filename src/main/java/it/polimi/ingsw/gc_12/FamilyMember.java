@@ -2,8 +2,6 @@ package it.polimi.ingsw.gc_12;
 import java.util.Observable;
 import java.util.Observer;
 
-import it.polimi.ingsw.gc_12.resource.Resource;
-
 public class FamilyMember implements Observer {
 	private FamilyMemberColor color;
 	private int value = 0;
@@ -39,7 +37,6 @@ public class FamilyMember implements Observer {
 		this.value = value;
 	}
 
-	
 	@Override
 	public void update(Observable o, Object value) {
 		this.setValue((int) value);		
