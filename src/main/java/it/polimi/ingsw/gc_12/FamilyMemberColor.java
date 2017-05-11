@@ -1,7 +1,8 @@
 package it.polimi.ingsw.gc_12;
 
-public enum DieColor {
+public enum FamilyMemberColor {
 	WHITE, 
 	BLACK, 
-	ORANGE
+	ORANGE,
+	NEUTRAL
 }
