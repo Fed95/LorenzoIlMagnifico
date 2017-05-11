@@ -1,10 +1,11 @@
 package it.polimi.ingsw.gc_12;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class SpaceDie {
 	private static SpaceDie instance;
-	private HashMap<DieColor, Die> dice;
+	private Map<DieColor, Die> dice = new HashMap<>();
 	
 	// EffectHandler is a Singleton
 	public static SpaceDie instance() {
@@ -15,7 +16,7 @@ public class SpaceDie {
 	
     private SpaceDie(){
     	for(DieColor dieColor : DieColor.values()){
-    		dice.put(dieColor,new Die(dieColor));
+    		dice.put(dieColor, new Die(dieColor));
     	}
     }
 	

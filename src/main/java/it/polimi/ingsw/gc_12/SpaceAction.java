@@ -1,22 +1,11 @@
 package it.polimi.ingsw.gc_12;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import it.polimi.ingsw.gc_12.resource.Resource;
-
-public abstract class SpaceAction implements Occupiable{
-	public final int REQUIRED_VALUE = 1;
+public abstract class SpaceAction extends Occupiable{
 	private ActionType actionType;
-	private List<Resource> requirements = new ArrayList<>();
 	
-	public SpaceAction(ActionType actionType, List<Resource> requirements) {
+	public SpaceAction(ActionType actionType) {
+		super();
 		this.actionType = actionType;
-		this.requirements = requirements;
 	}
 
-	@Override
-	public List<Resource> getRequirements() {
-		return this.requirements;
-	}
 }
