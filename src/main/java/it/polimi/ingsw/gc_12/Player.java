@@ -12,7 +12,7 @@ import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.resource.Resource;
 
 public class Player {
-	private String name;
+	private final String name;
 	private Match match;
 	private EffectHandler effectHandler = EffectHandler.instance();
 	private List<Card> cards = new ArrayList<>();
@@ -36,6 +36,10 @@ public class Player {
 		effectHandler.executeEffects(event);
 		if(!occupiable.canBeOccupiedBy(familyMember))
 			effectHandler.discardEffects(event);
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public List<Card> getCards() {
@@ -77,4 +81,5 @@ public class Player {
 	public Resource getResource(ResourceType resourceType) {
 		return resources.get(resourceType);
 	}
+
 }

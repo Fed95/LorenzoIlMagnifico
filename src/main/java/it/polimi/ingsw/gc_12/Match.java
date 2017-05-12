@@ -1,27 +1,37 @@
 package it.polimi.ingsw.gc_12;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Match {
-	private int playerNum;
+	private final List<Player> players = new ArrayList<>();
+	private final List<BonusTyle> bonusTyles = new ArrayList<>();
+	private List<Card> cards = new ArrayList<>();
 	private int roundNum;
-	private int periodNum;
-	private GameMode gameMode; 
+	private final GameMode gameMode; 
 	private Board board;
-	public Match(int playerNum,GameMode gameMode){
-		this.playerNum=playerNum;
-		this.roundNum=1;
-		this.periodNum=1;
-		this.gameMode=gameMode;
+	
+	public Match(GameMode gameMode){		
+		this.gameMode = gameMode;		
+		this.roundNum = 1;
 	}
-	public int getPlayersNum(){
-		return playerNum;
+
+	public void start(){
+		//Import Deck and players from external file
+		
 	}
 	
-	public void start(){
-		//setta le risorse base distriuendo monete servitori legna pietra-->creo changeresources
+	private void setInitialResources(){
 		
 	}
-	private void giveInitialResource(){
-		
+	
+	public List<Player> getPlayers(){
+		return players;
+	}
+	public List<BonusTyle> getBonusTyles(){
+		return bonusTyles;
+	}
+	public List<Card> getCards(){
+		return cards;
 	}
 	public GameMode getGameMode(){
 		return gameMode;
@@ -29,14 +39,11 @@ public class Match {
 	public Board getBoard(){
 		return board;
 	}
-	public int getPlayerNum(){
-		return playerNum; 
-	}
 	public int getRoundNum(){
 		return roundNum;
 	}
 	public int getPeriodNum(){
-		return periodNum;
+		return roundNum / 2 + roundNum % 2;
 	}
 	
 }

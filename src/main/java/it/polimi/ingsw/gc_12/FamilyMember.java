@@ -23,9 +23,7 @@ public class FamilyMember implements Observer {
 			this.value = 0;
 		}
 		
-		this.color = color;
-		
-		
+		this.color = color;		
 	}
 	
 	public FamilyMember(int value) {
