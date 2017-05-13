@@ -6,9 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 import it.polimi.ingsw.gc_12.resource.ResourceType;
+import it.polimi.ingsw.gc_12.event.Event;
+import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.effect.EffectHandler;
-import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.resource.Resource;
 
 public class Player {
@@ -32,10 +33,12 @@ public class Player {
 	}
 	
 	public void placeFamilyMember(FamilyMember familyMember, Occupiable occupiable){
-		Event event = new Event(this, occupiable);
+		Event event = new EventPlaceFamilyMember(this, occupiable);
 		effectHandler.executeEffects(event);
-		if(!occupiable.canBeOccupiedBy(familyMember))
+		if(!occupiable.placeFamilyMember(familyMember)) {
 			effectHandler.discardEffects(event);
+			return;
+		}
 	}
 
 	public String getName() {
@@ -59,19 +62,34 @@ public class Player {
 		cards.add(card);
 	}
 	
-	public void addResource(Resource resource) {
+	private void addResource(Resource resource) {
+		if(resource == null)
+			return;
 		Resource ownedResource = this.resources.get(resource.getType());
 		int newValue = ownedResource.getValue() + resource.getValue();
 		ownedResource.setValue(newValue);
 		this.resources.replace(resource.getType(), ownedResource);
 	}
 	
-	public void removeResource(Resource resource) {
+	public void addResources(List<Resource> resources) {
+		for(Resource resource: resources) {
+			this.addResource(resource);
+		}
+	}
+	
+	private void removeResource(Resource resource) {
+		if(resource == null)
+			return;
 		Resource ownedResource = this.resources.get(resource.getType());
 		int newValue = ownedResource.getValue() - resource.getValue();
 		ownedResource.setValue(newValue);
 		this.resources.replace(resource.getType(), ownedResource);
-		
+	}
+	
+	public void removeResources(List<Resource> resources) {
+		for(Resource resource: resources) {
+			this.removeResource(resource);
+		}
 	}
 	
 	public Map<ResourceType, Resource> getResources() {

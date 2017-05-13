@@ -1,31 +1,25 @@
 package it.polimi.ingsw.gc_12.event;
 
-import it.polimi.ingsw.gc_12.Occupiable;
 import it.polimi.ingsw.gc_12.Player;
 
-// TODO: make it an interface/abstract class and make multiple class of events
-public class Event {
-	Player player;
-	Occupiable occupiable;
+public abstract class Event implements EventInterface {
 	
-	public Event(Player player, Occupiable occupiable) {
+	protected Player player;
+	
+	public Event(Player player) {
 		this.player = player;
-		this.occupiable = occupiable;
 	}
 
+	@Override
 	public Player getPlayer() {
 		return player;
 	}
 
-	public Occupiable getOccupiable() {
-		return occupiable;
+	public boolean equals(Object obj) {
+		if(this.getClass() != obj.getClass())
+			return false;
+		
+		Event event = (Event) obj;
+		return this.player == event.getPlayer() && this.getAttributes() == event.getAttributes();
 	}
-
-	public boolean equals(Event event) {
-		return this.player == event.getPlayer() && this.occupiable == event.getOccupiable();
-	}
-	
-	
-	
-	
 }
