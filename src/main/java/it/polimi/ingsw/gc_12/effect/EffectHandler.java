@@ -24,7 +24,7 @@ public class EffectHandler {
 		
 		// If there is a card with an effect triggered by the event, execute the effect
 		for(Effect effect : cardsEffects) {
-			if(event.equals(effect.getAction()))
+			if(event.equals(effect.getEvent()))
 				effect.execute();
 		}
 	}
@@ -36,7 +36,7 @@ public class EffectHandler {
 		
 		// If there is a card with an effect triggered by the event, execute the effect
 		for(Effect effect : cardsEffects) {
-			if(event.equals(effect.getAction()))
+			if(event.equals(effect.getEvent()))
 				effect.discard();
 		}
 	}

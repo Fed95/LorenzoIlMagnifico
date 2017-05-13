@@ -1,16 +1,16 @@
 package it.polimi.ingsw.gc_12.effect;
 
-import it.polimi.ingsw.gc_12.action.Action;
+import it.polimi.ingsw.gc_12.event.Event;
 
 public abstract class Effect implements EffectInterface {
 	
-	protected Action action;
+	protected Event event;
 	
-	public Effect(Action action) {
-		this.action = action;
+	public Effect(Event action) {
+		this.event = action;
 	}
 	
-	public Action getAction() {
-		return this.action;
+	public Event getEvent() {
+		return this.event;
 	}
 }
