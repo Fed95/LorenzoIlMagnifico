@@ -33,12 +33,13 @@ public class Player {
 	}
 	
 	public void placeFamilyMember(FamilyMember familyMember, Occupiable occupiable){
-		Event event = new EventPlaceFamilyMember(this, occupiable);
+		Event event = new EventPlaceFamilyMember(this, occupiable, familyMember);
 		effectHandler.executeEffects(event);
 		if(!occupiable.placeFamilyMember(familyMember)) {
 			effectHandler.discardEffects(event);
 			return;
 		}
+		// TODO: implement placement
 	}
 
 	public String getName() {

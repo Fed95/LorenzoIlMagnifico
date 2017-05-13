@@ -18,8 +18,8 @@ public class EffectChangeResource extends Effect implements EffectInterface{
 		this.resources = resources;
 	}
 	
-	public EffectChangeResource(Event event, Resource cost, Resource resource) {
-		super(event);
+	public EffectChangeResource(Event effect, Resource cost, Resource resource) {
+		super(effect);
 		List<Resource> costs =  new ArrayList<>();
 		costs.add(cost);
 		this.costs = costs;

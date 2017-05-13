@@ -5,14 +5,14 @@ import java.util.List;
 
 import it.polimi.ingsw.gc_12.effect.Effect;
 
-public abstract class Occupiable {
+public abstract class Occupiable extends EffectProvider{
 	
 	public static final int DEFAULT_REQUIRED_VALUE = 1;
 	private int requiredValue;
 	private FamilyMember occupier;
-	private List<Effect> effects = new ArrayList<>();
 	
 	public Occupiable(int requiredValue, List<Effect> effects) {
+		super(effects);
 		this.requiredValue = requiredValue;
 		this.effects = effects;
 	}

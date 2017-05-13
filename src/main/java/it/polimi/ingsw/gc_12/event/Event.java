@@ -10,7 +10,6 @@ public abstract class Event implements EventInterface {
 		this.player = player;
 	}
 
-	@Override
 	public Player getPlayer() {
 		return player;
 	}
@@ -20,6 +19,6 @@ public abstract class Event implements EventInterface {
 			return false;
 		
 		Event event = (Event) obj;
-		return this.player == event.getPlayer() && this.getAttributes() == event.getAttributes();
+		return this.player == event.getPlayer() && this.getAttributes().equals(event.getAttributes());
 	}
 }
