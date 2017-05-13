@@ -18,6 +18,7 @@ public class SpaceDie {
     	for(DieColor dieColor : DieColor.values()){
     		dice.put(dieColor, new Die(dieColor));
     	}
+    	rollDice();
     }
 	
     public void rollDice(){
