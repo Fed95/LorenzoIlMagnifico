@@ -3,26 +3,29 @@ package it.polimi.ingsw.gc_12;
 public class Board {
 
 	private SpaceDie spaceDie;
-	/*private AllTowers allTowers;
+	private TowerSet towerSet;
 	private int actionSpaceNum;
 	private Market market;
+	/*
 	private TurnOrderTrack turnOrderTrack;
 	private CouncilPalace councilPalace;
 	private SpaceAction spaceAction;
 	private ExcommunicationSpace excommunicationSpace;
 	private FaithPointsTrack faithPointTrack;
+	*/
 	public int getActionSpaceNum() {
 		return actionSpaceNum;
-	}*/
+	}
 	public SpaceDie getSpaceDie() {
 		return spaceDie;
 	}
-	/*public AllTowers getAllTowers() {
-		return allTowers;
+	public TowerSet getTowerSet() {
+		return towerSet;
 	}
 	public Market getMarket() {
 		return market;
 	}
+	/*
 	public TurnOrderTrack getTurnOrderTrack() {
 		return turnOrderTrack;
 	}
@@ -37,6 +40,6 @@ public class Board {
 	}
 	public FaithPointsTrack getFaithPointTrack() {
 		return faithPointTrack;
-	}
-	*/
+	}*/
+	
 }
