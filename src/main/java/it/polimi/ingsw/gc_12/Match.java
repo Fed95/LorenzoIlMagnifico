@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Match {
 	private final List<Player> players = new ArrayList<>();
-	private final List<BonusTile> bonusTyles = new ArrayList<>();
+	private final List<BonusTile> bonusTiles = new ArrayList<>();
 	private List<Card> cards = new ArrayList<>();
 	private int roundNum;
 	private final GameMode gameMode; 
@@ -28,7 +28,7 @@ public class Match {
 		return players;
 	}
 	public List<BonusTile> getBonusTyles(){
-		return bonusTyles;
+		return bonusTiles;
 	}
 	public List<Card> getCards(){
 		return cards;
