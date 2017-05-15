@@ -10,21 +10,31 @@ import it.polimi.ingsw.gc_12.Player;
 
 public class EventPlaceFamilyMember extends Event{
 	
-	private Occupiable occupiable;
+	private List<Occupiable> occupiables = new ArrayList<>();
+	private FamilyMember familyMember;
 	
+	public EventPlaceFamilyMember(Player player, List<Occupiable> occupiables, FamilyMember familyMember) {
+		super(player);
+		this.occupiables = occupiables;
+		this.familyMember = familyMember;
+	}
 	public EventPlaceFamilyMember(Player player, Occupiable occupiable, FamilyMember familyMember) {
 		super(player);
-		this.occupiable = occupiable;
+		List<Occupiable> occupiables = new ArrayList<>();
+		occupiables.add(occupiable);
+		this.occupiables = occupiables;
+		this.familyMember = familyMember;
 	}
 	
-	public Occupiable getOccupiable() {
-		return occupiable;
+	public List<Occupiable> getOccupiables() {
+		return occupiables;
 	}
 	
 	@Override
 	public List<Object> getAttributes() {
 		List<Object> attributes = new ArrayList<>();
-		attributes.add(occupiable);
+		attributes.add(occupiables);
+		attributes.add(familyMember);
 		return attributes;
 	}
 
@@ -32,7 +42,7 @@ public class EventPlaceFamilyMember extends Event{
 	public List<EffectProvider> getEffectProviders() {
 		List<EffectProvider> effectProviders = new ArrayList<>();
 		effectProviders.addAll(player.getCards());
-		effectProviders.add(occupiable);
+		effectProviders.addAll(occupiables);
 		return effectProviders;
 	}
 }
