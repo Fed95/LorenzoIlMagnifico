@@ -1,20 +1,19 @@
-package it.polimi.ingsw.gc_12;
+package it.polimi.ingsw.gc_12.card;
 
 import java.util.List;
 
+import it.polimi.ingsw.gc_12.EffectProvider;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.resource.Resource;
 
 public class Card extends EffectProvider {
 	private final String name;
 	private final int id;
-	private final CardType cardType;
 	private Resource[] requirements;
 
-	public Card(int id, CardType cardType, String name, Resource[] requirements, List<Effect> effects){
+	public Card(int id, String name, Resource[] requirements, List<Effect> effects){
 		super(effects);
 		this.id = id;
-		this.cardType = cardType;
 		this.name = name;
 		this.requirements = requirements;
 		this.effects = effects;

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import it.polimi.ingsw.gc_12.card.Card;
+import it.polimi.ingsw.gc_12.card.CardType;
+
 public class Tower {
 	private final CardType type;
 	private final List<TowerFloor> floors = new ArrayList<>();
