@@ -9,9 +9,9 @@ import it.polimi.ingsw.gc_12.resource.Resource;
 public class Card extends EffectProvider {
 	private final String name;
 	private final int id;
-	private Resource[] requirements;
+	private List<Resource>  requirements;
 
-	public Card(int id, String name, Resource[] requirements, List<Effect> effects){
+	public Card(int id, String name, List<Resource> requirements, List<Effect> effects){
 		super(effects);
 		this.id = id;
 		this.name = name;
@@ -23,7 +23,7 @@ public class Card extends EffectProvider {
 		return name;
 	}
 
-	public Resource[] getRequirements() {
+	public List<Resource>  getRequirements() {
 		return requirements;
 	}
 	
