@@ -1,6 +1,10 @@
 package it.polimi.ingsw.gc_12;
 import java.util.List;
 import java.util.Map;
+
+import it.polimi.ingsw.gc_12.card.Card;
+import it.polimi.ingsw.gc_12.card.CardType;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 

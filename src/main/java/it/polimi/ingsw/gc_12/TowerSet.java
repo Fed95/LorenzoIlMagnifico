@@ -3,6 +3,8 @@ package it.polimi.ingsw.gc_12;
 import java.util.HashMap;
 import java.util.Map;
 
+import it.polimi.ingsw.gc_12.card.CardType;
+
 public class TowerSet {
 	private Map<CardType, Tower> towers = new HashMap<>();
 	

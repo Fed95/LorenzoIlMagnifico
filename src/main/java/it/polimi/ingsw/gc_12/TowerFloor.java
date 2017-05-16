@@ -2,6 +2,7 @@ package it.polimi.ingsw.gc_12;
 
 import java.util.List;
 
+import it.polimi.ingsw.gc_12.card.Card;
 import it.polimi.ingsw.gc_12.effect.Effect;
 
 public class TowerFloor extends Occupiable{
