@@ -45,6 +45,14 @@ public class Player {
 	public String getName() {
 		return name;
 	}
+	
+	public Map<FamilyMemberColor, FamilyMember> getFamilymembers() {
+		return familymembers;
+	}
+	
+	public FamilyMember getFamilyMember(FamilyMemberColor familyMemberColor) {
+		return familymembers.get(familyMemberColor);
+	}
 
 	public List<Card> getCards() {
 		return cards;
