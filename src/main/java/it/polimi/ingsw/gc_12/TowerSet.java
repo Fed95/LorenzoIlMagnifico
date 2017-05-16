@@ -1,17 +1,29 @@
 package it.polimi.ingsw.gc_12;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TowerSet {
-	private List<Tower> towers = new ArrayList<>();
+	private Map<CardType, Tower> towers = new HashMap<>();
 	
 	public TowerSet(){
-		List<TowerFloor> floors1 = new ArrayList<>();
-		List<TowerFloor> floors2 = new ArrayList<>();
-		List<TowerFloor> floors3 = new ArrayList<>();
-		List<TowerFloor> floors4 = new ArrayList<>();
-		
-		
+		for(CardType cardType: CardType.values()) {
+			towers.put(cardType, new Tower(cardType));
+		}
 	}
+	
+	public Map<CardType, Tower> getTowers() {
+		return towers;
+	}
+	
+	public Tower getTower(CardType cardType) {
+		return towers.get(cardType);
+	}
+
+	@Override
+	public String toString() {
+		return "TowerSet [towers=" + towers + "]";
+	}
+	
+	
 }

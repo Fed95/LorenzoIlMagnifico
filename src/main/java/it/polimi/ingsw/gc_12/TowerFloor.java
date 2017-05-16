@@ -28,4 +28,11 @@ public class TowerFloor extends Occupiable{
 	public void setCard(Card card) {
 		this.card = card;
 	}
+
+	@Override
+	public String toString() {
+		return "TowerFloor" + floorNum + " card: " + card;
+	}
+	
+	
 }

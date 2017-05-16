@@ -2,6 +2,7 @@ package it.polimi.ingsw.gc_12;
 
 public class Board {
 
+	public static final int DEFAULT_SPACE_MARKETS_NUM = 4;
 	private SpaceDie spaceDie;
 	private TowerSet towerSet;
 	private int actionSpaceNum;
@@ -13,6 +14,13 @@ public class Board {
 	private ExcommunicationSpace excommunicationSpace;
 	private FaithPointsTrack faithPointTrack;
 	*/
+	
+	public Board() {
+		this.spaceDie = SpaceDie.instance();
+		this.towerSet = new TowerSet();
+		this.market = new Market(DEFAULT_SPACE_MARKETS_NUM);
+	}
+	
 	public int getActionSpaceNum() {
 		return actionSpaceNum;
 	}
@@ -41,5 +49,9 @@ public class Board {
 	public FaithPointsTrack getFaithPointTrack() {
 		return faithPointTrack;
 	}*/
-	
+
+	@Override
+	public String toString() {
+		return "Board [towerSet=" + towerSet + "]";
+	}
 }
