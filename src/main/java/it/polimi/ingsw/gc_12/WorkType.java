@@ -1,5 +1,5 @@
 package it.polimi.ingsw.gc_12;
 
-public enum ActionType {
+public enum WorkType {
 	HARVEST, PRODUCTION
 }

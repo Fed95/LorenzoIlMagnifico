@@ -4,17 +4,17 @@ import java.util.List;
 
 import it.polimi.ingsw.gc_12.effect.Effect;
 
-public abstract class SpaceAction extends Occupiable{
-	private ActionType actionType;
+public abstract class SpaceWork extends Occupiable{
+	private WorkType workType;
 	
-	public SpaceAction(ActionType actionType, List<Effect> effects) {
+	public SpaceWork(WorkType actionType, List<Effect> effects) {
 		super(effects);
-		this.actionType = actionType;
+		this.workType = actionType;
 	}
 	
-	public SpaceAction(ActionType actionType) {
+	public SpaceWork(WorkType actionType) {
 		super();
-		this.actionType = actionType;
+		this.workType = actionType;
 	}
 
 }

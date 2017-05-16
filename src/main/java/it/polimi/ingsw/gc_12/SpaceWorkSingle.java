@@ -6,20 +6,20 @@ import java.util.Map;
 
 import it.polimi.ingsw.gc_12.effect.Effect;
 
-public class SpaceActionSingle extends SpaceAction {
+public class SpaceWorkSingle extends SpaceWork {
 
-	private static Map<ActionType, SpaceActionSingle> instances = new HashMap<>();
+	private static Map<WorkType, SpaceWorkSingle> instances = new HashMap<>();
 	
-	private SpaceActionSingle(ActionType actionType, List<Effect> effects) {
-		super(actionType, effects);
+	private SpaceWorkSingle(WorkType workType, List<Effect> effects) {
+		super(workType, effects);
 	}
 	
-	private SpaceActionSingle(ActionType actionType) {
-		super(actionType);
+	private SpaceWorkSingle(WorkType workType) {
+		super(workType);
 	}
 	
-	public static SpaceActionSingle instance(ActionType actionType) {
-		if(instances.get(actionType) == null) instances.put(actionType, new SpaceActionSingle(actionType));
-		return instances.get(actionType);
+	public static SpaceWorkSingle instance(WorkType workType) {
+		if(instances.get(workType) == null) instances.put(workType, new SpaceWorkSingle(workType));
+		return instances.get(workType);
 	}
 }
