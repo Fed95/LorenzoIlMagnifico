@@ -18,14 +18,14 @@ public abstract class Occupiable extends EffectProvider{
 		this.requiredValue = requiredValue;
 	}
 	public Occupiable(int requiredValue, List<Effect> effects) {
-		this(DEFAULT_MAXNUMBEROFPLAYER,requiredValue, effects);
+		this(DEFAULT_MAXNUMBEROFPLAYER, requiredValue, effects);
 	}
 	public Occupiable(List<Effect> effects) {
-		this(DEFAULT_MAXNUMBEROFPLAYER,DEFAULT_REQUIRED_VALUE, effects);
+		this(DEFAULT_MAXNUMBEROFPLAYER, DEFAULT_REQUIRED_VALUE, effects);
 	}
 	
 	public Occupiable() {
-		this(DEFAULT_MAXNUMBEROFPLAYER,DEFAULT_REQUIRED_VALUE, new ArrayList<>());
+		this(DEFAULT_MAXNUMBEROFPLAYER, DEFAULT_REQUIRED_VALUE, new ArrayList<>());
 	}
 	
 	public boolean isOccupied() {
@@ -48,9 +48,6 @@ public abstract class Occupiable extends EffectProvider{
 			return false;
 		
 		this.occupier = occupier;
-		for(Effect effect : effects) {
-			effect.execute();
-		}
 		return true;
 	}
 }
