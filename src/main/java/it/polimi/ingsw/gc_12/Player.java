@@ -26,7 +26,7 @@ public class Player {
 		this.name=name;
 		this.resources = resources;
 		for(FamilyMemberColor color : FamilyMemberColor.values()) {
-			familymembers.put(color, new FamilyMember(color));
+			familymembers.put(color, new FamilyMember(this, color));
 		}
 	}
 	

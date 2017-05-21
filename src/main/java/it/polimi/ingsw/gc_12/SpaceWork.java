@@ -19,10 +19,10 @@ public class SpaceWork{
 		
 		// TODO: find a more elegant way to cycle through the two lists
 		for(FamilyMember i: spaceWorkMultiple.getOccupiers())
-			if(occupier.getColor().equals(i.getColor()))
+			if(occupier.getOwner().equals(i.getOwner()))
 				return false;
 		for(FamilyMember i: spaceWorkSingle.getOccupiers())
-			if(occupier.getColor().equals(i.getColor()))
+			if(occupier.getOwner().equals(i.getOwner()))
 				return false;
 		return true; // Further value check must be performed by subclass
 	}

@@ -3,11 +3,17 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class FamilyMember implements Observer {
+	
+	private final Player owner;
 	private FamilyMemberColor color;
 	private int value;
 	
-	public FamilyMember(FamilyMemberColor color) {
+	public FamilyMember(Player owner, FamilyMemberColor color) {
+		
+		this.owner = owner;
+		this.color = color;
 		try {
+			
 			DieColor dieColor = DieColor.valueOf(color.name());
 			// Check if there is a die with the same color of the family member's one 
 			// (exclude neutral family member)
@@ -18,16 +24,9 @@ public class FamilyMember implements Observer {
 				// To update the family member's value when the dice have been rolled
 				die.addObserver(this);
 			}
-		}
-		catch (IllegalArgumentException e) {
+		}catch (IllegalArgumentException e) {
 			this.value = 0;
-		}
-		
-		this.color = color;		
-	}
-	
-	public FamilyMember(int value) {
-		this.value = value;
+		}	
 	}
 	
 	public FamilyMemberColor getColor(){
@@ -46,6 +45,10 @@ public class FamilyMember implements Observer {
 	@Override
 	public void update(Observable o, Object value) {
 		this.setValue((int) value);		
+	}
+
+	public Player getOwner() {
+		return owner;
 	}
 	
 }
