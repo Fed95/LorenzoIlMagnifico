@@ -1,5 +1,8 @@
 package it.polimi.ingsw.gc_12;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Board {
 
 	public static final int DEFAULT_SPACE_MARKETS_NUM = 4;
@@ -36,14 +39,23 @@ public class Board {
 	public int getActionSpaceNum() {
 		return actionSpaceNum;
 	}
+	
 	public SpaceDie getSpaceDie() {
 		return spaceDie;
 	}
+	
 	public TowerSet getTowerSet() {
 		return towerSet;
 	}
+	
 	public Market getMarket() {
 		return market;
+	}
+	
+	public List<Occupiable> getOccupiables() {
+		List<Occupiable> occupiables = new ArrayList<>();
+		occupiables.addAll(towerSet.getOccupiables());
+		return occupiables;
 	}
 	
 	/*

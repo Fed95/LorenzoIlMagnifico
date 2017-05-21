@@ -14,7 +14,7 @@ public class Market {
 		}
 		for(int i = 0; i < numberOfSpaces; i++){
 			//TODO implement Json configuration with the right spacemarket constructor
-			spaceMarket.add(new SpaceMarket());
+			//spaceMarket.add(new SpaceMarket());
 		}
 	}
 	public int getNumberOfSpaces(){

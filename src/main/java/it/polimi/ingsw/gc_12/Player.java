@@ -34,14 +34,16 @@ public class Player {
 		match.getBoard().getSpaceDie().rollDice();
 	}
 	
-	public void placeFamilyMember(FamilyMember familyMember, Occupiable occupiable){
+	public boolean placeFamilyMember(FamilyMember familyMember, Occupiable occupiable){
 		Event event = new EventPlaceFamilyMember(this, occupiable, familyMember);
 		effectHandler.executeEffects(event);
 		if(!occupiable.placeFamilyMember(familyMember)) {
 			effectHandler.discardEffects(event);
-			return;
+			return false;
 		}
+		
 		// TODO: implement placement
+		return true;
 	}
 
 	public String getName() {
