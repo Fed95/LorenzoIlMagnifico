@@ -14,7 +14,7 @@ public abstract class Effect {
 		return this.event;
 	}
 	
-	public abstract void execute();
+	public abstract void execute(Event event);
 	
-	public abstract void discard();
+	public abstract void discard(Event event);
 }

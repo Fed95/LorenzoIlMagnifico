@@ -25,7 +25,17 @@ public class EffectHandler {
 		// then execute the effect
 		for(Effect effect : effects) {
 			if(event.equals(effect.getEvent()))
-				effect.execute();
+				effect.execute(event);
+		}
+	}
+	
+	public void discardEffects(Event event) {
+		List<Effect> effects = getPossibleEffects(event);
+		
+		// If there is a card with an effect triggered by the event, execute the effect
+		for(Effect effect : effects) {
+			if(event.equals(effect.getEvent()))
+				effect.discard(event);
 		}
 	}
 	
@@ -37,16 +47,6 @@ public class EffectHandler {
 			effects.addAll(effectProvider.getEffects());
 		}
 		return effects;
-	}
-	
-	public void discardEffects(Event event) {
-		List<Effect> effects = getPossibleEffects(event);
-		
-		// If there is a card with an effect triggered by the event, execute the effect
-		for(Effect effect : effects) {
-			if(event.equals(effect.getEvent()))
-				effect.discard();
-		}
 	}
 
 }

@@ -30,13 +30,13 @@ public class EffectChangeResource extends Effect {
 		this.resources = resources;
 	}
 	
-	public void execute() {
+	public void execute(Event event) {
 		Player player = event.getPlayer();
 		player.removeResources(costs);
 		player.addResources(resources);
 	}
 	
-	public void discard() {
+	public void discard(Event event) {
 		Player player = event.getPlayer();
 		player.addResources(costs);
 		player.removeResources(resources);

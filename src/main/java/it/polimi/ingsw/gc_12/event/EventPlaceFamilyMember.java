@@ -2,6 +2,7 @@ package it.polimi.ingsw.gc_12.event;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Arrays;
 import java.util.List;
 
 import it.polimi.ingsw.gc_12.EffectProvider;
@@ -13,19 +14,19 @@ public class EventPlaceFamilyMember extends Event{
 	
 	private List<Occupiable> occupiables = new ArrayList<>();
 	private FamilyMember familyMember;
+	private List<EffectProvider> effectProviders = new ArrayList<>();
 	
 	public EventPlaceFamilyMember(Player player, List<Occupiable> occupiables, FamilyMember familyMember) {
 		super(player);
 		this.occupiables = occupiables;
 		this.familyMember = familyMember;
+		
+		effectProviders.addAll(player.getCards());
+		effectProviders.addAll(occupiables);
 	}
 	
 	public EventPlaceFamilyMember(Player player, Occupiable occupiable, FamilyMember familyMember) {
-		super(player);
-		List<Occupiable> occupiables = new ArrayList<>();
-		occupiables.add(occupiable);
-		this.occupiables = occupiables;
-		this.familyMember = familyMember;
+		this(player, new ArrayList<Occupiable>(Arrays.asList(occupiable)), familyMember);
 	}
 	
 	public List<Occupiable> getOccupiables() {
@@ -40,7 +41,6 @@ public class EventPlaceFamilyMember extends Event{
 		return attributes;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<EffectProvider> getEffectProviders() {
 		List<EffectProvider> effectProviders = new ArrayList<>();
@@ -48,4 +48,39 @@ public class EventPlaceFamilyMember extends Event{
 		effectProviders.addAll((Collection<? extends EffectProvider>) occupiables);
 		return effectProviders;
 	}
+	
+	public FamilyMember getFamilyMember() {
+		return familyMember;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((occupiables == null) ? 0 : occupiables.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		EventPlaceFamilyMember other = (EventPlaceFamilyMember) obj;
+		
+		// Check if they have an occupiable in common
+		List<Occupiable> common = new ArrayList<Occupiable>(occupiables);
+		common.retainAll(other.occupiables);
+		if (occupiables == null) {
+			if (other.occupiables != null)
+				return false;
+		} else if (common.size() == 0)
+			return false;
+		return true;
+	}
+	
+	
 }

@@ -6,7 +6,7 @@ public class FamilyMember implements Observer {
 	
 	private final Player owner;
 	private FamilyMemberColor color;
-	private int value;
+	private Integer value;
 	
 	public FamilyMember(Player owner, FamilyMemberColor color) {
 		
@@ -33,11 +33,11 @@ public class FamilyMember implements Observer {
 		return color;
 	}
 	
-	public int getValue() {
+	public Integer getValue() {
 		return value;
 	}
 	
-	public void setValue(int value) {
+	public void setValue(Integer value) {
 		this.value = value;
 	}
 
@@ -47,8 +47,38 @@ public class FamilyMember implements Observer {
 		this.setValue((int) value);		
 	}
 
+
 	public Player getOwner() {
 		return owner;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((color == null) ? 0 : color.hashCode());
+		result = prime * result + ((value == null) ? 0 : value.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FamilyMember other = (FamilyMember) obj;
+		if (color != null && other.color != null && color != other.color)
+			return false;
+		if (value != null && other.value != null && value != other.value)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "FamilyMember [color=" + color + ", value=" + value + "]";
+	}
 }
