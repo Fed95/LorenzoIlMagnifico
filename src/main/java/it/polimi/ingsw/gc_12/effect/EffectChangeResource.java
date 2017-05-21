@@ -7,7 +7,8 @@ import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.resource.Resource;
 
-public class EffectChangeResource extends Effect implements EffectInterface{
+// TODO: add the possibility to have FamilyMember.value as a possible cost
+public class EffectChangeResource extends Effect {
 
 	private List<Resource> costs = new ArrayList<>();
 	private List<Resource> resources = new ArrayList<>();
@@ -18,8 +19,8 @@ public class EffectChangeResource extends Effect implements EffectInterface{
 		this.resources = resources;
 	}
 	
-	public EffectChangeResource(Event effect, Resource cost, Resource resource) {
-		super(effect);
+	public EffectChangeResource(Event event, Resource cost, Resource resource) {
+		super(event);
 		List<Resource> costs =  new ArrayList<>();
 		costs.add(cost);
 		this.costs = costs;

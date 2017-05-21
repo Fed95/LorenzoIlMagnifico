@@ -14,6 +14,7 @@ import it.polimi.ingsw.gc_12.effect.EffectHandler;
 import it.polimi.ingsw.gc_12.resource.Resource;
 
 public class Player {
+	
 	private final String name;
 	private Match match;
 	private EffectHandler effectHandler = EffectHandler.instance();

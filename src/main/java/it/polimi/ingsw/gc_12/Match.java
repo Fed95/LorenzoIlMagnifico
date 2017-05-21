@@ -12,11 +12,11 @@ public class Match {
 	private final List<Player> players = new ArrayList<>(); //This goes to the class Match	
 	private final List<BonusTile> bonusTiles = new ArrayList<>();
 	private Map<CardType, List<Card>> cards = new HashMap<>();
-	private int roundNum;
-	private final static GameMode DEFAULT_GAME_MODE = GameMode.NORMAL;
 	private final GameMode gameMode;
+	private final static GameMode DEFAULT_GAME_MODE = GameMode.NORMAL;
 	private Board board;
 	private static Match instance;
+	private int roundNum;
 	
 	public static Match instance() {
 		if(instance == null) instance = new Match();
@@ -26,6 +26,7 @@ public class Match {
 	private Match(GameMode gameMode){		
 		this.gameMode = gameMode;
 		this.roundNum = 1;
+		this.setInitialResources();
 	}
 	
 	private Match() {

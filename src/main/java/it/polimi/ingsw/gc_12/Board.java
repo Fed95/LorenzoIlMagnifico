@@ -7,10 +7,12 @@ public class Board {
 	private TowerSet towerSet;
 	private int actionSpaceNum;
 	private Market market;
+	
 	/*
+	private SpaceWorkSingle spaceWorkSingle;
+	private SpaceWorkMultiple spaceWorkMultiple;
 	private TurnOrderTrack turnOrderTrack;
 	private CouncilPalace councilPalace;
-	private SpaceAction spaceAction;
 	private ExcommunicationSpace excommunicationSpace;
 	private FaithPointsTrack faithPointTrack;
 	*/
@@ -19,6 +21,16 @@ public class Board {
 		this.spaceDie = SpaceDie.instance();
 		this.towerSet = new TowerSet();
 		this.market = new Market(DEFAULT_SPACE_MARKETS_NUM);
+		
+		/*
+		for(WorkType workType : WorkType.values()){
+			//TODO: set import of requiredValues and effects from Json file
+			SpaceWork spaceWork = new SpaceWork();
+			this.spaceWorkSingle = new SpaceWorkSingle(workType, requiredValueSingle, spaceWork, effects);
+			this.spaceWorkMultiple = new SpaceWorkMultiple(workType, requiredValueMultiple, spaceWork, effects);
+		}
+		*/
+		
 	}
 	
 	public int getActionSpaceNum() {
@@ -33,6 +45,7 @@ public class Board {
 	public Market getMarket() {
 		return market;
 	}
+	
 	/*
 	public TurnOrderTrack getTurnOrderTrack() {
 		return turnOrderTrack;

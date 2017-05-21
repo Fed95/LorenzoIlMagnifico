@@ -42,6 +42,7 @@ public class FamilyMember implements Observer {
 		this.value = value;
 	}
 
+	//Receive notification that dices have been rolled and update value
 	@Override
 	public void update(Observable o, Object value) {
 		this.setValue((int) value);		

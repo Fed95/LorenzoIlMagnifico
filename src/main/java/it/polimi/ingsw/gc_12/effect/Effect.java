@@ -2,7 +2,7 @@ package it.polimi.ingsw.gc_12.effect;
 
 import it.polimi.ingsw.gc_12.event.Event;
 
-public abstract class Effect implements EffectInterface {
+public abstract class Effect {
 	
 	protected Event event;
 	
@@ -13,4 +13,8 @@ public abstract class Effect implements EffectInterface {
 	public Event getEvent() {
 		return this.event;
 	}
+	
+	public abstract void execute();
+	
+	public abstract void discard();
 }

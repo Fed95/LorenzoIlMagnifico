@@ -7,13 +7,13 @@ public class Market {
 	private List<SpaceMarket> spaceMarket;
 	
 	public Market(int setNumber){
-		if(setNumber<0){
+		if(setNumber < 0){
 			throw new IllegalArgumentException();
 		}else{
-			this.numberOfSpaces=setNumber;
+			this.numberOfSpaces = setNumber;
 		}
-		for(int i=0;i<numberOfSpaces;i++){
-			/*TODO implements xml configuration with the right spacemarket constructor*/
+		for(int i = 0; i < numberOfSpaces; i++){
+			//TODO implement Json configuration with the right spacemarket constructor
 			spaceMarket.add(new SpaceMarket());
 		}
 	}

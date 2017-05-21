@@ -1,20 +1,38 @@
 package it.polimi.ingsw.gc_12;
 
-import java.util.List;
+public class SpaceWork{
 
-import it.polimi.ingsw.gc_12.effect.Effect;
-
-public abstract class SpaceWork extends Occupiable{
-	private WorkType workType;
+	public SpaceWorkMultiple spaceWorkMultiple;
+	public SpaceWorkSingle spaceWorkSingle;
 	
-	public SpaceWork(WorkType actionType, List<Effect> effects) {
-		super(effects);
-		this.workType = actionType;
+	public SpaceWork(){
 	}
 	
-	public SpaceWork(WorkType actionType) {
-		super();
-		this.workType = actionType;
+	public boolean placeFamilyMember(){
+		return false;
+	}
+	
+	//Checks whether the workspace is already taken by a member of the same family
+	public boolean canBeOccupiedBy(FamilyMember occupier) {
+		if(occupier.getColor().equals(FamilyMemberColor.NEUTRAL))
+			return true;
+		
+		// TODO: find a more elegant way to cycle through the two lists
+		for(FamilyMember i: spaceWorkMultiple.getOccupiers())
+			if(occupier.getColor().equals(i.getColor()))
+				return false;
+		for(FamilyMember i: spaceWorkSingle.getOccupiers())
+			if(occupier.getColor().equals(i.getColor()))
+				return false;
+		return true; // Further value check must be performed by subclass
+	}
+
+	public void setSpaceWorkSingle(SpaceWorkSingle spaceWorkSingle){
+		this.spaceWorkSingle = spaceWorkSingle;
+	}
+	
+	public void setSpaceWorkMultiple(SpaceWorkMultiple spaceWorkMultiple){
+		this.spaceWorkMultiple = spaceWorkMultiple;
 	}
 
 }
