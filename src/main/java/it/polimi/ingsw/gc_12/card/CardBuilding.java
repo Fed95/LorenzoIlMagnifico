@@ -7,8 +7,8 @@ import it.polimi.ingsw.gc_12.resource.Resource;
 
 public class CardBuilding extends CardDevelopment{
 
-	public CardBuilding(int id, String name, Resource[] requirements, List<Effect> effects) {
-		super(id, CardType.BUILDING, name, requirements, effects);
+	public CardBuilding(int id, String name, int period,  Resource[] requirements, List<Effect> effects) {
+		super(id, CardType.BUILDING, name, period, requirements, effects);
 	}
 
 }
