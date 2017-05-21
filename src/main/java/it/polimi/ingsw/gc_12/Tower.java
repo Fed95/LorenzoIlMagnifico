@@ -1,7 +1,6 @@
 package it.polimi.ingsw.gc_12;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import it.polimi.ingsw.gc_12.card.Card;
@@ -20,11 +19,8 @@ public class Tower {
 
 	public Tower(CardType type){
 		this.type = type;
-		List<Card> cards = Match.instance().getCards(type);
-		Collections.shuffle(cards);
 		for (int i = 0; i < 4; i++) {
-			Card card = cards.get(i);
-			initializeFloor(card, i);
+			initializeFloor(null, i);
 		}
 	}
 
@@ -32,9 +28,17 @@ public class Tower {
 		return type;
 	}
 	
+	public List<TowerFloor> getFloors() {
+		return floors;
+	}
+	
+	public TowerFloor getFloor(int floorNum) {
+		return floors.get(floorNum);
+	}
+	
 	public void initializeFloor(Card card, int i) {
-		TowerFloor floor = new TowerFloor(i, DEFAULT_REQUIRED_VALUES.get(i));
-		floor.setCard(card);
+		TowerFloor floor = new TowerFloor(i, DEFAULT_REQUIRED_VALUES.get(i), type);
+		//floor.setCard(card);
 		floors.add(floor);
 	}
 

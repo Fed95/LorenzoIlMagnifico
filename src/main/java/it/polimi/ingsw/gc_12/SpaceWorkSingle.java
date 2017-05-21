@@ -1,20 +1,16 @@
 package it.polimi.ingsw.gc_12;
 
-import java.util.ArrayList;
 import java.util.List;
 import it.polimi.ingsw.gc_12.effect.Effect;
 
-public class SpaceWorkSingle extends EffectProvider implements Occupiable{
+public class SpaceWorkSingle extends Occupiable{
 
 	private final WorkType workType;
-	private List<FamilyMember> occupiers = new ArrayList<>();
-	private final int requiredValue;
 	private SpaceWork spaceWork;
 
 	public SpaceWorkSingle(WorkType workType, int requiredValue, SpaceWork spaceWork, List<Effect> effects) {
 		super(effects);
 		this.workType = workType;
-		this.requiredValue = requiredValue;
 		this.spaceWork = spaceWork;
 		spaceWork.setSpaceWorkSingle(this);
 	}
@@ -34,24 +30,7 @@ public class SpaceWorkSingle extends EffectProvider implements Occupiable{
 		return false;
 	}
 
-	@Override
-	public boolean placeFamilyMember(FamilyMember occupier) {
-		if(this.canBeOccupiedBy(occupier)){
-			this.occupiers.add(occupier);
-			return true;
-		}
-		return false;
-	}
-
-	@Override
-	public List<FamilyMember> getOccupiers() {
-		return occupiers;
-	}
 	public WorkType getWorkType() {
 		return workType;
 	}
-	public int getRequiredValue() {
-		return requiredValue;
-	}
-	
 }

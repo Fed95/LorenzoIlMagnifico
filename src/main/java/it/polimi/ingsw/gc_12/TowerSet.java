@@ -1,6 +1,8 @@
 package it.polimi.ingsw.gc_12;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import it.polimi.ingsw.gc_12.card.CardType;
@@ -20,6 +22,14 @@ public class TowerSet {
 	
 	public Tower getTower(CardType cardType) {
 		return towers.get(cardType);
+	}
+	
+	public List<Occupiable> getOccupiables() {
+		List<Occupiable> occupiables = new ArrayList<>();
+		for(Tower tower: towers.values()) {
+			occupiables.addAll(tower.getFloors());
+		}
+		return occupiables;
 	}
 
 	@Override

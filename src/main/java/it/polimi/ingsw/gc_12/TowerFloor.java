@@ -3,19 +3,22 @@ package it.polimi.ingsw.gc_12;
 import java.util.List;
 
 import it.polimi.ingsw.gc_12.card.Card;
+import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.effect.Effect;
 
-public class TowerFloor implements Occupiable{
+public class TowerFloor extends Occupiable{
 	private final int floorNum;
 	private Card card;
+	private CardType cardType;
 	
-	public TowerFloor(int floorNum, int requiredValue, List<Effect> effects){
+	public TowerFloor(int floorNum, int requiredValue, CardType cardType, List<Effect> effects){
 		super();
 		this.floorNum = floorNum;
+		this.cardType = cardType;
 	}
 		
-	public TowerFloor(int floorNum, int requiredValue){
-		this(floorNum, requiredValue, null);
+	public TowerFloor(int floorNum, int requiredValue, CardType cardType){
+		this(floorNum, requiredValue, cardType, null);
 	}
 
 	public int getFloorNum() {
@@ -32,7 +35,7 @@ public class TowerFloor implements Occupiable{
 
 	@Override
 	public String toString() {
-		return "TowerFloor" + floorNum + " card: " + card;
+		return "Floor " + floorNum + " of " + cardType + " tower" /*+ " card: " + card*/;
 	}
 
 	@Override
@@ -42,22 +45,8 @@ public class TowerFloor implements Occupiable{
 	}
 
 	@Override
-	public List<FamilyMember> getOccupiers() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public boolean canBeOccupiedBy(FamilyMember occupier) {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-	@Override
-	public boolean placeFamilyMember(FamilyMember occupier) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	
 }

@@ -1,14 +1,47 @@
 package it.polimi.ingsw.gc_12;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public interface Occupiable{
+import it.polimi.ingsw.gc_12.effect.Effect;
+
+public abstract class Occupiable extends EffectProvider {
 	
-	public boolean isOccupied();
+	protected List<FamilyMember> occupiers = new ArrayList<>();
+	public final static int DEFAULT_MAXNUMBEROFPLAYER=1;
+	public static final int DEFAULT_REQUIRED_VALUE = 1;
+	protected final int requiredValue;
 	
-	public List<FamilyMember> getOccupiers();
+	public Occupiable(int requiredValue, List<Effect> effects) {
+		super(effects);
+		this.requiredValue = requiredValue;
+	}
 	
-	public boolean canBeOccupiedBy(FamilyMember occupier);
+	public Occupiable(List<Effect> effects) {
+		this(DEFAULT_REQUIRED_VALUE, effects);
+	}
 	
-	public boolean placeFamilyMember(FamilyMember occupier);
+	public Occupiable() {
+		this(DEFAULT_REQUIRED_VALUE, new ArrayList<>());
+	}
+	
+	public List<FamilyMember> getOccupiers() {
+		return occupiers;
+	};
+	
+	public int getRequiredValue() {
+		return requiredValue;
+	}
+	
+	public boolean placeFamilyMember(FamilyMember occupier) {
+		if(this.canBeOccupiedBy(occupier)){
+			this.occupiers.add(occupier);
+			return true;
+		}
+		return false;
+	}
+	
+	public abstract boolean isOccupied();
+	
+	public abstract boolean canBeOccupiedBy(FamilyMember occupier);
 }

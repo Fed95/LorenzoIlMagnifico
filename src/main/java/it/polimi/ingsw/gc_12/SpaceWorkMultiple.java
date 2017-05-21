@@ -5,7 +5,7 @@ import java.util.List;
 
 import it.polimi.ingsw.gc_12.effect.Effect;
 
-public class SpaceWorkMultiple extends EffectProvider implements  Occupiable{
+public class SpaceWorkMultiple extends Occupiable {
 	
 	private final WorkType workType;
 	private List<FamilyMember> occupiers = new ArrayList<>();
@@ -32,25 +32,9 @@ public class SpaceWorkMultiple extends EffectProvider implements  Occupiable{
 			return true;
 		return false;
 	}
-
-	@Override
-	public boolean placeFamilyMember(FamilyMember occupier) {
-		if(this.canBeOccupiedBy(occupier)){
-			this.occupiers.add(occupier);
-			return true;
-		}
-		return false;
-	}
-
-	@Override
-	public List<FamilyMember> getOccupiers() {
-		return occupiers;
-	}
+	
 	public WorkType getWorkType() {
 		return workType;
-	}
-	public int getRequiredValue() {
-		return requiredValue;
 	}
 
 }
