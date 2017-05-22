@@ -13,3 +13,8 @@ target/
 .metadata
 # ignore DS_Store and files starting with ._ (for Mac)
 .DS_Store
+#ignore xml and iml files
+*.iml
+*.xml
+#ignore idea folder
+.idea/
