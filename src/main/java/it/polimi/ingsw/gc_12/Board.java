@@ -1,5 +1,7 @@
 package it.polimi.ingsw.gc_12;
 
+import it.polimi.ingsw.gc_12.track.TrackTurnOrder;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,11 +12,11 @@ public class Board {
 	private TowerSet towerSet;
 	private int actionSpaceNum;
 	private Market market;
+	private TrackTurnOrder trackTurnOrder;
 	
 	/*
 	private SpaceWorkSingle spaceWorkSingle;
 	private SpaceWorkMultiple spaceWorkMultiple;
-	private TurnOrderTrack turnOrderTrack;
 	private CouncilPalace councilPalace;
 	private ExcommunicationSpace excommunicationSpace;
 	private FaithPointsTrack faithPointTrack;
@@ -24,6 +26,7 @@ public class Board {
 		this.spaceDie = SpaceDie.instance();
 		this.towerSet = new TowerSet();
 		this.market = new Market(DEFAULT_SPACE_MARKETS_NUM);
+		this.trackTurnOrder = new TrackTurnOrder(Match.instance().getPlayers());
 		
 		/*
 		for(WorkType workType : WorkType.values()){
@@ -51,7 +54,11 @@ public class Board {
 	public Market getMarket() {
 		return market;
 	}
-	
+
+	public TrackTurnOrder getTrackTurnOrder() {
+		return trackTurnOrder;
+	}
+
 	public List<Occupiable> getOccupiables() {
 		List<Occupiable> occupiables = new ArrayList<>();
 		occupiables.addAll(towerSet.getOccupiables());
