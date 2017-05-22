@@ -8,7 +8,7 @@ import it.polimi.ingsw.gc_12.effect.Effect;
 public abstract class Occupiable extends EffectProvider {
 	
 	protected List<FamilyMember> occupiers = new ArrayList<>();
-	public final static int DEFAULT_MAXNUMBEROFPLAYER=1;
+	public final static int DEFAULT_MAXNUMBEROFPLAYER = 1;
 	public static final int DEFAULT_REQUIRED_VALUE = 1;
 	protected final int requiredValue;
 	

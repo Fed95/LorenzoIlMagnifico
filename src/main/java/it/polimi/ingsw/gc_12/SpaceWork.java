@@ -1,38 +1,38 @@
 package it.polimi.ingsw.gc_12;
 
-public class SpaceWork{
+import java.util.List;
 
-	public SpaceWorkMultiple spaceWorkMultiple;
-	public SpaceWorkSingle spaceWorkSingle;
+import it.polimi.ingsw.gc_12.effect.Effect;
+
+public class SpaceWork extends Occupiable{
 	
-	public SpaceWork(){
+	protected WorkType workType;
+	int requiredValue;
+	protected SpaceWorkZone spaceWorkZone;
+	
+	public SpaceWork(WorkType workType, int requiredValue, SpaceWorkZone spaceWorkZone, List<Effect> effects){
+		super(effects);
+		this.workType = workType;
+		this.requiredValue = requiredValue;
+		this.spaceWorkZone = spaceWorkZone;
+		spaceWorkZone.addSpaceWork(this);
 	}
-	
-	public boolean placeFamilyMember(){
+
+	@Override
+	public boolean isOccupied() {
+		if(occupiers.isEmpty())
+			return false;
+		return true;
+	}
+
+	@Override
+	public boolean canBeOccupiedBy(FamilyMember occupier) {
+		if(occupier.getValue() >= requiredValue && spaceWorkZone.canBeOccupiedBy(occupier))
+			return true;
 		return false;
 	}
 	
-	//Checks whether the workspace is already taken by a member of the same family
-	public boolean canBeOccupiedBy(FamilyMember occupier) {
-		if(occupier.getColor().equals(FamilyMemberColor.NEUTRAL))
-			return true;
-		
-		// TODO: find a more elegant way to cycle through the two lists
-		for(FamilyMember i: spaceWorkMultiple.getOccupiers())
-			if(occupier.getOwner().equals(i.getOwner()))
-				return false;
-		for(FamilyMember i: spaceWorkSingle.getOccupiers())
-			if(occupier.getOwner().equals(i.getOwner()))
-				return false;
-		return true; // Further value check must be performed by subclass
+	public WorkType getWorkType() {
+		return workType;
 	}
-
-	public void setSpaceWorkSingle(SpaceWorkSingle spaceWorkSingle){
-		this.spaceWorkSingle = spaceWorkSingle;
-	}
-	
-	public void setSpaceWorkMultiple(SpaceWorkMultiple spaceWorkMultiple){
-		this.spaceWorkMultiple = spaceWorkMultiple;
-	}
-
 }
