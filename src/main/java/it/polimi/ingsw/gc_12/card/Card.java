@@ -22,7 +22,9 @@ public class Card extends EffectProvider {
 	public String getName() {
 		return name;
 	}
-
+	public int getId() {
+		return id;
+	}
 	public List<Resource>  getRequirements() {
 		return requirements;
 	}
