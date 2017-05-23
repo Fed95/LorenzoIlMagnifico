@@ -7,7 +7,7 @@ import it.polimi.ingsw.gc_12.effect.Effect;
 public class SpaceWork extends Occupiable{
 	
 	protected WorkType workType;
-	int requiredValue;
+	protected int requiredValue;
 	protected SpaceWorkZone spaceWorkZone;
 	
 	public SpaceWork(WorkType workType, int requiredValue, SpaceWorkZone spaceWorkZone, List<Effect> effects){
