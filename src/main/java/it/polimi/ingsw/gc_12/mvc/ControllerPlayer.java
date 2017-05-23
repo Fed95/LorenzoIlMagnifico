@@ -1,4 +1,4 @@
-package it.polimi.ingsw.gc_12.controller;
+package it.polimi.ingsw.gc_12.mvc;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -8,7 +8,6 @@ import it.polimi.ingsw.gc_12.Occupiable;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.action.ActionPlaceFamilyMember;
-import it.polimi.ingsw.gc_12.mvc.ViewCLI;
 
 public class ControllerPlayer implements Observer{
 	private final Player player;

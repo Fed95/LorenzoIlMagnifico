@@ -10,7 +10,7 @@ import it.polimi.ingsw.gc_12.Occupiable;
 import it.polimi.ingsw.gc_12.Player;
 
 public class ViewCLI extends Observable{
-	
+
 	private Scanner in = new Scanner(System.in);
 	private Player player;
 	private Board board;
@@ -19,15 +19,15 @@ public class ViewCLI extends Observable{
 		this.player = player;
 		this.board = board;		
 	}
-		
+
 	public void askAction() { 
-		
+
 		System.out.println("Write the number of the action you want to perform");
 		System.out.println("0 - Place family member");
 		System.out.println("1 - Place leader card");
 		System.out.println("2 - Activate leader card");
 		System.out.println("3 - Discard leader card");
-		
+
 		while (true) {
 			if(in.hasNextInt()) {
 				switch (in.nextInt()) {
@@ -38,7 +38,7 @@ public class ViewCLI extends Observable{
 					System.out.println("The specified input is not listed above");
 					in.next();
 				}
-				
+
 				break;
 			}
 			else {
@@ -47,7 +47,7 @@ public class ViewCLI extends Observable{
 			}	
 		}
 	}
-	
+
 	public void askFamilyMember() {
 		System.out.println("Write the number of the family member you want to use");
 
@@ -56,9 +56,9 @@ public class ViewCLI extends Observable{
 			System.out.println(i + " - " + familyMemberColor.name());
 			i++;
 		}
-		
+
 		System.out.println(i + " - Discard action.");
-		
+
 		while (true) {
 			if(in.hasNextInt()) {
 				int input = in.nextInt();
@@ -66,7 +66,7 @@ public class ViewCLI extends Observable{
 					askAction();
 					return;
 				}
-					
+
 				FamilyMember familyMember = new FamilyMember(player, FamilyMemberColor.values()[input]);
 				setChanged();
 				notifyObservers(familyMember);
@@ -77,9 +77,9 @@ public class ViewCLI extends Observable{
 				in.next();
 			}	
 		}
-		
+
 	}
-	
+
 	public void askOccupiable() {
 		List<Occupiable> occupiables = board.getOccupiables();
 		System.out.println();
@@ -89,31 +89,32 @@ public class ViewCLI extends Observable{
 			System.out.println(i + " - " + occupiable.toString());
 			i++;
 		}
-		
+
 		System.out.println(i + " - Discard action.");
-		
+
 		while (true) {
 			if(in.hasNextInt()) {
 				int input = in.nextInt();
-				if(input == i) {
+				if(input > i){
+					System.out.println("Input not valid. Please try again");
+					in.next();
+				}else if(input == i) {
 					askAction();
-					return;
+					return;				
+				}else{
+					Occupiable occupiable = occupiables.get(input);
+					setChanged();
+					notifyObservers(occupiable);
+					break;
 				}
-				
-				Occupiable occupiable = occupiables.get(input);
-				setChanged();
-				notifyObservers(occupiable);
-				break;
-			}
-			else {
+			}else {
 				System.out.println("The input must be a number. Try again");
 				in.next();
-			}	
+			}
+				
 		}
 	}
-	
-	
-	
+
 	public void errorActionNotValid() {
 		System.out.println("Azione non valida");
 	}
