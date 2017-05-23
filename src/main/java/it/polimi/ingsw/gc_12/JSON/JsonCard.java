@@ -38,7 +38,8 @@ public class JsonCard extends JsonMaster {
 		        .registerSubtype(Stone.class, "STONE");
 		final RuntimeTypeAdapterFactory<Effect> typeFactory2 = RuntimeTypeAdapterFactory  
 		        .of(Effect.class, "type") // Here you specify which is the parent class and what field particularizes the child class.
-		        .registerSubtype(EffectChangeResource.class, "effetto"); // if the flag equals the class name, you can skip the second parameter. This is only necessary, when the "type" field does not equal the class name.
+		        .registerSubtype(EffectChangeResource.class, "EFFECT_CHANGE_RESOURCE")
+		        .registerSubtype(EffectChangeFamilyMemberValue.class, "EFFECT_CHANGE_FAMILY_MEMBER_VALUE"); // if the flag equals the class name, you can skip the second parameter. This is only necessary, when the "type" field does not equal the class name.
 		    
 		Gson gson = new GsonBuilder().registerTypeAdapterFactory(typeFactory).registerTypeAdapterFactory(typeFactory2).create();
 		
