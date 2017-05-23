@@ -10,10 +10,9 @@ public class Board {
 	private TowerSet towerSet;
 	private int actionSpaceNum;
 	private Market market;
+	private List<Occupiable> spaceWorks = new ArrayList<>();
 	
 	/*
-	private SpaceWorkSingle spaceWorkSingle;
-	private SpaceWorkMultiple spaceWorkMultiple;
 	private TurnOrderTrack turnOrderTrack;
 	private CouncilPalace councilPalace;
 	private ExcommunicationSpace excommunicationSpace;
@@ -25,14 +24,16 @@ public class Board {
 		this.towerSet = new TowerSet();
 		this.market = new Market(DEFAULT_SPACE_MARKETS_NUM);
 		
-		/*
+		
 		for(WorkType workType : WorkType.values()){
 			//TODO: set import of requiredValues and effects from Json file
-			SpaceWork spaceWork = new SpaceWork();
-			this.spaceWorkSingle = new SpaceWorkSingle(workType, requiredValueSingle, spaceWork, effects);
-			this.spaceWorkMultiple = new SpaceWorkMultiple(workType, requiredValueMultiple, spaceWork, effects);
+			SpaceWorkZone spaceWorkZone = new SpaceWorkZone();
+			SpaceWork spaceWorkSingle = new SpaceWorkSingle(workType, spaceWorkZone);
+			SpaceWork spaceWorkMultiple = new SpaceWorkMultiple(workType, spaceWorkZone);
+			spaceWorks.add(spaceWorkSingle);
+			spaceWorks.add(spaceWorkMultiple);
 		}
-		*/
+		
 		
 	}
 	
@@ -55,6 +56,7 @@ public class Board {
 	public List<Occupiable> getOccupiables() {
 		List<Occupiable> occupiables = new ArrayList<>();
 		occupiables.addAll(towerSet.getOccupiables());
+		occupiables.addAll(spaceWorks);
 		return occupiables;
 	}
 	
