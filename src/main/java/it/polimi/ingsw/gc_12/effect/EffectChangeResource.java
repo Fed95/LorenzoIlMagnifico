@@ -14,13 +14,13 @@ public class EffectChangeResource extends Effect {
 	private List<Resource> resources = new ArrayList<>();
 	
 	public EffectChangeResource(Event event, List<Resource> costs, List<Resource> resources) {
-		super(event);
+		super(event,EffectType.EFFECT_CHANGE_RESOURCE);
 		this.costs = costs;
 		this.resources = resources;
 	}
 	
 	public EffectChangeResource(Event event, Resource cost, Resource resource) {
-		super(event);
+		super(event,EffectType.EFFECT_CHANGE_RESOURCE);
 		List<Resource> costs =  new ArrayList<>();
 		costs.add(cost);
 		this.costs = costs;
