@@ -79,7 +79,7 @@ public class Match {
 			for (int i = 0; i < FamilyMemberColor.values().length; i++) {
 
 				Player player = board.getTrackTurnOrder().getCurrentPlayer();
-				System.out.println(player);
+				System.out.println("Current turn of: " + player.getName());
 				ControllerPlayer controller = controllers.get(player);
 				controller.start();
 				board.getTrackTurnOrder().newTurn();

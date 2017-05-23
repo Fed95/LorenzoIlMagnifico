@@ -10,15 +10,17 @@ public class TowerFloor extends Occupiable{
 	private final int floorNum;
 	private Card card;
 	private CardType cardType;
+	private Tower tower;
 	
-	public TowerFloor(int floorNum, int requiredValue, CardType cardType, List<Effect> effects){
-		super();
+	public TowerFloor(Tower tower, int floorNum, int requiredValue, CardType cardType, List<Effect> effects){
+		super(requiredValue, effects);
+		this.tower = tower;
 		this.floorNum = floorNum;
 		this.cardType = cardType;
 	}
 		
-	public TowerFloor(int floorNum, int requiredValue, CardType cardType){
-		this(floorNum, requiredValue, cardType, null);
+	public TowerFloor(Tower tower, int floorNum, int requiredValue, CardType cardType){
+		this(tower, floorNum, requiredValue, cardType, null);
 	}
 
 	public int getFloorNum() {
@@ -33,20 +35,19 @@ public class TowerFloor extends Occupiable{
 		this.card = card;
 	}
 
-	@Override
-	public String toString() {
-		return "Floor " + floorNum + " of " + cardType + " tower" /*+ " card: " + card*/;
-	}
-
-	@Override
 	public boolean isOccupied() {
-		// TODO Auto-generated method stub
-		return false;
+		return !occupiers.isEmpty();
 	}
 
 	@Override
 	public boolean canBeOccupiedBy(FamilyMember occupier) {
-		// TODO Auto-generated method stub
+		if(!isOccupied() && tower.canBeOccupiedBy(occupier))
+			return true;
 		return false;
+	}
+
+	@Override
+	public String toString() {
+		return "Floor " + floorNum + " of " + cardType + " tower - required value: " + super.requiredValue ;
 	}
 }

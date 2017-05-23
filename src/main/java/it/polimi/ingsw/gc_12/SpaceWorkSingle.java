@@ -16,4 +16,9 @@ public class SpaceWorkSingle extends SpaceWork{
 	public SpaceWorkSingle(WorkType workType, SpaceWorkZone spaceWorkZone) {
 		super(workType, DEFAULT_REQUIRED_VALUE, spaceWorkZone, DEFAULT_EFFECTS);
 	}
+
+	@Override
+	public String toString() {
+		return "SpaceWorkSingle - required value: " + super.requiredValue;
+	}
 }

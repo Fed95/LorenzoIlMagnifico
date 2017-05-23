@@ -18,7 +18,6 @@ public class SpaceWork extends Occupiable{
 		spaceWorkZone.addSpaceWork(this);
 	}
 
-	@Override
 	public boolean isOccupied() {
 		if(occupiers.isEmpty())
 			return false;
@@ -27,7 +26,7 @@ public class SpaceWork extends Occupiable{
 
 	@Override
 	public boolean canBeOccupiedBy(FamilyMember occupier) {
-		if(occupier.getValue() >= requiredValue && spaceWorkZone.canBeOccupiedBy(occupier))
+		if(isRequiredValueSatisfied(occupier) && spaceWorkZone.canBeOccupiedBy(occupier))
 			return true;
 		return false;
 	}

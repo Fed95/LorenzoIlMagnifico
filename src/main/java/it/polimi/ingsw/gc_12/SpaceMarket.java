@@ -13,8 +13,7 @@ public class SpaceMarket extends Occupiable{
 		super();
 		// TODO Auto-generated method stub
 	}
-	
-	@Override
+
 	public boolean isOccupied() {
 		// TODO Auto-generated method stub
 		return false;

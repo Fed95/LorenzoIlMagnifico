@@ -1,8 +1,7 @@
 package it.polimi.ingsw.gc_12.mvc;
 
-import java.util.List;
-import java.util.Observable;
-import java.util.Scanner;
+import java.util.*;
+
 import it.polimi.ingsw.gc_12.Board;
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.FamilyMemberColor;
@@ -32,6 +31,7 @@ public class ViewCLI extends Observable{
 			if(in.hasNextInt()) {
 				switch (in.nextInt()) {
 				case 0:
+					System.out.println("Action 'Place Family Member' chosen");
 					askFamilyMember();
 					break;
 				default:
@@ -51,9 +51,12 @@ public class ViewCLI extends Observable{
 	public void askFamilyMember() {
 		System.out.println("Write the number of the family member you want to use");
 
+
 		int i = 0;
-		for(FamilyMemberColor familyMemberColor : FamilyMemberColor.values()) {
-			System.out.println(i + " - " + familyMemberColor.name());
+		List<FamilyMemberColor> familyMemberColors = Arrays.asList(FamilyMemberColor.values());
+		Map<FamilyMemberColor, FamilyMember> familyMembers = player.getFamilymembers();
+		for(FamilyMemberColor familyMemberColor : familyMemberColors) {
+			System.out.println(i + " - " + familyMembers.get(familyMemberColor));
 			i++;
 		}
 
@@ -67,7 +70,8 @@ public class ViewCLI extends Observable{
 					return;
 				}
 
-				FamilyMember familyMember = new FamilyMember(player, FamilyMemberColor.values()[input]);
+				FamilyMember familyMember = new FamilyMember(player, familyMemberColors.get(input));
+				System.out.println(familyMember + " chosen ");
 				setChanged();
 				notifyObservers(familyMember);
 				break;
@@ -83,7 +87,7 @@ public class ViewCLI extends Observable{
 	public void askOccupiable() {
 		List<Occupiable> occupiables = board.getOccupiables();
 		System.out.println();
-		System.out.println("Write the number of the family member you want to use");
+		System.out.println("Write the number of the space where you want to place the family member");
 		int i = 0;
 		for(Occupiable occupiable : occupiables) {
 			System.out.println(i + " - " + occupiable.toString());
@@ -111,11 +115,10 @@ public class ViewCLI extends Observable{
 				System.out.println("The input must be a number. Try again");
 				in.next();
 			}
-				
 		}
 	}
 
-	public void errorActionNotValid() {
-		System.out.println("Azione non valida");
+	public void printError(String error) {
+		System.err.println(error);
 	}
 }

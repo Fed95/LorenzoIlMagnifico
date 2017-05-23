@@ -37,9 +37,20 @@ public class Tower {
 	}
 	
 	public void initializeFloor(Card card, int i) {
-		TowerFloor floor = new TowerFloor(i, DEFAULT_REQUIRED_VALUES.get(i), type);
+		TowerFloor floor = new TowerFloor(this, i, DEFAULT_REQUIRED_VALUES.get(i), type);
 		//floor.setCard(card);
 		floors.add(floor);
+	}
+
+	public boolean canBeOccupiedBy(FamilyMember occupier) {
+		if(occupier.getColor().equals(FamilyMemberColor.NEUTRAL))
+			return true;
+
+		for(TowerFloor floor : floors)
+			for(FamilyMember i: floor.getOccupiers())
+				if(!occupier.getColor().equals(FamilyMemberColor.NEUTRAL) && occupier.getOwner().equals(i.getOwner()))
+					return false;
+		return true;
 	}
 
 	@Override

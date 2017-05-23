@@ -43,10 +43,14 @@ public class ControllerPlayer implements Observer{
 				
 				if(action instanceof ActionPlaceFamilyMember) {
 					((ActionPlaceFamilyMember) action).setOccupiable(occupiable);
-					action.start();
+					if(!action.start()) {
+						view.printError("Cannot place family member.");
+						view.askAction();
+					}
+
 				}
 				else {
-					view.errorActionNotValid();
+					view.printError("Action not valid");
 					view.askAction();
 				}
 			}

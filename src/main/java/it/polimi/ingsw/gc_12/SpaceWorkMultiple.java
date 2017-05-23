@@ -16,4 +16,9 @@ public class SpaceWorkMultiple extends SpaceWork {
 	public SpaceWorkMultiple(WorkType workType, SpaceWorkZone spaceWorkZone) {
 		super(workType, DEFAULT_REQUIRED_VALUE, spaceWorkZone, DEFAULT_EFFECTS);
 	}
+
+	@Override
+	public String toString() {
+		return "SpaceWorkMultiple - required value: " + super.requiredValue;
+	}
 }

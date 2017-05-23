@@ -34,14 +34,18 @@ public abstract class Occupiable extends EffectProvider {
 	}
 	
 	public boolean placeFamilyMember(FamilyMember occupier) {
-		if(this.canBeOccupiedBy(occupier)){
+		if(this.canBeOccupiedBy(occupier) && isRequiredValueSatisfied(occupier)){
 			this.occupiers.add(occupier);
 			return true;
 		}
 		return false;
 	}
-	
-	public abstract boolean isOccupied();
+
+	protected boolean isRequiredValueSatisfied(FamilyMember occupier) {
+		if(requiredValue > occupier.getValue())
+			return false;
+		return true;
+	}
 	
 	public abstract boolean canBeOccupiedBy(FamilyMember occupier);
 }
