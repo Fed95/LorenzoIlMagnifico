@@ -1,11 +1,14 @@
 package it.polimi.ingsw.gc_12.JSON;
 
+import java.awt.event.ContainerAdapter;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import it.polimi.ingsw.gc_12.card.Card;
 import it.polimi.ingsw.gc_12.effect.Effect;
+import it.polimi.ingsw.gc_12.effect.EffectChangeResource;
 import it.polimi.ingsw.gc_12.resource.FaithPoint;
 import it.polimi.ingsw.gc_12.resource.MilitaryPoint;
 import it.polimi.ingsw.gc_12.resource.Money;
@@ -22,18 +25,30 @@ public class AskCards {
 		List<Resource> requirements=new ArrayList<>();
 		List<Card> cards=new ArrayList<>();
 		List<Effect> effects=new ArrayList<>();
+		File file=new File("card.json");
+		if(file.exists()){
+			//taking the last id from the existing file
+			JsonCard jsonobj= new JsonCard("card");
+			List<Card> lastid=jsonobj.getCards();
+			for(Card card: lastid){
+				id=card.getId();
+			}
+		}
         while(true){
         	System.out.println("Insert the name of the Card");
     		String name=scan.nextLine();
     		requirements=AskResource();
-        	System.out.println("If you want to exit from the create card tool write exit, if not do anything else");
-    		String choice=scan.nextLine();
-    		if (choice=="exit") {
-				break;
-			}
-    		id=id+1;
+    		Effect effect= new EffectChangeResource(null, new ArrayList<>(), new ArrayList<>());
+    		effects.add(effect);
+    		System.out.println(id);
     		Card card=new Card(id, name, requirements, effects);
     		cards.add(card);
+    		id=id+1;
+        	System.out.println("Do you want to exit from creating card tool?[Yes/No]");
+    		String choice=scan.nextLine();
+    		if(choice.equals("Yes")) {
+				break;
+			}
         }
 		scan.close();
         return cards;
@@ -47,7 +62,6 @@ public class AskCards {
 			System.out.println("Insert requirements");
 			System.out.println(" 1 FaithPoint \n 2 MilitaryPoint \n 3 VictoryPoints \n 4 Servants \n 5 Money \n 6 Stone \n 7 Wood \n 8 Exit create resource tool");
 			int resourcechoice=scan1.nextInt();
-			System.out.println(resourcechoice);
 			scan1.nextLine();
 			switch(resourcechoice){
 				case 1:
@@ -105,7 +119,6 @@ public class AskCards {
 			requirements.add(resource);
 			
 		}
-		scan1.close();
 		return requirements;
 	}
 }
