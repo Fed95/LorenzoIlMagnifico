@@ -5,9 +5,11 @@ import it.polimi.ingsw.gc_12.event.Event;
 public abstract class Effect {
 	
 	protected Event event;
+	protected EffectType type;
 	
-	public Effect(Event action) {
+	public Effect(Event action, EffectType type) {
 		this.event = action;
+		this.type=type;
 	}
 	
 	public Event getEvent() {
