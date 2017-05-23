@@ -28,6 +28,10 @@ public class FamilyMember implements Observer {
 			this.value = 0;
 		}	
 	}
+
+	public FamilyMember() {
+		this.owner = null;
+	}
 	
 	public FamilyMemberColor getColor(){
 		return color;

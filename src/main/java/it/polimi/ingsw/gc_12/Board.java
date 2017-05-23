@@ -1,19 +1,19 @@
 package it.polimi.ingsw.gc_12;
 
+import it.polimi.ingsw.gc_12.track.TrackTurnOrder;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
 
-	public static final int DEFAULT_SPACE_MARKETS_NUM = 4;
 	private SpaceDie spaceDie;
 	private TowerSet towerSet;
-	private int actionSpaceNum;
 	private Market market;
 	private List<Occupiable> spaceWorks = new ArrayList<>();
+	private TrackTurnOrder trackTurnOrder;
 	
 	/*
-	private TurnOrderTrack turnOrderTrack;
 	private CouncilPalace councilPalace;
 	private ExcommunicationSpace excommunicationSpace;
 	private FaithPointsTrack faithPointTrack;
@@ -22,7 +22,8 @@ public class Board {
 	public Board() {
 		this.spaceDie = SpaceDie.instance();
 		this.towerSet = new TowerSet();
-		this.market = new Market(DEFAULT_SPACE_MARKETS_NUM);
+		this.market = new Market();
+		this.trackTurnOrder = new TrackTurnOrder(Match.instance().getPlayers());
 		
 		
 		for(WorkType workType : WorkType.values()){
@@ -37,8 +38,8 @@ public class Board {
 		
 	}
 	
-	public int getActionSpaceNum() {
-		return actionSpaceNum;
+	public List<Occupiable> getSpaceWorks(){
+		return spaceWorks;
 	}
 	
 	public SpaceDie getSpaceDie() {
@@ -52,7 +53,11 @@ public class Board {
 	public Market getMarket() {
 		return market;
 	}
-	
+
+	public TrackTurnOrder getTrackTurnOrder() {
+		return trackTurnOrder;
+	}
+
 	public List<Occupiable> getOccupiables() {
 		List<Occupiable> occupiables = new ArrayList<>();
 		occupiables.addAll(towerSet.getOccupiables());
@@ -61,14 +66,8 @@ public class Board {
 	}
 	
 	/*
-	public TurnOrderTrack getTurnOrderTrack() {
-		return turnOrderTrack;
-	}
 	public CouncilPalace getCouncilPalace() {
 		return councilPalace;
-	}
-	public SpaceAction getSpaceAction() {
-		return spaceAction;
 	}
 	public ExcommunicationSpace getExcommunicationSpace() {
 		return excommunicationSpace;

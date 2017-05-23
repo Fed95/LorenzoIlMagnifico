@@ -3,8 +3,10 @@ package it.polimi.ingsw.gc_12;
 import java.util.List;
 
 public class Market {
+	
 	private final int numberOfSpaces;
 	private List<SpaceMarket> spaceMarket;
+	public static final int DEFAULT_SET_NUM = 4;
 	
 	public Market(int setNumber){
 		if(setNumber < 0){
@@ -17,7 +19,15 @@ public class Market {
 			//spaceMarket.add(new SpaceMarket());
 		}
 	}
+	
+	public Market(){
+		this(DEFAULT_SET_NUM);
+	}
 	public int getNumberOfSpaces(){
 		return numberOfSpaces;
+	}
+
+	public List<SpaceMarket> getSpaceMarket() {
+		return spaceMarket;
 	}
 }

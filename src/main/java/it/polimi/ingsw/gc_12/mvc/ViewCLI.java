@@ -13,7 +13,7 @@ public class ViewCLI extends Observable{
 	
 	private Scanner in = new Scanner(System.in);
 	private Player player;
-	private Board board = new Board();
+	private Board board;
 
 	public ViewCLI(Player player, Board board) {
 		this.player = player;

@@ -20,6 +20,9 @@ public class ControllerPlayer implements Observer{
 		this.view = view;
 		this.view.addObserver(this);
 		this.view.notifyObservers();
+	}
+
+	public void start() {
 		this.view.askAction();
 	}
 
@@ -47,7 +50,6 @@ public class ControllerPlayer implements Observer{
 					view.errorActionNotValid();
 					view.askAction();
 				}
-					
 			}
 		}
 	}
