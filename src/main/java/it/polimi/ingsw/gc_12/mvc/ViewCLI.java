@@ -51,7 +51,6 @@ public class ViewCLI extends Observable{
 	public void askFamilyMember() {
 		System.out.println("Write the number of the family member you want to use");
 
-
 		int i = 0;
 		List<FamilyMemberColor> familyMemberColors = Arrays.asList(FamilyMemberColor.values());
 		Map<FamilyMemberColor, FamilyMember> familyMembers = player.getFamilymembers();
@@ -65,16 +64,19 @@ public class ViewCLI extends Observable{
 		while (true) {
 			if(in.hasNextInt()) {
 				int input = in.nextInt();
-				if(input == i) {
+				if(input < 0 || input > i){
+					System.out.println("The specified input is not listed above");
+					askFamilyMember();
+				}else 				if(input == i) {
 					askAction();
 					return;
+				}else {
+					FamilyMember familyMember = new FamilyMember(player, familyMemberColors.get(input));
+					System.out.println(familyMember + " chosen ");
+					setChanged();
+					notifyObservers(familyMember);
+					break;
 				}
-
-				FamilyMember familyMember = new FamilyMember(player, familyMemberColors.get(input));
-				System.out.println(familyMember + " chosen ");
-				setChanged();
-				notifyObservers(familyMember);
-				break;
 			}
 			else {
 				System.out.println("The input must be a number. Try again");
@@ -87,7 +89,7 @@ public class ViewCLI extends Observable{
 	public void askOccupiable() {
 		List<Occupiable> occupiables = board.getOccupiables();
 		System.out.println();
-		System.out.println("Write the number of the space where you want to place the family member");
+		System.out.println("Write the number of the space you want to place the family member in.");
 		int i = 0;
 		for(Occupiable occupiable : occupiables) {
 			System.out.println(i + " - " + occupiable.toString());
@@ -99,9 +101,9 @@ public class ViewCLI extends Observable{
 		while (true) {
 			if(in.hasNextInt()) {
 				int input = in.nextInt();
-				if(input > i){
-					System.out.println("Input not valid. Please try again");
-					in.next();
+				if(input < 0 || input > i) {
+					System.out.println("The specified input is not listed above");
+					askFamilyMember();
 				}else if(input == i) {
 					askAction();
 					return;				
@@ -119,6 +121,6 @@ public class ViewCLI extends Observable{
 	}
 
 	public void printError(String error) {
-		System.err.println(error);
+		System.out.println(error);
 	}
 }

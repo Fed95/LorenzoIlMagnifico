@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import it.polimi.ingsw.gc_12.exceptions.FamilyMemberAlreadyPresentException;
+import it.polimi.ingsw.gc_12.exceptions.OccupiableAlreadyTakenException;
+import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
@@ -23,7 +26,7 @@ public class Player {
 	private Map<FamilyMemberColor, FamilyMember> familymembers = new HashMap<>();
 	
 	public Player(String name, Map<ResourceType, Resource> resources){
-		this.name=name;
+		this.name = name;
 		this.resources = resources;
 		for(FamilyMemberColor color : FamilyMemberColor.values()) {
 			familymembers.put(color, new FamilyMember(this, color));
@@ -34,16 +37,14 @@ public class Player {
 		match.getBoard().getSpaceDie().rollDice();
 	}
 	
-	public boolean placeFamilyMember(FamilyMember familyMember, Occupiable occupiable){
+	public void placeFamilyMember(FamilyMember familyMember, Occupiable occupiable) throws RequiredValueNotSatisfiedException, FamilyMemberAlreadyPresentException, OccupiableAlreadyTakenException {
 		Event event = new EventPlaceFamilyMember(this, occupiable, familyMember);
 		effectHandler.executeEffects(event);
-		if(!occupiable.placeFamilyMember(familyMember)) {
-			effectHandler.discardEffects(event);
-			return false;
-		}
-		
+		//Can throw exceptions
+		occupiable.placeFamilyMember(familyMember);
+
+		effectHandler.discardEffects(event);
 		// TODO: implement placement
-		return true;
 	}
 
 	public String getName() {

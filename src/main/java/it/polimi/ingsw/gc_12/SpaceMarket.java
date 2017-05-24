@@ -3,10 +3,13 @@ package it.polimi.ingsw.gc_12;
 import java.util.List;
 
 import it.polimi.ingsw.gc_12.effect.Effect;
+import it.polimi.ingsw.gc_12.exceptions.OccupiableAlreadyTakenException;
+import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 
 public class SpaceMarket extends Occupiable{
+
 	public SpaceMarket(List<Effect> effects, int requiredValue, int maxNumberOfPlayer){
-		super();
+		super(requiredValue, effects);
 		// TODO Auto-generated method stub
 	}
 	public SpaceMarket(){
@@ -14,15 +17,14 @@ public class SpaceMarket extends Occupiable{
 		// TODO Auto-generated method stub
 	}
 
-	public boolean isOccupied() {
-		// TODO Auto-generated method stub
-		return false;
+	public void isOccupied() throws OccupiableAlreadyTakenException{
+		if(!occupiers.isEmpty())
+			throw new OccupiableAlreadyTakenException();
 	}
 	
 	@Override
-	public boolean canBeOccupiedBy(FamilyMember occupier) {
-		// TODO Auto-generated method stub
-		return false;
+	public void canBeOccupiedBy(FamilyMember occupier) throws OccupiableAlreadyTakenException{
+		this.isOccupied();
 	}
 	
 	

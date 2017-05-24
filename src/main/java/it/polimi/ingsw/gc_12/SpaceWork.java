@@ -3,6 +3,9 @@ package it.polimi.ingsw.gc_12;
 import java.util.List;
 
 import it.polimi.ingsw.gc_12.effect.Effect;
+import it.polimi.ingsw.gc_12.exceptions.FamilyMemberAlreadyPresentException;
+import it.polimi.ingsw.gc_12.exceptions.OccupiableAlreadyTakenException;
+import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 
 public class SpaceWork extends Occupiable{
 	
@@ -25,10 +28,9 @@ public class SpaceWork extends Occupiable{
 	}
 
 	@Override
-	public boolean canBeOccupiedBy(FamilyMember occupier) {
-		if(isRequiredValueSatisfied(occupier) && spaceWorkZone.canBeOccupiedBy(occupier))
-			return true;
-		return false;
+	public void canBeOccupiedBy(FamilyMember occupier) throws FamilyMemberAlreadyPresentException, OccupiableAlreadyTakenException {
+		if(!spaceWorkZone.canBeOccupiedBy(occupier))
+			throw new FamilyMemberAlreadyPresentException();
 	}
 	
 	public WorkType getWorkType() {

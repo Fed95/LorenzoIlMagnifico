@@ -5,6 +5,10 @@ import java.util.HashSet;
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Occupiable;
 import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.exceptions.FamilyMemberAlreadyPresentException;
+import it.polimi.ingsw.gc_12.exceptions.InvalidParametersException;
+import it.polimi.ingsw.gc_12.exceptions.OccupiableAlreadyTakenException;
+import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 
 public class ActionPlaceFamilyMember extends Action implements ActionInterface{
 
@@ -42,11 +46,11 @@ public class ActionPlaceFamilyMember extends Action implements ActionInterface{
 	}
 	
 	@Override
-	public boolean start() {
+	public void start() throws RequiredValueNotSatisfiedException, FamilyMemberAlreadyPresentException, InvalidParametersException, OccupiableAlreadyTakenException {
 		if(familyMember == null || occupiable == null)
-			return false;
-		
-		return player.placeFamilyMember(familyMember, occupiable);
+			throw new InvalidParametersException();
+
+		player.placeFamilyMember(familyMember, occupiable);
 	}
 
 	/*@Override

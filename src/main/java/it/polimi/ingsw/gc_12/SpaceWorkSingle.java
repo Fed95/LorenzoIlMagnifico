@@ -3,6 +3,8 @@ package it.polimi.ingsw.gc_12;
 import java.util.ArrayList;
 import java.util.List;
 import it.polimi.ingsw.gc_12.effect.Effect;
+import it.polimi.ingsw.gc_12.exceptions.FamilyMemberAlreadyPresentException;
+import it.polimi.ingsw.gc_12.exceptions.OccupiableAlreadyTakenException;
 
 public class SpaceWorkSingle extends SpaceWork{
 	
@@ -19,6 +21,15 @@ public class SpaceWorkSingle extends SpaceWork{
 
 	@Override
 	public String toString() {
-		return "SpaceWorkSingle - required value: " + super.requiredValue;
+		return "SpaceWorkSingle of type " + workType + "- required value: " + super.requiredValue;
+	}
+
+
+	@Override
+	public void canBeOccupiedBy(FamilyMember occupier) throws FamilyMemberAlreadyPresentException, OccupiableAlreadyTakenException {
+		if(!spaceWorkZone.canBeOccupiedBy(occupier))
+			throw new FamilyMemberAlreadyPresentException();
+		if(isOccupied())
+			throw new OccupiableAlreadyTakenException();
 	}
 }

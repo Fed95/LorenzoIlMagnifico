@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.gc_12.effect.Effect;
+import it.polimi.ingsw.gc_12.exceptions.FamilyMemberAlreadyPresentException;
+import it.polimi.ingsw.gc_12.exceptions.OccupiableAlreadyTakenException;
+import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 
 public abstract class Occupiable extends EffectProvider {
 	
 	protected List<FamilyMember> occupiers = new ArrayList<>();
-	public final static int DEFAULT_MAXNUMBEROFPLAYER = 1;
+	public final static int DEFAULT_MAXNUMBEROFPLAYERS = 1;
 	public static final int DEFAULT_REQUIRED_VALUE = 1;
 	protected final int requiredValue;
 	
@@ -33,19 +36,18 @@ public abstract class Occupiable extends EffectProvider {
 		return requiredValue;
 	}
 	
-	public boolean placeFamilyMember(FamilyMember occupier) {
-		if(this.canBeOccupiedBy(occupier) && isRequiredValueSatisfied(occupier)){
-			this.occupiers.add(occupier);
-			return true;
-		}
-		return false;
+	public void placeFamilyMember(FamilyMember occupier) throws RequiredValueNotSatisfiedException, FamilyMemberAlreadyPresentException, OccupiableAlreadyTakenException {
+		isRequiredValueSatisfied(occupier);
+		this.canBeOccupiedBy(occupier);
+
+		//Only executed if two previous calls do not throw exceptions
+		this.occupiers.add(occupier);
 	}
 
-	protected boolean isRequiredValueSatisfied(FamilyMember occupier) {
+	protected void isRequiredValueSatisfied(FamilyMember occupier) throws RequiredValueNotSatisfiedException {
 		if(requiredValue > occupier.getValue())
-			return false;
-		return true;
+			throw new RequiredValueNotSatisfiedException();
 	}
 	
-	public abstract boolean canBeOccupiedBy(FamilyMember occupier);
+	public abstract void canBeOccupiedBy(FamilyMember occupier) throws FamilyMemberAlreadyPresentException, OccupiableAlreadyTakenException;
 }

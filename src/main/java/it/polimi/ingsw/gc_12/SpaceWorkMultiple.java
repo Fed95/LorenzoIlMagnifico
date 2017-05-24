@@ -19,6 +19,6 @@ public class SpaceWorkMultiple extends SpaceWork {
 
 	@Override
 	public String toString() {
-		return "SpaceWorkMultiple - required value: " + super.requiredValue;
+		return "SpaceWorkMultiple of type " + workType + " - required value: " + super.requiredValue;
 	}
 }

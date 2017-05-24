@@ -5,6 +5,7 @@ import java.util.List;
 import it.polimi.ingsw.gc_12.card.Card;
 import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.effect.Effect;
+import it.polimi.ingsw.gc_12.exceptions.OccupiableAlreadyTakenException;
 
 public class TowerFloor extends Occupiable{
 	private final int floorNum;
@@ -40,10 +41,12 @@ public class TowerFloor extends Occupiable{
 	}
 
 	@Override
-	public boolean canBeOccupiedBy(FamilyMember occupier) {
-		if(!isOccupied() && tower.canBeOccupiedBy(occupier))
-			return true;
-		return false;
+	public void canBeOccupiedBy(FamilyMember occupier) throws OccupiableAlreadyTakenException {
+		if(isOccupied())
+			throw new OccupiableAlreadyTakenException();
+
+		//TODO: must implement -3 coins malus when there is another FM on the tower
+		//tower.canBeOccupiedBy(occupier);
 	}
 
 	@Override

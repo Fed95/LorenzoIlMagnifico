@@ -42,6 +42,8 @@ public class Tower {
 		floors.add(floor);
 	}
 
+	/*
+	//TODO: must implement -3 coins malus when there is another FM on the tower
 	public boolean canBeOccupiedBy(FamilyMember occupier) {
 		if(occupier.getColor().equals(FamilyMemberColor.NEUTRAL))
 			return true;
@@ -52,6 +54,7 @@ public class Tower {
 					return false;
 		return true;
 	}
+	*/
 
 	@Override
 	public String toString() {

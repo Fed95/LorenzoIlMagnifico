@@ -39,6 +39,9 @@ public class Match {
 		initializeMatch();
 		this.setInitialResources();
 	}
+	private Match() {
+		this(DEFAULT_GAME_MODE);
+	}
 
 	// TODO: remove when loaded from json file
 	private void initializeMatch() {
@@ -53,10 +56,6 @@ public class Match {
 		Player player2 = new Player("caio", resources2);
 		players.add(player2);
 
-	}
-
-	private Match() {
-		this(DEFAULT_GAME_MODE);
 	}
 
 	public void start() {
@@ -112,7 +111,7 @@ public class Match {
 		return board;
 	}
 
-	public int getRoundNum() {
+	public int getRoundNUm() {
 		return roundNum;
 	}
 
