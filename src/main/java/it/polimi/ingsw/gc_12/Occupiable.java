@@ -14,18 +14,20 @@ public abstract class Occupiable extends EffectProvider {
 	public final static int DEFAULT_MAXNUMBEROFPLAYERS = 1;
 	public static final int DEFAULT_REQUIRED_VALUE = 1;
 	protected final int requiredValue;
+	private final ListOccupiable listOccupiable;
 	
-	public Occupiable(int requiredValue, List<Effect> effects) {
-		super(effects);
+	public Occupiable(int requiredValue, List<Effect> effects, ListOccupiable listOccupiable) {
+		super(effects,ListEffectProvider.OCCUPIABLE);
 		this.requiredValue = requiredValue;
+		this.listOccupiable=listOccupiable;
 	}
 	
-	public Occupiable(List<Effect> effects) {
-		this(DEFAULT_REQUIRED_VALUE, effects);
+	public Occupiable(List<Effect> effects, ListOccupiable listOccupiable) {
+		this(DEFAULT_REQUIRED_VALUE, effects, listOccupiable);
 	}
 	
-	public Occupiable() {
-		this(DEFAULT_REQUIRED_VALUE, new ArrayList<>());
+	public Occupiable(ListOccupiable listOccupiable) {
+		this(DEFAULT_REQUIRED_VALUE, new ArrayList<>(), listOccupiable);
 	}
 	
 	public List<FamilyMember> getOccupiers() {
