@@ -9,11 +9,11 @@ import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 public class SpaceMarket extends Occupiable{
 
 	public SpaceMarket(List<Effect> effects, int requiredValue, int maxNumberOfPlayer){
-		super(requiredValue, effects);
+		super(requiredValue, effects,ListOccupiable.SPACE_MARKET);
 		// TODO Auto-generated method stub
 	}
 	public SpaceMarket(){
-		super();
+		super(ListOccupiable.SPACE_MARKET);
 		// TODO Auto-generated method stub
 	}
 

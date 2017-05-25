@@ -10,13 +10,13 @@ import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 public class SpaceWork extends Occupiable{
 	
 	protected WorkType workType;
-	protected int requiredValue;
+	protected int requiredValueWork;
 	protected SpaceWorkZone spaceWorkZone;
 	
-	public SpaceWork(WorkType workType, int requiredValue, SpaceWorkZone spaceWorkZone, List<Effect> effects){
-		super(effects);
+	public SpaceWork(WorkType workType, int requiredValueWork, SpaceWorkZone spaceWorkZone, List<Effect> effects){
+		super(effects,ListOccupiable.SPACE_WORK);
 		this.workType = workType;
-		this.requiredValue = requiredValue;
+		this.requiredValueWork = requiredValueWork;
 		this.spaceWorkZone = spaceWorkZone;
 		spaceWorkZone.addSpaceWork(this);
 	}
