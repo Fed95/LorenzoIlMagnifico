@@ -19,7 +19,8 @@ public class Main {
 		//cards.add(card2);
 		JsonCard jsonobj= new JsonCard("card");
 		//jsonobj.createCards(cards);
-		//cards=jsonobj.getCards();	
+		//cards=jsonobj.getCards();
+		
 		AskCards askCards=new AskCards();
 		cards=askCards.buildCards();
 		jsonobj.createCards(cards);

@@ -17,11 +17,18 @@ public class EventPlaceFamilyMember extends Event{
 	private List<EffectProvider> effectProviders = new ArrayList<>();
 	
 	public EventPlaceFamilyMember(Player player, List<Occupiable> occupiables, FamilyMember familyMember) {
-		super(player);
+		super(player,ListEvent.EVENT_PLACE_FAMILY_MEMBER);
 		this.occupiables = occupiables;
 		this.familyMember = familyMember;
 		
 		effectProviders.addAll(player.getCards());
+		effectProviders.addAll(occupiables);
+	}
+	public EventPlaceFamilyMember(List<Occupiable> occupiables, FamilyMember familyMember) {
+		super(ListEvent.EVENT_PLACE_FAMILY_MEMBER);
+		this.occupiables = occupiables;
+		this.familyMember = familyMember;
+		
 		effectProviders.addAll(occupiables);
 	}
 	

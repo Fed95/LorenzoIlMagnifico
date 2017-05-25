@@ -8,9 +8,11 @@ import it.polimi.ingsw.gc_12.effect.Effect;
 public abstract class EffectProvider {
 	
 	protected List<Effect> effects = new ArrayList<>();
-
-	public EffectProvider(List<Effect> effects) {
+	private final ListEffectProvider listEffectProvider;
+	
+	public EffectProvider(List<Effect> effects, ListEffectProvider listEffectProvider) {
 		this.effects = effects;
+		this.listEffectProvider=listEffectProvider;
 	}
 	
 	public List<Effect> getEffects() {
