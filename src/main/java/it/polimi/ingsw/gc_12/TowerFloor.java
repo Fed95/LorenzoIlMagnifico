@@ -3,25 +3,25 @@ package it.polimi.ingsw.gc_12;
 import java.util.List;
 
 import it.polimi.ingsw.gc_12.card.Card;
-import it.polimi.ingsw.gc_12.card.CardType;
+import it.polimi.ingsw.gc_12.card.CardDevelopmentType;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.exceptions.OccupiableAlreadyTakenException;
 
 public class TowerFloor extends Occupiable{
 	private final int floorNum;
 	private Card card;
-	private CardType cardType;
+	private CardDevelopmentType cardDevelopmentType;
 	private Tower tower;
 	
-	public TowerFloor(Tower tower, int floorNum, int requiredValue, CardType cardType, List<Effect> effects){
-		super(requiredValue, effects);
+	public TowerFloor(Tower tower, int floorNum, int requiredValue, CardDevelopmentType cardDevelopmentType, List<Effect> effects){
+		super(requiredValue, effects,ListOccupiable.TOWER_FLOOR);
 		this.tower = tower;
 		this.floorNum = floorNum;
-		this.cardType = cardType;
+		this.cardDevelopmentType = cardDevelopmentType;
 	}
 		
-	public TowerFloor(Tower tower, int floorNum, int requiredValue, CardType cardType){
-		this(tower, floorNum, requiredValue, cardType, null);
+	public TowerFloor(Tower tower, int floorNum, int requiredValue, CardDevelopmentType cardDevelopmentType){
+		this(tower, floorNum, requiredValue, cardDevelopmentType, null);
 	}
 
 	public int getFloorNum() {
@@ -51,6 +51,6 @@ public class TowerFloor extends Occupiable{
 
 	@Override
 	public String toString() {
-		return "Floor " + floorNum + " of " + cardType + " tower - required value: " + super.requiredValue ;
+		return "Floor " + floorNum + " of " + cardDevelopmentType + " tower - required value: " + super.requiredValue ;
 	}
 }

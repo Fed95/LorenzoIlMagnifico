@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.gc_12.card.Card;
-import it.polimi.ingsw.gc_12.card.CardType;
+import it.polimi.ingsw.gc_12.card.CardDevelopmentType;
 
 public class Tower {
-	private final CardType type;
+	private final CardDevelopmentType type;
 	private final List<TowerFloor> floors = new ArrayList<>();
 	// It will be loaded from JSON file
 	private final static List<Integer> DEFAULT_REQUIRED_VALUES = new ArrayList<Integer>() {{
@@ -17,14 +17,14 @@ public class Tower {
 		add(6);
 	}};
 
-	public Tower(CardType type){
+	public Tower(CardDevelopmentType type){
 		this.type = type;
 		for (int i = 0; i < 4; i++) {
 			initializeFloor(null, i);
 		}
 	}
 
-	public CardType getType() {
+	public CardDevelopmentType getType() {
 		return type;
 	}
 	
