@@ -9,6 +9,9 @@ public abstract class Event implements EventInterface {
 	public Event(Player player) {
 		this.player = player;
 	}
+	public Event() {
+		
+	}
 
 	public Player getPlayer() {
 		return player;
