@@ -21,7 +21,8 @@ public class Match {
 	private final List<BonusTile> bonusTiles = new ArrayList<>();
 	private Map<CardType, List<Card>> cards = new HashMap<>();
 	private final GameMode gameMode;
-	private final static GameMode DEFAULT_GAME_MODE = GameMode.NORMAL;
+	public final static GameMode DEFAULT_GAME_MODE = GameMode.NORMAL;
+	public final static int DEFAULT_PERIODS_NUM = 3;
 	private Board board;
 	private static Match instance;
 	private int roundNum;
