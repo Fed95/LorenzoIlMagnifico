@@ -12,7 +12,7 @@ public class EffectChangeFamilyMemberValue extends Effect{
 	private int amount;
 	
 	public EffectChangeFamilyMemberValue(Event event, int amount) {
-		super(event,EffectType.EFFECT_CHANGE_FAMILY_MEMBER_VALUE);
+		super(event);
 		this.amount = amount;
 	}
 	
