@@ -1,27 +1,27 @@
 package it.polimi.ingsw.gc_12;
 
+import it.polimi.ingsw.gc_12.card.CardType;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import it.polimi.ingsw.gc_12.card.CardDevelopmentType;
-
 public class TowerSet {
-	private Map<CardDevelopmentType, Tower> towers = new HashMap<>();
+	private Map<CardType, Tower> towers = new HashMap<>();
 	
 	public TowerSet(){
-		for(CardDevelopmentType cardDevelopmentType: CardDevelopmentType.values()) {
-			towers.put(cardDevelopmentType, new Tower(cardDevelopmentType));
+		for(CardType cardType: CardType.values()) {
+			towers.put(cardType, new Tower(cardType));
 		}
 	}
 	
-	public Map<CardDevelopmentType, Tower> getTowers() {
+	public Map<CardType, Tower> getTowers() {
 		return towers;
 	}
 	
-	public Tower getTower(CardDevelopmentType cardDevelopmentType) {
-		return towers.get(cardDevelopmentType);
+	public Tower getTower(CardType cardType) {
+		return towers.get(cardType);
 	}
 	
 	public List<Occupiable> getOccupiables() {

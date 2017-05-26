@@ -2,7 +2,7 @@ package it.polimi.ingsw.gc_12;
 
 import it.polimi.ingsw.gc_12.card.Card;
 import it.polimi.ingsw.gc_12.card.CardBuilding;
-import it.polimi.ingsw.gc_12.card.CardDevelopmentType;
+import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.effect.EffectChangeFamilyMemberValue;
 import it.polimi.ingsw.gc_12.effect.EffectChangeResource;
@@ -19,7 +19,7 @@ import java.util.*;
 public class Match {
 	private final List<Player> players = new ArrayList<>(); //This goes to the class Match
 	private final List<BonusTile> bonusTiles = new ArrayList<>();
-	private Map<CardDevelopmentType, List<Card>> cards = new HashMap<>();
+	private Map<CardType, List<Card>> cards = new HashMap<>();
 	private final GameMode gameMode;
 	private final static GameMode DEFAULT_GAME_MODE = GameMode.NORMAL;
 	private Board board;
@@ -99,8 +99,8 @@ public class Match {
 		return bonusTiles;
 	}
 
-	public List<Card> getCards(CardDevelopmentType cardDevelopmentType) {
-		return cards.get(cardDevelopmentType);
+	public List<Card> getCards(CardType cardType) {
+		return cards.get(cardType);
 	}
 
 	public GameMode getGameMode() {
@@ -126,7 +126,7 @@ public class Match {
 
 	// TODO: remove when loading from JSON file
 	public void initializeCards() {
-		Tower tower = board.getTowerSet().getTower(CardDevelopmentType.BUILDING);
+		Tower tower = board.getTowerSet().getTower(CardType.BUILDING);
 		Effect effect1 = new EffectChangeFamilyMemberValue(new EventPlaceFamilyMember(null, tower.getFloor(1), new FamilyMember()), 2);
 		Card card1 = new CardBuilding(0, "Marco", 1, null, new ArrayList<>(Arrays.asList(effect1)));
 		Effect effect2 = new EffectChangeResource(new EventPlaceFamilyMember(null, tower.getFloor(2), new FamilyMember()), null, new Money(2));
