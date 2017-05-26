@@ -54,23 +54,22 @@ public class ControllerPlayer implements Observer{
 					} catch (RequiredValueNotSatisfiedException e) {
 						//e.printStackTrace();
 						System.out.println("The required value for this placement is not satisfied.");
-						view.askAction();
+						view.askOccupiable();
 					} catch (FamilyMemberAlreadyPresentException e) {
 						//e.printStackTrace();
 						System.out.println("You already have a Family Member working here.");
-						view.askAction();
+						view.askOccupiable();
 					} catch (InvalidParametersException e) {
 						//e.printStackTrace();
 						System.out.println("Something went wrong...");
-						view.askAction();
+						view.askOccupiable();
 					} catch (OccupiableAlreadyTakenException e) {
 						//e.printStackTrace();
 						System.out.println("This space is already taken.");
-						view.askAction();
+						view.askOccupiable();
 					}
 					System.out.println(familyMember + " placed in " + occupiable);
-				}
-				else {
+				} else {
 					view.printError("Action not valid");
 					view.askAction();
 				}
