@@ -20,7 +20,7 @@ public class AskCards {
 	Scanner scanner = new Scanner(System.in);
 
 	public List<Card> buildCards(){
-        int id=1;
+        int id = 1;
 		List<Card> cards = new ArrayList<>();
 		File file = new File("card.json");
 
