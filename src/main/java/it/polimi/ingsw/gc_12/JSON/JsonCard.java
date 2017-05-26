@@ -9,47 +9,74 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 
 import it.polimi.ingsw.gc_12.card.Card;
+import it.polimi.ingsw.gc_12.*;
+import it.polimi.ingsw.gc_12.card.CardBuilding;
 import it.polimi.ingsw.gc_12.effect.*;
+import it.polimi.ingsw.gc_12.event.Event;
+import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.resource.*;
 
 public class JsonCard extends JsonMaster {
+	//Standard gson line of code to get the type of the List
+	private Type listCardType = new TypeToken<List<Card>>() {}.getType();
+
 	public JsonCard(String filename){
 		super(filename);
 	}
+
+	private Gson buildGson() {
+		final RuntimeTypeAdapterFactory<EffectProvider> factoryEffectProvider = RuntimeTypeAdapterFactory
+				.of(EffectProvider.class, "effectProvider")
+				.registerSubtype(Card.class, Card.class.getName())
+				.registerSubtype(Occupiable.class, Occupiable.class.getName());
+
+		final RuntimeTypeAdapterFactory<Occupiable> factoryOccupiable = RuntimeTypeAdapterFactory
+				.of(Occupiable.class, "occupiable")
+				.registerSubtype(SpaceMarket.class, SpaceMarket.class.getName())
+				.registerSubtype(TowerFloor.class, TowerFloor.class.getName())
+				.registerSubtype(SpaceWork.class, SpaceWork.class.getName());//council palace
+
+		final RuntimeTypeAdapterFactory<Card> factoryCard = RuntimeTypeAdapterFactory
+				.of(Card.class, "type")
+				.registerSubtype(CardBuilding.class, CardBuilding.class.getName());
+				//registerSubtype(CardLeader.class, "LEADER");
+
+		final RuntimeTypeAdapterFactory<Resource> factoryResource = RuntimeTypeAdapterFactory
+				.of(Resource.class, "type")
+				.registerSubtype(Wood.class, Wood.class.getName())
+				.registerSubtype(Stone.class, Stone.class.getName());
+
+		final RuntimeTypeAdapterFactory<Effect> factoryEffect = RuntimeTypeAdapterFactory
+				.of(Effect.class, "type") // Here you specify which is the parent class and what field particularizes the child class.
+				.registerSubtype(EffectChangeResource.class, EffectChangeResource.class.getName())
+				.registerSubtype(EffectChangeFamilyMemberValue.class, EffectChangeFamilyMemberValue.class.getName()); // if the flag equals the class name, you can skip the second parameter. This is only necessary, when the "type" field does not equal the class name.
+
+		final RuntimeTypeAdapterFactory<Event> factoryEvent = RuntimeTypeAdapterFactory
+				.of(Event.class, "eventType")
+				.registerSubtype(EventPlaceFamilyMember.class, EventPlaceFamilyMember.class.getName());
+
+		return new GsonBuilder()
+				.registerTypeAdapterFactory(factoryEffectProvider)
+				.registerTypeAdapterFactory(factoryOccupiable)
+				.registerTypeAdapterFactory(factoryCard)
+				.registerTypeAdapterFactory(factoryResource)
+				.registerTypeAdapterFactory(factoryEffect)
+				.registerTypeAdapterFactory(factoryEvent)
+				.create();
+	}
+
 	public void createCards(List<Card> cards){
-		Gson gsonobj=new Gson();
-		String gsoncard=gsonobj.toJson(cards);
+		Gson gson = buildGson();
+		String gsonCard = gson.toJson(cards, listCardType);
 		ManageJsonFile manageJsonFile=new ManageJsonFile();
-		manageJsonFile.tojsonFile(gsoncard, this);
+		manageJsonFile.tojsonFile(gsonCard, this);
 	}
 	public List<Card> getCards(){
-		Gson jsonobj=new Gson();
-		//Standard gson line of code for get the type of the List
-		Type listCardType = new TypeToken<List<Card>>() {}.getType();
 		ManageJsonFile manageJsonFile=new ManageJsonFile();
-		String json=manageJsonFile.fromJsonFile(this);
-		//GsonBuilder gsonBldr = new GsonBuilder();
-		//gsonBldr.registerTypeAdapter(listCardType,new CardPersonalDeserializer());
-		
-		final RuntimeTypeAdapterFactory<Resource> typeFactory = RuntimeTypeAdapterFactory  
-		        .of(Resource.class, "type") // Here you specify which is the parent class and what field particularizes the child class.
-		        .registerSubtype(Wood.class, "WOOD") // if the flag equals the class name, you can skip the second parameter. This is only necessary, when the "type" field does not equal the class name.
-		        .registerSubtype(Stone.class, "STONE");
-		final RuntimeTypeAdapterFactory<Effect> typeFactory2 = RuntimeTypeAdapterFactory  
-		        .of(Effect.class, "type") // Here you specify which is the parent class and what field particularizes the child class.
-		        .registerSubtype(EffectChangeResource.class, "EFFECT_CHANGE_RESOURCE")
-		        .registerSubtype(EffectChangeFamilyMemberValue.class, "EFFECT_CHANGE_FAMILY_MEMBER_VALUE"); // if the flag equals the class name, you can skip the second parameter. This is only necessary, when the "type" field does not equal the class name.
-		    
-		Gson gson = new GsonBuilder().registerTypeAdapterFactory(typeFactory).registerTypeAdapterFactory(typeFactory2).create();
-		
-		List<Card> cards=gson.fromJson(json, listCardType);
-
-		//List<Card> cards=jsonobj.fromJson(json, listCardType);
-		System.out.println(cards.get(0).getRequirements().get(0).getClass());
-		System.out.println(cards.get(0).getEffects().get(0).getClass());
-
-		return cards;
+		String json = manageJsonFile.fromJsonFile(this);
+		Gson gson = buildGson();
+		return gson.fromJson(json, listCardType);
 	}
-	
+
 }
