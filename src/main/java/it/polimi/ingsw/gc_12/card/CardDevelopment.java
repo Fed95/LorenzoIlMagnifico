@@ -14,4 +14,12 @@ public abstract class CardDevelopment extends Card{
 		this.cardDevelopmentType = cardDevelopmentType;
 		this.period = period;
 	}
+
+	public int getPeriod(){
+		return period;
+	}
+
+	public CardDevelopmentType getType(){
+		return cardDevelopmentType;
+	}
 }
