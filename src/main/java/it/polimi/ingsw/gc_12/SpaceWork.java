@@ -5,18 +5,15 @@ import java.util.List;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.exceptions.FamilyMemberAlreadyPresentException;
 import it.polimi.ingsw.gc_12.exceptions.OccupiableAlreadyTakenException;
-import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 
 public class SpaceWork extends Occupiable{
 	
 	protected WorkType workType;
-	protected int requiredValue;
 	protected SpaceWorkZone spaceWorkZone;
 	
 	public SpaceWork(WorkType workType, int requiredValue, SpaceWorkZone spaceWorkZone, List<Effect> effects){
-		super(effects);
+		super(requiredValue, effects);
 		this.workType = workType;
-		this.requiredValue = requiredValue;
 		this.spaceWorkZone = spaceWorkZone;
 		spaceWorkZone.addSpaceWork(this);
 	}
