@@ -37,8 +37,6 @@ public class Match {
 		this.gameMode = gameMode;
 		this.roundNum = 0;
 		this.cardDeckSet = new CardDeckSet(cards, DEFAULT_PERIODS_NUM);
-		initializeMatch();
-		this.setInitialResources();
 	}
 	private Match() {
 		this(DEFAULT_GAME_MODE);
@@ -57,10 +55,15 @@ public class Match {
 		Player player2 = new Player("caio", resources2);
 		players.add(player2);
 
+		board = new Board();
+	}
+
+	public void setup() {
+		initializeMatch();
+		setInitialResources();
 	}
 
 	public void start() {
-		board = new Board();
 		setupControllers();
 		handleTurns();
 	}
