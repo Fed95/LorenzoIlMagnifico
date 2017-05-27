@@ -21,7 +21,7 @@ public final class CardBuilder {
 			case TERRITORY:
 				return new CardTerritory(id, name, period, requirements, effects);
 			case VENTURE:
-				return new CardTerritory(id, name, period, requirements, effects);
+				return new CardVenture(id, name, period, requirements, effects);
 			default:
 				throw new IllegalArgumentException("The CardType does not exist.");
 		}

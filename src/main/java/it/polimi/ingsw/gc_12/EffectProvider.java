@@ -5,16 +5,8 @@ import java.util.List;
 
 import it.polimi.ingsw.gc_12.effect.Effect;
 
-public abstract class EffectProvider {
-	
-	protected List<Effect> effects = new ArrayList<>();
+public interface EffectProvider {
 
-	public EffectProvider(List<Effect> effects) {
-		this.effects = effects;
-	}
-	
-	public List<Effect> getEffects() {
-		return effects;
-	}
+	public List<Effect> getEffects();
 
 }

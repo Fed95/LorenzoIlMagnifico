@@ -14,7 +14,6 @@ public class EventPlaceFamilyMember extends Event{
 	
 	private List<Occupiable> occupiables = new ArrayList<>();
 	private FamilyMember familyMember;
-	private List<EffectProvider> effectProviders = new ArrayList<>();
 	
 	public EventPlaceFamilyMember(Player player, List<Occupiable> occupiables, FamilyMember familyMember) {
 		super(player);
@@ -88,6 +87,14 @@ public class EventPlaceFamilyMember extends Event{
 			return false;
 		return true;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "EventPlaceFamilyMember{" +
+				"player=" + player +
+				", occupiables=" + occupiables +
+				", familyMember=" + familyMember +
+				", effectProviders=" + effectProviders +
+				'}';
+	}
 }

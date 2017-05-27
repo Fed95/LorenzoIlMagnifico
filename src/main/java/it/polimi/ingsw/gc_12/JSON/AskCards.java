@@ -15,8 +15,10 @@ import it.polimi.ingsw.gc_12.resource.*;
 
 public class AskCards {
 	Scanner scanner = new Scanner(System.in);
+	Match match = Match.instance();
 
 	public List<Card> buildCards(){
+		match.setup();
         int id = 1;
 		List<Card> cards = new ArrayList<>();
 		File file = new File("card.json");
@@ -142,11 +144,11 @@ public class AskCards {
 			switch(effectChoice){
 				case 1:
 					familyMember = askFamilyMember();
-					//occupiables= askOccupiable();
+					occupiables= askOccupiable();
 
 					//chiedere cosa attiva questo effetto tipo piazzo family member e costa -3 per le carte viola
-					event =new EventPlaceFamilyMember(occupiables, familyMember);
-					effect=  new EffectChangeFamilyMemberValue(event,amount);
+					event = new EventPlaceFamilyMember(occupiables, familyMember);
+					effect = new EffectChangeFamilyMemberValue(event,amount);
 					break;
 			}
 			if(effectChoice == 8){
@@ -183,11 +185,11 @@ public class AskCards {
 
 	}
 
-	// To do after match loads all the occupiables
-	/*private List<Occupiable> askOccupiable(){
-		List<Occupiable> occupiables;
+	private List<Occupiable> askOccupiable(){
+		List<Occupiable> occupiables = match.getBoard().getOccupiables();
+		List<Occupiable> occupiablesChosen = new ArrayList<>();
+
 		while(true){
-			occupiables = Match.instance().getBoard().getOccupiables();
 			System.out.println("Insert the Occupiable");
 
 			int i;
@@ -202,9 +204,10 @@ public class AskCards {
 				break;
 			else if(occupiableInput > occupiables.size())
 				continue;
-			occupiables.add(occupiables.get(occupiableInput));
+			occupiablesChosen.add(occupiables.get(occupiableInput));
+			occupiables.remove(occupiableInput);
 
 		}
-		return occupiables;
-	}*/
+		return occupiablesChosen;
+	}
 }

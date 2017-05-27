@@ -33,7 +33,8 @@ public class JsonCard extends JsonMaster {
 				.of(Occupiable.class, "occupiable")
 				.registerSubtype(SpaceMarket.class, SpaceMarket.class.getSimpleName())
 				.registerSubtype(TowerFloor.class, TowerFloor.class.getSimpleName())
-				.registerSubtype(SpaceWork.class, SpaceWork.class.getSimpleName());//council palace
+				.registerSubtype(SpaceWorkMultiple.class, SpaceWorkMultiple.class.getSimpleName())
+				.registerSubtype(SpaceWorkSingle.class, SpaceWorkSingle.class.getSimpleName());//council palace
 
 		final RuntimeTypeAdapterFactory<Card> factoryCard = RuntimeTypeAdapterFactory
 				.of(Card.class, "type")
@@ -69,6 +70,7 @@ public class JsonCard extends JsonMaster {
 				.registerTypeAdapterFactory(factoryResource)
 				.registerTypeAdapterFactory(factoryEffect)
 				.registerTypeAdapterFactory(factoryEvent)
+				.setExclusionStrategies(new CardExclusionStrategy())
 				.create();
 	}
 

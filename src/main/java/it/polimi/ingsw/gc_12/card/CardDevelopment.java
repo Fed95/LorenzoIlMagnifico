@@ -22,6 +22,8 @@ public abstract class CardDevelopment extends Card{
 	public CardType getType(){
 		return cardType;
 	}
+
+
 }
 
 

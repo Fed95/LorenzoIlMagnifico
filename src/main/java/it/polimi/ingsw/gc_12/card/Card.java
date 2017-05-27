@@ -1,18 +1,19 @@
 package it.polimi.ingsw.gc_12.card;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.gc_12.EffectProvider;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.resource.Resource;
 
-public class Card extends EffectProvider {
+public class Card implements EffectProvider {
+	private List<Effect> effects = new ArrayList<>();
 	private final String name;
 	private final int id;
-	private List<Resource>  requirements;
+	private List<Resource> requirements;
 
 	public Card(int id, String name, List<Resource> requirements, List<Effect> effects){
-		super(effects);
 		this.id = id;
 		this.name = name;
 		this.requirements = requirements;
@@ -28,13 +29,22 @@ public class Card extends EffectProvider {
 	public List<Resource>  getRequirements() {
 		return requirements;
 	}
-	
+
 	public List<Effect> getEffects() {
 		return effects;
 	}
 	
-	@Override
+	/*@Override
 	public String toString() {
 		return name;
+	}*/
+
+	@Override
+	public String toString() {
+		return "Card{" +
+				"name='" + name + '\'' +
+				", id=" + id +
+				", requirements=" + requirements +
+				'}';
 	}
 }

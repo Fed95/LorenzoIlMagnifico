@@ -8,15 +8,14 @@ import it.polimi.ingsw.gc_12.exceptions.FamilyMemberAlreadyPresentException;
 import it.polimi.ingsw.gc_12.exceptions.OccupiableAlreadyTakenException;
 import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 
-public abstract class Occupiable extends EffectProvider {
-	
-	protected List<FamilyMember> occupiers = new ArrayList<>();
+public abstract class Occupiable implements EffectProvider {
+	private List<Effect> effects = new ArrayList<>();
+	protected transient List<FamilyMember> occupiers = new ArrayList<>();
 	public final static int DEFAULT_MAXNUMBEROFPLAYERS = 1;
 	public static final int DEFAULT_REQUIRED_VALUE = 1;
 	protected final int requiredValue;
 	
 	public Occupiable(int requiredValue, List<Effect> effects) {
-		super(effects);
 		this.requiredValue = requiredValue;
 	}
 	
@@ -35,7 +34,12 @@ public abstract class Occupiable extends EffectProvider {
 	public int getRequiredValue() {
 		return requiredValue;
 	}
-	
+
+	@Override
+	public List<Effect> getEffects() {
+		return effects;
+	}
+
 	public void placeFamilyMember(FamilyMember occupier) throws RequiredValueNotSatisfiedException, FamilyMemberAlreadyPresentException, OccupiableAlreadyTakenException {
 		isRequiredValueSatisfied(occupier);
 		this.canBeOccupiedBy(occupier);
