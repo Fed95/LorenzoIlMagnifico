@@ -6,10 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-import it.polimi.ingsw.gc_12.FamilyMember;
-import it.polimi.ingsw.gc_12.Match;
-import it.polimi.ingsw.gc_12.Occupiable;
-import it.polimi.ingsw.gc_12.SpaceMarket;
+import it.polimi.ingsw.gc_12.*;
 import it.polimi.ingsw.gc_12.card.*;
 import it.polimi.ingsw.gc_12.effect.*;
 import it.polimi.ingsw.gc_12.event.*;
@@ -20,7 +17,7 @@ public class AskCards {
 	Scanner scanner = new Scanner(System.in);
 
 	public List<Card> buildCards(){
-        int id=1;
+        int id=0;
 		List<Card> cards = new ArrayList<>();
 		File file = new File("card.json");
 
@@ -41,9 +38,13 @@ public class AskCards {
 			List<Resource> requirements = askResource();
 			List<Effect> effects = askEffect();
 
-			CardDevelopment card = CardBuilder.create(cardType, id, name, period, requirements, effects);
-
-    		cards.add(card);
+			CardDevelopment card;
+			try {
+				card = CardBuilder.create(cardType, id, name, period, requirements, effects);
+			} catch (IllegalArgumentException e) {
+				continue;
+			}
+			cards.add(card);
 
         	System.out.println("Do you want to exit from creating card tool?[Yes/No]");
     		String choice = scanner.nextLine();
@@ -57,15 +58,21 @@ public class AskCards {
 
 	private CardType askCardType() {
 		CardType cardType;
-		System.out.println("Choose type card");
-		List<CardType> cardTypes = Arrays.asList(CardType.values());
-		for (int i = 0; i < cardTypes.size(); i++) {
-			System.out.println(i + " - " + cardTypes.get(i).name());
-		}
+		while(true) {
+			System.out.println("Choose type card");
+			List<CardType> cardTypes = Arrays.asList(CardType.values());
+			for (int i = 0; i < cardTypes.size(); i++) {
+				System.out.println(i + " - " + cardTypes.get(i).name());
+			}
 
-		cardType = cardTypes.get(scanner.nextInt());
-		scanner.nextLine(); // Discard "\n" character
-		return cardType;
+			int cardInput = scanner.nextInt();
+			if(cardInput >= cardTypes.size())
+				continue;
+
+			cardType = cardTypes.get(cardInput);
+			scanner.nextLine(); // Discard "\n" character
+			return cardType;
+		}
 	}
 
 	private String askName() {
@@ -85,74 +92,36 @@ public class AskCards {
 			period = scanner.nextInt();
 		}
 		while(period <= 0 || period > Match.DEFAULT_PERIODS_NUM);
+
+		scanner.nextLine();
 		return period;
 	}
 
 	private List<Resource> askResource(){
-		Resource resource = null;
-		int value = 0;
 		List<Resource> requirements = new ArrayList<>();
 		while(true){
 			System.out.println("Insert requirements");
-			System.out.println(" 1 FaithPoint \n 2 MilitaryPoint \n 3 VictoryPoints \n 4 Servants \n 5 Money \n 6 Stone \n 7 Wood \n 8 Exit create resource tool");
-			int resourcechoice = scanner.nextInt();
-			scanner.nextLine();
-			switch(resourcechoice){
-				case 1:
-					System.out.println("Insert value of Faith Points");
-					value = scanner.nextInt();
-					scanner.nextLine();
-					resource = new FaithPoint(value);
-					break;
-
-				case 2:
-					System.out.println("Insert value of Military Points");
-					value = scanner.nextInt();
-					scanner.nextLine();
-					resource = new MilitaryPoint(value);
-					break;
-
-				case 3:
-					System.out.println("Insert value of Victory Points");
-					value = scanner.nextInt();
-					scanner.nextLine();
-					resource = new VictoryPoint(value);
-					break;
-
-				case 4:
-					System.out.println("Insert value of Servants");
-					value = scanner.nextInt();
-					scanner.nextLine();
-					resource = new Servant(value);
-					break;
-
-				case 5:
-					System.out.println("Insert value of Money");
-					value = scanner.nextInt();
-					scanner.nextLine();
-					resource = new Money(value);
-					break;
-				case 6:
-					System.out.println("Insert value of Stone");
-					value = scanner.nextInt();
-					scanner.nextLine();
-					resource = new Stone(value);
-					break;
-				case 7:
-					System.out.println("Insert value of Wood");
-					value = scanner.nextInt();
-					scanner.nextLine();
-					resource = new Wood(value);
-					break;
-				case 8:				
-					break;
+			List<ResourceType> resourceTypes = Arrays.asList(ResourceType.values());
+			int i;
+			for (i = 0; i < resourceTypes.size(); i++) {
+				System.out.println(i + " - " + resourceTypes.get(i).name());
 			}
-			if(resourcechoice == 8){
+			System.out.println(i + " - Exit create resource tool");
+
+			int resourceInput = scanner.nextInt();
+
+			if(resourceInput == resourceTypes.size())
 				break;
-			}
-			requirements.add(resource);
-			
+			else if(resourceInput > resourceTypes.size())
+				continue;
+
+			ResourceType resourceType = resourceTypes.get(resourceInput);
+
+			System.out.println("Insert value for " + resourceType.name());
+			requirements.add(ResourceBuilder.create(resourceType, scanner.nextInt()));
+
 		}
+		scanner.nextLine();
 		return requirements;
 	}
 	private List<Effect> askEffect(){
@@ -164,25 +133,23 @@ public class AskCards {
 		List<Effect> effects=new ArrayList<>();
 		List<Resource> costs=new ArrayList<>();
 		List<Resource> resources=new ArrayList<>();
-		int i=5;
+
 		while(true){
 			System.out.println("Insert Effect");
-			System.out.println(" 1 Effectc change Family member Value \n 2 Effect change resource \n 8 Exit create resource tool");
-			int effectchoice=scanner.nextInt();
+			System.out.println("1 - Effect change Family member Value \n2 - Effect change resource \n8 - Exit create resource tool");
+			int effectChoice = scanner.nextInt();
 			scanner.nextLine();
-			switch(effectchoice){
+			switch(effectChoice){
 				case 1:
-					System.out.println("Insert the new value of the family member");
-					amount = scanner.nextInt();
-					scanner.nextLine();
-					occupiables= askOccupiable();					
-					familyMember=new FamilyMember();
+					familyMember = askFamilyMember();
+					//occupiables= askOccupiable();
+
 					//chiedere cosa attiva questo effetto tipo piazzo family member e costa -3 per le carte viola
 					event =new EventPlaceFamilyMember(occupiables, familyMember);
 					effect=  new EffectChangeFamilyMemberValue(event,amount);
 					break;
 			}
-			if(effectchoice == 8){
+			if(effectChoice == 8){
 				break;
 			}
 			effects.add(effect);
@@ -190,26 +157,54 @@ public class AskCards {
 		}
 		return effects;
 	}
-	private List<Occupiable> askOccupiable(){
-		List<Occupiable> occupiables=new ArrayList<>();
-		Occupiable occupiable=null;
 
-		while(true){
-			System.out.println("Insert the Occupiable");
-			System.out.println(" 1 SpaceMarket(work only this) /n 2 SpaceWork /n 3 CouncilPalace /n 4 TowerFloor /n 5 Exit");
-			int occupiableChoice = scanner.nextInt();
+	private FamilyMember askFamilyMember() {
+		while(true) {
+			System.out.println("Insert the value of the family member (put 0 for a family member of any value).");
+			int value = scanner.nextInt();
+
+			System.out.println("Insert the color of the family member");
+			List<FamilyMemberColor> familyMemberColors = Arrays.asList(FamilyMemberColor.values());
+			int i;
+			for (i = 0; i < familyMemberColors.size(); i++) {
+				System.out.println(i + " - " + familyMemberColors.get(i).name());
+			}
+			System.out.println(i + " - ANY COLOR");
+			int colorInput = scanner.nextInt();
 			scanner.nextLine();
-			switch(occupiableChoice){
-				case 1:
-					occupiable=new SpaceMarket();
-					break;
+			if(colorInput == familyMemberColors.size())
+				return new FamilyMember(value);
+			else if(colorInput > familyMemberColors.size())
+				continue;
+
+			return new FamilyMember(familyMemberColors.get(colorInput), value);
+		}
+
+
+	}
+
+	// To do after match loads all the occupiables
+	/*private List<Occupiable> askOccupiable(){
+		List<Occupiable> occupiables;
+		while(true){
+			occupiables = Match.instance().getBoard().getOccupiables();
+			System.out.println("Insert the Occupiable");
+
+			int i;
+			for (i = 0; i < occupiables.size(); i++) {
+				System.out.println(i + " - " + occupiables.get(i).toString());
 			}
-			if(occupiableChoice==5){				
+
+			System.out.println(i + " - Exit");
+
+			int occupiableInput = scanner.nextInt();
+			if(occupiableInput == occupiables.size())
 				break;
-			}
-			occupiables.add(occupiable);
+			else if(occupiableInput > occupiables.size())
+				continue;
+			occupiables.add(occupiables.get(occupiableInput));
 
 		}
 		return occupiables;
-	}
+	}*/
 }

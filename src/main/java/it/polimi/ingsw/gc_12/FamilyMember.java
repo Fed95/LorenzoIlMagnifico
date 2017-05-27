@@ -6,27 +6,45 @@ public class FamilyMember implements Observer {
 	
 	private final Player owner;
 	private FamilyMemberColor color;
-	private Integer value;
+	private int value;
 	
-	public FamilyMember(Player owner, FamilyMemberColor color) {
-		
+	public FamilyMember(Player owner, FamilyMemberColor color, int value) {
 		this.owner = owner;
 		this.color = color;
+		this.value = value;
 		try {
-			
-			DieColor dieColor = DieColor.valueOf(color.name());
-			// Check if there is a die with the same color of the family member's one 
-			// (exclude neutral family member)
-			Die die = SpaceDie.instance().getDie(dieColor);
-			if(die != null) {
-				this.value = die.getValue();
-				
-				// To update the family member's value when the dice have been rolled
-				die.addObserver(this);
+			if(color != null) {
+				DieColor dieColor = DieColor.valueOf(color.name());
+				// Check if there is a die with the same color of the family member's one
+				// (exclude neutral family member)
+				Die die = SpaceDie.instance().getDie(dieColor);
+				if(die != null) {
+					this.value = die.getValue();
+
+					// To update the family member's value when the dice have been rolled
+					die.addObserver(this);
+				}
 			}
+
 		}catch (IllegalArgumentException e) {
 			this.value = 0;
 		}	
+	}
+
+	public FamilyMember(Player owner, FamilyMemberColor color) {
+		this(owner, color, 0);
+	}
+
+	public FamilyMember(FamilyMemberColor color, int value) {
+		this(null, color, value);
+	}
+
+	public FamilyMember(FamilyMemberColor color) {
+		this(null, color);
+	}
+
+	public FamilyMember(int value) {
+		this(null, null, value);
 	}
 
 	public FamilyMember() {
@@ -37,7 +55,7 @@ public class FamilyMember implements Observer {
 		return color;
 	}
 	
-	public Integer getValue() {
+	public int getValue() {
 		return value;
 	}
 	
@@ -54,31 +72,6 @@ public class FamilyMember implements Observer {
 
 	public Player getOwner() {
 		return owner;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((color == null) ? 0 : color.hashCode());
-		result = prime * result + ((value == null) ? 0 : value.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		FamilyMember other = (FamilyMember) obj;
-		if (color != null && other.color != null && color != other.color)
-			return false;
-		if (value != null && other.value != null && value != other.value)
-			return false;
-		return true;
 	}
 
 	@Override

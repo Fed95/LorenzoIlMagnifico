@@ -12,25 +12,18 @@ public final class CardBuilder {
 
 	private CardBuilder() {}
 
-	public static CardDevelopment create(CardType cardType, int id, String name, int period, List<Resource> requirements, List<Effect> effects){
-		CardDevelopment card;
-
+	public static CardDevelopment create(CardType cardType, int id, String name, int period, List<Resource> requirements, List<Effect> effects) throws IllegalArgumentException {
 		switch (cardType) {
 			case BUILDING:
-				card = new CardBuilding(id, name, period, requirements, effects);
-				break;
+				return new CardBuilding(id, name, period, requirements, effects);
 			case CHARACTER:
-				card = new CardCharacter(id, name, period, requirements, effects);
-				break;
+				return new CardCharacter(id, name, period, requirements, effects);
 			case TERRITORY:
-				card = new CardTerritory(id, name, period, requirements, effects);
-				break;
+				return new CardTerritory(id, name, period, requirements, effects);
 			case VENTURE:
-				card = new CardTerritory(id, name, period, requirements, effects);
-				break;
+				return new CardTerritory(id, name, period, requirements, effects);
 			default:
 				throw new IllegalArgumentException("The CardType does not exist.");
 		}
-		return card;
 	}
 }
