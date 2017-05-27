@@ -5,6 +5,5 @@ public enum CardType {
 	TERRITORY,
 	BUILDING,
 	CHARACTER,
-	VENTURE;
-	
+	VENTURE
 }

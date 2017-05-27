@@ -1,8 +1,6 @@
 package it.polimi.ingsw.gc_12;
 
-import it.polimi.ingsw.gc_12.card.Card;
-import it.polimi.ingsw.gc_12.card.CardBuilding;
-import it.polimi.ingsw.gc_12.card.CardType;
+import it.polimi.ingsw.gc_12.card.*;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.effect.EffectChangeFamilyMemberValue;
 import it.polimi.ingsw.gc_12.effect.EffectChangeResource;
@@ -19,7 +17,8 @@ import java.util.*;
 public class Match {
 	private final List<Player> players = new ArrayList<>(); //This goes to the class Match
 	private final List<BonusTile> bonusTiles = new ArrayList<>();
-	private Map<CardType, List<Card>> cards = new HashMap<>();
+	private List<CardDevelopment> cards = new ArrayList<>();
+	public CardDeckSet cardDeckSet;
 	private final GameMode gameMode;
 	public final static GameMode DEFAULT_GAME_MODE = GameMode.NORMAL;
 	public final static int DEFAULT_PERIODS_NUM = 3;
@@ -37,6 +36,7 @@ public class Match {
 	private Match(GameMode gameMode) {
 		this.gameMode = gameMode;
 		this.roundNum = 0;
+		this.cardDeckSet = new CardDeckSet(cards, DEFAULT_PERIODS_NUM);
 		initializeMatch();
 		this.setInitialResources();
 	}
@@ -84,6 +84,7 @@ public class Match {
 				controller.start();
 				board.getTrackTurnOrder().newTurn();
 			}
+			board.getTowerSet().refresh();
 			roundNum++;
 		}
 	}
@@ -100,8 +101,8 @@ public class Match {
 		return bonusTiles;
 	}
 
-	public List<Card> getCards(CardType cardType) {
-		return cards.get(cardType);
+	public List<CardDevelopment> getCards(CardType cardType) {
+		return cards;
 	}
 
 	public GameMode getGameMode() {

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc_12;
 
+import it.polimi.ingsw.gc_12.card.CardDeck;
 import it.polimi.ingsw.gc_12.card.CardType;
 
 import java.util.ArrayList;
@@ -30,6 +31,17 @@ public class TowerSet {
 			occupiables.addAll(tower.getFloors());
 		}
 		return occupiables;
+	}
+
+	//Fills all towers with new cards
+	public void refresh(){
+		for(Tower tower : towers.values()){
+			//Retrieves the deck of the corresponding type and period
+			CardDeck cardDeck = Match.instance().cardDeckSet.getDecks().get(tower.getType()).get(Match.instance().getPeriodNum());
+			for(TowerFloor floor : tower.getFloors()){
+				floor.setCard(cardDeck.pickCard());
+			}
+		}
 	}
 
 	@Override

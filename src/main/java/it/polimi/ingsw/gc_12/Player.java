@@ -40,10 +40,13 @@ public class Player {
 	public void placeFamilyMember(FamilyMember familyMember, Occupiable occupiable) throws RequiredValueNotSatisfiedException, FamilyMemberAlreadyPresentException, OccupiableAlreadyTakenException {
 		Event event = new EventPlaceFamilyMember(this, occupiable, familyMember);
 		effectHandler.executeEffects(event);
-		//Can throw exceptions
-		occupiable.placeFamilyMember(familyMember);
+		try {
+			occupiable.placeFamilyMember(familyMember);
+		} catch(Exception e){
+			effectHandler.discardEffects(event);
+			throw e;
+		}
 
-		effectHandler.discardEffects(event);
 		// TODO: implement placement
 	}
 
