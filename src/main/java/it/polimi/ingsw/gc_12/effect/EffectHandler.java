@@ -32,7 +32,8 @@ public class EffectHandler {
 	public void discardEffects(Event event) {
 		List<Effect> effects = getPossibleEffects(event);
 		
-		// If there is a card with an effect triggered by the event, execute the effect
+		// If there is a card with an effect triggered by the event, discard the effect
+		//(Discards all effects executed by executeEffects)
 		for(Effect effect : effects) {
 			if(event.equals(effect.getEvent()))
 				effect.discard(event);

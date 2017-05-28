@@ -5,7 +5,7 @@ import java.util.List;
 import it.polimi.ingsw.gc_12.card.Card;
 import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.effect.Effect;
-import it.polimi.ingsw.gc_12.exceptions.OccupiableAlreadyTakenException;
+import it.polimi.ingsw.gc_12.exceptions.*;
 
 public class TowerFloor extends Occupiable{
 	private final int floorNum;
@@ -44,9 +44,19 @@ public class TowerFloor extends Occupiable{
 	public void canBeOccupiedBy(FamilyMember occupier) throws OccupiableAlreadyTakenException {
 		if(isOccupied())
 			throw new OccupiableAlreadyTakenException();
+	}
 
-		//TODO: must implement -3 coins malus when there is another FM on the tower
-		//tower.canBeOccupiedBy(occupier);
+	@Override
+	public void placeFamilyMember(FamilyMember occupier) throws RequiredValueNotSatisfiedException, FamilyMemberAlreadyPresentException, OccupiableAlreadyTakenException {
+		isRequiredValueSatisfied(occupier);
+		this.canBeOccupiedBy(occupier);
+
+		//Followind code is only executed if two previous calls do not throw exceptions
+
+		if(tower.getFloors().stream().allMatch(floor -> !floor.isOccupied())){ //If no floor of the tower has been occupied yet
+			tower.activateMalus();
+		}
+		this.occupiers.add(occupier);
 	}
 
 	@Override

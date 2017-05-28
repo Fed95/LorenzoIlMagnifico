@@ -5,10 +5,7 @@ import java.util.HashSet;
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Occupiable;
 import it.polimi.ingsw.gc_12.Player;
-import it.polimi.ingsw.gc_12.exceptions.FamilyMemberAlreadyPresentException;
-import it.polimi.ingsw.gc_12.exceptions.InvalidParametersException;
-import it.polimi.ingsw.gc_12.exceptions.OccupiableAlreadyTakenException;
-import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
+import it.polimi.ingsw.gc_12.exceptions.*;
 
 public class ActionPlaceFamilyMember extends Action implements ActionInterface{
 

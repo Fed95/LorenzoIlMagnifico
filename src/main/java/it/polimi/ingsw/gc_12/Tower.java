@@ -3,13 +3,17 @@ package it.polimi.ingsw.gc_12;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.polimi.ingsw.gc_12.card.Card;
-import it.polimi.ingsw.gc_12.card.CardType;
+import it.polimi.ingsw.gc_12.card.*;
+import it.polimi.ingsw.gc_12.effect.*;
+import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
+import it.polimi.ingsw.gc_12.resource.*;
 
 public class Tower {
 	private final CardType type;
 	private final List<TowerFloor> floors = new ArrayList<>();
+	private CardDeck cardDeck;
 	// It will be loaded from JSON file
+	private final static Resource towerTakenMalus = new Money(3);
 	private final static List<Integer> DEFAULT_REQUIRED_VALUES = new ArrayList<Integer>() {{
 		add(1);
 		add(3);
@@ -19,6 +23,7 @@ public class Tower {
 
 	public Tower(CardType type){
 		this.type = type;
+		cardDeck = Match.instance().cardDeckSet.getDecks().get(type).get(Match.instance().getPeriodNum());
 		for (int i = 0; i < 4; i++) {
 			initializeFloor(null, i);
 		}
@@ -42,19 +47,27 @@ public class Tower {
 		floors.add(floor);
 	}
 
-	/*
-	//TODO: must implement -3 coins malus when there is another FM on the tower
-	public boolean canBeOccupiedBy(FamilyMember occupier) {
-		if(occupier.getColor().equals(FamilyMemberColor.NEUTRAL))
-			return true;
-
+	//Fills all floors with new cards
+	public void refresh(){
 		for(TowerFloor floor : floors)
-			for(FamilyMember i: floor.getOccupiers())
-				if(!occupier.getColor().equals(FamilyMemberColor.NEUTRAL) && occupier.getOwner().equals(i.getOwner()))
-					return false;
-		return true;
+			floor.setCard(cardDeck.pickCard());
 	}
-	*/
+
+	public void activateMalus(){
+		List<Occupiable> floorList = new ArrayList<>();
+		floorList.addAll(floors);
+		Effect towerTakenMalusEffect = new EffectChangeResource(new EventPlaceFamilyMember(floorList), towerTakenMalus, null);
+		for(Occupiable floor : floorList){
+			floor.getEffects().add(towerTakenMalusEffect);
+		}
+	}
+	public void deactivateMalus(){
+		for(TowerFloor floor : floors){
+			floor.getEffects().remove(towerTakenMalus);
+		}
+	}
+
+
 
 	@Override
 	public String toString() {
