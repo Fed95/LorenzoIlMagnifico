@@ -67,7 +67,8 @@ public class ViewCLI extends Observable{
 				if(input < 0 || input > i){
 					System.out.println("The specified input is not listed above");
 					askFamilyMember();
-				}else 				if(input == i) {
+				}else if(input == i) {
+					System.out.println(i + "Action discarded");
 					askAction();
 					return;
 				}else {
