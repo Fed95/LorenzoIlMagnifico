@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc_12;
 
+import it.polimi.ingsw.gc_12.JSON.LoaderTowerSet;
 import it.polimi.ingsw.gc_12.track.TrackTurnOrder;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class Board {
 	
 	public Board() {
 		this.spaceDie = SpaceDie.instance();
-		this.towerSet = new TowerSet();
+		this.towerSet = new LoaderTowerSet("towerSet").get();
 		this.market = new Market();
 		this.trackTurnOrder = new TrackTurnOrder(Match.instance().getPlayers());
 		

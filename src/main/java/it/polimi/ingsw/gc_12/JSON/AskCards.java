@@ -25,7 +25,7 @@ public class AskCards {
 
 		if(file.exists()){
 			//taking the last id from the existing file
-			JsonCard jsonObj = new JsonCard("card");
+			LoaderCard jsonObj = new LoaderCard("card");
 			List<Card> lastId = jsonObj.getCards();
 			for(Card card: lastId){
 				id=card.getId();

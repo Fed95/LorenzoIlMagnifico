@@ -5,20 +5,22 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
 public class ManageJsonFile {
-	public void tojsonFile(String gsonstring, JsonMaster jsonObj){
+	public void toJsonFile(String gsonstring, JsonMaster jsonObj){
 		FileOutputStream writeOnFile;
 		File file;
 		try {
-			file = new File(jsonObj.getFilename()+".json");
+			file = new File(jsonObj.getFilename() + ".json");
+
+			// If file already exists, add new data
 			if (file.exists()) {
-				ManageJsonFile manageObj= new ManageJsonFile();
-				String existfile=manageObj.fromJsonFile(jsonObj);
-				existfile=existfile.substring(1,existfile.length()-1);
-				gsonstring=gsonstring.substring(0,1)+existfile+","+gsonstring.substring(1,gsonstring.length());
+				ManageJsonFile manageObj = new ManageJsonFile();
+				String existfile = manageObj.fromJsonFile(jsonObj); // Open existing file
+				existfile = existfile.substring(1, existfile.length() - 1); // Remove first and last graph
+				gsonstring = gsonstring.substring(0, 1) + existfile + "," + gsonstring.substring(1, gsonstring.length()); // Substitute old file with the new
 			}
 			writeOnFile = new FileOutputStream(file);
 
-			// if file doesnt exists, then create it
+			// if file doesn't exists, then create it
 			if (!file.exists()) {
 				file.createNewFile();
 			}
@@ -28,18 +30,19 @@ public class ManageJsonFile {
 		} catch (Exception e) {
 			  e.printStackTrace();
 		}
-		System.out.println("File "+jsonObj.getFilename()+".json created");
+		System.out.println("File " + jsonObj.getFilename() + ".json created");
 	}
+
 	public String fromJsonFile(JsonMaster jsonobj){
 		FileInputStream readFromFile;
 		File file;
 		int read;
-		String jsonread="";
+		String jsonread = "";
 		try{
 			file = new File(jsonobj.getFilename()+".json");
-			readFromFile= new FileInputStream(file);
-			while((read=readFromFile.read())!=-1){
-				jsonread=jsonread+(char) read;
+			readFromFile = new FileInputStream(file);
+			while((read = readFromFile.read()) != -1){
+				jsonread = jsonread + (char) read;
 			}
 			System.out.println(jsonread);
 			readFromFile.close();

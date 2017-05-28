@@ -1,29 +1,25 @@
 package it.polimi.ingsw.gc_12.JSON;
 
-import java.lang.reflect.Type;
-import java.util.List;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
-
-import it.polimi.ingsw.gc_12.card.*;
 import it.polimi.ingsw.gc_12.*;
-import it.polimi.ingsw.gc_12.effect.*;
+import it.polimi.ingsw.gc_12.card.*;
+import it.polimi.ingsw.gc_12.effect.Effect;
+import it.polimi.ingsw.gc_12.effect.EffectChangeFamilyMemberValue;
+import it.polimi.ingsw.gc_12.effect.EffectChangeResource;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.resource.*;
 
-public class JsonCard extends JsonMaster {
-	//Standard gson line of code to get the type of the List
-	private Type listCardType = new TypeToken<List<Card>>() {}.getType();
+/**
+ * Created by marco on 27/05/2017.
+ */
+public class TypeAdapter {
 
-	public JsonCard(String filename){
-		super(filename);
-	}
+	private TypeAdapter() {}
 
-	private Gson buildGson() {
+	public static Gson create() {
 		final RuntimeTypeAdapterFactory<EffectProvider> factoryEffectProvider = RuntimeTypeAdapterFactory
 				.of(EffectProvider.class, "effectProvider")
 				.registerSubtype(Card.class, Card.class.getSimpleName())
@@ -42,7 +38,7 @@ public class JsonCard extends JsonMaster {
 				.registerSubtype(CardCharacter.class, CardCharacter.class.getSimpleName())
 				.registerSubtype(CardTerritory.class, CardTerritory.class.getSimpleName())
 				.registerSubtype(CardVenture.class, CardVenture.class.getSimpleName());
-				//registerSubtype(CardLeader.class, "LEADER");
+		//registerSubtype(CardLeader.class, "LEADER");
 
 		final RuntimeTypeAdapterFactory<Resource> factoryResource = RuntimeTypeAdapterFactory
 				.of(Resource.class, "resourceType")
@@ -72,19 +68,6 @@ public class JsonCard extends JsonMaster {
 				.registerTypeAdapterFactory(factoryEvent)
 				.setExclusionStrategies(new CardExclusionStrategy())
 				.create();
-	}
-
-	public void createCards(List<Card> cards){
-		Gson gson = buildGson();
-		String gsonCard = gson.toJson(cards, listCardType);
-		ManageJsonFile manageJsonFile=new ManageJsonFile();
-		manageJsonFile.tojsonFile(gsonCard, this);
-	}
-	public List<Card> getCards(){
-		ManageJsonFile manageJsonFile=new ManageJsonFile();
-		String json = manageJsonFile.fromJsonFile(this);
-		Gson gson = buildGson();
-		return gson.fromJson(json, listCardType);
 	}
 
 }
