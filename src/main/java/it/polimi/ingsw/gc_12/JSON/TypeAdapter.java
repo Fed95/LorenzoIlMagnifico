@@ -1,6 +1,5 @@
 package it.polimi.ingsw.gc_12.JSON;
 
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import it.polimi.ingsw.gc_12.*;

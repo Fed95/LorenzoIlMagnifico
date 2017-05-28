@@ -42,7 +42,7 @@ public class Match {
 		this(DEFAULT_GAME_MODE);
 	}
 
-	// TODO: remove when loaded from json file
+	// TODO: remove when loaded from JSON file
 	private void initializeMatch() {
 		// Setup players
 		Map<ResourceType, Resource> resources1 = new HashMap<>();

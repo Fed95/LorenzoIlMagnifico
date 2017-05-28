@@ -1,17 +1,15 @@
-package it.polimi.ingsw.gc_12.JSON;
+package it.polimi.ingsw.gc_12.JSON.saver;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import it.polimi.ingsw.gc_12.*;
-import it.polimi.ingsw.gc_12.card.FloorExclusionStrategy;
+import it.polimi.ingsw.gc_12.FamilyMember;
+import it.polimi.ingsw.gc_12.Market;
+import it.polimi.ingsw.gc_12.Occupiable;
+import it.polimi.ingsw.gc_12.SpaceMarket;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.effect.EffectChangeResource;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.resource.*;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,12 +17,10 @@ import java.util.List;
 /**
  * Created by marco on 27/05/2017.
  */
-public class LoaderMarket extends JsonMaster {
+public class SaverMarket extends Saver<Market> {
 
-	private Type marketType = new TypeToken<Market>() {}.getType();
-
-	public LoaderMarket (String filename){
-		super(filename);
+	public SaverMarket(){
+		super("market");
 	}
 
 	public void create(){
@@ -64,18 +60,6 @@ public class LoaderMarket extends JsonMaster {
 		spaceMarket.setEffects(effects);
 		market.addSpaceMarket(spaceMarket);
 
-		GsonBuilder gsonBuiler = TypeAdapter.create();
-		Gson gson = gsonBuiler.setExclusionStrategies(new FloorExclusionStrategy()).create();
-		String gsonMarket = gson.toJson(market, marketType);
-		ManageJsonFile manageJsonFile=new ManageJsonFile();
-		manageJsonFile.toJsonFile(gsonMarket, this);
-	}
-
-	public TowerSet get(){
-		ManageJsonFile manageJsonFile=new ManageJsonFile();
-		String json = manageJsonFile.fromJsonFile(this);
-		GsonBuilder gsonBuiler = TypeAdapter.create();
-		Gson gson = gsonBuiler.setExclusionStrategies(new FloorExclusionStrategy()).create();
-		return gson.fromJson(json, marketType);
+		super.save(market);
 	}
 }

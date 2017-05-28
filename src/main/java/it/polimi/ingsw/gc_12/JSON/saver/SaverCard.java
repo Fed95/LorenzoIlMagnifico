@@ -1,4 +1,16 @@
-package it.polimi.ingsw.gc_12.JSON;
+package it.polimi.ingsw.gc_12.JSON.saver;
+
+import it.polimi.ingsw.gc_12.FamilyMember;
+import it.polimi.ingsw.gc_12.FamilyMemberColor;
+import it.polimi.ingsw.gc_12.JSON.loader.LoaderCard;
+import it.polimi.ingsw.gc_12.Match;
+import it.polimi.ingsw.gc_12.Occupiable;
+import it.polimi.ingsw.gc_12.card.*;
+import it.polimi.ingsw.gc_12.effect.Effect;
+import it.polimi.ingsw.gc_12.effect.EffectChangeFamilyMemberValue;
+import it.polimi.ingsw.gc_12.event.Event;
+import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
+import it.polimi.ingsw.gc_12.resource.*;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -6,32 +18,29 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-import it.polimi.ingsw.gc_12.*;
-import it.polimi.ingsw.gc_12.card.*;
-import it.polimi.ingsw.gc_12.effect.*;
-import it.polimi.ingsw.gc_12.event.*;
-import it.polimi.ingsw.gc_12.resource.*;
+public class SaverCard extends Saver<List<Card>> {
 
-
-public class AskCards {
 	Scanner scanner = new Scanner(System.in);
 	Match match = Match.instance();
 
-	public List<Card> buildCards(){
+	public SaverCard(){
+		super("cards");
+	}
+
+	public void create(){
 		match.setup();
-        int id = 1;
+		int id = 1;
 		List<Card> cards = new ArrayList<>();
-		File file = new File("card.json");
+		File file = new File("card.JSON");
 
 		if(file.exists()){
 			//taking the last id from the existing file
-			LoaderCard jsonObj = new LoaderCard("card");
-			List<Card> lastId = jsonObj.getCards();
-			for(Card card: lastId){
+			List<Card> cardsOld = new LoaderCard().get();
+			for(Card card: cardsOld){
 				id=card.getId();
 			}
 		}
-        while(true){
+		while(true){
 			id++;
 
 			CardType cardType = askCardType();
@@ -48,14 +57,14 @@ public class AskCards {
 			}
 			cards.add(card);
 
-        	System.out.println("Do you want to exit from creating card tool?[Yes/No]");
-    		String choice = scanner.nextLine();
-    		if(choice.toLowerCase().equals("yes")) {
+			System.out.println("Do you want to exit from creating card tool?[Yes/No]");
+			String choice = scanner.nextLine();
+			if(choice.toLowerCase().equals("yes")) {
 				break;
 			}
-        }
+		}
 		scanner.close();
-        return cards;
+		super.save(cards);
 	}
 
 	private CardType askCardType() {

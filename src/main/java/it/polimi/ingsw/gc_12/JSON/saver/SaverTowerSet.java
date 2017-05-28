@@ -1,36 +1,25 @@
-package it.polimi.ingsw.gc_12.JSON;
+package it.polimi.ingsw.gc_12.JSON.saver;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import com.sun.org.apache.regexp.internal.RE;
 import it.polimi.ingsw.gc_12.*;
-import it.polimi.ingsw.gc_12.card.Card;
-import it.polimi.ingsw.gc_12.card.CardExclusionStrategy;
 import it.polimi.ingsw.gc_12.card.CardType;
-import it.polimi.ingsw.gc_12.card.FloorExclusionStrategy;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.effect.EffectChangeResource;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.resource.*;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 // TODO: remove it on production
-public class LoaderTowerSet extends JsonMaster {
+public class SaverTowerSet extends Saver<TowerSet> {
 
-	private Type towerSetType = new TypeToken<TowerSet>() {}.getType();
-
-	public LoaderTowerSet(String filename){
-		super(filename);
+	public SaverTowerSet(){
+		super("towers");
 	}
 
 	public void create(){
-
 		TowerSet towerSet = new TowerSet();
 		Tower tower;
 		TowerFloor floor;
@@ -106,19 +95,6 @@ public class LoaderTowerSet extends JsonMaster {
 		effects = new ArrayList<>(Arrays.asList(new EffectChangeResource(event, null, new Money(2))));
 		floor.setEffects(effects);
 
-
-		GsonBuilder gsonBuiler = TypeAdapter.create();
-		Gson gson = gsonBuiler.setExclusionStrategies(new FloorExclusionStrategy()).create();
-		String gsonTower = gson.toJson(towerSet, towerSetType);
-		ManageJsonFile manageJsonFile=new ManageJsonFile();
-		manageJsonFile.toJsonFile(gsonTower, this);
-	}
-
-	public TowerSet get(){
-		ManageJsonFile manageJsonFile=new ManageJsonFile();
-		String json = manageJsonFile.fromJsonFile(this);
-		GsonBuilder gsonBuiler = TypeAdapter.create();
-		Gson gson = gsonBuiler.setExclusionStrategies(new FloorExclusionStrategy()).create();
-		return gson.fromJson(json, towerSetType);
+		super.save(towerSet);
 	}
 }
