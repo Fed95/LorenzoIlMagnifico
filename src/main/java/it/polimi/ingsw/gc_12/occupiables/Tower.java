@@ -1,8 +1,11 @@
-package it.polimi.ingsw.gc_12;
+package it.polimi.ingsw.gc_12.occupiables;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import it.polimi.ingsw.gc_12.Match;
+import it.polimi.ingsw.gc_12.Occupiable;
 import it.polimi.ingsw.gc_12.card.*;
 import it.polimi.ingsw.gc_12.effect.*;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
@@ -11,7 +14,7 @@ import it.polimi.ingsw.gc_12.resource.*;
 public class Tower {
 	private final CardType type;
 	private final List<TowerFloor> floors = new ArrayList<>();
-	private CardDeck cardDeck;
+	private Map<Integer, CardDeck> decks;
 	// It will be loaded from JSON file
 	private final static Resource towerTakenMalus = new Money(3);
 	private final static List<Integer> DEFAULT_REQUIRED_VALUES = new ArrayList<Integer>() {{
@@ -23,7 +26,7 @@ public class Tower {
 
 	public Tower(CardType type){
 		this.type = type;
-		cardDeck = Match.instance().cardDeckSet.getDecks().get(type).get(Match.instance().getPeriodNum());
+		decks = Match.instance().cardDeckSet.getDecks().get(type);
 		for (int i = 0; i < 4; i++) {
 			initializeFloor(null, i);
 		}
@@ -47,10 +50,10 @@ public class Tower {
 		floors.add(floor);
 	}
 
-	//Fills all floors with new cards
+	//Fills all floors with new cards picked from the deck corresponding to the current period
 	public void refresh(){
 		for(TowerFloor floor : floors)
-			floor.setCard(cardDeck.pickCard());
+			floor.setCard(decks.get(Match.instance().getPeriodNum()).pickCard());
 	}
 
 	public void activateMalus(){

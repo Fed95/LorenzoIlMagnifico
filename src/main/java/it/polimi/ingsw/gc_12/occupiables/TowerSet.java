@@ -1,6 +1,6 @@
-package it.polimi.ingsw.gc_12;
+package it.polimi.ingsw.gc_12.occupiables;
 
-import it.polimi.ingsw.gc_12.card.CardDeck;
+import it.polimi.ingsw.gc_12.Occupiable;
 import it.polimi.ingsw.gc_12.card.CardType;
 
 import java.util.ArrayList;

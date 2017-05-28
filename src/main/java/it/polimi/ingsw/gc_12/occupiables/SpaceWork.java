@@ -1,12 +1,15 @@
-package it.polimi.ingsw.gc_12;
+package it.polimi.ingsw.gc_12.occupiables;
 
 import java.util.List;
 
+import it.polimi.ingsw.gc_12.FamilyMember;
+import it.polimi.ingsw.gc_12.Occupiable;
+import it.polimi.ingsw.gc_12.WorkType;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.exceptions.FamilyMemberAlreadyPresentException;
 import it.polimi.ingsw.gc_12.exceptions.OccupiableAlreadyTakenException;
 
-public class SpaceWork extends Occupiable{
+public class SpaceWork extends Occupiable {
 	
 	protected WorkType workType;
 	protected SpaceWorkZone spaceWorkZone;

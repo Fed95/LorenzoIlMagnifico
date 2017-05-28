@@ -1,4 +1,4 @@
-package it.polimi.ingsw.gc_12;
+package it.polimi.ingsw.gc_12.occupiables;
 
 import java.util.List;
 

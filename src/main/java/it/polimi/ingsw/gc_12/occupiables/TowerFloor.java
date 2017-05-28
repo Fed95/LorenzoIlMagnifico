@@ -1,13 +1,15 @@
-package it.polimi.ingsw.gc_12;
+package it.polimi.ingsw.gc_12.occupiables;
 
 import java.util.List;
 
+import it.polimi.ingsw.gc_12.FamilyMember;
+import it.polimi.ingsw.gc_12.Occupiable;
 import it.polimi.ingsw.gc_12.card.Card;
 import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.exceptions.*;
 
-public class TowerFloor extends Occupiable{
+public class TowerFloor extends Occupiable {
 	private final int floorNum;
 	private Card card;
 	private CardType cardType;
