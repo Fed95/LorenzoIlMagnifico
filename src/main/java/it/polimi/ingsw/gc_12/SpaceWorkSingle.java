@@ -15,6 +15,10 @@ public class SpaceWorkSingle extends SpaceWork{
 		super(workType, requiredValue, spaceWorkZone, effects);
 	}
 
+	public SpaceWorkSingle(WorkType workType, int requiredValue, List<Effect> effects) {
+		super(workType, requiredValue, effects);
+	}
+
 	public SpaceWorkSingle(WorkType workType, SpaceWorkZone spaceWorkZone) {
 		super(workType, DEFAULT_REQUIRED_VALUE, spaceWorkZone, DEFAULT_EFFECTS);
 	}

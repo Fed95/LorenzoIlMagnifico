@@ -1,12 +1,15 @@
-package it.polimi.ingsw.gc_12.card;
+package it.polimi.ingsw.gc_12.JSON;
 
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
-import it.polimi.ingsw.gc_12.*;
+import it.polimi.ingsw.gc_12.EffectProvider;
+import it.polimi.ingsw.gc_12.Occupiable;
+import it.polimi.ingsw.gc_12.SpaceWork;
+import it.polimi.ingsw.gc_12.TowerFloor;
+import it.polimi.ingsw.gc_12.card.Card;
 import it.polimi.ingsw.gc_12.event.Event;
-import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 
-public class CardExclusionStrategy implements ExclusionStrategy {
+public class OccupiableExclusionStrategy implements ExclusionStrategy {
 
 	public boolean shouldSkipField(FieldAttributes f) {
 		if(f.getDeclaringClass() != Card.class && f.getDeclaringClass() != EffectProvider.class && f.getName().equals("effects")) {
@@ -18,7 +21,6 @@ public class CardExclusionStrategy implements ExclusionStrategy {
 		}
 
 		return ((f.getDeclaringClass() == SpaceWork.class && f.getName().equals("spaceWorkZone")) ||
-				(f.getDeclaringClass() == Occupiable.class && f.getName().equals("effects")) ||
 				(f.getDeclaringClass() == TowerFloor.class && f.getName().equals("tower")) ||
 				(f.getDeclaringClass() == Event.class && f.getName().equals("effectProviders")));
 		//return false;

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.gc_12.JSON.saver;
 
 import it.polimi.ingsw.gc_12.*;
+import it.polimi.ingsw.gc_12.JSON.OccupiableExclusionStrategy;
 import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.effect.EffectChangeResource;
@@ -95,6 +96,6 @@ public class SaverTowerSet extends Saver<TowerSet> {
 		effects = new ArrayList<>(Arrays.asList(new EffectChangeResource(event, null, new Money(2))));
 		floor.setEffects(effects);
 
-		super.save(towerSet);
+		super.save(towerSet, new OccupiableExclusionStrategy());
 	}
 }

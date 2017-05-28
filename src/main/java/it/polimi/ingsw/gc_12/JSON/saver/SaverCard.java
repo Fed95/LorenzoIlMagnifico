@@ -2,6 +2,7 @@ package it.polimi.ingsw.gc_12.JSON.saver;
 
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.FamilyMemberColor;
+import it.polimi.ingsw.gc_12.JSON.CardExclusionStrategy;
 import it.polimi.ingsw.gc_12.JSON.loader.LoaderCard;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Occupiable;
@@ -64,7 +65,7 @@ public class SaverCard extends Saver<List<Card>> {
 			}
 		}
 		scanner.close();
-		super.save(cards);
+		super.save(cards, new CardExclusionStrategy());
 	}
 
 	private CardType askCardType() {

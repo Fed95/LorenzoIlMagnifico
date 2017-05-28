@@ -1,6 +1,7 @@
 package it.polimi.ingsw.gc_12.JSON.saver;
 
 import it.polimi.ingsw.gc_12.FamilyMember;
+import it.polimi.ingsw.gc_12.JSON.OccupiableExclusionStrategy;
 import it.polimi.ingsw.gc_12.Market;
 import it.polimi.ingsw.gc_12.Occupiable;
 import it.polimi.ingsw.gc_12.SpaceMarket;
@@ -60,6 +61,6 @@ public class SaverMarket extends Saver<Market> {
 		spaceMarket.setEffects(effects);
 		market.addSpaceMarket(spaceMarket);
 
-		super.save(market);
+		super.save(market, new OccupiableExclusionStrategy());
 	}
 }

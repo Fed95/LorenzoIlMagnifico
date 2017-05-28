@@ -13,6 +13,10 @@ public class SpaceWorkMultiple extends SpaceWork {
 		super(workType, requiredValue, spaceWorkZone, effects);
 	}
 
+	public SpaceWorkMultiple(WorkType workType, int requiredValue, List<Effect> effects) {
+		super(workType, requiredValue, effects);
+	}
+
 	public SpaceWorkMultiple(WorkType workType, SpaceWorkZone spaceWorkZone) {
 		super(workType, DEFAULT_REQUIRED_VALUE, spaceWorkZone, DEFAULT_EFFECTS);
 	}
