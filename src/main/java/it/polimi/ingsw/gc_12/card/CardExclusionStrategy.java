@@ -4,7 +4,9 @@ import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import it.polimi.ingsw.gc_12.*;
 import it.polimi.ingsw.gc_12.event.Event;
-import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
+import it.polimi.ingsw.gc_12.Occupiable;
+import it.polimi.ingsw.gc_12.occupiables.SpaceWork;
+import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 
 public class CardExclusionStrategy implements ExclusionStrategy {
 

@@ -3,6 +3,8 @@ package it.polimi.ingsw.gc_12;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.polimi.ingsw.gc_12.EffectProvider;
+import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.exceptions.FamilyMemberAlreadyPresentException;
 import it.polimi.ingsw.gc_12.exceptions.OccupiableAlreadyTakenException;

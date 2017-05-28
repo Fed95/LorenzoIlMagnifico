@@ -10,6 +10,7 @@ import it.polimi.ingsw.gc_12.effect.EffectChangeResource;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.resource.*;
+import it.polimi.ingsw.gc_12.occupiables.*;
 
 /**
  * Created by marco on 27/05/2017.

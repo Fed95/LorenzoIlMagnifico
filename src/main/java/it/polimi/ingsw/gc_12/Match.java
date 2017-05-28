@@ -11,6 +11,7 @@ import it.polimi.ingsw.gc_12.resource.Money;
 import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.resource.VictoryPoint;
+import it.polimi.ingsw.gc_12.occupiables.Tower;
 
 import java.util.*;
 
@@ -87,7 +88,7 @@ public class Match {
 				controller.start();
 				board.getTrackTurnOrder().newTurn();
 			}
-			board.getTowerSet().refresh();
+			board.refresh();
 			roundNum++;
 		}
 	}
