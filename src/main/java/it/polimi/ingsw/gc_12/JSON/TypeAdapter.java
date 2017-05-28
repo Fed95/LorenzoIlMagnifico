@@ -19,7 +19,7 @@ public class TypeAdapter {
 
 	private TypeAdapter() {}
 
-	public static Gson create() {
+	public static GsonBuilder create() {
 		final RuntimeTypeAdapterFactory<EffectProvider> factoryEffectProvider = RuntimeTypeAdapterFactory
 				.of(EffectProvider.class, "effectProvider")
 				.registerSubtype(Card.class, Card.class.getSimpleName())
@@ -65,9 +65,7 @@ public class TypeAdapter {
 				.registerTypeAdapterFactory(factoryCard)
 				.registerTypeAdapterFactory(factoryResource)
 				.registerTypeAdapterFactory(factoryEffect)
-				.registerTypeAdapterFactory(factoryEvent)
-				.setExclusionStrategies(new CardExclusionStrategy())
-				.create();
+				.registerTypeAdapterFactory(factoryEvent);
 	}
 
 }

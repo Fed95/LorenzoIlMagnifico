@@ -40,6 +40,11 @@ public abstract class Occupiable implements EffectProvider {
 		return effects;
 	}
 
+	@Override
+	public void setEffects(List<Effect> effects) {
+		this.effects = effects;
+	}
+
 	public void placeFamilyMember(FamilyMember occupier) throws RequiredValueNotSatisfiedException, FamilyMemberAlreadyPresentException, OccupiableAlreadyTakenException {
 		isRequiredValueSatisfied(occupier);
 		this.canBeOccupiedBy(occupier);

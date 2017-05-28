@@ -4,6 +4,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import it.polimi.ingsw.gc_12.card.*;
@@ -17,7 +18,8 @@ public class LoaderCard extends JsonMaster {
 	}
 
 	public void createCards(List<Card> cards){
-		Gson gson = TypeAdapter.create();
+		GsonBuilder gsonBuiler = TypeAdapter.create();
+		Gson gson = gsonBuiler.setExclusionStrategies(new CardExclusionStrategy()).create();
 		String gsonCard = gson.toJson(cards, listCardType);
 		ManageJsonFile manageJsonFile=new ManageJsonFile();
 		manageJsonFile.toJsonFile(gsonCard, this);
@@ -26,7 +28,8 @@ public class LoaderCard extends JsonMaster {
 	public List<Card> getCards(){
 		ManageJsonFile manageJsonFile=new ManageJsonFile();
 		String json = manageJsonFile.fromJsonFile(this);
-		Gson gson = TypeAdapter.create();
+		GsonBuilder gsonBuiler = TypeAdapter.create();
+		Gson gson = gsonBuiler.setExclusionStrategies(new CardExclusionStrategy()).create();
 		return gson.fromJson(json, listCardType);
 	}
 

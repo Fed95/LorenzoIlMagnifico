@@ -9,4 +9,6 @@ public interface EffectProvider {
 
 	public List<Effect> getEffects();
 
+	public void setEffects(List<Effect> effects);
+
 }
