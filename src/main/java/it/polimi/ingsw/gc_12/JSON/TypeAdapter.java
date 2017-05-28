@@ -42,6 +42,7 @@ public class TypeAdapter {
 
 		final RuntimeTypeAdapterFactory<Resource> factoryResource = RuntimeTypeAdapterFactory
 				.of(Resource.class, "resourceType")
+				.registerSubtype(CouncilPrivilege.class, CouncilPrivilege.class.getSimpleName())
 				.registerSubtype(FaithPoint.class, FaithPoint.class.getSimpleName())
 				.registerSubtype(MilitaryPoint.class, MilitaryPoint.class.getSimpleName())
 				.registerSubtype(Money.class, Money.class.getSimpleName())
