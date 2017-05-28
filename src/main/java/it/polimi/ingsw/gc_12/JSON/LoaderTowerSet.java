@@ -109,9 +109,9 @@ public class LoaderTowerSet extends JsonMaster {
 
 		GsonBuilder gsonBuiler = TypeAdapter.create();
 		Gson gson = gsonBuiler.setExclusionStrategies(new FloorExclusionStrategy()).create();
-		String gsonCard = gson.toJson(towerSet, towerSetType);
+		String gsonTower = gson.toJson(towerSet, towerSetType);
 		ManageJsonFile manageJsonFile=new ManageJsonFile();
-		manageJsonFile.toJsonFile(gsonCard, this);
+		manageJsonFile.toJsonFile(gsonTower, this);
 	}
 
 	public TowerSet get(){

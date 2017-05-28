@@ -7,6 +7,7 @@ import it.polimi.ingsw.gc_12.JSON.AskCards;
 import it.polimi.ingsw.gc_12.JSON.LoaderCard;
 
 
+import it.polimi.ingsw.gc_12.JSON.LoaderMarket;
 import it.polimi.ingsw.gc_12.JSON.LoaderTowerSet;
 import it.polimi.ingsw.gc_12.card.Card;
 
@@ -20,8 +21,11 @@ public class Main {
 		jsonobj.createCards(cards);
 		cards=jsonobj.getCards();*/
 
-		LoaderTowerSet loaderTowerSet = new LoaderTowerSet("towerSet");
-		loaderTowerSet.create();
+		/*LoaderTowerSet loaderTowerSet = new LoaderTowerSet("towerSet");
+		loaderTowerSet.create();*/
+
+		LoaderMarket loaderMarket = new LoaderMarket("market");
+		loaderMarket.create();
 	}
 
 }
