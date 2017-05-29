@@ -15,8 +15,8 @@ public class TrackFaithPoints {
 
 		for(Player player : safePlayers){
 
-			if(player.getResourceValue(ResourceType.FAITH_POINT) >= Match.instance().getPeriodNum() + 2){
-				safePlayers.add(player);
+			if(player.getResourceValue(ResourceType.FAITH_POINT) < Match.instance().getPeriodNum() + 2){
+				safePlayers.remove(player);
 			}
 		}
 		return safePlayers;
