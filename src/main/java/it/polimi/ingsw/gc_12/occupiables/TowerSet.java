@@ -1,6 +1,6 @@
-package it.polimi.ingsw.gc_12;
+package it.polimi.ingsw.gc_12.occupiables;
 
-import it.polimi.ingsw.gc_12.card.CardDeck;
+import it.polimi.ingsw.gc_12.Occupiable;
 import it.polimi.ingsw.gc_12.card.CardType;
 
 import java.util.ArrayList;
@@ -33,14 +33,12 @@ public class TowerSet {
 		return occupiables;
 	}
 
-	//Fills all towers with new cards
+	//Fills the towerfloors with new cards from the corresponding deck
+	//Deactivates malus if it has been activated during the turn
 	public void refresh(){
 		for(Tower tower : towers.values()){
-			//Retrieves the deck of the corresponding type and period
-			CardDeck cardDeck = Match.instance().cardDeckSet.getDecks().get(tower.getType()).get(Match.instance().getPeriodNum());
-			for(TowerFloor floor : tower.getFloors()){
-				floor.setCard(cardDeck.pickCard());
-			}
+			tower.refresh();
+			tower.deactivateMalus();
 		}
 	}
 

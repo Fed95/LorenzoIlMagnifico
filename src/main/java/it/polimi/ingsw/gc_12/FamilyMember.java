@@ -1,4 +1,6 @@
 package it.polimi.ingsw.gc_12;
+import it.polimi.ingsw.gc_12.occupiables.SpaceDie;
+
 import java.util.Observable;
 import java.util.Observer;
 

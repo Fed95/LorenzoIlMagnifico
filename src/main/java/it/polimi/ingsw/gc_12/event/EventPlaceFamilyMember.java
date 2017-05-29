@@ -27,9 +27,15 @@ public class EventPlaceFamilyMember extends Event{
 		super();
 		this.occupiables = occupiables;
 		this.familyMember = familyMember;
-		
+
 		effectProviders.addAll(occupiables);
 	}
+
+	public EventPlaceFamilyMember(List<Occupiable> occupiables){
+		super();
+		this.occupiables = occupiables;
+	}
+
 	
 	public EventPlaceFamilyMember(Player player, Occupiable occupiable, FamilyMember familyMember) {
 		this(player, new ArrayList<Occupiable>(Arrays.asList(occupiable)), familyMember);

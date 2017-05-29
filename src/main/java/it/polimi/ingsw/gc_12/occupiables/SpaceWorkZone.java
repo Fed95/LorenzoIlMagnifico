@@ -1,4 +1,7 @@
-package it.polimi.ingsw.gc_12;
+package it.polimi.ingsw.gc_12.occupiables;
+
+import it.polimi.ingsw.gc_12.FamilyMember;
+import it.polimi.ingsw.gc_12.FamilyMemberColor;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,10 +1,12 @@
-package it.polimi.ingsw.gc_12;
+package it.polimi.ingsw.gc_12.occupiables;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import it.polimi.ingsw.gc_12.FamilyMember;
+import it.polimi.ingsw.gc_12.WorkType;
 import it.polimi.ingsw.gc_12.effect.Effect;
-import it.polimi.ingsw.gc_12.exceptions.FamilyMemberAlreadyPresentException;
-import it.polimi.ingsw.gc_12.exceptions.OccupiableAlreadyTakenException;
+import it.polimi.ingsw.gc_12.exceptions.CannotPlaceFamilyMemberException;
 
 public class SpaceWorkSingle extends SpaceWork{
 	
@@ -30,10 +32,10 @@ public class SpaceWorkSingle extends SpaceWork{
 
 
 	@Override
-	public void canBeOccupiedBy(FamilyMember occupier) throws FamilyMemberAlreadyPresentException, OccupiableAlreadyTakenException {
+	public void canBeOccupiedBy(FamilyMember occupier) throws CannotPlaceFamilyMemberException {
 		if(!spaceWorkZone.canBeOccupiedBy(occupier))
-			throw new FamilyMemberAlreadyPresentException();
+			throw new CannotPlaceFamilyMemberException("A family member of your family is already working here!");
 		if(isOccupied())
-			throw new OccupiableAlreadyTakenException();
+			throw new CannotPlaceFamilyMemberException("Occupiable already taken!");
 	}
 }

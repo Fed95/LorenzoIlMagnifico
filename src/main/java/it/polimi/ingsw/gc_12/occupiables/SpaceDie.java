@@ -1,4 +1,7 @@
-package it.polimi.ingsw.gc_12;
+package it.polimi.ingsw.gc_12.occupiables;
+
+import it.polimi.ingsw.gc_12.Die;
+import it.polimi.ingsw.gc_12.DieColor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,4 +34,12 @@ public class SpaceDie {
     public Die getDie(DieColor color) {
     	return dice.get(color);
     }
+
+	public Map<DieColor, Die> getDice() {
+		return dice;
+	}
+
+	public int getDiceNum() {
+    	return dice.size();
+	}
 }
