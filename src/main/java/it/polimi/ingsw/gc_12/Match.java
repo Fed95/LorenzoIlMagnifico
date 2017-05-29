@@ -1,6 +1,7 @@
 package it.polimi.ingsw.gc_12;
 
 import it.polimi.ingsw.gc_12.card.*;
+import it.polimi.ingsw.gc_12.exceptions.NotEnoughResourcesException;
 import it.polimi.ingsw.gc_12.mvc.ControllerPlayer;
 import it.polimi.ingsw.gc_12.mvc.ViewCLI;
 import it.polimi.ingsw.gc_12.personalBoard.PersonalBoard;
@@ -98,9 +99,7 @@ public class Match {
 		List<Player> safePlayers = board.getTrackFaithPoints().getSafePlayers();
 
 		for(Player player : safePlayers){
-			if(controllers.get(player).supportChurch()){
-				//TODO: to be completed
-			}
+			controllers.get(player).handleExcommunication();
 		}
 	}
 

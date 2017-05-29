@@ -13,7 +13,6 @@ import java.util.List;
  */
 public class EventSupportChurch extends Event {
 
-    private Player player;
     private FaithSlot faithSlot;
 
     public EventSupportChurch(Player player, FaithSlot faithSlots){

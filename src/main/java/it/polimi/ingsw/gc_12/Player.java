@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import it.polimi.ingsw.gc_12.event.EventSupportChurch;
 import it.polimi.ingsw.gc_12.exceptions.CannotPlaceCardException;
 import it.polimi.ingsw.gc_12.exceptions.CannotPlaceFamilyMemberException;
 import it.polimi.ingsw.gc_12.exceptions.NotEnoughResourcesException;
@@ -17,6 +18,7 @@ import it.polimi.ingsw.gc_12.card.Card;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.effect.EffectHandler;
 import it.polimi.ingsw.gc_12.resource.Resource;
+import it.polimi.ingsw.gc_12.track.FaithSlot;
 
 public class Player {
 	
@@ -51,6 +53,19 @@ public class Player {
 			effectHandler.discardEffects(event);
 			throw e;
 		}
+	}
+
+	public void supportChurch() {
+		EffectProvider faithSlot = Match.instance().getBoard().getFaithSlots().get(this.resources.get(ResourceType.FAITH_POINT).getValue());
+		Event event = new EventSupportChurch(this, (FaithSlot) faithSlot);
+
+		try {
+			effectHandler.executeEffects(event);
+		}catch(NotEnoughResourcesException e){
+			//This exception never happens for this event
+		}
+		this.resources.get(ResourceType.FAITH_POINT).setValue(0);
+
 	}
 
 	public String getName() {

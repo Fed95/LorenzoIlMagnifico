@@ -66,7 +66,10 @@ public class ControllerPlayer implements Observer{
 		}
 	}
 
-	public boolean supportChurch(){
-		return this.view.supportChurch();
+	public void handleExcommunication(){
+		boolean support = this.view.supportChurch();
+		if(support){
+			player.supportChurch();
+		}
 	}
 }
