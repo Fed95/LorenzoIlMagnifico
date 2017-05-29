@@ -27,9 +27,8 @@ public class Tower {
 	public Tower(CardType type){
 		this.type = type;
 		decks = Match.instance().cardDeckSet.getDecks().get(type);
-		for (int i = 0; i < 4; i++) {
-			initializeFloor(null, i);
-		}
+		initializeFloors();
+
 	}
 
 	public CardType getType() {
@@ -44,10 +43,11 @@ public class Tower {
 		return floors.get(floorNum);
 	}
 	
-	public void initializeFloor(Card card, int i) {
-		TowerFloor floor = new TowerFloor(this, i, DEFAULT_REQUIRED_VALUES.get(i), type);
-		//floor.setCard(card);
-		floors.add(floor);
+	public void initializeFloors() {
+		for (int i = 0; i < CardType.values().length; i++) {
+			TowerFloor floor = new TowerFloor(this, i, DEFAULT_REQUIRED_VALUES.get(i), type);
+			floors.add(floor);
+		}
 	}
 
 	//Fills all floors with new cards picked from the deck corresponding to the current period

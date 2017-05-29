@@ -2,21 +2,18 @@ package it.polimi.ingsw.gc_12.mvc;
 
 import java.util.*;
 
-import it.polimi.ingsw.gc_12.Board;
-import it.polimi.ingsw.gc_12.FamilyMember;
-import it.polimi.ingsw.gc_12.FamilyMemberColor;
-import it.polimi.ingsw.gc_12.Occupiable;
-import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.*;
 
 public class ViewCLI extends Observable{
 
 	private Scanner in = new Scanner(System.in);
+	private ControllerPlayer controllerPlayer;
 	private Player player;
-	private Board board;
+	private Match match;
 
-	public ViewCLI(Player player, Board board) {
-		this.player = player;
-		this.board = board;		
+	public ViewCLI(ControllerPlayer controllerPlayer, Match match) {
+		this.controllerPlayer = controllerPlayer;
+		this.match = match;
 	}
 
 	public void askAction() { 
@@ -72,10 +69,10 @@ public class ViewCLI extends Observable{
 					askAction();
 					return;
 				}else {
-					FamilyMember familyMember = new FamilyMember(player, familyMemberColors.get(input));
-					System.out.println(familyMember + " chosen ");
-					setChanged();
-					notifyObservers(familyMember);
+					//FamilyMember familyMember = new FamilyMember(player, familyMemberColors.get(input));
+					FamilyMemberColor familyMemberColor = familyMemberColors.get(input);
+					System.out.println("familyMember " + familyMemberColor + " chosen ");
+					controllerPlayer.setFamilyMember(familyMemberColor);
 					break;
 				}
 			}
@@ -87,7 +84,7 @@ public class ViewCLI extends Observable{
 	}
 
 	public void askOccupiable() {
-		List<Occupiable> occupiables = board.getOccupiables();
+		List<Occupiable> occupiables = match.getBoard().getOccupiables();
 		System.out.println();
 		System.out.println("Write the number of the space you want to place the family member in.");
 		int i = 0;
@@ -109,8 +106,7 @@ public class ViewCLI extends Observable{
 					return;				
 				}else{
 					Occupiable occupiable = occupiables.get(input);
-					setChanged();
-					notifyObservers(occupiable);
+					controllerPlayer.setOccupiable(occupiable);
 					break;
 				}
 			}else {

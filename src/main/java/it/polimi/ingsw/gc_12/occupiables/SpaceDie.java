@@ -34,4 +34,12 @@ public class SpaceDie {
     public Die getDie(DieColor color) {
     	return dice.get(color);
     }
+
+	public Map<DieColor, Die> getDice() {
+		return dice;
+	}
+
+	public int getDiceNum() {
+    	return dice.size();
+	}
 }

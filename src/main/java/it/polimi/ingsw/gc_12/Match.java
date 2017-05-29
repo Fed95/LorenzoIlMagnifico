@@ -1,18 +1,13 @@
 package it.polimi.ingsw.gc_12;
 
 import it.polimi.ingsw.gc_12.card.*;
-import it.polimi.ingsw.gc_12.exceptions.NotEnoughResourcesException;
 import it.polimi.ingsw.gc_12.mvc.ControllerPlayer;
-import it.polimi.ingsw.gc_12.mvc.ViewCLI;
-import it.polimi.ingsw.gc_12.personalBoard.PersonalBoard;
-import it.polimi.ingsw.gc_12.resource.Money;
-import it.polimi.ingsw.gc_12.resource.Resource;
-import it.polimi.ingsw.gc_12.resource.ResourceType;
+
 
 import java.util.*;
 
 public class Match {
-	private final List<Player> players = new ArrayList<>(); //This goes to the class Match
+	private List<Player> players = new ArrayList<>(); //This goes to the class Match
 	private final List<BonusTile> bonusTiles = new ArrayList<>();
 	private List<CardDevelopment> cards = new ArrayList<>();
 	public CardDeckSet cardDeckSet;
@@ -23,7 +18,6 @@ public class Match {
 	private Board board;
 	private static Match instance;
 	private int roundNum;
-	private Map<Player, ControllerPlayer> controllers = new HashMap<>();
 
 	public static Match instance() {
 		if (instance == null)
@@ -40,71 +34,18 @@ public class Match {
 		this(DEFAULT_GAME_MODE);
 	}
 
-	// TODO: remove when loaded from json file
-	private void initializeMatch() {
-		// Setup players
-		Map<ResourceType, Resource> resources1 = new HashMap<>();
-		resources1.put(ResourceType.MONEY, new Money(5));
-		PersonalBoard personalBoard1 = new PersonalBoard();
-		Player player1 = new Player("tizio", personalBoard1, resources1);
-		players.add(player1);
 
-		Map<ResourceType, Resource> resources2 = new HashMap<>();
-		resources2.put(ResourceType.MONEY, new Money(6));
-		PersonalBoard personalBoard2 = new PersonalBoard();
-		Player player2 = new Player("caio", personalBoard2, resources2);
-		players.add(player2);
-
-		board = new Board();
+	public void newTurn() {
+		board.getTrackTurnOrder().newTurn();
 	}
 
-	public void setup() {
-		initializeMatch();
-		setInitialResources();
+	public void newRound() {
+		board.refresh();
+		board.getTrackTurnOrder().newRound();
 	}
 
-	public void start() {
-		setupControllers();
-		handleTurns();
-	}
-
-	private void setupControllers() {
-		for (Player player : players) {
-			System.out.println(player + player.getName());
-			ControllerPlayer controller = new ControllerPlayer(player, new ViewCLI(player, board));
-			controllers.put(player, controller);
-		}
-	}
-
-	private void handleTurns() {
-		// TODO: handle rounds in a better way
-		while (roundNum < DEFAULT_ROUND_NUM) {
-			for (int i = 0; i < FamilyMemberColor.values().length; i++) {
-
-				Player player = board.getTrackTurnOrder().getCurrentPlayer();
-				System.out.println("Current turn of: " + player.getName());
-				ControllerPlayer controller = controllers.get(player);
-				controller.start();
-				board.getTrackTurnOrder().newTurn();
-			}
-			if(roundNum % DEFAULT_PERIODS_LEN == 0){
-				this.handleExcommunications();
-			}
-			board.refresh();
-			roundNum++;
-		}
-	}
-
-	private void handleExcommunications() {
-		List<Player> safePlayers = board.getTrackFaithPoints().getSafePlayers();
-
-		for(Player player : safePlayers){
-			controllers.get(player).handleExcommunication();
-		}
-	}
-
-	private void setInitialResources() {
-
+	public void setPlayers(List<Player> players) {
+		this.players = players;
 	}
 
 	public List<Player> getPlayers() {

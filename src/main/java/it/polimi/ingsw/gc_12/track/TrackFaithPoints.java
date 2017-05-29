@@ -21,4 +21,8 @@ public class TrackFaithPoints {
 		}
 		return safePlayers;
 	}
+
+	public boolean isPlayerSafe(Player player) {
+		return player.getResourceValue(ResourceType.FAITH_POINT) >= Match.instance().getPeriodNum() + 2;
+	}
 }

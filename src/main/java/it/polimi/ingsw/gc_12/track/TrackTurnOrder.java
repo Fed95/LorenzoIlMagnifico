@@ -43,11 +43,10 @@ public class TrackTurnOrder {
 		return turnOrder.get(turn);
 	}
 
-	public int newTurn() {
+	public void newTurn() {
 		turn++;
 		if (turn == turnOrder.size())
 			turn = 0;
-		return turn;
 	}
 
 	//Places the specified player on top, shifting the position of the other players
