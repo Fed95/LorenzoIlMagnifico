@@ -103,28 +103,40 @@ public class Player {
 			this.addResource(resource);
 		}
 	}
-	
-	private void removeResource(Resource resource) throws NotEnoughResourcesException {
-		if(resource == null)
+
+	//TODO fix this method
+	private void removeResource(List<Resource> newResources, Resource resourceToRemove) throws NotEnoughResourcesException {
+
+		Resource ownedResource = this.resources.get(resourceToRemove.getType());
+		if(ownedResource.equals(null))
 			throw new NotEnoughResourcesException();
 
-		Resource ownedResource = this.resources.get(resource.getType());
-		int newValue = ownedResource.getValue() - resource.getValue();
+		int newValue = ownedResource.getValue() - resourceToRemove.getValue();
 
 		if(newValue < 0)
 			throw new NotEnoughResourcesException();
 
-		ownedResource.setValue(newValue);
-		this.resources.replace(resource.getType(), ownedResource);
-	}
-	
-	public void removeResources(List<Resource> resources) throws NotEnoughResourcesException {
-		for(Resource resource: resources)
-			//Can throw an exception
-			this.removeResource(resource);
+		Resource newResource = ownedResource;
+		newResource.setValue(newValue);
+		newResources.add(newResource);
 	}
 
-	public boolean hasResource(List<Resource> resources){
+	//TODO fix this method
+	public void removeResources(List<Resource> resourcesToRemove) throws NotEnoughResourcesException {
+
+		List<Resource> newResources = new ArrayList<>();
+		//fills the array with the affected resources updating their values
+		for(Resource resource: resourcesToRemove)
+			//Can throw an exception
+			this.removeResource(newResources, resource);
+
+		//If no exceptions were thrown the resources are updated with the new values
+		for(Resource resource : newResources){
+			this.resources.replace(resource.getType(), resource);
+		}
+	}
+
+	public boolean hasResources(List<Resource> resources){
 		try{
 			this.removeResources(resources);
 		} catch (NotEnoughResourcesException e) {

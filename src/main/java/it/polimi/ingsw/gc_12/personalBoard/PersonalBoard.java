@@ -24,7 +24,7 @@ public class PersonalBoard {
 
     public void canPlaceCard(Player owner, CardDevelopment card) throws CannotPlaceCardException, NotEnoughResourcesException {
         CardSlot cardSlot = cardsSpaces.get(card.getType()).getFirstFreeSlot();
-        if(!owner.hasResource(cardSlot.getRequisites()))
+        if(!owner.hasResources(cardSlot.getRequisites()))
             throw new NotEnoughResourcesException("You do not have the required resources for this card placement");
 
         //Throws exception if all slots are taken
