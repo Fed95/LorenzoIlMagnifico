@@ -3,11 +3,10 @@ package it.polimi.ingsw.gc_12.JSON;
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
 import it.polimi.ingsw.gc_12.EffectProvider;
-import it.polimi.ingsw.gc_12.Occupiable;
-import it.polimi.ingsw.gc_12.SpaceWork;
-import it.polimi.ingsw.gc_12.TowerFloor;
 import it.polimi.ingsw.gc_12.card.Card;
 import it.polimi.ingsw.gc_12.event.Event;
+import it.polimi.ingsw.gc_12.occupiables.SpaceWork;
+import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 
 public class OccupiableExclusionStrategy implements ExclusionStrategy {
 
