@@ -27,7 +27,7 @@ public class EventPlaceFamilyMember extends Event{
 		super();
 		this.occupiables = occupiables;
 		this.familyMember = familyMember;
-		
+
 		effectProviders.addAll(occupiables);
 	}
 

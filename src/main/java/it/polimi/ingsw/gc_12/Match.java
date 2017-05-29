@@ -7,6 +7,7 @@ import it.polimi.ingsw.gc_12.effect.EffectChangeResource;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.mvc.ControllerPlayer;
 import it.polimi.ingsw.gc_12.mvc.ViewCLI;
+import it.polimi.ingsw.gc_12.personalBoard.PersonalBoard;
 import it.polimi.ingsw.gc_12.resource.Money;
 import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
@@ -48,12 +49,14 @@ public class Match {
 		// Setup players
 		Map<ResourceType, Resource> resources1 = new HashMap<>();
 		resources1.put(ResourceType.MONEY, new Money(5));
-		Player player1 = new Player("tizio", resources1);
+		PersonalBoard personalBoard1 = new PersonalBoard();
+		Player player1 = new Player("tizio", personalBoard1, resources1);
 		players.add(player1);
 
 		Map<ResourceType, Resource> resources2 = new HashMap<>();
 		resources2.put(ResourceType.MONEY, new Money(6));
-		Player player2 = new Player("caio", resources2);
+		PersonalBoard personalBoard2 = new PersonalBoard();
+		Player player2 = new Player("caio", personalBoard2, resources2);
 		players.add(player2);
 
 		board = new Board();

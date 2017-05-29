@@ -5,6 +5,7 @@ import java.util.List;
 
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.Event;
+import it.polimi.ingsw.gc_12.exceptions.NotEnoughResourcesException;
 import it.polimi.ingsw.gc_12.resource.Resource;
 
 // TODO: add the possibility to have FamilyMember.value as a possible cost
@@ -30,13 +31,13 @@ public class EffectChangeResource extends Effect {
 		this.resources = resources;
 	}
 	
-	public void execute(Event event) {
+	public void execute(Event event) throws NotEnoughResourcesException {
 		Player player = event.getPlayer();
 		player.removeResources(costs);
 		player.addResources(resources);
 	}
 	
-	public void discard(Event event) {
+	public void discard(Event event) throws NotEnoughResourcesException {
 		Player player = event.getPlayer();
 		player.addResources(costs);
 		player.removeResources(resources);

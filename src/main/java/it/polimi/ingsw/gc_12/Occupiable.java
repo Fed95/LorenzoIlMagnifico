@@ -3,12 +3,10 @@ package it.polimi.ingsw.gc_12;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.polimi.ingsw.gc_12.EffectProvider;
-import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.effect.Effect;
-import it.polimi.ingsw.gc_12.exceptions.FamilyMemberAlreadyPresentException;
-import it.polimi.ingsw.gc_12.exceptions.OccupiableAlreadyTakenException;
-import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
+import it.polimi.ingsw.gc_12.exceptions.CannotPlaceCardException;
+import it.polimi.ingsw.gc_12.exceptions.CannotPlaceFamilyMemberException;
+import it.polimi.ingsw.gc_12.exceptions.NotEnoughResourcesException;
 
 public abstract class Occupiable implements EffectProvider {
 	private List<Effect> effects = new ArrayList<>();
@@ -42,7 +40,7 @@ public abstract class Occupiable implements EffectProvider {
 		return effects;
 	}
 
-	public void placeFamilyMember(FamilyMember occupier) throws RequiredValueNotSatisfiedException, FamilyMemberAlreadyPresentException, OccupiableAlreadyTakenException {
+	public void placeFamilyMember(FamilyMember occupier) throws CannotPlaceFamilyMemberException, CannotPlaceCardException, NotEnoughResourcesException {
 		isRequiredValueSatisfied(occupier);
 		this.canBeOccupiedBy(occupier);
 
@@ -50,10 +48,10 @@ public abstract class Occupiable implements EffectProvider {
 		this.occupiers.add(occupier);
 	}
 
-	protected void isRequiredValueSatisfied(FamilyMember occupier) throws RequiredValueNotSatisfiedException {
+	protected void isRequiredValueSatisfied(FamilyMember occupier) throws CannotPlaceFamilyMemberException {
 		if(requiredValue > occupier.getValue())
-			throw new RequiredValueNotSatisfiedException();
+			throw new CannotPlaceFamilyMemberException("Required value not satisfied");
 	}
 	
-	public abstract void canBeOccupiedBy(FamilyMember occupier) throws FamilyMemberAlreadyPresentException, OccupiableAlreadyTakenException;
+	public abstract void canBeOccupiedBy(FamilyMember occupier) throws CannotPlaceFamilyMemberException, CannotPlaceCardException, NotEnoughResourcesException;
 }
