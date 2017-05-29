@@ -1,18 +1,12 @@
 package it.polimi.ingsw.gc_12;
 
 import it.polimi.ingsw.gc_12.card.*;
-import it.polimi.ingsw.gc_12.effect.Effect;
-import it.polimi.ingsw.gc_12.effect.EffectChangeFamilyMemberValue;
-import it.polimi.ingsw.gc_12.effect.EffectChangeResource;
-import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.mvc.ControllerPlayer;
 import it.polimi.ingsw.gc_12.mvc.ViewCLI;
 import it.polimi.ingsw.gc_12.personalBoard.PersonalBoard;
 import it.polimi.ingsw.gc_12.resource.Money;
 import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
-import it.polimi.ingsw.gc_12.resource.VictoryPoint;
-import it.polimi.ingsw.gc_12.occupiables.Tower;
 
 import java.util.*;
 
@@ -131,16 +125,5 @@ public class Match {
 	@Override
 	public String toString() {
 		return board.toString();
-	}
-
-	// TODO: remove when loading from JSON file
-	public void initializeCards() {
-		Tower tower = board.getTowerSet().getTower(CardType.BUILDING);
-		Effect effect1 = new EffectChangeFamilyMemberValue(new EventPlaceFamilyMember(null, tower.getFloor(1), new FamilyMember()), 2);
-		Card card1 = new CardBuilding(0, "Marco", 1, null, new ArrayList<>(Arrays.asList(effect1)));
-		Effect effect2 = new EffectChangeResource(new EventPlaceFamilyMember(null, tower.getFloor(2), new FamilyMember()), null, new Money(2));
-		Card card2 = new CardBuilding(1, "Federico", 1, null, new ArrayList<>(Arrays.asList(effect2)));
-		Effect effect3 = new EffectChangeResource(new EventPlaceFamilyMember(null, tower.getFloor(3), new FamilyMember()), null, new VictoryPoint(-3));
-		Card card3 = new CardBuilding(2, "Ruggero", 1, null, new ArrayList<>(Arrays.asList(effect3)));
 	}
 }

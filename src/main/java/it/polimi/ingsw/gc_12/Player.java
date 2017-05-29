@@ -9,6 +9,7 @@ import it.polimi.ingsw.gc_12.exceptions.CannotPlaceCardException;
 import it.polimi.ingsw.gc_12.exceptions.CannotPlaceFamilyMemberException;
 import it.polimi.ingsw.gc_12.exceptions.NotEnoughResourcesException;
 import it.polimi.ingsw.gc_12.personalBoard.PersonalBoard;
+import it.polimi.ingsw.gc_12.resource.ResourceExchange;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
@@ -103,37 +104,25 @@ public class Player {
 			this.addResource(resource);
 		}
 	}
-
-	//TODO fix this method
-	private void removeResource(List<Resource> newResources, Resource resourceToRemove) throws NotEnoughResourcesException {
-
-		Resource ownedResource = this.resources.get(resourceToRemove.getType());
-		if(ownedResource.equals(null))
+	
+	private void removeResource(Resource resource) throws NotEnoughResourcesException {
+		if(resource == null)
 			throw new NotEnoughResourcesException();
 
-		int newValue = ownedResource.getValue() - resourceToRemove.getValue();
+		Resource ownedResource = this.resources.get(resource.getType());
+		int newValue = ownedResource.getValue() - resource.getValue();
 
 		if(newValue < 0)
 			throw new NotEnoughResourcesException();
 
-		Resource newResource = ownedResource;
-		newResource.setValue(newValue);
-		newResources.add(newResource);
+		ownedResource.setValue(newValue);
+		this.resources.replace(resource.getType(), ownedResource);
 	}
-
-	//TODO fix this method
-	public void removeResources(List<Resource> resourcesToRemove) throws NotEnoughResourcesException {
-
-		List<Resource> newResources = new ArrayList<>();
-		//fills the array with the affected resources updating their values
-		for(Resource resource: resourcesToRemove)
+	
+	public void removeResources(List<Resource> resources) throws NotEnoughResourcesException {
+		for(Resource resource: resources)
 			//Can throw an exception
-			this.removeResource(newResources, resource);
-
-		//If no exceptions were thrown the resources are updated with the new values
-		for(Resource resource : newResources){
-			this.resources.replace(resource.getType(), resource);
-		}
+			this.removeResource(resource);
 	}
 
 	public boolean hasResources(List<Resource> resources){
@@ -183,5 +172,9 @@ public class Player {
 	public void resetFaithPoints(){
 		faithPoints = 0;
 	}
-	
+
+	public ResourceExchange chooseResourceExchange(List<ResourceExchange> resourceExchanges) {
+		//TODO: implement comunication with controller
+		return null;
+	}
 }

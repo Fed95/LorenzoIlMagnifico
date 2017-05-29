@@ -59,7 +59,7 @@ public class Tower {
 	public void activateMalus(){
 		List<Occupiable> floorList = new ArrayList<>();
 		floorList.addAll(floors);
-		Effect towerTakenMalusEffect = new EffectChangeResource(new EventPlaceFamilyMember(floorList), towerTakenMalus, null);
+		Effect towerTakenMalusEffect = new EffectChangeResource(new EventPlaceFamilyMember(floorList), new ResourceExchange(towerTakenMalus, null), false);
 		for(Occupiable floor : floorList){
 			floor.getEffects().add(towerTakenMalusEffect);
 		}
