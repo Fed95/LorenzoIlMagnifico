@@ -2,7 +2,9 @@ package it.polimi.ingsw.gc_12;
 
 import it.polimi.ingsw.gc_12.JSON.loader.LoaderMarket;
 import it.polimi.ingsw.gc_12.JSON.loader.LoaderTowerSet;
+import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.occupiables.*;
+import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.track.TrackFaithPoints;
 import it.polimi.ingsw.gc_12.track.TrackMilitaryPoints;
 import it.polimi.ingsw.gc_12.track.TrackTurnOrder;
@@ -22,6 +24,7 @@ public class Board {
 	private TrackMilitaryPoints trackMilitaryPoints;
 	private TrackVictoryPoints victroyPointsTrack;
 	private TrackFaithPoints trackFaithPoints;
+	private List<EffectProvider> faithSlots = new ArrayList<>();
 	/*
 	private ExcommunicationSpace excommunicationSpace;
 	private TrackFaithPoints faithPointTrack;
@@ -83,12 +86,20 @@ public class Board {
 		return occupiables;
 	}
 
+	public TrackFaithPoints getTrackFaithPoints() {
+		return trackFaithPoints;
+	}
+
+	public List<EffectProvider> getFaithSlots() {
+		return faithSlots;
+	}
+
+
 	/*
 	public ExcommunicationSpace getExcommunicationSpace() {
 		return excommunicationSpace;
 	}
-	public TrackFaithPoints getFaithPointTrack() {
-		return faithPointTrack;
+
 	}*/
 
 	@Override

@@ -51,8 +51,6 @@ public class Player {
 			effectHandler.discardEffects(event);
 			throw e;
 		}
-
-		// TODO: implement placement
 	}
 
 	public String getName() {
@@ -157,5 +155,9 @@ public class Player {
 	public ResourceExchange chooseResourceExchange(List<ResourceExchange> resourceExchanges) {
 		//TODO: implement comunication with controller
 		return null;
+	}
+
+	public void resetFaithPoints(){
+		//TODO: implement method
 	}
 }

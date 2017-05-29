@@ -120,6 +120,21 @@ public class ViewCLI extends Observable{
 		}
 	}
 
+	public boolean supportChurch(){
+		while(true) {
+			System.out.println("Will you show your sustain to the church? [YES / NO]");
+			String choice = in.next();
+			switch (choice) {
+				case "yes":
+					return true;
+				case "no":
+					return false;
+				default:
+					System.out.println("'" + choice + "' is not a valid answer.");
+			}
+		}
+	}
+
 	public void printError(String error) {
 		System.out.println(error);
 	}

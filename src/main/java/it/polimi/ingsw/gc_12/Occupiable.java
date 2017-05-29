@@ -9,6 +9,7 @@ import it.polimi.ingsw.gc_12.exceptions.CannotPlaceFamilyMemberException;
 import it.polimi.ingsw.gc_12.exceptions.NotEnoughResourcesException;
 
 public abstract class Occupiable implements EffectProvider {
+
 	private List<Effect> effects = new ArrayList<>();
 	protected transient List<FamilyMember> occupiers = new ArrayList<>();
 	public final static int DEFAULT_MAXNUMBEROFPLAYERS = 1;
