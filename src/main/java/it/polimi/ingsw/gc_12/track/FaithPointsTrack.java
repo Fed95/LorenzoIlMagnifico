@@ -13,8 +13,8 @@ public class FaithPointsTrack {
 	}
 	public List<Player> getSafePlayers(){
 		List<Player> safePlayers= new ArrayList<>();
-		for(Player pl :players){
-			if(pl.getFaithPoints()>=Match.instance().getPeriodNum()+2){
+		for(Player pl : players){
+			if(pl.getFaithPoints() >= Match.instance().getPeriodNum()+2){
 				safePlayers.add(pl);
 			}
 		}

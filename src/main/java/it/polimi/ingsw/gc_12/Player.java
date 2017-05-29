@@ -152,21 +152,28 @@ public class Player {
 		return faithPoints;
 	}
 
-	public void setFaithPoints(Integer faithPoints) {
-		if(faithPoints != null){
+	public void setFaithPoints(Integer faithPoints) throws IllegalArgumentException {
+		if(faithPoints == null){
+			throw new IllegalArgumentException("Faith points parameter cannot be null");
+		}else{
 			this.faithPoints = faithPoints;
 		}
 	}
 
-	public void setMilitaryPoints(Integer militaryPoints) {
-		if(militaryPoints != null){
+	public void setMilitaryPoints(Integer militaryPoints) throws IllegalArgumentException {
+		if(militaryPoints == null){
+			throw new IllegalArgumentException("Military points parameter cannot be null");
+		}else{
 			this.militaryPoints = militaryPoints;
 		}
 	}
 
-	public void setVictoryPoints(Integer victoryPoints) {
-		if(victoryPoints != null){
+	public void setVictoryPoints(Integer victoryPoints) throws IllegalArgumentException{
+		if(victoryPoints == null){
+			throw new IllegalArgumentException("Victory points parameter cannot be null");
+		}else{
 			this.victoryPoints = victoryPoints;
+
 		}
 	}
 	public void resetFaithPoints(){
