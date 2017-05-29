@@ -26,12 +26,6 @@ public class Board {
 	private List<EffectProvider> faithSlots = new ArrayList<>();
 	private ExcommunicationSpace excommunicationSpace;
 	private List<ExcommunicationTile> excommunicationTiles = new ArrayList<>();// import from json or match
-	private static final int DEFAULT_NUMBER_OF_EXCOMMUNICATION_TILE = 3;
-
-	/*
-	private ExcommunicationSpace excommunicationSpace;
-	private TrackFaithPoints faithPointTrack;
-	*/
 
 	public Board() {
 		this.spaceDie = SpaceDie.instance();
@@ -42,7 +36,7 @@ public class Board {
 		this.trackMilitaryPoints = new TrackMilitaryPoints();
 		this.victroyPointsTrack = new TrackVictoryPoints();
 		this.trackFaithPoints = new TrackFaithPoints();
-		this.excommunicationSpace=new ExcommunicationSpace(DEFAULT_NUMBER_OF_EXCOMMUNICATION_TILE, excommunicationTiles);//TODO:import from json file config if needed
+		this.excommunicationSpace = new ExcommunicationSpace(excommunicationTiles);//TODO:import from json file config if needed
 		for(WorkType workType : WorkType.values()){
 			//TODO: set import of requiredValues and effects from Json file
 			SpaceWorkZone spaceWorkZone = new SpaceWorkZone();
@@ -97,6 +91,9 @@ public class Board {
 		return faithSlots;
 	}
 
+	public ExcommunicationSpace getExcommunicationSpace() {
+		return excommunicationSpace;
+	}
 
 	/*
 	public ExcommunicationSpace getExcommunicationSpace() {

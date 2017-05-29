@@ -3,10 +3,7 @@ package it.polimi.ingsw.gc_12.mvc;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ControllerMatch {
 
@@ -38,8 +35,10 @@ public class ControllerMatch {
 
 	private void vaticanReport() {
 		for(Player player : players) {
-			if(!match.getBoard().getTrackFaithPoints().isPlayerSafe(player))
+			if(match.getBoard().getTrackFaithPoints().isPlayerSafe(player))
 				controllerPlayer.vaticanReport(player);
+			else
+				player.receiveExcommunication();
 		}
 	}
 }

@@ -5,11 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import it.polimi.ingsw.gc_12.event.EventReceiveExcommunication;
 import it.polimi.ingsw.gc_12.event.EventSupportChurch;
 import it.polimi.ingsw.gc_12.exceptions.CannotPlaceCardException;
 import it.polimi.ingsw.gc_12.exceptions.CannotPlaceFamilyMemberException;
 import it.polimi.ingsw.gc_12.exceptions.NotEnoughResourcesException;
 import it.polimi.ingsw.gc_12.personal_board.PersonalBoard;
+import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
 import it.polimi.ingsw.gc_12.resource.ResourceExchange;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.event.Event;
@@ -62,44 +64,23 @@ public class Player {
 		try {
 			effectHandler.executeEffects(event);
 		}catch(NotEnoughResourcesException e){
-			//This exception never happens for this event
+			//This exception is never actually thrown for this event
 		}
 		this.resources.get(ResourceType.FAITH_POINT).setValue(0);
 
 	}
 
-	public String getName() {
-		return name;
-	}
-	
-	public Map<FamilyMemberColor, FamilyMember> getFamilymembers() {
-		return familymembers;
-	}
-	
-	public FamilyMember getFamilyMember(FamilyMemberColor familyMemberColor) {
-		return familymembers.get(familyMemberColor);
-	}
+	public void receiveExcommunication(){
+		EffectProvider excommunicationTile = Match.instance().getBoard().getExcommunicationSpace().getTiles().get(Match.instance().getPeriodNum());
+		Event event = new EventReceiveExcommunication(this, (ExcommunicationTile) excommunicationTile);
 
-	public PersonalBoard getPersonalBoard() {
-		return personalBoard;
-	}
-
-	public List<Card> getCards() {
-		return cards;
-	}
-	
-	public List<Effect> getCardsEffects() {
-		List<Effect> cardsEffects = new ArrayList<>();
-		for(Card card : cards) {
-			cardsEffects.addAll(card.getEffects());
+		try {
+			effectHandler.executeEffects(event);
+		}catch(NotEnoughResourcesException e){
+			//This exception is never actually thrown for this event
 		}
-		
-		return cardsEffects;
 	}
-	
-	public void addCard(Card card) {
-		cards.add(card);
-	}
+
 	
 	private void addResource(Resource resource) {
 		if(resource == null)
@@ -174,5 +155,38 @@ public class Player {
 
 	public void resetFaithPoints(){
 		//TODO: implement method
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public Map<FamilyMemberColor, FamilyMember> getFamilymembers() {
+		return familymembers;
+	}
+
+	public FamilyMember getFamilyMember(FamilyMemberColor familyMemberColor) {
+		return familymembers.get(familyMemberColor);
+	}
+
+	public PersonalBoard getPersonalBoard() {
+		return personalBoard;
+	}
+
+	public List<Card> getCards() {
+		return cards;
+	}
+
+	public List<Effect> getCardsEffects() {
+		List<Effect> cardsEffects = new ArrayList<>();
+		for(Card card : cards) {
+			cardsEffects.addAll(card.getEffects());
+		}
+
+		return cardsEffects;
+	}
+
+	public void addCard(Card card) {
+		cards.add(card);
 	}
 }

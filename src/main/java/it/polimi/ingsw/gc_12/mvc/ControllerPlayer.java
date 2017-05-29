@@ -59,6 +59,8 @@ public class ControllerPlayer{
 		boolean support = views.get(player).supportChurch();
 		if (support) {
 			player.supportChurch();
+		}else{
+			player.receiveExcommunication();
 		}
 	}
 

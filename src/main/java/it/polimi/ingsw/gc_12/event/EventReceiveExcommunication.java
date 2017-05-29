@@ -3,22 +3,19 @@ package it.polimi.ingsw.gc_12.event;
 import it.polimi.ingsw.gc_12.EffectProvider;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
-import it.polimi.ingsw.gc_12.track.FaithSlot;
+import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class EventSupportChurch extends Event {
+public class EventReceiveExcommunication extends Event {
+    private ExcommunicationTile tile;
 
-    private FaithSlot faithSlot;
-
-    public EventSupportChurch(Player player, FaithSlot faithSlot){
+    public EventReceiveExcommunication(Player player, ExcommunicationTile tile){
         this.player = player;
-        this.faithSlot = faithSlot;
+        this.tile = tile;
 
-        effectProviders.addAll(Match.instance().getBoard().getFaithSlots());
+        effectProviders.addAll(Match.instance().getBoard().getExcommunicationSpace().getTiles().values());
     }
-
     @Override
     public List<Object> getAttributes() {
         return this.getAttributes();
@@ -26,6 +23,6 @@ public class EventSupportChurch extends Event {
 
     @Override
     public List<EffectProvider> getEffectProviders() {
-        return effectProviders;
+        return null;
     }
 }

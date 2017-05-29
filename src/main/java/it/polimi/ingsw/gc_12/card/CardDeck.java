@@ -23,10 +23,9 @@ public class CardDeck {
         return cards;
     }
 
+    //TODO: implement shuffle
     public CardDevelopment pickCard(){
-        CardDevelopment card =  cards.get(0);
-        cards.remove(0);
-        return card;
+        return cards.remove(0);
     }
 
     public CardType getCardDevelopmentType() {

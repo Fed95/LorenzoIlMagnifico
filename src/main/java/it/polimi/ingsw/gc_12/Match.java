@@ -1,8 +1,7 @@
 package it.polimi.ingsw.gc_12;
 
 import it.polimi.ingsw.gc_12.card.*;
-import it.polimi.ingsw.gc_12.mvc.ControllerPlayer;
-
+import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
 
 import java.util.*;
 
@@ -10,6 +9,7 @@ public class Match {
 	private List<Player> players = new ArrayList<>(); //This goes to the class Match
 	private final List<BonusTile> bonusTiles = new ArrayList<>();
 	private List<CardDevelopment> cards = new ArrayList<>();
+	private List<ExcommunicationTile> excommunicationTiles = new ArrayList<>();
 	public CardDeckSet cardDeckSet;
 	private final GameMode gameMode;
 	public final static GameMode DEFAULT_GAME_MODE = GameMode.NORMAL;
@@ -33,6 +33,7 @@ public class Match {
 		this.roundNum = 1;
 		this.totalPeriodNumber=DEFAULT_TOTAL_PERIODS_NUM;
 		this.cardDeckSet = new CardDeckSet(cards, DEFAULT_ROUND_NUM/DEFAULT_PERIODS_LEN);
+
 	}
 	private Match() {
 		this(DEFAULT_GAME_MODE);
