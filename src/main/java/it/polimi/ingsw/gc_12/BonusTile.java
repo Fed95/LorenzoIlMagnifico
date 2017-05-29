@@ -16,9 +16,4 @@ public class BonusTile implements EffectProvider {
 	public List<Effect> getEffects() {
 		return effects;
 	}
-
-	@Override
-	public void setEffects(List<Effect> effects) {
-		this.effects = effects;
-	}
 }

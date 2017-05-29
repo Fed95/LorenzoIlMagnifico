@@ -2,7 +2,6 @@ package it.polimi.ingsw.gc_12.JSON.saver;
 
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.FamilyMemberColor;
-import it.polimi.ingsw.gc_12.JSON.CardExclusionStrategy;
 import it.polimi.ingsw.gc_12.JSON.loader.LoaderCard;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Occupiable;
@@ -29,7 +28,7 @@ public class SaverCard extends Saver<List<Card>> {
 	}
 
 	public void create(){
-		match.setup();
+		match.init();
 		int id = 1;
 		List<Card> cards = new ArrayList<>();
 		File file = new File("card.JSON");
@@ -103,7 +102,7 @@ public class SaverCard extends Saver<List<Card>> {
 			System.out.println("Choose the period of the card");
 			period = scanner.nextInt();
 		}
-		while(period <= 0 || period > Match.DEFAULT_PERIODS_NUM);
+		while(period <= 0 || period > 3);
 
 		scanner.nextLine();
 		return period;

@@ -4,6 +4,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 import com.google.gson.reflect.TypeToken;
+import it.polimi.ingsw.gc_12.occupiables.TowerSet;
 import it.polimi.ingsw.gc_12.card.Card;
 
 public class LoaderCard extends Loader<List<Card>> {

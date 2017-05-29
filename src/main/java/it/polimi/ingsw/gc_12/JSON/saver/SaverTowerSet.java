@@ -7,6 +7,9 @@ import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.effect.EffectChangeResource;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
+import it.polimi.ingsw.gc_12.occupiables.Tower;
+import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
+import it.polimi.ingsw.gc_12.occupiables.TowerSet;
 import it.polimi.ingsw.gc_12.resource.*;
 
 import java.util.ArrayList;
@@ -26,6 +29,7 @@ public class SaverTowerSet extends Saver<TowerSet> {
 		TowerFloor floor;
 		List<Occupiable> occupiables;
 		Event event;
+		Effect effect;
 		List<Effect> effects;
 
 		// Territory tower
@@ -35,14 +39,16 @@ public class SaverTowerSet extends Saver<TowerSet> {
 		floor = tower.getFloor(2);
 		occupiables = new ArrayList<>(Arrays.asList(new TowerFloor(tower, floor.getFloorNum(), floor.getRequiredValue(), tower.getType())));
 		event = new EventPlaceFamilyMember(occupiables, new FamilyMember(floor.getRequiredValue()));
-		effects = new ArrayList<>(Arrays.asList(new EffectChangeResource(event, null, new Wood(1))));
+		effect = new EffectChangeResource(event, new ResourceExchange(null, new Wood(1)), false);
+		effects = new ArrayList<>(Arrays.asList(effect));
 		floor.setEffects(effects);
 
 		// 4th floor
 		floor = tower.getFloor(3);
 		occupiables = new ArrayList<>(Arrays.asList(new TowerFloor(tower, floor.getFloorNum(), floor.getRequiredValue(), tower.getType())));
 		event = new EventPlaceFamilyMember(occupiables, new FamilyMember(floor.getRequiredValue()));
-		effects = new ArrayList<>(Arrays.asList(new EffectChangeResource(event, null, new Wood(2))));
+		effect = new EffectChangeResource(event, new ResourceExchange(null, new Wood(2)), false);
+		effects = new ArrayList<>(Arrays.asList(effect));
 		floor.setEffects(effects);
 
 		// Character tower
@@ -52,14 +58,16 @@ public class SaverTowerSet extends Saver<TowerSet> {
 		floor = tower.getFloor(2);
 		occupiables = new ArrayList<>(Arrays.asList(new TowerFloor(tower, floor.getFloorNum(), floor.getRequiredValue(), tower.getType())));
 		event = new EventPlaceFamilyMember(occupiables, new FamilyMember(floor.getRequiredValue()));
-		effects = new ArrayList<>(Arrays.asList(new EffectChangeResource(event, null, new Stone(1))));
+		effect = new EffectChangeResource(event, new ResourceExchange(null, new Stone(1)), false);
+		effects = new ArrayList<>(Arrays.asList(effect));
 		floor.setEffects(effects);
 
 		// 4th floor
 		floor = tower.getFloor(3);
 		occupiables = new ArrayList<>(Arrays.asList(new TowerFloor(tower, floor.getFloorNum(), floor.getRequiredValue(), tower.getType())));
 		event = new EventPlaceFamilyMember(occupiables, new FamilyMember(floor.getRequiredValue()));
-		effects = new ArrayList<>(Arrays.asList(new EffectChangeResource(event, null, new Stone(2))));
+		effect = new EffectChangeResource(event, new ResourceExchange(null, new Stone(2)), false);
+		effects = new ArrayList<>(Arrays.asList(effect));
 		floor.setEffects(effects);
 
 		// Building tower
@@ -69,14 +77,16 @@ public class SaverTowerSet extends Saver<TowerSet> {
 		floor = tower.getFloor(2);
 		occupiables = new ArrayList<>(Arrays.asList(new TowerFloor(tower, floor.getFloorNum(), floor.getRequiredValue(), tower.getType())));
 		event = new EventPlaceFamilyMember(occupiables, new FamilyMember(floor.getRequiredValue()));
-		effects = new ArrayList<>(Arrays.asList(new EffectChangeResource(event, null, new MilitaryPoint(1))));
+		effect = new EffectChangeResource(event, new ResourceExchange(null, new MilitaryPoint(1)), false);
+		effects = new ArrayList<>(Arrays.asList(effect));
 		floor.setEffects(effects);
 
 		// 4th floor
 		floor = tower.getFloor(3);
 		occupiables = new ArrayList<>(Arrays.asList(new TowerFloor(tower, floor.getFloorNum(), floor.getRequiredValue(), tower.getType())));
 		event = new EventPlaceFamilyMember(occupiables, new FamilyMember(floor.getRequiredValue()));
-		effects = new ArrayList<>(Arrays.asList(new EffectChangeResource(event, null, new MilitaryPoint(2))));
+		effect = new EffectChangeResource(event, new ResourceExchange(null, new Stone(2)), false);
+		effects = new ArrayList<>(Arrays.asList(effect));
 		floor.setEffects(effects);
 
 		// Venture tower
@@ -86,14 +96,16 @@ public class SaverTowerSet extends Saver<TowerSet> {
 		floor = tower.getFloor(2);
 		occupiables = new ArrayList<>(Arrays.asList(new TowerFloor(tower, floor.getFloorNum(), floor.getRequiredValue(), tower.getType())));
 		event = new EventPlaceFamilyMember(occupiables, new FamilyMember(floor.getRequiredValue()));
-		effects = new ArrayList<>(Arrays.asList(new EffectChangeResource(event, null, new Money(1))));
+		effect = new EffectChangeResource(event, new ResourceExchange(null, new Money(1)), false);
+		effects = new ArrayList<>(Arrays.asList(effect));
 		floor.setEffects(effects);
 
 		// 4th floor
 		floor = tower.getFloor(3);
 		occupiables = new ArrayList<>(Arrays.asList(new TowerFloor(tower, floor.getFloorNum(), floor.getRequiredValue(), tower.getType())));
 		event = new EventPlaceFamilyMember(occupiables, new FamilyMember(floor.getRequiredValue()));
-		effects = new ArrayList<>(Arrays.asList(new EffectChangeResource(event, null, new Money(2))));
+		effect = new EffectChangeResource(event, new ResourceExchange(null, new Money(2)), false);
+		effects = new ArrayList<>(Arrays.asList(effect));
 		floor.setEffects(effects);
 
 		super.save(towerSet, new OccupiableExclusionStrategy());

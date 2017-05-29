@@ -1,16 +1,14 @@
 package it.polimi.ingsw.gc_12.occupiables;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Market {
 	
 	private final int numberOfSpaces;
-	private List<SpaceMarket> spaceMarkets;
+	private List<SpaceMarket> spaceMarket;
 	public static final int DEFAULT_SET_NUM = 4;
 	
 	public Market(int setNumber){
-		spaceMarkets = new ArrayList<>();
 		if(setNumber < 0){
 			throw new IllegalArgumentException();
 		}else{
@@ -29,11 +27,11 @@ public class Market {
 		return numberOfSpaces;
 	}
 
-	public List<SpaceMarket> getSpaceMarkets() {
-		return spaceMarkets;
+	public List<SpaceMarket> getSpaceMarket() {
+		return spaceMarket;
 	}
 
 	public void addSpaceMarket(SpaceMarket spaceMarket) {
-		this.spaceMarkets.add(spaceMarket);
+		this.spaceMarket.add(spaceMarket);
 	}
 }

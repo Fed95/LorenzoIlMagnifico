@@ -6,6 +6,8 @@ import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.effect.EffectChangeResource;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
+import it.polimi.ingsw.gc_12.occupiables.SpaceWorkMultiple;
+import it.polimi.ingsw.gc_12.occupiables.SpaceWorkSingle;
 import it.polimi.ingsw.gc_12.resource.*;
 
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ public class SaverBonusTile extends Saver<List<BonusTile>> {
 
 	public void create() {
 		Match match = Match.instance();
-		match.setup();
+		match.init();
 		List<BonusTile> bonusTiles = new ArrayList<>();
 
 		BonusTile bonusTile;
@@ -41,37 +43,37 @@ public class SaverBonusTile extends Saver<List<BonusTile>> {
 		Event eventHarvest = new EventPlaceFamilyMember(occupiablesHarvest, new FamilyMember());
 
 		resourcesProduction = new ArrayList<>(Arrays.asList(new MilitaryPoint(1), new Money(2)));
-		effectProduction = new EffectChangeResource(eventProduction, null, resourcesProduction);
+		effectProduction = new EffectChangeResource(eventProduction, new ResourceExchange(null, resourcesProduction), false);
 		resourcesHarvest = new ArrayList<>(Arrays.asList(new Wood(1), new Stone(1), new Servant(1)));
-		effectHarvest = new EffectChangeResource(eventHarvest, null, resourcesHarvest);
+		effectHarvest = new EffectChangeResource(eventHarvest, new ResourceExchange(null, resourcesHarvest), false);
 		effects = new ArrayList<>(Arrays.asList(effectProduction, effectHarvest));
 		bonusTiles.add(new BonusTile(effects));
 
 		resourcesProduction = new ArrayList<>(Arrays.asList(new Servant(2), new Money(1)));
-		effectProduction = new EffectChangeResource(eventProduction, null, resourcesProduction);
+		effectProduction = new EffectChangeResource(eventProduction, new ResourceExchange(null, resourcesProduction), false);
 		resourcesHarvest = new ArrayList<>(Arrays.asList(new Wood(1), new Stone(1), new MilitaryPoint(1)));
-		effectHarvest = new EffectChangeResource(eventHarvest, null, resourcesHarvest);
+		effectHarvest = new EffectChangeResource(eventHarvest, new ResourceExchange(null, resourcesHarvest), false);
 		effects = new ArrayList<>(Arrays.asList(effectProduction, effectHarvest));
 		bonusTiles.add(new BonusTile(effects));
 
 		resourcesProduction = new ArrayList<>(Arrays.asList(new MilitaryPoint(2), new Money(1)));
-		effectProduction = new EffectChangeResource(eventProduction, null, resourcesProduction);
+		effectProduction = new EffectChangeResource(eventProduction, new ResourceExchange(null, resourcesProduction), false);
 		resourcesHarvest = new ArrayList<>(Arrays.asList(new Wood(1), new Stone(1), new Servant(1)));
-		effectHarvest = new EffectChangeResource(eventHarvest, null, resourcesHarvest);
+		effectHarvest = new EffectChangeResource(eventHarvest, new ResourceExchange(null, resourcesHarvest), false);
 		effects = new ArrayList<>(Arrays.asList(effectProduction, effectHarvest));
 		bonusTiles.add(new BonusTile(effects));
 
 		resourcesProduction = new ArrayList<>(Arrays.asList(new Servant(1), new Money(2)));
-		effectProduction = new EffectChangeResource(eventProduction, null, resourcesProduction);
+		effectProduction = new EffectChangeResource(eventProduction, new ResourceExchange(null, resourcesProduction), false);
 		resourcesHarvest = new ArrayList<>(Arrays.asList(new Wood(1), new Stone(1), new MilitaryPoint(1)));
-		effectHarvest = new EffectChangeResource(eventHarvest, null, resourcesHarvest);
+		effectHarvest = new EffectChangeResource(eventHarvest, new ResourceExchange(null, resourcesHarvest), false);
 		effects = new ArrayList<>(Arrays.asList(effectProduction, effectHarvest));
 		bonusTiles.add(new BonusTile(effects));
 
 		resourcesProduction = new ArrayList<>(Arrays.asList(new Servant(1), new MilitaryPoint(2)));
-		effectProduction = new EffectChangeResource(eventProduction, null, resourcesProduction);
+		effectProduction = new EffectChangeResource(eventProduction, new ResourceExchange(null, resourcesProduction), false);
 		resourcesHarvest = new ArrayList<>(Arrays.asList(new Wood(1), new Stone(1), new Money(1)));
-		effectHarvest = new EffectChangeResource(eventHarvest, null, resourcesHarvest);
+		effectHarvest = new EffectChangeResource(eventHarvest, new ResourceExchange(null, resourcesHarvest), false);
 		effects = new ArrayList<>(Arrays.asList(effectProduction, effectHarvest));
 		bonusTiles.add(new BonusTile(effects));
 

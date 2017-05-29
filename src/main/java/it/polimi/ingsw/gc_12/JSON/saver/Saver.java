@@ -7,7 +7,6 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import it.polimi.ingsw.gc_12.JSON.ManageJsonFile;
 import it.polimi.ingsw.gc_12.JSON.TypeAdapter;
-import it.polimi.ingsw.gc_12.JSON.CardExclusionStrategy;
 
 import java.lang.reflect.Type;
 

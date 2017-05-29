@@ -41,6 +41,10 @@ public abstract class Occupiable implements EffectProvider {
 		return effects;
 	}
 
+	public void setEffects(List<Effect> effects) {
+		this.effects = effects;
+	}
+
 	public void placeFamilyMember(FamilyMember occupier) throws CannotPlaceFamilyMemberException, CannotPlaceCardException, NotEnoughResourcesException {
 		isRequiredValueSatisfied(occupier);
 		this.canBeOccupiedBy(occupier);

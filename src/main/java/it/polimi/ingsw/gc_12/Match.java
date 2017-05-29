@@ -34,6 +34,9 @@ public class Match {
 		this(DEFAULT_GAME_MODE);
 	}
 
+	public void init() {
+		board = new Board();
+	}
 
 	public void newTurn() {
 		board.getTrackTurnOrder().newTurn();

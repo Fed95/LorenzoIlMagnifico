@@ -33,11 +33,6 @@ public class Card implements EffectProvider {
 	public List<Effect> getEffects() {
 		return effects;
 	}
-
-	@Override
-	public void setEffects(List<Effect> effects) {
-		this.effects = effects;
-	}
 	
 	/*@Override
 	public String toString() {
