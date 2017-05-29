@@ -4,14 +4,17 @@ import java.util.List;
 
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Occupiable;
+import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.card.Card;
+import it.polimi.ingsw.gc_12.card.CardDevelopment;
 import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.exceptions.*;
 
 public class TowerFloor extends Occupiable {
+
 	private final int floorNum;
-	private Card card;
+	private CardDevelopment card;
 	private CardType cardType;
 	private Tower tower;
 	
@@ -34,7 +37,7 @@ public class TowerFloor extends Occupiable {
 		return card;
 	}
 
-	public void setCard(Card card) {
+	public void setCard(CardDevelopment card) {
 		this.card = card;
 	}
 
@@ -43,13 +46,18 @@ public class TowerFloor extends Occupiable {
 	}
 
 	@Override
-	public void canBeOccupiedBy(FamilyMember occupier) throws OccupiableAlreadyTakenException {
+	public void canBeOccupiedBy(FamilyMember occupier) throws CannotPlaceFamilyMemberException, CannotPlaceCardException, NotEnoughResourcesException {
 		if(isOccupied())
-			throw new OccupiableAlreadyTakenException();
+			throw new CannotPlaceFamilyMemberException("Occupiable already taken!");
+		if(!card.equals(null)) {
+			//Can throw an exception
+			Player player = occupier.getOwner();
+			player.getPersonalBoard().canPlaceCard(player, card);
+		}
 	}
 
 	@Override
-	public void placeFamilyMember(FamilyMember occupier) throws RequiredValueNotSatisfiedException, FamilyMemberAlreadyPresentException, OccupiableAlreadyTakenException {
+	public void placeFamilyMember(FamilyMember occupier) throws CannotPlaceFamilyMemberException, CannotPlaceCardException, NotEnoughResourcesException {
 		isRequiredValueSatisfied(occupier);
 		this.canBeOccupiedBy(occupier);
 

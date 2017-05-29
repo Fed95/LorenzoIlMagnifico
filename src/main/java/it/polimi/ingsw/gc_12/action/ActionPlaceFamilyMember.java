@@ -43,9 +43,9 @@ public class ActionPlaceFamilyMember extends Action implements ActionInterface{
 	}
 	
 	@Override
-	public void start() throws RequiredValueNotSatisfiedException, FamilyMemberAlreadyPresentException, InvalidParametersException, OccupiableAlreadyTakenException {
+	public void start() throws CannotPlaceFamilyMemberException, CannotPlaceCardException, NotEnoughResourcesException {
 		if(familyMember == null || occupiable == null)
-			throw new InvalidParametersException();
+			throw new CannotPlaceCardException("Invalid parameters.");
 
 		player.placeFamilyMember(familyMember, occupiable);
 	}

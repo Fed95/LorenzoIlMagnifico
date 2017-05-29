@@ -6,7 +6,7 @@ import java.util.List;
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Occupiable;
 import it.polimi.ingsw.gc_12.effect.Effect;
-import it.polimi.ingsw.gc_12.exceptions.OccupiableAlreadyTakenException;
+import it.polimi.ingsw.gc_12.exceptions.CannotPlaceFamilyMemberException;
 
 public class SpaceMarket extends Occupiable {
 
@@ -17,8 +17,8 @@ public class SpaceMarket extends Occupiable {
 	}
 	
 	@Override
-	public void canBeOccupiedBy(FamilyMember occupier) throws OccupiableAlreadyTakenException{
+	public void canBeOccupiedBy(FamilyMember occupier) throws CannotPlaceFamilyMemberException{
 		if(!occupiers.isEmpty())
-			throw new OccupiableAlreadyTakenException();
+			throw new CannotPlaceFamilyMemberException("Occupiable already taken!");
 	}
 }
