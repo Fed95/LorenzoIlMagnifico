@@ -3,7 +3,10 @@ package it.polimi.ingsw.gc_12;
 import it.polimi.ingsw.gc_12.JSON.loader.LoaderMarket;
 import it.polimi.ingsw.gc_12.JSON.loader.LoaderTowerSet;
 import it.polimi.ingsw.gc_12.occupiables.*;
+import it.polimi.ingsw.gc_12.track.FaithPointsTrack;
+import it.polimi.ingsw.gc_12.track.MilitaryPointsTrack;
 import it.polimi.ingsw.gc_12.track.TrackTurnOrder;
+import it.polimi.ingsw.gc_12.track.VictoryPointsTrack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +19,9 @@ public class Board {
 	private CouncilPalace councilPalace;
 	private List<Occupiable> spaceWorks = new ArrayList<>();
 	private TrackTurnOrder trackTurnOrder;
-
+	private MilitaryPointsTrack militaryPointsTrack;
+	private VictoryPointsTrack victroyPointsTrack;
+	private FaithPointsTrack faithPointsTrack;
 	/*
 	private ExcommunicationSpace excommunicationSpace;
 	private FaithPointsTrack faithPointTrack;
@@ -28,7 +33,9 @@ public class Board {
 		this.market = new LoaderMarket().get();
 		this.councilPalace = new CouncilPalace(1, null); //TODO: import values and effects from Json
 		this.trackTurnOrder = new TrackTurnOrder(Match.instance().getPlayers(), councilPalace);
-
+		this.militaryPointsTrack = new MilitaryPointsTrack(Match.instance().getPlayers());
+		this.victroyPointsTrack = new VictoryPointsTrack(Match.instance().getPlayers());
+		this.faithPointsTrack = new FaithPointsTrack(Match.instance().getPlayers());
 
 		for(WorkType workType : WorkType.values()){
 			//TODO: set import of requiredValues and effects from Json file

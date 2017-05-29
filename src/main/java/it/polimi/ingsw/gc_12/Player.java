@@ -26,6 +26,9 @@ public class Player {
 	private List<Card> cards = new ArrayList<>();
 	private Map<ResourceType, Resource> resources;
 	private Map<FamilyMemberColor, FamilyMember> familymembers = new HashMap<>();
+	private Integer faithPoints = 0;
+	private Integer militaryPoints = 0;
+	private Integer victoryPoints = 0;
 	
 	public Player(String name, PersonalBoard personalBoard, Map<ResourceType, Resource> resources){
 		this.name = name;
@@ -138,5 +141,35 @@ public class Player {
 	public Resource getResource(ResourceType resourceType) {
 		return resources.get(resourceType);
 	}
+	public Integer getMilitaryPoints(){
+		return militaryPoints;
+	}
+	public Integer getVictoryPoints(){
+		return victoryPoints;
+	}
+	public Integer getFaithPoints(){
+		return faithPoints;
+	}
 
+	public void setFaithPoints(Integer faithPoints) {
+		if(faithPoints != null){
+			this.faithPoints = faithPoints;
+		}
+	}
+
+	public void setMilitaryPoints(Integer militaryPoints) {
+		if(militaryPoints != null){
+			this.militaryPoints = militaryPoints;
+		}
+	}
+
+	public void setVictoryPoints(Integer victoryPoints) {
+		if(victoryPoints != null){
+			this.victoryPoints = victoryPoints;
+		}
+	}
+	public void resetFaithPoints(){
+		faithPoints = 0;
+	}
+	
 }
