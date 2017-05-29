@@ -17,7 +17,8 @@ public class Match {
 	public CardDeckSet cardDeckSet;
 	private final GameMode gameMode;
 	public final static GameMode DEFAULT_GAME_MODE = GameMode.NORMAL;
-	public final static int DEFAULT_PERIODS_NUM = 3;
+	public final static int DEFAULT_ROUND_NUM = 6;
+	public final static int DEFAULT_PERIODS_LEN = 2;
 	private Board board;
 	private static Match instance;
 	private int roundNum;
@@ -31,8 +32,8 @@ public class Match {
 
 	private Match(GameMode gameMode) {
 		this.gameMode = gameMode;
-		this.roundNum = 0;
-		this.cardDeckSet = new CardDeckSet(cards, DEFAULT_PERIODS_NUM);
+		this.roundNum = 1;
+		this.cardDeckSet = new CardDeckSet(cards, DEFAULT_ROUND_NUM/DEFAULT_PERIODS_LEN);
 	}
 	private Match() {
 		this(DEFAULT_GAME_MODE);
@@ -76,7 +77,7 @@ public class Match {
 
 	private void handleTurns() {
 		// TODO: handle rounds in a better way
-		while (roundNum < 6) {
+		while (roundNum < DEFAULT_ROUND_NUM) {
 			for (int i = 0; i < FamilyMemberColor.values().length; i++) {
 
 				Player player = board.getTrackTurnOrder().getCurrentPlayer();
@@ -85,8 +86,21 @@ public class Match {
 				controller.start();
 				board.getTrackTurnOrder().newTurn();
 			}
+			if(roundNum % DEFAULT_PERIODS_LEN == 0){
+				this.handleExcommunications();
+			}
 			board.refresh();
 			roundNum++;
+		}
+	}
+
+	private void handleExcommunications() {
+		List<Player> safePlayers = board.getTrackFaithPoints().getSafePlayers();
+
+		for(Player player : safePlayers){
+			if(controllers.get(player).supportChurch()){
+				//TODO: to be completed
+			}
 		}
 	}
 
