@@ -27,9 +27,7 @@ public class Player {
 	private List<Card> cards = new ArrayList<>();
 	private Map<ResourceType, Resource> resources;
 	private Map<FamilyMemberColor, FamilyMember> familymembers = new HashMap<>();
-	private Integer faithPoints = 0;
-	private Integer militaryPoints = 0;
-	private Integer victoryPoints = 0;
+
 	
 	public Player(String name, PersonalBoard personalBoard, Map<ResourceType, Resource> resources){
 		this.name = name;
@@ -104,25 +102,42 @@ public class Player {
 			this.addResource(resource);
 		}
 	}
-	
-	private void removeResource(Resource resource) throws NotEnoughResourcesException {
-		if(resource == null)
+
+	public Integer getResourceValue(ResourceType type){
+		return this.resources.get(type).getValue();
+	}
+	public void setResourceValue(ResourceType type, int value){
+		this.resources.get(type).setValue(value);
+	}
+
+	private void removeResource(List<Resource> newResources, Resource resourceToRemove) throws NotEnoughResourcesException {
+
+		Resource ownedResource = this.resources.get(resourceToRemove.getType());
+		if(ownedResource.equals(null))
 			throw new NotEnoughResourcesException();
 
-		Resource ownedResource = this.resources.get(resource.getType());
-		int newValue = ownedResource.getValue() - resource.getValue();
+		int newValue = ownedResource.getValue() - resourceToRemove.getValue();
 
 		if(newValue < 0)
 			throw new NotEnoughResourcesException();
 
-		ownedResource.setValue(newValue);
-		this.resources.replace(resource.getType(), ownedResource);
+		Resource newResource = ownedResource;
+		newResource.setValue(newValue);
+		newResources.add(newResource);
 	}
-	
-	public void removeResources(List<Resource> resources) throws NotEnoughResourcesException {
-		for(Resource resource: resources)
+
+	public void removeResources(List<Resource> resourcesToRemove) throws NotEnoughResourcesException {
+
+		List<Resource> newResources = new ArrayList<>();
+		//fills the array with the affected resources updating their values
+		for(Resource resource: resourcesToRemove)
 			//Can throw an exception
-			this.removeResource(resource);
+			this.removeResource(newResources, resource);
+
+		//If no exceptions were thrown the resources are updated with the new values
+		for(Resource resource : newResources){
+			this.resources.replace(resource.getType(), resource);
+		}
 	}
 
 	public boolean hasResources(List<Resource> resources){
@@ -137,47 +152,6 @@ public class Player {
 	
 	public Map<ResourceType, Resource> getResources() {
 		return resources;
-	}
-	
-	public Resource getResource(ResourceType resourceType) {
-		return resources.get(resourceType);
-	}
-	public Integer getMilitaryPoints(){
-		return militaryPoints;
-	}
-	public Integer getVictoryPoints(){
-		return victoryPoints;
-	}
-	public Integer getFaithPoints(){
-		return faithPoints;
-	}
-
-	public void setFaithPoints(Integer faithPoints) throws IllegalArgumentException {
-		if(faithPoints == null){
-			throw new IllegalArgumentException("Faith points parameter cannot be null");
-		}else{
-			this.faithPoints = faithPoints;
-		}
-	}
-
-	public void setMilitaryPoints(Integer militaryPoints) throws IllegalArgumentException {
-		if(militaryPoints == null){
-			throw new IllegalArgumentException("Military points parameter cannot be null");
-		}else{
-			this.militaryPoints = militaryPoints;
-		}
-	}
-
-	public void setVictoryPoints(Integer victoryPoints) throws IllegalArgumentException{
-		if(victoryPoints == null){
-			throw new IllegalArgumentException("Victory points parameter cannot be null");
-		}else{
-			this.victoryPoints = victoryPoints;
-
-		}
-	}
-	public void resetFaithPoints(){
-		faithPoints = 0;
 	}
 
 	public ResourceExchange chooseResourceExchange(List<ResourceExchange> resourceExchanges) {

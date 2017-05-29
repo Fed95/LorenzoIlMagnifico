@@ -3,10 +3,10 @@ package it.polimi.ingsw.gc_12;
 import it.polimi.ingsw.gc_12.JSON.loader.LoaderMarket;
 import it.polimi.ingsw.gc_12.JSON.loader.LoaderTowerSet;
 import it.polimi.ingsw.gc_12.occupiables.*;
-import it.polimi.ingsw.gc_12.track.FaithPointsTrack;
-import it.polimi.ingsw.gc_12.track.MilitaryPointsTrack;
+import it.polimi.ingsw.gc_12.track.TrackFaithPoints;
+import it.polimi.ingsw.gc_12.track.TrackMilitaryPoints;
 import it.polimi.ingsw.gc_12.track.TrackTurnOrder;
-import it.polimi.ingsw.gc_12.track.VictoryPointsTrack;
+import it.polimi.ingsw.gc_12.track.TrackVictoryPoints;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +19,12 @@ public class Board {
 	private CouncilPalace councilPalace;
 	private List<Occupiable> spaceWorks = new ArrayList<>();
 	private TrackTurnOrder trackTurnOrder;
-	private MilitaryPointsTrack militaryPointsTrack;
-	private VictoryPointsTrack victroyPointsTrack;
-	private FaithPointsTrack faithPointsTrack;
+	private TrackMilitaryPoints trackMilitaryPoints;
+	private TrackVictoryPoints victroyPointsTrack;
+	private TrackFaithPoints trackFaithPoints;
 	/*
 	private ExcommunicationSpace excommunicationSpace;
-	private FaithPointsTrack faithPointTrack;
+	private TrackFaithPoints faithPointTrack;
 	*/
 
 	public Board() {
@@ -32,10 +32,10 @@ public class Board {
 		this.towerSet = new LoaderTowerSet().get();
 		this.market = new LoaderMarket().get();
 		this.councilPalace = new CouncilPalace(1, null); //TODO: import values and effects from Json
-		this.trackTurnOrder = new TrackTurnOrder(Match.instance().getPlayers(), councilPalace);
-		this.militaryPointsTrack = new MilitaryPointsTrack(Match.instance().getPlayers());
-		this.victroyPointsTrack = new VictoryPointsTrack(Match.instance().getPlayers());
-		this.faithPointsTrack = new FaithPointsTrack(Match.instance().getPlayers());
+		this.trackTurnOrder = new TrackTurnOrder(councilPalace);
+		this.trackMilitaryPoints = new TrackMilitaryPoints();
+		this.victroyPointsTrack = new TrackVictoryPoints();
+		this.trackFaithPoints = new TrackFaithPoints();
 
 		for(WorkType workType : WorkType.values()){
 			//TODO: set import of requiredValues and effects from Json file
@@ -87,7 +87,7 @@ public class Board {
 	public ExcommunicationSpace getExcommunicationSpace() {
 		return excommunicationSpace;
 	}
-	public FaithPointsTrack getFaithPointTrack() {
+	public TrackFaithPoints getFaithPointTrack() {
 		return faithPointTrack;
 	}*/
 

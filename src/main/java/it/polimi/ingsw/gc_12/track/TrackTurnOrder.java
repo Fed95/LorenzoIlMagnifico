@@ -1,6 +1,7 @@
 package it.polimi.ingsw.gc_12.track;
 
 import it.polimi.ingsw.gc_12.FamilyMember;
+import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.occupiables.CouncilPalace;
 
@@ -14,8 +15,8 @@ public class TrackTurnOrder {
 	private int turn;
 	private CouncilPalace councilPalace;
 
-	public TrackTurnOrder(List<Player> players, CouncilPalace councilPalace) {
-		this.turnOrder = players;
+	public TrackTurnOrder(CouncilPalace councilPalace) {
+		this.turnOrder = Match.instance().getPlayers();
 		this.councilPalace =  councilPalace;
 		chooseRandomOrder();
 	}
