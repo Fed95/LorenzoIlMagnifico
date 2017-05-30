@@ -5,7 +5,6 @@ import java.util.HashSet;
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Occupiable;
 import it.polimi.ingsw.gc_12.Player;
-import it.polimi.ingsw.gc_12.exceptions.*;
 
 public class ActionPlaceFamilyMember extends Action implements ActionInterface{
 
@@ -43,11 +42,11 @@ public class ActionPlaceFamilyMember extends Action implements ActionInterface{
 	}
 	
 	@Override
-	public void start() throws CannotPlaceFamilyMemberException, CannotPlaceCardException, NotEnoughResourcesException {
+	public void start() throws RuntimeException {
 		if(familyMember == null || occupiable == null)
-			throw new CannotPlaceCardException("Invalid parameters.");
+			throw new RuntimeException("Invalid parameters.");
 
-		player.placeFamilyMember(familyMember, occupiable);
+		//player.placeFamilyMember(familyMember, occupiable);
 	}
 
 	/*@Override

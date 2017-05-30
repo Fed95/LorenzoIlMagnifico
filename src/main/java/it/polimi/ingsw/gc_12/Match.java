@@ -1,6 +1,7 @@
 package it.polimi.ingsw.gc_12;
 
 import it.polimi.ingsw.gc_12.card.*;
+import it.polimi.ingsw.gc_12.effect.EffectHandler;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
 
 import java.util.*;
@@ -10,16 +11,17 @@ public class Match {
 	private final List<BonusTile> bonusTiles = new ArrayList<>();
 	private List<CardDevelopment> cards = new ArrayList<>();
 	private List<ExcommunicationTile> excommunicationTiles = new ArrayList<>();
-	public CardDeckSet cardDeckSet;
 	private final GameMode gameMode;
-	public final static GameMode DEFAULT_GAME_MODE = GameMode.NORMAL;
-	public final static int DEFAULT_ROUND_NUM = 6;
-	public final static int DEFAULT_PERIODS_LEN = 2;
-	public final static int DEFAULT_TOTAL_PERIODS_NUM = DEFAULT_ROUND_NUM/DEFAULT_PERIODS_LEN;
+	public CardDeckSet cardDeckSet;
 	private Board board;
 	private static Match instance;
 	private int roundNum;
 	private int totalPeriodNumber;
+	private EffectHandler effectHandler;
+	public final static GameMode DEFAULT_GAME_MODE = GameMode.NORMAL;
+	public final static int DEFAULT_ROUND_NUM = 6;
+	public final static int DEFAULT_PERIODS_LEN = 2;
+	public final static int DEFAULT_TOTAL_PERIODS_NUM = DEFAULT_ROUND_NUM/DEFAULT_PERIODS_LEN;
 	
 
 	public static Match instance() {
@@ -31,8 +33,9 @@ public class Match {
 	private Match(GameMode gameMode) {
 		this.gameMode = gameMode;
 		this.roundNum = 1;
-		this.totalPeriodNumber=DEFAULT_TOTAL_PERIODS_NUM;
+		this.totalPeriodNumber = DEFAULT_TOTAL_PERIODS_NUM;
 		this.cardDeckSet = new CardDeckSet(cards, DEFAULT_ROUND_NUM/DEFAULT_PERIODS_LEN);
+		this.effectHandler = new EffectHandler();
 
 	}
 
@@ -44,7 +47,7 @@ public class Match {
 		board = new Board();
 
 		for (Player player : players) {
-			player.init();
+			player.init(effectHandler);
 		}
 	}
 

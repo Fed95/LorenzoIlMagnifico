@@ -17,13 +17,13 @@ public class ExcommunicationSpace {
 	private void chooseTiles() {
 
 		int periodNum = Match.instance().getTotalPeriodNumber();
-		List<ExcommunicationTile> roundTile;
+		List<ExcommunicationTile> roundTiles;
 
 		for (int i = 0; i < periodNum; i++) {
 			int period = i + 1;
-			roundTile = tilesDeck.stream().filter(Tile -> Tile.getPeriod() == period).collect(Collectors.toList());
-			Collections.shuffle(roundTile);
-			tiles.put(period, roundTile.get(0));
+			roundTiles = tilesDeck.stream().filter(Tile -> Tile.getPeriod() == period).collect(Collectors.toList());
+			Collections.shuffle(roundTiles);
+			tiles.put(period, roundTiles.get(0));
 		}
 	}
 

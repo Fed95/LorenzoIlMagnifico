@@ -2,7 +2,6 @@ package it.polimi.ingsw.gc_12.personal_board;
 
 import it.polimi.ingsw.gc_12.card.CardDevelopment;
 import it.polimi.ingsw.gc_12.card.CardType;
-import it.polimi.ingsw.gc_12.exceptions.CannotPlaceCardException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +15,9 @@ public class CardsSpace {
         this.type = type;
     }
 
-    public void placeCard(CardDevelopment card) throws CannotPlaceCardException {
+    public void placeCard(CardDevelopment card) throws RuntimeException {
         if(card.getType().equals(type))
-            throw new CannotPlaceCardException("Incompatible CardType");
+            throw new RuntimeException("Incompatible CardType");
         //else
         for(CardSlot cardSpace : slots)
             if(cardSpace.isEmpty()) {
@@ -28,11 +27,11 @@ public class CardsSpace {
             }
     }
 
-    public CardSlot getFirstFreeSlot() throws CannotPlaceCardException {
+    public CardSlot getFirstFreeSlot() throws RuntimeException {
         for(CardSlot slot : slots)
             if(slot.isEmpty())
                 return slot;
-        throw new CannotPlaceCardException("Your CardSpace for this CardType is already full.");
+        throw new RuntimeException("Your CardSpace for this CardType is already full.");
     }
 
     public void addCardSlot(CardSlot cardSlot) {

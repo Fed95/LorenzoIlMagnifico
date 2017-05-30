@@ -5,21 +5,13 @@ import java.util.List;
 
 import it.polimi.ingsw.gc_12.EffectProvider;
 import it.polimi.ingsw.gc_12.event.Event;
-import it.polimi.ingsw.gc_12.exceptions.NotEnoughResourcesException;
 
 public class EffectHandler {
-	
-	private static EffectHandler instance;
-	
-	private EffectHandler() {}
-	
-	// EffectHandler is a Singleton
-	public static EffectHandler instance() {
-		if(instance == null) instance = new EffectHandler();
-		return instance;
+
+	public EffectHandler() {
 	}
 
-	public void executeEffects(Event event) throws NotEnoughResourcesException {
+	public void executeEffects(Event event) throws RuntimeException {
 		List<Effect> effects = getPossibleEffects(event);
 		
 		// If there is an effect (from the players' card or the place where the family member has been put)...
@@ -30,7 +22,7 @@ public class EffectHandler {
 		}
 	}
 	
-	public void discardEffects(Event event) throws NotEnoughResourcesException {
+	public void discardEffects(Event event) throws RuntimeException {
 		List<Effect> effects = getPossibleEffects(event);
 		
 		// If there is a card with an effect triggered by the event, discard the effect

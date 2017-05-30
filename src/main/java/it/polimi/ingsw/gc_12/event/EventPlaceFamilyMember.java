@@ -19,7 +19,7 @@ public class EventPlaceFamilyMember extends Event{
 		super(player);
 		this.occupiables = occupiables;
 		this.familyMember = familyMember;
-		
+
 		effectProviders.addAll(player.getCards());
 		effectProviders.addAll(occupiables);
 	}

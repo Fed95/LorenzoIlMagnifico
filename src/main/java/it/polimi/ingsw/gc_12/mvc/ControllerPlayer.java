@@ -4,10 +4,8 @@ import java.util.*;
 
 import it.polimi.ingsw.gc_12.*;
 import it.polimi.ingsw.gc_12.action.Action;
-import it.polimi.ingsw.gc_12.action.ActionPlaceFamilyMember;
-import it.polimi.ingsw.gc_12.exceptions.CannotPlaceCardException;
-import it.polimi.ingsw.gc_12.exceptions.CannotPlaceFamilyMemberException;
-import it.polimi.ingsw.gc_12.exceptions.NotEnoughResourcesException;
+import it.polimi.ingsw.gc_12.action.ActionPlaceOnTower;
+import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 
 public class ControllerPlayer{
 
@@ -15,6 +13,7 @@ public class ControllerPlayer{
 	private Match match;
 	private Action action;
 	private Player currentPlayer;
+	private FamilyMember familyMember; //TODO: find another way to store this
 
 	public ControllerPlayer(Match match){
 		this.match = match;
@@ -35,22 +34,18 @@ public class ControllerPlayer{
 	}
 
 	public void setFamilyMember(FamilyMemberColor familyMemberColor) {
-		action = new ActionPlaceFamilyMember(currentPlayer, currentPlayer.getFamilyMember(familyMemberColor));
+		this.familyMember = currentPlayer.getFamilyMember(familyMemberColor);
 		views.get(currentPlayer).askOccupiable();
 	}
 
 	public void setOccupiable(Occupiable occupiable) {
-		if(action instanceof ActionPlaceFamilyMember) {
-			((ActionPlaceFamilyMember) action).setOccupiable(occupiable);
-
-			try {
+		if(occupiable instanceof TowerFloor) {
+			action = new ActionPlaceOnTower(familyMember, match.getBoard().getTowerSet().getTower(((TowerFloor) occupiable).getType()), (TowerFloor) occupiable);
+			try{
 				action.start();
-			} catch (CannotPlaceFamilyMemberException e){
+			}catch (RuntimeException e){
 				System.out.println(e.getMessage());
-			} catch (CannotPlaceCardException e) {
-				System.out.println(e.getMessage());
-			} catch (NotEnoughResourcesException e) {
-				System.out.println(e.getMessage());
+				views.get(currentPlayer).askOccupiable();
 			}
 		}
 	}

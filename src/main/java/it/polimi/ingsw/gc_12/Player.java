@@ -7,9 +7,6 @@ import java.util.Map;
 
 import it.polimi.ingsw.gc_12.event.EventReceiveExcommunication;
 import it.polimi.ingsw.gc_12.event.EventSupportChurch;
-import it.polimi.ingsw.gc_12.exceptions.CannotPlaceCardException;
-import it.polimi.ingsw.gc_12.exceptions.CannotPlaceFamilyMemberException;
-import it.polimi.ingsw.gc_12.exceptions.NotEnoughResourcesException;
 import it.polimi.ingsw.gc_12.personal_board.PersonalBoard;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
 import it.polimi.ingsw.gc_12.resource.ResourceExchange;
@@ -27,7 +24,7 @@ public class Player {
 	private final String name;
 	private Match match;
 	private PersonalBoard personalBoard;
-	private EffectHandler effectHandler = EffectHandler.instance();
+	private EffectHandler effectHandler;
 	private List<Card> cards = new ArrayList<>();
 	private Map<ResourceType, Resource> resources;
 	private Map<FamilyMemberColor, FamilyMember> familymembers = new HashMap<>();
@@ -39,7 +36,8 @@ public class Player {
 		this.resources = resources;
 	}
 
-	public void init() {
+	public void init(EffectHandler effectHandler) {
+		this.effectHandler = effectHandler;
 		for(FamilyMemberColor color : FamilyMemberColor.values()) {
 			familymembers.put(color, new FamilyMember(this, color));
 		}
@@ -48,8 +46,9 @@ public class Player {
 	public void rollDice(){
 		match.getBoard().getSpaceDie().rollDice();
 	}
-	
-	public void placeFamilyMember(FamilyMember familyMember, Occupiable occupiable) throws CannotPlaceFamilyMemberException, CannotPlaceCardException, NotEnoughResourcesException {
+
+	/*
+	public void placeFamilyMember(FamilyMember familyMember, Occupiable occupiable) throws RuntimeException {
 		Event event = new EventPlaceFamilyMember(this, occupiable, familyMember);
 		effectHandler.executeEffects(event);
 		try {
@@ -59,6 +58,7 @@ public class Player {
 			throw e;
 		}
 	}
+	*/
 
 	public void supportChurch() {
 		EffectProvider faithSlot = Match.instance().getBoard().getFaithSlots().get(this.resources.get(ResourceType.FAITH_POINT).getValue());
@@ -66,7 +66,7 @@ public class Player {
 
 		try {
 			effectHandler.executeEffects(event);
-		}catch(NotEnoughResourcesException e){
+		}catch(RuntimeException e){
 			//This exception is never actually thrown for this event
 		}
 		this.resources.get(ResourceType.FAITH_POINT).setValue(0);
@@ -79,7 +79,7 @@ public class Player {
 
 		try {
 			effectHandler.executeEffects(event);
-		}catch(NotEnoughResourcesException e){
+		}catch(RuntimeException e){
 			//This exception is never actually thrown for this event
 		}
 	}
@@ -107,23 +107,23 @@ public class Player {
 		this.resources.get(type).setValue(value);
 	}
 
-	private void removeResource(List<Resource> newResources, Resource resourceToRemove) throws NotEnoughResourcesException {
+	private void removeResource(List<Resource> newResources, Resource resourceToRemove) throws RuntimeException {
 
 		Resource ownedResource = this.resources.get(resourceToRemove.getType());
 		if(ownedResource.equals(null))
-			throw new NotEnoughResourcesException();
+			throw new RuntimeException("You don't have any resources!");
 
 		int newValue = ownedResource.getValue() - resourceToRemove.getValue();
 
 		if(newValue < 0)
-			throw new NotEnoughResourcesException();
+			throw new RuntimeException("You don't have enough " + ownedResource.getType() + " resources!");
 
 		Resource newResource = ownedResource;
 		newResource.setValue(newValue);
 		newResources.add(newResource);
 	}
 
-	public void removeResources(List<Resource> resourcesToRemove) throws NotEnoughResourcesException {
+	public void removeResources(List<Resource> resourcesToRemove) throws RuntimeException {
 
 		List<Resource> newResources = new ArrayList<>();
 		//fills the array with the affected resources updating their values
@@ -137,14 +137,9 @@ public class Player {
 		}
 	}
 
-	public boolean hasResources(List<Resource> resources){
-		try{
-			this.removeResources(resources);
-		} catch (NotEnoughResourcesException e) {
-			return false;
-		}
+	public void hasResources(List<Resource> resources) throws RuntimeException{
+		this.removeResources(resources);
 		this.addResources(resources);
-		return true;
 	}
 	
 	public Map<ResourceType, Resource> getResources() {
@@ -187,6 +182,10 @@ public class Player {
 		}
 
 		return cardsEffects;
+	}
+
+	public EffectHandler getEffectHandler(){
+		return effectHandler;
 	}
 
 	public void addCard(Card card) {

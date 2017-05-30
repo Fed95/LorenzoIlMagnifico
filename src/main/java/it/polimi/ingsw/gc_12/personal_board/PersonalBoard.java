@@ -5,8 +5,6 @@ import it.polimi.ingsw.gc_12.json.loader.LoaderCardsSpace;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.card.CardDevelopment;
 import it.polimi.ingsw.gc_12.card.CardType;
-import it.polimi.ingsw.gc_12.exceptions.CannotPlaceCardException;
-import it.polimi.ingsw.gc_12.exceptions.NotEnoughResourcesException;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 
 import java.util.HashMap;
@@ -23,12 +21,12 @@ public class PersonalBoard {
             resourceContainers.put(resourceType, new ResourceContainer(resourceType));
     }
 
-    public void canPlaceCard(Player owner, CardDevelopment card) throws CannotPlaceCardException, NotEnoughResourcesException {
+    public void canPlaceCard(Player owner, CardDevelopment card) {
+        //Can throw an exception
         CardSlot cardSlot = cardsSpaces.get(card.getType()).getFirstFreeSlot();
-        if(!owner.hasResources(cardSlot.getRequisites()))
-            throw new NotEnoughResourcesException("You do not have the required resources for this card placement");
+        //Can throw exceptions
+        owner.hasResources(cardSlot.getRequisites());
 
-        //Throws exception if all slots are taken
         cardSlot.placeCard(card);
     }
 }

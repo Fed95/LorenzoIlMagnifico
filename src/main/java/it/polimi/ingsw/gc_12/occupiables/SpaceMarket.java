@@ -1,12 +1,10 @@
 package it.polimi.ingsw.gc_12.occupiables;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Occupiable;
 import it.polimi.ingsw.gc_12.effect.Effect;
-import it.polimi.ingsw.gc_12.exceptions.CannotPlaceFamilyMemberException;
 
 public class SpaceMarket extends Occupiable {
 
@@ -14,9 +12,8 @@ public class SpaceMarket extends Occupiable {
 		super(requiredValue, effects);
 	}
 	
-	@Override
-	public void canBeOccupiedBy(FamilyMember occupier) throws CannotPlaceFamilyMemberException{
+	public void canBeOccupiedBy(FamilyMember occupier) throws RuntimeException{
 		if(!occupiers.isEmpty())
-			throw new CannotPlaceFamilyMemberException("Occupiable already taken!");
+			throw new RuntimeException("Occupiable already taken!");
 	}
 }

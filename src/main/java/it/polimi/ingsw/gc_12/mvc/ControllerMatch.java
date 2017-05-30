@@ -14,7 +14,9 @@ public class ControllerMatch {
 	public ControllerMatch(List<Player> players) {
 		this.players = players;
 		match = Match.instance();
+		System.out.println("in controllermatch: players are " + players);
 		match.setPlayers(players);
+		match.init();
 		controllerPlayer = new ControllerPlayer(match);
 	}
 

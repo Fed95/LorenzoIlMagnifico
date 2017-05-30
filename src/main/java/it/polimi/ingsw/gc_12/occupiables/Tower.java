@@ -45,7 +45,7 @@ public class Tower {
 	
 	public void initializeFloors() {
 		for (int i = 0; i < CardType.values().length; i++) {
-			TowerFloor floor = new TowerFloor(this, i, DEFAULT_REQUIRED_VALUES.get(i), type);
+			TowerFloor floor = new TowerFloor(i, DEFAULT_REQUIRED_VALUES.get(i), type);
 			floors.add(floor);
 		}
 	}

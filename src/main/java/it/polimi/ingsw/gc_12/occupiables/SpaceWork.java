@@ -6,7 +6,6 @@ import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Occupiable;
 import it.polimi.ingsw.gc_12.WorkType;
 import it.polimi.ingsw.gc_12.effect.Effect;
-import it.polimi.ingsw.gc_12.exceptions.CannotPlaceFamilyMemberException;
 
 public abstract class SpaceWork extends Occupiable {
 	
@@ -30,10 +29,9 @@ public abstract class SpaceWork extends Occupiable {
 		return true;
 	}
 
-	@Override
-	public void canBeOccupiedBy(FamilyMember occupier) throws CannotPlaceFamilyMemberException {
+	public void canBeOccupiedBy(FamilyMember occupier) throws RuntimeException {
 		if(!spaceWorkZone.canBeOccupiedBy(occupier))
-			throw new CannotPlaceFamilyMemberException("A family member of your family is already working here!");
+			throw new RuntimeException("A family member of your family is already working here!");
 	}
 	
 	public WorkType getWorkType() {
