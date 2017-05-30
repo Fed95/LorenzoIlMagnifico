@@ -32,4 +32,8 @@ public class SpaceWorkZone {
     public void addSpaceWork(SpaceWork spaceWork){
         this.spaceWorks.add(spaceWork);
     }
+
+    public List<SpaceWork> getSpaceWorks() {
+        return spaceWorks;
+    }
 }

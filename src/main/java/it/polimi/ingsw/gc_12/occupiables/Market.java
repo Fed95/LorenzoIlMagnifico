@@ -30,4 +30,8 @@ public class Market {
 	public List<SpaceMarket> getSpaceMarkets() {
 		return spaceMarkets;
 	}
+
+	public void setSpaceMarkets(List<SpaceMarket> spaceMarkets) {
+		this.spaceMarkets = spaceMarkets;
+	}
 }

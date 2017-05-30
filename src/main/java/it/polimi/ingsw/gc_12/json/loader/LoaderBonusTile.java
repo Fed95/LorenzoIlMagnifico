@@ -22,9 +22,9 @@ public class LoaderBonusTile extends Loader<List<BonusTile>> {
 	}
 
 	@Override
-	protected List<BonusTile> adapt(List<BonusTile> content, GameMode gameMode) {
+	protected List<BonusTile> adapt(List<BonusTile> content, Match match) {
 		List<BonusTile> newContent = content;
-		if(gameMode == GameMode.NORMAL) {
+		if(match.getGameMode() == GameMode.NORMAL) {
 			newContent = new ArrayList<>();
 			BonusTile bonusTile = content.get(0);
 			int playersNum = Match.instance().getPlayers().size();

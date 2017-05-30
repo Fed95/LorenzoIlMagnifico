@@ -10,7 +10,9 @@ import it.polimi.ingsw.gc_12.track.TrackMilitaryPoints;
 import it.polimi.ingsw.gc_12.track.TrackTurnOrder;
 import it.polimi.ingsw.gc_12.track.TrackVictoryPoints;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Board {
 
@@ -18,7 +20,7 @@ public class Board {
 	private TowerSet towerSet;
 	private Market market;
 	private CouncilPalace councilPalace;
-	private List<Occupiable> spaceWorks = new ArrayList<>();
+	private Map<WorkType, SpaceWorkZone> spaceWorks = new HashMap<>();
 	private TrackTurnOrder trackTurnOrder;
 	private TrackMilitaryPoints trackMilitaryPoints;
 	private TrackVictoryPoints victroyPointsTrack;
@@ -29,21 +31,23 @@ public class Board {
 
 	public Board() {
 		this.spaceDie = SpaceDie.instance();
-		this.towerSet = new LoaderTowerSet().get(Match.instance().getGameMode());
-		this.market = new LoaderMarket().get(Match.instance().getGameMode());
+		this.towerSet = new LoaderTowerSet().get(Match.instance());
+		this.market = new LoaderMarket().get(Match.instance());
 		this.councilPalace = new CouncilPalace(1, null); //TODO: import values and effects from Json
 		this.trackTurnOrder = new TrackTurnOrder(councilPalace);
 		this.trackMilitaryPoints = new TrackMilitaryPoints();
 		this.victroyPointsTrack = new TrackVictoryPoints();
 		this.trackFaithPoints = new TrackFaithPoints();
 		//this.excommunicationSpace=new ExcommunicationSpace(DEFAULT_NUMBER_OF_EXCOMMUNICATION_TILE);//TODO:import from json file config if needed
+		createSpaceWork();
+	}
+
+	public void createSpaceWork() {
 		for(WorkType workType : WorkType.values()){
-			//TODO: set import of requiredValues and effects from Json file
 			SpaceWorkZone spaceWorkZone = new SpaceWorkZone();
-			SpaceWork spaceWorkSingle = new SpaceWorkSingle(workType, spaceWorkZone);
-			SpaceWork spaceWorkMultiple = new SpaceWorkMultiple(workType, spaceWorkZone);
-			spaceWorks.add(spaceWorkSingle);
-			spaceWorks.add(spaceWorkMultiple);
+			new SpaceWorkSingle(workType, spaceWorkZone);
+			new SpaceWorkMultiple(workType, spaceWorkZone);
+			spaceWorks.put(workType, spaceWorkZone);
 		}
 	}
 
@@ -52,7 +56,7 @@ public class Board {
 		trackTurnOrder.newRound();
 	}
 
-	public List<Occupiable> getSpaceWorks(){
+	public Map<WorkType, SpaceWorkZone> getSpaceWorks(){
 		return spaceWorks;
 	}
 
@@ -80,7 +84,8 @@ public class Board {
 		List<Occupiable> occupiables = new ArrayList<>();
 		occupiables.addAll(towerSet.getOccupiables());
 		occupiables.addAll(market.getSpaceMarkets());
-		occupiables.addAll(spaceWorks);
+		for(WorkType workType: WorkType.values())
+			occupiables.addAll(spaceWorks.get(workType).getSpaceWorks());
 		return occupiables;
 	}
 

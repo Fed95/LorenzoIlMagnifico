@@ -18,7 +18,7 @@ public class PersonalBoard {
     private Map<ResourceType, ResourceContainer> resourceContainers = new HashMap<>();
 
     public PersonalBoard(){
-        cardsSpaces = new LoaderCardsSpace().get(Match.instance().getGameMode());
+        cardsSpaces = new LoaderCardsSpace().get(Match.instance());
         for(ResourceType resourceType : ResourceType.values())
             resourceContainers.put(resourceType, new ResourceContainer(resourceType));
     }
