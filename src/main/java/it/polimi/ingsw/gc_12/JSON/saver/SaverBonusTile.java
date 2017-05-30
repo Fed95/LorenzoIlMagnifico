@@ -20,12 +20,12 @@ public class SaverBonusTile extends Saver<List<BonusTile>> {
 		super("bonusTiles");
 	}
 
+	@Override
 	public void create() {
 		Match match = Match.instance();
 		match.init();
 		List<BonusTile> bonusTiles = new ArrayList<>();
 
-		BonusTile bonusTile;
 		List<Effect> effects;
 		List<Resource> resourcesProduction;
 		List<Resource> resourcesHarvest;

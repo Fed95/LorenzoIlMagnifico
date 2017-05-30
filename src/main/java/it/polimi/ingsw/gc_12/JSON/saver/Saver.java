@@ -28,4 +28,7 @@ public abstract class Saver<C> {
 		ManageJsonFile manageJsonFile=new ManageJsonFile();
 		manageJsonFile.toJsonFile(gsonContent, filename);
 	}
+
+	public abstract void create();
+
 }
