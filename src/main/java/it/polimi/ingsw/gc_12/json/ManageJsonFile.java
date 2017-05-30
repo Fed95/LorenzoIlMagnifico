@@ -45,7 +45,6 @@ public class ManageJsonFile {
 			while((read = readFromFile.read()) != -1){
 				jsonRead = jsonRead + (char) read;
 			}
-			System.out.println(jsonRead);
 			readFromFile.close();
 		}catch(Exception e){
 			e.printStackTrace();
