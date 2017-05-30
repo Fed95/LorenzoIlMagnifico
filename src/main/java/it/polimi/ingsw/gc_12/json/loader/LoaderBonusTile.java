@@ -1,4 +1,4 @@
-package it.polimi.ingsw.gc_12.JSON.loader;
+package it.polimi.ingsw.gc_12.json.loader;
 
 import com.google.gson.reflect.TypeToken;
 import it.polimi.ingsw.gc_12.BonusTile;

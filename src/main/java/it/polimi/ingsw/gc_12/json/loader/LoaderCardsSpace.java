@@ -1,8 +1,8 @@
-package it.polimi.ingsw.gc_12.JSON.loader;
+package it.polimi.ingsw.gc_12.json.loader;
 
 import com.google.gson.reflect.TypeToken;
 import it.polimi.ingsw.gc_12.card.CardType;
-import it.polimi.ingsw.gc_12.personalBoard.CardsSpace;
+import it.polimi.ingsw.gc_12.personal_board.CardsSpace;
 
 import java.lang.reflect.Type;
 import java.util.Map;

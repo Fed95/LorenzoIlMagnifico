@@ -1,9 +1,9 @@
-package it.polimi.ingsw.gc_12.JSON.loader;
+package it.polimi.ingsw.gc_12.json.loader;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import it.polimi.ingsw.gc_12.JSON.ManageJsonFile;
-import it.polimi.ingsw.gc_12.JSON.TypeAdapter;
+import it.polimi.ingsw.gc_12.json.ManageJsonFile;
+import it.polimi.ingsw.gc_12.json.TypeAdapter;
 
 import java.lang.reflect.Type;
 

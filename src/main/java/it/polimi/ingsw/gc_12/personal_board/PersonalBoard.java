@@ -1,6 +1,6 @@
-package it.polimi.ingsw.gc_12.personalBoard;
+package it.polimi.ingsw.gc_12.personal_board;
 
-import it.polimi.ingsw.gc_12.JSON.loader.LoaderCardsSpace;
+import it.polimi.ingsw.gc_12.json.loader.LoaderCardsSpace;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.card.CardDevelopment;
 import it.polimi.ingsw.gc_12.card.CardType;

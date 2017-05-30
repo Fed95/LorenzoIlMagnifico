@@ -1,4 +1,4 @@
-package it.polimi.ingsw.gc_12.personalBoard;
+package it.polimi.ingsw.gc_12.personal_board;
 
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 

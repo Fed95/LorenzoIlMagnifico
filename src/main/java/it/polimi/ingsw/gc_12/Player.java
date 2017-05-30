@@ -9,7 +9,7 @@ import it.polimi.ingsw.gc_12.event.EventSupportChurch;
 import it.polimi.ingsw.gc_12.exceptions.CannotPlaceCardException;
 import it.polimi.ingsw.gc_12.exceptions.CannotPlaceFamilyMemberException;
 import it.polimi.ingsw.gc_12.exceptions.NotEnoughResourcesException;
-import it.polimi.ingsw.gc_12.personalBoard.PersonalBoard;
+import it.polimi.ingsw.gc_12.personal_board.PersonalBoard;
 import it.polimi.ingsw.gc_12.resource.ResourceExchange;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.event.Event;
