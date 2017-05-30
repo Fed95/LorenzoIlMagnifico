@@ -22,7 +22,7 @@ public abstract class Loader<C> {
 	protected abstract C adapt(C content, Match match);
 
 	public C get(Match match){
-		ManageJsonFile manageJsonFile=new ManageJsonFile();
+		ManageJsonFile manageJsonFile = new ManageJsonFile();
 		String json = manageJsonFile.fromJsonFile(filename);
 		GsonBuilder gsonBuiler = TypeAdapter.create();
 		Gson gson = gsonBuiler.create();

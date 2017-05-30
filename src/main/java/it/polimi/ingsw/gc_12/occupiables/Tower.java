@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import it.polimi.ingsw.gc_12.Match;
-import it.polimi.ingsw.gc_12.Occupiable;
 import it.polimi.ingsw.gc_12.card.*;
 import it.polimi.ingsw.gc_12.effect.*;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;

@@ -30,12 +30,15 @@ public class ActionPlaceOnTower extends Action{
             throw new RuntimeException("This TowerFloor is already taken!");
         if(!towerFloor.isRequiredValueSatisfied(familyMember))
             throw new RuntimeException("This FamilyMember does not satisfy the required value for this placement!");
-        //if(!towerFloor.getCard().equals(null)) {
+
+        /*TODO: this section needs for the cards to be loaded from Json first
+        if(!towerFloor.getCard().equals(null)) {
             //Throws multiple exceptions
-            //player.hasResources(towerFloor.getCard().getRequirements());
+            player.hasResources(towerFloor.getCard().getRequirements());
             //Throws multiple exceptions
-           // player.getPersonalBoard().canPlaceCard(player, towerFloor.getCard());
-        //}
+           player.getPersonalBoard().canPlaceCard(player, towerFloor.getCard());
+        }
+        */
         return true;
     }
 

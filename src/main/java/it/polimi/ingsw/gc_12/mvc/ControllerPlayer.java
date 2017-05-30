@@ -3,9 +3,8 @@ package it.polimi.ingsw.gc_12.mvc;
 import java.util.*;
 
 import it.polimi.ingsw.gc_12.*;
-import it.polimi.ingsw.gc_12.action.Action;
-import it.polimi.ingsw.gc_12.action.ActionPlaceOnTower;
-import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
+import it.polimi.ingsw.gc_12.action.*;
+import it.polimi.ingsw.gc_12.occupiables.*;
 
 public class ControllerPlayer{
 
@@ -39,14 +38,21 @@ public class ControllerPlayer{
 	}
 
 	public void setOccupiable(Occupiable occupiable) {
+		//TODO: improve this switch case scenario
 		if(occupiable instanceof TowerFloor) {
 			action = new ActionPlaceOnTower(familyMember, match.getBoard().getTowerSet().getTower(((TowerFloor) occupiable).getType()), (TowerFloor) occupiable);
-			try{
-				action.start();
-			}catch (RuntimeException e){
-				System.out.println(e.getMessage());
-				views.get(currentPlayer).askOccupiable();
-			}
+		}else if(occupiable instanceof SpaceWork){
+			action = new ActionPlaceOnSpaceWork(familyMember, match.getBoard().getSpaceWorks().get(((SpaceWork) occupiable).getWorkType()), (SpaceWork) occupiable);
+		}else if(occupiable instanceof SpaceMarket){
+			action = new ActionPlaceOnMarket(familyMember, (SpaceMarket) occupiable);
+		}else if(occupiable instanceof CouncilPalace){
+			action = new ActionPlaceOnCouncil(familyMember, (CouncilPalace) occupiable);
+		}
+		try{
+			action.start();
+		}catch (RuntimeException e){
+			System.out.println(e.getMessage());
+			views.get(currentPlayer).askOccupiable();
 		}
 	}
 

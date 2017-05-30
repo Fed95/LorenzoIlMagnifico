@@ -11,16 +11,12 @@ public class SpaceWorkMultiple extends SpaceWork {
 	private static final int DEFAULT_REQUIRED_VALUE = 1;
 	private static final List<Effect> DEFAULT_EFFECTS = new ArrayList<>();
 	
-	public SpaceWorkMultiple(WorkType workType, int requiredValue, SpaceWorkZone spaceWorkZone, List<Effect> effects) {
-		super(workType, requiredValue, spaceWorkZone, effects);
-	}
-
-	public SpaceWorkMultiple(WorkType workType, int requiredValue, List<Effect> effects) {
+	public SpaceWorkMultiple(WorkType workType, int requiredValue,List<Effect> effects) {
 		super(workType, requiredValue, effects);
 	}
 
-	public SpaceWorkMultiple(WorkType workType, SpaceWorkZone spaceWorkZone) {
-		super(workType, DEFAULT_REQUIRED_VALUE, spaceWorkZone, DEFAULT_EFFECTS);
+	public SpaceWorkMultiple(WorkType workType) {
+		super(workType, DEFAULT_REQUIRED_VALUE, DEFAULT_EFFECTS);
 	}
 
 	@Override

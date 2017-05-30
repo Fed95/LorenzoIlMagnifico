@@ -45,8 +45,8 @@ public class Board {
 	public void createSpaceWork() {
 		for(WorkType workType : WorkType.values()){
 			SpaceWorkZone spaceWorkZone = new SpaceWorkZone();
-			new SpaceWorkSingle(workType, spaceWorkZone);
-			new SpaceWorkMultiple(workType, spaceWorkZone);
+			spaceWorkZone.addSpaceWork(new SpaceWorkSingle(workType));
+			spaceWorkZone.addSpaceWork(new SpaceWorkMultiple(workType));
 			spaceWorks.put(workType, spaceWorkZone);
 		}
 	}

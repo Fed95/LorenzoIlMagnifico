@@ -26,7 +26,7 @@ public class SpaceWorkZone {
             for(FamilyMember i: spaceWork.getOccupiers())
                 if(!occupier.getColor().equals(FamilyMemberColor.NEUTRAL) && occupier.getOwner().equals(i.getOwner()))
                     return false;
-        return true; // Further value check must be performed by SpaceWorkSingle/SapaceWorkMultiple class
+        return true;
     }
 
     public void addSpaceWork(SpaceWork spaceWork){

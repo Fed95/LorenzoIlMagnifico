@@ -3,7 +3,6 @@ package it.polimi.ingsw.gc_12.occupiables;
 import java.util.List;
 
 import it.polimi.ingsw.gc_12.FamilyMember;
-import it.polimi.ingsw.gc_12.Occupiable;
 import it.polimi.ingsw.gc_12.effect.Effect;
 
 public class SpaceMarket extends Occupiable {
@@ -12,8 +11,9 @@ public class SpaceMarket extends Occupiable {
 		super(requiredValue, effects);
 	}
 	
-	public void canBeOccupiedBy(FamilyMember occupier) throws RuntimeException{
-		if(!occupiers.isEmpty())
-			throw new RuntimeException("Occupiable already taken!");
+	public boolean isOccupied(){
+		if(occupiers.isEmpty())
+			return true;
+		return false;
 	}
 }

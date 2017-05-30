@@ -7,7 +7,7 @@ import java.util.List;
 
 import it.polimi.ingsw.gc_12.EffectProvider;
 import it.polimi.ingsw.gc_12.FamilyMember;
-import it.polimi.ingsw.gc_12.Occupiable;
+import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.Player;
 
 public class EventPlaceFamilyMember extends Event{
