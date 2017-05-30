@@ -3,6 +3,7 @@ package it.polimi.ingsw.gc_12;
 import it.polimi.ingsw.gc_12.json.loader.LoaderMarket;
 import it.polimi.ingsw.gc_12.json.loader.LoaderTowerSet;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationSpace;
+import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
 import it.polimi.ingsw.gc_12.occupiables.*;
 import it.polimi.ingsw.gc_12.track.TrackFaithPoints;
 import it.polimi.ingsw.gc_12.track.TrackMilitaryPoints;
@@ -24,6 +25,7 @@ public class Board {
 	private TrackFaithPoints trackFaithPoints;
 	private List<EffectProvider> faithSlots = new ArrayList<>();
 	private ExcommunicationSpace excommunicationSpace;
+	private List<ExcommunicationTile> excommunicationTiles = new ArrayList<>();// import from json or match
 	private static final int DEFAULT_NUMBER_OF_EXCOMMUNICATION_TILE = 3;
 
 	/*
@@ -40,7 +42,7 @@ public class Board {
 		this.trackMilitaryPoints = new TrackMilitaryPoints();
 		this.victroyPointsTrack = new TrackVictoryPoints();
 		this.trackFaithPoints = new TrackFaithPoints();
-		this.excommunicationSpace=new ExcommunicationSpace(DEFAULT_NUMBER_OF_EXCOMMUNICATION_TILE);//TODO:import from json file config if needed
+		this.excommunicationSpace=new ExcommunicationSpace(DEFAULT_NUMBER_OF_EXCOMMUNICATION_TILE, excommunicationTiles);//TODO:import from json file config if needed
 		for(WorkType workType : WorkType.values()){
 			//TODO: set import of requiredValues and effects from Json file
 			SpaceWorkZone spaceWorkZone = new SpaceWorkZone();

@@ -15,9 +15,12 @@ public class Match {
 	public final static GameMode DEFAULT_GAME_MODE = GameMode.NORMAL;
 	public final static int DEFAULT_ROUND_NUM = 6;
 	public final static int DEFAULT_PERIODS_LEN = 2;
+	public final static int DEFAULT_TOTAL_PERIODS_NUM = DEFAULT_ROUND_NUM/DEFAULT_PERIODS_LEN;
 	private Board board;
 	private static Match instance;
 	private int roundNum;
+	private int totalPeriodNumber;
+	
 
 	public static Match instance() {
 		if (instance == null)
@@ -28,6 +31,7 @@ public class Match {
 	private Match(GameMode gameMode) {
 		this.gameMode = gameMode;
 		this.roundNum = 1;
+		this.totalPeriodNumber=DEFAULT_TOTAL_PERIODS_NUM;
 		this.cardDeckSet = new CardDeckSet(cards, DEFAULT_ROUND_NUM/DEFAULT_PERIODS_LEN);
 	}
 	private Match() {
@@ -75,7 +79,9 @@ public class Match {
 	public int getPeriodNum() {
 		return roundNum / 2 + roundNum % 2;
 	}
-
+	public int getTotalPeriodNumber() {
+		return totalPeriodNumber;
+	}
 	@Override
 	public String toString() {
 		return board.toString();
