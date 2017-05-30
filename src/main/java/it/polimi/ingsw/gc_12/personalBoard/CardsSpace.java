@@ -14,11 +14,6 @@ public class CardsSpace {
 
     public CardsSpace(CardType type){
         this.type = type;
-        for(int i = 0; i < spacesAvailable; i++){
-            //TODO: import from Json requisites and bonuses of card slots
-            CardSlot cardSpace = new CardSlot();
-            slots.add(cardSpace);
-        }
     }
 
     public void placeCard(CardDevelopment card) throws CannotPlaceCardException {
@@ -38,5 +33,13 @@ public class CardsSpace {
             if(slot.isEmpty())
                 return slot;
         throw new CannotPlaceCardException("Your CardSpace for this CardType is already full.");
+    }
+
+    public void addCardSlot(CardSlot cardSlot) {
+        this.slots.add(cardSlot);
+    }
+
+    public void setSpacesAvailable(int spacesAvailable) {
+        this.spacesAvailable = spacesAvailable;
     }
 }
