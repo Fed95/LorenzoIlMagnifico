@@ -11,7 +11,7 @@ import it.polimi.ingsw.gc_12.exceptions.NotEnoughResourcesException;
 public abstract class Occupiable implements EffectProvider {
 
 	private List<Effect> effects = new ArrayList<>();
-	protected transient List<FamilyMember> occupiers = new ArrayList<>();
+	protected List<FamilyMember> occupiers = new ArrayList<>();
 	public final static int DEFAULT_MAXNUMBEROFPLAYERS = 1;
 	public static final int DEFAULT_REQUIRED_VALUE = 1;
 	protected final int requiredValue;

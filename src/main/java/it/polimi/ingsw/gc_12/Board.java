@@ -42,7 +42,7 @@ public class Board {
 		this.trackMilitaryPoints = new TrackMilitaryPoints();
 		this.victroyPointsTrack = new TrackVictoryPoints();
 		this.trackFaithPoints = new TrackFaithPoints();
-		this.excommunicationSpace=new ExcommunicationSpace(DEFAULT_NUMBER_OF_EXCOMMUNICATION_TILE);//TODO:import from json file config if needed
+		//this.excommunicationSpace=new ExcommunicationSpace(DEFAULT_NUMBER_OF_EXCOMMUNICATION_TILE);//TODO:import from json file config if needed
 		for(WorkType workType : WorkType.values()){
 			//TODO: set import of requiredValues and effects from Json file
 			SpaceWorkZone spaceWorkZone = new SpaceWorkZone();

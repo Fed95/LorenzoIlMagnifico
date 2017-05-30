@@ -10,7 +10,6 @@ import java.util.List;
 
 
 public class CouncilPalace extends Occupiable {
-    private List<FamilyMember> occupiers = new ArrayList<>();
 
     public CouncilPalace(int requiredValue, List<Effect> effects){
         super(requiredValue, effects);

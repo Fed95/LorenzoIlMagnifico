@@ -1,9 +1,7 @@
 package it.polimi.ingsw.gc_12.JSON.saver;
 
 import it.polimi.ingsw.gc_12.card.CardType;
-import it.polimi.ingsw.gc_12.effect.Effect;
-import it.polimi.ingsw.gc_12.effect.EffectChangeResource;
-import it.polimi.ingsw.gc_12.event.EventEndMatch;
+
 import it.polimi.ingsw.gc_12.personalBoard.CardSlot;
 import it.polimi.ingsw.gc_12.personalBoard.CardsSpace;
 import it.polimi.ingsw.gc_12.resource.MilitaryPoint;
