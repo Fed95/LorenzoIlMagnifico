@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc_12;
 
+import it.polimi.ingsw.gc_12.dice.SpaceDie;
 import it.polimi.ingsw.gc_12.json.loader.LoaderMarket;
 import it.polimi.ingsw.gc_12.json.loader.LoaderTowerSet;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationSpace;

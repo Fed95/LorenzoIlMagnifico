@@ -1,5 +1,7 @@
 package it.polimi.ingsw.gc_12;
-import it.polimi.ingsw.gc_12.occupiables.SpaceDie;
+import it.polimi.ingsw.gc_12.dice.Die;
+import it.polimi.ingsw.gc_12.dice.DieColor;
+import it.polimi.ingsw.gc_12.dice.SpaceDie;
 
 import java.util.Observable;
 import java.util.Observer;

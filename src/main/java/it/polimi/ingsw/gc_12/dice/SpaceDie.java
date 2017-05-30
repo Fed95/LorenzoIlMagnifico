@@ -1,7 +1,4 @@
-package it.polimi.ingsw.gc_12.occupiables;
-
-import it.polimi.ingsw.gc_12.Die;
-import it.polimi.ingsw.gc_12.DieColor;
+package it.polimi.ingsw.gc_12.dice;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,5 @@
-package it.polimi.ingsw.gc_12;
+package it.polimi.ingsw.gc_12.dice;
+
 import java.util.Observable;
 
 public class Die extends Observable {
