@@ -1,6 +1,7 @@
 package it.polimi.ingsw.gc_12.json.loader;
 
 import com.google.gson.reflect.TypeToken;
+import it.polimi.ingsw.gc_12.GameMode;
 import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.personal_board.CardsSpace;
 
@@ -16,5 +17,10 @@ public class LoaderCardsSpace extends Loader<Map<CardType, CardsSpace>> {
 	@Override
 	protected Type getType() {
 		return new TypeToken<Map<CardType, CardsSpace>>() {}.getType();
+	}
+
+	@Override
+	protected Map<CardType, CardsSpace> adapt(Map<CardType, CardsSpace> content, GameMode gameMode) {
+		return content;
 	}
 }

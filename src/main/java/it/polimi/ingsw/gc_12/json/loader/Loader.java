@@ -2,6 +2,7 @@ package it.polimi.ingsw.gc_12.json.loader;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import it.polimi.ingsw.gc_12.GameMode;
 import it.polimi.ingsw.gc_12.json.ManageJsonFile;
 import it.polimi.ingsw.gc_12.json.TypeAdapter;
 
@@ -17,11 +18,13 @@ public abstract class Loader<C> {
 
 	protected abstract Type getType();
 
-	public C get(){
+	protected abstract C adapt(C content, GameMode gameMode);
+
+	public C get(GameMode gameMode){
 		ManageJsonFile manageJsonFile=new ManageJsonFile();
 		String json = manageJsonFile.fromJsonFile(filename);
 		GsonBuilder gsonBuiler = TypeAdapter.create();
 		Gson gson = gsonBuiler.create();
-		return gson.fromJson(json, getType());
+		return adapt(gson.fromJson(json, getType()), gameMode);
 	}
 }
