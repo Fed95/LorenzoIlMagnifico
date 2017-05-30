@@ -10,8 +10,6 @@ import it.polimi.ingsw.gc_12.exceptions.CannotPlaceFamilyMemberException;
 
 public class SpaceMarket extends Occupiable {
 
-	private List<FamilyMember> occupiers = new ArrayList<>();
-
 	public SpaceMarket(int requiredValue, List<Effect> effects){
 		super(requiredValue, effects);
 	}
