@@ -29,14 +29,14 @@ public class Board {
 
 	public Board() {
 		this.spaceDie = SpaceDie.instance();
-		this.towerSet = new LoaderTowerSet().get();
-		this.market = new LoaderMarket().get();
+		this.towerSet = new LoaderTowerSet().get(Match.instance().getGameMode());
+		this.market = new LoaderMarket().get(Match.instance().getGameMode());
 		this.councilPalace = new CouncilPalace(1, null); //TODO: import values and effects from Json
 		this.trackTurnOrder = new TrackTurnOrder(councilPalace);
 		this.trackMilitaryPoints = new TrackMilitaryPoints();
 		this.victroyPointsTrack = new TrackVictoryPoints();
 		this.trackFaithPoints = new TrackFaithPoints();
-		this.excommunicationSpace = new ExcommunicationSpace(excommunicationTiles);//TODO:import from json file config if needed
+		//this.excommunicationSpace=new ExcommunicationSpace(DEFAULT_NUMBER_OF_EXCOMMUNICATION_TILE);//TODO:import from json file config if needed
 		for(WorkType workType : WorkType.values()){
 			//TODO: set import of requiredValues and effects from Json file
 			SpaceWorkZone spaceWorkZone = new SpaceWorkZone();
@@ -48,7 +48,7 @@ public class Board {
 	}
 
 	public void refresh(){
-		towerSet.refresh();
+		//towerSet.refresh();
 		trackTurnOrder.newRound();
 	}
 
@@ -79,6 +79,7 @@ public class Board {
 	public List<Occupiable> getOccupiables() {
 		List<Occupiable> occupiables = new ArrayList<>();
 		occupiables.addAll(towerSet.getOccupiables());
+		occupiables.addAll(market.getSpaceMarkets());
 		occupiables.addAll(spaceWorks);
 		return occupiables;
 	}

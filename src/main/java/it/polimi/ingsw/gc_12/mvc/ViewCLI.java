@@ -16,8 +16,7 @@ public class ViewCLI extends Observable{
 		this.match = match;
 	}
 
-	public void askAction() { 
-
+	public void askAction() {
 		System.out.println("Write the number of the action you want to perform");
 		System.out.println("0 - Place family member");
 		System.out.println("1 - Place leader card");
@@ -47,6 +46,8 @@ public class ViewCLI extends Observable{
 
 	public void askFamilyMember() {
 		System.out.println("Write the number of the family member you want to use");
+
+		player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
 
 		int i = 0;
 		List<FamilyMemberColor> familyMemberColors = Arrays.asList(FamilyMemberColor.values());
@@ -89,6 +90,7 @@ public class ViewCLI extends Observable{
 		System.out.println("Write the number of the space you want to place the family member in.");
 		int i = 0;
 		for(Occupiable occupiable : occupiables) {
+			System.out.println("occupiable " + occupiable.getOccupiers());
 			System.out.println(i + " - " + occupiable.toString());
 			i++;
 		}

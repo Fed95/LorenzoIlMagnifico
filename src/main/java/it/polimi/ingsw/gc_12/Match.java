@@ -35,10 +35,18 @@ public class Match {
 		this.cardDeckSet = new CardDeckSet(cards, DEFAULT_ROUND_NUM/DEFAULT_PERIODS_LEN);
 
 	}
+
 	private Match() {
 		this(DEFAULT_GAME_MODE);
 	}
 
+	public void init() {
+		board = new Board();
+
+		for (Player player : players) {
+			player.init();
+		}
+	}
 
 	public void newTurn() {
 		board.getTrackTurnOrder().newTurn();

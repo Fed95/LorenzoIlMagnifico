@@ -5,7 +5,7 @@ import java.util.List;
 public class Market {
 	
 	private final int numberOfSpaces;
-	private List<SpaceMarket> spaceMarket;
+	private List<SpaceMarket> spaceMarkets;
 	public static final int DEFAULT_SET_NUM = 4;
 	
 	public Market(int setNumber){
@@ -16,7 +16,7 @@ public class Market {
 		}
 		for(int i = 0; i < numberOfSpaces; i++){
 			//TODO implement Json configuration with the right spacemarket constructor
-			//spaceMarket.add(new SpaceMarket());
+			//spaceMarkets.add(new SpaceMarket());
 		}
 	}
 	
@@ -27,7 +27,7 @@ public class Market {
 		return numberOfSpaces;
 	}
 
-	public List<SpaceMarket> getSpaceMarket() {
-		return spaceMarket;
+	public List<SpaceMarket> getSpaceMarkets() {
+		return spaceMarkets;
 	}
 }

@@ -37,6 +37,9 @@ public class Player {
 		this.name = name;
 		this.personalBoard = personalBoard;
 		this.resources = resources;
+	}
+
+	public void init() {
 		for(FamilyMemberColor color : FamilyMemberColor.values()) {
 			familymembers.put(color, new FamilyMember(this, color));
 		}

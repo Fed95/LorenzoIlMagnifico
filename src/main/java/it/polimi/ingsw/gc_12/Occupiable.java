@@ -30,7 +30,7 @@ public abstract class Occupiable implements EffectProvider {
 	
 	public List<FamilyMember> getOccupiers() {
 		return occupiers;
-	};
+	}
 	
 	public int getRequiredValue() {
 		return requiredValue;

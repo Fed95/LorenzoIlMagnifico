@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc_12.personal_board;
 
+import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.json.loader.LoaderCardsSpace;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.card.CardDevelopment;
@@ -17,7 +18,7 @@ public class PersonalBoard {
     private Map<ResourceType, ResourceContainer> resourceContainers = new HashMap<>();
 
     public PersonalBoard(){
-        cardsSpaces = new LoaderCardsSpace().get();
+        cardsSpaces = new LoaderCardsSpace().get(Match.instance().getGameMode());
         for(ResourceType resourceType : ResourceType.values())
             resourceContainers.put(resourceType, new ResourceContainer(resourceType));
     }
