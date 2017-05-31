@@ -31,9 +31,10 @@ public class ActionPlaceOnCouncil extends Action {
     public void start() throws RuntimeException {
         Event event = new EventPlaceFamilyMember(this.player, councilPalace, familyMember);
 
-        if (canBeExecuted(event))
+        if (canBeExecuted(event)) {
+            familyMember.setBusy(true);
             councilPalace.placeFamilyMember(familyMember);
-        else
+        }else
             player.getEffectHandler().discardEffects(event);
     }
 

@@ -27,6 +27,23 @@ public abstract class Occupiable implements EffectProvider {
 		this(DEFAULT_REQUIRED_VALUE, new ArrayList<>());
 	}
 
+
+	public void placeFamilyMember(FamilyMember occupier) {
+		this.occupiers.add(occupier);
+	}
+
+	public boolean isRequiredValueSatisfied(FamilyMember occupier) {
+		if (requiredValue > occupier.getValue())
+			return false;
+		return true;
+	}
+
+	public void free(){
+		for(FamilyMember occupier : occupiers)
+			occupier.setBusy(false);
+		this.occupiers.clear();
+	}
+
 	public List<FamilyMember> getOccupiers() {
 		return occupiers;
 	}
@@ -38,15 +55,5 @@ public abstract class Occupiable implements EffectProvider {
 	@Override
 	public List<Effect> getEffects() {
 		return effects;
-	}
-
-	public void placeFamilyMember(FamilyMember occupier) {
-		this.occupiers.add(occupier);
-	}
-
-	public boolean isRequiredValueSatisfied(FamilyMember occupier) {
-		if (requiredValue > occupier.getValue())
-			return false;
-		return true;
 	}
 }

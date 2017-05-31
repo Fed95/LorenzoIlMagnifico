@@ -22,7 +22,7 @@ public class ControllerPlayer{
 	private void createViews() {
 		List<Player> players = match.getPlayers();
 		for(Player player : players) {
-			ViewCLI view = new ViewCLI(this, match);
+			ViewCLI view = new ViewCLI(player, this, match);
 			views.put(player, view);
 		}
 	}
@@ -32,8 +32,11 @@ public class ControllerPlayer{
 		views.get(currentPlayer).askAction();
 	}
 
-	public void setFamilyMember(FamilyMemberColor familyMemberColor) {
-		this.familyMember = currentPlayer.getFamilyMember(familyMemberColor);
+	public void setFamilyMember(FamilyMemberColor familyMemberColor) throws RuntimeException {
+		FamilyMember familyMember = currentPlayer.getFamilyMember(familyMemberColor);
+		if(familyMember.isBusy())
+			throw new RuntimeException("This FamilyMember is already busy!");
+		this.familyMember = familyMember;
 		views.get(currentPlayer).askOccupiable();
 	}
 
@@ -42,7 +45,7 @@ public class ControllerPlayer{
 		if(occupiable instanceof TowerFloor) {
 			action = new ActionPlaceOnTower(familyMember, match.getBoard().getTowerSet().getTower(((TowerFloor) occupiable).getType()), (TowerFloor) occupiable);
 		}else if(occupiable instanceof SpaceWork){
-			action = new ActionPlaceOnSpaceWork(familyMember, match.getBoard().getSpaceWorks().get(((SpaceWork) occupiable).getWorkType()), (SpaceWork) occupiable);
+			action = new ActionPlaceOnSpaceWork(familyMember, match.getBoard().getSpaceWorkZones().get(((SpaceWork) occupiable).getWorkType()), (SpaceWork) occupiable);
 		}else if(occupiable instanceof SpaceMarket){
 			action = new ActionPlaceOnMarket(familyMember, (SpaceMarket) occupiable);
 		}else if(occupiable instanceof CouncilPalace){
@@ -50,6 +53,7 @@ public class ControllerPlayer{
 		}
 		try{
 			action.start();
+			System.out.println(familyMember + " placed on " + occupiable);
 		}catch (RuntimeException e){
 			System.out.println(e.getMessage());
 			views.get(currentPlayer).askOccupiable();

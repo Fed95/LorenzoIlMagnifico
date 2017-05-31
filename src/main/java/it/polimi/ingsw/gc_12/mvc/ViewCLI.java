@@ -12,12 +12,15 @@ public class ViewCLI extends Observable{
 	private Player player;
 	private Match match;
 
-	public ViewCLI(ControllerPlayer controllerPlayer, Match match) {
+	public ViewCLI(Player player, ControllerPlayer controllerPlayer, Match match) {
+		this.player = player;
 		this.controllerPlayer = controllerPlayer;
 		this.match = match;
 	}
 
 	public void askAction() {
+		System.out.println();
+		System.out.println("ROUND " + match.getRoundNUm() + "  ||  " + player.getName());
 		System.out.println("Write the number of the action you want to perform");
 		System.out.println("0 - Place family member");
 		System.out.println("1 - Place leader card");
@@ -48,8 +51,6 @@ public class ViewCLI extends Observable{
 	public void askFamilyMember() {
 		System.out.println("Write the number of the family member you want to use");
 
-		player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
-
 		int i = 0;
 		List<FamilyMemberColor> familyMemberColors = Arrays.asList(FamilyMemberColor.values());
 		Map<FamilyMemberColor, FamilyMember> familyMembers = player.getFamilymembers();
@@ -71,10 +72,14 @@ public class ViewCLI extends Observable{
 					askAction();
 					return;
 				}else {
-					//FamilyMember familyMember = new FamilyMember(player, familyMemberColors.get(input));
 					FamilyMemberColor familyMemberColor = familyMemberColors.get(input);
 					System.out.println("familyMember " + familyMemberColor + " chosen ");
-					controllerPlayer.setFamilyMember(familyMemberColor);
+					try {
+						controllerPlayer.setFamilyMember(familyMemberColor);
+					}catch(RuntimeException e){
+						System.out.println(e.getMessage());
+						askFamilyMember();
+					}
 					break;
 				}
 			}
@@ -95,7 +100,6 @@ public class ViewCLI extends Observable{
 			System.out.println(i + " - " + occupiable.toString());
 			i++;
 		}
-
 		System.out.println(i + " - Discard action.");
 
 		while (true) {

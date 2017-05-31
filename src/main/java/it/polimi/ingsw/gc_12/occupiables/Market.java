@@ -34,4 +34,9 @@ public class Market {
 	public void setSpaceMarkets(List<SpaceMarket> spaceMarkets) {
 		this.spaceMarkets = spaceMarkets;
 	}
+
+    public void refresh() {
+		for(SpaceMarket spaceMarket : spaceMarkets)
+			spaceMarket.free();
+    }
 }

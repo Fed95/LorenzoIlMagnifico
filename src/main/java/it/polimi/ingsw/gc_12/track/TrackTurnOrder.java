@@ -15,8 +15,8 @@ public class TrackTurnOrder {
 	private int turn;
 	private CouncilPalace councilPalace;
 
-	public TrackTurnOrder(CouncilPalace councilPalace) {
-		this.turnOrder = Match.instance().getPlayers();
+	public TrackTurnOrder(List<Player> players, CouncilPalace councilPalace) {
+		this.turnOrder = players;
 		System.out.println(Match.instance().getPlayers());
 		this.councilPalace =  councilPalace;
 		chooseRandomOrder();

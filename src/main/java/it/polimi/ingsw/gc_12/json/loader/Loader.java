@@ -12,7 +12,6 @@ import java.lang.reflect.Type;
 public abstract class Loader<C> {
 	protected String filename;
 
-
 	public Loader(String filename){
 		this.filename = filename;
 	}

@@ -12,8 +12,7 @@ public class SpaceDie {
 		if(instance == null) instance = new SpaceDie();
 		return instance;
 	}
-    
-	
+
     private SpaceDie(){
     	for(DieColor dieColor : DieColor.values()){
     		dice.put(dieColor, new Die(dieColor));

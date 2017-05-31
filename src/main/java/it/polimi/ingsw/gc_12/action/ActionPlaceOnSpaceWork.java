@@ -42,9 +42,10 @@ public class ActionPlaceOnSpaceWork extends Action{
     public void start() throws RuntimeException {
         Event event = new EventPlaceFamilyMember(this.player, spaceWork, familyMember);
 
-        if(canBeExecuted(event))
+        if(canBeExecuted(event)) {
+            familyMember.setBusy(true);
             spaceWork.placeFamilyMember(familyMember);
-        else
+        }else
             player.getEffectHandler().discardEffects(event);
     }
 

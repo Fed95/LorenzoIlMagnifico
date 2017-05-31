@@ -11,11 +11,13 @@ public class FamilyMember implements Observer {
 	private final Player owner;
 	private FamilyMemberColor color;
 	private int value;
+	boolean busy;
 	
 	public FamilyMember(Player owner, FamilyMemberColor color, int value) {
 		this.owner = owner;
 		this.color = color;
 		this.value = value;
+		this.busy = false;
 		try {
 			if(color != null) {
 				DieColor dieColor = DieColor.valueOf(color.name());
@@ -67,7 +69,16 @@ public class FamilyMember implements Observer {
 		this.value = value;
 	}
 
-	//Receive notification that dices have been rolled and update value
+
+	public boolean isBusy(){
+		return busy;
+	}
+	public void setBusy(boolean busy) {
+		this.busy = busy;
+	}
+
+
+	//Receive notification that the dice have been rolled and update value
 	@Override
 	public void update(Observable o, Object value) {
 		this.setValue((int) value);		
@@ -80,6 +91,6 @@ public class FamilyMember implements Observer {
 
 	@Override
 	public String toString() {
-		return "FamilyMember [color=" + color + ", value=" + value + "]";
+		return "FamilyMember [Owner: " +getOwner().getName()+ ", color: " + color + ", value: " + value + "]";
 	}
 }

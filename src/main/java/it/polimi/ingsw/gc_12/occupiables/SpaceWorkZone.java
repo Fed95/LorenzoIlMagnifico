@@ -36,4 +36,9 @@ public class SpaceWorkZone {
     public List<SpaceWork> getSpaceWorks() {
         return spaceWorks;
     }
+
+    public void refresh() {
+        for(SpaceWork spaceWork : spaceWorks)
+            spaceWork.free();
+    }
 }

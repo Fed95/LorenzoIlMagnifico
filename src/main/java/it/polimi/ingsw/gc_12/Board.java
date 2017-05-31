@@ -17,11 +17,12 @@ import java.util.Map;
 
 public class Board {
 
+	private List<Player> players;
 	private SpaceDie spaceDie;
 	private TowerSet towerSet;
 	private Market market;
 	private CouncilPalace councilPalace;
-	private Map<WorkType, SpaceWorkZone> spaceWorks = new HashMap<>();
+	private Map<WorkType, SpaceWorkZone> spaceWorkZones = new HashMap<>();
 	private TrackTurnOrder trackTurnOrder;
 	private TrackMilitaryPoints trackMilitaryPoints;
 	private TrackVictoryPoints victroyPointsTrack;
@@ -30,16 +31,17 @@ public class Board {
 	private ExcommunicationSpace excommunicationSpace;
 	private List<ExcommunicationTile> excommunicationTiles = new ArrayList<>();// import from json or match
 
-	public Board() {
+	public Board(List<Player> players) {
+		this.players = players;
 		this.spaceDie = SpaceDie.instance();
 		this.towerSet = new LoaderTowerSet().get(Match.instance());
 		this.market = new LoaderMarket().get(Match.instance());
 		this.councilPalace = new CouncilPalace(1, null); //TODO: import values and effects from Json
-		this.trackTurnOrder = new TrackTurnOrder(councilPalace);
+		this.trackTurnOrder = new TrackTurnOrder(players, councilPalace);
 		this.trackMilitaryPoints = new TrackMilitaryPoints();
 		this.victroyPointsTrack = new TrackVictoryPoints();
 		this.trackFaithPoints = new TrackFaithPoints();
-		//this.excommunicationSpace=new ExcommunicationSpace(DEFAULT_NUMBER_OF_EXCOMMUNICATION_TILE);//TODO:import from json file config if needed
+		//this.excommunicationSpace = new ExcommunicationSpace(DEFAULT_NUMBER_OF_EXCOMMUNICATION_TILES);//TODO:import from json file config if needed
 		createSpaceWork();
 	}
 
@@ -48,17 +50,22 @@ public class Board {
 			SpaceWorkZone spaceWorkZone = new SpaceWorkZone();
 			spaceWorkZone.addSpaceWork(new SpaceWorkSingle(workType));
 			spaceWorkZone.addSpaceWork(new SpaceWorkMultiple(workType));
-			spaceWorks.put(workType, spaceWorkZone);
+			spaceWorkZones.put(workType, spaceWorkZone);
 		}
 	}
 
 	public void refresh(){
-		//towerSet.refresh();
+		//Sets the players' order for the new round and prepares the board
 		trackTurnOrder.newRound();
+		towerSet.refresh();
+		market.refresh();
+		councilPalace.free();
+		for(SpaceWorkZone spaceWorkZone : spaceWorkZones.values())
+			spaceWorkZone.refresh();
 	}
 
-	public Map<WorkType, SpaceWorkZone> getSpaceWorks(){
-		return spaceWorks;
+	public Map<WorkType, SpaceWorkZone> getSpaceWorkZones(){
+		return spaceWorkZones;
 	}
 
 	public SpaceDie getSpaceDie() {
@@ -86,7 +93,7 @@ public class Board {
 		occupiables.addAll(towerSet.getOccupiables());
 		occupiables.addAll(market.getSpaceMarkets());
 		for(WorkType workType: WorkType.values())
-			occupiables.addAll(spaceWorks.get(workType).getSpaceWorks());
+			occupiables.addAll(spaceWorkZones.get(workType).getSpaceWorks());
 		return occupiables;
 	}
 
@@ -101,13 +108,6 @@ public class Board {
 	public ExcommunicationSpace getExcommunicationSpace() {
 		return excommunicationSpace;
 	}
-
-	/*
-	public ExcommunicationSpace getExcommunicationSpace() {
-		return excommunicationSpace;
-	}
-
-	}*/
 
 	@Override
 	public String toString() {

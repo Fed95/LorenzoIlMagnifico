@@ -31,7 +31,7 @@ public class ActionPlaceOnTower extends Action{
         if(!towerFloor.isRequiredValueSatisfied(familyMember))
             throw new RuntimeException("This FamilyMember does not satisfy the required value for this placement!");
 
-        /*TODO: this section needs for the cards to be loaded from Json first
+        /*TODO: this section needs the cards to be loaded from Json first
         if(!towerFloor.getCard().equals(null)) {
             //Throws multiple exceptions
             player.hasResources(towerFloor.getCard().getRequirements());
@@ -50,6 +50,7 @@ public class ActionPlaceOnTower extends Action{
             if (tower.getFloors().stream().allMatch(floor -> !floor.isOccupied())) { //If no floor of the tower has been occupied yet
                 tower.activateMalus();
             }
+            familyMember.setBusy(true);
             towerFloor.placeFamilyMember(familyMember);
         }else
             player.getEffectHandler().discardEffects(event);

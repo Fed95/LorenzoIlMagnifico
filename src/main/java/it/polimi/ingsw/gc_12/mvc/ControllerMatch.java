@@ -14,18 +14,21 @@ public class ControllerMatch {
 	public ControllerMatch(List<Player> players) {
 		this.players = players;
 		match = Match.instance();
-		System.out.println("in controllermatch: players are " + players);
 		match.setPlayers(players);
 		match.init();
 		controllerPlayer = new ControllerPlayer(match);
 	}
 
 	public void start() {
-		for (int i = 0; i < 3; i++) { // TODO: use variable from match
-			for (int j = 0; j < 2; j++) { // TODO: use variable from match
-				match.newRound();
+		for (int i = 0; i < 3; i++) { // 3 periods TODO: use variable from match
+			for (int j = 0; j < 2; j++) { // 2 rounds per period TODO: use variable from match
+				//Refreshes the board
+				if(i == 0)
+					match.getBoard().getTrackTurnOrder().chooseRandomOrder();
+				else
+					match.getBoard().refresh();
 
-				for (int k = 0; k < match.getBoard().getSpaceDie().getDiceNum(); k++) {
+				for (int k = 0; k < 4; k++) { // 4 turns per round TODO: use variable from match
 					controllerPlayer.start();
 					match.newTurn();
 				}

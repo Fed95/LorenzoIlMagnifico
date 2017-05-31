@@ -26,11 +26,11 @@ public class TestMatch {
 
 
 		PersonalBoard personalBoard1 = new PersonalBoard();
-		Player player1 = new Player("player1", personalBoard1, resources);
+		Player player1 = new Player("jack", personalBoard1, resources);
 		players.add(player1);
 
 		PersonalBoard personalBoard2 = new PersonalBoard();
-		Player player2 = new Player("player1", personalBoard1, resources);
+		Player player2 = new Player("jill", personalBoard1, resources);
 		players.add(player2);
 
 		ControllerMatch controllerMatch = new ControllerMatch(players);

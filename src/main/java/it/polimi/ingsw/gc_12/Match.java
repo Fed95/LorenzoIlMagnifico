@@ -7,7 +7,7 @@ import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
 import java.util.*;
 
 public class Match {
-	private List<Player> players = new ArrayList<>(); //This goes to the class Match
+	private List<Player> players = new ArrayList<>();
 	private final List<BonusTile> bonusTiles = new ArrayList<>();
 	private List<CardDevelopment> cards = new ArrayList<>();
 	private List<ExcommunicationTile> excommunicationTiles = new ArrayList<>();
@@ -44,20 +44,20 @@ public class Match {
 	}
 
 	public void init() {
-		board = new Board();
+		board = new Board(players);
 
 		for (Player player : players) {
 			player.init(effectHandler);
 		}
 	}
 
+	//Increments turn counter in TrackTurnOrder
 	public void newTurn() {
 		board.getTrackTurnOrder().newTurn();
 	}
 
 	public void newRound() {
 		board.refresh();
-		board.getTrackTurnOrder().newRound();
 	}
 
 	public void setPlayers(List<Player> players) {
@@ -91,6 +91,7 @@ public class Match {
 	public int getPeriodNum() {
 		return roundNum / 2 + roundNum % 2;
 	}
+
 	public int getTotalPeriodNumber() {
 		return totalPeriodNumber;
 	}

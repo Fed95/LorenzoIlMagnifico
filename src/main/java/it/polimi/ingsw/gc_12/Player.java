@@ -109,18 +109,19 @@ public class Player {
 
 	private void removeResource(List<Resource> newResources, Resource resourceToRemove) throws RuntimeException {
 
-		Resource ownedResource = this.resources.get(resourceToRemove.getType());
-		if(ownedResource.equals(null))
+		try {
+			Resource ownedResource = this.resources.get(resourceToRemove.getType());
+			int newValue = ownedResource.getValue() - resourceToRemove.getValue();
+			if(newValue < 0)
+				throw new RuntimeException("You don't have enough " + ownedResource.getType() + " resources!");
+
+			Resource newResource = ownedResource;
+			newResource.setValue(newValue);
+			newResources.add(newResource);
+
+		}catch(NullPointerException e) {
 			throw new RuntimeException("You don't have any resources!");
-
-		int newValue = ownedResource.getValue() - resourceToRemove.getValue();
-
-		if(newValue < 0)
-			throw new RuntimeException("You don't have enough " + ownedResource.getType() + " resources!");
-
-		Resource newResource = ownedResource;
-		newResource.setValue(newValue);
-		newResources.add(newResource);
+		}
 	}
 
 	public void removeResources(List<Resource> resourcesToRemove) throws RuntimeException {
