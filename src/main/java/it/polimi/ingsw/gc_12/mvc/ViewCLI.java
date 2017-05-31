@@ -26,15 +26,18 @@ public class ViewCLI extends Observable{
 		System.out.println("1 - Place leader card");
 		System.out.println("2 - Activate leader card");
 		System.out.println("3 - Discard leader card");
+		System.out.println("4 - Skip Action");
 
 		while (true) {
 			if(in.hasNextInt()) {
 				switch (in.nextInt()) {
-				case 0:
-					System.out.println("Action 'Place Family Member' chosen");
-					askFamilyMember();
-					break;
-				default:
+					case 0:
+						System.out.println("Action 'Place Family Member' chosen");
+						askFamilyMember();
+						break;
+					case 4:
+						break;
+					default:
 					System.out.println("The specified input is not listed above");
 					in.next();
 				}
