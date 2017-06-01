@@ -8,11 +8,11 @@ import it.polimi.ingsw.gc_12.occupiables.*;
 
 public class ControllerPlayer{
 
-	private Map<Player, ViewCLI> views = new HashMap<>();
+	private Map<Player, View> views = new HashMap<>();
 	private Match match;
 	private Action action;
 	private Player currentPlayer;
-	private FamilyMember familyMember; //TODO: find another way to store this
+	private boolean isFMPlaced;
 
 	public ControllerPlayer(Match match){
 		this.match = match;
@@ -22,41 +22,44 @@ public class ControllerPlayer{
 	private void createViews() {
 		List<Player> players = match.getPlayers();
 		for(Player player : players) {
-			ViewCLI view = new ViewCLI(player, this, match);
+			View view = new CLIAdapter(player, match, this);
 			views.put(player, view);
 		}
 	}
 
 	public void start() {
+		isFMPlaced = false;
 		currentPlayer = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
-		views.get(currentPlayer).askAction();
+		View view = views.get(currentPlayer);
+		view.startTurn();
+		view.askAction(isFMPlaced);
 	}
 
 	public void setFamilyMember(FamilyMemberColor familyMemberColor) throws RuntimeException {
 		FamilyMember familyMember = currentPlayer.getFamilyMember(familyMemberColor);
 		if(familyMember.isBusy())
 			throw new RuntimeException("This FamilyMember is already busy!");
-		this.familyMember = familyMember;
+		action = new ActionPlace(currentPlayer, familyMember);
 		views.get(currentPlayer).askOccupiable();
 	}
 
 	public void setOccupiable(Occupiable occupiable) {
-		//TODO: improve this switch case scenario
-		if(occupiable instanceof TowerFloor) {
-			action = new ActionPlaceOnTower(familyMember, match.getBoard().getTowerSet().getTower(((TowerFloor) occupiable).getType()), (TowerFloor) occupiable);
-		}else if(occupiable instanceof SpaceWork){
-			action = new ActionPlaceOnSpaceWork(familyMember, match.getBoard().getSpaceWorkZones().get(((SpaceWork) occupiable).getWorkType()), (SpaceWork) occupiable);
-		}else if(occupiable instanceof SpaceMarket){
-			action = new ActionPlaceOnMarket(familyMember, (SpaceMarket) occupiable);
-		}else if(occupiable instanceof CouncilPalace){
-			action = new ActionPlaceOnCouncil(familyMember, (CouncilPalace) occupiable);
+
+		if(action instanceof ActionPlace) {
+			FamilyMember familyMember = ((ActionPlace) action).getFamilyMember();
+			action = ActionFactory.getActionPlace(occupiable, familyMember, match);
+			try{
+				action.start();
+				System.out.println(familyMember + " placed on " + occupiable);
+				isFMPlaced = true;
+				views.get(currentPlayer).askAction(isFMPlaced);
+			}catch (RuntimeException e){
+				System.out.println(e.getMessage());
+				views.get(currentPlayer).askOccupiable();
+			}
 		}
-		try{
-			action.start();
-			System.out.println(familyMember + " placed on " + occupiable);
-		}catch (RuntimeException e){
-			System.out.println(e.getMessage());
-			views.get(currentPlayer).askOccupiable();
+		else {
+			//TODO: throw exception
 		}
 	}
 

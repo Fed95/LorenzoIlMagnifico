@@ -5,16 +5,13 @@ import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.occupiables.CouncilPalace;
 
-import java.util.Set;
-
-
-public class ActionPlaceOnCouncil extends Action {
+public class ActionPlaceOnCouncil extends ActionPlace {
 
     private FamilyMember familyMember;
     private CouncilPalace councilPalace;
 
     public ActionPlaceOnCouncil(FamilyMember familyMember, CouncilPalace councilPalace) {
-        super(familyMember.getOwner());
+        super(familyMember.getOwner(), familyMember);
         this.familyMember = familyMember;
         this.councilPalace = councilPalace;
     }
@@ -36,10 +33,5 @@ public class ActionPlaceOnCouncil extends Action {
             councilPalace.placeFamilyMember(familyMember);
         }else
             player.getEffectHandler().discardEffects(event);
-    }
-
-    @Override
-    public Set<Object> getAttributes() {
-        return this.getAttributes();
     }
 }

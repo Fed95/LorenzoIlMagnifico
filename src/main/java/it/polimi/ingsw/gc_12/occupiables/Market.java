@@ -1,8 +1,12 @@
 package it.polimi.ingsw.gc_12.occupiables;
 
+import it.polimi.ingsw.gc_12.FamilyMember;
+import it.polimi.ingsw.gc_12.Zone;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public class Market {
+public class Market implements Zone {
 	
 	private final int numberOfSpaces;
 	private List<SpaceMarket> spaceMarkets;
@@ -39,4 +43,16 @@ public class Market {
 		for(SpaceMarket spaceMarket : spaceMarkets)
 			spaceMarket.free();
     }
+
+	@Override
+	public boolean canBeOccupiedBy(FamilyMember familyMember) {
+		return true;
+	}
+
+	@Override
+	public List<Occupiable> getOccupiables() {
+		List<Occupiable> occupiables = new ArrayList<>();
+		occupiables.addAll(spaceMarkets);
+		return occupiables;
+	}
 }

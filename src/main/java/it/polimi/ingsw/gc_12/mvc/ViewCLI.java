@@ -8,21 +8,27 @@ import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 public class ViewCLI extends Observable{
 
 	private Scanner in = new Scanner(System.in);
-	private ControllerPlayer controllerPlayer;
+	private CLIAdapter controller;
 	private Player player;
 	private Match match;
 
-	public ViewCLI(Player player, ControllerPlayer controllerPlayer, Match match) {
+	public ViewCLI(Player player, CLIAdapter controller, Match match) {
 		this.player = player;
-		this.controllerPlayer = controllerPlayer;
+		this.controller = controller;
 		this.match = match;
 	}
 
-	public void askAction() {
+	public void startTurn() {
 		System.out.println();
 		System.out.println("ROUND " + match.getRoundNUm() + "  ||  " + player.getName());
+	}
+
+	public void askAction(boolean isFMPlaced) {
+		System.out.println();
 		System.out.println("Write the number of the action you want to perform");
-		System.out.println("0 - Place family member");
+
+		if(!isFMPlaced)
+			System.out.println("0 - Place family member");
 		//System.out.println("1 - Place leader card");
 		//System.out.println("2 - Activate leader card");
 		//System.out.println("3 - Discard leader card");
@@ -30,18 +36,7 @@ public class ViewCLI extends Observable{
 
 		while (true) {
 			if(in.hasNextInt()) {
-				switch (in.nextInt()) {
-					case 0:
-						System.out.println("Action 'Place Family Member' chosen");
-						askFamilyMember();
-						break;
-					case 4:
-						break;
-					default:
-					System.out.println("The specified input is not listed above");
-					in.next();
-				}
-
+				controller.setAction(in.nextInt());
 				break;
 			}
 			else {
@@ -74,13 +69,13 @@ public class ViewCLI extends Observable{
 					askFamilyMember();
 				}else if(input == i) {
 					System.out.println(i + "Action discarded");
-					askAction();
+					askAction(false);
 					return;
 				}else {
 					FamilyMemberColor familyMemberColor = familyMemberColors.get(input);
 					System.out.println("familyMember " + familyMemberColor + " chosen ");
 					try {
-						controllerPlayer.setFamilyMember(familyMemberColor);
+						controller.setFamilyMember(familyMemberColor);
 					}catch(RuntimeException e){
 						System.out.println(e.getMessage());
 						askFamilyMember();
@@ -95,10 +90,35 @@ public class ViewCLI extends Observable{
 		}
 	}
 
-	public void askOccupiable() {
-		List<Occupiable> occupiables = match.getBoard().getOccupiables();
+	public void askZone() {
+		List<Zone> zones = match.getBoard().getZones();
 		System.out.println();
 		System.out.println("Write the number of the space you want to place the family member in.");
+
+		int i = 0;
+		for(Zone zone : zones) {
+			System.out.println(i + " - " + zones.get(i));
+			i++;
+		}
+		System.out.println(i + " - Discard action.");
+
+		while (true) {
+			if(in.hasNextInt()) {
+				controller.setZone(in.nextInt());
+				break;
+			}
+			else {
+				System.out.println("The input must be a number. Try again");
+				in.next();
+			}
+		}
+	}
+
+	public void askOccupiable(int zoneIndex) {
+		Zone zone = match.getBoard().getZones().get(zoneIndex);
+		List<Occupiable> occupiables = zone.getOccupiables();
+		System.out.println();
+		System.out.println("Write the number of the zone you want to place the family member in.");
 		int i = 0;
 		for(Occupiable occupiable : occupiables) {
 			System.out.println("occupiable " + occupiable.getOccupiers());
@@ -110,17 +130,8 @@ public class ViewCLI extends Observable{
 		while (true) {
 			if(in.hasNextInt()) {
 				int input = in.nextInt();
-				if(input < 0 || input > i) {
-					System.out.println("The specified input is not listed above");
-					askFamilyMember();
-				}else if(input == i) {
-					askAction();
-					return;				
-				}else{
-					Occupiable occupiable = occupiables.get(input);
-					controllerPlayer.setOccupiable(occupiable);
-					break;
-				}
+				controller.setOccupiable(zoneIndex, input);
+				break;
 			}else {
 				System.out.println("The input must be a number. Try again");
 				in.next();
@@ -142,6 +153,7 @@ public class ViewCLI extends Observable{
 			}
 		}
 	}
+
 
 	public void excommunicationMessage(){
 		System.out.println("YOU HAVE BEEN EXCOMMUNICATED");

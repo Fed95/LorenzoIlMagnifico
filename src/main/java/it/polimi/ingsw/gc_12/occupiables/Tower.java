@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import it.polimi.ingsw.gc_12.FamilyMember;
+import it.polimi.ingsw.gc_12.FamilyMemberColor;
 import it.polimi.ingsw.gc_12.Match;
+import it.polimi.ingsw.gc_12.Zone;
 import it.polimi.ingsw.gc_12.card.*;
 import it.polimi.ingsw.gc_12.effect.*;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.resource.*;
 
-public class Tower {
+public class Tower implements Zone {
 	private final CardType type;
 	private final List<TowerFloor> floors = new ArrayList<>();
 	private Map<Integer, CardDeck> decks;
@@ -49,6 +52,28 @@ public class Tower {
 		}
 	}
 
+	@Override
+	public boolean canBeOccupiedBy(FamilyMember familyMember) {
+		if (familyMember.getColor().equals(FamilyMemberColor.NEUTRAL))
+			return true;
+
+		for (TowerFloor floor : floors)
+			for (FamilyMember occupier : floor.getOccupiers())
+				if (!occupier.getColor().equals(FamilyMemberColor.NEUTRAL) && familyMember.getOwner().equals(occupier.getOwner()))
+					return false;
+		return true;
+	}
+
+	@Override
+	public List<Occupiable> getOccupiables() {
+		List<Occupiable> occupiables = new ArrayList<>();
+		for(TowerFloor floor : floors) {
+			if(!floor.isOccupied())
+				occupiables.add(floor);
+		}
+		return occupiables;
+	}
+
 	//Fills all floors with new cards picked from the deck corresponding to the current period
 	public void refresh(){
 		for(TowerFloor floor : floors)
@@ -63,6 +88,7 @@ public class Tower {
 			floor.getEffects().add(towerTakenMalusEffect);
 		}
 	}
+
 	public void deactivateMalus(){
 		for(TowerFloor floor : floors){
 			floor.getEffects().remove(towerTakenMalus);
@@ -75,5 +101,4 @@ public class Tower {
 	public String toString() {
 		return "Tower of type " + type + ", floors=" + floors;
 	}
-
 }

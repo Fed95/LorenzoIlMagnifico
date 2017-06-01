@@ -7,18 +7,14 @@ import it.polimi.ingsw.gc_12.occupiables.SpaceWork;
 import it.polimi.ingsw.gc_12.occupiables.SpaceWorkSingle;
 import it.polimi.ingsw.gc_12.occupiables.SpaceWorkZone;
 
-
-import java.util.Set;
-
-
-public class ActionPlaceOnSpaceWork extends Action{
+public class ActionPlaceOnSpaceWork extends ActionPlace {
 
     private FamilyMember familyMember;
     private SpaceWorkZone spaceWorkZone;
     private SpaceWork spaceWork;
 
     public ActionPlaceOnSpaceWork(FamilyMember familyMember, SpaceWorkZone spaceWorkZone, SpaceWork spaceWork) {
-        super(familyMember.getOwner());
+        super(familyMember.getOwner(), familyMember);
         this.familyMember = familyMember;
         this.spaceWorkZone = spaceWorkZone;
         this.spaceWork = spaceWork;
@@ -47,11 +43,5 @@ public class ActionPlaceOnSpaceWork extends Action{
             spaceWork.placeFamilyMember(familyMember);
         }else
             player.getEffectHandler().discardEffects(event);
-    }
-
-
-    @Override
-    public Set<Object> getAttributes() {
-        return this.getAttributes();
     }
 }

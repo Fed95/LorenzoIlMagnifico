@@ -5,16 +5,13 @@ import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.occupiables.SpaceMarket;
 
-import java.util.Set;
-
-
-public class ActionPlaceOnMarket extends Action {
+public class ActionPlaceOnMarket extends ActionPlace {
 
     private FamilyMember familyMember;
     private SpaceMarket spaceMarket;
 
     public ActionPlaceOnMarket(FamilyMember familyMember, SpaceMarket spaceMarket) {
-        super(familyMember.getOwner());
+        super(familyMember.getOwner(), familyMember);
         this.familyMember = familyMember;
         this.spaceMarket = spaceMarket;
     }
@@ -40,8 +37,4 @@ public class ActionPlaceOnMarket extends Action {
             player.getEffectHandler().discardEffects(event);
     }
 
-    @Override
-    public Set<Object> getAttributes() {
-        return this.getAttributes();
-    }
 }

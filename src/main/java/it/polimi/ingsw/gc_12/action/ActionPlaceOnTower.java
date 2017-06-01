@@ -7,16 +7,14 @@ import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.occupiables.Tower;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 
-import java.util.Set;
-
-public class ActionPlaceOnTower extends Action{
+public class ActionPlaceOnTower extends ActionPlace {
 
     private FamilyMember familyMember;
     private Tower tower;
     private TowerFloor towerFloor;
 
     public ActionPlaceOnTower(FamilyMember familyMember, Tower tower, TowerFloor towerFloor) {
-        super(familyMember.getOwner());
+        super(familyMember.getOwner(), familyMember);
         this.tower = tower;
         this.familyMember = familyMember;
         this.towerFloor = towerFloor;
@@ -54,11 +52,5 @@ public class ActionPlaceOnTower extends Action{
             towerFloor.placeFamilyMember(familyMember);
         }else
             player.getEffectHandler().discardEffects(event);
-    }
-
-
-    @Override
-    public Set<Object> getAttributes() {
-        return null;
     }
 }

@@ -2,11 +2,12 @@ package it.polimi.ingsw.gc_12.occupiables;
 
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.FamilyMemberColor;
+import it.polimi.ingsw.gc_12.Zone;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpaceWorkZone {
+public class SpaceWorkZone implements Zone {
 
     private List<SpaceWork> spaceWorks = new ArrayList<>();
 
@@ -18,13 +19,14 @@ public class SpaceWorkZone {
     }
 
     //Checks whether the workspace is already taken by a member of the same family
-    public boolean canBeOccupiedBy(FamilyMember occupier) {
-        if(occupier.getColor().equals(FamilyMemberColor.NEUTRAL))
+    @Override
+    public boolean canBeOccupiedBy(FamilyMember familyMember) {
+        if(familyMember.getColor().equals(FamilyMemberColor.NEUTRAL))
             return true;
 
         for(SpaceWork spaceWork : spaceWorks)
-            for(FamilyMember i: spaceWork.getOccupiers())
-                if(!occupier.getColor().equals(FamilyMemberColor.NEUTRAL) && occupier.getOwner().equals(i.getOwner()))
+            for(FamilyMember occupier: spaceWork.getOccupiers())
+                if(!occupier.getColor().equals(FamilyMemberColor.NEUTRAL) && familyMember.getOwner().equals(occupier.getOwner()))
                     return false;
         return true;
     }
@@ -40,5 +42,17 @@ public class SpaceWorkZone {
     public void refresh() {
         for(SpaceWork spaceWork : spaceWorks)
             spaceWork.free();
+    }
+
+    @Override
+    public List<Occupiable> getOccupiables() {
+        List<Occupiable> occupiables = new ArrayList<>();
+        for(SpaceWork spaceWork : spaceWorks) {
+            if(!spaceWork.isOccupied()) {
+                occupiables.add(spaceWork);
+                break;
+            }
+        }
+        return occupiables;
     }
 }

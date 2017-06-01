@@ -97,6 +97,15 @@ public class Board {
 		return occupiables;
 	}
 
+	public List<Zone> getZones() {
+		List<Zone> zones = new ArrayList<>();
+		zones.addAll(towerSet.getTowers().values());
+		zones.addAll(spaceWorkZones.values());
+		zones.add(councilPalace);
+		zones.add(market);
+		return zones;
+	}
+
 	public TrackFaithPoints getTrackFaithPoints() {
 		return trackFaithPoints;
 	}
