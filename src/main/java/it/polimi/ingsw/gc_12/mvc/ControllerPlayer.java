@@ -65,8 +65,13 @@ public class ControllerPlayer{
 		if (support) {
 			player.supportChurch();
 		}else{
-			player.receiveExcommunication();
+			receiveExcommunication(player);
 		}
+	}
+
+	public void receiveExcommunication(Player player){
+		player.receiveExcommunication();
+		views.get(player).excommunicationMessage();
 	}
 
 }

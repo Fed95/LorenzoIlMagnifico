@@ -23,10 +23,10 @@ public class ViewCLI extends Observable{
 		System.out.println("ROUND " + match.getRoundNUm() + "  ||  " + player.getName());
 		System.out.println("Write the number of the action you want to perform");
 		System.out.println("0 - Place family member");
-		System.out.println("1 - Place leader card");
-		System.out.println("2 - Activate leader card");
-		System.out.println("3 - Discard leader card");
-		System.out.println("4 - Skip Action");
+		//System.out.println("1 - Place leader card");
+		//System.out.println("2 - Activate leader card");
+		//System.out.println("3 - Discard leader card");
+		System.out.println("1 - Skip Action");
 
 		while (true) {
 			if(in.hasNextInt()) {
@@ -58,8 +58,10 @@ public class ViewCLI extends Observable{
 		List<FamilyMemberColor> familyMemberColors = Arrays.asList(FamilyMemberColor.values());
 		Map<FamilyMemberColor, FamilyMember> familyMembers = player.getFamilymembers();
 		for(FamilyMemberColor familyMemberColor : familyMemberColors) {
-			System.out.println(i + " - " + familyMembers.get(familyMemberColor));
-			i++;
+			if(!familyMembers.get(familyMemberColor).isBusy()) {
+				System.out.println(i + " - " + familyMembers.get(familyMemberColor));
+				i++;
+			}
 		}
 
 		System.out.println(i + " - Discard action.");
@@ -141,7 +143,7 @@ public class ViewCLI extends Observable{
 		}
 	}
 
-	public void printError(String error) {
-		System.out.println(error);
+	public void excommunicationMessage(){
+		System.out.println("YOU HAVE BEEN EXCOMMUNICATED");
 	}
 }

@@ -43,7 +43,7 @@ public class ControllerMatch {
 			if(match.getBoard().getTrackFaithPoints().isPlayerSafe(player))
 				controllerPlayer.vaticanReport(player);
 			else
-				player.receiveExcommunication();
+				controllerPlayer.receiveExcommunication(player);
 		}
 	}
 }

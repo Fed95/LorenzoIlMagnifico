@@ -10,4 +10,5 @@ public class ResourceContainer {
         this.type = type;
         quantity = 0;
     }
+    //TODO: decide wether this class is actually needed
 }
