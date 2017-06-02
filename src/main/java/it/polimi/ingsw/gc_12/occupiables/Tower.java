@@ -99,6 +99,6 @@ public class Tower implements Zone {
 
 	@Override
 	public String toString() {
-		return "Tower of type " + type + ", floors=" + floors;
+		return "Tower of type " + type;
 	}
 }

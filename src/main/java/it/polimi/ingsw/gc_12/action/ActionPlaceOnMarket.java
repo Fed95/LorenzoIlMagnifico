@@ -7,12 +7,10 @@ import it.polimi.ingsw.gc_12.occupiables.SpaceMarket;
 
 public class ActionPlaceOnMarket extends ActionPlace {
 
-    private FamilyMember familyMember;
     private SpaceMarket spaceMarket;
 
     public ActionPlaceOnMarket(FamilyMember familyMember, SpaceMarket spaceMarket) {
         super(familyMember.getOwner(), familyMember);
-        this.familyMember = familyMember;
         this.spaceMarket = spaceMarket;
     }
 

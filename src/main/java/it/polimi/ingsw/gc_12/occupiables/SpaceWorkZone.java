@@ -2,7 +2,9 @@ package it.polimi.ingsw.gc_12.occupiables;
 
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.FamilyMemberColor;
+import it.polimi.ingsw.gc_12.WorkType;
 import it.polimi.ingsw.gc_12.Zone;
+import it.polimi.ingsw.gc_12.resource.ResourceType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,5 +56,14 @@ public class SpaceWorkZone implements Zone {
             }
         }
         return occupiables;
+    }
+
+    public WorkType getType(){
+        return spaceWorks.get(0).getWorkType();
+    }
+
+    @Override
+    public String toString() {
+        return "Work Zone of type: " + this.getType();
     }
 }

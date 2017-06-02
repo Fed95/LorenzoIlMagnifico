@@ -9,14 +9,12 @@ import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 
 public class ActionPlaceOnTower extends ActionPlace {
 
-    private FamilyMember familyMember;
     private Tower tower;
     private TowerFloor towerFloor;
 
     public ActionPlaceOnTower(FamilyMember familyMember, Tower tower, TowerFloor towerFloor) {
         super(familyMember.getOwner(), familyMember);
         this.tower = tower;
-        this.familyMember = familyMember;
         this.towerFloor = towerFloor;
     }
 
@@ -28,15 +26,16 @@ public class ActionPlaceOnTower extends ActionPlace {
             throw new RuntimeException("This TowerFloor is already taken!");
         if(!towerFloor.isRequiredValueSatisfied(familyMember))
             throw new RuntimeException("This FamilyMember does not satisfy the required value for this placement!");
-
-        /*TODO: this section needs the cards to be loaded from Json first
-        if(!towerFloor.getCard().equals(null)) {
+        try {
             //Throws multiple exceptions
             player.hasResources(towerFloor.getCard().getRequirements());
             //Throws multiple exceptions
-           player.getPersonalBoard().canPlaceCard(player, towerFloor.getCard());
+            player.getPersonalBoard().canPlaceCard(player, towerFloor.getCard());
+        }catch(NullPointerException e){
+            //TODO: waiting for Json cards
+           // throw new RuntimeException("There is no card on this floor!");
         }
-        */
+
         return true;
     }
 

@@ -9,13 +9,11 @@ import it.polimi.ingsw.gc_12.occupiables.SpaceWorkZone;
 
 public class ActionPlaceOnSpaceWork extends ActionPlace {
 
-    private FamilyMember familyMember;
     private SpaceWorkZone spaceWorkZone;
     private SpaceWork spaceWork;
 
     public ActionPlaceOnSpaceWork(FamilyMember familyMember, SpaceWorkZone spaceWorkZone, SpaceWork spaceWork) {
         super(familyMember.getOwner(), familyMember);
-        this.familyMember = familyMember;
         this.spaceWorkZone = spaceWorkZone;
         this.spaceWork = spaceWork;
     }

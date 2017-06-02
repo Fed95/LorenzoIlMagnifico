@@ -7,12 +7,10 @@ import it.polimi.ingsw.gc_12.occupiables.CouncilPalace;
 
 public class ActionPlaceOnCouncil extends ActionPlace {
 
-    private FamilyMember familyMember;
     private CouncilPalace councilPalace;
 
     public ActionPlaceOnCouncil(FamilyMember familyMember, CouncilPalace councilPalace) {
         super(familyMember.getOwner(), familyMember);
-        this.familyMember = familyMember;
         this.councilPalace = councilPalace;
     }
 

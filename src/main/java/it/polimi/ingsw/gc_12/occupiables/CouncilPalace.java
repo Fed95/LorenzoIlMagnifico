@@ -28,5 +28,8 @@ public class CouncilPalace extends Occupiable implements Zone {
         return new ArrayList<>(Collections.singletonList(this));
     }
 
-
+    @Override
+    public String toString() {
+        return "Council Palace";
+    }
 }

@@ -55,4 +55,9 @@ public class Market implements Zone {
 		occupiables.addAll(spaceMarkets);
 		return occupiables;
 	}
+
+	@Override
+	public String toString() {
+		return "Market";
+	}
 }
