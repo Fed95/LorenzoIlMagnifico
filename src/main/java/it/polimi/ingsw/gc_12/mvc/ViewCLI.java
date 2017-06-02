@@ -4,6 +4,7 @@ import java.util.*;
 
 import it.polimi.ingsw.gc_12.*;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
+import it.polimi.ingsw.gc_12.resource.ResourceType;
 
 public class ViewCLI extends Observable{
 
@@ -157,5 +158,17 @@ public class ViewCLI extends Observable{
 
 	public void excommunicationMessage(){
 		System.out.println("YOU HAVE BEEN EXCOMMUNICATED");
+	}
+
+	public int askServants(int requiredServants) {
+		System.out.println("You have " + player.getResourceValue(ResourceType.SERVANT) + " servants.");
+		System.out.println("How many servants would you like to use? (min: " + requiredServants + ")");
+		while(true) {
+			int choice = in.nextInt();
+			if (choice >= requiredServants && choice <= player.getResourceValue(ResourceType.SERVANT))
+				return choice;
+			else
+				System.out.println("That won't do... Please try again.");
+		}
 	}
 }

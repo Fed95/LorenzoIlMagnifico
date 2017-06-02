@@ -100,4 +100,9 @@ public class CLIAdapter implements View{
 	public void excommunicationMessage() {
 		view.excommunicationMessage();
 	}
+
+	@Override
+	public int askServants(int requiredServants) {
+		return view.askServants(requiredServants);
+	}
 }

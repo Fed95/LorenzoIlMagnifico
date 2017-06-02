@@ -1,6 +1,7 @@
 package it.polimi.ingsw.gc_12.action;
 
 import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 
 public abstract class Action {
 	
@@ -14,5 +15,5 @@ public abstract class Action {
 		return player;
 	}
 
-	public abstract void start() throws RuntimeException;
+	public abstract void start() throws RuntimeException, RequiredValueNotSatisfiedException;
 }

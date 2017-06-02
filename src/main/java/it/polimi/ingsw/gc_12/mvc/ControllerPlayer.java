@@ -4,7 +4,12 @@ import java.util.*;
 
 import it.polimi.ingsw.gc_12.*;
 import it.polimi.ingsw.gc_12.action.*;
+import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.occupiables.*;
+import it.polimi.ingsw.gc_12.resource.Resource;
+import it.polimi.ingsw.gc_12.resource.ResourceType;
+import it.polimi.ingsw.gc_12.resource.Servant;
+import it.polimi.ingsw.gc_12.resource.Stone;
 
 public class ControllerPlayer{
 
@@ -48,18 +53,35 @@ public class ControllerPlayer{
 		if(action instanceof ActionPlace) {
 			FamilyMember familyMember = ((ActionPlace) action).getFamilyMember();
 			action = ActionFactory.getActionPlace(occupiable, familyMember, match);
+			View view = views.get(currentPlayer);
 			try{
 				action.start();
 				System.out.println(familyMember + " placed on " + occupiable);
 				isFMPlaced = true;
-				views.get(currentPlayer).askAction(isFMPlaced);
+				view.askAction(isFMPlaced);
 			}catch (RuntimeException e){
 				System.out.println(e.getMessage());
-				views.get(currentPlayer).askOccupiable();
+				view.askOccupiable();
+			}catch (RequiredValueNotSatisfiedException e){
+				//TODO: implement bonus / malus check
+				int requiredServants = occupiable.getRequiredValue() - familyMember.getValue();
+				if(currentPlayer.getResourceValue(ResourceType.SERVANT) < requiredServants) {
+					System.out.println("You don't have enough Servants for this placement");
+					view.askOccupiable();
+				}else{
+					int usedServants = view.askServants(requiredServants);
+					familyMember.setValue(familyMember.getValue() + usedServants);
+					List<Resource> servants = new ArrayList<>();
+					servants.add(new Servant(usedServants));
+					currentPlayer.removeResources(servants);
+					System.out.println(familyMember + " placed on " + occupiable);
+					view.askAction(true);
+				}
 			}
 		}
 		else {
 			//TODO: throw exception
+			throw new RuntimeException();
 		}
 	}
 

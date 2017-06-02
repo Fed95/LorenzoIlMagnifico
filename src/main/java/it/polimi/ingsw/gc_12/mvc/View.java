@@ -7,4 +7,6 @@ public interface View {
 	void askOccupiable();
 	boolean supportChurch();
 	void excommunicationMessage();
+
+    int askServants(int requiredServants);
 }
