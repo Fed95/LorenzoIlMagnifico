@@ -20,4 +20,9 @@ public abstract class Resource {
 	public ResourceType getType(){
 		return type;
 	}
+
+	@Override
+	public String toString() {
+		return type + ": " + value;
+	}
 }

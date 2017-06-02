@@ -4,18 +4,19 @@ import java.util.*;
 
 import it.polimi.ingsw.gc_12.*;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
+import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 
 public class ViewCLI extends Observable{
 
 	private Scanner in = new Scanner(System.in);
-	private CLIAdapter controller;
+	private CLIAdapter adapter;
 	private Player player;
 	private Match match;
 
-	public ViewCLI(Player player, CLIAdapter controller, Match match) {
+	public ViewCLI(Player player, CLIAdapter adapter, Match match) {
 		this.player = player;
-		this.controller = controller;
+		this.adapter = adapter;
 		this.match = match;
 	}
 
@@ -30,14 +31,15 @@ public class ViewCLI extends Observable{
 
 		if(!isFMPlaced)
 			System.out.println("0 - Place family member");
-		//System.out.println("1 - Place leader card");
-		//System.out.println("2 - Activate leader card");
-		//System.out.println("3 - Discard leader card");
-		System.out.println("1 - Skip Action");
+		//System.out.println("2 - Place leader card");
+		//System.out.println("3 - Activate leader card");
+		//System.out.println("4 - Discard leader card");
+		System.out.println("1 - View Statistics");
+		System.out.println("2 - Skip Action");
 
 		while (true) {
 			if(in.hasNextInt()) {
-				controller.setAction(in.nextInt(), isFMPlaced);
+				adapter.setAction(in.nextInt(), isFMPlaced);
 				break;
 			}
 			else {
@@ -69,14 +71,14 @@ public class ViewCLI extends Observable{
 					System.out.println("The specified input is not listed above");
 					askFamilyMember();
 				}else if(input == i) {
-					System.out.println(i + "Action discarded");
+					System.out.println("Action discarded");
 					askAction(false);
 					return;
 				}else {
 					FamilyMemberColor familyMemberColor = familyMemberColors.get(input);
 					System.out.println("familyMember " + familyMemberColor + " chosen ");
 					try {
-						controller.setFamilyMember(familyMemberColor);
+						adapter.setFamilyMember(familyMemberColor);
 					}catch(RuntimeException e){
 						System.out.println(e.getMessage());
 						askFamilyMember();
@@ -98,14 +100,14 @@ public class ViewCLI extends Observable{
 
 		int i = 0;
 		for(Zone zone : zones) {
-			System.out.println(i + " - " + zones.get(i));
+			System.out.println(i + " - " + zone);
 			i++;
 		}
 		System.out.println(i + " - Discard action.");
 
 		while (true) {
 			if(in.hasNextInt()) {
-				controller.setZone(in.nextInt());
+				adapter.setZone(in.nextInt());
 				break;
 			}
 			else {
@@ -131,7 +133,7 @@ public class ViewCLI extends Observable{
 		while (true) {
 			if(in.hasNextInt()) {
 				int input = in.nextInt();
-				controller.setOccupiable(zoneIndex, input);
+				adapter.setOccupiable(zoneIndex, input);
 				break;
 			}else {
 				System.out.println("The input must be a number. Try again");
@@ -141,8 +143,8 @@ public class ViewCLI extends Observable{
 	}
 
 	public boolean supportChurch(){
+		System.out.println("Will you show your sustain to the church? [YES / NO]");
 		while(true) {
-			System.out.println("Will you show your sustain to the church? [YES / NO]");
 			String choice = in.next();
 			switch (choice) {
 				case "yes":
@@ -157,7 +159,7 @@ public class ViewCLI extends Observable{
 
 
 	public void excommunicationMessage(){
-		System.out.println("YOU HAVE BEEN EXCOMMUNICATED");
+		System.out.println("--- YOU HAVE BEEN EXCOMMUNICATED ---");
 	}
 
 	public int askServants(int requiredServants) {
@@ -170,5 +172,32 @@ public class ViewCLI extends Observable{
 			else
 				System.out.println("That won't do... Please try again.");
 		}
+	}
+
+	public int viewStatistics() {
+		int i = 0;
+		System.out.println("Who's statistics would you like to view?");
+		for(Player player : match.getPlayers()){
+			System.out.println(i + " - " + player.getName());
+			i++;
+		}
+		System.out.println(i + " - Go back.");
+		int choice = in.nextInt();
+		if(choice == i)
+			adapter.askAction();
+		return choice;
+	}
+
+	public void viewStatistics(Player player) {
+		System.out.println("Viewing statistics of: " + player.getName());
+		for(Resource resource : player.getResources().values()){
+			System.out.println(resource);
+		}
+		for (FamilyMember familyMember : player.getFamilymembers().values()){
+			System.out.println(familyMember);
+		}
+		System.out.println();
+		System.out.println();
+		viewStatistics();
 	}
 }

@@ -17,6 +17,7 @@ public class ControllerPlayer{
 	private Match match;
 	private Action action;
 	private Player currentPlayer;
+	//TODO : check continuity of this variable
 	private boolean isFMPlaced;
 
 	public ControllerPlayer(Match match){
@@ -37,7 +38,7 @@ public class ControllerPlayer{
 		currentPlayer = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
 		View view = views.get(currentPlayer);
 		view.startTurn();
-		view.askAction(isFMPlaced);
+		view.askAction();
 	}
 
 	public void setFamilyMember(FamilyMemberColor familyMemberColor) throws RuntimeException {
@@ -58,7 +59,7 @@ public class ControllerPlayer{
 				action.start();
 				System.out.println(familyMember + " placed on " + occupiable);
 				isFMPlaced = true;
-				view.askAction(isFMPlaced);
+				view.askAction();
 			}catch (RuntimeException e){
 				System.out.println(e.getMessage());
 				view.askOccupiable();
@@ -75,7 +76,7 @@ public class ControllerPlayer{
 					servants.add(new Servant(usedServants));
 					currentPlayer.removeResources(servants);
 					System.out.println(familyMember + " placed on " + occupiable);
-					view.askAction(true);
+					view.askAction();
 				}
 			}
 		}
@@ -99,4 +100,11 @@ public class ControllerPlayer{
 		views.get(player).excommunicationMessage();
 	}
 
+	public void viewStatistics() {
+		views.get(currentPlayer).viewStatistics();
+	}
+
+	public boolean isFMPlaced() {
+		return isFMPlaced;
+	}
 }

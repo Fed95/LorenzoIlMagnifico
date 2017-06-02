@@ -27,14 +27,18 @@ public class CLIAdapter implements View{
 	}
 
 	@Override
-	public void askAction(boolean isFMPlaced) {
+	public void askAction() {
+		boolean isFMPlaced = controller.isFMPlaced();
 		view.askAction(isFMPlaced);
 	}
 
 	public void setAction(int actionNum, boolean isFmPlaced) {
 
-		switch (actionNum) {
-			case 1:
+		switch (actionNum) { // must keep 'case 0' last
+			case 2:
+				break;
+			case 1: // View statistics
+				controller.viewStatistics();
 				break;
 			case 0: // Place Family Member
 				if(!isFmPlaced) {
@@ -65,7 +69,7 @@ public class CLIAdapter implements View{
 			view.askZone();
 		}
 		else if(index == zones.size()) {
-			askAction(false);
+			askAction();
 		}
 		else {
 			if(zone instanceof Occupiable) {
@@ -84,7 +88,7 @@ public class CLIAdapter implements View{
 			System.out.println("The specified input is not listed above");
 			view.askOccupiable(zoneIndex);
 		}else if(occupiableIndex == occupiables.size()) {
-			askAction(false);
+			askAction();
 		}else{
 			Occupiable occupiable = occupiables.get(occupiableIndex);
 			controller.setOccupiable(occupiable);
@@ -104,5 +108,11 @@ public class CLIAdapter implements View{
 	@Override
 	public int askServants(int requiredServants) {
 		return view.askServants(requiredServants);
+	}
+
+	@Override
+	public void viewStatistics() {
+		int choice = view.viewStatistics();
+		view.viewStatistics(match.getPlayers().get(choice));
 	}
 }

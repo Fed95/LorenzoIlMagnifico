@@ -91,6 +91,6 @@ public class FamilyMember implements Observer {
 
 	@Override
 	public String toString() {
-		return "FamilyMember [Owner: " +getOwner().getName()+ ", color: " + color + ", value: " + value + "]";
+		return "FamilyMember [Owner: " +getOwner().getName()+ ", color: " + color + ", value: " + value + ", busy: " + isBusy() + "]";
 	}
 }
