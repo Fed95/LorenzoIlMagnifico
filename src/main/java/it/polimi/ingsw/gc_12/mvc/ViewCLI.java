@@ -36,7 +36,7 @@ public class ViewCLI extends Observable{
 
 		while (true) {
 			if(in.hasNextInt()) {
-				controller.setAction(in.nextInt());
+				controller.setAction(in.nextInt(), isFMPlaced);
 				break;
 			}
 			else {
@@ -93,7 +93,7 @@ public class ViewCLI extends Observable{
 	public void askZone() {
 		List<Zone> zones = match.getBoard().getZones();
 		System.out.println();
-		System.out.println("Write the number of the space you want to place the family member in.");
+		System.out.println("Write the number of the zone you want to place the family member in.");
 
 		int i = 0;
 		for(Zone zone : zones) {
@@ -118,7 +118,7 @@ public class ViewCLI extends Observable{
 		Zone zone = match.getBoard().getZones().get(zoneIndex);
 		List<Occupiable> occupiables = zone.getOccupiables();
 		System.out.println();
-		System.out.println("Write the number of the zone you want to place the family member in.");
+		System.out.println("Write the number of the space you want to place the family member in.");
 		int i = 0;
 		for(Occupiable occupiable : occupiables) {
 			System.out.println("occupiable " + occupiable.getOccupiers());

@@ -31,13 +31,19 @@ public class CLIAdapter implements View{
 		view.askAction(isFMPlaced);
 	}
 
-	public void setAction(int actionNum) {
+	public void setAction(int actionNum, boolean isFmPlaced) {
 
 		switch (actionNum) {
-			case 0: // Place Family Member
-				view.askFamilyMember();
+			case 1:
 				break;
+			case 0: // Place Family Member
+				if(!isFmPlaced) {
+					view.askFamilyMember();
+					break;
+				}
 			default:
+				System.out.println("The specified input is not listed above");
+				view.askAction(isFmPlaced);
 				break;
 		}
 	}
