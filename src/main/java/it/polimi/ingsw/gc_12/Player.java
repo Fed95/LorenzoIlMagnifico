@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import it.polimi.ingsw.gc_12.event.EventReceiveExcommunication;
 import it.polimi.ingsw.gc_12.event.EventSupportChurch;
 import it.polimi.ingsw.gc_12.personal_board.PersonalBoard;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
@@ -13,7 +12,6 @@ import it.polimi.ingsw.gc_12.resource.ResourceExchange;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.card.Card;
-import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.effect.EffectHandler;
 import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.track.FaithSlot;
@@ -25,6 +23,7 @@ public class Player {
 	private PersonalBoard personalBoard;
 	private EffectHandler effectHandler;
 	private List<Card> cards = new ArrayList<>();
+	private List<ExcommunicationTile> excommunications;
 	private Map<ResourceType, Resource> resources;
 	private Map<FamilyMemberColor, FamilyMember> familymembers = new HashMap<>();
 
@@ -41,23 +40,6 @@ public class Player {
 			familymembers.put(color, new FamilyMember(this, color));
 		}
 	}
-	
-	public void rollDice(){
-		match.getBoard().getSpaceDie().rollDice();
-	}
-
-	/*
-	public void placeFamilyMember(FamilyMember familyMember, Occupiable occupiable) throws RuntimeException {
-		Event event = new EventPlaceFamilyMember(this, occupiable, familyMember);
-		effectHandler.executeEffects(event);
-		try {
-			occupiable.placeFamilyMember(familyMember);
-		} catch(Exception e){
-			effectHandler.discardEffects(event);
-			throw e;
-		}
-	}
-	*/
 
 	public void supportChurch() {
 		EffectProvider faithSlot = Match.instance().getBoard().getFaithSlots().get(this.resources.get(ResourceType.FAITH_POINT).getValue());
@@ -72,18 +54,10 @@ public class Player {
 
 	}
 
-	public void receiveExcommunication(){
-		EffectProvider excommunicationTile = Match.instance().getBoard().getExcommunicationSpace().getTiles().get(Match.instance().getPeriodNum());
-		Event event = new EventReceiveExcommunication(this, (ExcommunicationTile) excommunicationTile);
-
-		try {
-			effectHandler.executeEffects(event);
-		}catch(RuntimeException e){
-			//This exception is never actually thrown for this event
-		}
+	public void receiveExcommunication(ExcommunicationTile excommunicationTile){
+		excommunications.add(excommunicationTile);
 	}
 
-	
 	private void addResource(Resource resource) {
 		if(resource == null)
 			return;
@@ -108,9 +82,17 @@ public class Player {
 
 	private void removeResource(List<Resource> newResources, Resource resourceToRemove) throws RuntimeException {
 
+		System.out.println("player: trying to remove " + resourceToRemove);
+
 		try {
 			Resource ownedResource = this.resources.get(resourceToRemove.getType());
+
+			System.out.println("player: owned resource: " + ownedResource);
+
 			int newValue = ownedResource.getValue() - resourceToRemove.getValue();
+
+			System.out.println("player: new resource value: " + newValue);
+
 			if(newValue < 0)
 				throw new RuntimeException("You don't have enough " + ownedResource.getType() + " resources!");
 
@@ -175,20 +157,16 @@ public class Player {
 		return cards;
 	}
 
-	public List<Effect> getCardsEffects() {
-		List<Effect> cardsEffects = new ArrayList<>();
-		for(Card card : cards) {
-			cardsEffects.addAll(card.getEffects());
-		}
-
-		return cardsEffects;
-	}
-
 	public EffectHandler getEffectHandler(){
 		return effectHandler;
 	}
 
 	public void addCard(Card card) {
 		cards.add(card);
+	}
+
+
+	public List<ExcommunicationTile> getExcommunications() {
+		return excommunications;
 	}
 }

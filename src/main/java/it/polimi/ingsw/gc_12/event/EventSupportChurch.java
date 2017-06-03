@@ -21,7 +21,9 @@ public class EventSupportChurch extends Event {
 
     @Override
     public List<Object> getAttributes() {
-        return this.getAttributes();
+        List<Object> attributes = new ArrayList<>();
+        attributes.add(faithSlot);
+        return attributes;
     }
 
     @Override

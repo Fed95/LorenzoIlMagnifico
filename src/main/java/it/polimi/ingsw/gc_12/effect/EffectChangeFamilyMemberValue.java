@@ -19,14 +19,14 @@ public class EffectChangeFamilyMemberValue extends Effect{
 	public void execute(Event event) {
 		if(event instanceof EventPlaceFamilyMember) {
 			EventPlaceFamilyMember eventSpecific = (EventPlaceFamilyMember) event;
-			System.out.println("inside first if");
+			//System.out.println("inside first if");
 			FamilyMember familyMember = eventSpecific.getFamilyMember();
-			System.out.println(familyMember.hashCode());
+			//System.out.println(familyMember.hashCode());
 			changeFamilyMemberValue(familyMember, amount);
 		}
 		else {
 			Map<FamilyMemberColor, FamilyMember> familyMembers = event.getPlayer().getFamilymembers();
-			System.out.println("inside first else");
+			//System.out.println("inside first else");
 			for(FamilyMember familyMember: familyMembers.values()) {
 				changeFamilyMemberValue(familyMember, amount);
 			}
@@ -49,8 +49,8 @@ public class EffectChangeFamilyMemberValue extends Effect{
 	
 	private void changeFamilyMemberValue(FamilyMember familyMember, int amount) {
 		int oldValue = familyMember.getValue();
-		System.out.println(oldValue);
+		//System.out.println(oldValue);
 		familyMember.setValue(oldValue + amount);
-		System.out.println(familyMember.getValue());
+		//System.out.println(familyMember.getValue());
 	}
 }

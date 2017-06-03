@@ -114,5 +114,6 @@ public class CLIAdapter implements View{
 	public void viewStatistics() {
 		int choice = view.viewStatistics();
 		view.viewStatistics(match.getPlayers().get(choice));
+		this.askAction();
 	}
 }

@@ -16,10 +16,6 @@ public class SpaceWorkZone implements Zone {
     public SpaceWorkZone(){
     }
 
-    public boolean placeFamilyMember(){
-        return false;
-    }
-
     //Checks whether the workspace is already taken by a member of the same family
     @Override
     public boolean canBeOccupiedBy(FamilyMember familyMember) {
@@ -50,10 +46,7 @@ public class SpaceWorkZone implements Zone {
     public List<Occupiable> getOccupiables() {
         List<Occupiable> occupiables = new ArrayList<>();
         for(SpaceWork spaceWork : spaceWorks) {
-            if(!spaceWork.isOccupied()) {
-                occupiables.add(spaceWork);
-                break;
-            }
+            occupiables.add(spaceWork);
         }
         return occupiables;
     }

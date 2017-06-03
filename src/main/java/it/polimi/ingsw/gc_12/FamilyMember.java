@@ -93,4 +93,14 @@ public class FamilyMember implements Observer {
 	public String toString() {
 		return "FamilyMember [Owner: " +getOwner().getName()+ ", color: " + color + ", value: " + value + ", busy: " + isBusy() + "]";
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == null)
+			return true;
+		else {
+			FamilyMember other = (FamilyMember) obj;
+			return this.getColor().equals(other.getColor());
+		}
+	}
 }

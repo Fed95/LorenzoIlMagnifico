@@ -17,6 +17,7 @@ public class Tower implements Zone {
 	private final CardType type;
 	private final List<TowerFloor> floors = new ArrayList<>();
 	private Map<Integer, CardDeck> decks;
+	private boolean taken;
 	// It will be loaded from JSON file
 	private final static Resource towerTakenMalus = new Money(3);
 	private final static List<Integer> DEFAULT_REQUIRED_VALUES = new ArrayList<Integer>() {{
@@ -28,6 +29,7 @@ public class Tower implements Zone {
 
 	public Tower(CardType type){
 		this.type = type;
+		this.taken = false;
 		decks = Match.instance().cardDeckSet.getDecks().get(type);
 		initializeFloors();
 
@@ -84,9 +86,10 @@ public class Tower implements Zone {
 		List<Occupiable> floorList = new ArrayList<>();
 		floorList.addAll(floors);
 		Effect towerTakenMalusEffect = new EffectChangeResource(new EventPlaceFamilyMember(floorList), new ResourceExchange(towerTakenMalus, null), false);
-		for(Occupiable floor : floorList){
+		for(Occupiable floor : floors){
 			floor.getEffects().add(towerTakenMalusEffect);
 		}
+		this.taken = true;
 	}
 
 	public void deactivateMalus(){
@@ -99,6 +102,6 @@ public class Tower implements Zone {
 
 	@Override
 	public String toString() {
-		return "Tower of type " + type;
+		return "Tower of type " + type + "  (Taken: " + taken + ")";
 	}
 }

@@ -21,10 +21,12 @@ public class TestMatch {
 		Resource wood = new Wood(2);
 		Resource money = new Money(1);
 		Resource servants = new Servant(3);
+		Resource faith = new FaithPoint(1);
 		resources.put(ResourceType.STONE, stones);
 		resources.put(ResourceType.WOOD, wood);
 		resources.put(ResourceType.MONEY, money);
 		resources.put(ResourceType.SERVANT, servants);
+		resources.put(ResourceType.FAITH_POINT, faith);
 
 
 		PersonalBoard personalBoard1 = new PersonalBoard();

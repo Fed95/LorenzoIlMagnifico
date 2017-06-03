@@ -13,10 +13,12 @@ public class EffectHandler {
 
 	public void executeEffects(Event event) throws RuntimeException {
 		List<Effect> effects = getPossibleEffects(event);
-		
+
+		//System.out.println("effect handler: this event is: " + event);
 		// If there is an effect (from the players' card or the place where the family member has been put)...
 		// then execute the effect
 		for(Effect effect : effects) {
+			//System.out.println("effect handler: events found: " + effect + ": "+ effect.event);
 			if(event.equals(effect.getEvent()))
 				effect.execute(event);
 		}
@@ -36,11 +38,16 @@ public class EffectHandler {
 	private List<Effect> getPossibleEffects(Event event) {
 		List<EffectProvider> effectProviders = event.getEffectProviders();
 		List<Effect> effects = new ArrayList<>();
-	
+
+		//System.out.println("effect handler: effect providers: " + effectProviders);
+
 		for(EffectProvider effectProvider: effectProviders) {
-			if(effectProvider.getEffects() != null) // TODO: better handle when effects are null
+			try {
 				effects.addAll(effectProvider.getEffects());
+			}catch(NullPointerException e){}
+
 		}
+		//System.out.println("effect handler: effects found: " + effects);
 		return effects;
 	}
 

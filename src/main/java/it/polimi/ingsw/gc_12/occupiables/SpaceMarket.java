@@ -16,4 +16,9 @@ public class SpaceMarket extends Occupiable {
 			return true;
 		return false;
 	}
+
+	@Override
+	public String toString() {
+		return "Space Market. Required value: " + requiredValue;
+	}
 }

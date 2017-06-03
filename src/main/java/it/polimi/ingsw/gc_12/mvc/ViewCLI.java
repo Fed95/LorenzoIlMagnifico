@@ -54,10 +54,12 @@ public class ViewCLI extends Observable{
 
 		int i = 0;
 		List<FamilyMemberColor> familyMemberColors = Arrays.asList(FamilyMemberColor.values());
+		List<FamilyMemberColor> usableFMs = new ArrayList<>();
 		Map<FamilyMemberColor, FamilyMember> familyMembers = player.getFamilymembers();
 		for(FamilyMemberColor familyMemberColor : familyMemberColors) {
 			if(!familyMembers.get(familyMemberColor).isBusy()) {
 				System.out.println(i + " - " + familyMembers.get(familyMemberColor));
+				usableFMs.add(familyMemberColor);
 				i++;
 			}
 		}
@@ -75,7 +77,7 @@ public class ViewCLI extends Observable{
 					askAction(false);
 					return;
 				}else {
-					FamilyMemberColor familyMemberColor = familyMemberColors.get(input);
+					FamilyMemberColor familyMemberColor = usableFMs.get(input);
 					System.out.println("familyMember " + familyMemberColor + " chosen ");
 					try {
 						adapter.setFamilyMember(familyMemberColor);
@@ -198,6 +200,5 @@ public class ViewCLI extends Observable{
 		}
 		System.out.println();
 		System.out.println();
-		viewStatistics();
 	}
 }

@@ -5,19 +5,18 @@ import java.util.*;
 import it.polimi.ingsw.gc_12.*;
 import it.polimi.ingsw.gc_12.action.*;
 import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
+import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
 import it.polimi.ingsw.gc_12.occupiables.*;
 import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.resource.Servant;
-import it.polimi.ingsw.gc_12.resource.Stone;
 
 public class ControllerPlayer{
 
-	private Map<Player, View> views = new HashMap<>();
+	private Map<Player, View> adapters = new HashMap<>();
 	private Match match;
 	private Action action;
 	private Player currentPlayer;
-	//TODO : check continuity of this variable
 	private boolean isFMPlaced;
 
 	public ControllerPlayer(Match match){
@@ -28,17 +27,17 @@ public class ControllerPlayer{
 	private void createViews() {
 		List<Player> players = match.getPlayers();
 		for(Player player : players) {
-			View view = new CLIAdapter(player, match, this);
-			views.put(player, view);
+			View adapter = new CLIAdapter(player, match, this);
+			adapters.put(player, adapter);
 		}
 	}
 
 	public void start() {
 		isFMPlaced = false;
 		currentPlayer = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
-		View view = views.get(currentPlayer);
-		view.startTurn();
-		view.askAction();
+		View adapter = adapters.get(currentPlayer);
+		adapter.startTurn();
+		adapter.askAction();
 	}
 
 	public void setFamilyMember(FamilyMemberColor familyMemberColor) throws RuntimeException {
@@ -46,15 +45,15 @@ public class ControllerPlayer{
 		if(familyMember.isBusy())
 			throw new RuntimeException("This FamilyMember is already busy!");
 		action = new ActionPlace(currentPlayer, familyMember);
-		views.get(currentPlayer).askOccupiable();
+		adapters.get(currentPlayer).askOccupiable();
 	}
 
 	public void setOccupiable(Occupiable occupiable) {
 
 		if(action instanceof ActionPlace) {
+			View view = adapters.get(currentPlayer);
 			FamilyMember familyMember = ((ActionPlace) action).getFamilyMember();
 			action = ActionFactory.getActionPlace(occupiable, familyMember, match);
-			View view = views.get(currentPlayer);
 			try{
 				action.start();
 				System.out.println(familyMember + " placed on " + occupiable);
@@ -75,8 +74,7 @@ public class ControllerPlayer{
 					List<Resource> servants = new ArrayList<>();
 					servants.add(new Servant(usedServants));
 					currentPlayer.removeResources(servants);
-					System.out.println(familyMember + " placed on " + occupiable);
-					view.askAction();
+					this.setOccupiable(occupiable);
 				}
 			}
 		}
@@ -87,7 +85,7 @@ public class ControllerPlayer{
 	}
 
 	public void vaticanReport(Player player) {
-		boolean support = views.get(player).supportChurch();
+		boolean support = adapters.get(player).supportChurch();
 		if (support) {
 			player.supportChurch();
 		}else{
@@ -96,12 +94,13 @@ public class ControllerPlayer{
 	}
 
 	public void receiveExcommunication(Player player){
-		player.receiveExcommunication();
-		views.get(player).excommunicationMessage();
+		ExcommunicationTile excommunicationTile = match.getBoard().getExcommunicationSpace().getTiles().get(match.getPeriodNum());
+		player.receiveExcommunication(excommunicationTile);
+		adapters.get(player).excommunicationMessage();
 	}
 
 	public void viewStatistics() {
-		views.get(currentPlayer).viewStatistics();
+		adapters.get(currentPlayer).viewStatistics();
 	}
 
 	public boolean isFMPlaced() {

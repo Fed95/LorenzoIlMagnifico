@@ -38,7 +38,7 @@ public class EventPlaceFamilyMember extends Event{
 
 	
 	public EventPlaceFamilyMember(Player player, Occupiable occupiable, FamilyMember familyMember) {
-		this(player, new ArrayList<Occupiable>(Arrays.asList(occupiable)), familyMember);
+		this(player, new ArrayList<>(Arrays.asList(occupiable)), familyMember);
 	}
 	
 	public List<Occupiable> getOccupiables() {
@@ -57,7 +57,7 @@ public class EventPlaceFamilyMember extends Event{
 	public List<EffectProvider> getEffectProviders() {
 		List<EffectProvider> effectProviders = new ArrayList<>();
 		effectProviders.addAll(player.getCards());
-		effectProviders.addAll((Collection<? extends EffectProvider>) occupiables);
+		effectProviders.addAll(occupiables);
 		return effectProviders;
 	}
 	
@@ -77,20 +77,27 @@ public class EventPlaceFamilyMember extends Event{
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (!super.equals(obj))
+		//Compares class
+		if (!super.equals(obj)) {
+			System.out.println("classes don't match");
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
+		}
 		EventPlaceFamilyMember other = (EventPlaceFamilyMember) obj;
-		
+
+		if(!this.familyMember.equals(other.getFamilyMember())){
+			return false;
+		}
+
 		// Check if they have an occupiable in common
-		List<Occupiable> common = new ArrayList<Occupiable>(occupiables);
+		List<Occupiable> common = new ArrayList<>(occupiables);
 		common.retainAll(other.occupiables);
 		if (occupiables == null) {
 			if (other.occupiables != null)
 				return false;
-		} else if (common.size() == 0)
+		} else if (common.size() == 0){
+			System.out.println("no occupiables in common found");
 			return false;
+		}
 		return true;
 	}
 

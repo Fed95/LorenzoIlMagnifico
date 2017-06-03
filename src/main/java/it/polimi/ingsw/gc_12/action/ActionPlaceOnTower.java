@@ -23,6 +23,8 @@ public class ActionPlaceOnTower extends ActionPlace {
 
         player.getEffectHandler().executeEffects(event);
 
+        System.out.println("effects executed");
+
         if(this.towerFloor.isOccupied())
             throw new RuntimeException("This TowerFloor is already taken!");
         if(!towerFloor.isRequiredValueSatisfied(familyMember))
@@ -40,7 +42,9 @@ public class ActionPlaceOnTower extends ActionPlace {
 
     @Override
     public void start() throws RuntimeException, RequiredValueNotSatisfiedException {
+
         Event event = new EventPlaceFamilyMember(this.player, towerFloor, familyMember);
+        System.out.println("actionplaceontower: event created with placement on " + towerFloor);
         try{
             this.canBeExecuted(event);
             if (tower.getFloors().stream().allMatch(floor -> !floor.isOccupied())) { //If no floor of the tower has been occupied yet
@@ -50,6 +54,7 @@ public class ActionPlaceOnTower extends ActionPlace {
             familyMember.setBusy(true);
         }catch(Exception e) {
             player.getEffectHandler().discardEffects(event);
+            System.out.println("effects discarded");
             throw e;
         }
     }

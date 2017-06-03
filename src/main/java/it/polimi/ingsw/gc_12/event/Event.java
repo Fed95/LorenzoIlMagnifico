@@ -7,15 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Event implements EventInterface {
-	
+
 	protected Player player;
 	protected List<EffectProvider> effectProviders = new ArrayList<>();
-	
+
 	public Event(Player player) {
 		this.player = player;
 	}
+
 	public Event() {
-		
+
 	}
 
 	public Player getPlayer() {
@@ -23,10 +24,12 @@ public abstract class Event implements EventInterface {
 	}
 
 	public boolean equals(Object obj) {
-		if(this.getClass() != obj.getClass())
+		if (this.getClass() != obj.getClass()) {
+
+			System.out.println("the events are not of the same class");
+
 			return false;
-		
-		Event event = (Event) obj;
-		return this.player == event.getPlayer() && this.getAttributes().equals(event.getAttributes());
+		}
+		return true;
 	}
 }
