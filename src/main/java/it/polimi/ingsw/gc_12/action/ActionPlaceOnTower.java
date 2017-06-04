@@ -10,8 +10,8 @@ import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 
 public class ActionPlaceOnTower extends ActionPlace {
 
-    private Tower tower;
-    private TowerFloor towerFloor;
+    protected Tower tower;
+    protected TowerFloor towerFloor;
 
     public ActionPlaceOnTower(FamilyMember familyMember, Tower tower, TowerFloor towerFloor) {
         super(familyMember.getOwner(), familyMember);
@@ -33,7 +33,9 @@ public class ActionPlaceOnTower extends ActionPlace {
             //Throws multiple exceptions
             player.hasResources(towerFloor.getCard().getRequirements());
             //Throws multiple exceptions
-            player.getPersonalBoard().canPlaceCard(player, towerFloor.getCard());
+            //actually places the card
+            if(player.getPersonalBoard().canPlaceCard(player, towerFloor.getCard()))
+                player.getPersonalBoard().placeCard(towerFloor.getCard());
         }catch(NullPointerException e){
            //TODO: waiting for Json cards
            // throw new RuntimeException("There is no card on this floor!");
@@ -44,7 +46,7 @@ public class ActionPlaceOnTower extends ActionPlace {
     public void start() throws RuntimeException, RequiredValueNotSatisfiedException {
 
         Event event = new EventPlaceFamilyMember(this.player, towerFloor, familyMember);
-        System.out.println("actionplaceontower: event created with placement on " + towerFloor);
+        //System.out.println("actionplaceontower: event created with placement on " + towerFloor);
         try{
             this.canBeExecuted(event);
             if (tower.getFloors().stream().allMatch(floor -> !floor.isOccupied())) { //If no floor of the tower has been occupied yet
@@ -52,6 +54,7 @@ public class ActionPlaceOnTower extends ActionPlace {
             }
             towerFloor.placeFamilyMember(familyMember);
             familyMember.setBusy(true);
+            towerFloor.removeCard();
         }catch(Exception e) {
             player.getEffectHandler().discardEffects(event);
             System.out.println("effects discarded");

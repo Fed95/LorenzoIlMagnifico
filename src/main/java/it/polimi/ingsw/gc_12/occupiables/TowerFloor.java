@@ -35,6 +35,10 @@ public class TowerFloor extends Occupiable {
 		this.card = card;
 	}
 
+	public void removeCard(){
+		this.card = null;
+	}
+
 	public boolean isOccupied() {
 		return !occupiers.isEmpty();
 	}

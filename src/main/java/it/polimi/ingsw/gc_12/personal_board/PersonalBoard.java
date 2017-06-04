@@ -24,13 +24,17 @@ public class PersonalBoard {
             resourceContainers.put(resourceType, new ResourceContainer(resourceType));
     }
 
-    public void canPlaceCard(Player owner, CardDevelopment card) {
+    public boolean canPlaceCard(Player owner, CardDevelopment card) {
         //Can throw an exception
         CardSlot cardSlot = cardsSpaces.get(card.getType()).getFirstFreeSlot();
         //Can throw exceptions
         owner.hasResources(cardSlot.getRequisites());
 
-        cardSlot.placeCard(card);
+        return true;
+    }
+
+    public void placeCard(CardDevelopment card){
+        cardsSpaces.get(card.getType()).getFirstFreeSlot().placeCard(card);
     }
 
     public List<Card> getCards(){

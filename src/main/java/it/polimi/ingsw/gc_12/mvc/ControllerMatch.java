@@ -17,6 +17,7 @@ public class ControllerMatch {
 		match.setPlayers(players);
 		match.init();
 		controllerPlayer = new ControllerPlayer(match);
+		match.setControllerPlayer(controllerPlayer);
 	}
 
 	public void start() {

@@ -15,7 +15,8 @@ public class EffectHandler {
 		List<Effect> effects = getPossibleEffects(event);
 
 		//System.out.println("effect handler: this event is: " + event);
-		// If there is an effect (from the players' card or the place where the family member has been put)...
+
+		// If there is an effect (from the players' card or the place where the family member has been placed)...
 		// then execute the effect
 		for(Effect effect : effects) {
 			//System.out.println("effect handler: events found: " + effect + ": "+ effect.event);

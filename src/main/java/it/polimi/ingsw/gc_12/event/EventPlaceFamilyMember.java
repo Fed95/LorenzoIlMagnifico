@@ -34,12 +34,17 @@ public class EventPlaceFamilyMember extends Event{
 	public EventPlaceFamilyMember(List<Occupiable> occupiables){
 		super();
 		this.occupiables = occupiables;
+
+		effectProviders.addAll(occupiables);
 	}
 
 	
 	public EventPlaceFamilyMember(Player player, Occupiable occupiable, FamilyMember familyMember) {
 		this(player, new ArrayList<>(Arrays.asList(occupiable)), familyMember);
 	}
+
+	public EventPlaceFamilyMember(){super();}
+
 	
 	public List<Occupiable> getOccupiables() {
 		return occupiables;
@@ -55,9 +60,6 @@ public class EventPlaceFamilyMember extends Event{
 
 	@Override
 	public List<EffectProvider> getEffectProviders() {
-		List<EffectProvider> effectProviders = new ArrayList<>();
-		effectProviders.addAll(player.getCards());
-		effectProviders.addAll(occupiables);
 		return effectProviders;
 	}
 	

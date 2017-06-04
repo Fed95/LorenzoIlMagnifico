@@ -3,6 +3,7 @@ package it.polimi.ingsw.gc_12;
 import it.polimi.ingsw.gc_12.card.*;
 import it.polimi.ingsw.gc_12.effect.EffectHandler;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
+import it.polimi.ingsw.gc_12.mvc.ControllerPlayer;
 
 import java.util.*;
 
@@ -18,6 +19,7 @@ public class Match {
 	private int roundNum;
 	private int totalPeriodNumber;
 	private EffectHandler effectHandler;
+	private ControllerPlayer controllerPlayer;
 	public final static GameMode DEFAULT_GAME_MODE = GameMode.NORMAL;
 	public final static int DEFAULT_ROUND_NUM = 6;
 	public final static int DEFAULT_PERIODS_LEN = 2;
@@ -64,6 +66,12 @@ public class Match {
 		this.players = players;
 	}
 
+
+	public void setControllerPlayer(ControllerPlayer controllerPlayer) {
+		this.controllerPlayer = controllerPlayer;
+	}
+
+
 	public List<Player> getPlayers() {
 		return players;
 	}
@@ -95,6 +103,11 @@ public class Match {
 	public int getTotalPeriodNumber() {
 		return totalPeriodNumber;
 	}
+
+	public ControllerPlayer getControllerPlayer() {
+		return controllerPlayer;
+	}
+
 	@Override
 	public String toString() {
 		return board.toString();

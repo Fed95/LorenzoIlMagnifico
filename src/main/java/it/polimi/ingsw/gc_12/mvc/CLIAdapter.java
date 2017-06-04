@@ -4,8 +4,12 @@ import it.polimi.ingsw.gc_12.FamilyMemberColor;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.Zone;
+import it.polimi.ingsw.gc_12.card.Card;
+import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
+import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CLIAdapter implements View{
@@ -115,5 +119,20 @@ public class CLIAdapter implements View{
 		int choice = view.viewStatistics();
 		view.viewStatistics(match.getPlayers().get(choice));
 		this.askAction();
+	}
+
+	@Override
+	public void askFreeAction(CardType type, int value) {
+		List<TowerFloor> floors = new ArrayList<>();
+		List<Card> cards = new ArrayList<>();
+		for (TowerFloor floor : match.getBoard().getTowerSet().getTower(type).getFloors()){
+			if(!(floor.getRequiredValue() > value)) {
+				cards.add(floor.getCard());
+				floors.add(floor);
+			}
+		}
+		int choice = view.askFreeAction(cards, value);
+		controller.pickCard(cards.get(choice));
+		floors.get(choice).removeCard();
 	}
 }

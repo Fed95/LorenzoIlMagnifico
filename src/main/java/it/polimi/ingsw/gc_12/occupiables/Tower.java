@@ -46,6 +46,13 @@ public class Tower implements Zone {
 	public TowerFloor getFloor(int floorNum) {
 		return floors.get(floorNum);
 	}
+
+	public List<CardDevelopment> getCards(){
+		List<CardDevelopment> cards = new ArrayList<>();
+		for(TowerFloor floor : floors)
+			cards.add(floor.getCard());
+		return cards;
+	}
 	
 	public void initializeFloors() {
 		for (int i = 0; i < CardType.values().length; i++) {

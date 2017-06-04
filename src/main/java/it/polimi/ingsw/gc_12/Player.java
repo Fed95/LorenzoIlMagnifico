@@ -22,7 +22,6 @@ public class Player {
 	private Match match;
 	private PersonalBoard personalBoard;
 	private EffectHandler effectHandler;
-	private List<Card> cards = new ArrayList<>();
 	private List<ExcommunicationTile> excommunications = new ArrayList<>();
 	private Map<ResourceType, Resource> resources;
 	private Map<FamilyMemberColor, FamilyMember> familymembers = new HashMap<>();
@@ -163,5 +162,9 @@ public class Player {
 
 	public List<ExcommunicationTile> getExcommunications() {
 		return excommunications;
+	}
+
+	public Match getMatch() {
+		return match;
 	}
 }

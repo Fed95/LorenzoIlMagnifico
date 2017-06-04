@@ -3,7 +3,9 @@ package it.polimi.ingsw.gc_12.mvc;
 import java.util.*;
 
 import it.polimi.ingsw.gc_12.*;
+import it.polimi.ingsw.gc_12.card.Card;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
+import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 
@@ -200,5 +202,19 @@ public class ViewCLI extends Observable{
 		}
 		System.out.println();
 		System.out.println();
+	}
+
+	public int askFreeAction(List<Card> cards, int value){
+		System.out.println("You received a free action of value" + value + "!" +
+				"Which card would you like to pick?");
+		int i = 0;
+		for(Card card : cards){
+			System.out.println(i + " - " + card);
+		}
+		System.out.println(i + " - No thanks.");
+		int choice = in.nextInt();
+		if(choice == i)
+			adapter.askAction();
+		return choice;
 	}
 }

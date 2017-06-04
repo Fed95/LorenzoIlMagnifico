@@ -4,6 +4,9 @@ import java.util.*;
 
 import it.polimi.ingsw.gc_12.*;
 import it.polimi.ingsw.gc_12.action.*;
+import it.polimi.ingsw.gc_12.card.Card;
+import it.polimi.ingsw.gc_12.card.CardDevelopment;
+import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
 import it.polimi.ingsw.gc_12.occupiables.*;
@@ -103,7 +106,16 @@ public class ControllerPlayer{
 		adapters.get(currentPlayer).viewStatistics();
 	}
 
+	public void freeAction(CardType type, int value){
+		adapters.get(currentPlayer).askFreeAction(type, value);
+	}
+
 	public boolean isFMPlaced() {
 		return isFMPlaced;
+	}
+
+	public void pickCard(Card card) {
+		if(currentPlayer.getPersonalBoard().canPlaceCard(currentPlayer, (CardDevelopment) card))
+			currentPlayer.getPersonalBoard().placeCard((CardDevelopment) card);
 	}
 }
