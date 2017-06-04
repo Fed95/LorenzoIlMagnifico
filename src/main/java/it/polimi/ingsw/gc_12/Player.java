@@ -23,7 +23,7 @@ public class Player {
 	private PersonalBoard personalBoard;
 	private EffectHandler effectHandler;
 	private List<Card> cards = new ArrayList<>();
-	private List<ExcommunicationTile> excommunications;
+	private List<ExcommunicationTile> excommunications = new ArrayList<>();
 	private Map<ResourceType, Resource> resources;
 	private Map<FamilyMemberColor, FamilyMember> familymembers = new HashMap<>();
 
@@ -154,17 +154,12 @@ public class Player {
 	}
 
 	public List<Card> getCards() {
-		return cards;
+		return this.getPersonalBoard().getCards();
 	}
 
 	public EffectHandler getEffectHandler(){
 		return effectHandler;
 	}
-
-	public void addCard(Card card) {
-		cards.add(card);
-	}
-
 
 	public List<ExcommunicationTile> getExcommunications() {
 		return excommunications;

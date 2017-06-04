@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc_12.personal_board;
 
+import it.polimi.ingsw.gc_12.card.Card;
 import it.polimi.ingsw.gc_12.card.CardDevelopment;
 import it.polimi.ingsw.gc_12.card.CardType;
 
@@ -32,6 +33,13 @@ public class CardsSpace {
             if(slot.isEmpty())
                 return slot;
         throw new RuntimeException("Your CardSpace for this CardType is already full.");
+    }
+
+    public List<Card> getCards(){
+        List<Card> cards = new ArrayList<>();
+        for(CardSlot cardSlot : slots)
+            cards.add(cardSlot.getCard());
+        return cards;
     }
 
     public void addCardSlot(CardSlot cardSlot) {
