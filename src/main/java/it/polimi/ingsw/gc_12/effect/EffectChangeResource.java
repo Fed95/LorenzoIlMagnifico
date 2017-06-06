@@ -8,7 +8,6 @@ import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.resource.ResourceExchange;
 
-// TODO: add the possibility to have FamilyMember.value as a possible cost
 public class EffectChangeResource extends Effect {
 
 	private List<ResourceExchange> exchanges;
@@ -38,7 +37,7 @@ public class EffectChangeResource extends Effect {
 			}
 		}
 		else {
-			ResourceExchange exchange = player.chooseResourceExchange(exchanges);
+			ResourceExchange exchange = player.getMatch().getControllerPlayer().chooseResourceExchange(exchanges);
 			exchangeChosen = exchange;
 			player.removeResources(exchange.getCost());
 			player.addResources(exchange.getBonus());

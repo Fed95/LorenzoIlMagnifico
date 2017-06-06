@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class CardDeckSet {
 
-    //TODO: implement import of cards from JSON file
+    //TODO: waiting for JSON file
     private List<CardDevelopment> cards = new ArrayList<>();
     private Map<CardType, Map<Integer, CardDeck>> decks = new HashMap<>();
 
@@ -29,6 +29,12 @@ public class CardDeckSet {
         for(CardDevelopment card : cards) {
             decks.get(card.getType()).get(card.getPeriod()).putCard(card);
         }
+    }
+
+    public void shuffle(){
+        for(Map<Integer, CardDeck> map : decks.values())
+            for (CardDeck deck : map.values())
+                deck.shuffle();
     }
 
     public Map<CardType, Map<Integer, CardDeck>> getDecks(){

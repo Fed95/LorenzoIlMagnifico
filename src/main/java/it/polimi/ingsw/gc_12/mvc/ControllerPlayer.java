@@ -11,6 +11,7 @@ import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
 import it.polimi.ingsw.gc_12.occupiables.*;
 import it.polimi.ingsw.gc_12.resource.Resource;
+import it.polimi.ingsw.gc_12.resource.ResourceExchange;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.resource.Servant;
 
@@ -82,8 +83,7 @@ public class ControllerPlayer{
 			}
 		}
 		else {
-			//TODO: throw exception
-			throw new RuntimeException();
+			throw new RuntimeException("Action not recognised!");
 		}
 	}
 
@@ -120,4 +120,8 @@ public class ControllerPlayer{
 	}
 
 
+	public ResourceExchange chooseResourceExchange(List<ResourceExchange> exchanges) {
+		int choice = adapters.get(currentPlayer).chooseResourceExchange(exchanges);
+		return exchanges.get(choice);
+	}
 }

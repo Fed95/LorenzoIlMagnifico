@@ -1,6 +1,7 @@
 package it.polimi.ingsw.gc_12.card;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -15,6 +16,10 @@ public class CardDeck {
         this.period = period;
     }
 
+    public void shuffle(){
+        Collections.shuffle(cards);
+    }
+
     public void putCard(CardDevelopment card){
         cards.add(card);
     }
@@ -23,7 +28,6 @@ public class CardDeck {
         return cards;
     }
 
-    //TODO: implement shuffle
     public CardDevelopment pickCard(){
         return cards.remove(0);
     }

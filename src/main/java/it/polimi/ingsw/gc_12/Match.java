@@ -47,6 +47,7 @@ public class Match {
 
 	public void init() {
 		board = new Board(players);
+		cardDeckSet.shuffle();
 
 		for (Player player : players) {
 			player.init(effectHandler);

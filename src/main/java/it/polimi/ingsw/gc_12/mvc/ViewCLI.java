@@ -7,6 +7,7 @@ import it.polimi.ingsw.gc_12.card.Card;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 import it.polimi.ingsw.gc_12.resource.Resource;
+import it.polimi.ingsw.gc_12.resource.ResourceExchange;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 
 public class ViewCLI extends Observable{
@@ -212,6 +213,21 @@ public class ViewCLI extends Observable{
 			System.out.println(i + " - " + card);
 		}
 		System.out.println(i + " - No thanks.");
+		int choice = in.nextInt();
+		if(choice == i)
+			adapter.askAction();
+		return choice;
+	}
+
+	public int chooseResourceExchange(List<ResourceExchange> exchanges) {
+		System.out.println("Choose the exchange you would like to execute.");
+		int i = 0;
+		for(ResourceExchange exchange : exchanges){
+			System.out.println(i + exchange.toString());
+			i++;
+		}
+		//TODO: implement discard action
+		System.out.println(i + "Discard action");
 		int choice = in.nextInt();
 		if(choice == i)
 			adapter.askAction();

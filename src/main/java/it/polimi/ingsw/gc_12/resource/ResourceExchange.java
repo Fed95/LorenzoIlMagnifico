@@ -25,4 +25,9 @@ public class ResourceExchange {
 	public List<Resource> getBonus() {
 		return bonus;
 	}
+
+	@Override
+	public String toString() {
+		return "Cost: " + cost + ", Bonus: " + bonus;
+	}
 }

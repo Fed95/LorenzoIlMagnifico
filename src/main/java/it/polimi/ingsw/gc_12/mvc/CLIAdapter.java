@@ -8,6 +8,7 @@ import it.polimi.ingsw.gc_12.card.Card;
 import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
+import it.polimi.ingsw.gc_12.resource.ResourceExchange;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -134,5 +135,11 @@ public class CLIAdapter implements View{
 		int choice = view.askFreeAction(cards, value);
 		controller.pickCard(cards.get(choice));
 		floors.get(choice).removeCard();
+	}
+
+	@Override
+	public int chooseResourceExchange(List<ResourceExchange> exchanges) {
+		int choice = view.chooseResourceExchange(exchanges);
+		return  choice;
 	}
 }

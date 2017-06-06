@@ -128,15 +128,6 @@ public class Player {
 		return resources;
 	}
 
-	public ResourceExchange chooseResourceExchange(List<ResourceExchange> resourceExchanges) {
-		//TODO: implement comunication with controller
-		return null;
-	}
-
-	public void resetFaithPoints(){
-		//TODO: implement method
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -153,7 +144,6 @@ public class Player {
 		return personalBoard;
 	}
 
-	//TODO: add excommunication tiles to list
 	public List<Card> getCards() {
 		List<Card> cards = new ArrayList<>();
 		cards.addAll(this.getPersonalBoard().getCards());
