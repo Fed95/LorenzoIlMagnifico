@@ -66,8 +66,9 @@ public class ActionPlaceOnTower extends ActionPlace {
         }
     }
 
-    public void executeImmediateEffects(CardDevelopment card){
-        EventPickCard event = new EventPickCard(card);
-        player.getEffectHandler().executeImmediateEffects(event);
+
+    public void executeImmediateEffects(CardDevelopment card) throws RuntimeException {
+        EventPickCard event = new EventPickCard(player, card);
+        player.getEffectHandler().executeEffects(event);
     }
 }

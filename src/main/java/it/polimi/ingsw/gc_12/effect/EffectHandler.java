@@ -26,10 +26,6 @@ public class EffectHandler {
 		}
 	}
 
-	public void executeImmediateEffects(EventPickCard event){
-		for(Effect effect : event.getCard().getImmediateEffects())
-			effect.execute(event);
-	}
 	
 	public void discardEffects(Event event) throws RuntimeException {
 		List<Effect> effects = getPossibleEffects(event);

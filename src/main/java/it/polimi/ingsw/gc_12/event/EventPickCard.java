@@ -36,4 +36,12 @@ public class EventPickCard extends Event {
     public Card getCard() {
         return card;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        EventPickCard other = (EventPickCard) obj;
+        if(other.getCard().equals(card))
+            return true;
+        return false;
+    }
 }
