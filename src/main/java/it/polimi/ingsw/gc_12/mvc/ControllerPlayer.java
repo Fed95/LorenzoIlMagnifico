@@ -10,10 +10,8 @@ import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
 import it.polimi.ingsw.gc_12.occupiables.*;
-import it.polimi.ingsw.gc_12.resource.Resource;
-import it.polimi.ingsw.gc_12.resource.ResourceExchange;
-import it.polimi.ingsw.gc_12.resource.ResourceType;
-import it.polimi.ingsw.gc_12.resource.Servant;
+import it.polimi.ingsw.gc_12.resource.*;
+import it.polimi.ingsw.gc_12.track.FaithSlot;
 
 public class ControllerPlayer{
 
@@ -90,15 +88,21 @@ public class ControllerPlayer{
 	public void vaticanReport(Player player) {
 		boolean support = adapters.get(player).supportChurch();
 		if (support) {
-			player.supportChurch();
+			supportChurch(player);
 		}else{
 			receiveExcommunication(player);
 		}
 	}
 
+	private void supportChurch(Player player) {
+		int points = match.getBoard().getTrackFaithPoints().getFaithSlot(player.getResourceValue(ResourceType.FAITH_POINT)).getVictoryPoints();
+		player.setResourceValue(ResourceType.FAITH_POINT, 0);
+		player.setResourceValue(ResourceType.VICTORY_POINT, player.getResourceValue(ResourceType.VICTORY_POINT) + points);
+	}
+
 	public void receiveExcommunication(Player player){
 		ExcommunicationTile excommunicationTile = match.getBoard().getExcommunicationSpace().getTiles().get(match.getPeriodNum());
-		player.receiveExcommunication(excommunicationTile);
+		player.getExcommunications().add(excommunicationTile);
 		adapters.get(player).excommunicationMessage();
 	}
 

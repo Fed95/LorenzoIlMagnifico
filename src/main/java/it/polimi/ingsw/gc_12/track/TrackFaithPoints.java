@@ -9,6 +9,13 @@ import it.polimi.ingsw.gc_12.resource.ResourceType;
 
 public class TrackFaithPoints {
 
+	private List<FaithSlot> faithSlots = new ArrayList<>();
+
+	public TrackFaithPoints(List<Integer> values){
+		for(int value : values)
+			faithSlots.add(new FaithSlot(value));
+	}
+
 	public List<Player> getSafePlayers(){
 
 		List<Player> safePlayers = Match.instance().getPlayers();
@@ -24,5 +31,9 @@ public class TrackFaithPoints {
 
 	public boolean isPlayerSafe(Player player) {
 		return player.getResourceValue(ResourceType.FAITH_POINT) >= Match.instance().getPeriodNum() + 2;
+	}
+
+	public FaithSlot getFaithSlot(int index){
+		return faithSlots.get(index);
 	}
 }

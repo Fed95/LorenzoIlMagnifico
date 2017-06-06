@@ -1,22 +1,14 @@
 package it.polimi.ingsw.gc_12.track;
 
-import it.polimi.ingsw.gc_12.effect.EffectProvider;
-import it.polimi.ingsw.gc_12.effect.Effect;
+public class FaithSlot {
 
-import java.util.ArrayList;
-import java.util.List;
+    private int victoryPoints;
 
-public class FaithSlot implements EffectProvider {
-
-    private List<Effect> effects = new ArrayList<>();
-
-    public FaithSlot(List<Effect> effects) {
-        this.effects = effects;
+    public FaithSlot(int victoryPoints) {
+        this.victoryPoints = victoryPoints;
     }
 
-    @Override
-    public List<Effect> getEffects() {
-        return effects;
+    public int getVictoryPoints() {
+        return victoryPoints;
     }
-
 }

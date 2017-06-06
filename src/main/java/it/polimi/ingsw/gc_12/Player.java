@@ -41,23 +41,6 @@ public class Player {
 		}
 	}
 
-	public void supportChurch() {
-		EffectProvider faithSlot = Match.instance().getBoard().getFaithSlots().get(this.resources.get(ResourceType.FAITH_POINT).getValue());
-		Event event = new EventSupportChurch(this, (FaithSlot) faithSlot);
-
-		try {
-			effectHandler.executeEffects(event);
-		}catch(RuntimeException e){
-			//This exception is never actually thrown for this event
-		}
-		this.resources.get(ResourceType.FAITH_POINT).setValue(0);
-
-	}
-
-	public void receiveExcommunication(ExcommunicationTile excommunicationTile){
-		excommunications.add(excommunicationTile);
-	}
-
 	private void addResource(Resource resource) {
 		if(resource == null)
 			return;

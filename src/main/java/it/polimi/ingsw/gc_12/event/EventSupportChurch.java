@@ -10,19 +10,14 @@ import java.util.List;
 
 public class EventSupportChurch extends Event {
 
-    private FaithSlot faithSlot;
-
-    public EventSupportChurch(Player player, FaithSlot faithSlot){
+    public EventSupportChurch(Player player){
         this.player = player;
-        this.faithSlot = faithSlot;
-
-        effectProviders.addAll(Match.instance().getBoard().getFaithSlots());
     }
 
     @Override
     public List<Object> getAttributes() {
         List<Object> attributes = new ArrayList<>();
-        attributes.add(faithSlot);
+        attributes.add(player.getCards());
         return attributes;
     }
 

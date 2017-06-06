@@ -28,9 +28,9 @@ public class Board {
 	private TrackMilitaryPoints trackMilitaryPoints;
 	private TrackVictoryPoints victroyPointsTrack;
 	private TrackFaithPoints trackFaithPoints;
-	private List<EffectProvider> faithSlots = new ArrayList<>();
 	private ExcommunicationSpace excommunicationSpace;
-	private List<ExcommunicationTile> excommunicationTiles = new ArrayList<>();// import from json or match
+	private List<ExcommunicationTile> excommunicationTiles = new ArrayList<>();//TODO: import from json or match
+	private List<Integer> trackFaithPointsValues = new ArrayList<>(); // TODO: IMPORT FROM JSON
 
 	public Board(List<Player> players) {
 		this.players = players;
@@ -41,7 +41,7 @@ public class Board {
 		this.trackTurnOrder = new TrackTurnOrder(players, councilPalace);
 		this.trackMilitaryPoints = new TrackMilitaryPoints();
 		this.victroyPointsTrack = new TrackVictoryPoints();
-		this.trackFaithPoints = new TrackFaithPoints();
+		this.trackFaithPoints = new TrackFaithPoints(trackFaithPointsValues);
 		//this.excommunicationSpace = new ExcommunicationSpace(DEFAULT_NUMBER_OF_EXCOMMUNICATION_TILES);//TODO:import from json file config if needed
 		createSpaceWork();
 	}
@@ -109,10 +109,6 @@ public class Board {
 
 	public TrackFaithPoints getTrackFaithPoints() {
 		return trackFaithPoints;
-	}
-
-	public List<EffectProvider> getFaithSlots() {
-		return faithSlots;
 	}
 
 	public ExcommunicationSpace getExcommunicationSpace() {
