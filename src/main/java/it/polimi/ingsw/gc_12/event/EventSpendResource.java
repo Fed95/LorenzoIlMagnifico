@@ -2,6 +2,7 @@ package it.polimi.ingsw.gc_12.event;
 
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
 import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 
 import java.util.ArrayList;
@@ -13,12 +14,16 @@ public class EventSpendResource extends Event {
     private ResourceType resourceType;
     private int value;
 
-    public EventSpendResource(Player player, ResourceType resourceType, int value) {
+    public EventSpendResource(Player player, Resource resource) {
         super(player);
-        this.resourceType = resourceType;
-        this.value = value;
+        this.resourceType = resource.getType();
+        this.value = resource.getValue();
     }
-
+    public EventSpendResource(Resource resource) {
+        super();
+        this.resourceType = resource.getType();
+        this.value = resource.getValue();
+    }
     @Override
     public List<Object> getAttributes() {
         List<Object> attributes = new ArrayList<>();
