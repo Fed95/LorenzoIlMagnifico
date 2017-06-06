@@ -33,7 +33,7 @@ public class EffectChangeFamilyMemberValue extends Effect{
 		}
 	}
 
-	//TODO: souldn't the amount be subtracted?
+	//TODO: shouldn't the amount be subtracted?
 	public void discard(Event event) {
 		if(event instanceof EventPlaceFamilyMember) {
 			EventPlaceFamilyMember eventSpecific = (EventPlaceFamilyMember) event;

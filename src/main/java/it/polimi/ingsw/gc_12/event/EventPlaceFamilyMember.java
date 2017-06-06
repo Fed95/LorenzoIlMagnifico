@@ -1,11 +1,10 @@
 package it.polimi.ingsw.gc_12.event;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Arrays;
 import java.util.List;
 
-import it.polimi.ingsw.gc_12.EffectProvider;
+import it.polimi.ingsw.gc_12.effect.EffectProvider;
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.Player;
@@ -21,6 +20,7 @@ public class EventPlaceFamilyMember extends Event{
 		this.familyMember = familyMember;
 
 		effectProviders.addAll(player.getCards());
+		effectProviders.addAll(player.getExcommunications());
 		effectProviders.addAll(occupiables);
 	}
 	public EventPlaceFamilyMember(List<Occupiable> occupiables, FamilyMember familyMember) {
@@ -53,7 +53,7 @@ public class EventPlaceFamilyMember extends Event{
 	@Override
 	public List<Object> getAttributes() {
 		List<Object> attributes = new ArrayList<>();
-		attributes.add(occupiables);
+		attributes.addAll(occupiables);
 		attributes.add(familyMember);
 		return attributes;
 	}

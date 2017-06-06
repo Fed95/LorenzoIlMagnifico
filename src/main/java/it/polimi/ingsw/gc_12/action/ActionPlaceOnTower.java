@@ -2,7 +2,9 @@ package it.polimi.ingsw.gc_12.action;
 
 import it.polimi.ingsw.gc_12.FamilyMember;
 
+import it.polimi.ingsw.gc_12.card.CardDevelopment;
 import it.polimi.ingsw.gc_12.event.Event;
+import it.polimi.ingsw.gc_12.event.EventPickCard;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.occupiables.Tower;
@@ -34,8 +36,7 @@ public class ActionPlaceOnTower extends ActionPlace {
             player.hasResources(towerFloor.getCard().getRequirements());
             //Throws multiple exceptions
             //actually places the card
-            if(player.getPersonalBoard().canPlaceCard(player, towerFloor.getCard()))
-                player.getPersonalBoard().placeCard(towerFloor.getCard());
+            player.getPersonalBoard().canPlaceCard(player, towerFloor.getCard());
         }catch(NullPointerException e){
            //TODO: waiting for Json cards
            // throw new RuntimeException("There is no card on this floor!");
@@ -54,11 +55,19 @@ public class ActionPlaceOnTower extends ActionPlace {
             }
             towerFloor.placeFamilyMember(familyMember);
             familyMember.setBusy(true);
+            CardDevelopment card = towerFloor.getCard();
+            player.getPersonalBoard().placeCard(card);
             towerFloor.removeCard();
+            executeImmediateEffects(card);
         }catch(Exception e) {
             player.getEffectHandler().discardEffects(event);
             System.out.println("effects discarded");
             throw e;
         }
+    }
+
+    public void executeImmediateEffects(CardDevelopment card){
+        EventPickCard event = new EventPickCard(card);
+        player.getEffectHandler().executeImmediateEffects(event);
     }
 }

@@ -3,6 +3,7 @@ package it.polimi.ingsw.gc_12.action;
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
+import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.occupiables.CouncilPalace;
 
 public class ActionPlaceOnCouncil extends ActionPlace {
@@ -14,16 +15,16 @@ public class ActionPlaceOnCouncil extends ActionPlace {
         this.councilPalace = councilPalace;
     }
 
-    public boolean canBeExecuted(Event event) throws RuntimeException {
+    public boolean canBeExecuted(Event event) throws RequiredValueNotSatisfiedException {
         player.getEffectHandler().executeEffects(event);
 
         if (!councilPalace.isRequiredValueSatisfied(familyMember))
-            throw new RuntimeException("Your FamilyMember does not satisfy the required value for this placement!");
+            throw new RequiredValueNotSatisfiedException();
         return true;
     }
 
     @Override
-    public void start() throws RuntimeException {
+    public void start() throws RequiredValueNotSatisfiedException {
         Event event = new EventPlaceFamilyMember(this.player, councilPalace, familyMember);
 
         if (canBeExecuted(event)) {

@@ -3,17 +3,18 @@ package it.polimi.ingsw.gc_12.card;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.polimi.ingsw.gc_12.EffectProvider;
+import it.polimi.ingsw.gc_12.effect.EffectProvider;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.resource.Resource;
 
 public class Card implements EffectProvider {
 	private List<Effect> effects = new ArrayList<>();
+	private List<Effect> immediateEffects = new ArrayList<>();
 	private final String name;
 	private final int id;
 	private List<Resource> requirements;
 
-	public Card(int id, String name, List<Resource> requirements, List<Effect> effects){
+	public Card(int id, String name, List<Resource> requirements,List<Effect> immediateEffects, List<Effect> effects){
 		this.id = id;
 		this.name = name;
 		this.requirements = requirements;
@@ -46,5 +47,9 @@ public class Card implements EffectProvider {
 				", id=" + id +
 				", requirements=" + requirements +
 				'}';
+	}
+
+	public List<Effect> getImmediateEffects() {
+		return immediateEffects;
 	}
 }

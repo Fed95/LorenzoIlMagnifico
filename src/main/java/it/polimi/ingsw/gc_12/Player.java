@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import it.polimi.ingsw.gc_12.effect.EffectProvider;
 import it.polimi.ingsw.gc_12.event.EventSupportChurch;
 import it.polimi.ingsw.gc_12.personal_board.PersonalBoard;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
@@ -152,8 +153,11 @@ public class Player {
 		return personalBoard;
 	}
 
+	//TODO: add excommunication tiles to list
 	public List<Card> getCards() {
-		return this.getPersonalBoard().getCards();
+		List<Card> cards = new ArrayList<>();
+		cards.addAll(this.getPersonalBoard().getCards());
+		return cards;
 	}
 
 	public EffectHandler getEffectHandler(){

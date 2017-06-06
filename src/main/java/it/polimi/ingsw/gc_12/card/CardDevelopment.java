@@ -9,8 +9,8 @@ public abstract class CardDevelopment extends Card{
 	private final CardType cardType;
 	private final int period;
 	
-	public CardDevelopment(int id, CardType cardType, String name, int period, List<Resource> requirements, List<Effect> effects) {
-		super(id, name, requirements, effects);
+	public CardDevelopment(int id, CardType cardType, String name, int period, List<Resource> requirements, List<Effect> immediateEffects, List<Effect> effects) {
+		super(id, name, requirements, immediateEffects, effects);
 		this.cardType = cardType;
 		this.period = period;
 	}
@@ -22,8 +22,6 @@ public abstract class CardDevelopment extends Card{
 	public CardType getType(){
 		return cardType;
 	}
-
-
 }
 
 

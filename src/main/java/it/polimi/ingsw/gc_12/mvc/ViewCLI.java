@@ -37,7 +37,7 @@ public class ViewCLI extends Observable{
 		//System.out.println("3 - Activate leader card");
 		//System.out.println("4 - Discard leader card");
 		System.out.println("1 - View Statistics");
-		System.out.println("2 - Skip Action");
+		System.out.println("2 - Pass Turn");
 
 		while (true) {
 			if(in.hasNextInt()) {

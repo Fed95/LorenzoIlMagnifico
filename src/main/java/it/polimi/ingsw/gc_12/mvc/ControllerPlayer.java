@@ -110,12 +110,14 @@ public class ControllerPlayer{
 		adapters.get(currentPlayer).askFreeAction(type, value);
 	}
 
-	public boolean isFMPlaced() {
-		return isFMPlaced;
-	}
-
 	public void pickCard(Card card) {
 		if(currentPlayer.getPersonalBoard().canPlaceCard(currentPlayer, (CardDevelopment) card))
 			currentPlayer.getPersonalBoard().placeCard((CardDevelopment) card);
 	}
+
+	public boolean isFMPlaced() {
+		return isFMPlaced;
+	}
+
+
 }

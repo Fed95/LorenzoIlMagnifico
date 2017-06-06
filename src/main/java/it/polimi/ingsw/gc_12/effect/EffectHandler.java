@@ -3,8 +3,9 @@ package it.polimi.ingsw.gc_12.effect;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.polimi.ingsw.gc_12.EffectProvider;
+import it.polimi.ingsw.gc_12.card.Card;
 import it.polimi.ingsw.gc_12.event.Event;
+import it.polimi.ingsw.gc_12.event.EventPickCard;
 
 public class EffectHandler {
 
@@ -23,6 +24,11 @@ public class EffectHandler {
 			if(event.equals(effect.getEvent()))
 				effect.execute(event);
 		}
+	}
+
+	public void executeImmediateEffects(EventPickCard event){
+		for(Effect effect : event.getCard().getImmediateEffects())
+			effect.execute(event);
 	}
 	
 	public void discardEffects(Event event) throws RuntimeException {

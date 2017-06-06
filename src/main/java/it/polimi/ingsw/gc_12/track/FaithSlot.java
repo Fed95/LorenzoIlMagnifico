@@ -1,6 +1,6 @@
 package it.polimi.ingsw.gc_12.track;
 
-import it.polimi.ingsw.gc_12.EffectProvider;
+import it.polimi.ingsw.gc_12.effect.EffectProvider;
 import it.polimi.ingsw.gc_12.effect.Effect;
 
 import java.util.ArrayList;
