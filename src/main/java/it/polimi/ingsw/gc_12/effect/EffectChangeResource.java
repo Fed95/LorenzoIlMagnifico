@@ -50,13 +50,13 @@ public class EffectChangeResource extends Effect {
 
 		if(exchangeChosen == null) {
 			for(ResourceExchange exchange : exchanges) {
-				player.removeResources(exchange.getCost());
-				player.addResources(exchange.getBonus());
+				player.addResources(exchange.getCost());
+				player.removeResources(exchange.getBonus());
 			}
 		}
 		else {
+			player.addResources(exchangeChosen.getCost());
 			player.removeResources(exchangeChosen.getCost());
-			player.addResources(exchangeChosen.getBonus());
 		}
 	}
 }

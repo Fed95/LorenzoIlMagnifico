@@ -73,15 +73,16 @@ public class CLIAdapter implements View{
 
 	public void setZone(int index) {
 		List<Zone> zones = match.getBoard().getZones();
-		Zone zone = zones.get(index);
 		if(index < 0 || index > zones.size()) {
 			System.out.println("The specified input is not listed above");
 			view.askZone();
 		}
 		else if(index == zones.size()) {
+			System.out.println("Action Discarded");
 			askAction();
 		}
 		else {
+			Zone zone = zones.get(index);
 			if(zone instanceof Occupiable) {
 				controller.setOccupiable((Occupiable) zone);
 			}

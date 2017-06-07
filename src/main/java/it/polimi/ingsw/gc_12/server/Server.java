@@ -7,11 +7,8 @@ import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
 import it.polimi.ingsw.gc_12.server.controller.Controller;
 import it.polimi.ingsw.gc_12.server.view.RMIView;
 import it.polimi.ingsw.gc_12.server.view.RMIViewRemote;
-import it.polimi.ingsw.gc_12.server.view.ServerSocketView;
 
 import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -21,8 +18,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Stack;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class Server {
 

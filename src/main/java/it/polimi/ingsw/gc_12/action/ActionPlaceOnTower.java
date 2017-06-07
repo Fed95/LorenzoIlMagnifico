@@ -60,6 +60,10 @@ public class ActionPlaceOnTower extends ActionPlace {
             player.getPersonalBoard().placeCard(card);
             towerFloor.removeCard();
             executeImmediateEffects(player, card);
+
+        }catch(NullPointerException e){
+            System.out.println(e);
+            //TODO: remove when Json is loaded
         }catch(Exception e) {
             player.getEffectHandler().discardEffects(event);
             System.out.println("effects discarded");
