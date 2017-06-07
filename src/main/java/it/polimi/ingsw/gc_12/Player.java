@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc_12;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,21 +18,24 @@ import it.polimi.ingsw.gc_12.effect.EffectHandler;
 import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.track.FaithSlot;
 
-public class Player {
+public class Player implements Serializable{
 	
 	private final String name;
-	private Match match;
-	private PersonalBoard personalBoard;
-	private EffectHandler effectHandler;
-	private List<ExcommunicationTile> excommunications = new ArrayList<>();
-	private Map<ResourceType, Resource> resources;
+	private transient Match match;
+	private transient PersonalBoard personalBoard;
+	private transient EffectHandler effectHandler;
+	private transient List<ExcommunicationTile> excommunications = new ArrayList<>();
+	private transient Map<ResourceType, Resource> resources;
 	private Map<FamilyMemberColor, FamilyMember> familymembers = new HashMap<>();
-
 	
-	public Player(String name, PersonalBoard personalBoard, Map<ResourceType, Resource> resources){
+	public Player(String name, Map<ResourceType, Resource> resources){
 		this.name = name;
-		this.personalBoard = personalBoard;
+		this.personalBoard = new PersonalBoard();
 		this.resources = resources;
+	}
+
+	public void setPersonalBoard(PersonalBoard personalBoard) {
+		this.personalBoard = personalBoard;
 	}
 
 	public void init(EffectHandler effectHandler) {
@@ -117,6 +121,10 @@ public class Player {
 
 	public Map<FamilyMemberColor, FamilyMember> getFamilymembers() {
 		return familymembers;
+	}
+	
+	public List<FamilyMember> getFamilyMembersList() {
+		return new ArrayList<>(familymembers.values());
 	}
 
 	public FamilyMember getFamilyMember(FamilyMemberColor familyMemberColor) {

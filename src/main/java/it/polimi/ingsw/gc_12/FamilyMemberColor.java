@@ -1,6 +1,8 @@
 package it.polimi.ingsw.gc_12;
 
-public enum FamilyMemberColor {
+import java.io.Serializable;
+
+public enum FamilyMemberColor implements Serializable {
 	WHITE, 
 	BLACK, 
 	ORANGE,

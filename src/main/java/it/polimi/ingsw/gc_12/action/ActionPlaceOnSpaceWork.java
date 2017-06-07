@@ -1,6 +1,8 @@
 package it.polimi.ingsw.gc_12.action;
 
 import it.polimi.ingsw.gc_12.FamilyMember;
+import it.polimi.ingsw.gc_12.Match;
+import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.occupiables.SpaceWork;
@@ -13,12 +15,12 @@ public class ActionPlaceOnSpaceWork extends ActionPlace {
     private SpaceWork spaceWork;
 
     public ActionPlaceOnSpaceWork(FamilyMember familyMember, SpaceWorkZone spaceWorkZone, SpaceWork spaceWork) {
-        super(familyMember.getOwner(), familyMember);
+        super(familyMember);
         this.spaceWorkZone = spaceWorkZone;
         this.spaceWork = spaceWork;
     }
 
-    public boolean canBeExecuted(Event event) throws RuntimeException {
+    public boolean canBeExecuted(Player player, Event event) throws RuntimeException {
         player.getEffectHandler().executeEffects(event);
 
         if(spaceWork instanceof SpaceWorkSingle)
@@ -33,10 +35,11 @@ public class ActionPlaceOnSpaceWork extends ActionPlace {
     }
 
     @Override
-    public void start() throws RuntimeException {
-        Event event = new EventPlaceFamilyMember(this.player, spaceWork, familyMember);
+    public void start(Match match) throws RuntimeException {
+    	Player player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
+        Event event = new EventPlaceFamilyMember(player, spaceWork, familyMember);
 
-        if(canBeExecuted(event)) {
+        if(canBeExecuted(player, event)) {
             familyMember.setBusy(true);
             spaceWork.placeFamilyMember(familyMember);
         }else

@@ -3,15 +3,16 @@ import it.polimi.ingsw.gc_12.dice.Die;
 import it.polimi.ingsw.gc_12.dice.DieColor;
 import it.polimi.ingsw.gc_12.dice.SpaceDie;
 
+import java.io.Serializable;
 import java.util.Observable;
 import java.util.Observer;
 
-public class FamilyMember implements Observer {
+public class FamilyMember implements Observer, Serializable {
 	
 	private final Player owner;
 	private FamilyMemberColor color;
 	private int value;
-	boolean busy;
+	private boolean busy;
 	
 	public FamilyMember(Player owner, FamilyMemberColor color, int value) {
 		this.owner = owner;

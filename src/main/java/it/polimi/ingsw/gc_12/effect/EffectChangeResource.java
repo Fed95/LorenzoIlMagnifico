@@ -37,10 +37,10 @@ public class EffectChangeResource extends Effect {
 			}
 		}
 		else {
-			ResourceExchange exchange = player.getMatch().getControllerPlayer().chooseResourceExchange(exchanges);
+			/*ResourceExchange exchange = player.getMatch().getControllerPlayer().chooseResourceExchange(exchanges);
 			exchangeChosen = exchange;
 			player.removeResources(exchange.getCost());
-			player.addResources(exchange.getBonus());
+			player.addResources(exchange.getBonus());*/
 		}
 
 	}

@@ -1,6 +1,8 @@
 package it.polimi.ingsw.gc_12.action;
 
 import it.polimi.ingsw.gc_12.FamilyMember;
+import it.polimi.ingsw.gc_12.Match;
+import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.occupiables.SpaceMarket;
@@ -10,11 +12,11 @@ public class ActionPlaceOnMarket extends ActionPlace {
     private SpaceMarket spaceMarket;
 
     public ActionPlaceOnMarket(FamilyMember familyMember, SpaceMarket spaceMarket) {
-        super(familyMember.getOwner(), familyMember);
+        super(familyMember);
         this.spaceMarket = spaceMarket;
     }
 
-    public boolean canBeExecuted(Event event) throws RuntimeException {
+    public boolean canBeExecuted(Player player, Event event) throws RuntimeException {
         player.getEffectHandler().executeEffects(event);
 
         if(spaceMarket.isOccupied())
@@ -25,10 +27,11 @@ public class ActionPlaceOnMarket extends ActionPlace {
     }
 
     @Override
-    public void start() throws RuntimeException {
-        Event event = new EventPlaceFamilyMember(this.player, spaceMarket, familyMember);
+    public void start(Match match) throws RuntimeException {
+    	Player player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
+        Event event = new EventPlaceFamilyMember(player, spaceMarket, familyMember);
 
-        if(canBeExecuted(event)) {
+        if(canBeExecuted(player, event)) {
             familyMember.setBusy(true);
             spaceMarket.placeFamilyMember(familyMember);
         }else

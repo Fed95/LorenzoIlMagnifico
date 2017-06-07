@@ -1,7 +1,8 @@
 package it.polimi.ingsw.gc_12.action;
 
 import it.polimi.ingsw.gc_12.FamilyMember;
-
+import it.polimi.ingsw.gc_12.Match;
+import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.card.CardDevelopment;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPickCard;
@@ -16,12 +17,12 @@ public class ActionPlaceOnTower extends ActionPlace {
     protected TowerFloor towerFloor;
 
     public ActionPlaceOnTower(FamilyMember familyMember, Tower tower, TowerFloor towerFloor) {
-        super(familyMember.getOwner(), familyMember);
+        super(familyMember);
         this.tower = tower;
         this.towerFloor = towerFloor;
     }
 
-    public void canBeExecuted(Event event) throws RuntimeException, RequiredValueNotSatisfiedException {
+    public void canBeExecuted(Player player, Event event) throws RuntimeException, RequiredValueNotSatisfiedException {
 
         player.getEffectHandler().executeEffects(event);
 
@@ -44,12 +45,12 @@ public class ActionPlaceOnTower extends ActionPlace {
     }
 
     @Override
-    public void start() throws RuntimeException, RequiredValueNotSatisfiedException {
-
-        Event event = new EventPlaceFamilyMember(this.player, towerFloor, familyMember);
+    public void start(Match match ) throws RuntimeException, RequiredValueNotSatisfiedException {
+    	Player player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
+        Event event = new EventPlaceFamilyMember(player, towerFloor, familyMember);
         //System.out.println("actionplaceontower: event created with placement on " + towerFloor);
         try{
-            this.canBeExecuted(event);
+            this.canBeExecuted(player, event);
             if (tower.getFloors().stream().allMatch(floor -> !floor.isOccupied())) { //If no floor of the tower has been occupied yet
                 tower.activateMalus();
             }
@@ -58,7 +59,7 @@ public class ActionPlaceOnTower extends ActionPlace {
             CardDevelopment card = towerFloor.getCard();
             player.getPersonalBoard().placeCard(card);
             towerFloor.removeCard();
-            executeImmediateEffects(card);
+            executeImmediateEffects(player, card);
         }catch(Exception e) {
             player.getEffectHandler().discardEffects(event);
             System.out.println("effects discarded");
@@ -67,7 +68,7 @@ public class ActionPlaceOnTower extends ActionPlace {
     }
 
 
-    public void executeImmediateEffects(CardDevelopment card) throws RuntimeException {
+    public void executeImmediateEffects(Player player, CardDevelopment card) throws RuntimeException {
         EventPickCard event = new EventPickCard(player, card);
         player.getEffectHandler().executeEffects(event);
     }

@@ -1,29 +1,34 @@
 package it.polimi.ingsw.gc_12.mvc;
 
+import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.FamilyMemberColor;
 import it.polimi.ingsw.gc_12.Match;
+import it.polimi.ingsw.gc_12.MatchRemote;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.Zone;
 import it.polimi.ingsw.gc_12.card.Card;
 import it.polimi.ingsw.gc_12.card.CardType;
+import it.polimi.ingsw.gc_12.client.rmi.ClientRMI;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 import it.polimi.ingsw.gc_12.resource.ResourceExchange;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CLIAdapter implements View{
 
 	private ViewCLI view;
-	private ControllerPlayer controller;
-	private Match match;
+	private ClientRMI client;
+	//private ControllerPlayer controller;
+	//private Match match;
 
 
-	public CLIAdapter(Player player, Match match, ControllerPlayer controllerPlayer) {
-		view = new ViewCLI(player, this, match);
-		this.match = match;
-		this.controller = controllerPlayer;
+	public CLIAdapter(MatchRemote match, ClientRMI client) {
+		view = new ViewCLI(this, match);
+		this.client = client;
+		
 	}
 
 	@Override
@@ -32,20 +37,20 @@ public class CLIAdapter implements View{
 	}
 
 	@Override
-	public void askAction() {
-		boolean isFMPlaced = controller.isFMPlaced();
+	public void askAction(boolean isFMPlaced) throws RemoteException {
 		view.askAction(isFMPlaced);
 	}
 
-	public void setAction(int actionNum, boolean isFmPlaced) {
+	public void setAction(int actionNum, boolean isFmPlaced) throws RemoteException {
 
 		switch (actionNum) { // must keep 'case 0' last
 			case 2:
 				break;
 			case 1: // View statistics
-				controller.viewStatistics();
+				//controller.viewStatistics();
 				break;
 			case 0: // Place Family Member
+				System.out.println("dentro case 0");
 				if(!isFmPlaced) {
 					view.askFamilyMember();
 					break;
@@ -57,10 +62,10 @@ public class CLIAdapter implements View{
 		}
 	}
 
-	public void setFamilyMember(FamilyMemberColor familyMemberColor) {
-		controller.setFamilyMember(familyMemberColor);
+	public void setFamilyMember(FamilyMember familyMember) throws RemoteException {
+		client.setFamilyMember(familyMember);
 	}
-
+/*
 	@Override
 	public void askOccupiable() {
 		view.askZone();
@@ -141,5 +146,5 @@ public class CLIAdapter implements View{
 	public int chooseResourceExchange(List<ResourceExchange> exchanges) {
 		int choice = view.chooseResourceExchange(exchanges);
 		return  choice;
-	}
+	}*/
 }

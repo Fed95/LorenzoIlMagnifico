@@ -14,8 +14,8 @@ public class ControllerMatch {
 	public ControllerMatch(List<Player> players) {
 		this.players = players;
 		match = new Match();
-		match.setPlayers(players);
-		match.init();
+		//match.setPlayers(players);
+		match.init(players);
 		controllerPlayer = new ControllerPlayer(match);
 		match.setControllerPlayer(controllerPlayer);
 	}
@@ -30,7 +30,7 @@ public class ControllerMatch {
 					match.getBoard().refresh(match.getRoundNUm(), match.getPeriodNum());
 
 				for (int k = 0; k < 4; k++) { // 4 turns per round TODO: use variable from match
-					controllerPlayer.start();
+					//controllerPlayer.start();
 					match.newTurn();
 				}
 
@@ -41,10 +41,10 @@ public class ControllerMatch {
 
 	private void vaticanReport() {
 		for(Player player : players) {
-			if(match.getBoard().getTrackFaithPoints().isPlayerSafe(player, match.getPeriodNum()))
+			/*if(match.getBoard().getTrackFaithPoints().isPlayerSafe(player, match.getPeriodNum()))
 				controllerPlayer.vaticanReport(player);
 			else
-				controllerPlayer.receiveExcommunication(player);
+				controllerPlayer.receiveExcommunication(player);*/
 		}
 	}
 

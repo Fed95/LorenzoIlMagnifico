@@ -19,7 +19,7 @@ public class EffectFreeAction extends Effect {
     @Override
     public void execute(Event event) throws RuntimeException {
         Player player = event.getPlayer();
-        player.getMatch().getControllerPlayer().freeAction(type, value);
+        //player.getMatch().getControllerPlayer().freeAction(type, value);
     }
 
     @Override

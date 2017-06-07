@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc_12.mvc;
 
+import java.rmi.RemoteException;
 import java.util.*;
 
 import it.polimi.ingsw.gc_12.*;
@@ -15,20 +16,20 @@ public class ViewCLI extends Observable{
 	private Scanner in = new Scanner(System.in);
 	private CLIAdapter adapter;
 	private Player player;
-	private Match match;
+	private MatchRemote match;
 
-	public ViewCLI(Player player, CLIAdapter adapter, Match match) {
-		this.player = player;
+	public ViewCLI(/*Player player, */CLIAdapter adapter, MatchRemote match) {
+		//this.player = player;
 		this.adapter = adapter;
 		this.match = match;
 	}
 
 	public void startTurn() {
 		System.out.println();
-		System.out.println("ROUND " + match.getRoundNUm() + "  ||  " + player.getName());
+		//System.out.println("ROUND " + match.getRoundNUm() + "  ||  " + player.getName());
 	}
 
-	public void askAction(boolean isFMPlaced) {
+	public void askAction(boolean isFMPlaced) throws RemoteException {
 		System.out.println();
 		System.out.println("Write the number of the action you want to perform");
 
@@ -52,19 +53,19 @@ public class ViewCLI extends Observable{
 		}
 	}
 
-	public void askFamilyMember() {
+	public void askFamilyMember() throws RemoteException {
 		System.out.println("Write the number of the family member you want to use");
 
-		int i = 0;
-		List<FamilyMemberColor> familyMemberColors = Arrays.asList(FamilyMemberColor.values());
-		List<FamilyMemberColor> usableFMs = new ArrayList<>();
-		Map<FamilyMemberColor, FamilyMember> familyMembers = player.getFamilymembers();
-		for(FamilyMemberColor familyMemberColor : familyMemberColors) {
-			if(!familyMembers.get(familyMemberColor).isBusy()) {
-				System.out.println(i + " - " + familyMembers.get(familyMemberColor));
-				usableFMs.add(familyMemberColor);
-				i++;
-			}
+		List<FamilyMember> usableFMs = new ArrayList<>();
+		List<FamilyMember> familyMembers = match.getCurrentPlayer().getFamilyMembersList();
+		
+		int i;
+		for (i = 0; i < familyMembers.size(); i++) {
+			FamilyMember familyMember = familyMembers.get(i);
+			if(!familyMember.isBusy()) {
+				System.out.println(i + " - " + familyMember.getColor());
+				usableFMs.add(familyMember);
+			}	
 		}
 
 		System.out.println(i + " - Discard action.");
@@ -80,10 +81,10 @@ public class ViewCLI extends Observable{
 					askAction(false);
 					return;
 				}else {
-					FamilyMemberColor familyMemberColor = usableFMs.get(input);
-					System.out.println("familyMember " + familyMemberColor + " chosen ");
+					FamilyMember familyMember = usableFMs.get(input);
+					System.out.println("familyMember " + familyMember.getColor() + " chosen ");
 					try {
-						adapter.setFamilyMember(familyMemberColor);
+						adapter.setFamilyMember(familyMember);
 					}catch(RuntimeException e){
 						System.out.println(e.getMessage());
 						askFamilyMember();
@@ -98,7 +99,7 @@ public class ViewCLI extends Observable{
 		}
 	}
 
-	public void askZone() {
+	/*public void askZone() {
 		List<Zone> zones = match.getBoard().getZones();
 		System.out.println();
 		System.out.println("Write the number of the zone you want to place the family member in.");
@@ -232,5 +233,5 @@ public class ViewCLI extends Observable{
 		if(choice == i)
 			adapter.askAction();
 		return choice;
-	}
+	}*/
 }

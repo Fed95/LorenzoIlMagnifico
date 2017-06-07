@@ -23,10 +23,10 @@ public class ControllerPlayer{
 
 	public ControllerPlayer(Match match){
 		this.match = match;
-		createViews();
+		//createViews();
 	}
 
-	private void createViews() {
+	/*private void createViews() {
 		List<Player> players = match.getPlayers();
 		for(Player player : players) {
 			View adapter = new CLIAdapter(player, match, this);
@@ -127,5 +127,5 @@ public class ControllerPlayer{
 	public ResourceExchange chooseResourceExchange(List<ResourceExchange> exchanges) {
 		int choice = adapters.get(currentPlayer).chooseResourceExchange(exchanges);
 		return exchanges.get(choice);
-	}
+	}*/
 }
