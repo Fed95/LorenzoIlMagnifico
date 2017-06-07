@@ -9,9 +9,7 @@ import it.polimi.ingsw.gc_12.comparator.MilitaryComparator;
 
 public class TrackMilitaryPoints {
 
-	public List<Player> getPlayersOrder(){
-
-		List<Player> players = Match.instance().getPlayers();
+	public List<Player> getPlayersOrder(List<Player> players){
 		Collections.sort(players, new MilitaryComparator().reversed());
 		return players;
 	}

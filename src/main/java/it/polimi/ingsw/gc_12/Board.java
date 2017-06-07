@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc_12;
 
+import it.polimi.ingsw.gc_12.card.CardDeckSet;
 import it.polimi.ingsw.gc_12.dice.SpaceDie;
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
 import it.polimi.ingsw.gc_12.json.loader.LoaderMarket;
@@ -35,8 +36,6 @@ public class Board {
 	public Board(List<Player> players) {
 		this.players = players;
 		this.spaceDie = SpaceDie.instance();
-		this.towerSet = new LoaderTowerSet().get(Match.instance());
-		this.market = new LoaderMarket().get(Match.instance());
 		this.councilPalace = new CouncilPalace(1, null); //TODO: import values and effects from Json
 		this.trackTurnOrder = new TrackTurnOrder(players, councilPalace);
 		this.trackMilitaryPoints = new TrackMilitaryPoints();
@@ -45,6 +44,8 @@ public class Board {
 		//this.excommunicationSpace = new ExcommunicationSpace(DEFAULT_NUMBER_OF_EXCOMMUNICATION_TILES);//TODO:import from json file config if needed
 		createSpaceWork();
 	}
+
+
 
 	public void createSpaceWork() {
 		for(WorkType workType : WorkType.values()){
@@ -55,10 +56,10 @@ public class Board {
 		}
 	}
 
-	public void refresh(){
+	public void refresh(int round, int period){
 		//Sets the players' order for the new round and prepares the board
 		trackTurnOrder.newRound();
-		towerSet.refresh();
+		towerSet.refresh(period);
 		market.refresh();
 		councilPalace.free();
 		for(SpaceWorkZone spaceWorkZone : spaceWorkZones.values())
@@ -113,6 +114,14 @@ public class Board {
 
 	public ExcommunicationSpace getExcommunicationSpace() {
 		return excommunicationSpace;
+	}
+
+	public void setTowerSet(TowerSet towerSet) {
+		this.towerSet = towerSet;
+	}
+
+	public void setMarket(Market market) {
+		this.market = market;
 	}
 
 	@Override

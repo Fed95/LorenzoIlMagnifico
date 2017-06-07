@@ -3,6 +3,8 @@ package it.polimi.ingsw.gc_12;
 import it.polimi.ingsw.gc_12.card.*;
 import it.polimi.ingsw.gc_12.effect.EffectHandler;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
+import it.polimi.ingsw.gc_12.json.loader.LoaderMarket;
+import it.polimi.ingsw.gc_12.json.loader.LoaderTowerSet;
 import it.polimi.ingsw.gc_12.mvc.ControllerPlayer;
 
 import java.util.*;
@@ -13,40 +15,31 @@ public class Match {
 	private List<CardDevelopment> cards = new ArrayList<>();
 	private List<ExcommunicationTile> excommunicationTiles = new ArrayList<>();
 	private final GameMode gameMode;
-	public CardDeckSet cardDeckSet;
+	private CardDeckSet cardDeckSet;
 	private Board board;
-	private static Match instance;
 	private int roundNum;
-	private int totalPeriodNumber;
 	private EffectHandler effectHandler;
 	private ControllerPlayer controllerPlayer;
 	public final static GameMode DEFAULT_GAME_MODE = GameMode.NORMAL;
 	public final static int DEFAULT_ROUND_NUM = 6;
 	public final static int DEFAULT_PERIODS_LEN = 2;
 	public final static int DEFAULT_TOTAL_PERIODS_NUM = DEFAULT_ROUND_NUM/DEFAULT_PERIODS_LEN;
-	
 
-	public static Match instance() {
-		if (instance == null)
-			instance = new Match();
-		return instance;
-	}
-
-	private Match(GameMode gameMode) {
+	public Match(GameMode gameMode) {
 		this.gameMode = gameMode;
 		this.roundNum = 1;
-		this.totalPeriodNumber = DEFAULT_TOTAL_PERIODS_NUM;
 		this.cardDeckSet = new CardDeckSet(cards, DEFAULT_ROUND_NUM/DEFAULT_PERIODS_LEN);
 		this.effectHandler = new EffectHandler();
 
 	}
 
-	private Match() {
+	public Match() {
 		this(DEFAULT_GAME_MODE);
 	}
 
 	public void init() {
-		board = new Board(players);
+		createBoard();
+
 		cardDeckSet.shuffle();
 
 		for (Player player : players) {
@@ -54,13 +47,16 @@ public class Match {
 		}
 	}
 
+	private void createBoard() {
+		board = new Board(players);
+		board.setTowerSet(new LoaderTowerSet().get(this));
+		board.setMarket(new LoaderMarket().get(this));
+		board.getTowerSet().setCards(cardDeckSet);
+	}
+
 	//Increments turn counter in TrackTurnOrder
 	public void newTurn() {
 		board.getTrackTurnOrder().newTurn();
-	}
-
-	public void newRound() {
-		board.refresh();
 	}
 
 	public void setPlayers(List<Player> players) {
@@ -99,10 +95,6 @@ public class Match {
 
 	public int getPeriodNum() {
 		return roundNum / 2 + roundNum % 2;
-	}
-
-	public int getTotalPeriodNumber() {
-		return totalPeriodNumber;
 	}
 
 	public ControllerPlayer getControllerPlayer() {

@@ -16,7 +16,7 @@ public class ExcommunicationSpace {
 
 	private void chooseTiles() {
 
-		int periodNum = Match.instance().getTotalPeriodNumber();
+		int periodNum = Match.DEFAULT_TOTAL_PERIODS_NUM;
 		List<ExcommunicationTile> roundTiles;
 
 		for (int i = 0; i < periodNum; i++) {

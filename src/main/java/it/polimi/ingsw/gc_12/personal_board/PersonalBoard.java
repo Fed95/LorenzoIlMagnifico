@@ -19,7 +19,6 @@ public class PersonalBoard {
     private Map<ResourceType, ResourceContainer> resourceContainers = new HashMap<>();
 
     public PersonalBoard(){
-        cardsSpaces = new LoaderCardsSpace().get(Match.instance());
         for(ResourceType resourceType : ResourceType.values())
             resourceContainers.put(resourceType, new ResourceContainer(resourceType));
     }
@@ -31,6 +30,10 @@ public class PersonalBoard {
         owner.hasResources(cardSlot.getRequisites());
 
         return true;
+    }
+
+    public void setCardsSpaces(Map<CardType, CardsSpace> cardsSpaces) {
+        this.cardsSpaces = cardsSpaces;
     }
 
     public void placeCard(CardDevelopment card){

@@ -30,7 +30,6 @@ public class Tower implements Zone {
 	public Tower(CardType type){
 		this.type = type;
 		this.taken = false;
-		decks = Match.instance().cardDeckSet.getDecks().get(type);
 		initializeFloors();
 
 	}
@@ -84,9 +83,9 @@ public class Tower implements Zone {
 	}
 
 	//Fills all floors with new cards picked from the deck corresponding to the current period
-	public void refresh(){
+	public void refresh(int period){
 		for(TowerFloor floor : floors)
-			floor.setCard(decks.get(Match.instance().getPeriodNum()).pickCard());
+			floor.setCard(decks.get(period).pickCard());
 	}
 
 	public void activateMalus(){
@@ -105,7 +104,9 @@ public class Tower implements Zone {
 		}
 	}
 
-
+	public void setDecks(Map<Integer, CardDeck> decks) {
+		this.decks = decks;
+	}
 
 	@Override
 	public String toString() {

@@ -27,7 +27,7 @@ public class LoaderBonusTile extends Loader<List<BonusTile>> {
 		if(match.getGameMode() == GameMode.NORMAL) {
 			newContent = new ArrayList<>();
 			BonusTile bonusTile = content.get(0);
-			int playersNum = Match.instance().getPlayers().size();
+			int playersNum = match.getPlayers().size();
 			for (int i = 0; i < playersNum; i++) {
 				newContent.add(bonusTile);
 			}

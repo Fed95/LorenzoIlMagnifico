@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc_12.occupiables;
 
+import it.polimi.ingsw.gc_12.card.CardDeckSet;
 import it.polimi.ingsw.gc_12.card.CardType;
 
 import java.util.ArrayList;
@@ -34,10 +35,16 @@ public class TowerSet {
 
 	//Fills the towerfloors with new cards from the corresponding deck
 	//Deactivates malus if it has been activated during the turn
-	public void refresh(){
+	public void refresh(int period){
 		for(Tower tower : towers.values()){
-			tower.refresh();
+			tower.refresh(period);
 			tower.deactivateMalus();
+		}
+	}
+
+	public void setCards(CardDeckSet cardDeckSet) {
+		for(Tower tower: towers.values()) {
+			tower.setDecks(cardDeckSet.getDeck(tower.getType()));
 		}
 	}
 

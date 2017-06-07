@@ -16,21 +16,8 @@ public class TrackFaithPoints {
 			faithSlots.add(new FaithSlot(value));
 	}
 
-	public List<Player> getSafePlayers(){
-
-		List<Player> safePlayers = Match.instance().getPlayers();
-
-		for(Player player : safePlayers){
-
-			if(player.getResourceValue(ResourceType.FAITH_POINT) < Match.instance().getPeriodNum() + 2){
-				safePlayers.remove(player);
-			}
-		}
-		return safePlayers;
-	}
-
-	public boolean isPlayerSafe(Player player) {
-		return player.getResourceValue(ResourceType.FAITH_POINT) >= Match.instance().getPeriodNum() + 2;
+	public boolean isPlayerSafe(Player player, int period) {
+		return player.getResourceValue(ResourceType.FAITH_POINT) >= period + 2;
 	}
 
 	public FaithSlot getFaithSlot(int index){

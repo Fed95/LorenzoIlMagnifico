@@ -40,5 +40,9 @@ public class CardDeckSet {
     public Map<CardType, Map<Integer, CardDeck>> getDecks(){
         return decks;
     }
+
+    public Map<Integer, CardDeck> getDeck(CardType cardType){
+        return getDecks().get(cardType);
+    }
 }
 

@@ -9,11 +9,8 @@ import it.polimi.ingsw.gc_12.comparator.VictoryComparator;
 
 public class TrackVictoryPoints {
 
-	public List<Player> getPlayerOrdered(){
-
-		List<Player> players = Match.instance().getPlayers();
-
-		Collections.sort(Match.instance().getPlayers(), new VictoryComparator().reversed());
+	public List<Player> getPlayerOrdered(List<Player> players){
+		Collections.sort(players, new VictoryComparator().reversed());
 		return players;
 	}
 }
