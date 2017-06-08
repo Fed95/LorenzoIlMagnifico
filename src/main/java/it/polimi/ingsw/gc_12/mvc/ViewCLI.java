@@ -68,7 +68,7 @@ public class ViewCLI extends Observable implements View {
 		for (i = 0; i < familyMembers.size(); i++) {
 			FamilyMember familyMember = familyMembers.get(i);
 			if(!familyMember.isBusy()) {
-				System.out.println(i + " - " + familyMember.getColor());
+				System.out.println(i + " - " + familyMember);
 				usableFMs.add(familyMember);
 			}	
 		}
