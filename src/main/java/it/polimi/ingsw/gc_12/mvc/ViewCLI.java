@@ -109,7 +109,7 @@ public class ViewCLI extends Observable{
 			System.out.println(i + " - " + zone);
 			i++;
 		}
-		System.out.println(i + " - Discard action.");
+		System.out.println(i + " - Go back.");
 
 		while (true) {
 			if(in.hasNextInt()) {
@@ -130,11 +130,11 @@ public class ViewCLI extends Observable{
 		System.out.println("Write the number of the space you want to place the family member in.");
 		int i = 0;
 		for(Occupiable occupiable : occupiables) {
-			System.out.println("occupiable " + occupiable.getOccupiers());
+			System.out.println("occupiers: " + occupiable.getOccupiers());
 			System.out.println(i + " - " + occupiable.toString());
 			i++;
 		}
-		System.out.println(i + " - Discard action.");
+		System.out.println(i + " - Go back.");
 
 		while (true) {
 			if(in.hasNextInt()) {

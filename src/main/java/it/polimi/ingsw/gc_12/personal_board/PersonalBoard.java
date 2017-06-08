@@ -26,9 +26,9 @@ public class PersonalBoard {
     public boolean canPlaceCard(Player owner, CardDevelopment card) {
         //Can throw an exception
         CardSlot cardSlot = cardsSpaces.get(card.getType()).getFirstFreeSlot();
-        //Can throw exceptions
-        owner.hasResources(cardSlot.getRequisites());
 
+        if(!owner.hasResources(cardSlot.getRequisites()))
+            return false;
         return true;
     }
 

@@ -54,4 +54,9 @@ public class EffectChangeFamilyMemberValue extends Effect{
 		familyMember.setValue(oldValue + amount);
 		//System.out.println(familyMember.getValue());
 	}
+
+	@Override
+	public String toString() {
+		return "Adds " + " to the family member's value";
+	}
 }

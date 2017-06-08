@@ -62,6 +62,7 @@ public class ControllerPlayer{
 				isFMPlaced = true;
 				view.askAction();
 			}catch (RuntimeException e){
+				e.printStackTrace();
 				System.out.println(e.getMessage());
 				view.askOccupiable();
 			}catch (RequiredValueNotSatisfiedException e){

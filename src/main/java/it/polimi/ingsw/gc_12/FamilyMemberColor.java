@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public enum FamilyMemberColor implements Serializable {
 	WHITE, 
-	BLACK, 
-	ORANGE,
+	//BLACK,
+	//ORANGE,
 	NEUTRAL
 }

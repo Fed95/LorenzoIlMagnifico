@@ -67,48 +67,29 @@ public class Player implements Serializable{
 		this.resources.get(type).setValue(value);
 	}
 
-	private void removeResource(List<Resource> newResources, Resource resourceToRemove) throws RuntimeException {
-
-		System.out.println("player: trying to remove " + resourceToRemove);
-
-		try {
-			Resource ownedResource = this.resources.get(resourceToRemove.getType());
-
-			System.out.println("player: owned resource: " + ownedResource);
-
-			int newValue = ownedResource.getValue() - resourceToRemove.getValue();
-
-			System.out.println("player: new resource value: " + newValue);
-
-			if(newValue < 0)
-				throw new RuntimeException("You don't have enough " + ownedResource.getType() + " resources!");
-
-			Resource newResource = ownedResource;
-			newResource.setValue(newValue);
-			newResources.add(newResource);
-
-		}catch(NullPointerException e) {
-			throw new RuntimeException("You don't have any resources!");
-		}
+	private void removeResource(Resource resourceToRemove) throws RuntimeException {
+		Resource ownedResource = this.resources.get(resourceToRemove.getType());
+		ownedResource.setValue(ownedResource.getValue() - resourceToRemove.getValue());
 	}
 
 	public void removeResources(List<Resource> resourcesToRemove) throws RuntimeException {
-
-		List<Resource> newResources = new ArrayList<>();
 		//fills the array with the affected resources updating their values
 		for(Resource resource: resourcesToRemove)
-			//Can throw an exception
-			this.removeResource(newResources, resource);
-
-		//If no exceptions were thrown the resources are updated with the new values
-		for(Resource resource : newResources){
-			this.resources.replace(resource.getType(), resource);
-		}
+			this.removeResource(resource);
+		for(Resource resource : resources.values())
+			if(resource.getValue() < 0)
+				throw new RuntimeException();
 	}
 
-	public void hasResources(List<Resource> resources) throws RuntimeException{
-		this.removeResources(resources);
+	public boolean hasResources(List<Resource> resources) throws RuntimeException{
+		try {
+			this.removeResources(resources);
+		}catch (RuntimeException e){
+			this.addResources(resources);
+			return false;
+		}
 		this.addResources(resources);
+		return true;
 	}
 	
 	public Map<ResourceType, Resource> getResources() {

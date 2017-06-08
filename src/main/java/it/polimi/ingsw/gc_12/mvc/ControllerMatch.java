@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc_12.mvc;
 
+import it.polimi.ingsw.gc_12.FamilyMemberColor;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 
@@ -29,7 +30,7 @@ public class ControllerMatch {
 				else
 					match.getBoard().refresh(match.getRoundNUm(), match.getPeriodNum());
 
-				for (int k = 0; k < 4; k++) { // 4 turns per round TODO: use variable from match
+				for (int k = 0; k < FamilyMemberColor.values().length; k++) { // 4 turns per round TODO: use variable from match
 					//controllerPlayer.start();
 					match.newTurn();
 				}

@@ -99,7 +99,8 @@ public class CLIAdapter implements View{
 			System.out.println("The specified input is not listed above");
 			view.askOccupiable(zoneIndex);
 		}else if(occupiableIndex == occupiables.size()) {
-			askAction();
+			System.out.println("Action discarded.");
+			askOccupiable();
 		}else{
 			Occupiable occupiable = occupiables.get(occupiableIndex);
 			controller.setOccupiable(occupiable);

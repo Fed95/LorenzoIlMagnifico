@@ -20,9 +20,7 @@ public abstract class SpaceWork extends Occupiable {
 	}
 
 	public boolean isOccupied() {
-		if(occupiers.isEmpty())
-			return false;
-		return true;
+		return !occupiers.isEmpty();
 	}
 	
 	public WorkType getWorkType() {

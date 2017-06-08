@@ -12,13 +12,11 @@ public class SpaceMarket extends Occupiable {
 	}
 	
 	public boolean isOccupied(){
-		if(occupiers.isEmpty())
-			return true;
-		return false;
+		return !occupiers.isEmpty();
 	}
 
 	@Override
 	public String toString() {
-		return "Space Market. Required value: " + requiredValue;
+		return "Space Market. Required value: " + requiredValue + ". Effects: " + getEffects();
 	}
 }

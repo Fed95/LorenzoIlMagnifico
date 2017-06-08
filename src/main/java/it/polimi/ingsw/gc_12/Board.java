@@ -37,7 +37,7 @@ public class Board implements Serializable{
 		this.trackMilitaryPoints = new TrackMilitaryPoints();
 		this.victroyPointsTrack = new TrackVictoryPoints();
 		this.trackFaithPoints = new TrackFaithPoints(trackFaithPointsValues);
-		//this.excommunicationSpace = new ExcommunicationSpace(DEFAULT_NUMBER_OF_EXCOMMUNICATION_TILES);//TODO:import from json file config if needed
+		//this.excommunicationSpace = new ExcommunicationSpace(list of excomminication tiles);//TODO:import from json file config if needed
 		createSpaceWork();
 	}
 

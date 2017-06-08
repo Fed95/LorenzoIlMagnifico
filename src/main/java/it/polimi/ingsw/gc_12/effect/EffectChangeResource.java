@@ -26,14 +26,10 @@ public class EffectChangeResource extends Effect {
 	
 	public void execute(Event event) throws RuntimeException {
 		Player player = event.getPlayer();
-		//System.out.println("effectchangeresource: executing change resource effect on player " + player.getName());
 		if(!choice) {
-			//System.out.println("effectchangeresource: 'non-choice' effect detected");
 			for(ResourceExchange exchange : exchanges) {
 				player.removeResources(exchange.getCost());
-				//System.out.println("effectchangeresource: removed " + exchange.getCost());
 				player.addResources(exchange.getBonus());
-				//System.out.println("effectchangeresource: added " + exchange.getBonus());
 			}
 		}
 		else {
@@ -58,5 +54,10 @@ public class EffectChangeResource extends Effect {
 			player.addResources(exchangeChosen.getCost());
 			player.removeResources(exchangeChosen.getCost());
 		}
+	}
+
+	@Override
+	public String toString() {
+		return String.valueOf(exchanges);
 	}
 }

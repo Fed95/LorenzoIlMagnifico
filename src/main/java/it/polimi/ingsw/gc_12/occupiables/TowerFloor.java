@@ -51,7 +51,7 @@ public class TowerFloor extends Occupiable {
 
 	@Override
 	public String toString() {
-		return "Floor " + floorNum + " of " + cardType + " tower - required value: " + super.requiredValue ;
+		return "Floor " + floorNum + " of " + cardType + " tower - required value: " + super.requiredValue + ". Card: [" + card + "]";
 	}
 
 	public CardType getType() {

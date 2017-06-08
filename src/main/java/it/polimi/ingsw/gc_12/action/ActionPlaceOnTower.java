@@ -32,16 +32,12 @@ public class ActionPlaceOnTower extends ActionPlace {
             throw new RuntimeException("This TowerFloor is already taken!");
         if(!towerFloor.isRequiredValueSatisfied(familyMember))
             throw new RequiredValueNotSatisfiedException();
-        try {
-            //Throws multiple exceptions
-            player.hasResources(towerFloor.getCard().getRequirements());
-            //Throws multiple exceptions
-            //actually places the card
-            player.getPersonalBoard().canPlaceCard(player, towerFloor.getCard());
-        }catch(NullPointerException e){
-           //TODO: waiting for Json cards
-           // throw new RuntimeException("There is no card on this floor!");
-        }
+        /*TODO: WAITING FOR JSON
+        if(!player.hasResources(towerFloor.getCard().getRequirements()))
+            throw new RuntimeException("You don't have enough resources to take this card!");
+        if(!player.getPersonalBoard().canPlaceCard(player, towerFloor.getCard()))
+            throw new RuntimeException("You can't place this card on your board!");
+        */
     }
 
     @Override
@@ -56,14 +52,12 @@ public class ActionPlaceOnTower extends ActionPlace {
             }
             towerFloor.placeFamilyMember(familyMember);
             familyMember.setBusy(true);
+            /*TODO: WAITING FOR JSON
             CardDevelopment card = towerFloor.getCard();
             player.getPersonalBoard().placeCard(card);
             towerFloor.removeCard();
             executeImmediateEffects(player, card);
-
-        }catch(NullPointerException e){
-            System.out.println(e);
-            //TODO: remove when Json is loaded
+            */
         }catch(Exception e) {
             player.getEffectHandler().discardEffects(event);
             System.out.println("effects discarded");

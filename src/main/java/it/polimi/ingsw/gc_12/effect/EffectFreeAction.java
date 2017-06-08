@@ -24,6 +24,11 @@ public class EffectFreeAction extends Effect {
 
     @Override
     public void discard(Event event) throws RuntimeException {
+        //TODO: CHECK THIS
+    }
 
+    @Override
+    public String toString() {
+        return "Free action of value " + value;
     }
 }
