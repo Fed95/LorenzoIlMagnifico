@@ -46,4 +46,8 @@ public class PersonalBoard {
             cards.addAll(cardsSpace.getCards());
         return cards;
     }
+
+    public List<Card> getCards(CardType type){
+        return cardsSpaces.get(type).getCards();
+    }
 }

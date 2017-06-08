@@ -6,8 +6,8 @@ public abstract class Effect {
 	
 	protected Event event;
 	
-	public Effect(Event action) {
-		this.event = action;
+	public Effect(Event event) {
+		this.event = event;
 	}
 	
 	public Event getEvent() {

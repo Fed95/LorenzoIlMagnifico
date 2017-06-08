@@ -42,15 +42,11 @@ public class EffectHandler {
 		List<EffectProvider> effectProviders = event.getEffectProviders();
 		List<Effect> effects = new ArrayList<>();
 
-		//System.out.println("effect handler: effect providers: " + effectProviders);
-
 		for(EffectProvider effectProvider: effectProviders) {
 			try {
 				effects.addAll(effectProvider.getEffects());
 			}catch(NullPointerException e){}
-
 		}
-		//System.out.println("effect handler: effects found: " + effects);
 		return effects;
 	}
 
