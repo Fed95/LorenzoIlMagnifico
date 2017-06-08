@@ -1,12 +1,13 @@
 package it.polimi.ingsw.gc_12.event;
 
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
+import it.polimi.ingsw.gc_12.server.controller.Change;
 import it.polimi.ingsw.gc_12.Player;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Event implements EventInterface {
+public abstract class Event extends Change implements EventInterface {
 
 	protected Player player;
 	protected List<EffectProvider> effectProviders = new ArrayList<>();

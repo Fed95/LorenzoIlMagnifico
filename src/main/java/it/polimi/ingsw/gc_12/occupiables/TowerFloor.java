@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc_12.occupiables;
 
+import java.io.Serializable;
 import java.util.List;
 
 import it.polimi.ingsw.gc_12.FamilyMember;
@@ -7,7 +8,7 @@ import it.polimi.ingsw.gc_12.card.CardDevelopment;
 import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.effect.Effect;
 
-public class TowerFloor extends Occupiable {
+public class TowerFloor extends Occupiable implements Serializable {
 
 	private final int floorNum;
 	private CardDevelopment card;

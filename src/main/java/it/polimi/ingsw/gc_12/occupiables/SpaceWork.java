@@ -1,11 +1,12 @@
 package it.polimi.ingsw.gc_12.occupiables;
 
+import java.io.Serializable;
 import java.util.List;
 
 import it.polimi.ingsw.gc_12.WorkType;
 import it.polimi.ingsw.gc_12.effect.Effect;
 
-public abstract class SpaceWork extends Occupiable {
+public abstract class SpaceWork extends Occupiable implements Serializable {
 	
 	protected WorkType workType;
 

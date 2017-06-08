@@ -5,8 +5,11 @@ import it.polimi.ingsw.gc_12.FamilyMemberColor;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.MatchRemote;
 import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.action.ActionFactory;
+import it.polimi.ingsw.gc_12.action.ActionPlace;
 import it.polimi.ingsw.gc_12.mvc.CLIAdapter;
 import it.polimi.ingsw.gc_12.mvc.View;
+import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.server.controller.action.Action;
 import it.polimi.ingsw.gc_12.server.controller.query.Query;
 import it.polimi.ingsw.gc_12.server.view.RMIViewRemote;
@@ -53,7 +56,7 @@ public class ClientRMI { //Main class of the Clients using RMI
 
 		while (true) {
 			//Capture input from user
-			String inputLine = stdIn.nextLine();
+			/*String inputLine = stdIn.nextLine();
 			System.out.println("SENDING "+inputLine);
 			Action action;
 			Query query;
@@ -69,21 +72,21 @@ public class ClientRMI { //Main class of the Clients using RMI
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}*/
 
 		}
 	}
 	
-	public void askAction(boolean isFMPlaced) throws RemoteException {
+	/*public void askAction(boolean isFMPlaced) throws RemoteException {
 		view.askAction(isFMPlaced);
+	}*/
+	
+	public void setFamilyMember(ActionPlace action) throws RemoteException {
+		serverStub.chooseFamilyMember(action);
 	}
 	
-	public void setFamilyMember(FamilyMember familyMember) throws RemoteException {
-		serverStub.setFamilyMember(familyMember);
-	}
-	
-	public void createView(MatchRemote match) {
-		view = new CLIAdapter(match, this);
+	public void setOccupiable(ActionPlace action) throws RemoteException {
+		serverStub.setOccupiable(action);
 	}
 
 	public static void main(String[] args) throws RemoteException, NotBoundException, AlreadyBoundException {

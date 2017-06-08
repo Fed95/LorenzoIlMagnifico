@@ -7,6 +7,7 @@ import it.polimi.ingsw.gc_12.occupiables.Market;
 import it.polimi.ingsw.gc_12.occupiables.SpaceMarket;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LoaderMarket extends Loader<Market> {
@@ -25,7 +26,7 @@ public class LoaderMarket extends Loader<Market> {
 		List<SpaceMarket> spaceMarkets = content.getSpaceMarkets();
 		Config config = new LoaderConfig().get(match).get(match.getPlayers());
 		int spaceMarketsNum = 4; //TODO: config.getSpaceMarketNum();
-		spaceMarkets = spaceMarkets.subList(0, spaceMarketsNum-1);
+		spaceMarkets = new ArrayList<>(spaceMarkets.subList(0, spaceMarketsNum-1));
 		content.setSpaceMarkets(spaceMarkets);
 		return content;
 	}

@@ -1,11 +1,12 @@
 package it.polimi.ingsw.gc_12.card;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 
-public class CardDeck {
+public class CardDeck implements Serializable {
 
     private CardType cardType;
     private int period;

@@ -3,10 +3,11 @@ package it.polimi.ingsw.gc_12.occupiables;
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Zone;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Market implements Zone {
+public class Market implements Zone, Serializable{
 	
 	private final int numberOfSpaces;
 	private List<SpaceMarket> spaceMarkets;

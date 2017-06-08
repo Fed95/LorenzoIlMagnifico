@@ -2,9 +2,11 @@ package it.polimi.ingsw.gc_12.server.view;
 
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.FamilyMemberColor;
+import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.action.ActionPlace;
 import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
+import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.server.Server;
 import it.polimi.ingsw.gc_12.server.controller.Change;
 import it.polimi.ingsw.gc_12.server.controller.StateChange;
@@ -20,6 +22,7 @@ public class RMIView extends View implements RMIViewRemote {
 
 	private Set<ClientViewRemote> clients;
 	private Server server;
+	private Match match;
 
 	public RMIView(Server server) {
 		this.clients = new HashSet<>();
@@ -67,10 +70,13 @@ public class RMIView extends View implements RMIViewRemote {
 	}
 
 	@Override
-	public void setFamilyMember(FamilyMember familyMember) throws RemoteException {
-		if(familyMember.isBusy())
-			throw new RuntimeException("This FamilyMember is already busy!");
-		Action action = new ActionPlace(familyMember);
+	public void chooseFamilyMember(ActionPlace action) throws RemoteException { 
+		this.notifyObserver(action);
+		
+	}
+
+	@Override
+	public void setOccupiable(ActionPlace action) throws RemoteException {
 		this.notifyObserver(action);
 		
 	}

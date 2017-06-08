@@ -1,11 +1,17 @@
 package it.polimi.ingsw.gc_12;
 
+import it.polimi.ingsw.gc_12.action.ActionPlace;
 import it.polimi.ingsw.gc_12.card.*;
 import it.polimi.ingsw.gc_12.effect.EffectHandler;
+import it.polimi.ingsw.gc_12.event.Event;
+import it.polimi.ingsw.gc_12.event.EventChooseFamilyMember;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
+import it.polimi.ingsw.gc_12.json.loader.LoaderCardsSpace;
 import it.polimi.ingsw.gc_12.json.loader.LoaderMarket;
 import it.polimi.ingsw.gc_12.json.loader.LoaderTowerSet;
 import it.polimi.ingsw.gc_12.mvc.ControllerPlayer;
+import it.polimi.ingsw.gc_12.occupiables.SpaceWorkZone;
+import it.polimi.ingsw.gc_12.occupiables.Tower;
 import it.polimi.ingsw.gc_12.server.controller.Change;
 import it.polimi.ingsw.gc_12.server.controller.StateChange;
 import it.polimi.ingsw.gc_12.server.model.State;
@@ -54,6 +60,7 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 
 		for (Player player : players) {
 			player.init(effectHandler);
+			player.getPersonalBoard().setCardsSpaces(new LoaderCardsSpace().get(this));
 		}
 	}
 
@@ -72,6 +79,11 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 	//Increments turn counter in TrackTurnOrder
 	public void newTurn() {
 		board.getTrackTurnOrder().newTurn();
+	}
+	
+	public void chooseFamilyMember(ActionPlace actionPlace) {
+		Event event = new EventChooseFamilyMember(actionPlace.getFamilyMember());
+		this.notifyObserver(event);
 	}
 
 	public void setPlayers(List<Player> players) {
@@ -129,5 +141,20 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 	@Override
 	public boolean isFMPlaced() throws RemoteException {
 		return isFMPlaced;
+	}
+
+	@Override
+	public List<Zone> getZones() throws RemoteException {
+		return getBoard().getZones();
+	}
+
+	@Override
+	public Tower getTower(CardType cardType) throws RemoteException {
+		return getBoard().getTowerSet().getTower(cardType);
+	}
+
+	@Override
+	public SpaceWorkZone getSpaceWorkZone(WorkType workType) throws RemoteException {
+		return getBoard().getSpaceWorkZones().get(workType);
 	}
 }

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc_12.mvc;
 
+import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.resource.ResourceExchange;
 
@@ -10,8 +11,8 @@ public interface View {
 
 	void startTurn();
 	void askAction(boolean isFMPlaced) throws RemoteException;
-	/*void askOccupiable();
-	boolean supportChurch();
+	void askOccupiable(FamilyMember familyMember) throws RemoteException;
+	/*boolean supportChurch();
 	void excommunicationMessage();
 
     int askServants(int requiredServants);

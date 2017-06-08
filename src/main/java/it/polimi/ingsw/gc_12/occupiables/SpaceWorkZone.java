@@ -6,10 +6,11 @@ import it.polimi.ingsw.gc_12.WorkType;
 import it.polimi.ingsw.gc_12.Zone;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpaceWorkZone implements Zone {
+public class SpaceWorkZone implements Zone, Serializable {
 
     private List<SpaceWork> spaceWorks = new ArrayList<>();
 

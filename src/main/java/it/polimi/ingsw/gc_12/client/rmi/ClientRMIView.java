@@ -2,6 +2,10 @@ package it.polimi.ingsw.gc_12.client.rmi;
 
 import it.polimi.ingsw.gc_12.MatchRemote;
 import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.event.EventChooseFamilyMember;
+import it.polimi.ingsw.gc_12.mvc.CLIAdapter;
+import it.polimi.ingsw.gc_12.mvc.View;
+import it.polimi.ingsw.gc_12.mvc.ViewCLI;
 import it.polimi.ingsw.gc_12.server.controller.Change;
 import it.polimi.ingsw.gc_12.server.controller.StateChange;
 
@@ -18,6 +22,7 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
 	private ClientRMI client;
 	private MatchRemote match;
 	private Player currentPlayer;
+	private View view;
 	private static final String MODEL_VIEW = "match";
 
 	protected ClientRMIView(ClientRMI client, String name) throws RemoteException {
@@ -35,14 +40,25 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
 			switch (stateChange.getNewState()) {
 				case RUNNING:
 					getMatch();
-					client.createView(match);
+					createView(match);
 					currentPlayer = match.getCurrentPlayer();
 					if(isMyTurn()) {
-						client.askAction(match.isFMPlaced());
+						view.askAction(match.isFMPlaced());
 					}
 					break;
 			}
 		}
+		else if(c instanceof EventChooseFamilyMember) {
+			EventChooseFamilyMember event = (EventChooseFamilyMember) c;
+			//if(isMyTurn()) {
+				view.askOccupiable(event.getFamilyMember());
+			//}
+			
+		}
+	}
+	
+	public void createView(MatchRemote match) {
+		view = new ViewCLI(match, client);
 	}
 
 	private void getMatch() throws RemoteException, NotBoundException {

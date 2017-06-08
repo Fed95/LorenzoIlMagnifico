@@ -4,31 +4,36 @@ import java.rmi.RemoteException;
 import java.util.*;
 
 import it.polimi.ingsw.gc_12.*;
+import it.polimi.ingsw.gc_12.action.ActionFactory;
+import it.polimi.ingsw.gc_12.action.ActionPlace;
 import it.polimi.ingsw.gc_12.card.Card;
+import it.polimi.ingsw.gc_12.client.rmi.ClientRMI;
+import it.polimi.ingsw.gc_12.client.rmi.ClientRMIView;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.resource.ResourceExchange;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 
-public class ViewCLI extends Observable{
+public class ViewCLI extends Observable implements View {
 
 	private Scanner in = new Scanner(System.in);
 	private CLIAdapter adapter;
 	private Player player;
 	private MatchRemote match;
 
-	public ViewCLI(/*Player player, */CLIAdapter adapter, MatchRemote match) {
-		//this.player = player;
-		this.adapter = adapter;
+	public ViewCLI(MatchRemote match, ClientRMI client) {
 		this.match = match;
+		this.adapter = new CLIAdapter(this, client);
 	}
 
+	@Override
 	public void startTurn() {
 		System.out.println();
 		//System.out.println("ROUND " + match.getRoundNUm() + "  ||  " + player.getName());
 	}
 
+	@Override
 	public void askAction(boolean isFMPlaced) throws RemoteException {
 		System.out.println();
 		System.out.println("Write the number of the action you want to perform");
@@ -69,28 +74,11 @@ public class ViewCLI extends Observable{
 		}
 
 		System.out.println(i + " - Discard action.");
-
+		
 		while (true) {
 			if(in.hasNextInt()) {
-				int input = in.nextInt();
-				if(input < 0 || input > i){
-					System.out.println("The specified input is not listed above");
-					askFamilyMember();
-				}else if(input == i) {
-					System.out.println("Action discarded");
-					askAction(false);
-					return;
-				}else {
-					FamilyMember familyMember = usableFMs.get(input);
-					System.out.println("familyMember " + familyMember.getColor() + " chosen ");
-					try {
-						adapter.setFamilyMember(familyMember);
-					}catch(RuntimeException e){
-						System.out.println(e.getMessage());
-						askFamilyMember();
-					}
-					break;
-				}
+				adapter.setFamilyMember(in.nextInt(), usableFMs);
+				break;
 			}
 			else {
 				System.out.println("The input must be a number. Try again");
@@ -98,9 +86,13 @@ public class ViewCLI extends Observable{
 			}	
 		}
 	}
-
-	/*public void askZone() {
-		List<Zone> zones = match.getBoard().getZones();
+	
+	public void askOccupiable(FamilyMember familyMember) throws RemoteException {
+		askZone(familyMember);
+	}
+	
+	public void askZone(FamilyMember familyMember) throws RemoteException {
+		List<Zone> zones = match.getZones();
 		System.out.println();
 		System.out.println("Write the number of the zone you want to place the family member in.");
 
@@ -113,7 +105,7 @@ public class ViewCLI extends Observable{
 
 		while (true) {
 			if(in.hasNextInt()) {
-				adapter.setZone(in.nextInt());
+				adapter.setZone(zones, familyMember, in.nextInt());
 				break;
 			}
 			else {
@@ -122,9 +114,12 @@ public class ViewCLI extends Observable{
 			}
 		}
 	}
+	
+	public ActionPlace createActionPlace(FamilyMember familyMember, Occupiable occupiable) throws RemoteException {
+		return ActionFactory.getActionPlace(occupiable, familyMember, match);
+	}
 
-	public void askOccupiable(int zoneIndex) {
-		Zone zone = match.getBoard().getZones().get(zoneIndex);
+	public void askOccupiableByZone(FamilyMember familyMember, Zone zone) throws RemoteException {
 		List<Occupiable> occupiables = zone.getOccupiables();
 		System.out.println();
 		System.out.println("Write the number of the space you want to place the family member in.");
@@ -139,7 +134,7 @@ public class ViewCLI extends Observable{
 		while (true) {
 			if(in.hasNextInt()) {
 				int input = in.nextInt();
-				adapter.setOccupiable(zoneIndex, input);
+				adapter.setOccupiable(zone, familyMember, input, occupiables);
 				break;
 			}else {
 				System.out.println("The input must be a number. Try again");
@@ -148,7 +143,7 @@ public class ViewCLI extends Observable{
 		}
 	}
 
-	public boolean supportChurch(){
+	/*public boolean supportChurch(){
 		System.out.println("Will you show your sustain to the church? [YES / NO]");
 		while(true) {
 			String choice = in.next();

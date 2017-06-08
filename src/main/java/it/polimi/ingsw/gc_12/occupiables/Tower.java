@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc_12.occupiables;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +14,7 @@ import it.polimi.ingsw.gc_12.effect.*;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.resource.*;
 
-public class Tower implements Zone {
+public class Tower implements Zone, Serializable{
 	private final CardType type;
 	private final List<TowerFloor> floors = new ArrayList<>();
 	private Map<Integer, CardDeck> decks;
