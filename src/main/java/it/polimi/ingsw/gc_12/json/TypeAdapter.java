@@ -3,12 +3,8 @@ package it.polimi.ingsw.gc_12.json;
 import com.google.gson.GsonBuilder;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import it.polimi.ingsw.gc_12.card.*;
-import it.polimi.ingsw.gc_12.effect.Effect;
-import it.polimi.ingsw.gc_12.effect.EffectChangeFamilyMemberValue;
-import it.polimi.ingsw.gc_12.effect.EffectChangeResource;
-import it.polimi.ingsw.gc_12.effect.EffectProvider;
-import it.polimi.ingsw.gc_12.event.Event;
-import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
+import it.polimi.ingsw.gc_12.effect.*;
+import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.resource.*;
 import it.polimi.ingsw.gc_12.occupiables.*;
 
@@ -54,11 +50,19 @@ public class TypeAdapter {
 		final RuntimeTypeAdapterFactory<Effect> factoryEffect = RuntimeTypeAdapterFactory
 				.of(Effect.class, "type") // Here you specify which is the parent class and what field particularizes the child class.
 				.registerSubtype(EffectChangeResource.class, EffectChangeResource.class.getSimpleName())
-				.registerSubtype(EffectChangeFamilyMemberValue.class, EffectChangeFamilyMemberValue.class.getSimpleName()); // if the flag equals the class name, you can skip the second parameter. This is only necessary, when the "type" field does not equal the class name.
+				.registerSubtype(EffectChangeFamilyMemberValue.class, EffectChangeFamilyMemberValue.class.getSimpleName())
+				.registerSubtype(EffectFreeAction.class, EffectFreeAction.class.getSimpleName())
+				.registerSubtype(EffectResourceForCards.class, EffectResourceForCards.class.getSimpleName())
+				.registerSubtype(EffectResourceForResource.class, EffectResourceForResource.class.getSimpleName());	// if the flag equals the class name, you can skip the second parameter. This is only necessary, when the "type" field does not equal the class name.
 
 		final RuntimeTypeAdapterFactory<Event> factoryEvent = RuntimeTypeAdapterFactory
 				.of(Event.class, "eventType")
-				.registerSubtype(EventPlaceFamilyMember.class, EventPlaceFamilyMember.class.getSimpleName());
+				.registerSubtype(EventPlaceFamilyMember.class, EventPlaceFamilyMember.class.getSimpleName())
+				.registerSubtype(EventChooseFamilyMember.class, EventChooseFamilyMember.class.getSimpleName())
+				.registerSubtype(EventPickCard.class, EventPickCard.class.getSimpleName())
+				.registerSubtype(EventSpendResource.class, EventSpendResource.class.getSimpleName())
+				.registerSubtype(EventSupportChurch.class, EventSupportChurch.class.getSimpleName());
+
 
 		return new GsonBuilder()
 				.registerTypeAdapterFactory(factoryEffectProvider)
