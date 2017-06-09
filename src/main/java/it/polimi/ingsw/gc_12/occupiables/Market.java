@@ -10,7 +10,7 @@ import java.util.List;
 public class Market implements Zone, Serializable{
 	
 	private final int numberOfSpaces;
-	private List<SpaceMarket> spaceMarkets;
+	private List<SpaceMarket> spaceMarkets = new ArrayList<>();
 	public static final int DEFAULT_SET_NUM = 4;
 	
 	public Market(int setNumber){
@@ -21,15 +21,12 @@ public class Market implements Zone, Serializable{
 		}
 		for(int i = 0; i < numberOfSpaces; i++){
 			//TODO implement Json configuration with the right spacemarket constructor
-			//spaceMarkets.add(new SpaceMarket());
+			spaceMarkets.add(new SpaceMarket(2, null));
 		}
 	}
 	
 	public Market(){
 		this(DEFAULT_SET_NUM);
-	}
-	public int getNumberOfSpaces(){
-		return numberOfSpaces;
 	}
 
 	public List<SpaceMarket> getSpaceMarkets() {

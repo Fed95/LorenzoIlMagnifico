@@ -1,6 +1,7 @@
 package it.polimi.ingsw.gc_12.occupiables;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import it.polimi.ingsw.gc_12.FamilyMember;

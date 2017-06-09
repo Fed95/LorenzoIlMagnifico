@@ -33,6 +33,7 @@ public class Board implements Serializable{
 	public Board(List<Player> players) {
 		this.spaceDie = SpaceDie.instance();
 		this.councilPalace = new CouncilPalace(1, null); //TODO: import values and effects from Json
+		this.market = new Market(2 + 2*(players.size()/4));
 		this.trackTurnOrder = new TrackTurnOrder(players, councilPalace);
 		this.trackMilitaryPoints = new TrackMilitaryPoints();
 		this.victroyPointsTrack = new TrackVictoryPoints();
