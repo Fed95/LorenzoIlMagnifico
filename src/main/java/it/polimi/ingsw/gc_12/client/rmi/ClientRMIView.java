@@ -3,6 +3,9 @@ package it.polimi.ingsw.gc_12.client.rmi;
 import it.polimi.ingsw.gc_12.MatchRemote;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.EventChooseFamilyMember;
+import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
+import it.polimi.ingsw.gc_12.event.EventStartMatch;
+import it.polimi.ingsw.gc_12.event.EventStartTurn;
 import it.polimi.ingsw.gc_12.mvc.CLIAdapter;
 import it.polimi.ingsw.gc_12.mvc.View;
 import it.polimi.ingsw.gc_12.mvc.ViewCLI;
@@ -32,28 +35,30 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
 	}
 
 	@Override
-	public void updateClient(Change c) throws RemoteException, NotBoundException {
-		// Just prints what was received from the server
-		System.out.println(c);
-		if(c instanceof StateChange) {
-			StateChange stateChange = (StateChange) c;
-			switch (stateChange.getNewState()) {
-				case RUNNING:
-					getMatch();
-					createView(match);
-					currentPlayer = match.getCurrentPlayer();
-					if(isMyTurn()) {
-						view.askAction(match.isFMPlaced());
-					}
-					break;
+	public void updateClient(Change change) throws RemoteException, NotBoundException {
+		if(change instanceof EventStartMatch) {
+			EventStartMatch event = (EventStartMatch) change;
+			match = event.getMatch();
+			createView(match);
+		}
+		else if(change instanceof EventStartTurn) {
+			EventStartTurn event = (EventStartTurn) change;
+			currentPlayer = match.getCurrentPlayer();
+			if(isMyTurn()) {
+				view.askAction(match.isFMPlaced());
 			}
 		}
-		else if(c instanceof EventChooseFamilyMember) {
-			EventChooseFamilyMember event = (EventChooseFamilyMember) c;
-			//if(isMyTurn()) {
+		else if(change instanceof EventChooseFamilyMember) {
+			EventChooseFamilyMember event = (EventChooseFamilyMember) change;
+			if(isMyTurn()) {
 				view.askOccupiable(event.getFamilyMember());
-			//}
-			
+			}
+		}
+		else if(change instanceof EventPlaceFamilyMember) {
+			EventPlaceFamilyMember event = (EventPlaceFamilyMember) change;
+			if(isMyTurn()) {
+				view.askAction(true);
+			}
 		}
 	}
 	
@@ -67,7 +72,13 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
 		match = (MatchRemote) registry.lookup(MODEL_VIEW);
 	}
 
-	private boolean isMyTurn() throws RemoteException {
+	private boolean isMyTurn(){
+		if(currentPlayer == null) {
+			System.out.println("MyTurn: current player is null");
+		}
+		else {
+			System.out.println("MyTurn: current player is NOT null");
+		}
 		return name.equals(currentPlayer.getName());
 	}
 	

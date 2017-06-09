@@ -27,4 +27,8 @@ public class ActionPlace extends Action implements Serializable{
 			throw new RuntimeException("This FamilyMember is already busy!");
 		match.chooseFamilyMember(this);
 	}
+	
+	protected FamilyMember getRealFamilyMember(Match match){
+    	return match.getBoard().getTrackTurnOrder().getCurrentPlayer().getFamilyMember(familyMember.getColor());
+    }
 }

@@ -8,6 +8,7 @@ import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPickCard;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
+import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.occupiables.Tower;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 
@@ -41,17 +42,19 @@ public class ActionPlaceOnTower extends ActionPlace {
     }
 
     @Override
-    public void start(Match match ) throws RuntimeException, RequiredValueNotSatisfiedException {
+    public void start(Match match) throws RuntimeException, RequiredValueNotSatisfiedException {
     	Player player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
-        Event event = new EventPlaceFamilyMember(player, towerFloor, familyMember);
+    	familyMember = getRealFamilyMember(match);
+    	towerFloor = getRealTowerFloor(match);
+    	Event event = new EventPlaceFamilyMember(player, towerFloor, familyMember);
         //System.out.println("actionplaceontower: event created with placement on " + towerFloor);
         try{
             this.canBeExecuted(player, event);
             if (tower.getFloors().stream().allMatch(floor -> !floor.isOccupied())) { //If no floor of the tower has been occupied yet
                 tower.activateMalus();
             }
-            towerFloor.placeFamilyMember(familyMember);
-            familyMember.setBusy(true);
+            
+            match.placeFamilyMember(towerFloor, familyMember);
             /*TODO: WAITING FOR JSON
             CardDevelopment card = towerFloor.getCard();
             player.getPersonalBoard().placeCard(card);
@@ -69,5 +72,9 @@ public class ActionPlaceOnTower extends ActionPlace {
     public void executeImmediateEffects(Player player, CardDevelopment card) throws RuntimeException {
         EventPickCard event = new EventPickCard(player, card);
         player.getEffectHandler().executeEffects(event);
+    }
+    
+    public TowerFloor getRealTowerFloor(Match match) {
+    	return match.getBoard().getTowerSet().getTower(towerFloor.getType()).getFloor(towerFloor.getFloorNum());
     }
 }

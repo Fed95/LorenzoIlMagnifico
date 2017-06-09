@@ -5,11 +5,15 @@ import it.polimi.ingsw.gc_12.card.*;
 import it.polimi.ingsw.gc_12.effect.EffectHandler;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventChooseFamilyMember;
+import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
+import it.polimi.ingsw.gc_12.event.EventStartMatch;
+import it.polimi.ingsw.gc_12.event.EventStartTurn;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
 import it.polimi.ingsw.gc_12.json.loader.LoaderCardsSpace;
 import it.polimi.ingsw.gc_12.json.loader.LoaderMarket;
 import it.polimi.ingsw.gc_12.json.loader.LoaderTowerSet;
 import it.polimi.ingsw.gc_12.mvc.ControllerPlayer;
+import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.occupiables.SpaceWorkZone;
 import it.polimi.ingsw.gc_12.occupiables.Tower;
 import it.polimi.ingsw.gc_12.server.controller.Change;
@@ -73,16 +77,27 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 
 	public void start() {
 		this.gameState = State.RUNNING;
-		this.notifyObserver(new StateChange(this.gameState));
+		System.out.println("notify EventStartMatch");
+		this.notifyObserver(new EventStartMatch(this));
+		newTurn();
 	}
 
 	//Increments turn counter in TrackTurnOrder
 	public void newTurn() {
 		board.getTrackTurnOrder().newTurn();
+		System.out.println("notify EventStartTurn");
+		this.notifyObserver(new EventStartTurn(board.getTrackTurnOrder().getCurrentPlayer()));
 	}
 	
 	public void chooseFamilyMember(ActionPlace actionPlace) {
 		Event event = new EventChooseFamilyMember(actionPlace.getFamilyMember());
+		this.notifyObserver(event);
+	}
+	
+	public void placeFamilyMember(Occupiable occupiable, FamilyMember familyMember) {
+		occupiable.placeFamilyMember(familyMember);
+        familyMember.setBusy(true);
+		EventPlaceFamilyMember event = new EventPlaceFamilyMember(board.getTrackTurnOrder().getCurrentPlayer(), occupiable, familyMember);
 		this.notifyObserver(event);
 	}
 

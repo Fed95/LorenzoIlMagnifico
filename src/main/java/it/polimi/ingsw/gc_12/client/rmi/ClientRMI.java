@@ -10,7 +10,7 @@ import it.polimi.ingsw.gc_12.action.ActionPlace;
 import it.polimi.ingsw.gc_12.mvc.CLIAdapter;
 import it.polimi.ingsw.gc_12.mvc.View;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
-import it.polimi.ingsw.gc_12.server.controller.action.Action;
+import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.server.controller.query.Query;
 import it.polimi.ingsw.gc_12.server.view.RMIViewRemote;
 
@@ -48,13 +48,26 @@ public class ClientRMI { //Main class of the Clients using RMI
 
 		Scanner stdIn = new Scanner(System.in);
 		System.out.println("Choose a name");
-		ClientRMIView rmiView=new ClientRMIView(this, stdIn.nextLine());
-
-		// register the client view in the server side (to receive messages from the server)
-		serverStub.registerClient(rmiView);
-
-
+		String name = "";
 		while (true) {
+			name = stdIn.nextLine();
+			if(!"\n".equals(name) && !"".equals(name)) {
+				ClientRMIView rmiView=new ClientRMIView(this, name);
+				// register the client view in the server side (to receive messages from the server)
+				serverStub.registerClient(rmiView);
+				break;
+			}
+			else {
+				System.out.println("Choose a name");
+				//stdIn.next();
+			}
+		}
+		
+
+		
+
+
+		//while (true) {
 			//Capture input from user
 			/*String inputLine = stdIn.nextLine();
 			System.out.println("SENDING "+inputLine);
@@ -74,19 +87,15 @@ public class ClientRMI { //Main class of the Clients using RMI
 				e.printStackTrace();
 			}*/
 
-		}
+		//}
 	}
 	
 	/*public void askAction(boolean isFMPlaced) throws RemoteException {
 		view.askAction(isFMPlaced);
 	}*/
 	
-	public void setFamilyMember(ActionPlace action) throws RemoteException {
-		serverStub.chooseFamilyMember(action);
-	}
-	
-	public void setOccupiable(ActionPlace action) throws RemoteException {
-		serverStub.setOccupiable(action);
+	public void sendAction(Action action) throws RemoteException {
+		serverStub.receiveAction(action);
 	}
 
 	public static void main(String[] args) throws RemoteException, NotBoundException, AlreadyBoundException {

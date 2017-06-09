@@ -6,6 +6,7 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.MatchRemote;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.Zone;
+import it.polimi.ingsw.gc_12.action.ActionPassTurn;
 import it.polimi.ingsw.gc_12.action.ActionPlace;
 import it.polimi.ingsw.gc_12.card.Card;
 import it.polimi.ingsw.gc_12.card.CardType;
@@ -37,6 +38,8 @@ public class CLIAdapter {
 
 		switch (actionNum) { // must keep 'case 0' last
 			case 2:
+				ActionPassTurn action = new ActionPassTurn();
+				client.sendAction(action);
 				break;
 			case 1: // View statistics
 				//controller.viewStatistics();
@@ -66,7 +69,7 @@ public class CLIAdapter {
 			System.out.println("familyMember " + familyMember.getColor() + " chosen ");
 			try {
 				ActionPlace action = new ActionPlace(familyMember);
-				client.setFamilyMember(action);
+				client.sendAction(action);
 			}catch(RuntimeException e){
 				System.out.println(e.getMessage());
 				view.askFamilyMember();
@@ -87,7 +90,7 @@ public class CLIAdapter {
 			Zone zone = zones.get(index);
 			if(zone instanceof Occupiable) {
 				ActionPlace action = view.createActionPlace(familyMember, (Occupiable) zone);
-				client.setOccupiable(action);
+				client.sendAction(action);
 			}
 			else {
 				view.askOccupiableByZone(familyMember, zone);
@@ -104,8 +107,8 @@ public class CLIAdapter {
 			view.askOccupiable(familyMember);
 		}else{
 			Occupiable occupiable = occupiables.get(occupiableIndex);
-			ActionPlace action = view.createActionPlace(familyMember, (Occupiable) zone);
-			client.setOccupiable(action);
+			ActionPlace action = view.createActionPlace(familyMember, occupiable);
+			client.sendAction(action);
 		}
 	}/*
 

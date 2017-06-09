@@ -70,14 +70,7 @@ public class RMIView extends View implements RMIViewRemote {
 	}
 
 	@Override
-	public void chooseFamilyMember(ActionPlace action) throws RemoteException { 
-		this.notifyObserver(action);
-		
-	}
-
-	@Override
-	public void setOccupiable(ActionPlace action) throws RemoteException {
-		this.notifyObserver(action);
-		
+	public void receiveAction(Action action) throws RemoteException { 
+		this.notifyObserver(action);	
 	}
 }
