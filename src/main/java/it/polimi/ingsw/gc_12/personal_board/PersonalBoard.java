@@ -8,15 +8,16 @@ import it.polimi.ingsw.gc_12.card.CardDevelopment;
 import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
-public class PersonalBoard {
+public class PersonalBoard implements Serializable{
     private Map<CardType, CardsSpace> cardsSpaces;
-    private Map<ResourceType, ResourceContainer> resourceContainers = new HashMap<>();
+    private transient Map<ResourceType, ResourceContainer> resourceContainers = new HashMap<>();
 
     public PersonalBoard(){
         for(ResourceType resourceType : ResourceType.values())

@@ -22,7 +22,7 @@ public class Player implements Serializable{
 	
 	private final String name;
 	private transient Match match;
-	private transient PersonalBoard personalBoard;
+	private PersonalBoard personalBoard;
 	private transient EffectHandler effectHandler;
 	private transient List<ExcommunicationTile> excommunications = new ArrayList<>();
 	private transient Map<ResourceType, Resource> resources;

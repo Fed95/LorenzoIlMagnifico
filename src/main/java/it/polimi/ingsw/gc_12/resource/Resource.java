@@ -1,6 +1,8 @@
 package it.polimi.ingsw.gc_12.resource;
 
-public abstract class Resource {
+import java.io.Serializable;
+
+public abstract class Resource implements Serializable {
 	private final ResourceType type;
 	private int value;
 	

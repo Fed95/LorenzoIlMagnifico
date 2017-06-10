@@ -14,6 +14,7 @@ import it.polimi.ingsw.gc_12.occupiables.TowerSet;
  */
 public interface MatchRemote extends Remote {
 
+	MatchInstance getInstance() throws RemoteException, CloneNotSupportedException;
 	Player getCurrentPlayer() throws RemoteException;
 	boolean isFMPlaced() throws RemoteException;
 	List<Zone> getZones() throws RemoteException;

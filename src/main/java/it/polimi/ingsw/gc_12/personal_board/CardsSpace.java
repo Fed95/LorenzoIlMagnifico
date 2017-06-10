@@ -4,10 +4,11 @@ import it.polimi.ingsw.gc_12.card.Card;
 import it.polimi.ingsw.gc_12.card.CardDevelopment;
 import it.polimi.ingsw.gc_12.card.CardType;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CardsSpace {
+public class CardsSpace implements Serializable{
     private CardType type;
     private List<CardSlot> slots = new ArrayList<>();
     private int spacesAvailable;

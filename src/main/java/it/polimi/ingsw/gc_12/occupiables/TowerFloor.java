@@ -60,4 +60,22 @@ public class TowerFloor extends Occupiable{
 	public CardType getType() {
 		return cardType;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof TowerFloor)) return false;
+
+		TowerFloor that = (TowerFloor) o;
+
+		if (floorNum != that.floorNum) return false;
+		return cardType == that.cardType;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = floorNum;
+		result = 31 * result + cardType.hashCode();
+		return result;
+	}
 }

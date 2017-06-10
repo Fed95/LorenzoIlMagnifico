@@ -6,23 +6,17 @@ import java.util.*;
 import it.polimi.ingsw.gc_12.*;
 import it.polimi.ingsw.gc_12.action.ActionFactory;
 import it.polimi.ingsw.gc_12.action.ActionPlace;
-import it.polimi.ingsw.gc_12.card.Card;
 import it.polimi.ingsw.gc_12.client.rmi.ClientRMI;
-import it.polimi.ingsw.gc_12.client.rmi.ClientRMIView;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
-import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
-import it.polimi.ingsw.gc_12.resource.Resource;
-import it.polimi.ingsw.gc_12.resource.ResourceExchange;
-import it.polimi.ingsw.gc_12.resource.ResourceType;
 
 public class ViewCLI extends Observable implements View {
 
 	private Scanner in = new Scanner(System.in);
 	private CLIAdapter adapter;
 	private Player player;
-	private MatchRemote match;
+	private MatchInstance match;
 
-	public ViewCLI(MatchRemote match, ClientRMI client) {
+	public ViewCLI(MatchInstance match, ClientRMI client) throws RemoteException {
 		this.match = match;
 		this.adapter = new CLIAdapter(this, client);
 	}
@@ -30,7 +24,7 @@ public class ViewCLI extends Observable implements View {
 	@Override
 	public void startTurn() {
 		System.out.println();
-		//System.out.println("ROUND " + match.getRoundNUm() + "  ||  " + player.getName());
+		//System.out.println("ROUND " + matchRemote.getRoundNUm() + "  ||  " + player.getName());
 	}
 
 	@Override
@@ -62,7 +56,7 @@ public class ViewCLI extends Observable implements View {
 		System.out.println("Write the number of the family member you want to use");
 
 		List<FamilyMember> usableFMs = new ArrayList<>();
-		List<FamilyMember> familyMembers = match.getCurrentPlayer().getFamilyMembersList();
+		List<FamilyMember> familyMembers = match.getBoard().getTrackTurnOrder().getCurrentPlayer().getFamilyMembersList();
 		
 		int i;
 		for (i = 0; i < familyMembers.size(); i++) {
@@ -92,7 +86,7 @@ public class ViewCLI extends Observable implements View {
 	}
 	
 	public void askZone(FamilyMember familyMember) throws RemoteException {
-		List<Zone> zones = match.getZones();
+		List<Zone> zones = match.getBoard().getZones();
 		System.out.println();
 		System.out.println("Write the number of the zone you want to place the family member in.");
 
@@ -125,7 +119,6 @@ public class ViewCLI extends Observable implements View {
 		System.out.println("Write the number of the space you want to place the family member in.");
 		int i = 0;
 		for(Occupiable occupiable : occupiables) {
-			System.out.println("occupiers: " + occupiable.getOccupiers());
 			System.out.println(i + " - " + occupiable.toString());
 			i++;
 		}
@@ -178,7 +171,7 @@ public class ViewCLI extends Observable implements View {
 	public int viewStatistics() {
 		int i = 0;
 		System.out.println("Who's statistics would you like to view?");
-		for(Player player : match.getPlayers()){
+		for(Player player : matchRemote.getPlayers()){
 			System.out.println(i + " - " + player.getName());
 			i++;
 		}

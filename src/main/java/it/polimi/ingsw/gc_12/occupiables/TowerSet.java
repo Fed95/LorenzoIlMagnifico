@@ -3,12 +3,13 @@ package it.polimi.ingsw.gc_12.occupiables;
 import it.polimi.ingsw.gc_12.card.CardDeckSet;
 import it.polimi.ingsw.gc_12.card.CardType;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TowerSet {
+public class TowerSet implements Serializable{
 	private Map<CardType, Tower> towers = new HashMap<>();
 	
 	public TowerSet(){

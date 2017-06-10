@@ -5,11 +5,12 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.occupiables.CouncilPalace;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class TrackTurnOrder {
+public class TrackTurnOrder implements Serializable{
 
 	private List<Player> turnOrder = new ArrayList<>();
 	private int turn;

@@ -5,10 +5,11 @@ import it.polimi.ingsw.gc_12.card.CardDevelopment;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.resource.Resource;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CardSlot implements EffectProvider{
+public class CardSlot implements EffectProvider, Serializable{
     private CardDevelopment card;
     private List<Resource> requisites = new ArrayList<>();
     private List<Effect> effects = new ArrayList<>();

@@ -1,5 +1,7 @@
 package it.polimi.ingsw.gc_12.client.rmi;
 
+import it.polimi.ingsw.gc_12.Match;
+import it.polimi.ingsw.gc_12.MatchInstance;
 import it.polimi.ingsw.gc_12.MatchRemote;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.EventChooseFamilyMember;
@@ -24,7 +26,8 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
 
 	private String name;
 	private ClientRMI client;
-	private MatchRemote match;
+	private MatchInstance match;
+	private MatchRemote matchRemote;
 	private Player currentPlayer;
 	private View view;
 	private static final String MODEL_VIEW = "match";
@@ -39,38 +42,48 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
 	public void updateClient(Change change) throws RemoteException, NotBoundException {
 		if(change instanceof EventStartMatch) {
 			EventStartMatch event = (EventStartMatch) change;
-			match = event.getMatch();
+			matchRemote = event.getMatch();
+			try {
+				match = matchRemote.getInstance();
+			} catch (CloneNotSupportedException e) {
+				e.printStackTrace();
+			}
 			createView(match);
 		}
 		else if(change instanceof EventStartTurn) {
-			currentPlayer = match.getCurrentPlayer();
+
+			match.newTurn();
+			currentPlayer = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
 			if(isMyTurn()) {
-				view.askAction(match.isFMPlaced());
+				view.askAction(false);
 			}
 		}
 		else if(change instanceof EventChooseFamilyMember) {
-			currentPlayer = match.getCurrentPlayer(); // TODO: fix synchronization to be sure that EventStartTurn is always already executed
+			currentPlayer = match.getBoard().getTrackTurnOrder().getCurrentPlayer(); // TODO: fix synchronization to be sure that EventStartTurn is always already executed
 			EventChooseFamilyMember event = (EventChooseFamilyMember) change;
 			if(isMyTurn()) {
 				view.askOccupiable(event.getFamilyMember());
 			}
 		}
 		else if(change instanceof EventPlaceFamilyMember) {
-			currentPlayer = match.getCurrentPlayer();
+			EventPlaceFamilyMember event = (EventPlaceFamilyMember) change;
+			match.placeFamilyMember(event.getOccupiables().get(0), event.getFamilyMember());
+			System.out.println("dentro EventPlaceFamilyMember");
+			currentPlayer = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
 			if(isMyTurn()) {
 				view.askAction(true);
 			}
 		}
 	}
 	
-	public void createView(MatchRemote match) {
+	public void createView(MatchInstance match) throws RemoteException {
 		view = new ViewCLI(match, client);
 	}
 
 	private void getMatch() throws RemoteException, NotBoundException {
 		Registry registry = LocateRegistry.getRegistry(client.HOST, client.PORT);
 		//get the stub (local object) of the remote view
-		match = (MatchRemote) registry.lookup(MODEL_VIEW);
+		matchRemote = (MatchRemote) registry.lookup(MODEL_VIEW);
 	}
 
 	private boolean isMyTurn(){

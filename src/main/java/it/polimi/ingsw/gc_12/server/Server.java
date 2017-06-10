@@ -74,7 +74,7 @@ public class Server {
 		MatchRemote matchRemote = (MatchRemote) UnicastRemoteObject.exportObject(match, 0);
 		registry.rebind(MODEL_NAME, matchRemote);
 		match.start();
-		
+
 	}
 
 	public void newMatch() throws RemoteException {

@@ -18,10 +18,10 @@ import java.util.Map;
 public class Board implements Serializable{
 
 	private transient SpaceDie spaceDie;
-	private transient TowerSet towerSet;
-	private transient Market market;
-	private transient CouncilPalace councilPalace;
-	private transient Map<WorkType, SpaceWorkZone> spaceWorkZones = new HashMap<>();
+	private TowerSet towerSet;
+	private Market market;
+	private CouncilPalace councilPalace;
+	private Map<WorkType, SpaceWorkZone> spaceWorkZones = new HashMap<>();
 	private TrackTurnOrder trackTurnOrder;
 	private transient TrackMilitaryPoints trackMilitaryPoints;
 	private transient TrackVictoryPoints victroyPointsTrack;

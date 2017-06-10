@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Match extends Observable<Change> implements MatchRemote, Serializable{
+public class Match extends Observable<Change> implements MatchRemote {
 	private transient List<Player> players = new ArrayList<>();
 	private transient final List<BonusTile> bonusTiles = new ArrayList<>();
 	private transient List<Card> cards = new ArrayList<>(); //TODO IMPORT FROM JSON
@@ -78,7 +78,7 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 		//board.getTowerSet().setCards(cardDeckSet); TODO WAITING FOR JSON
 	}
 
-	public void start() {
+	public void start(){
 		this.gameState = State.RUNNING;
 		System.out.println("notify EventStartMatch");
 		this.notifyObserver(new EventStartMatch(this));
@@ -93,6 +93,11 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 		board.getTrackTurnOrder().newTurn();
 		System.out.println("Match: notifying EventStartTurn to RMIView");
 		this.notifyObserver(new EventStartTurn(board.getTrackTurnOrder().getCurrentPlayer()));
+	}
+
+	@Override
+	public MatchInstance getInstance() throws CloneNotSupportedException {
+		return new MatchInstance(this);
 	}
 	
 	public void chooseFamilyMember(ActionPlace actionPlace) {
@@ -155,27 +160,27 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 		return board.toString();
 	}
 
-	@Override
+	//@Override
 	public Player getCurrentPlayer() throws RemoteException {
 		return getBoard().getTrackTurnOrder().getCurrentPlayer();
 	}
 
-	@Override
+	//@Override
 	public boolean isFMPlaced() throws RemoteException {
 		return isFMPlaced;
 	}
 
-	@Override
+	//@Override
 	public List<Zone> getZones() throws RemoteException {
 		return getBoard().getZones();
 	}
 
-	@Override
+	//@Override
 	public Tower getTower(CardType cardType) throws RemoteException {
 		return getBoard().getTowerSet().getTower(cardType);
 	}
 
-	@Override
+	//@Override
 	public SpaceWorkZone getSpaceWorkZone(WorkType workType) throws RemoteException {
 		return getBoard().getSpaceWorkZones().get(workType);
 	}
