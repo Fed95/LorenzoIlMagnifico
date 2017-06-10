@@ -51,11 +51,12 @@ public class ActionPlaceOnTower extends ActionPlace {
         //System.out.println("actionplaceontower: event created with placement on " + towerFloor);
         try{
             this.canBeExecuted(player, event);
-            if (tower.getFloors().stream().allMatch(floor -> !floor.isOccupied())) { //If no floor of the tower has been occupied yet
+             if (tower.getFloors().stream().allMatch(floor -> !floor.isOccupied())) { //If no floor of the tower has been occupied yet
                 tower.activateMalus();
             }
             
             match.placeFamilyMember(towerFloor, familyMember);
+
             /*TODO: WAITING FOR JSON
             CardDevelopment card = towerFloor.getCard();
             player.getPersonalBoard().placeCard(card);
@@ -74,8 +75,8 @@ public class ActionPlaceOnTower extends ActionPlace {
         EventPickCard event = new EventPickCard(player, card);
         player.getEffectHandler().executeEffects(event);
     }
-    
-    public Tower getRealTower(Match match) {
+
+    private Tower getRealTower(Match match) {
     	return match.getBoard().getTowerSet().getTower(towerFloor.getType());
     }
 }

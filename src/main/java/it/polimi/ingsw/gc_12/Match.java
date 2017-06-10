@@ -84,8 +84,11 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 
 	//Increments turn counter in TrackTurnOrder
 	public void newTurn() {
+		System.out.println("Match: Starting new turn");
+		for(Zone zone : board.getZones())
+			System.out.println(zone);
 		board.getTrackTurnOrder().newTurn();
-		System.out.println("notify EventStartTurn");
+		System.out.println("Match: notifying EventStartTurn to RMIView");
 		this.notifyObserver(new EventStartTurn(board.getTrackTurnOrder().getCurrentPlayer()));
 	}
 	
@@ -132,7 +135,7 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 		return board;
 	}
 
-	public int getRoundNUm() {
+	public int getRoundNum() {
 		return roundNum;
 	}
 

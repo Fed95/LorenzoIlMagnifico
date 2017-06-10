@@ -45,7 +45,7 @@ public class CLIAdapter {
 				//controller.viewStatistics();
 				break;
 			case 0: // Place Family Member
-				System.out.println("dentro case 0");
+				System.out.println("CLIAdapter: Action PlaceFamilyMember recognised.");
 				if(!isFmPlaced) {
 					view.askFamilyMember();
 					break;
@@ -66,9 +66,10 @@ public class CLIAdapter {
 			view.askAction(false);
 		}else {
 			FamilyMember familyMember = usableFMs.get(input);
-			System.out.println("familyMember " + familyMember.getColor() + " chosen ");
+			System.out.println("familyMember " + familyMember.getColor() + " chosen.");
 			try {
 				ActionPlace action = new ActionPlace(familyMember);
+				System.out.println("ActionPlace created. Sending it to ClientRMI");
 				client.sendAction(action);
 			}catch(RuntimeException e){
 				System.out.println(e.getMessage());

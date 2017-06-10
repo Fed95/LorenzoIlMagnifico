@@ -19,4 +19,5 @@ public interface MatchRemote extends Remote {
 	List<Zone> getZones() throws RemoteException;
 	Tower getTower(CardType cardType) throws RemoteException;
 	SpaceWorkZone getSpaceWorkZone(WorkType workType) throws RemoteException;
+	int getPeriodNum() throws RemoteException;
 }

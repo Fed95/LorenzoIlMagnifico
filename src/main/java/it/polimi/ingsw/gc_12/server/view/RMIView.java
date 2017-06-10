@@ -70,7 +70,7 @@ public class RMIView extends View implements RMIViewRemote {
 
 	@Override
 	public void receiveAction(Action action) throws RemoteException {
-		//Notifies the server controller
+		System.out.println("RMIView: " + action.getClass().getSimpleName() + " received from ClientRMI. Notifying observers (Server Controller).");
 		this.notifyObserver(action);	
 	}
 }

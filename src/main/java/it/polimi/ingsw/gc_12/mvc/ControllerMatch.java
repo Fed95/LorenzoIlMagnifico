@@ -28,7 +28,7 @@ public class ControllerMatch {
 				if(i == 0)
 					match.getBoard().getTrackTurnOrder().chooseRandomOrder();
 				else
-					match.getBoard().refresh(match.getRoundNUm(), match.getPeriodNum());
+					match.getBoard().refresh(match.getRoundNum(), match.getPeriodNum());
 
 				for (int k = 0; k < FamilyMemberColor.values().length; k++) { // 4 turns per round TODO: use variable from match
 					//controllerPlayer.start();

@@ -79,6 +79,8 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
 		}
 		else {
 			System.out.println("MyTurn: current player is NOT null");
+			if(name.equals(currentPlayer.getName()))
+				System.out.println("It's your turn");
 		}
 		return name.equals(currentPlayer.getName());
 	}

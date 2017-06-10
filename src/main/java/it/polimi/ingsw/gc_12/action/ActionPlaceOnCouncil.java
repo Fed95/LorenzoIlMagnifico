@@ -27,16 +27,21 @@ public class ActionPlaceOnCouncil extends ActionPlace {
 
     @Override
     public void start(Match match) throws RequiredValueNotSatisfiedException {
-    	Player player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
+        System.out.println("ActionPlaceOnCouncil: starting...");
+        Player player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
     	familyMember = getRealFamilyMember(match);
     	councilPalace = getRealCouncilPalace(match);
         Event event = new EventPlaceFamilyMember(player, councilPalace, familyMember);
-
+        System.out.println("Created the event.");
         if (canBeExecuted(player, event)) {
+            System.out.println("Event can be executed.");
             familyMember.setBusy(true);
             councilPalace.placeFamilyMember(familyMember);
-        }else
+            System.out.println("FamilyMember placed!");
+        }else {
             player.getEffectHandler().discardEffects(event);
+            System.out.println("Event cannot be executed.");
+        }
     }
 
     private CouncilPalace getRealCouncilPalace(Match match) {

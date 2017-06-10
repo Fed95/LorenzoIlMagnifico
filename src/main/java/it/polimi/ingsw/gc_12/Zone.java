@@ -8,4 +8,7 @@ public interface Zone {
 
 	boolean canBeOccupiedBy(FamilyMember familyMember);
 	List<Occupiable> getOccupiables();
+
+	@Override
+	String toString();
 }

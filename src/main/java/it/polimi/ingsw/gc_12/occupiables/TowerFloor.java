@@ -8,7 +8,7 @@ import it.polimi.ingsw.gc_12.card.CardDevelopment;
 import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.effect.Effect;
 
-public class TowerFloor extends Occupiable implements Serializable {
+public class TowerFloor extends Occupiable{
 
 	private final int floorNum;
 	private CardDevelopment card;
@@ -47,12 +47,14 @@ public class TowerFloor extends Occupiable implements Serializable {
 
 	@Override
 	public void placeFamilyMember(FamilyMember occupier) {
+		System.out.println(this + ": placing " + occupier);
 		this.occupiers.add(occupier);
+		System.out.println(occupiers);
 	}
 
 	@Override
 	public String toString() {
-		return "Floor " + floorNum + " of " + cardType + " tower - required value: " + super.requiredValue + ". Card: [" + card + "]";
+		return "Floor " + floorNum + " of " + cardType + " tower - required value: " + super.requiredValue + ". Card: [" + card + "], Occupiers: " + occupiers;
 	}
 
 	public CardType getType() {

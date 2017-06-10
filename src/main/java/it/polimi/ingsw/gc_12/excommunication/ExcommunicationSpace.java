@@ -21,7 +21,7 @@ public class ExcommunicationSpace {
 
 		for (int i = 0; i < periodNum; i++) {
 			int period = i + 1;
-			roundTiles = tilesDeck.stream().filter(Tile -> Tile.getPeriod() == period).collect(Collectors.toList());
+			roundTiles = tilesDeck.stream().filter(tile -> tile.getPeriod() == period).collect(Collectors.toList());
 			Collections.shuffle(roundTiles);
 			tiles.put(period, roundTiles.get(0));
 		}
