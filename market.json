@@ -1,6 +1,30 @@
 {
   "numberOfSpaces": 4,
   "spaceMarkets": [{
+    "marketNum" : 0,
+    "effects": [{
+      "type": "EffectChangeResource",
+      "costs": [null],
+      "resources": [{
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 5
+      }],
+      "event": {
+        "eventType": "EventPlaceFamilyMember",
+        "occupiables": [{
+          "occupiable": "SpaceMarket",
+          "effects": [],
+          "requiredValue": 1
+        }],
+        "familyMember": {
+          "value": 1
+        }
+      }
+    }],
+    "requiredValue": 1
+  }, {
+    "marketNum" : 1,
     "effects": [{
       "type": "EffectChangeResource",
       "costs": [null],
@@ -23,6 +47,7 @@
     }],
     "requiredValue": 1
   }, {
+    "marketNum" : 2,
     "effects": [{
       "type": "EffectChangeResource",
       "resources": [{
@@ -48,34 +73,13 @@
     }],
     "requiredValue": 1
   }, {
+    "marketNum" : 3,
     "effects": [{
       "type": "EffectChangeResource",
       "costs": [null],
       "resources": [{
         "resourceType": "CouncilPrivilege",
         "type": "COUNCIL_PRIVILEGE",
-        "value": 5
-      }],
-      "event": {
-        "eventType": "EventPlaceFamilyMember",
-        "occupiables": [{
-          "occupiable": "SpaceMarket",
-          "effects": [],
-          "requiredValue": 1
-        }],
-        "familyMember": {
-          "value": 1
-        }
-      }
-    }],
-    "requiredValue": 1
-  }, {
-    "effects": [{
-      "type": "EffectChangeResource",
-      "costs": [null],
-      "resources": [{
-        "resourceType": "Money",
-        "type": "MONEY",
         "value": 5
       }],
       "event": {
