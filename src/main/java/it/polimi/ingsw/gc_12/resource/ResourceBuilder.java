@@ -25,6 +25,8 @@ public class ResourceBuilder {
 				return new VictoryPoint(value);
 			case WOOD:
 				return new Wood(value);
+			case COUNCIL_PRIVILEGE:
+				return new CouncilPrivilege(value);
 			default:
 				throw new IllegalArgumentException("The ResourceType does not exist.");
 
