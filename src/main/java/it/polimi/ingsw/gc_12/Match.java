@@ -50,7 +50,7 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 		this.gameMode = gameMode;
 		this.roundNum = 1;
 		this.cards = new LoaderCard().get(this);
-		this.cardDeckSet = new CardDeckSet(cards, DEFAULT_ROUND_NUM/DEFAULT_PERIODS_LEN);
+		//this.cardDeckSet = new CardDeckSet(cards, DEFAULT_ROUND_NUM/DEFAULT_PERIODS_LEN);
 		this.effectHandler = new EffectHandler();
 		this.gameState = State.PENDING;
 	}
