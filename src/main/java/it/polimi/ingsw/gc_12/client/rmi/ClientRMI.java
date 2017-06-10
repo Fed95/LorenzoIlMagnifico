@@ -13,6 +13,7 @@ import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.server.controller.query.Query;
 import it.polimi.ingsw.gc_12.server.view.RMIViewRemote;
+import com.google.gson.TypeAdapterFactory;
 
 import java.io.IOException;
 import java.rmi.AlreadyBoundException;
@@ -52,7 +53,7 @@ public class ClientRMI { //Main class of the Clients using RMI
 		while (true) {
 			name = stdIn.nextLine();
 			if(!"\n".equals(name) && !"".equals(name)) {
-				ClientRMIView rmiView=new ClientRMIView(this, name);
+				ClientRMIView rmiView = new ClientRMIView(this, name);
 				// register the client view in the server side (to receive messages from the server)
 				serverStub.registerClient(rmiView);
 				break;

@@ -38,4 +38,7 @@ public class ActionPlaceOnMarket extends ActionPlace {
             player.getEffectHandler().discardEffects(event);
     }
 
+    private SpaceMarket getRealSpaceMarket(Match match){
+        return match.getBoard().getMarket().getSpaceMarkets().get(spaceMarket.getMarketNum());
+    }
 }

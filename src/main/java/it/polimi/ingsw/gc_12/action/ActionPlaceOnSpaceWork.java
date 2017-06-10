@@ -9,6 +9,8 @@ import it.polimi.ingsw.gc_12.occupiables.SpaceWork;
 import it.polimi.ingsw.gc_12.occupiables.SpaceWorkSingle;
 import it.polimi.ingsw.gc_12.occupiables.SpaceWorkZone;
 
+import java.util.List;
+
 public class ActionPlaceOnSpaceWork extends ActionPlace {
 
     private SpaceWorkZone spaceWorkZone;
@@ -37,12 +39,18 @@ public class ActionPlaceOnSpaceWork extends ActionPlace {
     @Override
     public void start(Match match) throws RuntimeException {
     	Player player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
+        familyMember = getRealFamilyMember(match);
+        spaceWork = getRealSpaceWork(match);
         Event event = new EventPlaceFamilyMember(player, spaceWork, familyMember);
 
         if(canBeExecuted(player, event)) {
-            familyMember.setBusy(true);
-            spaceWork.placeFamilyMember(familyMember);
+            match.placeFamilyMember(spaceWork, familyMember);
         }else
             player.getEffectHandler().discardEffects(event);
+    }
+
+    private SpaceWork getRealSpaceWork(Match match){
+        List<SpaceWork> spaceWorks = match.getBoard().getSpaceWorkZones().get(spaceWorkZone.getType()).getSpaceWorks();
+        return (spaceWork instanceof SpaceWorkSingle) ? spaceWorks.get(0) : spaceWorks.get(1);
     }
 }

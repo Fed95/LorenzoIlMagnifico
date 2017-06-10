@@ -12,5 +12,5 @@ public abstract class Action implements Serializable{
 	 */
 	private static final long serialVersionUID = -4334191184999875154L;
 
-	public abstract void esegui(Match match);
+	public abstract void execute(Match match);
 }

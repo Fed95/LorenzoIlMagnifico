@@ -33,13 +33,18 @@ public class Board implements Serializable{
 	public Board(List<Player> players) {
 		this.spaceDie = SpaceDie.instance();
 		this.councilPalace = new CouncilPalace(1, null); //TODO: import values and effects from Json
-		this.market = new Market(2 + 2*(players.size()/4));
 		this.trackTurnOrder = new TrackTurnOrder(players, councilPalace);
 		this.trackMilitaryPoints = new TrackMilitaryPoints();
 		this.victroyPointsTrack = new TrackVictoryPoints();
 		this.trackFaithPoints = new TrackFaithPoints(trackFaithPointsValues);
 		//this.excommunicationSpace = new ExcommunicationSpace(list of excomminication tiles);//TODO:import from json file config if needed
 		createSpaceWork();
+	}
+	public void setTowerSet(TowerSet towerSet) {
+		this.towerSet = towerSet;
+	}
+	public void setMarket(Market market) {
+		this.market = market;
 	}
 
 	public void createSpaceWork() {
@@ -109,14 +114,6 @@ public class Board implements Serializable{
 
 	public ExcommunicationSpace getExcommunicationSpace() {
 		return excommunicationSpace;
-	}
-
-	public void setTowerSet(TowerSet towerSet) {
-		this.towerSet = towerSet;
-	}
-
-	public void setMarket(Market market) {
-		this.market = market;
 	}
 
 	@Override

@@ -7,7 +7,7 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 
-public class ActionPlace extends Action implements Serializable{
+public class ActionPlace extends Action{
 
 	protected FamilyMember familyMember;
 

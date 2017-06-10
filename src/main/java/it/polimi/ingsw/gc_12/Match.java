@@ -91,6 +91,7 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 	
 	public void chooseFamilyMember(ActionPlace actionPlace) {
 		Event event = new EventChooseFamilyMember(actionPlace.getFamilyMember());
+		//Notifies the RMIView
 		this.notifyObserver(event);
 	}
 	

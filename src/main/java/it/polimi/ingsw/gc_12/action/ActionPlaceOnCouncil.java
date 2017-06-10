@@ -28,6 +28,8 @@ public class ActionPlaceOnCouncil extends ActionPlace {
     @Override
     public void start(Match match) throws RequiredValueNotSatisfiedException {
     	Player player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
+    	familyMember = getRealFamilyMember(match);
+    	councilPalace = getRealCouncilPalace(match);
         Event event = new EventPlaceFamilyMember(player, councilPalace, familyMember);
 
         if (canBeExecuted(player, event)) {
@@ -35,5 +37,9 @@ public class ActionPlaceOnCouncil extends ActionPlace {
             councilPalace.placeFamilyMember(familyMember);
         }else
             player.getEffectHandler().discardEffects(event);
+    }
+
+    private CouncilPalace getRealCouncilPalace(Match match) {
+        return match.getBoard().getCouncilPalace();
     }
 }

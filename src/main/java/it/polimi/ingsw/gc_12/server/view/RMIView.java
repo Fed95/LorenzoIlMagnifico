@@ -47,9 +47,9 @@ public class RMIView extends View implements RMIViewRemote {
 	public void update(Change o) {
 		System.out.println("SENDING THE CHANGE TO THE CLIENT");
 		try {
-			for (ClientViewRemote clientstub : this.clients) {
+			for (ClientViewRemote clientStub : this.clients) {
 				
-				clientstub.updateClient(o);
+				clientStub.updateClient(o);
 			}
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
@@ -70,7 +70,8 @@ public class RMIView extends View implements RMIViewRemote {
 	}
 
 	@Override
-	public void receiveAction(Action action) throws RemoteException { 
+	public void receiveAction(Action action) throws RemoteException {
+		//Notifies the server controller
 		this.notifyObserver(action);	
 	}
 }

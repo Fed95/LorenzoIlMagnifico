@@ -9,25 +9,23 @@ import java.util.List;
 
 public class Market implements Zone, Serializable{
 	
-	private final int numberOfSpaces;
 	private List<SpaceMarket> spaceMarkets = new ArrayList<>();
 	public static final int DEFAULT_SET_NUM = 4;
-	
+
+	/*
 	public Market(int setNumber){
 		if(setNumber < 0){
 			throw new IllegalArgumentException();
-		}else{
-			this.numberOfSpaces = setNumber;
-		}
-		for(int i = 0; i < numberOfSpaces; i++){
-			//TODO implement Json configuration with the right spacemarket constructor
-			spaceMarkets.add(new SpaceMarket(2, null));
+		for(int i = 0; i < setNumber; i++){
+			spaceMarkets.add(new SpaceMarket(i, 2, null));
 		}
 	}
+
 	
 	public Market(){
 		this(DEFAULT_SET_NUM);
 	}
+	*/
 
 	public List<SpaceMarket> getSpaceMarkets() {
 		return spaceMarkets;

@@ -14,7 +14,7 @@ public class Controller implements Observer<Action>{
 	}
 	
 	public void update(Action action){
-		System.out.println("I AM THE CONTROLLER UPDATING THE MODEL");
+		System.out.println("I AM THE CONTROLLER UPDATING THE MODEL WITH A NEW ACTION");
 		Observer.super.update(action);
 		try {
 			action.start(match);

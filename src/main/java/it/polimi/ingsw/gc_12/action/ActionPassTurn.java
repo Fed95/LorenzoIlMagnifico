@@ -8,7 +8,6 @@ public class ActionPassTurn extends Action{
 	@Override
 	public void start(Match match) throws RuntimeException, RequiredValueNotSatisfiedException {
 		match.newTurn();
-		
 	}
 
 }
