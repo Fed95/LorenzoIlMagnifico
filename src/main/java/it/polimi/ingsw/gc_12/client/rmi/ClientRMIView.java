@@ -9,6 +9,7 @@ import it.polimi.ingsw.gc_12.event.EventStartTurn;
 import it.polimi.ingsw.gc_12.mvc.CLIAdapter;
 import it.polimi.ingsw.gc_12.mvc.View;
 import it.polimi.ingsw.gc_12.mvc.ViewCLI;
+import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.server.controller.Change;
 import it.polimi.ingsw.gc_12.server.controller.StateChange;
 
@@ -42,20 +43,20 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
 			createView(match);
 		}
 		else if(change instanceof EventStartTurn) {
-			EventStartTurn event = (EventStartTurn) change;
 			currentPlayer = match.getCurrentPlayer();
 			if(isMyTurn()) {
 				view.askAction(match.isFMPlaced());
 			}
 		}
 		else if(change instanceof EventChooseFamilyMember) {
+			currentPlayer = match.getCurrentPlayer(); // TODO: fix synchronization to be sure that EventStartTurn is always already executed
 			EventChooseFamilyMember event = (EventChooseFamilyMember) change;
 			if(isMyTurn()) {
 				view.askOccupiable(event.getFamilyMember());
 			}
 		}
 		else if(change instanceof EventPlaceFamilyMember) {
-			EventPlaceFamilyMember event = (EventPlaceFamilyMember) change;
+			currentPlayer = match.getCurrentPlayer();
 			if(isMyTurn()) {
 				view.askAction(true);
 			}

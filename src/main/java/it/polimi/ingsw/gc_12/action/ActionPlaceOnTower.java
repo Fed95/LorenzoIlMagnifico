@@ -45,7 +45,8 @@ public class ActionPlaceOnTower extends ActionPlace {
     public void start(Match match) throws RuntimeException, RequiredValueNotSatisfiedException {
     	Player player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
     	familyMember = getRealFamilyMember(match);
-    	towerFloor = getRealTowerFloor(match);
+    	tower = getRealTower(match);
+    	towerFloor = tower.getFloor(towerFloor.getFloorNum());
     	Event event = new EventPlaceFamilyMember(player, towerFloor, familyMember);
         //System.out.println("actionplaceontower: event created with placement on " + towerFloor);
         try{
@@ -74,7 +75,7 @@ public class ActionPlaceOnTower extends ActionPlace {
         player.getEffectHandler().executeEffects(event);
     }
     
-    public TowerFloor getRealTowerFloor(Match match) {
-    	return match.getBoard().getTowerSet().getTower(towerFloor.getType()).getFloor(towerFloor.getFloorNum());
+    public Tower getRealTower(Match match) {
+    	return match.getBoard().getTowerSet().getTower(towerFloor.getType());
     }
 }

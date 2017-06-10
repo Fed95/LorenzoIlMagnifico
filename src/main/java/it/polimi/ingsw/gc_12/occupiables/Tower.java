@@ -94,7 +94,9 @@ public class Tower implements Zone, Serializable{
 		floorList.addAll(floors);
 		Effect towerTakenMalusEffect = new EffectChangeResource(new EventPlaceFamilyMember(floorList), new ResourceExchange(towerTakenMalus, null), false);
 		for(Occupiable floor : floors){
-			floor.getEffects().add(towerTakenMalusEffect);
+			List<Effect> effects = floor.getEffects();
+			if(effects != null)
+				floor.getEffects().add(towerTakenMalusEffect);
 		}
 		this.taken = true;
 	}

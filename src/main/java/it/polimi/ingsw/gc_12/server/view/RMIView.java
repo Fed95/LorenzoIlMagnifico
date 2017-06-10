@@ -48,7 +48,6 @@ public class RMIView extends View implements RMIViewRemote {
 		System.out.println("SENDING THE CHANGE TO THE CLIENT");
 		try {
 			for (ClientViewRemote clientStub : this.clients) {
-				
 				clientStub.updateClient(o);
 			}
 		} catch (RemoteException e) {

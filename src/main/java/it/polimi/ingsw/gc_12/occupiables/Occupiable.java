@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc_12.occupiables;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,9 +8,9 @@ import it.polimi.ingsw.gc_12.effect.EffectProvider;
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.effect.Effect;
 
-public abstract class Occupiable implements EffectProvider {
+public abstract class Occupiable implements EffectProvider, Serializable {
 
-	private List<Effect> effects = new ArrayList<>();
+	private transient List<Effect> effects = new ArrayList<>();
 	protected List<FamilyMember> occupiers = new ArrayList<>();
 	public final static int DEFAULT_MAXNUMBEROFPLAYERS = 1;
 	public static final int DEFAULT_REQUIRED_VALUE = 1;
