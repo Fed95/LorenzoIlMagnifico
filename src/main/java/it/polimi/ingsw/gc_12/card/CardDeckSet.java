@@ -11,9 +11,10 @@ public class CardDeckSet {
     private List<CardDevelopment> cards = new ArrayList<>();
     private Map<CardType, Map<Integer, CardDeck>> decks = new HashMap<>();
 
-    public CardDeckSet(List<CardDevelopment> cards, int periods){
+    public CardDeckSet(List<Card> cards, int periods){
 
-        this.cards = cards;
+        for(Card card : cards)
+            this.cards.add((CardDevelopment) card);
 
         //Creates DevelopmentDecks grouping them by type and period
         for(CardType type: CardType.values()){
@@ -26,7 +27,7 @@ public class CardDeckSet {
         }
 
         //Sorts the development cards in the relative decks
-        for(CardDevelopment card : cards) {
+        for(CardDevelopment card : this.cards) {
             decks.get(card.getType()).get(card.getPeriod()).putCard(card);
         }
     }
