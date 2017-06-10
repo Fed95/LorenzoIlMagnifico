@@ -1,0 +1,165 @@
+[
+  {
+    "cardType": "TERRITORY",
+    "period": 1,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "Money",
+                "type": "MONEY",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "SpaceWorkSingle",
+              "workType": "HARVEST",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "SpaceWorkMultiple",
+              "workType": "HARVEST",
+              "occupiers": [],
+              "requiredValue": 1
+            }
+          ],
+          "familyMember": {
+            "value": 1,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Avamposto Commerciale",
+    "id": 0,
+    "requirements": []
+  },
+  {
+    "cardType": "TERRITORY",
+    "period": 1,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "Wood",
+                "type": "WOOD",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 1
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "Wood",
+                "type": "WOOD",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "SpaceWorkSingle",
+              "workType": "HARVEST",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "SpaceWorkMultiple",
+              "workType": "HARVEST",
+              "occupiers": [],
+              "requiredValue": 1
+            }
+          ],
+          "familyMember": {
+            "value": 2,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Bosco",
+    "id": 1,
+    "requirements": []
+  },
+  {
+    "cardType": "TERRITORY",
+    "period": 1,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "Money",
+                "type": "MONEY",
+                "value": 1
+              },
+              {
+                "resourceType": "Servant",
+                "type": "SERVANT",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "SpaceWorkSingle",
+              "workType": "HARVEST",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "SpaceWorkMultiple",
+              "workType": "HARVEST",
+              "occupiers": [],
+              "requiredValue": 1
+            }
+          ],
+          "familyMember": {
+            "value": 3,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Borgo",
+    "id": 2,
+    "requirements": []
+  }
+,{"cardType":"TERRITORY","period":1,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"Stone","type":"STONE","value":2}]}],"choice":false,"event":{"eventType":"EventPickCard","cardID":3}},{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"Stone","type":"STONE","value":2}]}],"choice":false,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceWorkSingle","workType":"HARVEST","occupiers":[],"requiredValue":1},{"occupiable":"SpaceWorkMultiple","workType":"HARVEST","occupiers":[],"requiredValue":1}],"familyMember":{"value":4,"busy":false}}}],"name":"Cava di Ghiaia","id":3,"requirements":[]},{"cardType":"TERRITORY","period":1,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"Wood","type":"WOOD","value":1}]}],"choice":false,"event":{"eventType":"EventPickCard","cardID":4}},{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"Wood","type":"WOOD","value":3}]}],"choice":false,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceWorkSingle","workType":"HARVEST","occupiers":[],"requiredValue":1},{"occupiable":"SpaceWorkMultiple","workType":"HARVEST","occupiers":[],"requiredValue":1}],"familyMember":{"value":5,"busy":false}}}],"name":"Foresta","id":4,"requirements":[]},{"cardType":"TERRITORY","period":1,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"MilitaryPoint","type":"MILITARY_POINT","value":2},{"resourceType":"Servant","type":"SERVANT","value":1}]}],"choice":false,"event":{"eventType":"EventPickCard","cardID":5}},{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"FaithPoint","type":"FAITH_POINT","value":1},{"resourceType":"Stone","type":"STONE","value":1}]}],"choice":false,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceWorkSingle","workType":"HARVEST","occupiers":[],"requiredValue":1},{"occupiable":"SpaceWorkMultiple","workType":"HARVEST","occupiers":[],"requiredValue":1}],"familyMember":{"value":6,"busy":false}}}],"name":"Monastero","id":5,"requirements":[]},{"cardType":"TERRITORY","period":1,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"MilitaryPoint","type":"MILITARY_POINT","value":2},{"resourceType":"Stone","type":"STONE","value":1}]}],"choice":false,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceWorkSingle","workType":"HARVEST","occupiers":[],"requiredValue":1},{"occupiable":"SpaceWorkMultiple","workType":"HARVEST","occupiers":[],"requiredValue":1}],"familyMember":{"value":5,"busy":false}}}],"name":"Rocca","id":6,"requirements":[]},{"cardType":"TERRITORY","period":1,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"Money","type":"MONEY","value":3}]}],"choice":false,"event":{"eventType":"EventPickCard","cardID":7}},{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"CouncilPrivilege","type":"COUNCIL_PRIVILEGE","value":1}]}],"choice":false,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceWorkSingle","workType":"HARVEST","occupiers":[],"requiredValue":1},{"occupiable":"SpaceWorkMultiple","workType":"HARVEST","occupiers":[],"requiredValue":1}],"familyMember":{"value":6,"busy":false}}}],"name":"Citta\u0027","id":7,"requirements":[]},{"cardType":"TERRITORY","period":2,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"Money","type":"MONEY","value":1}]}],"choice":false,"event":{"eventType":"EventPickCard","cardID":8}},{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"Money","type":"MONEY","value":2}]}],"choice":false,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceWorkSingle","workType":"HARVEST","occupiers":[],"requiredValue":1},{"occupiable":"SpaceWorkMultiple","workType":"HARVEST","occupiers":[],"requiredValue":1}],"familyMember":{"value":1,"busy":false}}}],"name":"Miniera d\u0027Oro","id":8,"requirements":[]},{"cardType":"TERRITORY","period":2,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"Servant","type":"SERVANT","value":1}]}],"choice":false,"event":{"eventType":"EventPickCard","cardID":9}},{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"MilitaryPoint","type":"MILITARY_POINT","value":1},{"resourceType":"Wood","type":"WOOD","value":2}]}],"choice":false,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceWorkSingle","workType":"HARVEST","occupiers":[],"requiredValue":1},{"occupiable":"SpaceWorkMultiple","workType":"HARVEST","occupiers":[],"requiredValue":1}],"familyMember":{"value":3,"busy":false}}}],"name":"Villaggio Montano","id":9,"requirements":[]},{"cardType":"TERRITORY","period":2,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"Servant","type":"SERVANT","value":2},{"resourceType":"Stone","type":"STONE","value":1}]}],"choice":false,"event":{"eventType":"EventPickCard","cardID":10}},{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"Servant","type":"SERVANT","value":1},{"resourceType":"Stone","type":"STONE","value":2}]}],"choice":false,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceWorkSingle","workType":"HARVEST","occupiers":[],"requiredValue":1},{"occupiable":"SpaceWorkMultiple","workType":"HARVEST","occupiers":[],"requiredValue":1}],"familyMember":{"value":4,"busy":false}}}],"name":"Villaggio Minerario","id":10,"requirements":[]},{"cardType":"TERRITORY","period":2,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"Wood","type":"WOOD","value":1}]}],"choice":false,"event":{"eventType":"EventPickCard","cardID":11}},{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"Stone","type":"STONE","value":3}]}],"choice":false,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceWorkSingle","workType":"HARVEST","occupiers":[],"requiredValue":1},{"occupiable":"SpaceWorkMultiple","workType":"HARVEST","occupiers":[],"requiredValue":1}],"familyMember":{"value":3,"busy":false}}}],"name":"Cava di Pietra","id":11,"requirements":[]},{"cardType":"TERRITORY","period":2,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"Servant","type":"SERVANT","value":2},{"resourceType":"Wood","type":"WOOD","value":1}]}],"choice":false,"event":{"eventType":"EventPickCard","cardID":12}},{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"Money","type":"MONEY","value":1},{"resourceType":"Wood","type":"WOOD","value":2}]}],"choice":false,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceWorkSingle","workType":"HARVEST","occupiers":[],"requiredValue":1},{"occupiable":"SpaceWorkMultiple","workType":"HARVEST","occupiers":[],"requiredValue":1}],"familyMember":{"value":4,"busy":false}}}],"name":"Possedimento","id":12,"requirements":[]},{"cardType":"TERRITORY","period":2,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"FaithPoint","type":"FAITH_POINT","value":1}]}],"choice":false,"event":{"eventType":"EventPickCard","cardID":13}},{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"FaithPoint","type":"FAITH_POINT","value":1}]}],"choice":false,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceWorkSingle","workType":"HARVEST","occupiers":[],"requiredValue":1},{"occupiable":"SpaceWorkMultiple","workType":"HARVEST","occupiers":[],"requiredValue":1}],"familyMember":{"value":2,"busy":false}}}],"name":"Eremo","id":13,"requirements":[]},{"cardType":"TERRITORY","period":2,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"MilitaryPoint","type":"MILITARY_POINT","value":2},{"resourceType":"Servant","type":"SERVANT","value":2}]}],"choice":false,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceWorkSingle","workType":"HARVEST","occupiers":[],"requiredValue":1},{"occupiable":"SpaceWorkMultiple","workType":"HARVEST","occupiers":[],"requiredValue":1}],"familyMember":{"value":5,"busy":false}}}],"name":"Maniero","id":14,"requirements":[]},{"cardType":"TERRITORY","period":2,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"Money","type":"MONEY","value":4}]}],"choice":false,"event":{"eventType":"EventPickCard","cardID":15}},{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"Money","type":"MONEY","value":1},{"resourceType":"Stone","type":"STONE","value":1},{"resourceType":"Wood","type":"WOOD","value":2}]}],"choice":false,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceWorkSingle","workType":"HARVEST","occupiers":[],"requiredValue":1},{"occupiable":"SpaceWorkMultiple","workType":"HARVEST","occupiers":[],"requiredValue":1}],"familyMember":{"value":6,"busy":false}}}],"name":"Ducato","id":15,"requirements":[]},{"cardType":"TERRITORY","period":3,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"Money","type":"MONEY","value":1},{"resourceType":"Servant","type":"SERVANT","value":1}]}],"choice":false,"event":{"eventType":"EventPickCard","cardID":16}},{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"Money","type":"MONEY","value":3}]}],"choice":false,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceWorkSingle","workType":"HARVEST","occupiers":[],"requiredValue":1},{"occupiable":"SpaceWorkMultiple","workType":"HARVEST","occupiers":[],"requiredValue":1}],"familyMember":{"value":1,"busy":false}}}],"name":"Citta\u0027 Mercantile","id":16,"requirements":[]},{"cardType":"TERRITORY","period":3,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"VictoryPoint","type":"VICTORY_POINT","value":1},{"resourceType":"Wood","type":"WOOD","value":1}]}],"choice":false,"event":{"eventType":"EventPickCard","cardID":17}},{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"VictoryPoint","type":"VICTORY_POINT","value":2},{"resourceType":"Wood","type":"WOOD","value":2}]}],"choice":false,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceWorkSingle","workType":"HARVEST","occupiers":[],"requiredValue":1},{"occupiable":"SpaceWorkMultiple","workType":"HARVEST","occupiers":[],"requiredValue":1}],"familyMember":{"value":3,"busy":false}}}],"name":"Tenuta","id":17,"requirements":[]},{"cardType":"TERRITORY","period":3,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"MilitaryPoint","type":"MILITARY_POINT","value":2}]}],"choice":false,"event":{"eventType":"EventPickCard","cardID":18}},{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"VictoryPoint","type":"VICTORY_POINT","value":4},{"resourceType":"Wood","type":"WOOD","value":1}]}],"choice":false,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceWorkSingle","workType":"HARVEST","occupiers":[],"requiredValue":1},{"occupiable":"SpaceWorkMultiple","workType":"HARVEST","occupiers":[],"requiredValue":1}],"familyMember":{"value":5,"busy":false}}}],"name":"Colonia","id":18,"requirements":[]},{"cardType":"TERRITORY","period":3,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"VictoryPoint","type":"VICTORY_POINT","value":3}]}],"choice":false,"event":{"eventType":"EventPickCard","cardID":19}},{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"VictoryPoint","type":"VICTORY_POINT","value":1},{"resourceType":"Stone","type":"STONE","value":2}]}],"choice":false,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceWorkSingle","workType":"HARVEST","occupiers":[],"requiredValue":1},{"occupiable":"SpaceWorkMultiple","workType":"HARVEST","occupiers":[],"requiredValue":1}],"familyMember":{"value":2,"busy":false}}}],"name":"Cava di Marmo","id":19,"requirements":[]},{"cardType":"TERRITORY","period":3,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"CouncilPrivilege","type":"COUNCIL_PRIVILEGE","value":1},{"resourceType":"Stone","type":"STONE","value":1}]}],"choice":false,"event":{"eventType":"EventPickCard","cardID":20}},{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"VictoryPoint","type":"VICTORY_POINT","value":4},{"resourceType":"Stone","type":"STONE","value":1}]}],"choice":false,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceWorkSingle","workType":"HARVEST","occupiers":[],"requiredValue":1},{"occupiable":"SpaceWorkMultiple","workType":"HARVEST","occupiers":[],"requiredValue":1}],"familyMember":{"value":6,"busy":false}}}],"name":"Provincia","id":20,"requirements":[]},{"cardType":"TERRITORY","period":3,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"FaithPoint","type":"FAITH_POINT","value":1}]}],"choice":false,"event":{"eventType":"EventPickCard","cardID":21}},{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"Money","type":"MONEY","value":1},{"resourceType":"FaithPoint","type":"FAITH_POINT","value":1}]}],"choice":false,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceWorkSingle","workType":"HARVEST","occupiers":[],"requiredValue":1},{"occupiable":"SpaceWorkMultiple","workType":"HARVEST","occupiers":[],"requiredValue":1}],"familyMember":{"value":1,"busy":false}}}],"name":"Santuario","id":21,"requirements":[]},{"cardType":"TERRITORY","period":3,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"VictoryPoint","type":"VICTORY_POINT","value":2},{"resourceType":"Money","type":"MONEY","value":2}]}],"choice":false,"event":{"eventType":"EventPickCard","cardID":22}},{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"MilitaryPoint","type":"MILITARY_POINT","value":3},{"resourceType":"Servant","type":"SERVANT","value":1}]}],"choice":false,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceWorkSingle","workType":"HARVEST","occupiers":[],"requiredValue":1},{"occupiable":"SpaceWorkMultiple","workType":"HARVEST","occupiers":[],"requiredValue":1}],"familyMember":{"value":4,"busy":false}}}],"name":"Castello","id":22,"requirements":[]},{"cardType":"TERRITORY","period":3,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"MilitaryPoint","type":"MILITARY_POINT","value":2},{"resourceType":"Servant","type":"SERVANT","value":1}]}],"choice":false,"event":{"eventType":"EventPickCard","cardID":23}},{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"MilitaryPoint","type":"MILITARY_POINT","value":1},{"resourceType":"Servant","type":"SERVANT","value":2}]}],"choice":false,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceWorkSingle","workType":"HARVEST","occupiers":[],"requiredValue":1},{"occupiable":"SpaceWorkMultiple","workType":"HARVEST","occupiers":[],"requiredValue":1}],"familyMember":{"value":2,"busy":false}}}],"name":"Citta\u0027 Fortificata","id":23,"requirements":[]},{"cardType":"BUILDING","period":1,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"VictoryPoint","type":"VICTORY_POINT","value":5}]}],"choice":false,"event":{"eventType":"EventPickCard","cardID":24}},{"type":"EffectResourceForCards","cardType":"BUILDING","resource":{"resourceType":"Money","type":"MONEY","value":1},"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceWorkSingle","workType":"PRODUCTION","occupiers":[],"requiredValue":1},{"occupiable":"SpaceWorkMultiple","workType":"PRODUCTION","occupiers":[],"requiredValue":1}],"familyMember":{"value":5,"busy":false}}}],"name":"Zecca","id":24,"requirements":[{"resourceType":"Wood","type":"WOOD","value":1},{"resourceType":"Stone","type":"STONE","value":3}]},{"cardType":"BUILDING","period":1,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"VictoryPoint","type":"VICTORY_POINT","value":5}]}],"choice":false,"event":{"eventType":"EventPickCard","cardID":25}},{"type":"EffectResourceForCards","cardType":"TERRITORY","resource":{"resourceType":"Money","type":"MONEY","value":1},"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceWorkSingle","workType":"PRODUCTION","occupiers":[],"requiredValue":1},{"occupiable":"SpaceWorkMultiple","workType":"PRODUCTION","occupiers":[],"requiredValue":1}],"familyMember":{"value":5,"busy":false}}}],"name":"Esattoria","id":25,"requirements":[{"resourceType":"Wood","type":"WOOD","value":3},{"resourceType":"Stone","type":"STONE","value":1}]},{"cardType":"BUILDING","period":1,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"VictoryPoint","type":"VICTORY_POINT","value":6}]}],"choice":false,"event":{"eventType":"EventPickCard","cardID":26}},{"type":"EffectResourceForCards","cardType":"VENTURE","resource":{"resourceType":"VictoryPoint","type":"VICTORY_POINT","value":1},"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceWorkSingle","workType":"PRODUCTION","occupiers":[],"requiredValue":1},{"occupiable":"SpaceWorkMultiple","workType":"PRODUCTION","occupiers":[],"requiredValue":1}],"familyMember":{"value":6,"busy":false}}}],"name":"Arco di Trionfo","id":26,"requirements":[{"resourceType":"Money","type":"MONEY","value":2},{"resourceType":"Stone","type":"STONE","value":2}]},{"cardType":"BUILDING","period":1,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"VictoryPoint","type":"VICTORY_POINT","value":6}]}],"choice":false,"event":{"eventType":"EventPickCard","cardID":27}},{"type":"EffectResourceForCards","cardType":"CHARACTER","resource":{"resourceType":"VictoryPoint","type":"VICTORY_POINT","value":1},"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceWorkSingle","workType":"PRODUCTION","occupiers":[],"requiredValue":1},{"occupiable":"SpaceWorkMultiple","workType":"PRODUCTION","occupiers":[],"requiredValue":1}],"familyMember":{"value":6,"busy":false}}}],"name":"Teatro","id":27,"requirements":[{"resourceType":"Money","type":"MONEY","value":2},{"resourceType":"Wood","type":"WOOD","value":2}]},{"cardType":"BUILDING","period":1,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[{"resourceType":"VictoryPoint","type":"VICTORY_POINT","value":3}]}],"choice":false,"event":{"eventType":"EventPickCard","cardID":28}},{"type":"EffectChangeResource","exchanges":[{"cost":[{"resourceType":"Wood","type":"WOOD","value":1}],"bonus":[{"resourceType":"Money","type":"MONEY","value":3}]},{"cost":[{"resourceType":"Wood","type":"WOOD","value":2}],"bonus":[{"resourceType":"Money","type":"MONEY","value":5}]}],"choice":true,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceWorkSingle","workType":"PRODUCTION","occupiers":[],"requiredValue":1},{"occupiable":"SpaceWorkMultiple","workType":"PRODUCTION","occupiers":[],"requiredValue":1}],"familyMember":{"value":4,"busy":false}}}],"name":"Falegnameria","id":28,"requirements":[{"resourceType":"Money","type":"MONEY","value":1},{"resourceType":"Wood","type":"WOOD","value":2}]}]
