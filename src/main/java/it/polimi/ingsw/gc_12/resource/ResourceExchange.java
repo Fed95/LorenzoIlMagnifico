@@ -1,10 +1,11 @@
 package it.polimi.ingsw.gc_12.resource;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ResourceExchange {
+public class ResourceExchange implements Serializable {
 
 	private List<Resource> cost;
 	private List<Resource> bonus;
@@ -15,7 +16,7 @@ public class ResourceExchange {
 	}
 
 	public ResourceExchange(Resource cost, Resource resource) {
-		this(new ArrayList<>(Arrays.asList(cost)), new ArrayList<>(Arrays.asList()));
+		this(new ArrayList<>(Arrays.asList(cost)), new ArrayList<>(Arrays.asList(resource)));
 	}
 
 	public List<Resource> getCost() {

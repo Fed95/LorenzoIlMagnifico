@@ -11,6 +11,7 @@ import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.resource.*;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,44 +27,41 @@ public class SaverMarket extends Saver<Market> {
 
 	@Override
 	public void create(){
-		/*Market market = new Market();
+		Market market = new Market();
 
-		SpaceMarket spaceMarket;
+		List<SpaceMarket> spaceMarkets = new ArrayList<>();
 		List<Occupiable> occupiables;
 		Event event;
 		Effect effect;
 		List<Effect> effects;
 
 
-		occupiables = new ArrayList<>(Arrays.asList(new SpaceMarket(0, null)));
+		occupiables = new ArrayList<>(Arrays.asList(new SpaceMarket(0, 1, null)));
 		event = new EventPlaceFamilyMember(occupiables, new FamilyMember(1));
 		effect = new EffectChangeResource(event, new ResourceExchange(null, new Servant(5)), false);
 		effects = new ArrayList<>(Arrays.asList(effect));
-		spaceMarket = new SpaceMarket(1, effects);
-		market.addSpaceMarket(spaceMarket);
+		spaceMarkets.add(new SpaceMarket(0, 1, effects));
 
-		occupiables = new ArrayList<>(Arrays.asList(new SpaceMarket(0, null)));
+		occupiables = new ArrayList<>(Arrays.asList(new SpaceMarket(1, 1, null)));
 		event = new EventPlaceFamilyMember(occupiables, new FamilyMember(1));
 		List<Resource> resources = new ArrayList<>(Arrays.asList(new MilitaryPoint(3), new Money(2)));
 		effects = new ArrayList<>(Arrays.asList(new EffectChangeResource(event, new ResourceExchange(null, resources), false)));
-		spaceMarket = new SpaceMarket(1, effects);
-		market.addSpaceMarket(spaceMarket);
+		spaceMarkets.add(new SpaceMarket(1, 1, effects));
 
-		occupiables = new ArrayList<>(Arrays.asList(new SpaceMarket(0, null)));
+		occupiables = new ArrayList<>(Arrays.asList(new SpaceMarket(2, 1, null)));
 		event = new EventPlaceFamilyMember(occupiables, new FamilyMember(1));
 		effect = new EffectChangeResource(event, new ResourceExchange(null, new CouncilPrivilege(5)), false);
 		effects = new ArrayList<>(Arrays.asList(effect));
-		spaceMarket = new SpaceMarket(1, effects);
-		market.addSpaceMarket(spaceMarket);
+		spaceMarkets.add(new SpaceMarket(2, 1, effects));
 
-
-		occupiables = new ArrayList<>(Arrays.asList(new SpaceMarket(0, null)));
+		occupiables = new ArrayList<>(Arrays.asList(new SpaceMarket(3, 1, null)));
 		event = new EventPlaceFamilyMember(occupiables, new FamilyMember(1));
 		effect = new EffectChangeResource(event, new ResourceExchange(null, new Money(5)), false);
 		effects = new ArrayList<>(Arrays.asList(effect));
-		spaceMarket = new SpaceMarket(1, effects);
-		market.addSpaceMarket(spaceMarket);
+		spaceMarkets.add(new SpaceMarket(3, 1, effects));
+
+		market.setSpaceMarkets(spaceMarkets);
 
 		super.save(market, new OccupiableExclusionStrategy());
-	*/}
+	}
 }

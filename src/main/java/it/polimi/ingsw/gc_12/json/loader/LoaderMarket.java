@@ -26,7 +26,7 @@ public class LoaderMarket extends Loader<Market> {
 		List<SpaceMarket> spaceMarkets = content.getSpaceMarkets();
 		Config config = new LoaderConfig().get(match).get(match.getPlayers());
 		int spaceMarketsNum = 4; //TODO: config.getSpaceMarketNum();
-		spaceMarkets = new ArrayList<>(spaceMarkets.subList(0, spaceMarketsNum-1));
+		spaceMarkets = new ArrayList<>(spaceMarkets.subList(0, spaceMarketsNum));
 		content.setSpaceMarkets(spaceMarkets);
 		return content;
 	}

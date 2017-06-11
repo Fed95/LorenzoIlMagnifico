@@ -2,7 +2,9 @@ package it.polimi.ingsw.gc_12.effect;
 
 import it.polimi.ingsw.gc_12.event.Event;
 
-public abstract class Effect {
+import java.io.Serializable;
+
+public abstract class Effect implements Serializable {
 	
 	protected Event event;
 	

@@ -29,10 +29,10 @@ public abstract class Loader<C> {
 		ManageJsonFile manageJsonFile = new ManageJsonFile();
 		String json = manageJsonFile.fromJsonFile(filename);
 
-		/*final RuntimeTypeAdapterFactory<EffectProvider> factoryEffectProvider = RuntimeTypeAdapterFactory
+		final RuntimeTypeAdapterFactory<EffectProvider> factoryEffectProvider = RuntimeTypeAdapterFactory
 				.of(EffectProvider.class, "effectProvider")
 				.registerSubtype(Card.class, Card.class.getSimpleName())
-				.registerSubtype(Occupiable.class, Occupiable.class.getSimpleName());*/
+				.registerSubtype(Occupiable.class, Occupiable.class.getSimpleName());
 
 		final RuntimeTypeAdapterFactory<Occupiable> factoryOccupiable = RuntimeTypeAdapterFactory
 				.of(Occupiable.class, "occupiable")
@@ -79,7 +79,7 @@ public abstract class Loader<C> {
 				.registerSubtype(EventSupportChurch.class, EventSupportChurch.class.getSimpleName());
 
 		GsonBuilder gsonBuiler = new GsonBuilder()
-				//.registerTypeAdapterFactory(factoryEffectProvider)
+				.registerTypeAdapterFactory(factoryEffectProvider)
 				.registerTypeAdapterFactory(factoryOccupiable)
 				.registerTypeAdapterFactory(factoryCard)
 				.registerTypeAdapterFactory(factoryResource)
