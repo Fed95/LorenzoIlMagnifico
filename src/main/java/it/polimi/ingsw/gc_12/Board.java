@@ -27,17 +27,17 @@ public class Board implements Serializable{
 	private transient TrackVictoryPoints victroyPointsTrack;
 	private transient TrackFaithPoints trackFaithPoints;
 	private transient ExcommunicationSpace excommunicationSpace;
-	private transient List<ExcommunicationTile> excommunicationTiles = new ArrayList<>();//TODO: import from json or match
-	private transient List<Integer> trackFaithPointsValues = new ArrayList<>(); // TODO: IMPORT FROM JSON
+	private transient List<ExcommunicationTile> excommunicationTiles = new ArrayList<>();
+	private transient List<Integer> trackFaithPointsValues = new ArrayList<>();
 
 	public Board(List<Player> players) {
 		this.spaceDie = SpaceDie.instance();
-		this.councilPalace = new CouncilPalace(1, null); //TODO: import values and effects from Json
+		this.councilPalace = new CouncilPalace(1, null);
 		this.trackTurnOrder = new TrackTurnOrder(players, councilPalace);
 		this.trackMilitaryPoints = new TrackMilitaryPoints();
 		this.victroyPointsTrack = new TrackVictoryPoints();
 		this.trackFaithPoints = new TrackFaithPoints(trackFaithPointsValues);
-		//this.excommunicationSpace = new ExcommunicationSpace(excommunicationTiles);//TODO:import from json file config if needed
+		//this.excommunicationSpace = new ExcommunicationSpace(excommunicationTiles); TODO:import from json file config if needed
 		createSpaceWork();
 	}
 	public void setTowerSet(TowerSet towerSet) {
@@ -94,6 +94,7 @@ public class Board implements Serializable{
 		List<Occupiable> occupiables = new ArrayList<>();
 		occupiables.addAll(towerSet.getOccupiables());
 		occupiables.addAll(market.getSpaceMarkets());
+		occupiables.add(councilPalace);
 		for(WorkType workType: WorkType.values())
 			occupiables.addAll(spaceWorkZones.get(workType).getSpaceWorks());
 		return occupiables;

@@ -23,4 +23,5 @@ public class SpaceWorkMultiple extends SpaceWork {
 	public String toString() {
 		return "SpaceWorkMultiple of type " + workType + " - required value: " + super.requiredValue;
 	}
+
 }

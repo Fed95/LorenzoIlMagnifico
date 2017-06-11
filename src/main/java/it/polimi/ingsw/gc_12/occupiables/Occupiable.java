@@ -57,4 +57,7 @@ public abstract class Occupiable implements EffectProvider, Serializable {
 	public List<Effect> getEffects() {
 		return effects;
 	}
+
+	@Override
+	public abstract boolean equals(Object o);
 }

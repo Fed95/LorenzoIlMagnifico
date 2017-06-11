@@ -41,6 +41,7 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
 	@Override
 	public void updateClient(Change change) throws RemoteException, NotBoundException {
 		if(change instanceof EventStartMatch) {
+			System.out.println("ClientRMI: EventStartMatch recognised. Creating view with local match.");
 			EventStartMatch event = (EventStartMatch) change;
 			matchRemote = event.getMatch();
 			try {
@@ -91,9 +92,10 @@ public class ClientRMIView extends UnicastRemoteObject implements ClientViewRemo
 			System.out.println("MyTurn: current player is null");
 		}
 		else {
-			System.out.println("MyTurn: current player is NOT null");
 			if(name.equals(currentPlayer.getName()))
 				System.out.println("It's your turn");
+			else
+				System.out.println("It's " + currentPlayer.getName() + "'s turn.");
 		}
 		return name.equals(currentPlayer.getName());
 	}

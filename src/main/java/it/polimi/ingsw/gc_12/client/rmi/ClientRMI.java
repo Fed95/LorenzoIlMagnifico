@@ -54,7 +54,7 @@ public class ClientRMI { //Main class of the Clients using RMI
 			name = stdIn.nextLine();
 			if(!"\n".equals(name) && !"".equals(name)) {
 				ClientRMIView rmiView = new ClientRMIView(this, name);
-				System.out.println("You are being registered ont he server...");
+				System.out.println("You are being registered on the server...");
 				// register the client view in the server side (to receive messages from the server)
 				serverStub.registerClient(rmiView);
 				break;

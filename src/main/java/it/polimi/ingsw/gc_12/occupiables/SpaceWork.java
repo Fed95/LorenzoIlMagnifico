@@ -27,4 +27,20 @@ public abstract class SpaceWork extends Occupiable implements Serializable {
 	public WorkType getWorkType() {
 		return workType;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof SpaceWork)) return false;
+		if(!(o.getClass().equals(this.getClass()))) return false;
+
+		SpaceWork spaceWork = (SpaceWork) o;
+
+		return workType == spaceWork.workType;
+	}
+
+	@Override
+	public int hashCode() {
+		return workType.hashCode();
+	}
 }

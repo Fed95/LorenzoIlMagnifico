@@ -28,4 +28,19 @@ public class SpaceMarket extends Occupiable implements Serializable{
 	public int getMarketNum() {
 		return marketNum;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof SpaceMarket)) return false;
+
+		SpaceMarket that = (SpaceMarket) o;
+
+		return marketNum == that.marketNum;
+	}
+
+	@Override
+	public int hashCode() {
+		return marketNum;
+	}
 }

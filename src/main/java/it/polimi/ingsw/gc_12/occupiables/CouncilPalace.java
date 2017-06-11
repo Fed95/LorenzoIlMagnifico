@@ -33,4 +33,9 @@ public class CouncilPalace extends Occupiable implements Zone, Serializable {
     public String toString() {
         return "Council Palace";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof CouncilPalace;
+    }
 }
