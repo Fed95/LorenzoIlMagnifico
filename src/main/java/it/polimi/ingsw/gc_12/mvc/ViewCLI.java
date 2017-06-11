@@ -23,8 +23,8 @@ public class ViewCLI extends Observable implements View {
 
 	@Override
 	public void startTurn() {
-		System.out.println();
-		//System.out.println("ROUND " + matchRemote.getRoundNUm() + "  ||  " + player.getName());
+		System.out.println("VIEWCLI: STARTING TURN");
+		//System.out.println("ROUND " + match.getRoundNum() + "  ||  " + player.getName());
 	}
 
 	@Override

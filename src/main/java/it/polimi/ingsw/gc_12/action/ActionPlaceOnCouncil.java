@@ -35,8 +35,7 @@ public class ActionPlaceOnCouncil extends ActionPlace {
         System.out.println("Created the event.");
         if (canBeExecuted(player, event)) {
             System.out.println("Event can be executed.");
-            familyMember.setBusy(true);
-            councilPalace.placeFamilyMember(familyMember);
+            match.placeFamilyMember(councilPalace, familyMember);
             System.out.println("FamilyMember placed!");
         }else {
             player.getEffectHandler().discardEffects(event);

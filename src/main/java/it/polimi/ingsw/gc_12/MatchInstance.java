@@ -45,4 +45,8 @@ public class MatchInstance implements Serializable, Cloneable {
 		return board.getTrackTurnOrder().getCurrentPlayer().getFamilyMembers().values().stream()
 				.filter(myFamilyMember -> myFamilyMember.equals(familyMember)).collect(Collectors.toList()).get(0);
 	}
+
+	public int getRoundNum() {
+		return roundNum;
+	}
 }

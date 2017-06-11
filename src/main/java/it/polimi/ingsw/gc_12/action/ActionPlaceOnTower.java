@@ -48,7 +48,7 @@ public class ActionPlaceOnTower extends ActionPlace {
     	tower = getRealTower(match);
     	towerFloor = tower.getFloor(towerFloor.getFloorNum());
     	Event event = new EventPlaceFamilyMember(player, towerFloor, familyMember);
-        //System.out.println("actionplaceontower: event created with placement on " + towerFloor);
+        System.out.println("actionplaceontower: event created with placement on " + towerFloor);
         try{
             this.canBeExecuted(player, event);
              if (tower.getFloors().stream().allMatch(floor -> !floor.isOccupied())) { //If no floor of the tower has been occupied yet

@@ -31,7 +31,7 @@ public class RMIView extends View implements RMIViewRemote {
 
 	@Override
 	public void registerClient(ClientViewRemote clientStub) throws RemoteException, AlreadyBoundException {
-		System.out.println("CLIENT REGISTRATO");
+		System.out.println("CLIENT REGISTERED");
 
 		this.clients.add(clientStub);
 		for (ClientViewRemote clientViewRemote : clients) {
@@ -45,7 +45,7 @@ public class RMIView extends View implements RMIViewRemote {
 
 	@Override
 	public void update(Change o) {
-		System.out.println("SENDING THE CHANGE TO THE CLIENT");
+		System.out.println("RMIVIEW: SENDING THE CHANGE TO THE CLIENT");
 		try {
 			for (ClientViewRemote clientStub : this.clients) {
 				clientStub.updateClient(o);

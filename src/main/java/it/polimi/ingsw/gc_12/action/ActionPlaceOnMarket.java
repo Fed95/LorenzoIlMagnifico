@@ -32,8 +32,7 @@ public class ActionPlaceOnMarket extends ActionPlace {
         Event event = new EventPlaceFamilyMember(player, spaceMarket, familyMember);
 
         if(canBeExecuted(player, event)) {
-            familyMember.setBusy(true);
-            spaceMarket.placeFamilyMember(familyMember);
+            match.placeFamilyMember(spaceMarket, familyMember);
         }else
             player.getEffectHandler().discardEffects(event);
     }
