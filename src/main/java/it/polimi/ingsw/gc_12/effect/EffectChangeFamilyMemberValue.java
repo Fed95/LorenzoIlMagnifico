@@ -25,7 +25,7 @@ public class EffectChangeFamilyMemberValue extends Effect{
 			changeFamilyMemberValue(familyMember, amount);
 		}
 		else {
-			Map<FamilyMemberColor, FamilyMember> familyMembers = event.getPlayer().getFamilymembers();
+			Map<FamilyMemberColor, FamilyMember> familyMembers = event.getPlayer().getFamilyMembers();
 			//System.out.println("inside first else");
 			for(FamilyMember familyMember: familyMembers.values()) {
 				changeFamilyMemberValue(familyMember, amount);
@@ -41,7 +41,7 @@ public class EffectChangeFamilyMemberValue extends Effect{
 			changeFamilyMemberValue(familyMember, amount);
 		}
 		else {
-			Map<FamilyMemberColor, FamilyMember> familyMembers = event.getPlayer().getFamilymembers();
+			Map<FamilyMemberColor, FamilyMember> familyMembers = event.getPlayer().getFamilyMembers();
 			for(FamilyMember familyMember: familyMembers.values()) {
 				changeFamilyMemberValue(familyMember, amount);
 			}

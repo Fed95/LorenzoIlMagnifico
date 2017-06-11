@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
 import it.polimi.ingsw.gc_12.event.EventSupportChurch;
@@ -100,12 +101,12 @@ public class Player implements Serializable{
 		return name;
 	}
 
-	public Map<FamilyMemberColor, FamilyMember> getFamilymembers() {
+	public Map<FamilyMemberColor, FamilyMember> getFamilyMembers() {
 		return familymembers;
 	}
 	
-	public List<FamilyMember> getFamilyMembersList() {
-		return new ArrayList<>(familymembers.values());
+	public List<FamilyMember> getAvailableFamilyMembers() {
+		return familymembers.values().stream().filter(familyMember -> !familyMember.isBusy()).collect(Collectors.toList());
 	}
 
 	public FamilyMember getFamilyMember(FamilyMemberColor familyMemberColor) {

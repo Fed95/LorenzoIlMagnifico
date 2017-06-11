@@ -42,7 +42,7 @@ public class MatchInstance implements Serializable, Cloneable {
 	}
 
 	private FamilyMember getFamilyMember(FamilyMember familyMember) {
-		return board.getTrackTurnOrder().getCurrentPlayer().getFamilyMembersList().stream()
+		return board.getTrackTurnOrder().getCurrentPlayer().getFamilyMembers().values().stream()
 				.filter(myFamilyMember -> myFamilyMember.equals(familyMember)).collect(Collectors.toList()).get(0);
 	}
 }

@@ -54,17 +54,13 @@ public class ViewCLI extends Observable implements View {
 
 	public void askFamilyMember() throws RemoteException {
 		System.out.println("Write the number of the family member you want to use");
-
-		List<FamilyMember> usableFMs = new ArrayList<>();
-		List<FamilyMember> familyMembers = match.getBoard().getTrackTurnOrder().getCurrentPlayer().getFamilyMembersList();
+		
+		List<FamilyMember> usableFMs = match.getBoard().getTrackTurnOrder().getCurrentPlayer().getAvailableFamilyMembers();
 		
 		int i;
-		for (i = 0; i < familyMembers.size(); i++) {
-			FamilyMember familyMember = familyMembers.get(i);
-			if(!familyMember.isBusy()) {
+		for (i = 0; i < usableFMs.size(); i++) {
+			FamilyMember familyMember = usableFMs.get(i);
 				System.out.println(i + " - " + familyMember);
-				usableFMs.add(familyMember);
-			}	
 		}
 
 		System.out.println(i + " - Discard action.");
@@ -187,7 +183,7 @@ public class ViewCLI extends Observable implements View {
 		for(Resource resource : player.getResources().values()){
 			System.out.println(resource);
 		}
-		for (FamilyMember familyMember : player.getFamilymembers().values()){
+		for (FamilyMember familyMember : player.getFamilyMembers().values()){
 			System.out.println(familyMember);
 		}
 		System.out.println();
