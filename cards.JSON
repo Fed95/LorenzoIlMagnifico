@@ -2030,5 +2030,1512 @@
         "value": 2
       }
     ]
+  },
+  {
+    "type": "CardBuilding",
+    "cardType": "BUILDING",
+    "period": 1,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 2
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 29
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [
+              {
+                "resourceType": "Stone",
+                "type": "STONE",
+                "value": 1
+              }
+            ],
+            "bonus": [
+              {
+                "resourceType": "Money",
+                "type": "MONEY",
+                "value": 3
+              }
+            ]
+          },
+          {
+            "cost": [
+              {
+                "resourceType": "Stone",
+                "type": "STONE",
+                "value": 2
+              }
+            ],
+            "bonus": [
+              {
+                "resourceType": "Money",
+                "type": "MONEY",
+                "value": 5
+              }
+            ]
+          }
+        ],
+        "choice": true,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "SpaceWorkSingle",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "SpaceWorkMultiple",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            }
+          ],
+          "familyMember": {
+            "value": 3,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Tagliapietre",
+    "id": 29,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 1
+      },
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "type": "CardBuilding",
+    "cardType": "BUILDING",
+    "period": 1,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 30
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [
+              {
+                "resourceType": "Money",
+                "type": "MONEY",
+                "value": 1
+              }
+            ],
+            "bonus": [
+              {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "SpaceWorkSingle",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "SpaceWorkMultiple",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            }
+          ],
+          "familyMember": {
+            "value": 2,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Cappella",
+    "id": 30,
+    "requirements": [
+      {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "type": "CardBuilding",
+    "cardType": "BUILDING",
+    "period": 1,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 31
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [
+              {
+                "resourceType": "Money",
+                "type": "MONEY",
+                "value": 1
+              }
+            ],
+            "bonus": [
+              {
+                "resourceType": "CouncilPrivilege",
+                "type": "COUNCIL_PRIVILEGE",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "SpaceWorkSingle",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "SpaceWorkMultiple",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            }
+          ],
+          "familyMember": {
+            "value": 1,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Residenza",
+    "id": 31,
+    "requirements": [
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "type": "CardBuilding",
+    "cardType": "BUILDING",
+    "period": 2,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 3
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 32
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [
+              {
+                "resourceType": "Money",
+                "type": "MONEY",
+                "value": 3
+              }
+            ],
+            "bonus": [
+              {
+                "resourceType": "Wood",
+                "type": "WOOD",
+                "value": 2
+              },
+              {
+                "resourceType": "Stone",
+                "type": "STONE",
+                "value": 2
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "SpaceWorkSingle",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "SpaceWorkMultiple",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            }
+          ],
+          "familyMember": {
+            "value": 3,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Mercato",
+    "id": 32,
+    "requirements": [
+      {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 2
+      },
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "type": "CardBuilding",
+    "cardType": "BUILDING",
+    "period": 2,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 4
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 33
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [
+              {
+                "resourceType": "Money",
+                "type": "MONEY",
+                "value": 1
+              }
+            ],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 3
+              }
+            ]
+          },
+          {
+            "cost": [
+              {
+                "resourceType": "Money",
+                "type": "MONEY",
+                "value": 2
+              }
+            ],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 5
+              }
+            ]
+          }
+        ],
+        "choice": true,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "SpaceWorkSingle",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "SpaceWorkMultiple",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            }
+          ],
+          "familyMember": {
+            "value": 3,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Tesoreria",
+    "id": 33,
+    "requirements": [
+      {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "type": "CardBuilding",
+    "cardType": "BUILDING",
+    "period": 2,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 5
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 34
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [
+              {
+                "resourceType": "Wood",
+                "type": "WOOD",
+                "value": 1
+              }
+            ],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 3
+              }
+            ]
+          },
+          {
+            "cost": [
+              {
+                "resourceType": "Wood",
+                "type": "WOOD",
+                "value": 3
+              }
+            ],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 7
+              }
+            ]
+          }
+        ],
+        "choice": true,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "SpaceWorkSingle",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "SpaceWorkMultiple",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            }
+          ],
+          "familyMember": {
+            "value": 4,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Gilda dei Pittori",
+    "id": 34,
+    "requirements": [
+      {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "type": "CardBuilding",
+    "cardType": "BUILDING",
+    "period": 2,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 6
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 35
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [
+              {
+                "resourceType": "Stone",
+                "type": "STONE",
+                "value": 1
+              }
+            ],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 3
+              }
+            ]
+          },
+          {
+            "cost": [
+              {
+                "resourceType": "Stone",
+                "type": "STONE",
+                "value": 3
+              }
+            ],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 7
+              }
+            ]
+          }
+        ],
+        "choice": true,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "SpaceWorkSingle",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "SpaceWorkMultiple",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            }
+          ],
+          "familyMember": {
+            "value": 5,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Gilda degli Scultori",
+    "id": 35,
+    "requirements": [
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "type": "CardBuilding",
+    "cardType": "BUILDING",
+    "period": 2,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 4
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 36
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [
+              {
+                "resourceType": "Servant",
+                "type": "SERVANT",
+                "value": 1
+              },
+              {
+                "resourceType": "Wood",
+                "type": "WOOD",
+                "value": 1
+              },
+              {
+                "resourceType": "Stone",
+                "type": "STONE",
+                "value": 1
+              }
+            ],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 6
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "SpaceWorkSingle",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "SpaceWorkMultiple",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            }
+          ],
+          "familyMember": {
+            "value": 4,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Gilda dei Costruttori",
+    "id": 36,
+    "requirements": [
+      {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 1
+      },
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "type": "CardBuilding",
+    "cardType": "BUILDING",
+    "period": 2,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 2
+              },
+              {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 37
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [
+              {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 1
+              }
+            ],
+            "bonus": [
+              {
+                "resourceType": "Money",
+                "type": "MONEY",
+                "value": 2
+              },
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 2
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "SpaceWorkSingle",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "SpaceWorkMultiple",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            }
+          ],
+          "familyMember": {
+            "value": 2,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Battistero",
+    "id": 37,
+    "requirements": [
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "type": "CardBuilding",
+    "cardType": "BUILDING",
+    "period": 2,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 3
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 38
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [
+              {
+                "resourceType": "Servant",
+                "type": "SERVANT",
+                "value": 1
+              }
+            ],
+            "bonus": [
+              {
+                "resourceType": "MilitaryPoint",
+                "type": "MILITARY_POINT",
+                "value": 3
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "SpaceWorkSingle",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "SpaceWorkMultiple",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            }
+          ],
+          "familyMember": {
+            "value": 1,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Caserma",
+    "id": 38,
+    "requirements": [
+      {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 1
+      },
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "type": "CardBuilding",
+    "cardType": "BUILDING",
+    "period": 2,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 8
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 39
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "MilitaryPoint",
+                "type": "MILITARY_POINT",
+                "value": 2
+              },
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 2
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "SpaceWorkSingle",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "SpaceWorkMultiple",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            }
+          ],
+          "familyMember": {
+            "value": 6,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Fortezza",
+    "id": 39,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 2
+      },
+      {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 2
+      },
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "type": "CardBuilding",
+    "cardType": "BUILDING",
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 7
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 40
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "Money",
+                "type": "MONEY",
+                "value": 5
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "SpaceWorkSingle",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "SpaceWorkMultiple",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            }
+          ],
+          "familyMember": {
+            "value": 2,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Banca",
+    "id": 40,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 3
+      },
+      {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 1
+      },
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "type": "CardBuilding",
+    "cardType": "BUILDING",
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 8
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 41
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [
+              {
+                "resourceType": "Money",
+                "type": "MONEY",
+                "value": 4
+              }
+            ],
+            "bonus": [
+              {
+                "resourceType": "Wood",
+                "type": "WOOD",
+                "value": 3
+              },
+              {
+                "resourceType": "Stone",
+                "type": "STONE",
+                "value": 3
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "SpaceWorkSingle",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "SpaceWorkMultiple",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            }
+          ],
+          "familyMember": {
+            "value": 4,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Fiera",
+    "id": 41,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 4
+      },
+      {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "type": "CardBuilding",
+    "cardType": "BUILDING",
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 10
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 42
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 3
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "SpaceWorkSingle",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "SpaceWorkMultiple",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            }
+          ],
+          "familyMember": {
+            "value": 1,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Giardino",
+    "id": 42,
+    "requirements": [
+      {
+        "resourceType": "Servant",
+        "type": "SERVANT",
+        "value": 2
+      },
+      {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 4
+      },
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "type": "CardBuilding",
+    "cardType": "BUILDING",
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 9
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 43
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 2
+              },
+              {
+                "resourceType": "CouncilPrivilege",
+                "type": "COUNCIL_PRIVILEGE",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "SpaceWorkSingle",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "SpaceWorkMultiple",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            }
+          ],
+          "familyMember": {
+            "value": 5,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Castelletto",
+    "id": 43,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 2
+      },
+      {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 2
+      },
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "type": "CardBuilding",
+    "cardType": "BUILDING",
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 9
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 44
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [
+              {
+                "resourceType": "Money",
+                "type": "MONEY",
+                "value": 1
+              }
+            ],
+            "bonus": [
+              {
+                "resourceType": "Servant",
+                "type": "SERVANT",
+                "value": 2
+              },
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 4
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "SpaceWorkSingle",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "SpaceWorkMultiple",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            }
+          ],
+          "familyMember": {
+            "value": 6,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Palazzo",
+    "id": 44,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 3
+      },
+      {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 3
+      },
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "type": "CardBuilding",
+    "cardType": "BUILDING",
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 7
+              },
+              {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 3
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 45
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "SpaceWorkSingle",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "SpaceWorkMultiple",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            }
+          ],
+          "familyMember": {
+            "value": 2,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Cattedrale",
+    "id": 45,
+    "requirements": [
+      {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 4
+      },
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 4
+      }
+    ]
   }
 ]
