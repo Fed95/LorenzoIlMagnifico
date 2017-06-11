@@ -42,12 +42,14 @@ public abstract class Loader<C> {
 				.registerSubtype(SpaceWorkSingle.class, SpaceWorkSingle.class.getSimpleName());//council palace
 
 		final RuntimeTypeAdapterFactory<Card> factoryCard = RuntimeTypeAdapterFactory
-				.of(Card.class, "cardType")
-				.registerSubtype(CardBuilding.class, "BUILDING")
-				.registerSubtype(CardCharacter.class, "CHARACTER")
-				.registerSubtype(CardTerritory.class, "TERRITORY")
-				.registerSubtype(CardVenture.class, "VENTURE");
+				.of(Card.class, "type")
+				.registerSubtype(CardBuilding.class, CardBuilding.class.getSimpleName())
+				.registerSubtype(CardCharacter.class, CardCharacter.class.getSimpleName())
+				.registerSubtype(CardTerritory.class, CardTerritory.class.getSimpleName())
+				.registerSubtype(CardVenture.class, CardVenture.class.getSimpleName());
 		//registerSubtype(CardLeader.class, "LEADER");
+
+
 
 		final RuntimeTypeAdapterFactory<Resource> factoryResource = RuntimeTypeAdapterFactory
 				.of(Resource.class, "resourceType")
