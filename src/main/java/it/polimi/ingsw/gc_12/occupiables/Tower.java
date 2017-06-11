@@ -18,7 +18,6 @@ public class Tower implements Zone, Serializable{
 	private final CardType type;
 	private final List<TowerFloor> floors = new ArrayList<>();
 	private Map<Integer, CardDeck> decks;
-	private boolean taken;
 	// It will be loaded from JSON file
 	private final static Resource towerTakenMalus = new Money(3);
 	private final static List<Integer> DEFAULT_REQUIRED_VALUES = new ArrayList<Integer>() {{
@@ -30,7 +29,6 @@ public class Tower implements Zone, Serializable{
 
 	public Tower(CardType type){
 		this.type = type;
-		this.taken = false;
 		initializeFloors();
 
 	}
@@ -98,7 +96,6 @@ public class Tower implements Zone, Serializable{
 			if(effects != null)
 				floor.getEffects().add(towerTakenMalusEffect);
 		}
-		this.taken = true;
 	}
 
 	public void deactivateMalus(){
@@ -111,8 +108,12 @@ public class Tower implements Zone, Serializable{
 		this.decks = decks;
 	}
 
+	public boolean isTaken() {
+		return floors.stream().anyMatch(floor -> floor.isOccupied());
+	}
+
 	@Override
 	public String toString() {
-		return "Tower of type " + type + "  (Taken: " + taken + ")";
+		return "Tower of type " + type + "  (Taken: " + isTaken() + ")";
 	}
 }
