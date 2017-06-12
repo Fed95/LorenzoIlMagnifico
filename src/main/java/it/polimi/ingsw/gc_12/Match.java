@@ -71,9 +71,11 @@ public class Match extends Observable<Change> implements MatchRemote {
 	}
 
 	private void createBoard() {
+		System.out.println("Match: Creating the board");
 		board = new Board(players);
 		board.setTowerSet(new LoaderTowerSet().get(this));
 		board.setMarket(new LoaderMarket().get(this));
+		System.out.println(board.getMarket().getSpaceMarkets());
 
 		//board.getTowerSet().setCards(cardDeckSet); TODO WAITING FOR JSON
 	}

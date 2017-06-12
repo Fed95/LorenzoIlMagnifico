@@ -1,1 +1,169 @@
-{"spaceMarkets":[{"marketNum":0,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[null],"bonus":[{"resourceType":"Servant","type":"SERVANT","value":5}]}],"choice":false,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceMarket","marketNum":0,"occupiers":[],"requiredValue":1}],"familyMember":{"value":1,"busy":false}}}],"occupiers":[],"requiredValue":1},{"marketNum":1,"effects":[{"type":"EffectChangeResource","exchanges":[{"bonus":[{"resourceType":"MilitaryPoint","type":"MILITARY_POINT","value":3},{"resourceType":"Money","type":"MONEY","value":2}]}],"choice":false,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceMarket","marketNum":1,"occupiers":[],"requiredValue":1}],"familyMember":{"value":1,"busy":false}}}],"occupiers":[],"requiredValue":1},{"marketNum":2,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[null],"bonus":[{"resourceType":"CouncilPrivilege","type":"COUNCIL_PRIVILEGE","value":5}]}],"choice":false,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceMarket","marketNum":2,"occupiers":[],"requiredValue":1}],"familyMember":{"value":1,"busy":false}}}],"occupiers":[],"requiredValue":1},{"marketNum":3,"effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[null],"bonus":[{"resourceType":"Money","type":"MONEY","value":5}]}],"choice":false,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"SpaceMarket","marketNum":3,"occupiers":[],"requiredValue":1}],"familyMember":{"value":1,"busy":false}}}],"occupiers":[],"requiredValue":1}]}
+{
+  "spaceMarkets": [
+    {
+      "marketNum": 0,
+      "effects": [
+        {
+          "type": "EffectChangeResource",
+          "exchanges": [
+            {
+              "cost": [
+                null
+              ],
+              "bonus": [
+                {
+                  "resourceType": "Servant",
+                  "type": "SERVANT",
+                  "value": 5
+                }
+              ]
+            }
+          ],
+          "choice": false,
+          "event": {
+            "eventType": "EventPlaceFamilyMember",
+            "occupiables": [
+              {
+                "occupiable": "SpaceMarket",
+                "marketNum": 0,
+                "occupiers": [],
+                "requiredValue": 1
+              }
+            ],
+            "familyMember": {
+              "value": 1,
+              "busy": false
+            }
+          }
+        }
+      ],
+      "occupiers": [],
+      "requiredValue": 1
+    },
+    {
+      "marketNum": 1,
+      "effects": [
+        {
+          "type": "EffectChangeResource",
+          "exchanges": [
+            {
+              "cost": [
+                null
+              ],
+              "bonus": [
+                {
+                  "resourceType": "MilitaryPoint",
+                  "type": "MILITARY_POINT",
+                  "value": 3
+                },
+                {
+                  "resourceType": "Money",
+                  "type": "MONEY",
+                  "value": 2
+                }
+              ]
+            }
+          ],
+          "choice": false,
+          "event": {
+            "eventType": "EventPlaceFamilyMember",
+            "occupiables": [
+              {
+                "occupiable": "SpaceMarket",
+                "marketNum": 1,
+                "occupiers": [],
+                "requiredValue": 1
+              }
+            ],
+            "familyMember": {
+              "value": 1,
+              "busy": false
+            }
+          }
+        }
+      ],
+      "occupiers": [],
+      "requiredValue": 1
+    },
+    {
+      "marketNum": 2,
+      "effects": [
+        {
+          "type": "EffectChangeResource",
+          "exchanges": [
+            {
+              "cost": [
+                null
+              ],
+              "bonus": [
+                {
+                  "resourceType": "CouncilPrivilege",
+                  "type": "COUNCIL_PRIVILEGE",
+                  "value": 5
+                }
+              ]
+            }
+          ],
+          "choice": false,
+          "event": {
+            "eventType": "EventPlaceFamilyMember",
+            "occupiables": [
+              {
+                "occupiable": "SpaceMarket",
+                "marketNum": 2,
+                "occupiers": [],
+                "requiredValue": 1
+              }
+            ],
+            "familyMember": {
+              "value": 1,
+              "busy": false
+            }
+          }
+        }
+      ],
+      "occupiers": [],
+      "requiredValue": 1
+    },
+    {
+      "marketNum": 3,
+      "effects": [
+        {
+          "type": "EffectChangeResource",
+          "exchanges": [
+            {
+              "cost": [
+                null
+              ],
+              "bonus": [
+                {
+                  "resourceType": "Money",
+                  "type": "MONEY",
+                  "value": 5
+                }
+              ]
+            }
+          ],
+          "choice": false,
+          "event": {
+            "eventType": "EventPlaceFamilyMember",
+            "occupiables": [
+              {
+                "occupiable": "SpaceMarket",
+                "marketNum": 3,
+                "occupiers": [],
+                "requiredValue": 1
+              }
+            ],
+            "familyMember": {
+              "value": 1,
+              "busy": false
+            }
+          }
+        }
+      ],
+      "occupiers": [],
+      "requiredValue": 1
+    }
+  ]
+}

@@ -1,10 +1,7 @@
 package it.polimi.ingsw.gc_12.action;
 
-import java.io.Serializable;
-
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Match;
-import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 
 public class ActionPlace extends Action{

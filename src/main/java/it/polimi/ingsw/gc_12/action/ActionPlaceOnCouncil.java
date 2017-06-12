@@ -3,10 +3,13 @@ package it.polimi.ingsw.gc_12.action;
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.occupiables.CouncilPalace;
+
+import java.util.List;
 
 public class ActionPlaceOnCouncil extends ActionPlace {
 
@@ -17,12 +20,10 @@ public class ActionPlaceOnCouncil extends ActionPlace {
         this.councilPalace = councilPalace;
     }
 
-    public boolean canBeExecuted(Player player, Event event) throws RequiredValueNotSatisfiedException {
-        player.getEffectHandler().executeEffects(event);
+    public void canBeExecuted() throws RequiredValueNotSatisfiedException {
 
         if (!councilPalace.isRequiredValueSatisfied(familyMember))
             throw new RequiredValueNotSatisfiedException();
-        return true;
     }
 
     @Override
@@ -32,14 +33,19 @@ public class ActionPlaceOnCouncil extends ActionPlace {
     	familyMember = getRealFamilyMember(match);
     	councilPalace = getRealCouncilPalace(match);
         Event event = new EventPlaceFamilyMember(player, councilPalace, familyMember);
+
+        //Can throw exceptions (in which case effects are discarded directly in EffectHandler)
+        List<Effect> executedEffects = player.getEffectHandler().executeEffects(event);
         System.out.println("Created the event.");
-        if (canBeExecuted(player, event)) {
+        try{
+            this.canBeExecuted();
             System.out.println("Event can be executed.");
             match.placeFamilyMember(councilPalace, familyMember);
             System.out.println("FamilyMember placed!");
-        }else {
-            player.getEffectHandler().discardEffects(event);
-            System.out.println("Event cannot be executed.");
+        }catch(Exception e) {
+            player.getEffectHandler().discardEffects(executedEffects, event);
+            System.out.println("Effects discarded due to " + e);
+            throw e;
         }
     }
 

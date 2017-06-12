@@ -3,9 +3,12 @@ package it.polimi.ingsw.gc_12.action;
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.occupiables.SpaceMarket;
+
+import java.util.List;
 
 public class ActionPlaceOnMarket extends ActionPlace {
 
@@ -16,8 +19,7 @@ public class ActionPlaceOnMarket extends ActionPlace {
         this.spaceMarket = spaceMarket;
     }
 
-    public boolean canBeExecuted(Player player, Event event) throws RuntimeException {
-        player.getEffectHandler().executeEffects(event);
+    public boolean canBeExecuted() throws RuntimeException {
 
         if(spaceMarket.isOccupied())
                 throw new RuntimeException("This SpaceMarket is already taken!");
@@ -31,10 +33,16 @@ public class ActionPlaceOnMarket extends ActionPlace {
     	Player player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
         Event event = new EventPlaceFamilyMember(player, spaceMarket, familyMember);
 
-        if(canBeExecuted(player, event)) {
+        //Can throw exceptions (in which case effects are discarded directly in EffectHandler)
+        List<Effect> executedEffects  = player.getEffectHandler().executeEffects(event);
+        try{
+            this.canBeExecuted();
             match.placeFamilyMember(spaceMarket, familyMember);
-        }else
-            player.getEffectHandler().discardEffects(event);
+        }catch(Exception e) {
+            player.getEffectHandler().discardEffects(executedEffects, event);
+            System.out.println("Effects discarded due to " + e);
+            throw e;
+        }
     }
 
     private SpaceMarket getRealSpaceMarket(Match match){

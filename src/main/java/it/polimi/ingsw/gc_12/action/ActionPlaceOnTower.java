@@ -4,13 +4,15 @@ import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.card.CardDevelopment;
+import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPickCard;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
-import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.occupiables.Tower;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
+
+import java.util.List;
 
 public class ActionPlaceOnTower extends ActionPlace {
 
@@ -23,11 +25,7 @@ public class ActionPlaceOnTower extends ActionPlace {
         this.towerFloor = towerFloor;
     }
 
-    public void canBeExecuted(Player player, Event event) throws RuntimeException, RequiredValueNotSatisfiedException {
-
-        player.getEffectHandler().executeEffects(event);
-
-        System.out.println("effects executed");
+    public void canBeExecuted() throws RuntimeException, RequiredValueNotSatisfiedException {
 
         if(this.towerFloor.isOccupied())
             throw new RuntimeException("This TowerFloor is already taken!");
@@ -48,15 +46,16 @@ public class ActionPlaceOnTower extends ActionPlace {
     	tower = getRealTower(match);
     	towerFloor = tower.getFloor(towerFloor.getFloorNum());
     	Event event = new EventPlaceFamilyMember(player, towerFloor, familyMember);
-        System.out.println("actionplaceontower: event created with placement on " + towerFloor);
+
+    	//Can throw exceptions (in which case effects are discarded directly in EffectHandler)
+        List<Effect> executedEffects = player.getEffectHandler().executeEffects(event);
+
         try{
-            this.canBeExecuted(player, event);
+            this.canBeExecuted();
              if (tower.getFloors().stream().allMatch(floor -> !floor.isOccupied())) { //If no floor of the tower has been occupied yet
                 tower.activateMalus();
             }
-            
             match.placeFamilyMember(towerFloor, familyMember);
-
             /*TODO: WAITING FOR JSON
             CardDevelopment card = towerFloor.getCard();
             player.getPersonalBoard().placeCard(card);
@@ -64,8 +63,8 @@ public class ActionPlaceOnTower extends ActionPlace {
             executeImmediateEffects(player, card);
             */
         }catch(Exception e) {
-            player.getEffectHandler().discardEffects(event);
-            System.out.println("effects discarded");
+            player.getEffectHandler().discardEffects(executedEffects, event);
+            System.out.println("Effects discarded due to " + e);
             throw e;
         }
     }
