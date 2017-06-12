@@ -42,6 +42,10 @@ public class FamilyMember implements Observer, Serializable {
 		this(owner, color, 0);
 	}
 
+	public FamilyMember(Player owner, int value) {
+		this(owner, null, value);
+	}
+
 	public FamilyMember(FamilyMemberColor color, int value) {
 		this(null, color, value);
 	}

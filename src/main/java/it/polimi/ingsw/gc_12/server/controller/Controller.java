@@ -6,6 +6,7 @@ import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.server.observer.Observer;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 
 public class Controller implements Observer<Action>{
 	
@@ -15,7 +16,8 @@ public class Controller implements Observer<Action>{
 		this.match = match;
 	}
 	
-	public void update(Action action) throws IOException {
+	public void update(Action action) throws IOException, RemoteException {
+
 		System.out.println("Server Controller: Notified of new " + action.getClass().getSimpleName() + " from RMIView.");
 		Observer.super.update(action);
 		try {

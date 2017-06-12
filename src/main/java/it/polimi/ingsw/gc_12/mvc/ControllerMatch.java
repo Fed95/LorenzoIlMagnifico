@@ -5,6 +5,7 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.List;
 
 public class ControllerMatch {
@@ -22,7 +23,7 @@ public class ControllerMatch {
 		match.setControllerPlayer(controllerPlayer);
 	}
 
-	public void start() throws IOException {
+	public void start() throws IOException, RemoteException {
 		for (int i = 0; i < 3; i++) { // 3 periods TODO: use variable from match
 			for (int j = 0; j < 2; j++) { // 2 rounds per period TODO: use variable from match
 				//Refreshes the board

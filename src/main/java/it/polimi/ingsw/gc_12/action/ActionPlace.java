@@ -13,6 +13,9 @@ import it.polimi.ingsw.gc_12.event.EventChooseFamilyMember;
 import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.resource.Servant;
+import it.polimi.ingsw.gc_12.occupiables.Occupiable;
+
+import java.rmi.RemoteException;
 
 public class ActionPlace extends Action{
 
@@ -34,7 +37,7 @@ public class ActionPlace extends Action{
 	}
 
 	@Override
-	public void start(Match match) throws RuntimeException, RequiredValueNotSatisfiedException, IOException {
+	public void start(Match match) throws RuntimeException, RequiredValueNotSatisfiedException, IOException, RemoteException {
 		FamilyMember realFamilyMember = match.getBoard().getTrackTurnOrder().getCurrentPlayer().getFamilyMember(familyMember.getColor());
 		if (realFamilyMember.isBusy())
 			throw new RuntimeException("This FamilyMember is already busy!");

@@ -13,6 +13,7 @@ import it.polimi.ingsw.gc_12.occupiables.SpaceWorkZone;
 import it.polimi.ingsw.gc_12.resource.Servant;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.List;
 
 public class ActionPlaceOnSpaceWork extends ActionPlace {
@@ -20,14 +21,14 @@ public class ActionPlaceOnSpaceWork extends ActionPlace {
     private SpaceWorkZone spaceWorkZone;
     private SpaceWork spaceWork;
 
-    public ActionPlaceOnSpaceWork(FamilyMember familyMember, Servant servant, SpaceWorkZone spaceWorkZone, SpaceWork spaceWork) {
+    public ActionPlaceOnSpaceWork(FamilyMember familyMember, Servant servant, SpaceWork spaceWork) {
         super(familyMember, servant);
         this.spaceWorkZone = spaceWorkZone;
         this.spaceWork = spaceWork;
     }
 
-    public ActionPlaceOnSpaceWork(FamilyMember familyMember, SpaceWorkZone spaceWorkZone, SpaceWork spaceWork) {
-        this(familyMember, new Servant(0), spaceWorkZone, spaceWork);
+    public ActionPlaceOnSpaceWork(FamilyMember familyMember, SpaceWork spaceWork) {
+        this(familyMember, new Servant(0), spaceWork);
     }
 
     private void canBeExecuted() throws RuntimeException, RequiredValueNotSatisfiedException {
@@ -42,14 +43,17 @@ public class ActionPlaceOnSpaceWork extends ActionPlace {
 
     }
 
-    public void start(Match match) throws RuntimeException, IOException, RequiredValueNotSatisfiedException {
+    @Override
+    public void start(Match match) throws RuntimeException, IOException, RequiredValueNotSatisfiedException, RemoteException {
+
     	Player player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
         familyMember = getRealFamilyMember(match);
-        spaceWork = getRealSpaceWork(match);
+        spaceWorkZone = getRealSpaceWorkZone(match);
+        spaceWork = getRealSpaceWork(spaceWorkZone);
         Event event = new EventPlaceFamilyMember(player, spaceWork, familyMember);
 
         //Can throw exceptions (in which case effects are discarded directly in EffectHandler)
-        List<Effect> executedEffects = player.getEffectHandler().executeEffects(event);
+        List<Effect> executedEffects = player.getEffectHandler().executeEffects(match, event);
         try{
             canBeExecuted();
             match.placeFamilyMember(spaceWork, familyMember);
@@ -59,8 +63,11 @@ public class ActionPlaceOnSpaceWork extends ActionPlace {
         }
     }
 
-    private SpaceWork getRealSpaceWork(Match match){
-        List<SpaceWork> spaceWorks = match.getBoard().getSpaceWorkZones().get(spaceWorkZone.getType()).getSpaceWorks();
+    private SpaceWorkZone getRealSpaceWorkZone(Match match){
+        return match.getBoard().getSpaceWorkZones().get(spaceWork.getWorkType());
+    }
+    private SpaceWork getRealSpaceWork(SpaceWorkZone spaceWorkZone){
+        List<SpaceWork> spaceWorks = spaceWorkZone.getSpaceWorks();
         return (spaceWork instanceof SpaceWorkSingle) ? spaceWorks.get(0) : spaceWorks.get(1);
     }
 }

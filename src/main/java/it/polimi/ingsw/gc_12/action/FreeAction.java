@@ -8,41 +8,32 @@ import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.event.EventRequiredValueNotSatisfied;
 import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
-import it.polimi.ingsw.gc_12.occupiables.Tower;
-import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
+import it.polimi.ingsw.gc_12.occupiables.*;
 
 import java.io.IOException;
 import java.util.List;
 
-public class FreeAction extends ActionPlaceOnTower {
+public class FreeAction extends ActionPlace {
 
-    public FreeAction(FamilyMember familyMember, Tower tower, TowerFloor towerFloor) {
-        super(familyMember, tower, towerFloor);
+    private Occupiable occupiable;
+
+    public FreeAction(FamilyMember familyMember, Occupiable occupiable){
+        super(familyMember);
     }
 
     @Override
-    public void start(Match match) throws RuntimeException, IOException {
-    	Player player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
-        Event event = new EventPlaceFamilyMember(player, towerFloor, familyMember);
 
-        //Can throw exceptions (in which case effects are discarded directly in EffectHandler)
-        List<Effect> executedEffects = player.getEffectHandler().executeEffects(event);
-        try {
-            this.canBeExecuted();
-            /*TODO: WAITING FOR JSON
-            CardDevelopment card = towerFloor.getCard();
-            player.getPersonalBoard().placeCard(card);
-            towerFloor.removeCard();
-            executeImmediateEffects(player, card);
-            */
-        }
-        catch(RequiredValueNotSatisfiedException e) {
-            Event eventException = new EventRequiredValueNotSatisfied(player, towerFloor, familyMember);
-            match.notifyObserver(eventException);
-        }catch(Exception e) {
-            player.getEffectHandler().discardEffects(executedEffects, event);
-            System.out.println("effects discarded");
-            throw e;
-        }
+    public void start(Match match) throws RequiredValueNotSatisfiedException, IOException {
+        Player player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
+        familyMember = getRealFamilyMember(match);
+
+        if(occupiable instanceof TowerFloor)
+            new ActionPlaceOnTower(familyMember, (TowerFloor) occupiable).start(match);
+        else if(occupiable instanceof SpaceMarket)
+            new ActionPlaceOnMarket(familyMember, (SpaceMarket) occupiable).start(match);
+        else if(occupiable instanceof SpaceWork)
+            new ActionPlaceOnSpaceWork(familyMember, (SpaceWork) occupiable).start(match);
+        else if(occupiable instanceof CouncilPalace)
+            new ActionPlaceOnCouncil(familyMember, (CouncilPalace) occupiable).start(match);
     }
 }

@@ -83,7 +83,7 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 		//board.getTowerSet().setCards(cardDeckSet); TODO WAITING FOR JSON
 	}
 
-	public void start() throws IOException, CloneNotSupportedException {
+	public void start() throws IOException, CloneNotSupportedException, RemoteException {
 		this.gameState = State.RUNNING;
 		System.out.println("notify EventStartMatch");
 		this.notifyObserver(new EventStartMatch(this));
@@ -91,7 +91,7 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 	}
 
 	//Increments turn counter in TrackTurnOrder
-	public void newTurn() throws IOException {
+	public void newTurn() throws IOException, RemoteException {
 		System.out.println("Match: Starting new turn");
 		for(Zone zone : board.getZones())
 			System.out.println(zone);
@@ -105,9 +105,11 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 		return new MatchInstance(this);
 	}
 	
-	public void placeFamilyMember(Occupiable occupiable, FamilyMember familyMember) throws IOException {
+	public void placeFamilyMember(Occupiable occupiable, FamilyMember familyMember) throws IOException, RemoteException {
+
 		occupiable.placeFamilyMember(familyMember);
-        familyMember.setBusy(true);
+		if(familyMember.getColor() != null)
+			familyMember.setBusy(true);
 		EventPlaceFamilyMember event = new EventPlaceFamilyMember(board.getTrackTurnOrder().getCurrentPlayer(), occupiable, familyMember);
 		this.notifyObserver(event);
 	}

@@ -15,6 +15,7 @@ import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 import it.polimi.ingsw.gc_12.resource.Servant;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.List;
 
 public class ActionPlaceOnTower extends ActionPlace {
@@ -22,14 +23,13 @@ public class ActionPlaceOnTower extends ActionPlace {
     protected Tower tower;
     protected TowerFloor towerFloor;
 
-    public ActionPlaceOnTower(FamilyMember familyMember, Servant servant, Tower tower, TowerFloor towerFloor) {
+    public ActionPlaceOnTower(FamilyMember familyMember, Servant servant, TowerFloor towerFloor) {
         super(familyMember, servant);
-        this.tower = tower;
         this.towerFloor = towerFloor;
     }
 
-    public ActionPlaceOnTower(FamilyMember familyMember, Tower tower, TowerFloor towerFloor) {
-        this(familyMember, new Servant(0), tower, towerFloor);
+    public ActionPlaceOnTower(FamilyMember familyMember, TowerFloor towerFloor) {
+        this(familyMember, new Servant(0), towerFloor);
     }
 
     public void canBeExecuted() throws RuntimeException, RequiredValueNotSatisfiedException{
@@ -47,7 +47,8 @@ public class ActionPlaceOnTower extends ActionPlace {
     }
 
     @Override
-    public void start(Match match) throws RuntimeException, IOException {
+
+    public void start(Match match) throws RuntimeException, RequiredValueNotSatisfiedException, IOException {
     	Player player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
     	familyMember = getRealFamilyMember(match);
     	tower = getRealTower(match);
@@ -56,7 +57,7 @@ public class ActionPlaceOnTower extends ActionPlace {
     	Event event = new EventPlaceFamilyMember(player, towerFloor, familyMember);
 
     	//Can throw exceptions (in which case effects are discarded directly in EffectHandler)
-        List<Effect> executedEffects = player.getEffectHandler().executeEffects(event);
+        List<Effect> executedEffects = player.getEffectHandler().executeEffects(match, event);
 
         try{
             this.canBeExecuted();
@@ -68,7 +69,7 @@ public class ActionPlaceOnTower extends ActionPlace {
             CardDevelopment card = towerFloor.getCard();
             player.getPersonalBoard().placeCard(card);
             towerFloor.removeCard();
-            executeImmediateEffects(player, card);
+            executeImmediateEffects(match, player, card);
             */
         }
         catch (RequiredValueNotSatisfiedException e) {
@@ -83,9 +84,9 @@ public class ActionPlaceOnTower extends ActionPlace {
     }
 
 
-    public void executeImmediateEffects(Player player, CardDevelopment card) throws RuntimeException {
+    public void executeImmediateEffects(Match match, Player player, CardDevelopment card) throws RuntimeException, IOException {
         EventPickCard event = new EventPickCard(player, card);
-        player.getEffectHandler().executeEffects(event);
+        player.getEffectHandler().executeEffects(match, event);
     }
 
     private Tower getRealTower(Match match) {

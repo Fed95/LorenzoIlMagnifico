@@ -10,6 +10,7 @@ import it.polimi.ingsw.gc_12.occupiables.SpaceMarket;
 import it.polimi.ingsw.gc_12.resource.Servant;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.List;
 
 public class ActionPlaceOnMarket extends ActionPlace {
@@ -35,12 +36,12 @@ public class ActionPlaceOnMarket extends ActionPlace {
     }
 
     @Override
-    public void start(Match match) throws RuntimeException, IOException {
+    public void start(Match match) throws RuntimeException, IOException, RemoteException {
     	Player player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
         Event event = new EventPlaceFamilyMember(player, spaceMarket, familyMember);
 
         //Can throw exceptions (in which case effects are discarded directly in EffectHandler)
-        List<Effect> executedEffects  = player.getEffectHandler().executeEffects(event);
+        List<Effect> executedEffects  = player.getEffectHandler().executeEffects(match, event);
         try{
             this.canBeExecuted();
             match.placeFamilyMember(spaceMarket, familyMember);

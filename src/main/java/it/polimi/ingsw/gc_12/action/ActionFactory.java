@@ -13,9 +13,9 @@ public class ActionFactory {
 
 	public static ActionPlace getActionPlace(Occupiable occupiable, FamilyMember familyMember, Servant servant, MatchInstance match) throws RemoteException {
 		if(occupiable instanceof TowerFloor) {
-			return new ActionPlaceOnTower(familyMember, servant, match.getBoard().getTowerSet().getTower(((TowerFloor) occupiable).getType()), (TowerFloor) occupiable);
+			return new ActionPlaceOnTower(familyMember, (TowerFloor) occupiable);
 		}else if(occupiable instanceof SpaceWork){
-			return new ActionPlaceOnSpaceWork(familyMember, servant, match.getBoard().getSpaceWorkZones().get(((SpaceWork) occupiable).getWorkType()), (SpaceWork) occupiable);
+			return new ActionPlaceOnSpaceWork(familyMember, (SpaceWork) occupiable);
 		}else if(occupiable instanceof SpaceMarket){
 			return new ActionPlaceOnMarket(familyMember, servant, (SpaceMarket) occupiable);
 		}else if(occupiable instanceof CouncilPalace){

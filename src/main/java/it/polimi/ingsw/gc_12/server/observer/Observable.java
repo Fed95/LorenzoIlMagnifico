@@ -1,6 +1,7 @@
 package it.polimi.ingsw.gc_12.server.observer;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public abstract class Observable<C> {
 		this.observers.remove(o);
 	}
 	
-	public void notifyObserver(C c) throws IOException {
+	public void notifyObserver(C c) throws IOException, RemoteException {
 		System.out.println("I am the "+this.getClass().getSimpleName());
 		for(Observer<C> o: this.observers){
 			o.update(c);

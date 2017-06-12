@@ -4,6 +4,7 @@ import java.util.Map;
 
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.FamilyMemberColor;
+import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 
@@ -16,7 +17,7 @@ public class EffectChangeFamilyMemberValue extends Effect{
 		this.amount = amount;
 	}
 	
-	public void execute(Event event) {
+	public void execute(Match match, Event event) {
 		if(event instanceof EventPlaceFamilyMember) {
 			EventPlaceFamilyMember eventSpecific = (EventPlaceFamilyMember) event;
 			//System.out.println("inside first if");

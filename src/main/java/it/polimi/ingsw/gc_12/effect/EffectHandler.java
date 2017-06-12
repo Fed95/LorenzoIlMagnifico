@@ -1,8 +1,11 @@
 package it.polimi.ingsw.gc_12.effect;
 
+import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.event.Event;
 
 public class EffectHandler {
@@ -10,7 +13,7 @@ public class EffectHandler {
 	public EffectHandler() {
 	}
 
-	public List<Effect> executeEffects(Event event) throws RuntimeException {
+	public List<Effect> executeEffects(Match match, Event event) throws RuntimeException, IOException {
 		List<Effect> effects = getPossibleEffects(event);
 		List<Effect> executedEffects = new ArrayList<>();
 		// If there is an effect (from the players' cards or the place where the family member has been placed):
@@ -18,7 +21,7 @@ public class EffectHandler {
 			for (Effect effect : effects) {
 				//System.out.println("effect handler: events found: " + effect + ": "+ effect.event);
 				if (event.equals(effect.getEvent())) {
-					effect.execute(event);
+					effect.execute(match, event);
 					executedEffects.add(effect);
 				}
 			}
@@ -44,9 +47,8 @@ public class EffectHandler {
 		List<Effect> effects = new ArrayList<>();
 
 		for(EffectProvider effectProvider: effectProviders) {
-			try {
-				effects.addAll(effectProvider.getEffects());
-			}catch(NullPointerException e){}
+			if(!(effectProvider.getEffects() == null))
+			effects.addAll(effectProvider.getEffects());
 		}
 		return effects;
 	}

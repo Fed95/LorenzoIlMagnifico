@@ -15,6 +15,7 @@ import it.polimi.ingsw.gc_12.server.controller.Change;
 import it.polimi.ingsw.gc_12.server.controller.StateChange;
 
 import java.io.IOException;
+import java.awt.*;
 import java.io.Serializable;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -52,7 +53,6 @@ public class ClientRMIView extends ClientHandler implements ClientViewRemote, Se
 		else {
 			handleEvent(change);
 		}
-
 	}
 	
 	public void createView(MatchInstance match) throws IOException {

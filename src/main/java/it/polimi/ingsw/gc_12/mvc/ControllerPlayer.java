@@ -111,10 +111,6 @@ public class ControllerPlayer{
 		adapters.get(currentPlayer).viewStatistics();
 	}
 
-	public void freeAction(CardType type, int value){
-		adapters.get(currentPlayer).askFreeAction(type, value);
-	}
-
 	public void pickCard(Card card) {
 		if(currentPlayer.getPersonalBoard().canPlaceCard(currentPlayer, (CardDevelopment) card))
 			currentPlayer.getPersonalBoard().placeCard((CardDevelopment) card);

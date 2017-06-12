@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc_12.effect;
 
+import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.event.Event;
 
 /**
@@ -12,7 +13,7 @@ public class EffectPlacementDenied extends Effect {
     }
 
     @Override
-    public void execute(Event event) throws RuntimeException {
+    public void execute(Match match, Event event) throws RuntimeException {
         throw new RuntimeException("A permanent effect prevents you from executing this placement!");
     }
 

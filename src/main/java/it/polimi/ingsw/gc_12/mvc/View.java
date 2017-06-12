@@ -15,6 +15,7 @@ public interface View {
 	void askAction(boolean isFMPlaced) throws IOException;
 	void askOccupiable(FamilyMember familyMember) throws IOException;
 	void askServants(Occupiable occupiable, FamilyMember familyMember) throws IOException;
+    void freeAction(List<Occupiable> occupiables, FamilyMember familyMember) throws IOException;
 	/*boolean supportChurch();
 	void excommunicationMessage();
 

@@ -241,7 +241,7 @@ public class SaverCard extends Saver<List<Card>> {
 					cardType = askCardType();
 					System.out.println("insert the value of the free action");
 					int value = scanner.nextInt();
-					effect = new EffectFreeAction(event, cardType, value);
+					//effect = new EffectFreeAction(event, cardType, value); effect constructor has changed
 					break;
 				case 4:
 					event = askEvent(id);

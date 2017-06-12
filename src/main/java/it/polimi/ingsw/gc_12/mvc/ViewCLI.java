@@ -55,8 +55,33 @@ public class ViewCLI extends Observable implements View {
 			}	
 		}
 	}
+	
+	@Override
+	public void freeAction(List<Occupiable> occupiables, FamilyMember familyMember) throws IOException {
+		System.out.println();
+		System.out.println("You received a free action!");
+		System.out.println("Please choose one:");
+		int i = 0;
+		for(Occupiable occupiable : occupiables){
+			System.out.println(i + " - " + occupiable);
+		}
+		System.out.println(i + " - For some wired reason I don't want a free action.");
 
-	public void askFamilyMember() throws IOException {
+		while (true) {
+			if(in.hasNextInt()) {
+				adapter.setFreeAction(in.nextInt(), occupiables, familyMember);
+				break;
+			}
+			else {
+				System.out.println("The input must be a number. Try again");
+				in.next();
+			}
+		}
+
+	}
+
+	public void askFamilyMember() throws IOException, RemoteException {
+
 		System.out.println("Write the number of the family member you want to use");
 
 		List<FamilyMember> usableFMs = match.getBoard().getTrackTurnOrder().getCurrentPlayer().getAvailableFamilyMembers();
@@ -85,7 +110,7 @@ public class ViewCLI extends Observable implements View {
 		askZone(familyMember);
 	}
 	
-	public void askZone(FamilyMember familyMember) throws IOException {
+	public void askZone(FamilyMember familyMember) throws IOException, RemoteException {
 		List<Zone> zones = match.getBoard().getZones();
 		System.out.println();
 		System.out.println("Write the number of the zone you want to place the family member in.");
@@ -206,20 +231,6 @@ public class ViewCLI extends Observable implements View {
 		}
 		System.out.println();
 		System.out.println();
-	}
-
-	public int askFreeAction(List<Card> cards, int value){
-		System.out.println("You received a free action of value" + value + "!" +
-				"Which card would you like to pick?");
-		int i = 0;
-		for(Card card : cards){
-			System.out.println(i + " - " + card);
-		}
-		System.out.println(i + " - No thanks.");
-		int choice = in.nextInt();
-		if(choice == i)
-			adapter.askAction();
-		return choice;
 	}
 
 	public int chooseResourceExchange(List<ResourceExchange> exchanges) {

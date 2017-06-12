@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.resource.ResourceExchange;
@@ -24,7 +25,7 @@ public class EffectChangeResource extends Effect {
 		this(event, new ArrayList<>(Arrays.asList(exchange)), choice);
 	}
 	
-	public void execute(Event event) throws RuntimeException {
+	public void execute(Match match, Event event) throws RuntimeException {
 		Player player = event.getPlayer();
 		if(!choice) {
 			for(ResourceExchange exchange : exchanges) {

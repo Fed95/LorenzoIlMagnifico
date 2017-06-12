@@ -32,7 +32,8 @@ public abstract class Occupiable implements EffectProvider, Serializable {
 
 
 	public void placeFamilyMember(FamilyMember occupier) {
-		this.occupiers.add(occupier);
+		if(occupier.getColor() != null)
+			this.occupiers.add(occupier);
 	}
 
 	public boolean isRequiredValueSatisfied(FamilyMember occupier) {

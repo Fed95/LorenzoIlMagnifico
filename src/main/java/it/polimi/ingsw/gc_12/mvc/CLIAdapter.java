@@ -5,10 +5,16 @@ import it.polimi.ingsw.gc_12.Zone;
 import it.polimi.ingsw.gc_12.action.ActionPassTurn;
 import it.polimi.ingsw.gc_12.action.ActionPlace;
 import it.polimi.ingsw.gc_12.client.ClientSender;
+import it.polimi.ingsw.gc_12.action.FreeAction;
+import it.polimi.ingsw.gc_12.card.Card;
+import it.polimi.ingsw.gc_12.card.CardType;
+import it.polimi.ingsw.gc_12.client.rmi.ClientRMI;
+import it.polimi.ingsw.gc_12.client.rmi.ClientRMIView;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.resource.Servant;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.List;
 
 public class CLIAdapter {
@@ -108,6 +114,27 @@ public class CLIAdapter {
 		client.sendAction(action);
 	}
 
+	public void setFreeAction(int occupiableIndex, List<Occupiable> occupiables, FamilyMember familyMember) throws IOException {
+		if(occupiableIndex < 0 || occupiableIndex > occupiables.size()) {
+			System.out.println("The specified input is not listed above");
+			view.freeAction(occupiables, familyMember);
+		}else if(occupiableIndex == occupiables.size()) {
+			System.out.println("Action discarded.");
+		}else{
+			Occupiable occupiable = occupiables.get(occupiableIndex);
+			ActionPlace action = new FreeAction(familyMember, occupiable);
+			client.sendAction(action);
+		}
+	}
+
+
+	/*
+
+	public void placeWithServants(Occupiable occupiable, FamilyMember familyMember) throws IOException {
+		ActionPlace action = view.createActionPlace(familyMember, occupiable);
+		client.sendAction(action);
+	}
+
 	/*@Override
 	public boolean supportChurch() {
 		return view.supportChurch();
@@ -150,4 +177,5 @@ public class CLIAdapter {
 		int choice = view.chooseResourceExchange(exchanges);
 		return  choice;
 	}*/
+
 }

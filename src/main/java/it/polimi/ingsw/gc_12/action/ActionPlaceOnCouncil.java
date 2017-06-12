@@ -10,6 +10,7 @@ import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.occupiables.CouncilPalace;
 import it.polimi.ingsw.gc_12.resource.Servant;
 
+import java.rmi.RemoteException;
 import java.util.List;
 import java.io.IOException;
 public class ActionPlaceOnCouncil extends ActionPlace {
@@ -32,7 +33,7 @@ public class ActionPlaceOnCouncil extends ActionPlace {
     }
 
     @Override
-    public void start(Match match) throws RequiredValueNotSatisfiedException, IOException {
+    public void start(Match match) throws RequiredValueNotSatisfiedException, IOException, RemoteException {
         System.out.println("ActionPlaceOnCouncil: starting...");
         Player player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
     	familyMember = getRealFamilyMember(match);
@@ -40,7 +41,7 @@ public class ActionPlaceOnCouncil extends ActionPlace {
         Event event = new EventPlaceFamilyMember(player, councilPalace, familyMember);
 
         //Can throw exceptions (in which case effects are discarded directly in EffectHandler)
-        List<Effect> executedEffects = player.getEffectHandler().executeEffects(event);
+        List<Effect> executedEffects = player.getEffectHandler().executeEffects(match, event);
         System.out.println("Created the event.");
         try{
             this.canBeExecuted();

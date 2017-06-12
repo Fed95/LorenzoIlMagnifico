@@ -1,25 +1,35 @@
 package it.polimi.ingsw.gc_12.effect;
 
+import it.polimi.ingsw.gc_12.FamilyMember;
+import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.event.Event;
+import it.polimi.ingsw.gc_12.event.EventFreeAction;
+import it.polimi.ingsw.gc_12.occupiables.Occupiable;
+
+import java.io.IOException;
+import java.rmi.RemoteException;
+import java.util.List;
 
 
 public class EffectFreeAction extends Effect {
 
-    private CardType ctype;
-    private int value;
 
-    public EffectFreeAction(Event event, CardType ctype, int value) {
+    private List<Occupiable> occupiables;
+    private FamilyMember familyMember;
+    int value;
+
+    public EffectFreeAction(Event event, List<Occupiable> occupiables, int value) {
         super(event);
-        this.ctype = ctype;
+        this.occupiables = occupiables;
         this.value = value;
     }
 
     @Override
-    public void execute(Event event) throws RuntimeException {
-        Player player = event.getPlayer();
-        //player.getMatch().getControllerPlayer().freeAction(type, value);
+    public void execute(Match match, Event event) throws RuntimeException, IOException {
+        this.familyMember = new FamilyMember(match.getCurrentPlayer(), value);
+        match.notifyObserver(new EventFreeAction(match.getCurrentPlayer(), familyMember, occupiables));
     }
 
     @Override
@@ -29,6 +39,6 @@ public class EffectFreeAction extends Effect {
 
     @Override
     public String toString() {
-        return "Free action of value " + value;
+        return "Free action of value " + familyMember.getValue();
     }
 }

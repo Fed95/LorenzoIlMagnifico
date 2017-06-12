@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc_12.effect;
 
+import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.event.Event;
@@ -22,7 +23,7 @@ public class EffectResourceForCards extends Effect{
     }
 
     @Override
-    public void execute(Event event) throws RuntimeException {
+    public void execute(Match match, Event event) throws RuntimeException {
         int numOfCards = player.getPersonalBoard().getCards(cardType).size();
         resource.setValue(resource.getValue()*numOfCards);
 

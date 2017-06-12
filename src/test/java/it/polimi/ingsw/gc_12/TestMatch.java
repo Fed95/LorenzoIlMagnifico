@@ -3,6 +3,8 @@ package it.polimi.ingsw.gc_12;
 import it.polimi.ingsw.gc_12.mvc.ControllerMatch;
 import it.polimi.ingsw.gc_12.resource.*;
 
+import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +14,7 @@ public class TestMatch {
 
 
 
-	public static void main(String[] args){
+	public static void main(String[] args) throws IOException {
 		List<Player> players = new ArrayList<>();
 		Map<ResourceType, Resource> resources = new HashMap<>();
 		Resource stones = new Stone(3);

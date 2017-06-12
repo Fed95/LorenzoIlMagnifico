@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc_12.effect;
 
+import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.resource.Resource;
@@ -21,7 +22,7 @@ public class EffectResourceForResource extends Effect {
     }
 
     @Override
-    public void execute(Event event) throws RuntimeException {
+    public void execute(Match match, Event event) throws RuntimeException {
         int numOfResources = player.getResourceValue(ownedResource.getType()) / ownedResource.getValue();
         resource.setValue(resource.getValue()*numOfResources);
 
