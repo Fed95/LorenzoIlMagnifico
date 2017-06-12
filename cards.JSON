@@ -3467,6 +3467,205 @@
             "cost": [],
             "bonus": [
               {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 1
+              },
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 5
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 45
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [
+              {
+                "resourceType": "Wood",
+                "type": "WOOD",
+                "value": 1
+              }
+            ],
+            "bonus": [
+              {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 2
+              }
+            ]
+          },
+          {
+            "cost": [
+              {
+                "resourceType": "Stone",
+                "type": "STONE",
+                "value": 1
+              }
+            ],
+            "bonus": [
+              {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 2
+              }
+            ]
+          }
+        ],
+        "choice": true,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "SpaceWorkSingle",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "SpaceWorkMultiple",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            }
+          ],
+          "familyMember": {
+            "value": 1,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Basilica",
+    "id": 45,
+    "requirements": [
+      {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 1
+      },
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "type": "CardBuilding",
+    "cardType": "BUILDING",
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 7
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 46
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [
+              {
+                "resourceType": "Servant",
+                "type": "SERVANT",
+                "value": 1
+              }
+            ],
+            "bonus": [
+              {
+                "resourceType": "MilitaryPoint",
+                "type": "MILITARY_POINT",
+                "value": 3
+              },
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "SpaceWorkSingle",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "SpaceWorkMultiple",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            }
+          ],
+          "familyMember": {
+            "value": 3,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Accademia Militare",
+    "id": 46,
+    "requirements": [
+      {
+        "resourceType": "Servant",
+        "type": "SERVANT",
+        "value": 1
+      },
+      {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 2
+      },
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "type": "CardBuilding",
+    "cardType": "BUILDING",
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
                 "resourceType": "VictoryPoint",
                 "type": "VICTORY_POINT",
                 "value": 7
@@ -3482,7 +3681,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
-          "cardID": 45
+          "cardID": 47
         }
       },
       {
@@ -3524,7 +3723,7 @@
       }
     ],
     "name": "Cattedrale",
-    "id": 45,
+    "id": 47,
     "requirements": [
       {
         "resourceType": "Wood",
@@ -3535,6 +3734,2537 @@
         "resourceType": "Stone",
         "type": "STONE",
         "value": 4
+      }
+    ]
+  },
+  {
+    "type": "CardCharacter",
+    "cardType": "CHARACTER",
+    "period": 1,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "MilitaryPoint",
+                "type": "MILITARY_POINT",
+                "value": 3
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 48
+        }
+      },
+      {
+        "type": "EffectChangeFamilyMemberValue",
+        "amount": 2,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 0,
+              "cardType": "TERRITORY",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 1,
+              "cardType": "TERRITORY",
+              "occupiers": [],
+              "requiredValue": 3
+            },
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 2,
+              "cardType": "TERRITORY",
+              "occupiers": [],
+              "requiredValue": 5
+            },
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 3,
+              "cardType": "TERRITORY",
+              "occupiers": [],
+              "requiredValue": 7
+            }
+          ],
+          "familyMember": {
+            "value": 0,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Condottiero",
+    "id": 48,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "type": "CardCharacter",
+    "cardType": "CHARACTER",
+    "period": 1,
+    "effects": [
+      {
+        "type": "EffectChangeFamilyMemberValue",
+        "amount": 2,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 0,
+              "cardType": "BUILDING",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 1,
+              "cardType": "BUILDING",
+              "occupiers": [],
+              "requiredValue": 3
+            },
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 2,
+              "cardType": "BUILDING",
+              "occupiers": [],
+              "requiredValue": 5
+            },
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 3,
+              "cardType": "BUILDING",
+              "occupiers": [],
+              "requiredValue": 7
+            }
+          ],
+          "familyMember": {
+            "value": 0,
+            "busy": false
+          }
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [
+              {
+                "resourceType": "Wood",
+                "type": "WOOD",
+                "value": 1
+              }
+            ],
+            "bonus": []
+          },
+          {
+            "cost": [
+              {
+                "resourceType": "Stone",
+                "type": "STONE",
+                "value": 1
+              }
+            ],
+            "bonus": []
+          }
+        ],
+        "choice": true,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 0,
+              "cardType": "BUILDING",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 1,
+              "cardType": "BUILDING",
+              "occupiers": [],
+              "requiredValue": 3
+            },
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 2,
+              "cardType": "BUILDING",
+              "occupiers": [],
+              "requiredValue": 5
+            },
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 3,
+              "cardType": "BUILDING",
+              "occupiers": [],
+              "requiredValue": 7
+            }
+          ],
+          "familyMember": {
+            "value": 0,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Costruttore",
+    "id": 49,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "type": "CardCharacter",
+    "cardType": "CHARACTER",
+    "period": 1,
+    "effects": [
+      {
+        "type": "EffectChangeFamilyMemberValue",
+        "amount": 2,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 0,
+              "cardType": "CHARACTER",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 1,
+              "cardType": "CHARACTER",
+              "occupiers": [],
+              "requiredValue": 3
+            },
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 2,
+              "cardType": "CHARACTER",
+              "occupiers": [],
+              "requiredValue": 5
+            },
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 3,
+              "cardType": "CHARACTER",
+              "occupiers": [],
+              "requiredValue": 7
+            }
+          ],
+          "familyMember": {
+            "value": 0,
+            "busy": false
+          }
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [
+              {
+                "resourceType": "Money",
+                "type": "MONEY",
+                "value": 1
+              }
+            ],
+            "bonus": []
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 0,
+              "cardType": "CHARACTER",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 1,
+              "cardType": "CHARACTER",
+              "occupiers": [],
+              "requiredValue": 3
+            },
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 2,
+              "cardType": "CHARACTER",
+              "occupiers": [],
+              "requiredValue": 5
+            },
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 3,
+              "cardType": "CHARACTER",
+              "occupiers": [],
+              "requiredValue": 7
+            }
+          ],
+          "familyMember": {
+            "value": 0,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Dama",
+    "id": 50,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "type": "CardCharacter",
+    "cardType": "CHARACTER",
+    "period": 1,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "CouncilPrivilege",
+                "type": "COUNCIL_PRIVILEGE",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 51
+        }
+      },
+      {
+        "type": "EffectChangeFamilyMemberValue",
+        "amount": 2,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 0,
+              "cardType": "VENTURE",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 1,
+              "cardType": "VENTURE",
+              "occupiers": [],
+              "requiredValue": 3
+            },
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 2,
+              "cardType": "VENTURE",
+              "occupiers": [],
+              "requiredValue": 5
+            },
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 3,
+              "cardType": "VENTURE",
+              "occupiers": [],
+              "requiredValue": 7
+            }
+          ],
+          "familyMember": {
+            "value": 0,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Cavaliere",
+    "id": 51,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "type": "CardCharacter",
+    "cardType": "CHARACTER",
+    "period": 1,
+    "effects": [
+      {
+        "type": "EffectChangeFamilyMemberValue",
+        "amount": 2,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "SpaceWorkSingle",
+              "workType": "HARVEST",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "SpaceWorkMultiple",
+              "workType": "HARVEST",
+              "occupiers": [],
+              "requiredValue": 1
+            }
+          ],
+          "familyMember": {
+            "value": 0,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Contadino",
+    "id": 52,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "type": "CardCharacter",
+    "cardType": "CHARACTER",
+    "period": 1,
+    "effects": [
+      {
+        "type": "EffectChangeFamilyMemberValue",
+        "amount": 2,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "SpaceWorkSingle",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "SpaceWorkMultiple",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            }
+          ],
+          "familyMember": {
+            "value": 0,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Artigiano",
+    "id": 53,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "type": "CardCharacter",
+    "cardType": "CHARACTER",
+    "period": 1,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 4
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 54
+        }
+      }
+    ],
+    "name": "Predicatore",
+    "id": 54,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 2
+      },
+      {
+        "resourceType": "FaithPoint",
+        "type": "FAITH_POINT",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "type": "CardCharacter",
+    "cardType": "CHARACTER",
+    "period": 1,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 55
+        }
+      },
+      {
+        "type": "EffectFreeAction",
+        "ctype": null,
+        "value": 4,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 55
+        }
+      }
+    ],
+    "name": "Badessa",
+    "id": 55,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "type": "CardCharacter",
+    "cardType": "CHARACTER",
+    "period": 2,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "MilitaryPoint",
+                "type": "MILITARY_POINT",
+                "value": 2
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 56
+        }
+      },
+      {
+        "type": "EffectFreeAction",
+        "ctype": "TERRITORY",
+        "value": 6,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 56
+        }
+      }
+    ],
+    "name": "Capitano",
+    "id": 56,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "type": "CardCharacter",
+    "cardType": "CHARACTER",
+    "period": 2,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "Wood",
+                "type": "WOOD",
+                "value": 1
+              },
+              {
+                "resourceType": "Stone",
+                "type": "STONE",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 57
+        }
+      },
+      {
+        "type": "EffectFreeAction",
+        "ctype": "BUILDING",
+        "value": 6,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 57
+        }
+      }
+    ],
+    "name": "Architetto",
+    "id": 57,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "type": "CardCharacter",
+    "cardType": "CHARACTER",
+    "period": 2,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "Money",
+                "type": "MONEY",
+                "value": 2
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 58
+        }
+      },
+      {
+        "type": "EffectFreeAction",
+        "ctype": "CHARACTER",
+        "value": 6,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 58
+        }
+      }
+    ],
+    "name": "Mecenate",
+    "id": 58,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "type": "CardCharacter",
+    "cardType": "CHARACTER",
+    "period": 2,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "CouncilPrivilege",
+                "type": "COUNCIL_PRIVILEGE",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 59
+        }
+      },
+      {
+        "type": "EffectFreeAction",
+        "ctype": "VENTURE",
+        "value": 6,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 59
+        }
+      }
+    ],
+    "name": "Eroe",
+    "id": 59,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "type": "CardCharacter",
+    "cardType": "CHARACTER",
+    "period": 2,
+    "effects": [
+      {
+        "type": "EffectChangeFamilyMemberValue",
+        "amount": 3,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "SpaceWorkSingle",
+              "workType": "HARVEST",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "SpaceWorkMultiple",
+              "workType": "HARVEST",
+              "occupiers": [],
+              "requiredValue": 1
+            }
+          ],
+          "familyMember": {
+            "value": 0,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Fattore",
+    "id": 60,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "type": "CardCharacter",
+    "cardType": "CHARACTER",
+    "period": 2,
+    "effects": [
+      {
+        "type": "EffectChangeFamilyMemberValue",
+        "amount": 3,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "SpaceWorkSingle",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "SpaceWorkMultiple",
+              "workType": "PRODUCTION",
+              "occupiers": [],
+              "requiredValue": 1
+            }
+          ],
+          "familyMember": {
+            "value": 0,
+            "busy": false
+          }
+        }
+      }
+    ],
+    "name": "Studioso",
+    "id": 61,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "type": "CardCharacter",
+    "cardType": "CHARACTER",
+    "period": 2,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 3
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 62
+        }
+      }
+    ],
+    "name": "Messo Papale",
+    "id": 62,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "type": "CardCharacter",
+    "cardType": "CHARACTER",
+    "period": 2,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "CouncilPrivilege",
+                "type": "COUNCIL_PRIVILEGE",
+                "value": 1
+              },
+              {
+                "resourceType": "CouncilPrivilege",
+                "type": "COUNCIL_PRIVILEGE",
+                "value": 1
+              },
+              {
+                "resourceType": "CouncilPrivilege",
+                "type": "COUNCIL_PRIVILEGE",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 63
+        }
+      }
+    ],
+    "name": "Messo Reale",
+    "id": 63,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "type": "CardCharacter",
+    "cardType": "CHARACTER",
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectResourceForCards",
+        "cardType": "TERRITORY",
+        "resource": {
+          "resourceType": "VictoryPoint",
+          "type": "VICTORY_POINT",
+          "value": 2
+        },
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 64
+        }
+      }
+    ],
+    "name": "Nobile",
+    "id": 64,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 6
+      }
+    ]
+  },
+  {
+    "type": "CardCharacter",
+    "cardType": "CHARACTER",
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectResourceForCards",
+        "cardType": "BUILDING",
+        "resource": {
+          "resourceType": "VictoryPoint",
+          "type": "VICTORY_POINT",
+          "value": 2
+        },
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 65
+        }
+      }
+    ],
+    "name": "Governatore",
+    "id": 65,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 6
+      }
+    ]
+  },
+  {
+    "type": "CardCharacter",
+    "cardType": "CHARACTER",
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectResourceForCards",
+        "cardType": "CHARACTER",
+        "resource": {
+          "resourceType": "VictoryPoint",
+          "type": "VICTORY_POINT",
+          "value": 2
+        },
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 66
+        }
+      }
+    ],
+    "name": "Cortigiana",
+    "id": 66,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 7
+      }
+    ]
+  },
+  {
+    "type": "CardCharacter",
+    "cardType": "CHARACTER",
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectResourceForCards",
+        "cardType": "VENTURE",
+        "resource": {
+          "resourceType": "VictoryPoint",
+          "type": "VICTORY_POINT",
+          "value": 2
+        },
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 67
+        }
+      }
+    ],
+    "name": "Araldo",
+    "id": 67,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 6
+      }
+    ]
+  },
+  {
+    "type": "CardCharacter",
+    "cardType": "CHARACTER",
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 2
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 68
+        }
+      }
+    ],
+    "name": "Cardinale",
+    "id": 68,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "type": "CardCharacter",
+    "cardType": "CHARACTER",
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 69
+        }
+      }
+    ],
+    "name": "Vescovo",
+    "id": 69,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "type": "CardCharacter",
+    "cardType": "CHARACTER",
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectResourceForResource",
+        "ownedResource": {
+          "resourceType": "MilitaryPoint",
+          "type": "MILITARY_POINT",
+          "value": 2
+        },
+        "resource": {
+          "resourceType": "VictoryPoint",
+          "type": "VICTORY_POINT",
+          "value": 1
+        },
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 70
+        }
+      }
+    ],
+    "name": "Generale",
+    "id": 70,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "type": "CardCharacter",
+    "cardType": "CHARACTER",
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "CouncilPrivilege",
+                "type": "COUNCIL_PRIVILEGE",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 71
+        }
+      },
+      {
+        "type": "EffectFreeAction",
+        "ctype": "TERRITORY",
+        "value": 7,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 71
+        }
+      }
+    ],
+    "name": "Ambasciatore",
+    "id": 71,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 6
+      }
+    ]
+  },
+  {
+    "type": "CardVenture",
+    "cardType": "VENTURE",
+    "period": 1,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "MilitaryPoint",
+                "type": "MILITARY_POINT",
+                "value": 5
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 72
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 4
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventEndMatch"
+        }
+      }
+    ],
+    "name": "Ingaggiare Reclute",
+    "id": 72,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "type": "CardVenture",
+    "cardType": "VENTURE",
+    "period": 1,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 73
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 5
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventEndMatch"
+        }
+      }
+    ],
+    "name": "Riparare la Chiesa",
+    "id": 73,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 1
+      },
+      {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 1
+      },
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "type": "CardVenture",
+    "cardType": "VENTURE",
+    "period": 1,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "CouncilPrivilege",
+                "type": "COUNCIL_PRIVILEGE",
+                "value": 1
+              },
+              {
+                "resourceType": "MilitaryPoint",
+                "type": "MILITARY_POINT",
+                "value": 2
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 74
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 3
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventEndMatch"
+        }
+      }
+    ],
+    "name": "Costruire le Mura",
+    "id": 74,
+    "requirements": [
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "type": "CardVenture",
+    "cardType": "VENTURE",
+    "period": 1,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "CouncilPrivilege",
+                "type": "COUNCIL_PRIVILEGE",
+                "value": 1
+              },
+              {
+                "resourceType": "CouncilPrivilege",
+                "type": "COUNCIL_PRIVILEGE",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 75
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 4
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventEndMatch"
+        }
+      }
+    ],
+    "name": "Innalzare una Statua",
+    "id": 75,
+    "requirements": [
+      {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 2
+      },
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "type": "CardVenture",
+    "cardType": "VENTURE",
+    "period": 1,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "Money",
+                "type": "MONEY",
+                "value": 3
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 76
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 5
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventEndMatch"
+        }
+      }
+    ],
+    "name": "Campagna Militare",
+    "id": 76,
+    "requirements": [
+      {
+        "resourceType": "MilitaryPoint",
+        "type": "MILITARY_POINT",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "type": "CardVenture",
+    "cardType": "VENTURE",
+    "period": 1,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "Servant",
+                "type": "SERVANT",
+                "value": 4
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 77
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 4
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventEndMatch"
+        }
+      }
+    ],
+    "name": "Ospitare i Mendicanti",
+    "id": 77,
+    "requirements": [
+      {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "type": "CardVenture",
+    "cardType": "VENTURE",
+    "period": 1,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 2
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 78
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 5
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventEndMatch"
+        }
+      }
+    ],
+    "name": "Combattere le Eresie",
+    "id": 78,
+    "requirements": [
+      {
+        "resourceType": "MilitaryPoint",
+        "type": "MILITARY_POINT",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "type": "CardVenture",
+    "cardType": "VENTURE",
+    "period": 1,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 3
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 79
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventEndMatch"
+        }
+      }
+    ],
+    "name": "Sostegno al Vescovo",
+    "id": 79,
+    "requirements": [
+      {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 1
+      },
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 2
+      },
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 1
+      }
+    ]
+  },
+  {
+    "type": "CardVenture",
+    "cardType": "VENTURE",
+    "period": 2,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "MilitaryPoint",
+                "type": "MILITARY_POINT",
+                "value": 6
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 80
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 5
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventEndMatch"
+        }
+      }
+    ],
+    "name": "Ingaggiare Soldati",
+    "id": 80,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 6
+      }
+    ]
+  },
+  {
+    "type": "CardVenture",
+    "cardType": "VENTURE",
+    "period": 2,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 2
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 81
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 6
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventEndMatch"
+        }
+      }
+    ],
+    "name": "Riparare l'Abbazia",
+    "id": 81,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 2
+      },
+      {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 2
+      },
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 2
+      }
+    ]
+  },
+  {
+    "type": "CardVenture",
+    "cardType": "VENTURE",
+    "period": 2,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "CouncilPrivilege",
+                "type": "COUNCIL_PRIVILEGE",
+                "value": 1
+              },
+              {
+                "resourceType": "MilitaryPoint",
+                "type": "MILITARY_POINT",
+                "value": 3
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 82
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 2
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventEndMatch"
+        }
+      }
+    ],
+    "name": "Costruire i Bastioni",
+    "id": 82,
+    "requirements": [
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "type": "CardVenture",
+    "cardType": "VENTURE",
+    "period": 2,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "CouncilPrivilege",
+                "type": "COUNCIL_PRIVILEGE",
+                "value": 1
+              },
+              {
+                "resourceType": "Money",
+                "type": "MONEY",
+                "value": 5
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 83
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 3
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventEndMatch"
+        }
+      }
+    ],
+    "name": "Supporto al Re",
+    "id": 83,
+    "requirements": [
+      {
+        "resourceType": "MilitaryPoint",
+        "type": "MILITARY_POINT",
+        "value": 6
+      }
+    ]
+  },
+  {
+    "type": "CardVenture",
+    "cardType": "VENTURE",
+    "period": 2,
+    "effects": [],
+    "name": "Scavare Canalizzazioni",
+    "id": 84,
+    "requirements": [
+      {
+        "resourceType": "Servant",
+        "type": "SERVANT",
+        "value": 2
+      },
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "type": "CardVenture",
+    "cardType": "VENTURE",
+    "period": 2,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "Servant",
+                "type": "SERVANT",
+                "value": 5
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 85
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 4
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventEndMatch"
+        }
+      }
+    ],
+    "name": "Accogliere gli stranieri",
+    "id": 85,
+    "requirements": [
+      {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "type": "CardVenture",
+    "cardType": "VENTURE",
+    "period": 2,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 1
+              },
+              {
+                "resourceType": "Money",
+                "type": "MONEY",
+                "value": 5
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 86
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 5
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventEndMatch"
+        }
+      }
+    ],
+    "name": "Crociata",
+    "id": 86,
+    "requirements": [
+      {
+        "resourceType": "MilitaryPoint",
+        "type": "MILITARY_POINT",
+        "value": 8
+      }
+    ]
+  },
+  {
+    "type": "CardVenture",
+    "cardType": "VENTURE",
+    "period": 2,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 3
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 87
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 4
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventEndMatch"
+        }
+      }
+    ],
+    "name": "Sostegno al Cardinale",
+    "id": 87,
+    "requirements": [
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 2
+      },
+      {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 2
+      },
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "type": "CardVenture",
+    "cardType": "VENTURE",
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "MilitaryPoint",
+                "type": "MILITARY_POINT",
+                "value": 7
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 88
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 6
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventEndMatch"
+        }
+      }
+    ],
+    "name": "Ingaggiare Mercenari",
+    "id": 88,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 8
+      }
+    ]
+  },
+  {
+    "type": "CardVenture",
+    "cardType": "VENTURE",
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 89
+        }
+      },
+      {
+        "type": "EffectFreeAction",
+        "ctype": null,
+        "value": 7,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 89
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 5
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventEndMatch"
+        }
+      }
+    ],
+    "name": "Riparare la Cattedrale",
+    "id": 89,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 3
+      },
+      {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 3
+      },
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "type": "CardVenture",
+    "cardType": "VENTURE",
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "CouncilPrivilege",
+                "type": "COUNCIL_PRIVILEGE",
+                "value": 1
+              },
+              {
+                "resourceType": "MilitaryPoint",
+                "type": "MILITARY_POINT",
+                "value": 4
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 90
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 4
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventEndMatch"
+        }
+      }
+    ],
+    "name": "Costruire le Torri",
+    "id": 90,
+    "requirements": [
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 6
+      }
+    ]
+  },
+  {
+    "type": "CardVenture",
+    "cardType": "VENTURE",
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 3
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventEndMatch"
+        }
+      }
+    ],
+    "name": "Commissionare Arte Sacra",
+    "id": 91,
+    "requirements": [
+      {
+        "resourceType": "FaithPoint",
+        "type": "FAITH_POINT",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "type": "CardVenture",
+    "cardType": "VENTURE",
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "Money",
+                "type": "MONEY",
+                "value": 3
+              },
+              {
+                "resourceType": "Wood",
+                "type": "WOOD",
+                "value": 3
+              },
+              {
+                "resourceType": "Stone",
+                "type": "STONE",
+                "value": 3
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 92
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 7
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventEndMatch"
+        }
+      }
+    ],
+    "name": "Conquista Militare",
+    "id": 92,
+    "requirements": [
+      {
+        "resourceType": "MilitaryPoint",
+        "type": "MILITARY_POINT",
+        "value": 12
+      }
+    ]
+  },
+  {
+    "type": "CardVenture",
+    "cardType": "VENTURE",
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 5
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventEndMatch"
+        }
+      }
+    ],
+    "name": "Migliorare le Strade",
+    "id": 93,
+    "requirements": [
+      {
+        "resourceType": "Servant",
+        "type": "SERVANT",
+        "value": 3
+      },
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "type": "CardVenture",
+    "cardType": "VENTURE",
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 4
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 94
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 8
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventEndMatch"
+        }
+      }
+    ],
+    "name": "Guerra Santa",
+    "id": 94,
+    "requirements": [
+      {
+        "resourceType": "MilitaryPoint",
+        "type": "MILITARY_POINT",
+        "value": 15
+      }
+    ]
+  },
+  {
+    "type": "CardVenture",
+    "cardType": "VENTURE",
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 2
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 95
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 10
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventEndMatch"
+        }
+      }
+    ],
+    "name": "Sostegno al Papa",
+    "id": 95,
+    "requirements": [
+      {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 3
+      },
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 4
+      },
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 3
       }
     ]
   }
