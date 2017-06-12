@@ -7,12 +7,12 @@ import it.polimi.ingsw.gc_12.event.Event;
 
 public class EffectFreeAction extends Effect {
 
-    private CardType type;
+    private CardType ctype;
     private int value;
 
-    public EffectFreeAction(Event event, CardType type, int value) {
+    public EffectFreeAction(Event event, CardType ctype, int value) {
         super(event);
-        this.type = type;
+        this.ctype = ctype;
         this.value = value;
     }
 
