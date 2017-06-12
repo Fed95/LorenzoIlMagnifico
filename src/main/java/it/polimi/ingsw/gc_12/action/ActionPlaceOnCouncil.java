@@ -10,7 +10,7 @@ import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.occupiables.CouncilPalace;
 
 import java.util.List;
-
+import java.io.IOException;
 public class ActionPlaceOnCouncil extends ActionPlace {
 
     private CouncilPalace councilPalace;
@@ -27,7 +27,7 @@ public class ActionPlaceOnCouncil extends ActionPlace {
     }
 
     @Override
-    public void start(Match match) throws RequiredValueNotSatisfiedException {
+    public void start(Match match) throws RequiredValueNotSatisfiedException, IOException {
         System.out.println("ActionPlaceOnCouncil: starting...");
         Player player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
     	familyMember = getRealFamilyMember(match);

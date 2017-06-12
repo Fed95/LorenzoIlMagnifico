@@ -12,6 +12,7 @@ import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.occupiables.Tower;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ActionPlaceOnTower extends ActionPlace {
@@ -40,7 +41,7 @@ public class ActionPlaceOnTower extends ActionPlace {
     }
 
     @Override
-    public void start(Match match) throws RuntimeException, RequiredValueNotSatisfiedException {
+    public void start(Match match) throws RuntimeException, RequiredValueNotSatisfiedException, IOException {
     	Player player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
     	familyMember = getRealFamilyMember(match);
     	tower = getRealTower(match);

@@ -11,8 +11,6 @@ public class EventStartTurn extends Event{
 	
 	public EventStartTurn(Player player) {
 		super(player);
-		effectProviders.addAll(player.getCards());
-		effectProviders.addAll(player.getExcommunications());
 	}
 
 	@Override

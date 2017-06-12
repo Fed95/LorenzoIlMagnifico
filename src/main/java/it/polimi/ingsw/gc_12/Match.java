@@ -14,21 +14,24 @@ import it.polimi.ingsw.gc_12.json.loader.LoaderCardsSpace;
 import it.polimi.ingsw.gc_12.json.loader.LoaderMarket;
 import it.polimi.ingsw.gc_12.json.loader.LoaderTowerSet;
 import it.polimi.ingsw.gc_12.mvc.ControllerPlayer;
-import it.polimi.ingsw.gc_12.occupiables.Occupiable;
-import it.polimi.ingsw.gc_12.occupiables.SpaceWorkZone;
-import it.polimi.ingsw.gc_12.occupiables.Tower;
+import it.polimi.ingsw.gc_12.occupiables.*;
+import it.polimi.ingsw.gc_12.resource.Resource;
+import it.polimi.ingsw.gc_12.resource.Servant;
 import it.polimi.ingsw.gc_12.server.controller.Change;
 import it.polimi.ingsw.gc_12.server.controller.StateChange;
 import it.polimi.ingsw.gc_12.server.model.State;
 import it.polimi.ingsw.gc_12.server.observer.Observable;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 
-public class Match extends Observable<Change> implements MatchRemote {
+public class Match extends Observable<Change> implements MatchRemote, Serializable{
 	private transient List<Player> players = new ArrayList<>();
 	private transient final List<BonusTile> bonusTiles = new ArrayList<>();
 	private transient List<Card> cards = new ArrayList<>(); //TODO IMPORT FROM JSON
@@ -80,7 +83,7 @@ public class Match extends Observable<Change> implements MatchRemote {
 		//board.getTowerSet().setCards(cardDeckSet); TODO WAITING FOR JSON
 	}
 
-	public void start(){
+	public void start() throws IOException, CloneNotSupportedException {
 		this.gameState = State.RUNNING;
 		System.out.println("notify EventStartMatch");
 		this.notifyObserver(new EventStartMatch(this));
@@ -88,7 +91,7 @@ public class Match extends Observable<Change> implements MatchRemote {
 	}
 
 	//Increments turn counter in TrackTurnOrder
-	public void newTurn() {
+	public void newTurn() throws IOException {
 		System.out.println("Match: Starting new turn");
 		for(Zone zone : board.getZones())
 			System.out.println(zone);
@@ -102,13 +105,7 @@ public class Match extends Observable<Change> implements MatchRemote {
 		return new MatchInstance(this);
 	}
 	
-	public void chooseFamilyMember(ActionPlace actionPlace) {
-		Event event = new EventChooseFamilyMember(actionPlace.getFamilyMember());
-		//Notifies the RMIView
-		this.notifyObserver(event);
-	}
-	
-	public void placeFamilyMember(Occupiable occupiable, FamilyMember familyMember) {
+	public void placeFamilyMember(Occupiable occupiable, FamilyMember familyMember) throws IOException {
 		occupiable.placeFamilyMember(familyMember);
         familyMember.setBusy(true);
 		EventPlaceFamilyMember event = new EventPlaceFamilyMember(board.getTrackTurnOrder().getCurrentPlayer(), occupiable, familyMember);

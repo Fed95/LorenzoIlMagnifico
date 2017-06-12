@@ -1,29 +1,18 @@
 package it.polimi.ingsw.gc_12.client.rmi;
 
-import it.polimi.ingsw.gc_12.FamilyMember;
-import it.polimi.ingsw.gc_12.FamilyMemberColor;
-import it.polimi.ingsw.gc_12.Match;
-import it.polimi.ingsw.gc_12.MatchRemote;
-import it.polimi.ingsw.gc_12.Player;
-import it.polimi.ingsw.gc_12.action.ActionFactory;
-import it.polimi.ingsw.gc_12.action.ActionPlace;
-import it.polimi.ingsw.gc_12.mvc.CLIAdapter;
+import it.polimi.ingsw.gc_12.client.ClientSender;
 import it.polimi.ingsw.gc_12.mvc.View;
-import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.action.Action;
-import it.polimi.ingsw.gc_12.server.controller.query.Query;
 import it.polimi.ingsw.gc_12.server.view.RMIViewRemote;
-import com.google.gson.TypeAdapterFactory;
 
 import java.io.IOException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Scanner;
 
-public class ClientRMI { //Main class of the Clients using RMI
+public class ClientRMI implements ClientSender { //Main class of the Clients using RMI
 
 	private final static int RMI_PORT = 52365;
 
@@ -38,7 +27,7 @@ public class ClientRMI { //Main class of the Clients using RMI
 	private Registry registry;
 	private View view;
 
-	public void start() throws RemoteException, NotBoundException, AlreadyBoundException {
+	public void start() throws IOException, NotBoundException, AlreadyBoundException, CloneNotSupportedException {
 		//Get the remote registry
 		registry = LocateRegistry.getRegistry(HOST, PORT);
 
@@ -96,12 +85,12 @@ public class ClientRMI { //Main class of the Clients using RMI
 		view.askAction(isFMPlaced);
 	}*/
 	
-	public void sendAction(Action action) throws RemoteException {
+	public void sendAction(Action action) throws IOException {
 		System.out.println("ClientRMI: " + action.getClass().getSimpleName() + " recieved from CLIView. Sending it to RMIView...");
 		serverStub.receiveAction(action);
 	}
 
-	public static void main(String[] args) throws RemoteException, NotBoundException, AlreadyBoundException {
+	public static void main(String[] args) throws IOException, NotBoundException, AlreadyBoundException, CloneNotSupportedException {
 		ClientRMI clientRMI = new ClientRMI();
 		clientRMI.start();
 

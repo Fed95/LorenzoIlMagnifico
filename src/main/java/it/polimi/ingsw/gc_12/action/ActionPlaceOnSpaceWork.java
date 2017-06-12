@@ -11,6 +11,7 @@ import it.polimi.ingsw.gc_12.occupiables.SpaceWork;
 import it.polimi.ingsw.gc_12.occupiables.SpaceWorkSingle;
 import it.polimi.ingsw.gc_12.occupiables.SpaceWorkZone;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ActionPlaceOnSpaceWork extends ActionPlace {
@@ -36,8 +37,7 @@ public class ActionPlaceOnSpaceWork extends ActionPlace {
 
     }
 
-    @Override
-    public void start(Match match) throws RuntimeException, RequiredValueNotSatisfiedException {
+    public void start(Match match) throws RuntimeException, IOException, RequiredValueNotSatisfiedException {
     	Player player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
         familyMember = getRealFamilyMember(match);
         spaceWork = getRealSpaceWork(match);

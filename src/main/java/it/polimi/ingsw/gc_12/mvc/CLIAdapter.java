@@ -1,40 +1,29 @@
 package it.polimi.ingsw.gc_12.mvc;
 
 import it.polimi.ingsw.gc_12.FamilyMember;
-import it.polimi.ingsw.gc_12.FamilyMemberColor;
-import it.polimi.ingsw.gc_12.Match;
-import it.polimi.ingsw.gc_12.MatchRemote;
-import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.Zone;
 import it.polimi.ingsw.gc_12.action.ActionPassTurn;
 import it.polimi.ingsw.gc_12.action.ActionPlace;
-import it.polimi.ingsw.gc_12.card.Card;
-import it.polimi.ingsw.gc_12.card.CardType;
-import it.polimi.ingsw.gc_12.client.rmi.ClientRMI;
-import it.polimi.ingsw.gc_12.client.rmi.ClientRMIView;
+import it.polimi.ingsw.gc_12.client.ClientSender;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
-import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
-import it.polimi.ingsw.gc_12.resource.ResourceExchange;
-import it.polimi.ingsw.gc_12.server.controller.action.Action;
 
-import java.rmi.RemoteException;
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 
 public class CLIAdapter {
 
 	private ViewCLI view;
-	private ClientRMI client;
+	private ClientSender client;
 	//private ControllerPlayer controller;
 	//private Match match;
 
 
-	public CLIAdapter(ViewCLI view, ClientRMI client) {
+	public CLIAdapter(ViewCLI view, ClientSender client) {
 		this.view = view;
 		this.client = client;
 	}
 
-	public void setAction(int actionNum, boolean isFmPlaced) throws RemoteException {
+	public void setAction(int actionNum, boolean isFmPlaced) throws IOException {
 
 		switch (actionNum) { // must keep 'case 0' last
 			case 2:
@@ -57,7 +46,7 @@ public class CLIAdapter {
 		}
 	}
 
-	public void setFamilyMember(int input, List<FamilyMember> usableFMs) throws RemoteException {
+	public void setFamilyMember(int input, List<FamilyMember> usableFMs) throws IOException {
 		if(input < 0 || input > usableFMs.size()){
 			System.out.println("The specified input is not listed above");
 			view.askFamilyMember();
@@ -78,7 +67,7 @@ public class CLIAdapter {
 		}
 	}
 
-	public void setZone(List<Zone> zones, FamilyMember familyMember, int index) throws RemoteException {
+	public void setZone(List<Zone> zones, FamilyMember familyMember, int index) throws IOException {
 		if(index < 0 || index > zones.size()) {
 			System.out.println("The specified input is not listed above");
 			view.askZone(familyMember);
@@ -99,7 +88,7 @@ public class CLIAdapter {
 		}
 	}
 
-	public void setOccupiable(Zone zone, FamilyMember familyMember, int occupiableIndex, List<Occupiable> occupiables) throws RemoteException {
+	public void setOccupiable(Zone zone, FamilyMember familyMember, int occupiableIndex, List<Occupiable> occupiables) throws IOException {
 		if(occupiableIndex < 0 || occupiableIndex > occupiables.size()) {
 			System.out.println("The specified input is not listed above");
 			view.askOccupiableByZone(familyMember, zone);
@@ -111,9 +100,14 @@ public class CLIAdapter {
 			ActionPlace action = view.createActionPlace(familyMember, occupiable);
 			client.sendAction(action);
 		}
-	}/*
+	}
 
-	@Override
+	public void placeWithServants(Occupiable occupiable, FamilyMember familyMember) throws IOException {
+		ActionPlace action = view.createActionPlace(familyMember, occupiable);
+		client.sendAction(action);
+	}
+
+	/*@Override
 	public boolean supportChurch() {
 		return view.supportChurch();
 	}

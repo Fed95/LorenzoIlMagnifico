@@ -12,6 +12,7 @@ import it.polimi.ingsw.gc_12.server.controller.Change;
 import it.polimi.ingsw.gc_12.server.controller.StateChange;
 import it.polimi.ingsw.gc_12.server.model.State;
 
+import java.io.IOException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -30,13 +31,14 @@ public class RMIView extends View implements RMIViewRemote {
 	}
 
 	@Override
-	public void registerClient(ClientViewRemote clientStub) throws RemoteException, AlreadyBoundException {
+	public void registerClient(ClientViewRemote clientStub) throws IOException, AlreadyBoundException, CloneNotSupportedException {
 		System.out.println("CLIENT REGISTERED");
 
 		this.clients.add(clientStub);
 		for (ClientViewRemote clientViewRemote : clients) {
 			System.out.println(clientViewRemote);
 		}
+		server.numOfClients++;
 		if(clients.size() == 2) {
 			server.startMatch();
 			server.newMatch();
@@ -50,7 +52,7 @@ public class RMIView extends View implements RMIViewRemote {
 			for (ClientViewRemote clientStub : this.clients) {
 				clientStub.updateClient(o);
 			}
-		} catch (RemoteException e) {
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (NotBoundException e) {
@@ -69,7 +71,7 @@ public class RMIView extends View implements RMIViewRemote {
 	}
 
 	@Override
-	public void receiveAction(Action action) throws RemoteException {
+	public void receiveAction(Action action) throws IOException {
 		System.out.println("RMIView: " + action.getClass().getSimpleName() + " received from ClientRMI. Notifying observers (Server Controller).");
 		this.notifyObserver(action);	
 	}

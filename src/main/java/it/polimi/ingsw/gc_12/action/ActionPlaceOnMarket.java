@@ -8,6 +8,7 @@ import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.occupiables.SpaceMarket;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ActionPlaceOnMarket extends ActionPlace {
@@ -29,7 +30,7 @@ public class ActionPlaceOnMarket extends ActionPlace {
     }
 
     @Override
-    public void start(Match match) throws RuntimeException {
+    public void start(Match match) throws RuntimeException, IOException {
     	Player player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
         Event event = new EventPlaceFamilyMember(player, spaceMarket, familyMember);
 

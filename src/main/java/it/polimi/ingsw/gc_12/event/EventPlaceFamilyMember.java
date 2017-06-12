@@ -19,8 +19,6 @@ public class EventPlaceFamilyMember extends Event{
 		this.occupiables = occupiables;
 		this.familyMember = familyMember;
 
-		effectProviders.addAll(player.getCards());
-		effectProviders.addAll(player.getExcommunications());
 		effectProviders.addAll(occupiables);
 	}
 	public EventPlaceFamilyMember(List<Occupiable> occupiables, FamilyMember familyMember) {
@@ -48,6 +46,10 @@ public class EventPlaceFamilyMember extends Event{
 	
 	public List<Occupiable> getOccupiables() {
 		return occupiables;
+	}
+
+	public Occupiable getOccupiable() {
+		return occupiables.get(0);
 	}
 	
 	@Override

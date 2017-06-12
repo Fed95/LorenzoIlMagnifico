@@ -14,6 +14,8 @@ public abstract class Event extends Change implements EventInterface {
 
 	public Event(Player player) {
 		this.player = player;
+		effectProviders.addAll(player.getCards());
+		effectProviders.addAll(player.getExcommunications());
 	}
 
 	public Event() {}

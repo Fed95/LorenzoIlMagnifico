@@ -1,24 +1,27 @@
 package it.polimi.ingsw.gc_12.mvc;
 
+import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.*;
 
 import it.polimi.ingsw.gc_12.*;
 import it.polimi.ingsw.gc_12.action.ActionFactory;
 import it.polimi.ingsw.gc_12.action.ActionPlace;
-import it.polimi.ingsw.gc_12.client.rmi.ClientRMI;
+import it.polimi.ingsw.gc_12.client.ClientSender;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
+import it.polimi.ingsw.gc_12.resource.ResourceType;
 
 public class ViewCLI extends Observable implements View {
 
-	private Scanner in = new Scanner(System.in);
+	private Scanner in;
 	private CLIAdapter adapter;
 	private Player player;
 	private MatchInstance match;
 
-	public ViewCLI(MatchInstance match, ClientRMI client) throws RemoteException {
+	public ViewCLI(MatchInstance match, ClientSender client) throws IOException {
 		this.match = match;
 		this.adapter = new CLIAdapter(this, client);
+		this.in = new Scanner(System.in);
 	}
 
 	@Override
@@ -28,7 +31,7 @@ public class ViewCLI extends Observable implements View {
 	}
 
 	@Override
-	public void askAction(boolean isFMPlaced) throws RemoteException {
+	public void askAction(boolean isFMPlaced) throws IOException {
 		System.out.println();
 		System.out.println("Write the number of the action you want to perform");
 
@@ -52,9 +55,9 @@ public class ViewCLI extends Observable implements View {
 		}
 	}
 
-	public void askFamilyMember() throws RemoteException {
+	public void askFamilyMember() throws IOException {
 		System.out.println("Write the number of the family member you want to use");
-		
+
 		List<FamilyMember> usableFMs = match.getBoard().getTrackTurnOrder().getCurrentPlayer().getAvailableFamilyMembers();
 		
 		int i;
@@ -77,11 +80,11 @@ public class ViewCLI extends Observable implements View {
 		}
 	}
 	
-	public void askOccupiable(FamilyMember familyMember) throws RemoteException {
+	public void askOccupiable(FamilyMember familyMember) throws IOException {
 		askZone(familyMember);
 	}
 	
-	public void askZone(FamilyMember familyMember) throws RemoteException {
+	public void askZone(FamilyMember familyMember) throws IOException {
 		List<Zone> zones = match.getBoard().getZones();
 		System.out.println();
 		System.out.println("Write the number of the zone you want to place the family member in.");
@@ -109,7 +112,7 @@ public class ViewCLI extends Observable implements View {
 		return ActionFactory.getActionPlace(occupiable, familyMember, match);
 	}
 
-	public void askOccupiableByZone(FamilyMember familyMember, Zone zone) throws RemoteException {
+	public void askOccupiableByZone(FamilyMember familyMember, Zone zone) throws IOException {
 		List<Occupiable> occupiables = zone.getOccupiables();
 		System.out.println();
 		System.out.println("Write the number of the space you want to place the family member in.");
@@ -150,21 +153,26 @@ public class ViewCLI extends Observable implements View {
 
 	public void excommunicationMessage(){
 		System.out.println("--- YOU HAVE BEEN EXCOMMUNICATED ---");
-	}
+	}*/
 
-	public int askServants(int requiredServants) {
+	public int askServants(Occupiable occupiable, FamilyMember familyMember) throws IOException {
+		Player player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
+		int ownedServants = player.getResourceValue(ResourceType.SERVANT);
+		int requiredServants = occupiable.getRequiredValue() - familyMember.getValue();
 		System.out.println("You have " + player.getResourceValue(ResourceType.SERVANT) + " servants.");
 		System.out.println("How many servants would you like to use? (min: " + requiredServants + ")");
 		while(true) {
 			int choice = in.nextInt();
-			if (choice >= requiredServants && choice <= player.getResourceValue(ResourceType.SERVANT))
-				return choice;
+			if (choice >= requiredServants && choice <= ownedServants) {
+				familyMember.setValue(familyMember.getValue()+choice);
+				adapter.placeWithServants(occupiable, familyMember);
+			}
 			else
 				System.out.println("That won't do... Please try again.");
 		}
 	}
 
-	public int viewStatistics() {
+	/*public int viewStatistics() {
 		int i = 0;
 		System.out.println("Who's statistics would you like to view?");
 		for(Player player : matchRemote.getPlayers()){
