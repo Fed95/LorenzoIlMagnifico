@@ -61,7 +61,8 @@ public class TypeAdapter {
 				.registerSubtype(EventChooseFamilyMember.class, EventChooseFamilyMember.class.getSimpleName())
 				.registerSubtype(EventPickCard.class, EventPickCard.class.getSimpleName())
 				.registerSubtype(EventSpendResource.class, EventSpendResource.class.getSimpleName())
-				.registerSubtype(EventSupportChurch.class, EventSupportChurch.class.getSimpleName());
+				.registerSubtype(EventSupportChurch.class, EventSupportChurch.class.getSimpleName())
+				.registerSubtype(EventEndMatch.class, EventEndMatch.class.getSimpleName());
 
 
 		return new GsonBuilder()

@@ -76,7 +76,9 @@ public abstract class Loader<C> {
 				.registerSubtype(EventChooseFamilyMember.class, EventChooseFamilyMember.class.getSimpleName())
 				.registerSubtype(EventPickCard.class, EventPickCard.class.getSimpleName())
 				.registerSubtype(EventSpendResource.class, EventSpendResource.class.getSimpleName())
-				.registerSubtype(EventSupportChurch.class, EventSupportChurch.class.getSimpleName());
+				.registerSubtype(EventSupportChurch.class, EventSupportChurch.class.getSimpleName())
+				.registerSubtype(EventEndMatch.class, EventEndMatch.class.getSimpleName());
+
 
 		GsonBuilder gsonBuiler = new GsonBuilder()
 				.registerTypeAdapterFactory(factoryEffectProvider)
