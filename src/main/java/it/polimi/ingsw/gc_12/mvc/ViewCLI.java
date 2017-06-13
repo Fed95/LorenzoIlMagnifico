@@ -10,6 +10,7 @@ import it.polimi.ingsw.gc_12.action.ActionPlace;
 import it.polimi.ingsw.gc_12.client.ClientSender;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
+import it.polimi.ingsw.gc_12.resource.Servant;
 
 public class ViewCLI extends Observable implements View {
 
@@ -108,6 +109,10 @@ public class ViewCLI extends Observable implements View {
 		}
 	}
 	
+	public ActionPlace createActionPlace(FamilyMember familyMember, Servant servant, Occupiable occupiable) throws RemoteException {
+		return ActionFactory.getActionPlace(occupiable, familyMember, servant, match);
+	}
+
 	public ActionPlace createActionPlace(FamilyMember familyMember, Occupiable occupiable) throws RemoteException {
 		return ActionFactory.getActionPlace(occupiable, familyMember, match);
 	}
@@ -155,17 +160,22 @@ public class ViewCLI extends Observable implements View {
 		System.out.println("--- YOU HAVE BEEN EXCOMMUNICATED ---");
 	}*/
 
-	public int askServants(Occupiable occupiable, FamilyMember familyMember) throws IOException {
+	public void askServants(Occupiable occupiable, FamilyMember familyMember) throws IOException {
 		Player player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
 		int ownedServants = player.getResourceValue(ResourceType.SERVANT);
 		int requiredServants = occupiable.getRequiredValue() - familyMember.getValue();
 		System.out.println("You have " + player.getResourceValue(ResourceType.SERVANT) + " servants.");
 		System.out.println("How many servants would you like to use? (min: " + requiredServants + ")");
+		System.out.println("Insert 0 if you want to go back");
 		while(true) {
 			int choice = in.nextInt();
-			if (choice >= requiredServants && choice <= ownedServants) {
-				familyMember.setValue(familyMember.getValue()+choice);
-				adapter.placeWithServants(occupiable, familyMember);
+			if (choice == 0) {
+				askZone(familyMember);
+				break;
+			}
+			else if (choice >= requiredServants && choice <= ownedServants) {
+				adapter.placeWithServants(occupiable, familyMember, new Servant(choice));
+				break;
 			}
 			else
 				System.out.println("That won't do... Please try again.");

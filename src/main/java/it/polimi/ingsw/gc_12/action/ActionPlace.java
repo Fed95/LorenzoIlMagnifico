@@ -11,15 +11,22 @@ import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventChooseFamilyMember;
 import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
+import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.resource.Servant;
 
 public class ActionPlace extends Action{
 
 	protected FamilyMember familyMember;
+	protected Servant servant;
 
-	public ActionPlace(FamilyMember familyMember) {
+	public ActionPlace(FamilyMember familyMember, Servant servant) {
 		super();
 		this.familyMember = familyMember;
+		this.servant = servant;
+	}
+
+	public ActionPlace(FamilyMember familyMember) {
+		this(familyMember, new Servant(0));
 	}
 
 	public FamilyMember getFamilyMember() {
@@ -39,4 +46,11 @@ public class ActionPlace extends Action{
 	protected FamilyMember getRealFamilyMember(Match match){
     	return match.getBoard().getTrackTurnOrder().getCurrentPlayer().getFamilyMember(familyMember.getColor());
     }
+
+    protected Integer getServants(Match match) {
+		Integer ownedServants =  match.getBoard().getTrackTurnOrder().getCurrentPlayer().getResourceValue(ResourceType.SERVANT);
+		if(servant.getValue() > ownedServants)
+			return ownedServants;
+		return servant.getValue();
+	}
 }

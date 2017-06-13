@@ -14,7 +14,7 @@ public interface View {
 	void startTurn();
 	void askAction(boolean isFMPlaced) throws IOException;
 	void askOccupiable(FamilyMember familyMember) throws IOException;
-	int askServants(Occupiable occupiable, FamilyMember familyMember) throws IOException;
+	void askServants(Occupiable occupiable, FamilyMember familyMember) throws IOException;
 	/*boolean supportChurch();
 	void excommunicationMessage();
 

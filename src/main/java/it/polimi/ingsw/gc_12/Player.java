@@ -26,7 +26,7 @@ public class Player implements Serializable{
 	private PersonalBoard personalBoard;
 	private transient EffectHandler effectHandler;
 	private transient List<ExcommunicationTile> excommunications = new ArrayList<>();
-	private transient Map<ResourceType, Resource> resources;
+	private Map<ResourceType, Resource> resources;
 	private Map<FamilyMemberColor, FamilyMember> familymembers = new HashMap<>();
 	
 	public Player(String name, Map<ResourceType, Resource> resources){

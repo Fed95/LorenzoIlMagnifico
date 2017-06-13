@@ -6,6 +6,7 @@ import it.polimi.ingsw.gc_12.action.ActionPassTurn;
 import it.polimi.ingsw.gc_12.action.ActionPlace;
 import it.polimi.ingsw.gc_12.client.ClientSender;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
+import it.polimi.ingsw.gc_12.resource.Servant;
 
 import java.io.IOException;
 import java.util.List;
@@ -102,8 +103,8 @@ public class CLIAdapter {
 		}
 	}
 
-	public void placeWithServants(Occupiable occupiable, FamilyMember familyMember) throws IOException {
-		ActionPlace action = view.createActionPlace(familyMember, occupiable);
+	public void placeWithServants(Occupiable occupiable, FamilyMember familyMember, Servant servant) throws IOException {
+		ActionPlace action = view.createActionPlace(familyMember, servant, occupiable);
 		client.sendAction(action);
 	}
 

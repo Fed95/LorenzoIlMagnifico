@@ -10,6 +10,7 @@ import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.occupiables.SpaceWork;
 import it.polimi.ingsw.gc_12.occupiables.SpaceWorkSingle;
 import it.polimi.ingsw.gc_12.occupiables.SpaceWorkZone;
+import it.polimi.ingsw.gc_12.resource.Servant;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,10 +20,14 @@ public class ActionPlaceOnSpaceWork extends ActionPlace {
     private SpaceWorkZone spaceWorkZone;
     private SpaceWork spaceWork;
 
-    public ActionPlaceOnSpaceWork(FamilyMember familyMember, SpaceWorkZone spaceWorkZone, SpaceWork spaceWork) {
-        super(familyMember);
+    public ActionPlaceOnSpaceWork(FamilyMember familyMember, Servant servant, SpaceWorkZone spaceWorkZone, SpaceWork spaceWork) {
+        super(familyMember, servant);
         this.spaceWorkZone = spaceWorkZone;
         this.spaceWork = spaceWork;
+    }
+
+    public ActionPlaceOnSpaceWork(FamilyMember familyMember, SpaceWorkZone spaceWorkZone, SpaceWork spaceWork) {
+        this(familyMember, new Servant(0), spaceWorkZone, spaceWork);
     }
 
     private void canBeExecuted() throws RuntimeException, RequiredValueNotSatisfiedException {

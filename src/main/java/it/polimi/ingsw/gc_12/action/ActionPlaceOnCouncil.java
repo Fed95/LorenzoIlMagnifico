@@ -8,6 +8,7 @@ import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.occupiables.CouncilPalace;
+import it.polimi.ingsw.gc_12.resource.Servant;
 
 import java.util.List;
 import java.io.IOException;
@@ -15,9 +16,13 @@ public class ActionPlaceOnCouncil extends ActionPlace {
 
     private CouncilPalace councilPalace;
 
-    public ActionPlaceOnCouncil(FamilyMember familyMember, CouncilPalace councilPalace) {
-        super(familyMember);
+    public ActionPlaceOnCouncil(FamilyMember familyMember, Servant servant, CouncilPalace councilPalace) {
+        super(familyMember, servant);
         this.councilPalace = councilPalace;
+    }
+
+    public ActionPlaceOnCouncil(FamilyMember familyMember, CouncilPalace councilPalace) {
+        this(familyMember, new Servant(0), councilPalace);
     }
 
     public void canBeExecuted() throws RequiredValueNotSatisfiedException {

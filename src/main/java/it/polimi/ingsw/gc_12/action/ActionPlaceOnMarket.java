@@ -7,6 +7,7 @@ import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.occupiables.SpaceMarket;
+import it.polimi.ingsw.gc_12.resource.Servant;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,9 +16,13 @@ public class ActionPlaceOnMarket extends ActionPlace {
 
     private SpaceMarket spaceMarket;
 
-    public ActionPlaceOnMarket(FamilyMember familyMember, SpaceMarket spaceMarket) {
+    public ActionPlaceOnMarket(FamilyMember familyMember, Servant servant, SpaceMarket spaceMarket) {
         super(familyMember);
         this.spaceMarket = spaceMarket;
+    }
+
+    public ActionPlaceOnMarket(FamilyMember familyMember, SpaceMarket spaceMarket) {
+        this(familyMember, new Servant(0), spaceMarket);
     }
 
     public boolean canBeExecuted() throws RuntimeException {
