@@ -18,6 +18,8 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 import java.util.List;
 
+import static sun.audio.AudioPlayer.player;
+
 public class ActionPlaceOnTower extends ActionPlace {
 
     protected Tower tower;
@@ -32,18 +34,16 @@ public class ActionPlaceOnTower extends ActionPlace {
         this(familyMember, new Servant(0), towerFloor);
     }
 
-    public void canBeExecuted() throws RuntimeException, RequiredValueNotSatisfiedException{
+    public void canBeExecuted(Player player) throws RuntimeException, RequiredValueNotSatisfiedException{
 
         if(this.towerFloor.isOccupied())
             throw new RuntimeException("This TowerFloor is already taken!");
         if(!towerFloor.isRequiredValueSatisfied(familyMember))
             throw new RequiredValueNotSatisfiedException();
-        /*TODO: WAITING FOR JSON
         if(!player.hasResources(towerFloor.getCard().getRequirements()))
             throw new RuntimeException("You don't have enough resources to take this card!");
         if(!player.getPersonalBoard().canPlaceCard(player, towerFloor.getCard()))
             throw new RuntimeException("You can't place this card on your board!");
-        */
     }
 
     @Override
@@ -60,17 +60,15 @@ public class ActionPlaceOnTower extends ActionPlace {
         List<Effect> executedEffects = player.getEffectHandler().executeEffects(match, event);
 
         try{
-            this.canBeExecuted();
+            this.canBeExecuted(player);
             if (tower.getFloors().stream().anyMatch(floor -> floor.isOccupied())) { //If no floor of the tower has been occupied yet
                 tower.activateMalus();
             }
             match.placeFamilyMember(towerFloor, familyMember);
-            /*TODO: WAITING FOR JSON
             CardDevelopment card = towerFloor.getCard();
             player.getPersonalBoard().placeCard(card);
             towerFloor.removeCard();
             executeImmediateEffects(match, player, card);
-            */
         }
         catch (RequiredValueNotSatisfiedException e) {
             Event eventException = new EventRequiredValueNotSatisfied(player, towerFloor, familyMember);

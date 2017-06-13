@@ -4271,12 +4271,24 @@
       },
       {
         "type": "EffectFreeAction",
-        "ctype": null,
-        "value": 4,
         "event": {
           "eventType": "EventPickCard",
           "cardID": 55
-        }
+        },
+        "occupiables": [
+          {
+            "occupiable": "SpaceWorkSingle",
+            "workType": "HARVEST",
+            "occupiers": [],
+            "requiredValue": 1
+          },
+          {
+            "occupiable": "SpaceWorkMultiple",
+            "workType": "HARVEST",
+            "occupiers": [],
+            "requiredValue": 1
+          }],
+        "value": 4
       }
     ],
     "name": "Badessa",

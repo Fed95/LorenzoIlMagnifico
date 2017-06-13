@@ -34,7 +34,7 @@ import java.util.List;
 public class Match extends Observable<Change> implements MatchRemote, Serializable{
 	private transient List<Player> players = new ArrayList<>();
 	private transient final List<BonusTile> bonusTiles = new ArrayList<>();
-	private transient List<Card> cards = new ArrayList<>(); //TODO IMPORT FROM JSON
+	private transient List<Card> cards = new ArrayList<>();
 	private transient List<ExcommunicationTile> excommunicationTiles = new ArrayList<>();
 	private transient final GameMode gameMode;
 	private transient CardDeckSet cardDeckSet;
@@ -53,7 +53,7 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 		this.gameMode = gameMode;
 		this.roundNum = 1;
 		this.cards = new LoaderCard().get(this);
-		//this.cardDeckSet = new CardDeckSet(cards, DEFAULT_ROUND_NUM/DEFAULT_PERIODS_LEN);
+		this.cardDeckSet = new CardDeckSet(cards, DEFAULT_ROUND_NUM/DEFAULT_PERIODS_LEN);
 		this.effectHandler = new EffectHandler();
 		this.gameState = State.PENDING;
 	}
@@ -65,7 +65,7 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 	public void init(List<Player> players) {
 		this.players = players;
 		createBoard();
-		//cardDeckSet.shuffle(); TODO: WAITING FOR JSON
+		cardDeckSet.shuffle();
 
 		for (Player player : players) {
 			player.init(effectHandler);
@@ -77,10 +77,10 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 		System.out.println("Match: Creating the board");
 		board = new Board(players);
 		board.setTowerSet(new LoaderTowerSet().get(this));
+		board.getTowerSet().setCards(cardDeckSet);
 		board.setMarket(new LoaderMarket().get(this));
 		System.out.println(board.getMarket().getSpaceMarkets());
-
-		//board.getTowerSet().setCards(cardDeckSet); TODO WAITING FOR JSON
+		board.getTowerSet().setCards(cardDeckSet);
 	}
 
 	public void start() throws IOException, CloneNotSupportedException, RemoteException {

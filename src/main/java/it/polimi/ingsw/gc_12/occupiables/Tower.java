@@ -83,8 +83,8 @@ public class Tower implements Zone, Serializable{
 
 	//Fills all floors with new cards picked from the deck corresponding to the current period
 	public void refresh(int period){
-		for(TowerFloor floor : floors);
-			//floor.setCard(decks.get(period).pickCard()); TODO: WAITING FOR JSON
+		for(TowerFloor floor : floors)
+			floor.setCard(decks.get(period).pickCard());
 	}
 
 	public void activateMalus(){
@@ -106,6 +106,7 @@ public class Tower implements Zone, Serializable{
 
 	public void setDecks(Map<Integer, CardDeck> decks) {
 		this.decks = decks;
+		refresh(1);
 	}
 
 	public boolean isTaken() {

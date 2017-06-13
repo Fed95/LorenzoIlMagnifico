@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc_12.card;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import it.polimi.ingsw.gc_12.effect.EffectProvider;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.resource.Resource;
 
-public class Card implements EffectProvider {
+public class Card implements EffectProvider, Serializable {
 	private List<Effect> effects = new ArrayList<>();
 	private final String name;
 	private final int id;

@@ -7,7 +7,6 @@ import java.util.Map;
 
 public class CardDeckSet {
 
-    //TODO: waiting for JSON file
     private List<CardDevelopment> cards = new ArrayList<>();
     private Map<CardType, Map<Integer, CardDeck>> decks = new HashMap<>();
 

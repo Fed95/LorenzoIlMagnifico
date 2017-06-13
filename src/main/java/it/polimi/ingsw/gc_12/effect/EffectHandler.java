@@ -47,8 +47,8 @@ public class EffectHandler {
 		List<Effect> effects = new ArrayList<>();
 
 		for(EffectProvider effectProvider: effectProviders) {
-			if(!(effectProvider.getEffects() == null))
-			effects.addAll(effectProvider.getEffects());
+			if(effectProvider.getEffects() != null)
+				effects.addAll(effectProvider.getEffects());
 		}
 		return effects;
 	}
