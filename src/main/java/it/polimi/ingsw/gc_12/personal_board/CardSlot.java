@@ -32,7 +32,7 @@ public class CardSlot implements EffectProvider, Serializable{
     }
 
     public boolean isEmpty(){
-        if(card.equals(null))
+        if(card == null)
             return true;
         return false;
     }

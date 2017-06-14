@@ -4168,6 +4168,63 @@
     "period": 1,
     "effects": [
       {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 55
+        }
+      },
+      {
+        "type": "EffectFreeAction",
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 55
+        },
+        "occupiables": [
+          {
+            "occupiable": "SpaceWorkSingle",
+            "workType": "HARVEST",
+            "occupiers": [],
+            "requiredValue": 1
+          },
+          {
+            "occupiable": "SpaceWorkMultiple",
+            "workType": "HARVEST",
+            "occupiers": [],
+            "requiredValue": 1
+          }],
+        "value": 4
+      }
+    ],
+    "name": "Badessa",
+    "id": 55,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "type": "CardCharacter",
+    "cardType": "CHARACTER",
+    "period": 1,
+    "effects": [
+      {
         "type": "EffectChangeFamilyMemberValue",
         "amount": 2,
         "event": {
@@ -4241,63 +4298,6 @@
         "resourceType": "FaithPoint",
         "type": "FAITH_POINT",
         "value": 4
-      }
-    ]
-  },
-  {
-    "type": "CardCharacter",
-    "cardType": "CHARACTER",
-    "period": 1,
-    "effects": [
-      {
-        "type": "EffectChangeResource",
-        "exchanges": [
-          {
-            "cost": [],
-            "bonus": [
-              {
-                "resourceType": "FaithPoint",
-                "type": "FAITH_POINT",
-                "value": 1
-              }
-            ]
-          }
-        ],
-        "choice": false,
-        "event": {
-          "eventType": "EventPickCard",
-          "cardID": 55
-        }
-      },
-      {
-        "type": "EffectFreeAction",
-        "event": {
-          "eventType": "EventPickCard",
-          "cardID": 55
-        },
-        "occupiables": [
-          {
-            "occupiable": "SpaceWorkSingle",
-            "workType": "HARVEST",
-            "occupiers": [],
-            "requiredValue": 1
-          },
-          {
-            "occupiable": "SpaceWorkMultiple",
-            "workType": "HARVEST",
-            "occupiers": [],
-            "requiredValue": 1
-          }],
-        "value": 4
-      }
-    ],
-    "name": "Badessa",
-    "id": 55,
-    "requirements": [
-      {
-        "resourceType": "Money",
-        "type": "MONEY",
-        "value": 3
       }
     ]
   },

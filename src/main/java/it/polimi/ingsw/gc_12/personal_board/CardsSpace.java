@@ -39,7 +39,8 @@ public class CardsSpace implements Serializable{
     public List<Card> getCards(){
         List<Card> cards = new ArrayList<>();
         for(CardSlot cardSlot : slots)
-            cards.add(cardSlot.getCard());
+            if(cardSlot.getCard() != null)
+                cards.add(cardSlot.getCard());
         return cards;
     }
 

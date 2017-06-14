@@ -55,10 +55,14 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 			if(isMyTurn()) {
 				view.askAction(true);
 			}
-		}else if(change instanceof EventFreeAction){
+		}
+		else if(change instanceof EventFreeAction){
 			EventFreeAction event = (EventFreeAction) change;
 			if(isMyTurn())
 				view.freeAction(event.getOccupiables(), event.getFamilyMember());
+		}
+		else{
+			System.out.println("ClientHandler: The event was not recognised.");
 		}
 	}
 

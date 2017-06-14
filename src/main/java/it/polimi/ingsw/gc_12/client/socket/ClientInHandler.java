@@ -31,7 +31,7 @@ public class ClientInHandler extends ClientHandler implements Runnable {
 
 			// handles input messages coming from the server, just showing them to the user
 			try {
-				Object object=socketIn.readObject();
+				Object object = socketIn.readObject();
 				if(object instanceof EventStartMatch) {
 					System.out.println("ClientRMI: EventStartMatch recognised. Creating view with local match.");
 					EventStartMatch event = (EventStartMatch) object;
