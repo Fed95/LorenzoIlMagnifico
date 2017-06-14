@@ -11,11 +11,11 @@ import it.polimi.ingsw.gc_12.resource.Servant;
 
 public class ActionFactory {
 
-	public static ActionPlace getActionPlace(Occupiable occupiable, FamilyMember familyMember, Servant servant, MatchInstance match) throws RemoteException {
+	public static ActionPlace createActionPlace(Occupiable occupiable, FamilyMember familyMember, Servant servant) {
 		if(occupiable instanceof TowerFloor) {
-			return new ActionPlaceOnTower(familyMember, (TowerFloor) occupiable);
+			return new ActionPlaceOnTower(familyMember, servant, (TowerFloor) occupiable);
 		}else if(occupiable instanceof SpaceWork){
-			return new ActionPlaceOnSpaceWork(familyMember, (SpaceWork) occupiable);
+			return new ActionPlaceOnSpaceWork(familyMember, servant, (SpaceWork) occupiable);
 		}else if(occupiable instanceof SpaceMarket){
 			return new ActionPlaceOnMarket(familyMember, servant, (SpaceMarket) occupiable);
 		}else if(occupiable instanceof CouncilPalace){
@@ -25,7 +25,7 @@ public class ActionFactory {
 			return null;
 	}
 
-	public static ActionPlace getActionPlace(Occupiable occupiable, FamilyMember familyMember, MatchInstance match) throws RemoteException {
-		return getActionPlace(occupiable, familyMember, new Servant(0), match);
+	public static ActionPlace createActionPlace(Occupiable occupiable, FamilyMember familyMember) {
+		return createActionPlace(occupiable, familyMember, new Servant(0));
 	}
 }

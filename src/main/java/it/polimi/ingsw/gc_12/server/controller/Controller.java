@@ -23,7 +23,7 @@ public class Controller implements Observer<Action>{
 		try {
 			System.out.println("Server Controller: Starting the " + action.getClass().getSimpleName() + "...");
 			action.start(match);
-		} catch (RuntimeException | RequiredValueNotSatisfiedException e) {
+		} catch (RuntimeException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -9,8 +9,13 @@ import java.rmi.RemoteException;
 public class ActionPassTurn extends Action{
 
 	@Override
-	public void start(Match match) throws RuntimeException, RequiredValueNotSatisfiedException, IOException, RemoteException {
+	public void start(Match match) throws IOException {
 		match.newTurn();
+	}
+
+	@Override
+	public boolean isValid(Match match) throws IOException {
+		return false;
 	}
 
 }

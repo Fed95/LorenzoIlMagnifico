@@ -17,11 +17,22 @@ public class FreeAction extends ActionPlace {
     }
 
     @Override
+    public void start(Match match) throws IOException {
+        setup(match);
+        execute(match);
+    }
 
-    public void start(Match match) throws RequiredValueNotSatisfiedException, IOException {
-        Player player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
+
+    @Override
+    protected void setup(Match match) {
         familyMember = getRealFamilyMember(match);
+    }
 
+    @Override
+    protected void canBeExecuted(Match match) throws RequiredValueNotSatisfiedException { }
+
+    @Override
+    protected void execute(Match match) throws IOException {
         if(occupiable instanceof TowerFloor)
             new ActionPlaceOnTower(familyMember, (TowerFloor) occupiable).start(match);
         else if(occupiable instanceof SpaceMarket)

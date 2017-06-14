@@ -16,6 +16,7 @@ import it.polimi.ingsw.gc_12.resource.Servant;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static sun.audio.AudioPlayer.player;
@@ -34,8 +35,26 @@ public class ActionPlaceOnTower extends ActionPlace {
         this(familyMember, new Servant(0), towerFloor);
     }
 
-    public void canBeExecuted(Player player) throws RuntimeException, RequiredValueNotSatisfiedException{
+    public ActionPlaceOnTower(FamilyMember familyMember, Servant servant, Tower tower) {
+        super(familyMember, servant);
+        this.towerFloor = towerFloor;
+    }
 
+    public ActionPlaceOnTower(FamilyMember familyMember, Tower tower) {
+        this(familyMember, new Servant(0), tower);
+    }
+
+    @Override
+    protected void setup(Match match) {
+        familyMember = getRealFamilyMember(match);
+        tower = getRealTower(match);
+        towerFloor = tower.getFloor(towerFloor.getFloorNum());
+        occupiable = towerFloor;
+        familyMember.setValue(familyMember.getValue()+getServants(match));
+    }
+
+    @Override
+    public void canBeExecuted(Match match) throws RequiredValueNotSatisfiedException{
         if(this.towerFloor.isOccupied())
             throw new RuntimeException("This TowerFloor is already taken!");
         if(!towerFloor.isRequiredValueSatisfied(familyMember))
@@ -47,40 +66,16 @@ public class ActionPlaceOnTower extends ActionPlace {
     }
 
     @Override
-
-    public void start(Match match) throws RuntimeException, RequiredValueNotSatisfiedException, IOException {
-    	Player player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
-    	familyMember = getRealFamilyMember(match);
-    	tower = getRealTower(match);
-    	towerFloor = tower.getFloor(towerFloor.getFloorNum());
-    	familyMember.setValue(familyMember.getValue()+getServants(match));
-    	Event event = new EventPlaceFamilyMember(player, towerFloor, familyMember);
-
-    	//Can throw exceptions (in which case effects are discarded directly in EffectHandler)
-        List<Effect> executedEffects = player.getEffectHandler().executeEffects(match, event);
-
-        try{
-            this.canBeExecuted(player);
-            if (tower.getFloors().stream().anyMatch(floor -> floor.isOccupied())) { //If no floor of the tower has been occupied yet
-                tower.activateMalus();
-            }
-            match.placeFamilyMember(towerFloor, familyMember);
-            CardDevelopment card = towerFloor.getCard();
-            player.getPersonalBoard().placeCard(card);
-            towerFloor.removeCard();
-            executeImmediateEffects(match, player, card);
+    protected void execute(Match match) throws IOException {
+        if (tower.getFloors().stream().anyMatch(floor -> floor.isOccupied())) { //If no floor of the tower has been occupied yet
+            tower.activateMalus();
         }
-        catch (RequiredValueNotSatisfiedException e) {
-            Event eventException = new EventRequiredValueNotSatisfied(player, towerFloor, familyMember);
-            match.notifyObserver(eventException);
-        }
-        catch(Exception e) {
-            player.getEffectHandler().discardEffects(executedEffects, event);
-            System.out.println("Effects discarded due to " + e);
-            throw e;
-        }
+        match.placeFamilyMember(towerFloor, familyMember);
+        CardDevelopment card = towerFloor.getCard();
+        player.getPersonalBoard().placeCard(card);
+        towerFloor.removeCard();
+        executeImmediateEffects(match, player, card);
     }
-
 
     public void executeImmediateEffects(Match match, Player player, CardDevelopment card) throws RuntimeException, IOException {
         EventPickCard event = new EventPickCard(player, card);
@@ -90,4 +85,6 @@ public class ActionPlaceOnTower extends ActionPlace {
     private Tower getRealTower(Match match) {
     	return match.getBoard().getTowerSet().getTower(towerFloor.getType());
     }
+
+
 }

@@ -23,7 +23,6 @@ public class ActionPlaceOnSpaceWork extends ActionPlace {
 
     public ActionPlaceOnSpaceWork(FamilyMember familyMember, Servant servant, SpaceWork spaceWork) {
         super(familyMember, servant);
-        this.spaceWorkZone = spaceWorkZone;
         this.spaceWork = spaceWork;
     }
 
@@ -31,8 +30,16 @@ public class ActionPlaceOnSpaceWork extends ActionPlace {
         this(familyMember, new Servant(0), spaceWork);
     }
 
-    private void canBeExecuted() throws RuntimeException, RequiredValueNotSatisfiedException {
+    @Override
+    protected void setup(Match match) {
+        familyMember = getRealFamilyMember(match);
+        spaceWorkZone = getRealSpaceWorkZone(match);
+        spaceWork = getRealSpaceWork(spaceWorkZone);
+        occupiable = spaceWork;
+    }
 
+    @Override
+    protected void canBeExecuted(Match match) throws RequiredValueNotSatisfiedException {
         if(spaceWork instanceof SpaceWorkSingle)
             if(spaceWork.isOccupied())
                 throw new RuntimeException("This SpaceWork is already taken!");
@@ -40,32 +47,17 @@ public class ActionPlaceOnSpaceWork extends ActionPlace {
             throw new RequiredValueNotSatisfiedException();
         if(!spaceWorkZone.canBeOccupiedBy(familyMember))
             throw new RuntimeException("There is another member of your family working here already!");
-
     }
 
     @Override
-    public void start(Match match) throws RuntimeException, IOException, RequiredValueNotSatisfiedException, RemoteException {
-
-    	Player player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
-        familyMember = getRealFamilyMember(match);
-        spaceWorkZone = getRealSpaceWorkZone(match);
-        spaceWork = getRealSpaceWork(spaceWorkZone);
-        Event event = new EventPlaceFamilyMember(player, spaceWork, familyMember);
-
-        //Can throw exceptions (in which case effects are discarded directly in EffectHandler)
-        List<Effect> executedEffects = player.getEffectHandler().executeEffects(match, event);
-        try{
-            canBeExecuted();
-            match.placeFamilyMember(spaceWork, familyMember);
-        }catch(Exception e) {
-            player.getEffectHandler().discardEffects(executedEffects, event);
-            throw e;
-        }
+    protected void execute(Match match) throws IOException {
+        match.placeFamilyMember(spaceWork, familyMember);
     }
 
     private SpaceWorkZone getRealSpaceWorkZone(Match match){
         return match.getBoard().getSpaceWorkZones().get(spaceWork.getWorkType());
     }
+
     private SpaceWork getRealSpaceWork(SpaceWorkZone spaceWorkZone){
         List<SpaceWork> spaceWorks = spaceWorkZone.getSpaceWorks();
         return (spaceWork instanceof SpaceWorkSingle) ? spaceWorks.get(0) : spaceWorks.get(1);
