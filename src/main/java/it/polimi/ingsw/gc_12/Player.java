@@ -33,6 +33,7 @@ public class Player implements Serializable{
 		this.name = name;
 		this.personalBoard = new PersonalBoard();
 		this.resources = resources;
+		personalBoard.getResourceContainer().syncronize(this.resources);
 	}
 
 	public void init(EffectHandler effectHandler) {
@@ -55,6 +56,7 @@ public class Player implements Serializable{
 		for(Resource resource: resources) {
 			this.addResource(resource);
 		}
+		personalBoard.getResourceContainer().syncronize(this.resources);
 	}
 
 	public Integer getResourceValue(ResourceType type){
@@ -63,6 +65,7 @@ public class Player implements Serializable{
 
 	public void setResourceValue(ResourceType type, int value){
 		this.resources.get(type).setValue(value);
+		personalBoard.getResourceContainer().syncronize(resources);
 	}
 
 	private void removeResource(Resource resourceToRemove) throws RuntimeException {
@@ -77,6 +80,7 @@ public class Player implements Serializable{
 		for(Resource resource : resources.values())
 			if(resource.getValue() < 0)
 				throw new RuntimeException();
+		personalBoard.getResourceContainer().syncronize(this.resources);
 	}
 
 	public boolean hasResources(List<Resource> resources) throws RuntimeException{

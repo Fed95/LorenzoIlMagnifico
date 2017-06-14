@@ -1,8 +1,6 @@
 package it.polimi.ingsw.gc_12.personal_board;
 
-import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.card.Card;
-import it.polimi.ingsw.gc_12.json.loader.LoaderCardsSpace;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.card.CardDevelopment;
 import it.polimi.ingsw.gc_12.card.CardType;
@@ -17,12 +15,10 @@ import java.util.Map;
 
 public class PersonalBoard implements Serializable{
     private Map<CardType, CardsSpace> cardsSpaces;
-    private transient Map<ResourceType, ResourceContainer> resourceContainers = new HashMap<>();
+    private ResourcesContainer resourceContainer = new ResourcesContainer();
     private BonusTile bonusTile;
 
     public PersonalBoard(){
-        for(ResourceType resourceType : ResourceType.values())
-            resourceContainers.put(resourceType, new ResourceContainer(resourceType));
     }
 
     public boolean canPlaceCard(Player owner, CardDevelopment card) {
@@ -56,5 +52,9 @@ public class PersonalBoard implements Serializable{
 
     public List<Card> getCards(CardType type){
         return cardsSpaces.get(type).getCards();
+    }
+
+    public ResourcesContainer getResourceContainer() {
+        return resourceContainer;
     }
 }
