@@ -4,10 +4,7 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.MatchRemote;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
-import it.polimi.ingsw.gc_12.resource.Resource;
-import it.polimi.ingsw.gc_12.resource.ResourceBuilder;
-import it.polimi.ingsw.gc_12.resource.ResourceType;
-import it.polimi.ingsw.gc_12.resource.Servant;
+import it.polimi.ingsw.gc_12.resource.*;
 import it.polimi.ingsw.gc_12.server.controller.Controller;
 import it.polimi.ingsw.gc_12.server.view.RMIView;
 import it.polimi.ingsw.gc_12.server.view.RMIViewRemote;
@@ -80,6 +77,7 @@ public class Server {
 			resources.put(resourceType, ResourceBuilder.create(resourceType, 0));
 		}
 		resources.put(ResourceType.SERVANT, new Servant(5));
+		resources.put(ResourceType.MONEY, new Money(5));
 		for(ClientViewRemote client : rmiView.getClients()) {
 			Player player = new Player(client.getName(), resources);
 			players.add(player);

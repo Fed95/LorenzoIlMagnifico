@@ -18,6 +18,7 @@ import java.util.Map;
 public class PersonalBoard implements Serializable{
     private Map<CardType, CardsSpace> cardsSpaces;
     private transient Map<ResourceType, ResourceContainer> resourceContainers = new HashMap<>();
+    private BonusTile bonusTile;
 
     public PersonalBoard(){
         for(ResourceType resourceType : ResourceType.values())
@@ -28,9 +29,14 @@ public class PersonalBoard implements Serializable{
         //Can throw an exception
         CardSlot cardSlot = cardsSpaces.get(card.getType()).getFirstFreeSlot();
 
-        if(!owner.hasResources(cardSlot.getRequisites()))
-            return false;
+        if(cardSlot.getRequisites() != null)
+            if(!owner.hasResources(cardSlot.getRequisites()))
+                return false;
         return true;
+    }
+
+    public void setBonusTile(BonusTile bonusTile) {
+        this.bonusTile = bonusTile;
     }
 
     public void setCardsSpaces(Map<CardType, CardsSpace> cardsSpaces) {

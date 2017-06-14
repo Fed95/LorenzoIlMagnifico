@@ -35,10 +35,6 @@ public class Player implements Serializable{
 		this.resources = resources;
 	}
 
-	public void setPersonalBoard(PersonalBoard personalBoard) {
-		this.personalBoard = personalBoard;
-	}
-
 	public void init(EffectHandler effectHandler) {
 		this.effectHandler = effectHandler;
 		for(FamilyMemberColor color : FamilyMemberColor.values()) {
@@ -64,6 +60,7 @@ public class Player implements Serializable{
 	public Integer getResourceValue(ResourceType type){
 		return this.resources.get(type).getValue();
 	}
+
 	public void setResourceValue(ResourceType type, int value){
 		this.resources.get(type).setValue(value);
 	}

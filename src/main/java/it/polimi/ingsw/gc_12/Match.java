@@ -1,24 +1,16 @@
 package it.polimi.ingsw.gc_12;
 
-import it.polimi.ingsw.gc_12.action.ActionPlace;
 import it.polimi.ingsw.gc_12.card.*;
 import it.polimi.ingsw.gc_12.effect.EffectHandler;
-import it.polimi.ingsw.gc_12.event.Event;
-import it.polimi.ingsw.gc_12.event.EventChooseFamilyMember;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.event.EventStartMatch;
 import it.polimi.ingsw.gc_12.event.EventStartTurn;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
-import it.polimi.ingsw.gc_12.json.loader.LoaderCard;
-import it.polimi.ingsw.gc_12.json.loader.LoaderCardsSpace;
-import it.polimi.ingsw.gc_12.json.loader.LoaderMarket;
-import it.polimi.ingsw.gc_12.json.loader.LoaderTowerSet;
+import it.polimi.ingsw.gc_12.json.loader.*;
 import it.polimi.ingsw.gc_12.mvc.ControllerPlayer;
 import it.polimi.ingsw.gc_12.occupiables.*;
-import it.polimi.ingsw.gc_12.resource.Resource;
-import it.polimi.ingsw.gc_12.resource.Servant;
+import it.polimi.ingsw.gc_12.personal_board.BonusTile;
 import it.polimi.ingsw.gc_12.server.controller.Change;
-import it.polimi.ingsw.gc_12.server.controller.StateChange;
 import it.polimi.ingsw.gc_12.server.model.State;
 import it.polimi.ingsw.gc_12.server.observer.Observable;
 
@@ -26,17 +18,14 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 
 public class Match extends Observable<Change> implements MatchRemote, Serializable{
 	private transient List<Player> players = new ArrayList<>();
-	private transient final List<BonusTile> bonusTiles = new ArrayList<>();
+	private transient final List<BonusTile> bonusTiles;
 	private transient List<Card> cards = new ArrayList<>();
 	private transient List<ExcommunicationTile> excommunicationTiles = new ArrayList<>();
-	private transient final GameMode gameMode;
 	private transient CardDeckSet cardDeckSet;
 	private Board board;
 	private int roundNum;
@@ -49,23 +38,19 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 	private State gameState;
 	private boolean isFMPlaced;
 
-	public Match(GameMode gameMode) {
-		this.gameMode = gameMode;
+	public Match() {
 		this.roundNum = 1;
 		this.cards = new LoaderCard().get(this);
+		this.bonusTiles = new LoaderBonusTile().get(this);
 		this.cardDeckSet = new CardDeckSet(cards, DEFAULT_ROUND_NUM/DEFAULT_PERIODS_LEN);
 		this.effectHandler = new EffectHandler();
 		this.gameState = State.PENDING;
 	}
 
-	public Match() {
-		this(DEFAULT_GAME_MODE);
-	}
-
 	public void init(List<Player> players) {
 		this.players = players;
-		createBoard();
 		cardDeckSet.shuffle();
+		createBoard();
 
 		for (Player player : players) {
 			player.init(effectHandler);
@@ -134,10 +119,6 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 
 	public List<Card> getCards(CardType cardType) {
 		return cards;
-	}
-
-	public GameMode getGameMode() {
-		return gameMode;
 	}
 
 	public Board getBoard() {
