@@ -28,14 +28,15 @@ public abstract class ActionPlace extends Action {
 	protected Servant servant;
 	protected Occupiable occupiable;
 
-	public ActionPlace(FamilyMember familyMember, Servant servant) {
-		super();
+	public ActionPlace(Player player, FamilyMember familyMember, Occupiable occupiable, Servant servant) {
+		super(player);
 		this.familyMember = familyMember;
+		this.occupiable = occupiable;
 		this.servant = servant;
 	}
 
-	public ActionPlace(FamilyMember familyMember) {
-		this(familyMember, new Servant(0));
+	public ActionPlace(Player player, FamilyMember familyMember, Occupiable occupiable) {
+		this(player,familyMember, occupiable, new Servant(0));
 	}
 
 	public FamilyMember getFamilyMember() {
@@ -67,8 +68,9 @@ public abstract class ActionPlace extends Action {
 
 	@Override
 	public boolean isValid(Match match) throws IOException {
-		player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
 		setup(match);
+		familyMember = new FamilyMember(player, familyMember.getColor(), familyMember.getValue()+servant.getValue());
+		System.out.println(familyMember);
 		Event event = new EventPlaceFamilyMember(player, occupiable, familyMember);
 
 		List<Effect> executedEffects = new ArrayList<>();

@@ -12,6 +12,10 @@ public abstract class Action  implements Serializable {
 
 	protected Player player;
 
+	public Action(Player player) {
+		this.player = player;
+	}
+
 	public abstract boolean isValid(Match match) throws IOException;
 	public abstract void start(Match match) throws IOException;
 

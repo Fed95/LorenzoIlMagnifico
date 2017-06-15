@@ -19,13 +19,24 @@ public class ActionPlaceOnMarket extends ActionPlace {
 
     private SpaceMarket spaceMarket;
 
-    public ActionPlaceOnMarket(FamilyMember familyMember, Servant servant, SpaceMarket spaceMarket) {
-        super(familyMember);
+    public ActionPlaceOnMarket(Player player, FamilyMember familyMember, SpaceMarket spaceMarket, Servant servant) {
+        super(player, familyMember, spaceMarket, servant);
         this.spaceMarket = spaceMarket;
     }
 
-    public ActionPlaceOnMarket(FamilyMember familyMember, SpaceMarket spaceMarket) {
-        this(familyMember, new Servant(0), spaceMarket);
+    public ActionPlaceOnMarket(Player player, FamilyMember familyMember, SpaceMarket spaceMarket) {
+        this(player, familyMember, spaceMarket, new Servant(0));
+    }
+
+    @Override
+    public String toString() {
+        return "ActionPlaceOnMarket{" +
+                "player=" + player +
+                ", spaceMarket=" + spaceMarket +
+                ", familyMember=" + familyMember +
+                ", servant=" + servant +
+                ", occupiable=" + occupiable +
+                '}';
     }
 
     @Override
@@ -42,9 +53,5 @@ public class ActionPlaceOnMarket extends ActionPlace {
     @Override
     protected void execute(Match match) throws IOException {
         match.placeFamilyMember(spaceMarket, familyMember);
-    }
-
-    private SpaceMarket getRealSpaceMarket(Match match){
-        return match.getBoard().getMarket().getSpaceMarkets().get(spaceMarket.getMarketNum());
     }
 }

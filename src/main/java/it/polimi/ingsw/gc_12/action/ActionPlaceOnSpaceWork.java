@@ -21,21 +21,30 @@ public class ActionPlaceOnSpaceWork extends ActionPlace {
     private SpaceWorkZone spaceWorkZone;
     private SpaceWork spaceWork;
 
-    public ActionPlaceOnSpaceWork(FamilyMember familyMember, Servant servant, SpaceWork spaceWork) {
-        super(familyMember, servant);
+    public ActionPlaceOnSpaceWork(Player player, FamilyMember familyMember, SpaceWork spaceWork, Servant servant) {
+        super(player, familyMember, spaceWork, servant);
         this.spaceWork = spaceWork;
     }
 
-    public ActionPlaceOnSpaceWork(FamilyMember familyMember, SpaceWork spaceWork) {
-        this(familyMember, new Servant(0), spaceWork);
+    public ActionPlaceOnSpaceWork(Player player, FamilyMember familyMember, SpaceWork spaceWork) {
+        this(player, familyMember, spaceWork, new Servant(0));
+    }
+
+    @Override
+    public String toString() {
+        return "ActionPlaceOnSpaceWork{" +
+                "player=" + player +
+                ", spaceWorkZone=" + spaceWorkZone +
+                ", spaceWork=" + spaceWork +
+                ", familyMember=" + familyMember +
+                ", servant=" + servant +
+                ", occupiable=" + occupiable +
+                '}';
     }
 
     @Override
     protected void setup(Match match) {
-        familyMember = getRealFamilyMember(match);
-        spaceWorkZone = getRealSpaceWorkZone(match);
-        spaceWork = getRealSpaceWork(spaceWorkZone);
-        occupiable = spaceWork;
+        spaceWorkZone = match.getBoard().getSpaceWorkZones().get(spaceWork.getWorkType());
     }
 
     @Override
@@ -52,14 +61,5 @@ public class ActionPlaceOnSpaceWork extends ActionPlace {
     @Override
     protected void execute(Match match) throws IOException {
         match.placeFamilyMember(spaceWork, familyMember);
-    }
-
-    private SpaceWorkZone getRealSpaceWorkZone(Match match){
-        return match.getBoard().getSpaceWorkZones().get(spaceWork.getWorkType());
-    }
-
-    private SpaceWork getRealSpaceWork(SpaceWorkZone spaceWorkZone){
-        List<SpaceWork> spaceWorks = spaceWorkZone.getSpaceWorks();
-        return (spaceWork instanceof SpaceWorkSingle) ? spaceWorks.get(0) : spaceWorks.get(1);
     }
 }

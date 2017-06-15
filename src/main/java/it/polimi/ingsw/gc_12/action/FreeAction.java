@@ -10,10 +10,8 @@ import java.io.IOException;
 
 public class FreeAction extends ActionPlace {
 
-    private Occupiable occupiable;
-
-    public FreeAction(FamilyMember familyMember, Occupiable occupiable){
-        super(familyMember);
+    public FreeAction(Player player, FamilyMember familyMember, Occupiable occupiable){
+        super(player, familyMember, occupiable);
     }
 
     @Override
@@ -33,13 +31,6 @@ public class FreeAction extends ActionPlace {
 
     @Override
     protected void execute(Match match) throws IOException {
-        if(occupiable instanceof TowerFloor)
-            new ActionPlaceOnTower(familyMember, (TowerFloor) occupiable).start(match);
-        else if(occupiable instanceof SpaceMarket)
-            new ActionPlaceOnMarket(familyMember, (SpaceMarket) occupiable).start(match);
-        else if(occupiable instanceof SpaceWork)
-            new ActionPlaceOnSpaceWork(familyMember, (SpaceWork) occupiable).start(match);
-        else if(occupiable instanceof CouncilPalace)
-            new ActionPlaceOnCouncil(familyMember, (CouncilPalace) occupiable).start(match);
+        ActionFactory.createActionPlace(player, familyMember,occupiable).start(match);
     }
 }

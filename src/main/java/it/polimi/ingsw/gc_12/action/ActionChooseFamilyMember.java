@@ -18,8 +18,8 @@ public class ActionChooseFamilyMember extends Action{
 
 	protected FamilyMember familyMember;
 
-	public ActionChooseFamilyMember(FamilyMember familyMember) {
-		super();
+	public ActionChooseFamilyMember(Player player, FamilyMember familyMember) {
+		super(player);
 		this.familyMember = familyMember;
 	}
 
@@ -34,10 +34,7 @@ public class ActionChooseFamilyMember extends Action{
 
 	@Override
 	public void start(Match match) throws IOException {
-		player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
-		FamilyMember realFamilyMember = getRealFamilyMember(player);
-
-		if (realFamilyMember.isBusy()) {
+		if (familyMember.isBusy()) {
 			match.notifyObserver(new EventActionUnavailable(false)); // TODO: check if isFMPlaced in this event is useful
 		}
 		Event event = new EventChooseFamilyMember(familyMember);
@@ -45,8 +42,5 @@ public class ActionChooseFamilyMember extends Action{
 		match.notifyObserver(event);
 	}
 
-	protected FamilyMember getRealFamilyMember(Player player){
-		return player.getFamilyMember(familyMember.getColor());
-	}
 
 }

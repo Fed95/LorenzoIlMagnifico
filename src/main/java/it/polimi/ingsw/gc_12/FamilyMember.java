@@ -20,7 +20,7 @@ public class FamilyMember implements Observer, Serializable {
 		this.value = value;
 		this.busy = false;
 		try {
-			if(color != null) {
+			if(color != null && value == 0) {
 				DieColor dieColor = DieColor.valueOf(color.name());
 				// Check if there is a die with the same color of the family member's one
 				// (exclude neutral family member)

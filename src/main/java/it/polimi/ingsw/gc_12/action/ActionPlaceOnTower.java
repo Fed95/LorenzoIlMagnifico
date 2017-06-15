@@ -26,31 +26,18 @@ public class ActionPlaceOnTower extends ActionPlace {
     protected Tower tower;
     protected TowerFloor towerFloor;
 
-    public ActionPlaceOnTower(FamilyMember familyMember, Servant servant, TowerFloor towerFloor) {
-        super(familyMember, servant);
+    public ActionPlaceOnTower(Player player, FamilyMember familyMember, TowerFloor towerFloor, Servant servant) {
+        super(player, familyMember, towerFloor, servant);
         this.towerFloor = towerFloor;
     }
 
-    public ActionPlaceOnTower(FamilyMember familyMember, TowerFloor towerFloor) {
-        this(familyMember, new Servant(0), towerFloor);
-    }
-
-    public ActionPlaceOnTower(FamilyMember familyMember, Servant servant, Tower tower) {
-        super(familyMember, servant);
-        this.towerFloor = towerFloor;
-    }
-
-    public ActionPlaceOnTower(FamilyMember familyMember, Tower tower) {
-        this(familyMember, new Servant(0), tower);
+    public ActionPlaceOnTower(Player player, FamilyMember familyMember, TowerFloor towerFloor) {
+        this(player, familyMember, towerFloor, new Servant(0));
     }
 
     @Override
     protected void setup(Match match) {
-        familyMember = getRealFamilyMember(match);
-        tower = getRealTower(match);
-        towerFloor = tower.getFloor(towerFloor.getFloorNum());
-        occupiable = towerFloor;
-        familyMember.setValue(familyMember.getValue()+getServants(match));
+        tower = match.getBoard().getTowerSet().getTower(towerFloor.getType());
     }
 
     @Override
@@ -82,9 +69,15 @@ public class ActionPlaceOnTower extends ActionPlace {
         player.getEffectHandler().executeEffects(match, event);
     }
 
-    private Tower getRealTower(Match match) {
-    	return match.getBoard().getTowerSet().getTower(towerFloor.getType());
+    @Override
+    public String toString() {
+        return "ActionPlaceOnTower{" +
+                "player=" + player +
+                ", tower=" + tower +
+                ", familyMember=" + familyMember +
+                ", towerFloor=" + towerFloor +
+                ", servant=" + servant +
+                ", occupiable=" + occupiable +
+                '}';
     }
-
-
 }

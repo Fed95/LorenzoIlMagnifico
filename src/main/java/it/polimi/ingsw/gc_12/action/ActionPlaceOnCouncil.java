@@ -18,22 +18,28 @@ public class ActionPlaceOnCouncil extends ActionPlace {
 
     private CouncilPalace councilPalace;
 
-    public ActionPlaceOnCouncil(FamilyMember familyMember, Servant servant, CouncilPalace councilPalace) {
-        super(familyMember, servant);
+    public ActionPlaceOnCouncil(Player player, FamilyMember familyMember, CouncilPalace councilPalace, Servant servant) {
+        super(player, familyMember, councilPalace, servant);
         this.councilPalace = councilPalace;
     }
 
-    public ActionPlaceOnCouncil(FamilyMember familyMember, CouncilPalace councilPalace) {
-        this(familyMember, new Servant(0), councilPalace);
+    public ActionPlaceOnCouncil(Player player, FamilyMember familyMember, CouncilPalace councilPalace) {
+        this(player, familyMember, councilPalace, new Servant(0));
     }
 
     @Override
-    protected void setup(Match match) {
-        System.out.println("ActionPlaceOnCouncil: starting...");
-        Player player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
-        familyMember = getRealFamilyMember(match);
-        councilPalace = getRealCouncilPalace(match);
+    public String toString() {
+        return "ActionPlaceOnCouncil{" +
+                "player=" + player +
+                ", councilPalace=" + councilPalace +
+                ", familyMember=" + familyMember +
+                ", servant=" + servant +
+                ", occupiable=" + occupiable +
+                '}';
     }
+
+    @Override
+    protected void setup(Match match) {}
 
     @Override
     protected void canBeExecuted(Match match) throws RequiredValueNotSatisfiedException {
