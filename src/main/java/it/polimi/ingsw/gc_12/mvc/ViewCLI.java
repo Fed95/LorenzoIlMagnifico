@@ -5,6 +5,7 @@ import java.rmi.RemoteException;
 import java.util.*;
 
 import it.polimi.ingsw.gc_12.*;
+import it.polimi.ingsw.gc_12.action.ActionChooseFamilyMember;
 import it.polimi.ingsw.gc_12.action.ActionFactory;
 import it.polimi.ingsw.gc_12.action.ActionPlace;
 import it.polimi.ingsw.gc_12.client.ClientSender;
@@ -135,11 +136,11 @@ public class ViewCLI extends Observable implements View {
 	}
 	
 	public ActionPlace createActionPlace(FamilyMember familyMember, Servant servant, Occupiable occupiable) throws RemoteException {
-		return ActionFactory.getActionPlace(occupiable, familyMember, servant, match);
+		return ActionFactory.createActionPlace(getCurrentPlayer(), familyMember, occupiable, servant);
 	}
 
 	public ActionPlace createActionPlace(FamilyMember familyMember, Occupiable occupiable) throws RemoteException {
-		return ActionFactory.getActionPlace(occupiable, familyMember, match);
+		return ActionFactory.createActionPlace(getCurrentPlayer(), familyMember, occupiable);
 	}
 
 	public void askOccupiableByZone(FamilyMember familyMember, Zone zone) throws IOException {
@@ -163,6 +164,10 @@ public class ViewCLI extends Observable implements View {
 				in.next();
 			}
 		}
+	}
+
+	public Player getCurrentPlayer(){
+		return match.getBoard().getTrackTurnOrder().getCurrentPlayer();
 	}
 
 	/*public boolean supportChurch(){

@@ -42,8 +42,10 @@ public class ActionPlaceOnTower extends ActionPlace {
 
     @Override
     public void canBeExecuted(Match match) throws RequiredValueNotSatisfiedException{
-        if(this.towerFloor.isOccupied())
+        if(towerFloor.isOccupied())
             throw new RuntimeException("This TowerFloor is already taken!");
+        if(towerFloor.getCard() == null)
+            throw new RuntimeException("There is no card on this floor!");
         if(!towerFloor.isRequiredValueSatisfied(familyMember))
             throw new RequiredValueNotSatisfiedException();
         if(!player.hasResources(towerFloor.getCard().getRequirements()))

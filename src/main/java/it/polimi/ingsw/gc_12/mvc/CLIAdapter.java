@@ -2,6 +2,7 @@ package it.polimi.ingsw.gc_12.mvc;
 
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Zone;
+import it.polimi.ingsw.gc_12.action.ActionChooseFamilyMember;
 import it.polimi.ingsw.gc_12.action.ActionPassTurn;
 import it.polimi.ingsw.gc_12.action.ActionPlace;
 import it.polimi.ingsw.gc_12.client.ClientSender;
@@ -34,7 +35,7 @@ public class CLIAdapter {
 
 		switch (actionNum) { // must keep 'case 0' last
 			case 2:
-				ActionPassTurn action = new ActionPassTurn();
+				ActionPassTurn action = new ActionPassTurn(view.getCurrentPlayer());
 				client.sendAction(action);
 				break;
 			case 1: // View statistics
@@ -64,7 +65,7 @@ public class CLIAdapter {
 			FamilyMember familyMember = usableFMs.get(input);
 			System.out.println("familyMember " + familyMember.getColor() + " chosen.");
 			try {
-				ActionPlace action = new ActionPlace(familyMember);
+				ActionChooseFamilyMember action = new ActionChooseFamilyMember(view.getCurrentPlayer(), familyMember);
 				System.out.println("ActionPlace created. Sending it to ClientRMI");
 				client.sendAction(action);
 			}catch(RuntimeException e){
@@ -122,7 +123,7 @@ public class CLIAdapter {
 			System.out.println("Action discarded.");
 		}else{
 			Occupiable occupiable = occupiables.get(occupiableIndex);
-			ActionPlace action = new FreeAction(familyMember, occupiable);
+			ActionPlace action = new FreeAction(view.getCurrentPlayer(), familyMember, occupiable);
 			client.sendAction(action);
 		}
 	}
