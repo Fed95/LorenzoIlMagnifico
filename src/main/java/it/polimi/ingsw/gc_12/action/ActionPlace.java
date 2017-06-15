@@ -70,7 +70,6 @@ public abstract class ActionPlace extends Action {
 	public boolean isValid(Match match) throws IOException {
 		setup(match);
 		familyMember = new FamilyMember(player, familyMember.getColor(), familyMember.getValue()+servant.getValue());
-		System.out.println(familyMember);
 		Event event = new EventPlaceFamilyMember(player, occupiable, familyMember);
 
 		List<Effect> executedEffects = new ArrayList<>();

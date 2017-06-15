@@ -35,7 +35,6 @@ public class ActionPlaceOnMarket extends ActionPlace {
                 ", spaceMarket=" + spaceMarket +
                 ", familyMember=" + familyMember +
                 ", servant=" + servant +
-                ", occupiable=" + occupiable +
                 '}';
     }
 

@@ -34,7 +34,6 @@ public class ActionPlaceOnCouncil extends ActionPlace {
                 ", councilPalace=" + councilPalace +
                 ", familyMember=" + familyMember +
                 ", servant=" + servant +
-                ", occupiable=" + occupiable +
                 '}';
     }
 

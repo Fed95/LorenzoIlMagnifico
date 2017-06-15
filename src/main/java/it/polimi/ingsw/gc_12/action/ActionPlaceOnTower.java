@@ -77,7 +77,6 @@ public class ActionPlaceOnTower extends ActionPlace {
                 ", familyMember=" + familyMember +
                 ", towerFloor=" + towerFloor +
                 ", servant=" + servant +
-                ", occupiable=" + occupiable +
                 '}';
     }
 }

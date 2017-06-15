@@ -38,7 +38,6 @@ public class ActionPlaceOnSpaceWork extends ActionPlace {
                 ", spaceWork=" + spaceWork +
                 ", familyMember=" + familyMember +
                 ", servant=" + servant +
-                ", occupiable=" + occupiable +
                 '}';
     }
 
