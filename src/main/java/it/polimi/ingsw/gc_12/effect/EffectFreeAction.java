@@ -27,9 +27,9 @@ public class EffectFreeAction extends Effect {
     }
 
     @Override
-    public void execute(Match match, Event event) throws RuntimeException, IOException {
-        this.familyMember = new FamilyMember(match.getCurrentPlayer(), value);
-        match.notifyObserver(new EventFreeAction(match.getCurrentPlayer(), familyMember, occupiables));
+    public void execute(Match match, Event event) {
+        this.familyMember = new FamilyMember(match.getBoard().getTrackTurnOrder().getCurrentPlayer(), value);
+        match.notifyObserver(new EventFreeAction(match.getBoard().getTrackTurnOrder().getCurrentPlayer(), familyMember, occupiables));
     }
 
     @Override

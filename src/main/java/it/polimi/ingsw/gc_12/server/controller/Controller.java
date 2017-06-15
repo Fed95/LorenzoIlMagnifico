@@ -16,7 +16,7 @@ public class Controller implements Observer<Action>{
 		this.match = match;
 	}
 	
-	public void update(Action action) throws IOException, RemoteException {
+	public void update(Action action) {
 
 		System.out.println("Server Controller: Notified of new " + action.getClass().getSimpleName() + " from RMIView.");
 		Observer.super.update(action);

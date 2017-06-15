@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 
-public abstract class Action  implements Serializable {
+public abstract class Action implements Serializable {
 
 	protected Player player;
 
@@ -16,7 +16,7 @@ public abstract class Action  implements Serializable {
 		this.player = player;
 	}
 
-	public abstract boolean isValid(Match match) throws IOException;
-	public abstract void start(Match match) throws IOException;
+	public abstract boolean isValid(Match match);
+	public abstract void start(Match match);
 
 }

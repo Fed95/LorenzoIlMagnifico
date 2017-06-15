@@ -6,6 +6,7 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.action.ActionPlace;
 import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
+import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.server.Server;
 import it.polimi.ingsw.gc_12.server.controller.Change;
@@ -25,9 +26,10 @@ public class RMIView extends View implements RMIViewRemote {
 	private Server server;
 	private Match match;
 
-	public RMIView(Server server) {
+	public RMIView(Server server, Match match) {
 		this.clients = new HashSet<>();
 		this.server = server;
+		this.match = match;
 	}
 
 	@Override
@@ -46,17 +48,14 @@ public class RMIView extends View implements RMIViewRemote {
 	}
 
 	@Override
-	public void update(Change o) {
+	public void update(Event event) {
 		System.out.println("RMIVIEW: SENDING THE CHANGE TO THE CLIENT");
-		try {
-			for (ClientViewRemote clientStub : this.clients) {
-				clientStub.updateClient(o);
+		for (ClientViewRemote clientStub : this.clients) {
+			try {
+				clientStub.updateClient(event);
+			} catch (RemoteException e) {
+				e.printStackTrace();
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NotBoundException e) {
-			e.printStackTrace();
 		}
 	}
 
@@ -71,8 +70,9 @@ public class RMIView extends View implements RMIViewRemote {
 	}
 
 	@Override
-	public void receiveAction(Action action) throws IOException {
+	public void receiveAction(int input){
+		Action action = match.getActionHandler().getAvailableActions().get(input);
 		System.out.println("RMIView: " + action.getClass().getSimpleName() + " received from ClientRMI. Notifying observers (Server Controller).");
-		this.notifyObserver(action);	
+		this.notifyObserver(action);
 	}
 }

@@ -53,7 +53,7 @@ public class Server {
 		System.out.println("Constructing the RMI registry");
 
 		// Create the RMI View, that will be shared with the client
-		RMIView rmiView = new RMIView(this);
+		RMIView rmiView = new RMIView(this, match);
 		views.push(rmiView);
 
 		//controller observes this view
@@ -69,7 +69,7 @@ public class Server {
 		registry.bind(NAME, viewRemote);
 	}
 
-	public void startMatch() throws IOException, AlreadyBoundException, CloneNotSupportedException {
+	public void startMatch() throws AlreadyBoundException, CloneNotSupportedException, RemoteException {
 		RMIView rmiView = views.peek();
 		List<Player> players = new ArrayList<>();
 		Map<ResourceType, Resource> resources = new HashMap<>();
@@ -105,7 +105,7 @@ public class Server {
 		names = new ArrayList<>();
 		match = new Match();
 		controller = new Controller(match);
-		RMIView rmiView = new RMIView(this);
+		RMIView rmiView = new RMIView(this, match);
 		views.push(rmiView);
 
 		// publish the view in the registry as a remote object
@@ -159,7 +159,7 @@ public class Server {
 		}
 	}*/
 
-	public void addClientSocket(String name) throws CloneNotSupportedException, IOException, AlreadyBoundException {
+	public void addClientSocket(String name) throws CloneNotSupportedException, AlreadyBoundException, RemoteException {
 		System.out.println("Adding player " + name);
 		names.add(name);
 		numOfClients++;

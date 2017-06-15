@@ -1,19 +1,15 @@
 package it.polimi.ingsw.gc_12.action;
 
+import it.polimi.ingsw.gc_12.ActionHandler;
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventActionUnavailable;
 import it.polimi.ingsw.gc_12.event.EventChooseFamilyMember;
-import it.polimi.ingsw.gc_12.resource.ResourceType;
-import it.polimi.ingsw.gc_12.resource.Servant;
 
-import java.io.IOException;
+import java.util.List;
 
-/**
- * Created by marco on 14/06/2017.
- */
 public class ActionChooseFamilyMember extends Action{
 
 	protected FamilyMember familyMember;
@@ -28,19 +24,24 @@ public class ActionChooseFamilyMember extends Action{
 	}
 
 	@Override
-	public boolean isValid(Match match) throws IOException {
+	public boolean isValid(Match match){
 		return false;
 	}
 
 	@Override
-	public void start(Match match) throws IOException {
+	public void start(Match match){
 		if (familyMember.isBusy()) {
 			match.notifyObserver(new EventActionUnavailable(false)); // TODO: check if isFMPlaced in this event is useful
 		}
-		Event event = new EventChooseFamilyMember(familyMember);
+		EventChooseFamilyMember event = new EventChooseFamilyMember(player, familyMember);
+		List<Action> actions = match.getActionHandler().update(event);
+		event.setActions(actions);
 		//Notifies the RMIView
 		match.notifyObserver(event);
 	}
 
-
+	@Override
+	public String toString() {
+		return "Place family member "+familyMember;
+	}
 }
