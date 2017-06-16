@@ -16,6 +16,7 @@ public interface MatchRemote extends Remote {
 
 	MatchInstance getInstance() throws RemoteException, CloneNotSupportedException;
 	Player getCurrentPlayer() throws RemoteException;
+	Player getPlayer(String name) throws RemoteException;
 	boolean isFMPlaced() throws RemoteException;
 	List<Zone> getZones() throws RemoteException;
 	Tower getTower(CardType cardType) throws RemoteException;

@@ -24,20 +24,24 @@ public class Player implements Serializable{
 	private final String name;
 	private transient Match match;
 	private PersonalBoard personalBoard;
-	private transient EffectHandler effectHandler;
 	private transient List<ExcommunicationTile> excommunications = new ArrayList<>();
 	private Map<ResourceType, Resource> resources;
 	private Map<FamilyMemberColor, FamilyMember> familymembers = new HashMap<>();
+	private PlayerState state;
 	
 	public Player(String name, Map<ResourceType, Resource> resources){
 		this.name = name;
 		this.personalBoard = new PersonalBoard();
 		this.resources = resources;
 		personalBoard.getResourceContainer().syncronize(this.resources);
+		this.state = PlayerState.ACTION;
 	}
 
-	public void init(EffectHandler effectHandler) {
-		this.effectHandler = effectHandler;
+	public void setPersonalBoard(PersonalBoard personalBoard) {
+		this.personalBoard = personalBoard;
+	}
+
+	public void init() {
 		for(FamilyMemberColor color : FamilyMemberColor.values()) {
 			familymembers.put(color, new FamilyMember(this, color));
 		}
@@ -124,15 +128,19 @@ public class Player implements Serializable{
 		return cards;
 	}
 
-	public EffectHandler getEffectHandler(){
-		return effectHandler;
-	}
-
 	public List<ExcommunicationTile> getExcommunications() {
 		return excommunications;
 	}
 
 	public Match getMatch() {
 		return match;
+	}
+
+	public PlayerState getState() {
+		return state;
+	}
+
+	public void setState(PlayerState state) {
+		this.state = state;
 	}
 }

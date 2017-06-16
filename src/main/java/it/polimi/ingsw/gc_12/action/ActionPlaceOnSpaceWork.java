@@ -3,18 +3,11 @@ package it.polimi.ingsw.gc_12.action;
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
-import it.polimi.ingsw.gc_12.effect.Effect;
-import it.polimi.ingsw.gc_12.event.Event;
-import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.occupiables.SpaceWork;
 import it.polimi.ingsw.gc_12.occupiables.SpaceWorkSingle;
 import it.polimi.ingsw.gc_12.occupiables.SpaceWorkZone;
 import it.polimi.ingsw.gc_12.resource.Servant;
-
-import java.io.IOException;
-import java.rmi.RemoteException;
-import java.util.List;
 
 public class ActionPlaceOnSpaceWork extends ActionPlace {
 
@@ -58,7 +51,7 @@ public class ActionPlaceOnSpaceWork extends ActionPlace {
     }
 
     @Override
-    protected void execute(Match match) throws IOException {
+    protected void execute(Match match) {
         match.placeFamilyMember(spaceWork, familyMember);
     }
 }

@@ -36,7 +36,7 @@ public class ClientOutHandler implements Runnable, ClientSender {
 	}
 
 	@Override
-	public void sendAction(Action action) throws IOException {
-		socketOut.writeObject(action);
+	public void sendAction(int input) throws IOException {
+		socketOut.writeObject(input);
 	}
 }

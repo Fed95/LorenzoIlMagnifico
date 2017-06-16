@@ -13,15 +13,14 @@ import java.rmi.server.UnicastRemoteObject;
 public abstract class ClientHandler extends UnicastRemoteObject {
 	protected MatchInstance match;
 	protected View view;
-	protected Player currentPlayer;
 
 	protected ClientHandler() throws RemoteException {
 		super();
 	}
 
-	public void handleEvent(Object change) throws IOException {
+	public void handleEvent(Object change) {
 
-		if(change instanceof EventStartTurn) {
+		/*if(change instanceof EventStartTurn) {
 			System.out.println("Client: EventStartTurn recognised.");
 			EventStartTurn event = (EventStartTurn) change;
 			match.newTurn();
@@ -63,8 +62,8 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 		}
 		else{
 			System.out.println("ClientHandler: The event was not recognised.");
-		}
+		}*/
 	}
 
-	protected abstract boolean isMyTurn();
+	protected abstract boolean isMyTurn(Player player);
 }

@@ -4,8 +4,6 @@ import it.polimi.ingsw.gc_12.MatchInstance;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.event.*;
-import it.polimi.ingsw.gc_12.mvc.View;
-import it.polimi.ingsw.gc_12.mvc.ViewCLI;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -54,18 +52,17 @@ public class ClientInHandler extends ClientHandler implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 	}
 
-	public void createView(MatchInstance match) throws IOException {
-		view = new ViewCLI(match, clientOut);
+	public void createView(MatchInstance match) {
+		//view = new ViewCLI(match, clientOut);
 	}
 
 	@Override
-	protected boolean isMyTurn(){
+	protected boolean isMyTurn(Player currentPlayer){
 		if(currentPlayer == null) {
 			System.out.println("MyTurn: current player is null");
 		}

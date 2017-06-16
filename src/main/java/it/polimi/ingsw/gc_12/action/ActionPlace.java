@@ -44,14 +44,14 @@ public abstract class ActionPlace extends Action {
 	}
 
 	@Override
-	public void start(Match match) throws IOException {
+	public void start(Match match){
 		setup(match);
 		Event event = new EventPlaceFamilyMember(player, occupiable, familyMember);
 
 		List<Effect> executedEffects = new ArrayList<>();
 		try{
 			//Can throw exceptions (in which case effects are discarded directly in EffectHandler)
-			executedEffects = player.getEffectHandler().executeEffects(match, event);
+			executedEffects = match.getEffectHandler().executeEffects(match, event);
 			this.canBeExecuted(match);
 			execute(match);
 		}
@@ -60,14 +60,13 @@ public abstract class ActionPlace extends Action {
 			match.notifyObserver(eventException);
 		}
 		catch(Exception e) {
-			player.getEffectHandler().discardEffects(executedEffects, event);
+			match.getEffectHandler().discardEffects(executedEffects, event);
 			System.out.println("Effects discarded due to " + e);
-			throw e;
 		}
 	}
 
 	@Override
-	public boolean isValid(Match match) throws IOException {
+	public boolean isValid(Match match){
 		setup(match);
 		familyMember = new FamilyMember(player, familyMember.getColor(), familyMember.getValue()+servant.getValue());
 		Event event = new EventPlaceFamilyMember(player, occupiable, familyMember);
@@ -75,14 +74,14 @@ public abstract class ActionPlace extends Action {
 		List<Effect> executedEffects = new ArrayList<>();
 		try{
 			//Can throw exceptions (in which case effects are discarded directly in EffectHandler)
-			executedEffects = player.getEffectHandler().executeEffects(match, event);
+			executedEffects = match.getEffectHandler().executeEffects(match, event);
 			this.canBeExecuted(match);
 		}
 		catch (Exception e) {
-			player.getEffectHandler().discardEffects(executedEffects, event);
+			match.getEffectHandler().discardEffects(executedEffects, event);
 			return false;
 		}
-		player.getEffectHandler().discardEffects(executedEffects, event);
+		match.getEffectHandler().discardEffects(executedEffects, event);
 		return true;
 	}
 	
@@ -99,6 +98,6 @@ public abstract class ActionPlace extends Action {
 
 	protected abstract void setup(Match match);
 	protected abstract void canBeExecuted(Match match) throws RequiredValueNotSatisfiedException;
-	protected abstract void execute(Match match) throws IOException;
+	protected abstract void execute(Match match);
 
 }

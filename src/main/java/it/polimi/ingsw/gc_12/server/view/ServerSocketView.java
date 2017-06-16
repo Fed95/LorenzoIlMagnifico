@@ -2,6 +2,7 @@ package it.polimi.ingsw.gc_12.server.view;
 
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.action.Action;
+import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.server.Server;
 import it.polimi.ingsw.gc_12.server.controller.Change;
 import it.polimi.ingsw.gc_12.server.controller.query.Query;
@@ -34,12 +35,12 @@ public class ServerSocketView extends View implements Runnable {
 	}
 
 	@Override
-	public void update(Change o) {
-		System.out.println("Sending to the client " + o);
+	public void update(Event event) {
+		System.out.println("Sending to the client " + event.getClass().getSimpleName());
 
 		// sending the info to the client
 		try {
-			this.socketOut.writeObject(o);
+			this.socketOut.writeObject(event);
 			this.socketOut.flush();
 
 		} catch (IOException e) {

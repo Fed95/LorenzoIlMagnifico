@@ -3,6 +3,7 @@ package it.polimi.ingsw.gc_12.mvc;
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Zone;
 import it.polimi.ingsw.gc_12.action.ActionChooseFamilyMember;
+import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.action.ActionPassTurn;
 import it.polimi.ingsw.gc_12.action.ActionPlace;
 import it.polimi.ingsw.gc_12.client.ClientSender;
@@ -31,7 +32,11 @@ public class CLIAdapter {
 		this.client = client;
 	}
 
-	public void setAction(int actionNum, boolean isFmPlaced) throws IOException {
+	public void sendAction(int input) throws IOException {
+		client.sendAction(input);
+	}
+
+	/*public void setAction(int actionNum, boolean isFmPlaced) throws IOException {
 
 		switch (actionNum) { // must keep 'case 0' last
 			case 2:

@@ -55,7 +55,7 @@ public class ActionPlaceOnTower extends ActionPlace {
     }
 
     @Override
-    protected void execute(Match match) throws IOException {
+    protected void execute(Match match) {
         if (tower.getFloors().stream().anyMatch(floor -> floor.isOccupied())) { //If no floor of the tower has been occupied yet
             tower.activateMalus();
         }
@@ -66,9 +66,9 @@ public class ActionPlaceOnTower extends ActionPlace {
         executeImmediateEffects(match, player, card);
     }
 
-    public void executeImmediateEffects(Match match, Player player, CardDevelopment card) throws RuntimeException, IOException {
+    public void executeImmediateEffects(Match match, Player player, CardDevelopment card) {
         EventPickCard event = new EventPickCard(player, card);
-        player.getEffectHandler().executeEffects(match, event);
+        match.getEffectHandler().executeEffects(match, event);
     }
 
     @Override

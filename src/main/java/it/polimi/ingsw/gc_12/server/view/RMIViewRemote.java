@@ -15,6 +15,6 @@ import java.rmi.RemoteException;
 public interface RMIViewRemote extends Remote {
 
 	void registerClient(ClientViewRemote clientStub) throws IOException, AlreadyBoundException, CloneNotSupportedException;
-	void receiveAction(Action action) throws IOException;
+	void receiveAction(int input) throws RemoteException;
 
 }

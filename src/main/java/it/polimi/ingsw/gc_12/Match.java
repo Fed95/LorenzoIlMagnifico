@@ -1,7 +1,10 @@
 package it.polimi.ingsw.gc_12;
 
+import it.polimi.ingsw.gc_12.action.Action;
+import it.polimi.ingsw.gc_12.action.ActionPlace;
 import it.polimi.ingsw.gc_12.card.*;
 import it.polimi.ingsw.gc_12.effect.EffectHandler;
+import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.event.EventStartMatch;
 import it.polimi.ingsw.gc_12.event.EventStartTurn;
@@ -10,6 +13,8 @@ import it.polimi.ingsw.gc_12.json.loader.*;
 import it.polimi.ingsw.gc_12.mvc.ControllerPlayer;
 import it.polimi.ingsw.gc_12.occupiables.*;
 import it.polimi.ingsw.gc_12.personal_board.BonusTile;
+import it.polimi.ingsw.gc_12.resource.ResourceType;
+import it.polimi.ingsw.gc_12.resource.Servant;
 import it.polimi.ingsw.gc_12.server.controller.Change;
 import it.polimi.ingsw.gc_12.server.model.State;
 import it.polimi.ingsw.gc_12.server.observer.Observable;
@@ -19,9 +24,10 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
-public class Match extends Observable<Change> implements MatchRemote, Serializable{
+public class Match extends Observable<Event> implements MatchRemote, Serializable{
 	private transient List<Player> players = new ArrayList<>();
 	private transient final List<BonusTile> bonusTiles;
 	private transient List<Card> cards = new ArrayList<>();
@@ -30,7 +36,7 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 	private Board board;
 	private int roundNum;
 	private transient EffectHandler effectHandler;
-	private transient ControllerPlayer controllerPlayer;
+	private transient ActionHandler actionHandler;
 	public transient final static GameMode DEFAULT_GAME_MODE = GameMode.NORMAL;
 	public transient final static int DEFAULT_ROUND_NUM = 6;
 	public transient final static int DEFAULT_PERIODS_LEN = 2;
@@ -44,6 +50,8 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 		this.bonusTiles = new LoaderBonusTile().get(this);
 		this.cardDeckSet = new CardDeckSet(cards, DEFAULT_ROUND_NUM/DEFAULT_PERIODS_LEN);
 		this.effectHandler = new EffectHandler();
+		this.actionHandler = new ActionHandler(this);
+
 		this.gameState = State.PENDING;
 	}
 
@@ -53,7 +61,7 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 		createBoard();
 
 		for (Player player : players) {
-			player.init(effectHandler);
+			player.init();
 			player.getPersonalBoard().setCardsSpaces(new LoaderCardsSpace().get(this));
 		}
 	}
@@ -68,7 +76,7 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 		board.getTowerSet().setCards(cardDeckSet);
 	}
 
-	public void start() throws IOException, CloneNotSupportedException, RemoteException {
+	public void start() throws CloneNotSupportedException, RemoteException {
 		this.gameState = State.RUNNING;
 		System.out.println("notify EventStartMatch");
 		this.notifyObserver(new EventStartMatch(this));
@@ -76,13 +84,16 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 	}
 
 	//Increments turn counter in TrackTurnOrder
-	public void newTurn() throws IOException, RemoteException {
+	public void newTurn() {
 		System.out.println("Match: Starting new turn");
 		for(Zone zone : board.getZones())
 			System.out.println(zone);
 		board.getTrackTurnOrder().newTurn();
 		System.out.println("Match: notifying EventStartTurn to RMIView");
-		this.notifyObserver(new EventStartTurn(board.getTrackTurnOrder().getCurrentPlayer()));
+		EventStartTurn event = new EventStartTurn(board.getTrackTurnOrder().getCurrentPlayer());
+		List<Action> actions = actionHandler.update(event);
+		event.setActions(actions);
+		this.notifyObserver(event);
 	}
 
 	@Override
@@ -90,7 +101,7 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 		return new MatchInstance(this);
 	}
 	
-	public void placeFamilyMember(Occupiable occupiable, FamilyMember familyMember) throws IOException, RemoteException {
+	public void placeFamilyMember(Occupiable occupiable, FamilyMember familyMember) {
 
 		occupiable.placeFamilyMember(familyMember);
 		if(familyMember.getColor() != null)
@@ -104,13 +115,16 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 	}
 
 
-	public void setControllerPlayer(ControllerPlayer controllerPlayer) {
-		this.controllerPlayer = controllerPlayer;
-	}
-
-
 	public List<Player> getPlayers() {
 		return players;
+	}
+
+	public Player getPlayer(String name) {
+		List<Player> playersFiltered = players.stream().filter(player -> name.equals(player.getName())).collect(Collectors.toList());
+		if(playersFiltered.size() > 0)
+			return playersFiltered.get(0);
+		else
+			return null;
 	}
 
 	public List<BonusTile> getBonusTyles() {
@@ -131,10 +145,6 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 
 	public int getPeriodNum() {
 		return roundNum / 2 + roundNum % 2;
-	}
-
-	public ControllerPlayer getControllerPlayer() {
-		return controllerPlayer;
 	}
 
 	@Override
@@ -165,5 +175,13 @@ public class Match extends Observable<Change> implements MatchRemote, Serializab
 	//@Override
 	public SpaceWorkZone getSpaceWorkZone(WorkType workType) throws RemoteException {
 		return getBoard().getSpaceWorkZones().get(workType);
+	}
+
+	public EffectHandler getEffectHandler() {
+		return effectHandler;
+	}
+
+	public ActionHandler getActionHandler() {
+		return actionHandler;
 	}
 }

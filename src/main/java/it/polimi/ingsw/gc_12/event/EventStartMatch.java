@@ -14,7 +14,7 @@ public class EventStartMatch extends Event{
 	private MatchRemote match;
 	private MatchInstance matchInstance;
 	
-	public EventStartMatch(MatchRemote match) throws RemoteException, CloneNotSupportedException {
+	public EventStartMatch(MatchRemote match) throws CloneNotSupportedException, RemoteException {
 		this.match = match;
 		this.matchInstance = match.getInstance();
 	}
@@ -35,6 +35,11 @@ public class EventStartMatch extends Event{
 	@Override
 	public List<EffectProvider> getEffectProviders() {
 		return effectProviders;
+	}
+
+	@Override
+	public String toString() {
+		return "Match started!";
 	}
 
 }

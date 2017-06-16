@@ -5,251 +5,44 @@ import java.rmi.RemoteException;
 import java.util.*;
 
 import it.polimi.ingsw.gc_12.*;
-import it.polimi.ingsw.gc_12.action.ActionChooseFamilyMember;
+import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.action.ActionFactory;
 import it.polimi.ingsw.gc_12.action.ActionPlace;
+import it.polimi.ingsw.gc_12.action.ActionPlaceOnTower;
 import it.polimi.ingsw.gc_12.client.ClientSender;
+import it.polimi.ingsw.gc_12.client.rmi.ClientRMI;
+import it.polimi.ingsw.gc_12.client.rmi.ClientRMIView;
+import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.resource.Servant;
+import it.polimi.ingsw.gc_12.server.controller.Change;
 
 public class ViewCLI extends Observable implements View {
 
 	private Scanner in;
 	private CLIAdapter adapter;
-	private Player player;
-	private MatchInstance match;
+	private ClientRMIView clientRMI;
 
-	public ViewCLI(MatchInstance match, ClientSender client) throws IOException {
-		this.match = match;
+	public ViewCLI(ClientSender client, ClientRMIView clientRMI) {
 		this.adapter = new CLIAdapter(this, client);
 		this.in = new Scanner(System.in);
+		this.clientRMI = clientRMI;
 	}
 
-	@Override
-	public void startTurn() {
-		System.out.println("VIEWCLI: STARTING TURN");
-		//System.out.println("ROUND " + match.getRoundNum() + "  ||  " + player.getName());
-	}
-
-	@Override
-	public void askAction(boolean isFMPlaced) throws IOException {
-		System.out.println();
-		System.out.println("Write the number of the action you want to perform");
-
-		if(!isFMPlaced)
-			System.out.println("0 - Place family member");
-		//System.out.println("2 - Place leader card");
-		//System.out.println("3 - Activate leader card");
-		//System.out.println("4 - Discard leader card");
-		System.out.println("1 - View Statistics");
-		System.out.println("2 - Pass Turn");
-
+	public void start() throws IOException {
 		while (true) {
-			if(in.hasNextInt()) {
-				adapter.setAction(in.nextInt(), isFMPlaced);
-				break;
+			//Capture input from user
+			int inputInt = in.nextInt();
+			System.out.println("SENDING "+inputInt);
+			List<Action> actions = clientRMI.getActions();
+			if(inputInt >= actions.size()) {
+				System.out.println("The inserted number is not among the possible choices");
 			}
 			else {
-				System.out.println("The input must be a number. Try again");
-				in.next();
-			}	
-		}
-	}
-	
-	@Override
-	public void freeAction(List<Occupiable> occupiables, FamilyMember familyMember) throws IOException {
-		System.out.println();
-		System.out.println("You received a free action!");
-		System.out.println("Please choose one:");
-		int i = 0;
-		for(Occupiable occupiable : occupiables){
-			System.out.println(i + " - " + occupiable);
-		}
-		System.out.println(i + " - For some wired reason I don't want a free action.");
-
-		while (true) {
-			if(in.hasNextInt()) {
-				adapter.setFreeAction(in.nextInt(), occupiables, familyMember);
-				break;
+				adapter.sendAction(inputInt);
 			}
-			else {
-				System.out.println("The input must be a number. Try again");
-				in.next();
-			}
-		}
 
-	}
-
-	public void askFamilyMember() throws IOException, RemoteException {
-
-		System.out.println("Write the number of the family member you want to use");
-
-		List<FamilyMember> usableFMs = match.getBoard().getTrackTurnOrder().getCurrentPlayer().getAvailableFamilyMembers();
-		
-		int i;
-		for (i = 0; i < usableFMs.size(); i++) {
-			FamilyMember familyMember = usableFMs.get(i);
-				System.out.println(i + " - " + familyMember);
-		}
-
-		System.out.println(i + " - Discard action.");
-		
-		while (true) {
-			if(in.hasNextInt()) {
-				adapter.setFamilyMember(in.nextInt(), usableFMs);
-				break;
-			}
-			else {
-				System.out.println("The input must be a number. Try again");
-				in.next();
-			}	
 		}
 	}
-	
-	public void askOccupiable(FamilyMember familyMember) throws IOException {
-		askZone(familyMember);
-	}
-	
-	public void askZone(FamilyMember familyMember) throws IOException, RemoteException {
-		List<Zone> zones = match.getBoard().getZones();
-		System.out.println();
-		System.out.println("Write the number of the zone you want to place the family member in.");
-
-		int i = 0;
-		for(Zone zone : zones) {
-			System.out.println(i + " - " + zone);
-			i++;
-		}
-		System.out.println(i + " - Go back.");
-
-		while (true) {
-			if(in.hasNextInt()) {
-				adapter.setZone(zones, familyMember, in.nextInt());
-				break;
-			}
-			else {
-				System.out.println("The input must be a number. Try again");
-				in.next();
-			}
-		}
-	}
-	
-	public ActionPlace createActionPlace(FamilyMember familyMember, Servant servant, Occupiable occupiable) throws RemoteException {
-		return ActionFactory.createActionPlace(getCurrentPlayer(), familyMember, occupiable, servant);
-	}
-
-	public ActionPlace createActionPlace(FamilyMember familyMember, Occupiable occupiable) throws RemoteException {
-		return ActionFactory.createActionPlace(getCurrentPlayer(), familyMember, occupiable);
-	}
-
-	public void askOccupiableByZone(FamilyMember familyMember, Zone zone) throws IOException {
-		List<Occupiable> occupiables = zone.getOccupiables();
-		System.out.println();
-		System.out.println("Write the number of the space you want to place the family member in.");
-		int i = 0;
-		for(Occupiable occupiable : occupiables) {
-			System.out.println(i + " - " + occupiable.toString());
-			i++;
-		}
-		System.out.println(i + " - Go back.");
-
-		while (true) {
-			if(in.hasNextInt()) {
-				int input = in.nextInt();
-				adapter.setOccupiable(zone, familyMember, input, occupiables);
-				break;
-			}else {
-				System.out.println("The input must be a number. Try again");
-				in.next();
-			}
-		}
-	}
-
-	public Player getCurrentPlayer(){
-		return match.getBoard().getTrackTurnOrder().getCurrentPlayer();
-	}
-
-	/*public boolean supportChurch(){
-		System.out.println("Will you show your sustain to the church? [YES / NO]");
-		while(true) {
-			String choice = in.next();
-			switch (choice) {
-				case "yes":
-					return true;
-				case "no":
-					return false;
-				default:
-					System.out.println("'" + choice + "' is not a valid answer.");
-			}
-		}
-	}
-
-
-	public void excommunicationMessage(){
-		System.out.println("--- YOU HAVE BEEN EXCOMMUNICATED ---");
-	}*/
-
-	public void askServants(Occupiable occupiable, FamilyMember familyMember) throws IOException {
-		Player player = match.getBoard().getTrackTurnOrder().getCurrentPlayer();
-		int ownedServants = player.getResourceValue(ResourceType.SERVANT);
-		int requiredServants = occupiable.getRequiredValue() - familyMember.getValue();
-		System.out.println("You have " + player.getResourceValue(ResourceType.SERVANT) + " servants.");
-		System.out.println("How many servants would you like to use? (min: " + requiredServants + ")");
-		System.out.println("Insert 0 if you want to go back");
-		while(true) {
-			int choice = in.nextInt();
-			if (choice == 0) {
-				askZone(familyMember);
-				break;
-			}
-			else if (choice >= requiredServants && choice <= ownedServants) {
-				adapter.placeWithServants(occupiable, familyMember, new Servant(choice));
-				break;
-			}
-			else
-				System.out.println("That won't do... Please try again.");
-		}
-	}
-
-	/*public int viewStatistics() {
-		int i = 0;
-		System.out.println("Who's statistics would you like to view?");
-		for(Player player : matchRemote.getPlayers()){
-			System.out.println(i + " - " + player.getName());
-			i++;
-		}
-		System.out.println(i + " - Go back.");
-		int choice = in.nextInt();
-		if(choice == i)
-			adapter.askAction();
-		return choice;
-	}
-
-	public void viewStatistics(Player player) {
-		System.out.println("Viewing statistics of: " + player.getName());
-		for(Resource resource : player.getResources().values()){
-			System.out.println(resource);
-		}
-		for (FamilyMember familyMember : player.getFamilyMembers().values()){
-			System.out.println(familyMember);
-		}
-		System.out.println();
-		System.out.println();
-	}
-
-	public int chooseResourceExchange(List<ResourceExchange> exchanges) {
-		System.out.println("Choose the exchange you would like to execute.");
-		int i = 0;
-		for(ResourceExchange exchange : exchanges){
-			System.out.println(i + exchange.toString());
-			i++;
-		}
-		//TODO: implement discard action
-		System.out.println(i + "Discard action");
-		int choice = in.nextInt();
-		if(choice == i)
-			adapter.askAction();
-		return choice;
-	}*/
 }

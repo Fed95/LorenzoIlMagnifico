@@ -14,13 +14,18 @@ public class ActionPassTurn extends Action{
 	}
 
 	@Override
-	public void start(Match match) throws IOException {
+	public void start(Match match){
 		match.newTurn();
 	}
 
 	@Override
-	public boolean isValid(Match match) throws IOException {
+	public boolean isValid(Match match){
 		return false;
+	}
+
+	@Override
+	public String toString() {
+		return "Pass turn";
 	}
 
 }

@@ -20,7 +20,7 @@ public abstract class Observable<C> {
 		this.observers.remove(o);
 	}
 	
-	public void notifyObserver(C c) throws IOException, RemoteException {
+	public void notifyObserver(C c) {
 		System.out.println("I am the "+this.getClass().getSimpleName());
 		for(Observer<C> o: this.observers){
 			o.update(c);
