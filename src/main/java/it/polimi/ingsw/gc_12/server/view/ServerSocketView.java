@@ -66,12 +66,10 @@ public class ServerSocketView extends View implements Runnable {
 						System.out.println("Player " + name + " received");
 						server.addClientSocket(name);
 					}
-					else if (object instanceof Action) {
-						// takes the action from the socket and
-						//sends the action to the controller (By notifying it)
-						Action action = (Action) object;
-						System.out.println("VIEW: received the action " + action);
-
+					else if (object instanceof Integer) {
+						int input = (Integer) object;
+						Action action = match.getActionHandler().getAvailableActions().get(input);
+						System.out.println("RMIView: " + action.getClass().getSimpleName() + " received from ClientRMI. Notifying observers (Server Controller).");
 						this.notifyObserver(action);
 					}
 

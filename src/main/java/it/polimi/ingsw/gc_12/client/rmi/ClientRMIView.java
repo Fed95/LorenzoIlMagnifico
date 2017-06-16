@@ -53,31 +53,9 @@ public class ClientRMIView extends ClientHandler implements ClientViewRemote, Se
 				e.printStackTrace();
 			}
 		}
-		else if(event.getPlayer() != null && isMyTurn(event.getPlayer())) {
-			actions = event.getActions();
-			System.out.println("Choose the action to perform:");
-			for (int i = 0; i < actions.size(); i++) {
-				System.out.println(i + " - " + actions.get(i));
-
-			}
-		}
-
-		/*if(change instanceof EventStartMatch) {
-			System.out.println("ClientRMI: EventStartMatch recognised. Creating view with local match.");
-			EventStartMatch event = (EventStartMatch) change;
-			matchRemote = event.getMatch();
-			player = matchRemote.getPlayer(name);
-			try {
-				match = matchRemote.getInstance();
-
-			} catch (CloneNotSupportedException e) {
-				e.printStackTrace();
-			}
-			createView(match);
-		}
 		else {
-			handleEvent(change);
-		}*/
+			handleEvent(event);
+		}
 	}
 
 	@Override
@@ -93,9 +71,7 @@ public class ClientRMIView extends ClientHandler implements ClientViewRemote, Se
 		return name;
 	}
 
-	public List<Action> getActions() {
-		return actions;
-	}
+
 
 	private static final long serialVersionUID = 6111979881550001331L;
 }

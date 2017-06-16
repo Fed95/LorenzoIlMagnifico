@@ -9,6 +9,7 @@ import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.action.ActionFactory;
 import it.polimi.ingsw.gc_12.action.ActionPlace;
 import it.polimi.ingsw.gc_12.action.ActionPlaceOnTower;
+import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.ClientSender;
 import it.polimi.ingsw.gc_12.client.rmi.ClientRMI;
 import it.polimi.ingsw.gc_12.client.rmi.ClientRMIView;
@@ -22,12 +23,12 @@ public class ViewCLI extends Observable implements View {
 
 	private Scanner in;
 	private CLIAdapter adapter;
-	private ClientRMIView clientRMI;
+	private ClientHandler clientHandler;
 
-	public ViewCLI(ClientSender client, ClientRMIView clientRMI) {
+	public ViewCLI(ClientSender client, ClientHandler clientHandler) {
 		this.adapter = new CLIAdapter(this, client);
 		this.in = new Scanner(System.in);
-		this.clientRMI = clientRMI;
+		this.clientHandler = clientHandler;
 	}
 
 	public void start() throws IOException {
@@ -35,7 +36,7 @@ public class ViewCLI extends Observable implements View {
 			//Capture input from user
 			int inputInt = in.nextInt();
 			System.out.println("SENDING "+inputInt);
-			List<Action> actions = clientRMI.getActions();
+			List<Action> actions = clientHandler.getActions();
 			if(inputInt >= actions.size()) {
 				System.out.println("The inserted number is not among the possible choices");
 			}
