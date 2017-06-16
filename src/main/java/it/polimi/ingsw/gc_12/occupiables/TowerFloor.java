@@ -52,11 +52,6 @@ public class TowerFloor extends Occupiable{
 		System.out.println(occupiers);
 	}
 
-	@Override
-	public String toString() {
-		return "Floor " + floorNum + " of " + cardType + " tower - required value: " + super.requiredValue + ". Card: [" + card + "], Occupiers: " + occupiers;
-	}
-
 	public CardType getType() {
 		return cardType;
 	}
@@ -77,5 +72,14 @@ public class TowerFloor extends Occupiable{
 		int result = floorNum;
 		result = 31 * result + cardType.hashCode();
 		return result;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(this.getType() + " Tower, Floor n." + floorNum);
+		sb.append(super.toString()).append(System.getProperty("line.separator"));
+		sb.append(card);
+		return sb.toString();
 	}
 }

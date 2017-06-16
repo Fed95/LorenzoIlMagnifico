@@ -21,16 +21,6 @@ public class ActionPlaceOnCouncil extends ActionPlace {
     }
 
     @Override
-    public String toString() {
-        return "ActionPlaceOnCouncil{" +
-                "player=" + player +
-                ", councilPalace=" + councilPalace +
-                ", familyMember=" + familyMember +
-                ", servant=" + servant +
-                '}';
-    }
-
-    @Override
     protected void setup(Match match) {}
 
     @Override

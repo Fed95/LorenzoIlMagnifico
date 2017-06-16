@@ -35,4 +35,11 @@ public class EventChooseCost extends Event {
     public List<EffectProvider> getEffectProviders() {
         return null;
     }
-}
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(System.getProperty("line.separator"));
+        sb.append("How would you like to pay for this card?");
+        return sb.toString();
+    }}

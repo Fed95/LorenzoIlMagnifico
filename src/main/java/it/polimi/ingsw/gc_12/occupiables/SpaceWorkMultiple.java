@@ -21,7 +21,10 @@ public class SpaceWorkMultiple extends SpaceWork {
 
 	@Override
 	public String toString() {
-		return "SpaceWorkMultiple of type " + workType + " - required value: " + super.requiredValue;
+		StringBuilder sb = new StringBuilder();
+		sb.append(this.getWorkType() + " SpaceWorkMultiple");//.append(System.getProperty("line.separator"));
+		sb.append(super.toString());
+		return sb.toString();
 	}
 
 }

@@ -107,4 +107,9 @@ public abstract class ActionPlace extends Action {
 	protected abstract void canBeExecuted(Match match) throws RequiredValueNotSatisfiedException;
 	protected abstract void execute(Match match);
 
+	@Override
+	public String toString() {
+		return occupiable.toString();
+	}
+
 }

@@ -1,7 +1,7 @@
 package it.polimi.ingsw.gc_12;
 
 import it.polimi.ingsw.gc_12.action.Action;
-import it.polimi.ingsw.gc_12.action.ActionPlace;
+import it.polimi.ingsw.gc_12.action.ActionHandler;
 import it.polimi.ingsw.gc_12.card.*;
 import it.polimi.ingsw.gc_12.effect.EffectHandler;
 import it.polimi.ingsw.gc_12.event.Event;
@@ -10,16 +10,11 @@ import it.polimi.ingsw.gc_12.event.EventStartMatch;
 import it.polimi.ingsw.gc_12.event.EventStartTurn;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
 import it.polimi.ingsw.gc_12.json.loader.*;
-import it.polimi.ingsw.gc_12.mvc.ControllerPlayer;
 import it.polimi.ingsw.gc_12.occupiables.*;
 import it.polimi.ingsw.gc_12.personal_board.BonusTile;
-import it.polimi.ingsw.gc_12.resource.ResourceType;
-import it.polimi.ingsw.gc_12.resource.Servant;
-import it.polimi.ingsw.gc_12.server.controller.Change;
 import it.polimi.ingsw.gc_12.server.model.State;
 import it.polimi.ingsw.gc_12.server.observer.Observable;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -78,7 +73,7 @@ public class Match extends Observable<Event> implements MatchRemote, Serializabl
 
 	public void start() throws CloneNotSupportedException, RemoteException {
 		this.gameState = State.RUNNING;
-		System.out.println("notify EventStartMatch");
+		System.out.println("Match: notify EventStartMatch");
 		this.notifyObserver(new EventStartMatch(this));
 		newTurn();
 	}

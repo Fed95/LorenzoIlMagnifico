@@ -58,6 +58,6 @@ public class SpaceWorkZone implements Zone, Serializable {
 
     @Override
     public String toString() {
-        return "Work Zone of type: " + this.getType();
+        return "Work Zones of type: " + this.getType();
     }
 }

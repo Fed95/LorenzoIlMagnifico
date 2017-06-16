@@ -43,4 +43,9 @@ public abstract class SpaceWork extends Occupiable implements Serializable {
 	public int hashCode() {
 		return workType.hashCode();
 	}
+
+	@Override
+	public String toString(){
+		return super.toString();
+	}
 }

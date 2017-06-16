@@ -29,16 +29,6 @@ public class ActionPlaceOnMarket extends ActionPlace {
     }
 
     @Override
-    public String toString() {
-        return "ActionPlaceOnMarket{" +
-                "player=" + player +
-                ", spaceMarket=" + spaceMarket +
-                ", familyMember=" + familyMember +
-                ", servant=" + servant +
-                '}';
-    }
-
-    @Override
     protected void setup(Match match) {}
 
     @Override

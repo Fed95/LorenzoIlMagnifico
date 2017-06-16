@@ -107,11 +107,10 @@ public class EventPlaceFamilyMember extends Event{
 
 	@Override
 	public String toString() {
-		return "EventPlaceFamilyMember{" +
-				"player=" + player +
-				", occupiables=" + occupiables +
-				", familyMember=" + familyMember +
-				", effectProviders=" + effectProviders +
-				'}';
+		StringBuilder sb = new StringBuilder();
+		sb.append(System.getProperty("line.separator"));
+		sb.append(player.getName() + " has placed the " + familyMember.getColor() + " Family Member on:").append(System.getProperty("line.separator"));
+		sb.append(occupiables.get(0).toString());
+		return sb.toString();
 	}
 }

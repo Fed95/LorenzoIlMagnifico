@@ -24,17 +24,6 @@ public class ActionPlaceOnSpaceWork extends ActionPlace {
     }
 
     @Override
-    public String toString() {
-        return "ActionPlaceOnSpaceWork{" +
-                "player=" + player +
-                ", spaceWorkZone=" + spaceWorkZone +
-                ", spaceWork=" + spaceWork +
-                ", familyMember=" + familyMember +
-                ", servant=" + servant +
-                '}';
-    }
-
-    @Override
     protected void setup(Match match) {
         spaceWorkZone = match.getBoard().getSpaceWorkZones().get(spaceWork.getWorkType());
     }

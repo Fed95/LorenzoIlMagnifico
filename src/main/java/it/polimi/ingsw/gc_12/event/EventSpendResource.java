@@ -55,4 +55,12 @@ public class EventSpendResource extends Event {
             return true;
         return false;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(System.getProperty("line.separator"));
+        sb.append(player.getName() + " spent some " + resourceType + "! In the amount of " + value);
+        return sb.toString();
+    }
 }

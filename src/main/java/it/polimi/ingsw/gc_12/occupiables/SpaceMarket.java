@@ -20,11 +20,6 @@ public class SpaceMarket extends Occupiable implements Serializable{
 		return !occupiers.isEmpty();
 	}
 
-	@Override
-	public String toString() {
-		return "Space Market. Required value: " + requiredValue + ". Effects: " + getEffects();
-	}
-
 	public int getMarketNum() {
 		return marketNum;
 	}
@@ -42,5 +37,13 @@ public class SpaceMarket extends Occupiable implements Serializable{
 	@Override
 	public int hashCode() {
 		return marketNum;
+	}
+
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("Marketplace n." + marketNum + "        ");//.append(System.getProperty("line.separator"));
+		sb.append(super.toString());
+		return sb.toString();
 	}
 }

@@ -49,4 +49,13 @@ public class EventChooseFamilyMember extends Event {
 	public FamilyMember getFamilyMember() {
 		return familyMember;
 	}
+
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(System.getProperty("line.separator"));
+		sb.append(player.getName() + " has chosen the " + familyMember.getColor() + " Family Member (value " + familyMember.getValue() + ")");
+		return sb.toString();
+	}
 }

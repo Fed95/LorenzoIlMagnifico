@@ -11,15 +11,17 @@ import it.polimi.ingsw.gc_12.resource.Servant;
 
 public abstract class Occupiable implements EffectProvider, Serializable {
 
-	protected List<Effect> effects;
+	protected List<Effect> effects = new ArrayList<>();
 	protected List<FamilyMember> occupiers = new ArrayList<>();
 	public final static int DEFAULT_MAXNUMBEROFPLAYERS = 1;
 	public static final int DEFAULT_REQUIRED_VALUE = 1;
 	protected final int requiredValue;
 
+
 	public Occupiable(int requiredValue, List<Effect> effects) {
 		this.requiredValue = requiredValue;
-		this.effects = effects;
+		if(effects != null)
+			this.effects = effects;
 	}
 
 	public Occupiable(List<Effect> effects) {
@@ -63,4 +65,13 @@ public abstract class Occupiable implements EffectProvider, Serializable {
 
 	@Override
 	public abstract boolean equals(Object o);
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		//sb.append("     Occupiers: " + this.getOccupiers()).append(System.getProperty("line.separator"));
+		sb.append("			Effects: " + this.getEffects());
+		//sb.append(System.getProperty("line.separator"));
+		return sb.toString();
+	}
 }

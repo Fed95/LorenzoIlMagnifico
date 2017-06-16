@@ -80,7 +80,7 @@ public class CLIAdapter {
 		}
 	}
 
-	public void setZone(List<Zone> zones, FamilyMember familyMember, int index) throws IOException {
+	public void setZone(List<Zones> zones, FamilyMember familyMember, int index) throws IOException {
 		if(index < 0 || index > zones.size()) {
 			System.out.println("The specified input is not listed above");
 			view.askZone(familyMember);
@@ -90,7 +90,7 @@ public class CLIAdapter {
 			view.askAction(false);
 		}
 		else {
-			Zone zone = zones.get(index);
+			Zones zone = zones.get(index);
 			if(zone instanceof Occupiable) {
 				ActionPlace action = view.createActionPlace(familyMember, (Occupiable) zone);
 				client.sendAction(action);
@@ -101,7 +101,7 @@ public class CLIAdapter {
 		}
 	}
 
-	public void setOccupiable(Zone zone, FamilyMember familyMember, int occupiableIndex, List<Occupiable> occupiables) throws IOException {
+	public void setOccupiable(Zones zone, FamilyMember familyMember, int occupiableIndex, List<Occupiable> occupiables) throws IOException {
 		if(occupiableIndex < 0 || occupiableIndex > occupiables.size()) {
 			System.out.println("The specified input is not listed above");
 			view.askOccupiableByZone(familyMember, zone);

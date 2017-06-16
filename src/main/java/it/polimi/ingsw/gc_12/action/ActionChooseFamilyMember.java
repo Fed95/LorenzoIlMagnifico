@@ -1,10 +1,8 @@
 package it.polimi.ingsw.gc_12.action;
 
-import it.polimi.ingsw.gc_12.ActionHandler;
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
-import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventActionUnavailable;
 import it.polimi.ingsw.gc_12.event.EventChooseFamilyMember;
 
@@ -41,6 +39,6 @@ public class ActionChooseFamilyMember extends Action{
 
 	@Override
 	public String toString() {
-		return "Place family member "+familyMember;
+		return "Place "+familyMember;
 	}
 }

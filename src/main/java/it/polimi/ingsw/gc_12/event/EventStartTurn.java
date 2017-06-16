@@ -31,8 +31,12 @@ public class EventStartTurn extends Event{
 		return effectProviders;
 	}
 
-	/*@Override
+	@Override
 	public String toString() {
-		return "It's" + player.getName() + "'s turn.";
-	}*/
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(System.getProperty("line.separator"));
+		sb.append("It's " +player.getName()+ "'s turn.");
+		return sb.toString();
+	}
 }

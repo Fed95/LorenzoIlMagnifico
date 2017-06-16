@@ -22,7 +22,9 @@ public class SpaceWorkSingle extends SpaceWork{
 
 	@Override
 	public String toString() {
-		return "SpaceWorkSingle of type " + workType + "- required value: " + super.requiredValue;
+		StringBuilder sb = new StringBuilder();
+		sb.append(this.getWorkType() + " SpaceWorkSingle");//.append(System.getProperty("line.separator"));
+		sb.append(super.toString());
+		return sb.toString();
 	}
-
 }

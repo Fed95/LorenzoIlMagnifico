@@ -28,4 +28,13 @@ public class EventEndMatch extends Event {
     public List<EffectProvider> getEffectProviders() {
         return effectProviders;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(System.getProperty("line.separator"));
+        sb.append("The Match has ended!");
+        // TODO: 2017-06-16 tell the player whether he won or not
+        return sb.toString();
+    }
 }

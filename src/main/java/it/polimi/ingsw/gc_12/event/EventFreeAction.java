@@ -35,4 +35,13 @@ public class EventFreeAction extends Event {
     public List<EffectProvider> getEffectProviders() {
         return null;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(System.getProperty("line.separator"));
+        sb.append(player.getName()+ " has received a free action!.");
+        sb.append("What would you like to do?");
+        return sb.toString();
+    }
 }

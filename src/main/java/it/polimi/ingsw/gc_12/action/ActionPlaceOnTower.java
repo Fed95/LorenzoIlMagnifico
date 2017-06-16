@@ -71,14 +71,4 @@ public class ActionPlaceOnTower extends ActionPlace {
         match.getEffectHandler().executeEffects(match, event);
     }
 
-    @Override
-    public String toString() {
-        return "ActionPlaceOnTower{" +
-                "player=" + player +
-                ", tower=" + tower +
-                ", familyMember=" + familyMember +
-                ", towerFloor=" + towerFloor +
-                ", servant=" + servant +
-                '}';
-    }
 }

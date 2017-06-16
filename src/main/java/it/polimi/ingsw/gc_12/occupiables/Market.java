@@ -51,9 +51,4 @@ public class Market implements Zone, Serializable{
 		occupiables.addAll(spaceMarkets);
 		return occupiables;
 	}
-
-	@Override
-	public String toString() {
-		return "Market";
-	}
 }
