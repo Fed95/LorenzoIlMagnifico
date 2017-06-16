@@ -16,7 +16,7 @@ public abstract class Action implements Serializable {
 		this.player = player;
 	}
 
-	public abstract boolean isValid(Match match);
+    public abstract boolean isValid(Match match);
 	public abstract void start(Match match);
 
 }

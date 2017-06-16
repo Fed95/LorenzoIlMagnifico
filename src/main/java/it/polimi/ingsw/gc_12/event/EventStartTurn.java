@@ -36,7 +36,7 @@ public class EventStartTurn extends Event{
 
 		StringBuilder sb = new StringBuilder();
 		sb.append(System.getProperty("line.separator"));
-		sb.append("It's " +player.getName()+ "'s turn.");
+		sb.append("It's " + player.getName() + "'s turn.");
 		return sb.toString();
 	}
 }

@@ -7,7 +7,6 @@ import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.mvc.View;
 
-import java.io.IOException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
@@ -25,7 +24,8 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 	public void handleEvent(Event event) {
 		if(event.getPlayer() != null && isMyTurn(event.getPlayer())) {
 			actions = event.getActions();
-			System.out.println("Choose the action to perform:");
+			System.out.println("What would you like to do?");
+			System.out.println();
 			for (int i = 0; i < actions.size(); i++) {
 				System.out.println(i + " - " + actions.get(i));
 			}

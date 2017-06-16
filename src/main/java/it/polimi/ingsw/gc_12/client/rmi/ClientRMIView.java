@@ -1,28 +1,15 @@
 package it.polimi.ingsw.gc_12.client.rmi;
 
-import it.polimi.ingsw.gc_12.Match;
-import it.polimi.ingsw.gc_12.MatchInstance;
+
 import it.polimi.ingsw.gc_12.MatchRemote;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.event.Event;
-import it.polimi.ingsw.gc_12.mvc.CLIAdapter;
-import it.polimi.ingsw.gc_12.mvc.View;
-import it.polimi.ingsw.gc_12.mvc.ViewCLI;
-import it.polimi.ingsw.gc_12.occupiables.Occupiable;
-import it.polimi.ingsw.gc_12.resource.ResourceType;
-import it.polimi.ingsw.gc_12.server.controller.Change;
-import it.polimi.ingsw.gc_12.server.controller.StateChange;
 import it.polimi.ingsw.gc_12.action.Action;
-
-import java.io.IOException;
 import java.io.Serializable;
-import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,6 +40,9 @@ public class ClientRMIView extends ClientHandler implements ClientViewRemote, Se
 				e.printStackTrace();
 			}
 		}
+		else if(event instanceof EventViewStatistics){
+			event.toString();
+		}
 		else {
 			handleEvent(event);
 		}
@@ -70,8 +60,5 @@ public class ClientRMIView extends ClientHandler implements ClientViewRemote, Se
 	public String getName() throws RemoteException {
 		return name;
 	}
-
-
-
 	private static final long serialVersionUID = 6111979881550001331L;
 }

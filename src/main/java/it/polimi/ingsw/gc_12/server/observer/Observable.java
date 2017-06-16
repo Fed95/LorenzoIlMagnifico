@@ -21,7 +21,7 @@ public abstract class Observable<C> {
 	}
 	
 	public void notifyObserver(C c) {
-		System.out.println("I am the "+this.getClass().getSimpleName());
+		System.out.println("I am the " + this.getClass().getSimpleName() + ". I have been notified about " + c);
 		for(Observer<C> o: this.observers){
 			o.update(c);
 		}

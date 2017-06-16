@@ -4,10 +4,7 @@ import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.action.ActionHandler;
 import it.polimi.ingsw.gc_12.card.*;
 import it.polimi.ingsw.gc_12.effect.EffectHandler;
-import it.polimi.ingsw.gc_12.event.Event;
-import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
-import it.polimi.ingsw.gc_12.event.EventStartMatch;
-import it.polimi.ingsw.gc_12.event.EventStartTurn;
+import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
 import it.polimi.ingsw.gc_12.json.loader.*;
 import it.polimi.ingsw.gc_12.occupiables.*;
@@ -35,7 +32,7 @@ public class Match extends Observable<Event> implements MatchRemote, Serializabl
 	public transient final static GameMode DEFAULT_GAME_MODE = GameMode.NORMAL;
 	public transient final static int DEFAULT_ROUND_NUM = 6;
 	public transient final static int DEFAULT_PERIODS_LEN = 2;
-	public transient final static int DEFAULT_TOTAL_PERIODS_NUM = DEFAULT_ROUND_NUM/DEFAULT_PERIODS_LEN;
+	public transient final static int DEFAULT_TOTAL_PERIODS_NUM = DEFAULT_ROUND_NUM / DEFAULT_PERIODS_LEN;
 	private State gameState;
 	private boolean isFMPlaced;
 
@@ -43,7 +40,7 @@ public class Match extends Observable<Event> implements MatchRemote, Serializabl
 		this.roundNum = 1;
 		this.cards = new LoaderCard().get(this);
 		this.bonusTiles = new LoaderBonusTile().get(this);
-		this.cardDeckSet = new CardDeckSet(cards, DEFAULT_ROUND_NUM/DEFAULT_PERIODS_LEN);
+		this.cardDeckSet = new CardDeckSet(cards, DEFAULT_ROUND_NUM / DEFAULT_PERIODS_LEN);
 		this.effectHandler = new EffectHandler();
 		this.actionHandler = new ActionHandler(this);
 
@@ -73,7 +70,7 @@ public class Match extends Observable<Event> implements MatchRemote, Serializabl
 
 	public void start() throws CloneNotSupportedException, RemoteException {
 		this.gameState = State.RUNNING;
-		System.out.println("Match: notify EventStartMatch");
+		System.out.println("Match: notifying EventStartMatch");
 		this.notifyObserver(new EventStartMatch(this));
 		newTurn();
 	}
@@ -81,8 +78,6 @@ public class Match extends Observable<Event> implements MatchRemote, Serializabl
 	//Increments turn counter in TrackTurnOrder
 	public void newTurn() {
 		System.out.println("Match: Starting new turn");
-		for(Zone zone : board.getZones())
-			System.out.println(zone);
 		board.getTrackTurnOrder().newTurn();
 		System.out.println("Match: notifying EventStartTurn to RMIView");
 		EventStartTurn event = new EventStartTurn(board.getTrackTurnOrder().getCurrentPlayer());

@@ -17,11 +17,13 @@ public abstract class Event extends Change implements EventInterface {
 	protected ActionHandler actionHandler;
 
 	public Event(Player player) {
-		this.player = player;
-		if(player == null)
-			System.out.println("null");
-		effectProviders.addAll(player.getCards());
-		//effectProviders.addAll(player.getExcommunications());
+		if(player != null) {
+			this.player = player;
+			effectProviders.addAll(player.getCards());
+			effectProviders.addAll(player.getExcommunications());
+		}else{
+			System.out.println("The player of " + this + " is null!");
+		}
 	}
 
 	public void setActionHandler(ActionHandler actionHandler){
@@ -36,9 +38,7 @@ public abstract class Event extends Change implements EventInterface {
 
 	public boolean equals(Object obj) {
 		if (this.getClass() != obj.getClass()) {
-
 			System.out.println("The events are not of the same class");
-
 			return false;
 		}
 		return true;

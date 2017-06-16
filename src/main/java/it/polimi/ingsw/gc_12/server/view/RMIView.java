@@ -62,7 +62,6 @@ public class RMIView extends View implements RMIViewRemote {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-
 	}
 
 	public Set<ClientViewRemote> getClients() {

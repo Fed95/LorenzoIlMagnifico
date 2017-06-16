@@ -1,0 +1,36 @@
+package it.polimi.ingsw.gc_12.action;
+
+import it.polimi.ingsw.gc_12.Match;
+import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.event.EventViewStatistics;
+
+/**
+ * Created by feder on 2017-06-16.
+ */
+public class ActionViewStatistics extends Action {
+
+    private Player chosenPlayer;
+
+    public ActionViewStatistics(Player player, Player chosenPlayer) {
+        super(player);
+        this.chosenPlayer = chosenPlayer;
+    }
+
+    @Override
+    public boolean isValid(Match match) {
+        return false;
+    }
+
+    @Override
+    public void start(Match match){
+        EventViewStatistics event = new EventViewStatistics(player, chosenPlayer);
+        match.getActionHandler().update(event);
+        //Notifies the RMIView
+        match.notifyObserver(event);
+    }
+
+    @Override
+    public String toString() {
+        return "View statistics of: " + chosenPlayer.getName();
+    }
+}

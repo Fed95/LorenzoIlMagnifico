@@ -24,7 +24,7 @@ public class Player implements Serializable{
 	private final String name;
 	private transient Match match;
 	private PersonalBoard personalBoard;
-	private transient List<ExcommunicationTile> excommunications = new ArrayList<>();
+	private transient List<ExcommunicationTile> excommunications = new ArrayList<>(); //TODO: UNDERSTAND WHY IT IS NOT INITIALISED
 	private Map<ResourceType, Resource> resources;
 	private Map<FamilyMemberColor, FamilyMember> familymembers = new HashMap<>();
 	private PlayerState state;
@@ -142,5 +142,12 @@ public class Player implements Serializable{
 
 	public void setState(PlayerState state) {
 		this.state = state;
+	}
+
+	public String printResources(){
+		StringBuilder sb = new StringBuilder();
+		for(Resource resource : resources.values())
+			sb.append(" - " + resource);
+		return sb.toString();
 	}
 }
