@@ -75,4 +75,8 @@ public class RMIView extends View implements RMIViewRemote {
 		System.out.println("RMIView: " + action.getClass().getSimpleName() + " received from ClientRMI. Notifying observers (Server Controller).");
 		this.notifyObserver(action);
 	}
+
+	public Match getMatch() {
+		return match;
+	}
 }

@@ -68,7 +68,7 @@ public abstract class ActionPlace extends Action {
 	@Override
 	public boolean isValid(Match match){
 		setup(match);
-		familyMember = new FamilyMember(player, familyMember.getColor(), familyMember.getValue()+servant.getValue());
+		familyMember = new FamilyMember(player, familyMember.getColor(), familyMember.getValue()+player.getResourceValue(ResourceType.SERVANT));
 		Event event = new EventPlaceFamilyMember(player, occupiable, familyMember);
 
 		List<Effect> executedEffects = new ArrayList<>();

@@ -45,7 +45,7 @@ public class ClientRMI implements ClientSender { //Main class of the Clients usi
 			name = stdIn.nextLine();
 			if(!"\n".equals(name) && !"".equals(name)) {
 
-				ClientRMIView rmiView = new ClientRMIView(view, name);
+				ClientRMIView rmiView = new ClientRMIView(name);
 				System.out.println("You are being registered on the server...");
 				// register the client view in the server side (to receive messages from the server)
 				serverStub.registerClient(rmiView);
