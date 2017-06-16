@@ -34,9 +34,8 @@ public class ClientRMIView extends ClientHandler implements ClientViewRemote, Se
 	private Player player;
 	private volatile List<Action> actions = new ArrayList<>();
 
-	protected ClientRMIView(View view, String name) throws RemoteException {
+	protected ClientRMIView(String name) throws RemoteException {
 		super();
-		this.view = view;
 		this.name = name;
 	}
 

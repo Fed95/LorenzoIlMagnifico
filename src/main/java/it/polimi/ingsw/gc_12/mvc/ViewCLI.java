@@ -40,7 +40,11 @@ public class ViewCLI extends Observable implements View {
 				System.out.println("The inserted number is not among the possible choices");
 			}
 			else {
-				adapter.sendAction(inputInt);
+				try {
+					adapter.sendAction(inputInt);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 
 		}
