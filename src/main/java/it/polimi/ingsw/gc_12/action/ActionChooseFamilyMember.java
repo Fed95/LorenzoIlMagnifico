@@ -34,8 +34,7 @@ public class ActionChooseFamilyMember extends Action{
 			match.notifyObserver(new EventActionUnavailable(false)); // TODO: check if isFMPlaced in this event is useful
 		}
 		EventChooseFamilyMember event = new EventChooseFamilyMember(player, familyMember);
-		List<Action> actions = match.getActionHandler().update(event);
-		event.setActions(actions);
+		match.getActionHandler().update(event);
 		//Notifies the RMIView
 		match.notifyObserver(event);
 	}

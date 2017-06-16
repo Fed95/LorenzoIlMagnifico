@@ -52,35 +52,42 @@ public abstract class ActionPlace extends Action {
 		try{
 			//Can throw exceptions (in which case effects are discarded directly in EffectHandler)
 			executedEffects = match.getEffectHandler().executeEffects(match, event);
-			this.canBeExecuted(match);
+			familyMember.setValue(familyMember.getValue()+servant.getValue());
+			canBeExecuted(match);
+
 			execute(match);
 		}
 		catch (RequiredValueNotSatisfiedException e) {
 			Event eventException = new EventRequiredValueNotSatisfied(player, occupiable, familyMember);
+			match.getActionHandler().update(eventException);
 			match.notifyObserver(eventException);
 		}
 		catch(Exception e) {
 			match.getEffectHandler().discardEffects(executedEffects, event);
 			System.out.println("Effects discarded due to " + e);
+		} finally {
+			familyMember.setValue(familyMember.getValue()-servant.getValue());
 		}
 	}
 
 	@Override
 	public boolean isValid(Match match){
 		setup(match);
-		familyMember = new FamilyMember(player, familyMember.getColor(), familyMember.getValue()+player.getResourceValue(ResourceType.SERVANT));
 		Event event = new EventPlaceFamilyMember(player, occupiable, familyMember);
 
 		List<Effect> executedEffects = new ArrayList<>();
 		try{
 			//Can throw exceptions (in which case effects are discarded directly in EffectHandler)
 			executedEffects = match.getEffectHandler().executeEffects(match, event);
+			familyMember.setValue(familyMember.getValue()+player.getResourceValue(ResourceType.SERVANT));
 			this.canBeExecuted(match);
 		}
 		catch (Exception e) {
+			familyMember.setValue(familyMember.getValue()-player.getResourceValue(ResourceType.SERVANT));
 			match.getEffectHandler().discardEffects(executedEffects, event);
 			return false;
 		}
+		familyMember.setValue(familyMember.getValue()-player.getResourceValue(ResourceType.SERVANT));
 		match.getEffectHandler().discardEffects(executedEffects, event);
 		return true;
 	}

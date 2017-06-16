@@ -15,4 +15,9 @@ public class EventRequiredValueNotSatisfied extends EventPlaceFamilyMember {
 	public EventRequiredValueNotSatisfied(Player player, Occupiable occupiable, FamilyMember familyMember) {
 		super(player, new ArrayList<>(Collections.singletonList(occupiable)), familyMember);
 	}
+
+	@Override
+	public String toString() {
+		return "EventRequiredValueNotSatisfied";
+	}
 }

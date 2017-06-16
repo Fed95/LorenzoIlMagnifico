@@ -85,12 +85,6 @@ public class ClientRMIView extends ClientHandler implements ClientViewRemote, Se
 		if(currentPlayer == null) {
 			System.out.println("MyTurn: current player is null");
 		}
-		else {
-			if(name.equals(currentPlayer.getName()))
-				System.out.println("It's your turn");
-			else
-				System.out.println("It's " + currentPlayer.getName() + "'s turn.");
-		}
 		return name.equals(currentPlayer.getName());
 	}
 

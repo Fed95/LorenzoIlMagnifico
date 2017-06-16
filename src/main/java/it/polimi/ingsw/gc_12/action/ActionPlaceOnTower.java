@@ -56,7 +56,7 @@ public class ActionPlaceOnTower extends ActionPlace {
 
     @Override
     protected void execute(Match match) {
-        if (tower.getFloors().stream().anyMatch(floor -> floor.isOccupied())) { //If no floor of the tower has been occupied yet
+        if (tower.getFloors().stream().anyMatch(TowerFloor::isOccupied)) { //If no floor of the tower has been occupied yet
             tower.activateMalus();
         }
         match.placeFamilyMember(towerFloor, familyMember);

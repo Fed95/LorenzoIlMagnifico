@@ -49,8 +49,4 @@ public class EventChooseFamilyMember extends Event {
 	public FamilyMember getFamilyMember() {
 		return familyMember;
 	}
-
-	public void setActions(List<Action> actions) {
-		this.actions = actions;
-	}
 }

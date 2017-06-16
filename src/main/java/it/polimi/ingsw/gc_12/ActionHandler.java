@@ -1,11 +1,9 @@
 package it.polimi.ingsw.gc_12;
 
 import it.polimi.ingsw.gc_12.action.*;
-import it.polimi.ingsw.gc_12.event.Event;
-import it.polimi.ingsw.gc_12.event.EventChooseFamilyMember;
-import it.polimi.ingsw.gc_12.event.EventStartMatch;
-import it.polimi.ingsw.gc_12.event.EventStartTurn;
+import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
+import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.resource.Servant;
 import it.polimi.ingsw.gc_12.server.observer.Observer;
 
@@ -42,20 +40,27 @@ public class ActionHandler /*implements Observer<Event> */{
 
 
 	public List<Action> update(Event event) {
-		if(event instanceof EventStartTurn) {
-			actions = getActionsStartTurn(event);
-		}
-		else if(event instanceof EventChooseFamilyMember) {
+		if(event instanceof EventChooseFamilyMember) {
 			actions = getActionsChooseFamilyMember((EventChooseFamilyMember) event);
 		}
+		else if(event instanceof EventRequiredValueNotSatisfied) {
+			actions = getActionsRequiredValue((EventRequiredValueNotSatisfied) event);
+
+		}
+		else if(event instanceof EventStartTurn || event instanceof EventPlaceFamilyMember) {
+			actions = getActionsStartTurn(event);
+		}
+		event.setActions(actions);
 		return actions;
 	}
 
 	public List<Action> getActionsStartTurn(Event event) {
 		Player player = event.getPlayer();
 		List<Action> actions = new ArrayList<>();
-		for(FamilyMember familyMember: player.getAvailableFamilyMembers()) {
-			actions.add(new ActionChooseFamilyMember(player, familyMember));
+		if(event instanceof EventStartTurn) {
+			for(FamilyMember familyMember: player.getAvailableFamilyMembers()) {
+				actions.add(new ActionChooseFamilyMember(player, familyMember));
+			}
 		}
 		actions.add(new ActionPassTurn(player));
 		return actions;
@@ -69,6 +74,18 @@ public class ActionHandler /*implements Observer<Event> */{
 			if(action.isValid(match)) {
 				actions.add(action);
 			}
+		}
+		return actions;
+	}
+
+	public List<Action> getActionsRequiredValue(EventRequiredValueNotSatisfied event) {
+		Player player = event.getPlayer();
+		List<Action> actions = new ArrayList<>();
+		int i = event.getOccupiable().getRequiredValue()-event.getFamilyMember().getValue();
+		for (; i <= player.getResourceValue(ResourceType.SERVANT); i++) {
+			Action action = ActionFactory.createActionPlace(player, event.getFamilyMember(), event.getOccupiable(), new Servant(i));
+			if(action.isValid(match))
+				actions.add(action);
 		}
 		return actions;
 	}

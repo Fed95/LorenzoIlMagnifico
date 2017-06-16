@@ -31,8 +31,8 @@ public class EventStartTurn extends Event{
 		return effectProviders;
 	}
 
-	@Override
+	/*@Override
 	public String toString() {
-		return "It's" + player + "'s turn.";
-	}
+		return "It's" + player.getName() + "'s turn.";
+	}*/
 }

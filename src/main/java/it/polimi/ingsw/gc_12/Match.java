@@ -91,8 +91,7 @@ public class Match extends Observable<Event> implements MatchRemote, Serializabl
 		board.getTrackTurnOrder().newTurn();
 		System.out.println("Match: notifying EventStartTurn to RMIView");
 		EventStartTurn event = new EventStartTurn(board.getTrackTurnOrder().getCurrentPlayer());
-		List<Action> actions = actionHandler.update(event);
-		event.setActions(actions);
+		actionHandler.update(event);
 		this.notifyObserver(event);
 	}
 
@@ -107,6 +106,7 @@ public class Match extends Observable<Event> implements MatchRemote, Serializabl
 		if(familyMember.getColor() != null)
 			familyMember.setBusy(true);
 		EventPlaceFamilyMember event = new EventPlaceFamilyMember(board.getTrackTurnOrder().getCurrentPlayer(), occupiable, familyMember);
+		actionHandler.update(event);
 		this.notifyObserver(event);
 	}
 

@@ -5,9 +5,6 @@ import it.polimi.ingsw.gc_12.effect.EffectProvider;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by marco on 11/06/2017.
- */
 public class EventActionUnavailable extends Event {
 
 	private boolean isFMPlaced;
