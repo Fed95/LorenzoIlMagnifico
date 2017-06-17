@@ -26,7 +26,7 @@ public abstract class Resource implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(type + ": " + value).append(System.getProperty("line.separator"));
+		sb.append(type + ": " + value);
 		return sb.toString();
 	}
 }

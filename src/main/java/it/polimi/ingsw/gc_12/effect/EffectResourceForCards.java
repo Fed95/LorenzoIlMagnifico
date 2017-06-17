@@ -38,4 +38,9 @@ public class EffectResourceForCards extends Effect{
         resources.add(resource);
         player.removeResources(resources);
     }
+
+    @Override
+    public String toString() {
+        return "ResourceForCards: " + resource + " for every " + cardType + " card you own.";
+    }
 }

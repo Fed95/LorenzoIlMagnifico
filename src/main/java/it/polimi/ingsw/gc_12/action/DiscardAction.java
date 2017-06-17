@@ -27,6 +27,6 @@ public class DiscardAction extends Action {
 
     @Override
     public String toString() {
-        return "Discard Action";
+        return "Go back to the start";
     }
 }

@@ -77,7 +77,7 @@ public class TowerFloor extends Occupiable{
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(this.getType() + " Tower, Floor n." + floorNum);
+		sb.append(this.getType() + " Tower, Floor n." + floorNum + " (required value " + requiredValue + ")");
 		sb.append(super.toString()).append(System.getProperty("line.separator"));
 		sb.append(card);
 		return sb.toString();

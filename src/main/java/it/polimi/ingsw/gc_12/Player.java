@@ -147,7 +147,7 @@ public class Player implements Serializable{
 	public String printResources(){
 		StringBuilder sb = new StringBuilder();
 		for(Resource resource : resources.values())
-			sb.append(" - " + resource);
+			sb.append(" - " + resource).append(System.getProperty("line.separator"));
 		return sb.toString();
 	}
 
