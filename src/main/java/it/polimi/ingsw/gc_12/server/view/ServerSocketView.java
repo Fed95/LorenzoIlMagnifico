@@ -69,7 +69,7 @@ public class ServerSocketView extends View implements Runnable {
 					else if (object instanceof Integer) {
 						int input = (Integer) object;
 						Action action = match.getActionHandler().getAvailableActions().get(input);
-						System.out.println("RMIView: " + action.getClass().getSimpleName() + " received from ClientRMI. Notifying observers (Server Controller).");
+						System.out.println("ServerRMIView: " + action.getClass().getSimpleName() + " received from ClientRMI. Notifying observers (Server Controller).");
 						this.notifyObserver(action);
 					}
 

@@ -53,6 +53,12 @@ public class ActionHandler /*implements Observer<Event> */{
 		else if(event instanceof EventRequestStatistics){
 			actions = getActionsRequestStatistics(event);
 		}
+		else if(event instanceof EventViewStatistics){
+			actions = getActionsViewStatistics(event);
+		}
+		else if(event instanceof EventDiscardAction){
+			actions = getActionsStartTurn(new EventStartTurn(event.getPlayer()));
+		}
 
 		event.setActions(actions);
 		return actions;
@@ -80,13 +86,23 @@ public class ActionHandler /*implements Observer<Event> */{
 				actions.add(action);
 			}
 		}
+		actions.add(new DiscardAction(player));
 		return actions;
 	}
 
 	public List<Action> getActionsRequestStatistics(Event event) {
+		Player player = event.getPlayer();
 		List<Action> actions = new ArrayList<>();
-		for(Player player : match.getPlayers())
-			actions.add(new ActionViewStatistics(event.getPlayer(), player));
+		for(Player p : match.getPlayers())
+			actions.add(new ActionViewStatistics(player, p));
+		actions.add(new DiscardAction(player));
+		return actions;
+	}
+
+	private List<Action> getActionsViewStatistics(Event event) {
+		Player player = event.getPlayer();
+		List<Action> actions = new ArrayList<>();
+		actions.add(new DiscardAction(player));
 		return actions;
 	}
 
@@ -99,6 +115,7 @@ public class ActionHandler /*implements Observer<Event> */{
 			if(action.isValid(match))
 				actions.add(action);
 		}
+		actions.add(new DiscardAction(player));
 		return actions;
 	}
 

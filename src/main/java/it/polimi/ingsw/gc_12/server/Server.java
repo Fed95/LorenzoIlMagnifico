@@ -6,7 +6,7 @@ import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
 import it.polimi.ingsw.gc_12.resource.*;
 import it.polimi.ingsw.gc_12.server.controller.Controller;
-import it.polimi.ingsw.gc_12.server.view.RMIView;
+import it.polimi.ingsw.gc_12.server.view.ServerRMIView;
 import it.polimi.ingsw.gc_12.server.view.RMIViewRemote;
 import it.polimi.ingsw.gc_12.server.view.ServerSocketView;
 
@@ -34,7 +34,7 @@ public class Server {
 	private Match match;
 	private Controller controller;
 	private Registry registry;
-	private Stack<RMIView> views;
+	private Stack<ServerRMIView> views;
 	private List<String> names;
 	public int numOfClients;
 
@@ -53,24 +53,24 @@ public class Server {
 		System.out.println("Constructing the RMI registry");
 
 		// Create the RMI View, that will be shared with the client
-		RMIView rmiView = new RMIView(this, match);
-		views.push(rmiView);
+		ServerRMIView serverRmiView = new ServerRMIView(this, match);
+		views.push(serverRmiView);
 
 		//controller observes this view
-		rmiView.registerObserver(this.controller);
+		serverRmiView.registerObserver(this.controller);
 
 		//this view observes the model
-		this.match.registerObserver(rmiView);
+		this.match.registerObserver(serverRmiView);
 
 		// publish the view in the registry as a remote object
-		RMIViewRemote viewRemote = (RMIViewRemote) UnicastRemoteObject.exportObject(rmiView, 0);
+		RMIViewRemote viewRemote = (RMIViewRemote) UnicastRemoteObject.exportObject(serverRmiView, 0);
 		
 		System.out.println("Binding the server implementation to the registry");
 		registry.bind(NAME, viewRemote);
 	}
 
 	public void startMatch() throws AlreadyBoundException, CloneNotSupportedException, RemoteException {
-		RMIView rmiView = views.peek();
+		ServerRMIView serverRmiView = views.peek();
 		List<Player> players = new ArrayList<>();
 		Map<ResourceType, Resource> resources = new HashMap<>();
 		for(ResourceType resourceType: ResourceType.values()) {
@@ -78,7 +78,7 @@ public class Server {
 		}
 		//resources.put(ResourceType.SERVANT, new Servant(5));
 		//resources.put(ResourceType.MONEY, new Money(5));
-		for(ClientViewRemote client : rmiView.getClients()) {
+		for(ClientViewRemote client : serverRmiView.getClients()) {
 			Player player = new Player(client.getName(), resources);
 			players.add(player);
 		}
@@ -100,24 +100,24 @@ public class Server {
 	public void newMatch() throws RemoteException {
 		// publish the view in the registry as a remote object
 		/*RMIViewRemote viewRemote=(RMIViewRemote) UnicastRemoteObject.
-				exportObject(rmiView, 0);*/
+				exportObject(serverRmiView, 0);*/
 		numOfClients = 0;
 		names = new ArrayList<>();
 		match = new Match();
 		controller = new Controller(match);
-		RMIView rmiView = new RMIView(this, match);
-		views.push(rmiView);
+		ServerRMIView serverRmiView = new ServerRMIView(this, match);
+		views.push(serverRmiView);
 
 		// publish the view in the registry as a remote object
 		RMIViewRemote viewRemote=(RMIViewRemote) UnicastRemoteObject.
-				exportObject(rmiView, 0);
+				exportObject(serverRmiView, 0);
 
 		registry.rebind(NAME, viewRemote);
 		//controller observes this view
-		rmiView.registerObserver(this.controller);
+		serverRmiView.registerObserver(this.controller);
 
 		//this view observes the model
-		this.match.registerObserver(rmiView);
+		this.match.registerObserver(serverRmiView);
 	}
 	
 	private void startSocket() throws IOException, AlreadyBoundException, CloneNotSupportedException {

@@ -33,7 +33,7 @@ public class ActionChooseFamilyMember extends Action{
 		}
 		EventChooseFamilyMember event = new EventChooseFamilyMember(player, familyMember);
 		match.getActionHandler().update(event);
-		//Notifies the RMIView
+		//Notifies the ServerRMIView
 		match.notifyObserver(event);
 	}
 

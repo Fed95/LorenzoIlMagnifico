@@ -40,9 +40,6 @@ public class ClientRMIView extends ClientHandler implements ClientViewRemote, Se
 				e.printStackTrace();
 			}
 		}
-		else if(event instanceof EventViewStatistics){
-			event.toString();
-		}
 		else {
 			handleEvent(event);
 		}

@@ -2,13 +2,15 @@ package it.polimi.ingsw.gc_12.action;
 
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
-import it.polimi.ingsw.gc_12.event.EventRequestStatistics;
+import it.polimi.ingsw.gc_12.event.EventDiscardAction;
 
-public class ActionRequestStatistics extends  Action {
+public class DiscardAction extends Action {
 
-    public ActionRequestStatistics(Player player) {
+    public DiscardAction(Player player) {
         super(player);
     }
+
+
 
     @Override
     public boolean isValid(Match match) {
@@ -16,8 +18,8 @@ public class ActionRequestStatistics extends  Action {
     }
 
     @Override
-    public void start(Match match){
-        EventRequestStatistics event = new EventRequestStatistics(player);
+    public void start(Match match) {
+        EventDiscardAction event = new EventDiscardAction(player);
         match.getActionHandler().update(event);
         //Notifies the ServerRMIView
         match.notifyObserver(event);
@@ -25,6 +27,6 @@ public class ActionRequestStatistics extends  Action {
 
     @Override
     public String toString() {
-        return "View Players' statistics";
+        return "Discard Action";
     }
 }

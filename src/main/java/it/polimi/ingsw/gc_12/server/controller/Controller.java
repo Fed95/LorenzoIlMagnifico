@@ -18,7 +18,7 @@ public class Controller implements Observer<Action>{
 	
 	public void update(Action action) {
 
-		System.out.println("Server Controller: Notified of new " + action.getClass().getSimpleName() + " from RMIView.");
+		System.out.println("Server Controller: Notified of new " + action.getClass().getSimpleName() + " from ServerRMIView.");
 		Observer.super.update(action);
 		try {
 			System.out.println("Server Controller: Starting the " + action.getClass().getSimpleName() + "...");

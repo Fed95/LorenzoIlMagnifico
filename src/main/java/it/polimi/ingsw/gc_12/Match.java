@@ -79,7 +79,7 @@ public class Match extends Observable<Event> implements MatchRemote, Serializabl
 	public void newTurn() {
 		System.out.println("Match: Starting new turn");
 		board.getTrackTurnOrder().newTurn();
-		System.out.println("Match: notifying EventStartTurn to RMIView");
+		System.out.println("Match: notifying EventStartTurn to ServerRMIView");
 		EventStartTurn event = new EventStartTurn(board.getTrackTurnOrder().getCurrentPlayer());
 		actionHandler.update(event);
 		this.notifyObserver(event);

@@ -25,7 +25,7 @@ public class ActionViewStatistics extends Action {
     public void start(Match match){
         EventViewStatistics event = new EventViewStatistics(player, chosenPlayer);
         match.getActionHandler().update(event);
-        //Notifies the RMIView
+        //Notifies the ServerRMIView
         match.notifyObserver(event);
     }
 

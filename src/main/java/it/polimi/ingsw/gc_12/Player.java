@@ -150,4 +150,11 @@ public class Player implements Serializable{
 			sb.append(" - " + resource);
 		return sb.toString();
 	}
+
+	public String printFamilyMembers(){
+		StringBuilder sb = new StringBuilder();
+		for(FamilyMember fm : familymembers.values())
+			sb.append(" - " + fm.getColor() + " [" + fm.getValue() + "] busy: " + fm.isBusy()).append(System.getProperty("line.separator"));
+		return sb.toString();
+	}
 }

@@ -5,9 +5,6 @@ import it.polimi.ingsw.gc_12.effect.EffectProvider;
 
 import java.util.List;
 
-/**
- * Created by feder on 2017-06-16.
- */
 public class EventViewStatistics extends Event {
 
     private Player chosenPlayer;
@@ -33,11 +30,17 @@ public class EventViewStatistics extends Event {
         sb.append(System.getProperty("line.separator"));
         sb.append("Viewing statistics of " + chosenPlayer.getName() + ":").append(System.getProperty("line.separator"));
         sb.append(System.getProperty("line.separator"));
+
+        sb.append("Family Members:").append(System.getProperty("line.separator"));
+        sb.append(chosenPlayer.printFamilyMembers()).append(System.getProperty("line.separator"));
+
         sb.append("Resources:").append(System.getProperty("line.separator"));
         sb.append(chosenPlayer.printResources()).append(System.getProperty("line.separator"));
+
         sb.append("Excommunications:").append(System.getProperty("line.separator"));
         sb.append(chosenPlayer.getExcommunications()).append(System.getProperty("line.separator"));
         sb.append(System.getProperty("line.separator"));
+
         sb.append("Cards:").append(System.getProperty("line.separator"));
         sb.append(chosenPlayer.getCards());
         return sb.toString();
