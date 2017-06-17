@@ -37,6 +37,7 @@ public class ViewCLI extends Observable implements View {
 			int inputInt = in.nextInt();
 			System.out.println("SENDING " + inputInt);
 			List<Action> actions = clientHandler.getActions();
+
 			if(inputInt >= actions.size()) {
 				System.out.println("The inserted number is not among the possible choices");
 			}

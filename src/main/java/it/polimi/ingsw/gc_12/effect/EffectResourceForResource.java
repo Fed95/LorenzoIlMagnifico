@@ -37,4 +37,9 @@ public class EffectResourceForResource extends Effect {
         resources.add(resource);
         player.removeResources(resources);
     }
+
+    @Override
+    public String toString() {
+        return event.getClass().getSimpleName() + ": " + this.getClass().getSimpleName() + ": " + resource + " for every [" + resource + "] you own.";
+    }
 }

@@ -6,6 +6,7 @@ import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.mvc.View;
+import it.polimi.ingsw.gc_12.resource.ResourceType;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -23,13 +24,52 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 
 	public void handleEvent(Event event) {
 		if(event.getPlayer() != null && isMyTurn(event.getPlayer())) {
-			actions = event.getActions();
-			System.out.println("What would you like to do?");
-			System.out.println();
-			for (int i = 0; i < actions.size(); i++) {
-				System.out.println(i + " - " + actions.get(i));
+			if (event instanceof EventRequiredValueNotSatisfied) {
+				printServantsChoice(event);
+			}
+			else {
+				if(event instanceof EventViewStatistics)
+					printStatistics(event);
+				actions = event.getActions();
+				System.out.println("What would you like to do?");
+				System.out.println();
+				for (int i = 0; i < actions.size(); i++)
+					System.out.println(i + " - " + actions.get(i));
 			}
 		}
+	}
+
+	private void printServantsChoice(Event event) {
+		int minValue = ((EventRequiredValueNotSatisfied) event).getOccupiable().getRequiredValue() - ((EventRequiredValueNotSatisfied) event).getFamilyMember().getValue();
+		int maxValue = event.getPlayer().getResourceValue(ResourceType.SERVANT);
+		System.out.println("You have " + maxValue + " Servants");
+		System.out.println("How many would you like to use?		(min: " + minValue + ", max: " + maxValue + ")");
+		System.out.println("(Please insert the desired value -" + minValue + ". We apologize for the inconvenience)");
+		System.out.println();
+		System.out.println(" - " + (maxValue - minValue + 1) + " Back to the start");
+	}
+
+	private void printStatistics(Event event) {
+		Player chosenPlayer = event.getPlayer();
+		StringBuilder sb = new StringBuilder();
+		sb.append(System.getProperty("line.separator"));
+		sb.append("Viewing statistics of " + chosenPlayer.getName() + ":").append(System.getProperty("line.separator"));
+		sb.append(System.getProperty("line.separator"));
+
+		sb.append("Family Members:").append(System.getProperty("line.separator"));
+		sb.append(chosenPlayer.printFamilyMembers()).append(System.getProperty("line.separator"));
+
+		sb.append("Resources:").append(System.getProperty("line.separator"));
+		sb.append(chosenPlayer.printResources()).append(System.getProperty("line.separator"));
+
+		sb.append("Excommunications:").append(System.getProperty("line.separator"));
+		sb.append(chosenPlayer.getExcommunications()).append(System.getProperty("line.separator"));
+		sb.append(System.getProperty("line.separator"));
+
+		sb.append("Cards:").append(System.getProperty("line.separator"));
+		sb.append(chosenPlayer.getCards());
+
+		System.out.println(sb.toString());
 	}
 
 	public List<Action> getActions() {

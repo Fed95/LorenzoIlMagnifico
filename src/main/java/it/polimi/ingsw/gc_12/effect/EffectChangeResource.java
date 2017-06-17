@@ -59,6 +59,6 @@ public class EffectChangeResource extends Effect {
 
 	@Override
 	public String toString() {
-		return String.valueOf(exchanges);
+		return event.getClass().getSimpleName() + ": " + this.getClass().getSimpleName() + ": " + String.valueOf(exchanges);
 	}
 }

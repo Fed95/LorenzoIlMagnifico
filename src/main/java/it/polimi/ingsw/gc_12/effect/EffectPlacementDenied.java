@@ -21,4 +21,9 @@ public class EffectPlacementDenied extends Effect {
     public void discard(Event event) throws RuntimeException {
 
     }
+
+    @Override
+    public String toString() {
+        return event.getClass().getSimpleName() + ": " + this.getClass().getSimpleName();
+    }
 }

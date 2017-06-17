@@ -57,6 +57,6 @@ public class EffectChangeFamilyMemberValue extends Effect{
 
 	@Override
 	public String toString() {
-		return "Adds " + " to the family member's value";
+		return event.getClass().getSimpleName() + ": Adds " + " to the family member's value";
 	}
 }

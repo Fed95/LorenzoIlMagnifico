@@ -74,7 +74,7 @@ public class Server {
 		List<Player> players = new ArrayList<>();
 		Map<ResourceType, Resource> resources = new HashMap<>();
 		for(ResourceType resourceType: ResourceType.values()) {
-			resources.put(resourceType, ResourceBuilder.create(resourceType, 100));
+			resources.put(resourceType, ResourceBuilder.create(resourceType, 3));
 		}
 		//resources.put(ResourceType.SERVANT, new Servant(5));
 		//resources.put(ResourceType.MONEY, new Money(5));

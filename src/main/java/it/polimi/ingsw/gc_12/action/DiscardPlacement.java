@@ -2,15 +2,16 @@ package it.polimi.ingsw.gc_12.action;
 
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
-import it.polimi.ingsw.gc_12.event.EventDiscardAction;
+import it.polimi.ingsw.gc_12.event.EventDiscardPlacement;
 
-public class DiscardAction extends Action {
+/**
+ * Created by feder on 2017-06-17.
+ */
+public class DiscardPlacement extends Action {
 
-    public DiscardAction(Player player) {
+    public DiscardPlacement(Player player) {
         super(player);
     }
-
-
 
     @Override
     public boolean isValid(Match match) {
@@ -19,7 +20,7 @@ public class DiscardAction extends Action {
 
     @Override
     public void start(Match match) {
-        EventDiscardAction event = new EventDiscardAction(player);
+        EventDiscardPlacement event = new EventDiscardPlacement(player);
         match.getActionHandler().update(event);
         //Notifies the ServerRMIView
         match.notifyObserver(event);
@@ -27,6 +28,6 @@ public class DiscardAction extends Action {
 
     @Override
     public String toString() {
-        return "Back to the start";
+        return "Back to start";
     }
 }

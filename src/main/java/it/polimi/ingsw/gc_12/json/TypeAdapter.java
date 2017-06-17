@@ -58,7 +58,7 @@ public class TypeAdapter {
 		final RuntimeTypeAdapterFactory<Event> factoryEvent = RuntimeTypeAdapterFactory
 				.of(Event.class, "eventType")
 				.registerSubtype(EventPlaceFamilyMember.class, EventPlaceFamilyMember.class.getSimpleName())
-				.registerSubtype(EventChooseFamilyMember.class, EventChooseFamilyMember.class.getSimpleName())
+				.registerSubtype(EventFamilyMemberChosen.class, EventFamilyMemberChosen.class.getSimpleName())
 				.registerSubtype(EventPickCard.class, EventPickCard.class.getSimpleName())
 				.registerSubtype(EventSpendResource.class, EventSpendResource.class.getSimpleName())
 				.registerSubtype(EventSupportChurch.class, EventSupportChurch.class.getSimpleName())

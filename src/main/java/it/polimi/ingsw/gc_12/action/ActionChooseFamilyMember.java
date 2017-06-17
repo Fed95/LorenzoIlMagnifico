@@ -4,9 +4,7 @@ import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.EventActionUnavailable;
-import it.polimi.ingsw.gc_12.event.EventChooseFamilyMember;
-
-import java.util.List;
+import it.polimi.ingsw.gc_12.event.EventFamilyMemberChosen;
 
 public class ActionChooseFamilyMember extends Action{
 
@@ -31,7 +29,7 @@ public class ActionChooseFamilyMember extends Action{
 		if (familyMember.isBusy()) {
 			match.notifyObserver(new EventActionUnavailable(false)); // TODO: check if isFMPlaced in this event is useful
 		}
-		EventChooseFamilyMember event = new EventChooseFamilyMember(player, familyMember);
+		EventFamilyMemberChosen event = new EventFamilyMemberChosen(player, familyMember);
 		match.getActionHandler().update(event);
 		//Notifies the ServerRMIView
 		match.notifyObserver(event);

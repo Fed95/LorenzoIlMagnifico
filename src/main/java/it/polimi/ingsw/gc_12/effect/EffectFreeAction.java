@@ -39,6 +39,6 @@ public class EffectFreeAction extends Effect {
 
     @Override
     public String toString() {
-        return "Free action of value " + value;
+        return event.getClass().getSimpleName() + ": " + this.getClass().getSimpleName() + " of value " + value;
     }
 }

@@ -41,6 +41,6 @@ public class EffectResourceForCards extends Effect{
 
     @Override
     public String toString() {
-        return "ResourceForCards: " + resource + " for every " + cardType + " card you own.";
+        return event.getClass().getSimpleName() + ": " + this.getClass().getSimpleName() + ": " + resource + " for every " + cardType + " card you own.";
     }
 }

@@ -20,7 +20,6 @@ public class EventPickCard extends Event {
         super(player);
         this.card = card;
         this.cardID = card.getId();
-        effectProviders.add(card);
     }
 
     public EventPickCard(int cardID) {
@@ -46,9 +45,11 @@ public class EventPickCard extends Event {
 
     @Override
     public boolean equals(Object obj) {
-        EventPickCard other = (EventPickCard) obj;
-        if(other.getCardID() == (cardID))
-            return true;
+        if(super.equals(obj)) {
+            EventPickCard other = (EventPickCard) obj;
+            if (other.getCardID() == (cardID))
+                return true;
+        }
         return false;
     }
 

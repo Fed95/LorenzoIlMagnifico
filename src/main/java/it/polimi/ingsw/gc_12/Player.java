@@ -53,7 +53,7 @@ public class Player implements Serializable{
 		Resource ownedResource = this.resources.get(resource.getType());
 		int newValue = ownedResource.getValue() + resource.getValue();
 		ownedResource.setValue(newValue);
-		this.resources.replace(resource.getType(), ownedResource);
+		this.resources.put(resource.getType(), ownedResource);
 	}
 	
 	public void addResources(List<Resource> resources) {

@@ -109,7 +109,7 @@ public class EventPlaceFamilyMember extends Event{
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(System.getProperty("line.separator"));
-		sb.append(player.getName() + " has placed the " + familyMember.getColor() + " Family Member on:").append(System.getProperty("line.separator"));
+		sb.append(player.getName() + " has placed the " + familyMember.getColor() + " Family Member (of value " + familyMember.getValue() + ") on:").append(System.getProperty("line.separator"));
 		sb.append(occupiables.get(0).toString());
 		return sb.toString();
 	}

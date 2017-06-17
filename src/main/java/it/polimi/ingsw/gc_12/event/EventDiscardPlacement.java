@@ -5,13 +5,13 @@ import it.polimi.ingsw.gc_12.effect.EffectProvider;
 
 import java.util.List;
 
-public class EventViewStatistics extends Event {
+/**
+ * Created by feder on 2017-06-17.
+ */
+public class EventDiscardPlacement extends  Event {
 
-    private Player chosenPlayer;
-
-    public EventViewStatistics(Player player, Player chosenPlayer) {
+    public EventDiscardPlacement(Player player) {
         super(player);
-        this.chosenPlayer = chosenPlayer;
     }
 
     @Override
@@ -26,6 +26,6 @@ public class EventViewStatistics extends Event {
 
     @Override
     public String toString() {
-        return player.getName() + " is viewing " + chosenPlayer.getName() + "'s stats.";
+        return "";
     }
 }

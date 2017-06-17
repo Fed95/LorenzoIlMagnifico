@@ -13,11 +13,11 @@ import it.polimi.ingsw.gc_12.action.ActionPlace;
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 
-public class EventChooseFamilyMember extends Event {
+public class EventFamilyMemberChosen extends Event {
 
 	private FamilyMember familyMember;
 	
-	public EventChooseFamilyMember(Player player, FamilyMember familyMember) {
+	public EventFamilyMemberChosen(Player player, FamilyMember familyMember) {
 		super(player);
 		this.familyMember = familyMember;
 
@@ -25,12 +25,12 @@ public class EventChooseFamilyMember extends Event {
 		effectProviders.addAll(player.getExcommunications());
 	}
 	
-	public EventChooseFamilyMember(FamilyMember familyMember) {
+	public EventFamilyMemberChosen(FamilyMember familyMember) {
 		super();
 		this.familyMember = familyMember;
 	}
 
-	public EventChooseFamilyMember() {
+	public EventFamilyMemberChosen() {
 		super();
 	}
 

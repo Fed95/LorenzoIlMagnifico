@@ -5,6 +5,9 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
+import it.polimi.ingsw.gc_12.occupiables.SpaceWork;
+import it.polimi.ingsw.gc_12.occupiables.Tower;
+import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.resource.Servant;
 
@@ -41,13 +44,13 @@ public class ActionHandler /*implements Observer<Event> */{
 
 
 	public List<Action> update(Event event) {
-		if(event instanceof EventChooseFamilyMember) {
-			actions = getActionsChooseFamilyMember((EventChooseFamilyMember) event);
+		if(event instanceof EventFamilyMemberChosen) {
+			actions = getActionsFamilyMemberChoosen((EventFamilyMemberChosen) event);
 		}
 		else if(event instanceof EventRequiredValueNotSatisfied) {
 			actions = getActionsRequiredValue((EventRequiredValueNotSatisfied) event);
 		}
-		else if(event instanceof EventStartTurn || event instanceof EventPlaceFamilyMember) {
+		else if(event instanceof EventStartTurn || event instanceof EventPlaceFamilyMember || event instanceof EventDiscardAction || event instanceof EventDiscardPlacement) {
 			actions = getActionsStartTurn(event);
 		}
 		else if(event instanceof EventRequestStatistics){
@@ -56,18 +59,26 @@ public class ActionHandler /*implements Observer<Event> */{
 		else if(event instanceof EventViewStatistics){
 			actions = getActionsViewStatistics(event);
 		}
-		else if(event instanceof EventDiscardAction){
-			actions = getActionsStartTurn(new EventStartTurn(event.getPlayer()));
+		else if(event instanceof EventTowerChosen){
+			actions = getActionsTowerChosen((EventTowerChosen) event);
+		}
+		else if(event instanceof EventWorkplaceChosen){
+			actions = getActionsWorkplaceChosen(event);
 		}
 
 		event.setActions(actions);
 		return actions;
 	}
 
+	private List<Action> getActionsWorkplaceChosen(Event event) {
+		return null;
+	}
+
+
 	public List<Action> getActionsStartTurn(Event event) {
 		Player player = event.getPlayer();
 		List<Action> actions = new ArrayList<>();
-		if(event instanceof EventStartTurn) {
+		if(event instanceof EventStartTurn || event instanceof EventDiscardPlacement) {
 			for(FamilyMember familyMember: player.getAvailableFamilyMembers()) {
 				actions.add(new ActionChooseFamilyMember(player, familyMember));
 			}
@@ -77,16 +88,27 @@ public class ActionHandler /*implements Observer<Event> */{
 		return actions;
 	}
 
-	public List<Action> getActionsChooseFamilyMember(EventChooseFamilyMember event) {
+	public List<Action> getActionsFamilyMemberChoosen(EventFamilyMemberChosen event) {
 		Player player = event.getPlayer();
 		List<Action> actions = new ArrayList<>();
-		for(Occupiable occupiable: match.getBoard().getOccupiables()) {
-			ActionPlace action = ActionFactory.createActionPlace(player, event.getFamilyMember(), occupiable);
-			if(action.isValid(match)) {
-				actions.add(action);
+		//Adds the towers with at least one valid floor
+		for(Tower tower : match.getBoard().getTowerSet().getTowers().values()){
+			for(TowerFloor towerFloor : tower.getFloors()){
+				ActionPlace action = ActionFactory.createActionPlace(player, event.getFamilyMember(), towerFloor);
+				if(action.isValid(match)) {
+					actions.add(new ActionChooseTower(player, event.getFamilyMember(), tower));
+					break;
+				}
 			}
 		}
-		actions.add(new DiscardAction(player));
+		for(Occupiable occupiable: match.getBoard().getOccupiables()) {
+			if(!(occupiable instanceof TowerFloor)){
+				ActionPlace action = ActionFactory.createActionPlace(player, event.getFamilyMember(), occupiable);
+				if(action.isValid(match))
+					actions.add(action);
+			}
+		}
+		actions.add(new DiscardPlacement(player));
 		return actions;
 	}
 
@@ -102,7 +124,7 @@ public class ActionHandler /*implements Observer<Event> */{
 	private List<Action> getActionsViewStatistics(Event event) {
 		Player player = event.getPlayer();
 		List<Action> actions = new ArrayList<>();
-		actions.add(new DiscardAction(player));
+		actions.add(new DiscardPlacement(player));
 		return actions;
 	}
 
@@ -115,9 +137,21 @@ public class ActionHandler /*implements Observer<Event> */{
 			if(action.isValid(match))
 				actions.add(action);
 		}
-		actions.add(new DiscardAction(player));
+		actions.add(new DiscardPlacement(player));
 		return actions;
 	}
 
+	private List<Action> getActionsTowerChosen(EventTowerChosen event) {
+		Player player = event.getPlayer();
+		List<Action> actions = new ArrayList<>();
+
+		for(TowerFloor towerFloor : event.getTower().getFloors()){
+			ActionPlace action = ActionFactory.createActionPlace(event.getPlayer(), event.getFamilyMember(), towerFloor);
+			if(action.isValid(match))
+				actions.add(new ActionPlaceOnTower(player, event.getFamilyMember(), towerFloor));
+
+		}
+		return actions;
+	}
 
 }

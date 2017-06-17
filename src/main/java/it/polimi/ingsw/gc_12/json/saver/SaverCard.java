@@ -10,15 +10,12 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.card.*;
 import it.polimi.ingsw.gc_12.resource.*;
-import it.polimi.ingsw.gc_12.track.FaithSlot;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-
-import com.sun.org.apache.bcel.internal.generic.ReturnaddressType;
 
 public class SaverCard extends Saver<List<Card>> {
 
@@ -323,7 +320,7 @@ public class SaverCard extends Saver<List<Card>> {
 		Resource resource;
 
 			System.out.println("Choose the event");
-			System.out.println("1 EventPickCard \n 2 EventPlaceFamilyMember \n 3 EventSpendResource \n 4 EventSupportChurch \n 5 EventChooseFamilyMember \n 6 Redo");
+			System.out.println("1 EventPickCard \n 2 EventPlaceFamilyMember \n 3 EventSpendResource \n 4 EventSupportChurch \n 5 EventFamilyMemberChosen \n 6 Redo");
 			int eventInput = scanner.nextInt();
 			
 			switch(eventInput){
@@ -344,7 +341,7 @@ public class SaverCard extends Saver<List<Card>> {
 					break;
 				case 5:
 					familyMember = askFamilyMember();
-					event = new EventChooseFamilyMember(familyMember);
+					event = new EventFamilyMemberChosen(familyMember);
 					break;
 			}
 		return event;

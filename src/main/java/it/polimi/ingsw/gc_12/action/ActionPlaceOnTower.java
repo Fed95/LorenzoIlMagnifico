@@ -56,11 +56,11 @@ public class ActionPlaceOnTower extends ActionPlace {
 
     @Override
     protected void execute(Match match) {
-        if (tower.getFloors().stream().anyMatch(TowerFloor::isOccupied)) { //If no floor of the tower has been occupied yet
+        if (!tower.isTaken())
             tower.activateMalus();
-        }
         match.placeFamilyMember(towerFloor, familyMember);
         CardDevelopment card = towerFloor.getCard();
+        player.removeResources(card.getRequirements());
         player.getPersonalBoard().placeCard(card);
         towerFloor.removeCard();
         executeImmediateEffects(match, player, card);
