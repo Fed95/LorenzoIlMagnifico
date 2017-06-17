@@ -20,13 +20,13 @@ import java.rmi.RemoteException;
 import java.util.HashSet;
 import java.util.Set;
 
-public class RMIView extends View implements RMIViewRemote {
+public class ServerRMIView extends View implements RMIViewRemote {
 
 	private Set<ClientViewRemote> clients;
 	private Server server;
 	private Match match;
 
-	public RMIView(Server server, Match match) {
+	public ServerRMIView(Server server, Match match) {
 		this.clients = new HashSet<>();
 		this.server = server;
 		this.match = match;
@@ -71,7 +71,7 @@ public class RMIView extends View implements RMIViewRemote {
 	@Override
 	public void receiveAction(int input){
 		Action action = match.getActionHandler().getAvailableActions().get(input);
-		System.out.println("RMIView: " + action.getClass().getSimpleName() + " received from ClientRMI. Notifying observers (Server Controller).");
+		System.out.println("ServerRMIView: " + action.getClass().getSimpleName() + " received from ClientRMI. Notifying observers (Server Controller).");
 		this.notifyObserver(action);
 	}
 
