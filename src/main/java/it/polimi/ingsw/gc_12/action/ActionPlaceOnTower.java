@@ -58,12 +58,12 @@ public class ActionPlaceOnTower extends ActionPlace {
     protected void execute(Match match) {
         if (!tower.isTaken())
             tower.activateMalus();
-        match.placeFamilyMember(towerFloor, familyMember);
         CardDevelopment card = towerFloor.getCard();
         player.removeResources(card.getRequirements());
         player.getPersonalBoard().placeCard(card);
         towerFloor.removeCard();
         executeImmediateEffects(match, player, card);
+        match.placeFamilyMember(towerFloor, familyMember);
     }
 
     public void executeImmediateEffects(Match match, Player player, CardDevelopment card) {

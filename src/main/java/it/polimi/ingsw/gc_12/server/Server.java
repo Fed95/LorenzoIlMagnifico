@@ -76,6 +76,7 @@ public class Server {
 		Map<ResourceType, Resource> resources = new HashMap<>();
 		for(ResourceType resourceType: ResourceType.values()) {
 			resources.put(resourceType, ResourceBuilder.create(resourceType, 100));
+
 		}
 		List<PlayerColor> playerColors = Arrays.asList(PlayerColor.values());
 		int i = 0;

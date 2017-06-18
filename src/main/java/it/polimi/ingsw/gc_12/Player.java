@@ -24,7 +24,7 @@ public class Player implements Serializable{
 	private final String name;
 	private final PlayerColor playerColor;
 	private PersonalBoard personalBoard;
-	private transient List<ExcommunicationTile> excommunications = new ArrayList<>(); //TODO: UNDERSTAND WHY IT IS NOT INITIALISED
+	private List<ExcommunicationTile> excommunications = new ArrayList<>();
 	private Map<ResourceType, Resource> resources;
 	private Map<FamilyMemberColor, FamilyMember> familymembers = new HashMap<>();
 	private PlayerState state;
@@ -49,12 +49,12 @@ public class Player implements Serializable{
 	}
 
 	private void addResource(Resource resource) {
-		if(resource == null)
-			return;
-		Resource ownedResource = this.resources.get(resource.getType());
-		int newValue = ownedResource.getValue() + resource.getValue();
-		ownedResource.setValue(newValue);
-		this.resources.put(resource.getType(), ownedResource);
+		if(resource != null) {
+			Resource ownedResource = this.resources.get(resource.getType());
+			int newValue = ownedResource.getValue() + resource.getValue();
+			ownedResource.setValue(newValue);
+			this.resources.put(resource.getType(), ownedResource);
+		}
 	}
 	
 	public void addResources(List<Resource> resources) {
@@ -74,8 +74,10 @@ public class Player implements Serializable{
 	}
 
 	private void removeResource(Resource resourceToRemove) throws RuntimeException {
-		Resource ownedResource = this.resources.get(resourceToRemove.getType());
-		ownedResource.setValue(ownedResource.getValue() - resourceToRemove.getValue());
+		if(resourceToRemove != null) {
+			Resource ownedResource = this.resources.get(resourceToRemove.getType());
+			ownedResource.setValue(ownedResource.getValue() - resourceToRemove.getValue());
+		}
 	}
 
 	public void removeResources(List<Resource> resourcesToRemove) throws RuntimeException {

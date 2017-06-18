@@ -25,7 +25,7 @@ public class EffectHandler {
 			}
 		}catch(Exception e){
 			discardEffects(executedEffects, event);
-			System.out.println("Effects discarded due to " + e);
+			System.out.println("Effects discarded due to " + e + ". Cause: " + e.getStackTrace());
 		}
 		return executedEffects;
 	}

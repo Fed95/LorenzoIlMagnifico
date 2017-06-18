@@ -72,11 +72,26 @@ public class ActionHandler /*implements Observer<Event> */{
 		else if(event instanceof EventMarketChosen){
 			actions = getActionsMarketChosen((EventMarketChosen) event);
 		}
+		else if(event instanceof EventFreeAction){
+			actions = getFreeActions((EventFreeAction) event);
+		}
 
 		event.setActions(actions);
 		return actions;
 	}
 
+	private List<Action> getFreeActions(EventFreeAction event) {
+		Player player = event.getPlayer();
+		List<Action> actions = new ArrayList<>();
+		for(Occupiable occupiable: event.getOccupiables()) {
+				ActionPlace action = ActionFactory.createActionPlace(player, event.getFamilyMember(), occupiable);
+				if(action.isValid(match))
+					actions.add(action);
+
+		}
+		actions.add(new DiscardAction(player));
+		return null;
+	}
 
 
 	public List<Action> getActionsStartTurn(Event event) {
@@ -105,15 +120,6 @@ public class ActionHandler /*implements Observer<Event> */{
 				}
 			}
 		}
-		/*
-		for(Occupiable occupiable: match.getBoard().getOccupiables()) {
-			if(!(occupiable instanceof TowerFloor)){
-				ActionPlace action = ActionFactory.createActionPlace(player, event.getFamilyMember(), occupiable);
-				if(action.isValid(match))
-					actions.add(action);
-			}
-		}
-		*/
 		actions.add(new ActionChooseMarket(player, event.getFamilyMember()));
 		actions.add(new ActionChooseWorkplace(player, event.getFamilyMember()));
 		actions.add(new ActionPlaceOnCouncil(player, event.getFamilyMember(), match.getBoard().getCouncilPalace()));

@@ -9,28 +9,11 @@ import java.util.List;
 /**
  * Created by feder on 2017-06-18.
  */
-public class EventMarketChosen extends Event {
+public class EventMarketChosen extends EventWorkplaceChosen {
 
-
-    private FamilyMember familyMember;
 
     public EventMarketChosen(Player player, FamilyMember familyMember) {
-        super(player);
-        this.familyMember = familyMember;
-    }
-
-    public FamilyMember getFamilyMember() {
-        return familyMember;
-    }
-
-    @Override
-    public List<Object> getAttributes() {
-        return null;
-    }
-
-    @Override
-    public List<EffectProvider> getEffectProviders() {
-        return null;
+        super(player, familyMember);
     }
 
     @Override
