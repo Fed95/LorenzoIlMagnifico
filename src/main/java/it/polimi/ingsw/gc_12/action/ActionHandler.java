@@ -15,6 +15,7 @@ public class ActionHandler /*implements Observer<Event> */{
 	private List<Action> actions = new ArrayList<>();
 	private Match match;
 	private int offset;
+	private boolean hasPlaced = false;
 
 	public ActionHandler(Match match) {
 		this.match = match;
@@ -54,7 +55,7 @@ public class ActionHandler /*implements Observer<Event> */{
 			offset = ((EventRequiredValueNotSatisfied) event).getOccupiable().getRequiredValue() - ((EventRequiredValueNotSatisfied) event).getFamilyMember().getValue();
 			actions = getActionsRequiredValue((EventRequiredValueNotSatisfied) event);
 		}
-		else if(event instanceof EventStartTurn || event instanceof EventPlaceFamilyMember || event instanceof EventDiscardAction || event instanceof EventDiscardPlacement) {
+		else if(event instanceof EventStartTurn || event instanceof EventPlaceFamilyMember || event instanceof EventDiscardAction) {
 			actions = getActionsStartTurn(event);
 		}
 		else if(event instanceof EventRequestStatistics){
@@ -97,8 +98,12 @@ public class ActionHandler /*implements Observer<Event> */{
 	public List<Action> getActionsStartTurn(Event event) {
 		Player player = event.getPlayer();
 		List<Action> actions = new ArrayList<>();
-		if(event instanceof EventStartTurn || event instanceof EventDiscardPlacement) {
-			for(FamilyMember familyMember: player.getAvailableFamilyMembers()) {
+		if(event instanceof EventStartTurn)
+			hasPlaced = false;
+		if(event instanceof EventPlaceFamilyMember)
+			hasPlaced = true;
+		if(!hasPlaced) {
+			for (FamilyMember familyMember : player.getAvailableFamilyMembers()) {
 				actions.add(new ActionChooseFamilyMember(player, familyMember));
 			}
 		}
@@ -123,7 +128,7 @@ public class ActionHandler /*implements Observer<Event> */{
 		actions.add(new ActionChooseMarket(player, event.getFamilyMember()));
 		actions.add(new ActionChooseWorkplace(player, event.getFamilyMember()));
 		actions.add(new ActionPlaceOnCouncil(player, event.getFamilyMember(), match.getBoard().getCouncilPalace()));
-		actions.add(new DiscardPlacement(player));
+		actions.add(new DiscardAction(player));
 		return actions;
 	}
 
@@ -139,7 +144,7 @@ public class ActionHandler /*implements Observer<Event> */{
 	private List<Action> getActionsViewStatistics(Event event) {
 		Player player = event.getPlayer();
 		List<Action> actions = new ArrayList<>();
-		actions.add(new DiscardPlacement(player));
+		actions.add(new DiscardAction(player));
 		return actions;
 	}
 
@@ -152,7 +157,7 @@ public class ActionHandler /*implements Observer<Event> */{
 			if(action.isValid(match))
 				actions.add(action);
 		}
-		actions.add(new DiscardPlacement(player));
+		actions.add(new DiscardAction(player));
 		return actions;
 	}
 
@@ -166,7 +171,7 @@ public class ActionHandler /*implements Observer<Event> */{
 				actions.add(new ActionPlaceOnTower(player, event.getFamilyMember(), towerFloor));
 
 		}
-		actions.add(new DiscardPlacement(player));
+		actions.add(new DiscardAction(player));
 		return actions;
 	}
 
@@ -180,7 +185,7 @@ public class ActionHandler /*implements Observer<Event> */{
 					actions.add(new ActionPlaceOnSpaceWork(player, event.getFamilyMember(), spaceWork));
 			}
 		}
-		actions.add(new DiscardPlacement(player));
+		actions.add(new DiscardAction(player));
 		return actions;
 	}
 
@@ -192,7 +197,7 @@ public class ActionHandler /*implements Observer<Event> */{
 			if(action.isValid(match))
 				actions.add(new ActionPlaceOnMarket(player, event.getFamilyMember(), spaceMarket));
 		}
-		actions.add(new DiscardPlacement(player));
+		actions.add(new DiscardAction(player));
 		return actions;
 	}
 }

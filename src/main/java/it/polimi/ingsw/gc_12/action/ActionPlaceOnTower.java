@@ -61,9 +61,9 @@ public class ActionPlaceOnTower extends ActionPlace {
         CardDevelopment card = towerFloor.getCard();
         player.removeResources(card.getRequirements());
         player.getPersonalBoard().placeCard(card);
-        towerFloor.removeCard();
         executeImmediateEffects(match, player, card);
         match.placeFamilyMember(towerFloor, familyMember);
+        towerFloor.removeCard();
     }
 
     public void executeImmediateEffects(Match match, Player player, CardDevelopment card) {

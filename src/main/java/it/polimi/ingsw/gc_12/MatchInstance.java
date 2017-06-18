@@ -38,9 +38,9 @@ public class MatchInstance implements Serializable, Cloneable {
 	}
 
 	private Occupiable getOccupiable(Occupiable occupiable) {
-		System.out.println("MatchInstance: retrieving the occupiable");
+		//System.out.println("MatchInstance: retrieving the occupiable");
 		List<Occupiable> occupiables =  board.getOccupiables().stream().filter(myOccupiable -> myOccupiable.equals(occupiable)).collect(Collectors.toList());
-		System.out.println("MatchInstance: occupiable found: " + occupiables);
+		//System.out.println("MatchInstance: occupiable found: " + occupiables);
 		return occupiables.get(0);
 	}
 

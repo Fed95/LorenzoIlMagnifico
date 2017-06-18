@@ -47,7 +47,6 @@ public class TowerFloor extends Occupiable{
 
 	@Override
 	public void placeFamilyMember(FamilyMember occupier) {
-		System.out.println(this + ": placing " + occupier);
 		this.occupiers.add(occupier);
 		System.out.println(occupiers);
 	}

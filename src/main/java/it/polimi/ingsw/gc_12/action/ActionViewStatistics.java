@@ -4,6 +4,7 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.EventViewStatistics;
 
+
 /**
  * Created by feder on 2017-06-16.
  */
@@ -14,6 +15,7 @@ public class ActionViewStatistics extends Action {
     public ActionViewStatistics(Player player, Player chosenPlayer) {
         super(player);
         this.chosenPlayer = chosenPlayer;
+
     }
 
     @Override
@@ -32,5 +34,6 @@ public class ActionViewStatistics extends Action {
     @Override
     public String toString() {
         return "View statistics of: " + chosenPlayer.getName();
+
     }
 }
