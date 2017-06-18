@@ -14,6 +14,7 @@ import java.util.List;
 public class ActionHandler /*implements Observer<Event> */{
 	private List<Action> actions = new ArrayList<>();
 	private Match match;
+	private int offset;
 
 	public ActionHandler(Match match) {
 		this.match = match;
@@ -39,12 +40,18 @@ public class ActionHandler /*implements Observer<Event> */{
 		return actions;
 	}
 
+	public Action getAvailableAction(int input) {
+		return actions.get(input-offset);
+	}
+
 
 	public List<Action> update(Event event) {
+		offset = 0;
 		if(event instanceof EventFamilyMemberChosen) {
 			actions = getActionsFamilyMemberChoosen((EventFamilyMemberChosen) event);
 		}
 		else if(event instanceof EventRequiredValueNotSatisfied) {
+			offset = ((EventRequiredValueNotSatisfied) event).getOccupiable().getRequiredValue() - ((EventRequiredValueNotSatisfied) event).getFamilyMember().getValue();
 			actions = getActionsRequiredValue((EventRequiredValueNotSatisfied) event);
 		}
 		else if(event instanceof EventStartTurn || event instanceof EventPlaceFamilyMember || event instanceof EventDiscardAction || event instanceof EventDiscardPlacement) {

@@ -44,9 +44,8 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 		int maxValue = event.getPlayer().getResourceValue(ResourceType.SERVANT);
 		System.out.println("You have " + maxValue + " Servants");
 		System.out.println("How many would you like to use?		(min: " + minValue + ", max: " + maxValue + ")");
-		System.out.println("(Please insert the desired value -" + minValue + ". We apologize for the inconvenience)");
 		System.out.println();
-		System.out.println(" - " + (maxValue - minValue + 1) + " Back to the start");
+		System.out.println("0 - Back to the start");
 	}
 
 	private void printStatistics(Event event) {
