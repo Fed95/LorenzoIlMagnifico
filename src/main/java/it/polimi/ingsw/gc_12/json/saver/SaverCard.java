@@ -320,7 +320,9 @@ public class SaverCard extends Saver<List<Card>> {
 		Resource resource;
 
 			System.out.println("Choose the event");
-			System.out.println("1 EventPickCard \n 2 EventPlaceFamilyMember \n 3 EventSpendResource \n 4 EventSupportChurch \n 5 EventFamilyMemberChosen \n 6 Redo");
+
+			System.out.println("1 EventPickCard \n 2 EventPlaceFamilyMember \n 3 EventSpendResource \n 4 EventSupportChurch \n 5 EventChooseFamilyMember \n 6 EventEndMatch  \n 16 Redo");
+
 			int eventInput = scanner.nextInt();
 			
 			switch(eventInput){
@@ -343,6 +345,9 @@ public class SaverCard extends Saver<List<Card>> {
 					familyMember = askFamilyMember();
 					event = new EventFamilyMemberChosen(familyMember);
 					break;
+				case 6:
+					event = new EventEndMatch();
+
 			}
 		return event;
 	}
