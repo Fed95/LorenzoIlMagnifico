@@ -22,15 +22,16 @@ import it.polimi.ingsw.gc_12.track.FaithSlot;
 public class Player implements Serializable{
 	
 	private final String name;
-	private transient Match match;
+	private final PlayerColor playerColor;
 	private PersonalBoard personalBoard;
 	private transient List<ExcommunicationTile> excommunications = new ArrayList<>(); //TODO: UNDERSTAND WHY IT IS NOT INITIALISED
 	private Map<ResourceType, Resource> resources;
 	private Map<FamilyMemberColor, FamilyMember> familymembers = new HashMap<>();
 	private PlayerState state;
 	
-	public Player(String name, Map<ResourceType, Resource> resources){
+	public Player(String name, PlayerColor playerColor,  Map<ResourceType, Resource> resources){
 		this.name = name;
+		this.playerColor = playerColor;
 		this.personalBoard = new PersonalBoard();
 		this.resources = resources;
 		personalBoard.getResourceContainer().syncronize(this.resources);
@@ -130,10 +131,6 @@ public class Player implements Serializable{
 
 	public List<ExcommunicationTile> getExcommunications() {
 		return excommunications;
-	}
-
-	public Match getMatch() {
-		return match;
 	}
 
 	public PlayerState getState() {

@@ -3,6 +3,7 @@ package it.polimi.ingsw.gc_12.server;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.MatchRemote;
 import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.PlayerColor;
 import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
 import it.polimi.ingsw.gc_12.resource.*;
 import it.polimi.ingsw.gc_12.server.controller.Controller;
@@ -74,17 +75,19 @@ public class Server {
 		List<Player> players = new ArrayList<>();
 		Map<ResourceType, Resource> resources = new HashMap<>();
 		for(ResourceType resourceType: ResourceType.values()) {
-			resources.put(resourceType, ResourceBuilder.create(resourceType, 3));
+			resources.put(resourceType, ResourceBuilder.create(resourceType, 100));
 		}
-		//resources.put(ResourceType.SERVANT, new Servant(5));
-		//resources.put(ResourceType.MONEY, new Money(5));
+		List<PlayerColor> playerColors = Arrays.asList(PlayerColor.values());
+		int i = 0;
 		for(ClientViewRemote client : serverRmiView.getClients()) {
-			Player player = new Player(client.getName(), resources);
+			Player player = new Player(client.getName(), playerColors.get(i), resources);
 			players.add(player);
+			i++;
 		}
 		for(String name : names) {
-			Player player = new Player(name, resources);
+			Player player = new Player(name, playerColors.get(i), resources);
 			players.add(player);
+			i++;
 		}
 		match.init(players);
 		MatchRemote matchRemote = (MatchRemote) UnicastRemoteObject.exportObject(match, 0);
