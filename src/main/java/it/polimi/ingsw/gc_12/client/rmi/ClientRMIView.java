@@ -1,25 +1,15 @@
 package it.polimi.ingsw.gc_12.client.rmi;
 
-
-import it.polimi.ingsw.gc_12.MatchRemote;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
-import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.event.Event;
-import it.polimi.ingsw.gc_12.action.Action;
+
 import java.io.Serializable;
 import java.rmi.RemoteException;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ClientRMIView extends ClientHandler implements ClientViewRemote, Serializable{
 
 	private String name;
-
-	private MatchRemote matchRemote;
-	private Player player;
-	private volatile List<Action> actions = new ArrayList<>();
 
 	protected ClientRMIView(String name) throws RemoteException {
 		super();
@@ -29,20 +19,7 @@ public class ClientRMIView extends ClientHandler implements ClientViewRemote, Se
 	@Override
 	public void updateClient(Event event) {
 		System.out.println(event);
-		if(event instanceof EventStartMatch) {
-			EventStartMatch eventStartMatch = (EventStartMatch) event;
-			matchRemote = eventStartMatch.getMatch();
-			try {
-				player = matchRemote.getPlayer(name);
-				match = matchRemote.getInstance();
-
-			} catch (CloneNotSupportedException | RemoteException e) {
-				e.printStackTrace();
-			}
-		}
-		else {
-			handleEvent(event);
-		}
+		handleEvent(event);
 	}
 
 	@Override

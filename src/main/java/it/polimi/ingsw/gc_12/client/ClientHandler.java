@@ -24,8 +24,17 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 
 	public void handleEvent(Event event) {
 		if(event.getPlayer() != null && isMyTurn(event.getPlayer())) {
-			if (event instanceof EventRequiredValueNotSatisfied) {
+			if(event instanceof EventStartMatch) {
+				System.out.println("ClientRMI: EventStartMatch recognised. Creating view with local match.");
+				EventStartMatch eventStartMatch = (EventStartMatch) event;
+				match = eventStartMatch.getMatchInstance();
+			}
+			else if (event instanceof EventRequiredValueNotSatisfied) {
 				printServantsChoice(event);
+			}
+			else if (event instanceof EventPlaceFamilyMember) {
+				EventPlaceFamilyMember eventPlaceFamilyMember = (EventPlaceFamilyMember) event;
+
 			}
 			else {
 				if(event instanceof EventViewStatistics)
@@ -43,9 +52,9 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 		int minValue = ((EventRequiredValueNotSatisfied) event).getOccupiable().getRequiredValue() - ((EventRequiredValueNotSatisfied) event).getFamilyMember().getValue();
 		int maxValue = event.getPlayer().getResourceValue(ResourceType.SERVANT);
 		System.out.println("You have " + maxValue + " Servants");
-		System.out.println("How many would you like to use?		(min: " + minValue + ", max: " + maxValue + ")");
-		System.out.println();
-		System.out.println("0 - Back to the start");
+		System.out.println("How many would you like to use?	min: " + minValue + ", max: " + maxValue + " (Press 0 to go back)");
+		/*System.out.println();
+		System.out.println("0 - Back to the start");*/
 	}
 
 	private void printStatistics(Event event) {

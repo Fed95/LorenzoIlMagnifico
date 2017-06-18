@@ -17,12 +17,8 @@ import java.util.Scanner;
 public class ClientRMI implements ClientSender { //Main class of the Clients using RMI
 
 	private final static int RMI_PORT = 52365;
-
-	
 	public final static String HOST = "127.0.0.1";
-
 	public final static int PORT = 52365;
-
 	private static final String NAME = "lorenzo";
 
 	private RMIViewRemote serverStub;
@@ -35,8 +31,6 @@ public class ClientRMI implements ClientSender { //Main class of the Clients usi
 
 		//get the stub (local object) of the remote view
 		serverStub = (RMIViewRemote) registry.lookup(NAME);
-
-
 
 		Scanner stdIn = new Scanner(System.in);
 		System.out.println("Choose a name");

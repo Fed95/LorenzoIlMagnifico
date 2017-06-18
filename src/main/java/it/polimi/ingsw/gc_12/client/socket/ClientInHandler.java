@@ -25,37 +25,20 @@ public class ClientInHandler extends ClientHandler implements Runnable {
 	
 	@Override
 	public void run() {
-
-
 		while(true){
-
 			// handles input messages coming from the server, just showing them to the user
 			try {
 				Object object = socketIn.readObject();
 				if(object instanceof Event) {
 					Event event = (Event) object;
 					System.out.println(event);
-					if(event instanceof EventStartMatch) {
-						System.out.println("ClientRMI: EventStartMatch recognised. Creating view with local match.");
-						EventStartMatch eventStartMatch = (EventStartMatch) object;
-						match = eventStartMatch.getMatchInstance();
-					}
-					else {
-						handleEvent(event);
-					}
+					handleEvent(event);
 				}
-
-			} catch (ClassNotFoundException e) {
+			} catch (ClassNotFoundException | IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-	}
-
-	public void createView(MatchInstance match) {
-		//view = new ViewCLI(match, clientOut);
 	}
 
 	@Override
