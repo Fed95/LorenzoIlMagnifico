@@ -23,22 +23,22 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 	}
 
 	public void handleEvent(Event event) {
+		if(event instanceof EventStartMatch) {
+			System.out.println("ClientRMI: EventStartMatch recognised. Creating view with local match.");
+			EventStartMatch eventStartMatch = (EventStartMatch) event;
+			match = eventStartMatch.getMatchInstance();
+		}
 		if(event.getPlayer() != null && isMyTurn(event.getPlayer())) {
-			if(event instanceof EventStartMatch) {
-				System.out.println("ClientRMI: EventStartMatch recognised. Creating view with local match.");
-				EventStartMatch eventStartMatch = (EventStartMatch) event;
-				match = eventStartMatch.getMatchInstance();
-			}
-			else if (event instanceof EventRequiredValueNotSatisfied) {
+			if (event instanceof EventRequiredValueNotSatisfied) {
 				printServantsChoice(event);
-			}
-			else if (event instanceof EventPlaceFamilyMember) {
-				EventPlaceFamilyMember eventPlaceFamilyMember = (EventPlaceFamilyMember) event;
-
 			}
 			else {
 				if(event instanceof EventViewStatistics)
 					printStatistics(event);
+				else if (event instanceof EventPlaceFamilyMember) {
+					EventPlaceFamilyMember eventPlaceFamilyMember = (EventPlaceFamilyMember) event;
+					match.placeFamilyMember(eventPlaceFamilyMember.getOccupiable(), eventPlaceFamilyMember.getFamilyMember());
+				}
 				actions = event.getActions();
 				System.out.println("What would you like to do?");
 				System.out.println();
