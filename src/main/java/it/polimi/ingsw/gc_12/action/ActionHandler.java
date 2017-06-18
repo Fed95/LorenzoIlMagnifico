@@ -4,10 +4,7 @@ import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.*;
-import it.polimi.ingsw.gc_12.occupiables.Occupiable;
-import it.polimi.ingsw.gc_12.occupiables.SpaceWork;
-import it.polimi.ingsw.gc_12.occupiables.Tower;
-import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
+import it.polimi.ingsw.gc_12.occupiables.*;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.resource.Servant;
 
@@ -63,16 +60,16 @@ public class ActionHandler /*implements Observer<Event> */{
 			actions = getActionsTowerChosen((EventTowerChosen) event);
 		}
 		else if(event instanceof EventWorkplaceChosen){
-			actions = getActionsWorkplaceChosen(event);
+			actions = getActionsWorkplaceChosen((EventWorkplaceChosen) event);
+		}
+		else if(event instanceof EventMarketChosen){
+			actions = getActionsMarketChosen((EventMarketChosen) event);
 		}
 
 		event.setActions(actions);
 		return actions;
 	}
 
-	private List<Action> getActionsWorkplaceChosen(Event event) {
-		return null;
-	}
 
 
 	public List<Action> getActionsStartTurn(Event event) {
@@ -91,7 +88,7 @@ public class ActionHandler /*implements Observer<Event> */{
 	public List<Action> getActionsFamilyMemberChoosen(EventFamilyMemberChosen event) {
 		Player player = event.getPlayer();
 		List<Action> actions = new ArrayList<>();
-		//Adds the towers with at least one valid floor
+		//Adds the towers with at least one valid floor TODO: ADD CHECK FOR MARKET AND WORK
 		for(Tower tower : match.getBoard().getTowerSet().getTowers().values()){
 			for(TowerFloor towerFloor : tower.getFloors()){
 				ActionPlace action = ActionFactory.createActionPlace(player, event.getFamilyMember(), towerFloor);
@@ -101,6 +98,7 @@ public class ActionHandler /*implements Observer<Event> */{
 				}
 			}
 		}
+		/*
 		for(Occupiable occupiable: match.getBoard().getOccupiables()) {
 			if(!(occupiable instanceof TowerFloor)){
 				ActionPlace action = ActionFactory.createActionPlace(player, event.getFamilyMember(), occupiable);
@@ -108,6 +106,10 @@ public class ActionHandler /*implements Observer<Event> */{
 					actions.add(action);
 			}
 		}
+		*/
+		actions.add(new ActionChooseMarket(player, event.getFamilyMember()));
+		actions.add(new ActionChooseWorkplace(player, event.getFamilyMember()));
+		actions.add(new ActionPlaceOnCouncil(player, event.getFamilyMember(), match.getBoard().getCouncilPalace()));
 		actions.add(new DiscardPlacement(player));
 		return actions;
 	}
@@ -151,7 +153,33 @@ public class ActionHandler /*implements Observer<Event> */{
 				actions.add(new ActionPlaceOnTower(player, event.getFamilyMember(), towerFloor));
 
 		}
+		actions.add(new DiscardPlacement(player));
 		return actions;
 	}
 
+	private List<Action> getActionsWorkplaceChosen(EventWorkplaceChosen event) {
+		Player player = event.getPlayer();
+		List<Action> actions = new ArrayList<>();
+		for(SpaceWorkZone spaceWorkZone : match.getBoard().getSpaceWorkZones().values()){
+			for(SpaceWork spaceWork : spaceWorkZone.getSpaceWorks()){
+				ActionPlace action = ActionFactory.createActionPlace(event.getPlayer(), event.getFamilyMember(), spaceWork);
+				if(action.isValid(match))
+					actions.add(new ActionPlaceOnSpaceWork(player, event.getFamilyMember(), spaceWork));
+			}
+		}
+		actions.add(new DiscardPlacement(player));
+		return actions;
+	}
+
+	private List<Action> getActionsMarketChosen(EventMarketChosen event) {
+		Player player = event.getPlayer();
+		List<Action> actions = new ArrayList<>();
+		for(SpaceMarket spaceMarket : match.getBoard().getMarket().getSpaceMarkets()){
+			ActionPlace action = ActionFactory.createActionPlace(event.getPlayer(), event.getFamilyMember(), spaceMarket);
+			if(action.isValid(match))
+				actions.add(new ActionPlaceOnMarket(player, event.getFamilyMember(), spaceMarket));
+		}
+		actions.add(new DiscardPlacement(player));
+		return actions;
+	}
 }
