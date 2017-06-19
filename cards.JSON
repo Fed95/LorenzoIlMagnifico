@@ -4195,17 +4195,30 @@
         },
         "occupiables": [
           {
-            "occupiable": "SpaceWorkSingle",
-            "workType": "HARVEST",
-            "occupiers": [],
-            "requiredValue": 1
+            "occupiable": "TowerFloor",
+            "floorNum": 0,
+            "effects": [],
+            "occupiers": []
           },
           {
-            "occupiable": "SpaceWorkMultiple",
-            "workType": "HARVEST",
-            "occupiers": [],
-            "requiredValue": 1
-          }],
+            "occupiable": "TowerFloor",
+            "floorNum": 1,
+            "effects": [],
+            "occupiers": []
+          },
+          {
+            "occupiable": "TowerFloor",
+            "floorNum": 2,
+            "effects": [],
+            "occupiers": []
+          },
+          {
+            "occupiable": "TowerFloor",
+            "floorNum": 3,
+            "effects": [],
+            "occupiers": []
+          }
+        ],
         "value": 4
       }
     ],
@@ -4307,6 +4320,44 @@
     "period": 2,
     "effects": [
       {
+        "type": "EffectFreeAction",
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 56
+        },
+        "occupiables": [
+          {
+            "occupiable": "TowerFloor",
+            "cardType": "TERRITORY",
+            "floorNum": 0,
+            "effects": [],
+            "occupiers": []
+          },
+          {
+            "occupiable": "TowerFloor",
+            "cardType": "TERRITORY",
+            "floorNum": 1,
+            "effects": [],
+            "occupiers": []
+          },
+          {
+            "occupiable": "TowerFloor",
+            "cardType": "TERRITORY",
+            "floorNum": 2,
+            "effects": [],
+            "occupiers": []
+          },
+          {
+            "occupiable": "TowerFloor",
+            "cardType": "TERRITORY",
+            "floorNum": 3,
+            "effects": [],
+            "occupiers": []
+          }
+        ],
+        "value": 6
+      },
+      {
         "type": "EffectChangeResource",
         "exchanges": [
           {
@@ -4351,6 +4402,44 @@
     "cardType": "CHARACTER",
     "period": 2,
     "effects": [
+      {
+        "type": "EffectFreeAction",
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 57
+        },
+        "occupiables": [
+          {
+            "occupiable": "TowerFloor",
+            "cardType": "BUILDING",
+            "floorNum": 0,
+            "effects": [],
+            "occupiers": []
+          },
+          {
+            "occupiable": "TowerFloor",
+            "cardType": "BUILDING",
+            "floorNum": 1,
+            "effects": [],
+            "occupiers": []
+          },
+          {
+            "occupiable": "TowerFloor",
+            "cardType": "BUILDING",
+            "floorNum": 2,
+            "effects": [],
+            "occupiers": []
+          },
+          {
+            "occupiable": "TowerFloor",
+            "cardType": "BUILDING",
+            "floorNum": 3,
+            "effects": [],
+            "occupiers": []
+          }
+        ],
+        "value": 6
+      },
       {
         "type": "EffectChangeResource",
         "exchanges": [
@@ -4402,6 +4491,44 @@
     "period": 2,
     "effects": [
       {
+        "type": "EffectFreeAction",
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 58
+        },
+        "occupiables": [
+          {
+            "occupiable": "TowerFloor",
+            "cardType": "CHARACTER",
+            "floorNum": 0,
+            "effects": [],
+            "occupiers": []
+          },
+          {
+            "occupiable": "TowerFloor",
+            "cardType": "CHARACTER",
+            "floorNum": 1,
+            "effects": [],
+            "occupiers": []
+          },
+          {
+            "occupiable": "TowerFloor",
+            "cardType": "CHARACTER",
+            "floorNum": 2,
+            "effects": [],
+            "occupiers": []
+          },
+          {
+            "occupiable": "TowerFloor",
+            "cardType": "CHARACTER",
+            "floorNum": 3,
+            "effects": [],
+            "occupiers": []
+          }
+        ],
+        "value": 6
+      },
+      {
         "type": "EffectChangeResource",
         "exchanges": [
           {
@@ -4446,6 +4573,44 @@
     "cardType": "CHARACTER",
     "period": 2,
     "effects": [
+      {
+        "type": "EffectFreeAction",
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 59
+        },
+        "occupiables": [
+          {
+            "occupiable": "TowerFloor",
+            "cardType": "VENTURE",
+            "floorNum": 0,
+            "effects": [],
+            "occupiers": []
+          },
+          {
+            "occupiable": "TowerFloor",
+            "cardType": "VENTURE",
+            "floorNum": 1,
+            "effects": [],
+            "occupiers": []
+          },
+          {
+            "occupiable": "TowerFloor",
+            "cardType": "VENTURE",
+            "floorNum": 2,
+            "effects": [],
+            "occupiers": []
+          },
+          {
+            "occupiable": "TowerFloor",
+            "cardType": "VENTURE",
+            "floorNum": 3,
+            "effects": [],
+            "occupiers": []
+          }
+        ],
+        "value": 6
+      },
       {
         "type": "EffectChangeResource",
         "exchanges": [
@@ -4772,6 +4937,28 @@
     "period": 3,
     "effects": [
       {
+        "type": "EffectFreeAction",
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 68
+        },
+        "occupiables": [
+          {
+            "occupiable": "SpaceWorkSingle",
+            "workType": "HARVEST",
+            "occupiers": [],
+            "requiredValue": 1
+          },
+          {
+            "occupiable": "SpaceWorkMultiple",
+            "workType": "HARVEST",
+            "occupiers": [],
+            "requiredValue": 1
+          }
+        ],
+        "value": 4
+      },
+      {
         "type": "EffectChangeResource",
         "exchanges": [
           {
@@ -4807,6 +4994,28 @@
     "cardType": "CHARACTER",
     "period": 3,
     "effects": [
+      {
+        "type": "EffectFreeAction",
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 69
+        },
+        "occupiables": [
+          {
+            "occupiable": "SpaceWorkSingle",
+            "workType": "PRODUCTION",
+            "occupiers": [],
+            "requiredValue": 1
+          },
+          {
+            "occupiable": "SpaceWorkMultiple",
+            "workType": "PRODUCTION",
+            "occupiers": [],
+            "requiredValue": 1
+          }
+        ],
+        "value": 4
+      },
       {
         "type": "EffectChangeResource",
         "exchanges": [
@@ -4876,6 +5085,40 @@
     "cardType": "CHARACTER",
     "period": 3,
     "effects": [
+      {
+        "type": "EffectFreeAction",
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 71
+        },
+        "occupiables": [
+          {
+            "occupiable": "TowerFloor",
+            "floorNum": 0,
+            "effects": [],
+            "occupiers": []
+          },
+          {
+            "occupiable": "TowerFloor",
+            "floorNum": 1,
+            "effects": [],
+            "occupiers": []
+          },
+          {
+            "occupiable": "TowerFloor",
+            "floorNum": 2,
+            "effects": [],
+            "occupiers": []
+          },
+          {
+            "occupiable": "TowerFloor",
+            "floorNum": 3,
+            "effects": [],
+            "occupiers": []
+          }
+        ],
+        "value": 7
+      },
       {
         "type": "EffectChangeResource",
         "exchanges": [
@@ -5577,6 +5820,28 @@
     "period": 2,
     "effects": [
       {
+        "type": "EffectFreeAction",
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 83
+        },
+        "occupiables": [
+          {
+            "occupiable": "SpaceWorkSingle",
+            "workType": "HARVEST",
+            "occupiers": [],
+            "requiredValue": 1
+          },
+          {
+            "occupiable": "SpaceWorkMultiple",
+            "workType": "HARVEST",
+            "occupiers": [],
+            "requiredValue": 1
+          }
+        ],
+        "value": 4
+      },
+      {
         "type": "EffectChangeResource",
         "exchanges": [
           {
@@ -5892,6 +6157,40 @@
     "period": 3,
     "effects": [
       {
+        "type": "EffectFreeAction",
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 89
+        },
+        "occupiables": [
+          {
+            "occupiable": "TowerFloor",
+            "floorNum": 0,
+            "effects": [],
+            "occupiers": []
+          },
+          {
+            "occupiable": "TowerFloor",
+            "floorNum": 1,
+            "effects": [],
+            "occupiers": []
+          },
+          {
+            "occupiable": "TowerFloor",
+            "floorNum": 2,
+            "effects": [],
+            "occupiers": []
+          },
+          {
+            "occupiable": "TowerFloor",
+            "floorNum": 3,
+            "effects": [],
+            "occupiers": []
+          }
+        ],
+        "value": 7
+      },
+      {
         "type": "EffectChangeResource",
         "exchanges": [
           {
@@ -6125,6 +6424,28 @@
     "cardType": "VENTURE",
     "period": 3,
     "effects": [
+      {
+        "type": "EffectFreeAction",
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 93
+        },
+        "occupiables": [
+          {
+            "occupiable": "SpaceWorkSingle",
+            "workType": "PRODUCTION",
+            "occupiers": [],
+            "requiredValue": 1
+          },
+          {
+            "occupiable": "SpaceWorkMultiple",
+            "workType": "PRODUCTION",
+            "occupiers": [],
+            "requiredValue": 1
+          }
+        ],
+        "value": 3
+      },
       {
         "type": "EffectChangeResource",
         "exchanges": [

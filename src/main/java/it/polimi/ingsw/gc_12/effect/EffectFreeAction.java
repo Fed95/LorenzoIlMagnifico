@@ -10,6 +10,7 @@ import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -29,7 +30,14 @@ public class EffectFreeAction extends Effect {
     @Override
     public void execute(Match match, Event event) {
         this.familyMember = new FamilyMember(match.getBoard().getTrackTurnOrder().getCurrentPlayer(), value);
-        Event eventFreeAction = new EventFreeAction(match.getBoard().getTrackTurnOrder().getCurrentPlayer(), familyMember, occupiables);
+        List<Occupiable> realOccupiables = new ArrayList<>();
+        for(Occupiable occupiable : this.occupiables){
+            for(Occupiable matchOccupiable : match.getBoard().getOccupiables()){
+                if(matchOccupiable.equals(occupiable))
+                    realOccupiables.add(matchOccupiable);
+            }
+        }
+        Event eventFreeAction = new EventFreeAction(match.getBoard().getTrackTurnOrder().getCurrentPlayer(), familyMember, realOccupiables);
         match.getActionHandler().update(eventFreeAction);
         match.notifyObserver(eventFreeAction);
     }

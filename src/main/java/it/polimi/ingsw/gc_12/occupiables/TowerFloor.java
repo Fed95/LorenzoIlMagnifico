@@ -24,6 +24,14 @@ public class TowerFloor extends Occupiable{
 		this(floorNum, requiredValue, cardType, null);
 	}
 
+	public TowerFloor(int floorNum, CardType cardType){
+		this(floorNum, 0, cardType, null);
+	}
+
+	public TowerFloor(int floorNum){
+		this(floorNum, 0, null, null);
+	}
+
 	public int getFloorNum() {
 		return floorNum;
 	}
@@ -63,6 +71,10 @@ public class TowerFloor extends Occupiable{
 		TowerFloor that = (TowerFloor) o;
 
 		if (floorNum != that.floorNum) return false;
+
+		if(this.cardType == null || that.cardType == null)
+			return true;
+
 		return cardType == that.cardType;
 	}
 
