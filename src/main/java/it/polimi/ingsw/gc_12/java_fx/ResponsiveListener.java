@@ -31,14 +31,14 @@ public class ResponsiveListener implements ChangeListener<Number> {
     public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
         final double newWidth  = scene.getWidth();
         final double newHeight = scene.getHeight();
-        System.out.println(newHeight);
-        System.out.println(newWidth);
+        //System.out.println(newHeight);
+        //System.out.println(newWidth);
         double scaleFactor;
         //usa come fattore di scala il lato piu piccolo  della finestra
         if(newWidth/newHeight > ratio){
-            scaleFactor = newHeight / initHeight;
+            scaleFactor = (newHeight / initHeight)/1.6;
         }else{
-            scaleFactor = newWidth / initWidth;
+            scaleFactor = (newWidth / initWidth)/1.6;
         }
 
         Scale scale = new Scale(scaleFactor, scaleFactor);
