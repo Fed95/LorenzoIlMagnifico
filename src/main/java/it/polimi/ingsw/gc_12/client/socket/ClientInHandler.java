@@ -31,8 +31,11 @@ public class ClientInHandler extends ClientHandler implements Runnable {
 				Object object = socketIn.readObject();
 				if(object instanceof Event) {
 					Event event = (Event) object;
-					System.out.println(event);
-					handleEvent(event);
+					System.out.println("RECEIVED "+event.getClass().getSimpleName());
+					events.addLast(event);
+					if(events.size() <= 1) {
+						handleEvent();
+					}
 				}
 			} catch (ClassNotFoundException | IOException e) {
 				// TODO Auto-generated catch block

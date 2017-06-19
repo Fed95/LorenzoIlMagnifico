@@ -44,6 +44,8 @@ public class ViewCLI extends Observable implements View {
 			else {
 				try {
 					adapter.sendAction(inputInt);
+					clientHandler.getEvents().removeFirst();
+					clientHandler.handleEvent();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

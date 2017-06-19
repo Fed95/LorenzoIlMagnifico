@@ -98,7 +98,7 @@ public class Match extends Observable<Event> implements MatchRemote, Serializabl
 		if(occupiable instanceof TowerFloor){
 			EventPickCard eventPickCard = new EventPickCard(board.getTrackTurnOrder().getCurrentPlayer(), ((TowerFloor) occupiable).getCard());
 			this.notifyObserver(eventPickCard);
-		}else {
+		}else if(familyMember.getColor() != null) {
 			EventPlaceFamilyMember event = new EventPlaceFamilyMember(board.getTrackTurnOrder().getCurrentPlayer(), occupiable, familyMember);
 			actionHandler.update(event);
 			this.notifyObserver(event);

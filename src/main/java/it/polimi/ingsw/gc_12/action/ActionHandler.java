@@ -9,10 +9,12 @@ import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.resource.Servant;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class ActionHandler /*implements Observer<Event> */{
 	private List<Action> actions = new ArrayList<>();
+	private LinkedList<Event> events = new LinkedList<>();
 	private Match match;
 	private int offset;
 	private boolean hasPlaced = false;
@@ -37,48 +39,66 @@ public class ActionHandler /*implements Observer<Event> */{
 		return updateAvailableActions(match, player, familyMember, new Servant(0));
 	}*/
 
-	public List<Action> getAvailableActions() {
+	/*public List<Action> getAvailableActions() {
 		return actions;
-	}
+	}*/
 
 	public Action getAvailableAction(int input) {
-		return actions.get(input-offset);
+
+		Action action = actions.get(input-offset);
+		if(events.size() > 0) {
+			events.removeFirst();
+			if(events.size() > 0)
+				actions = events.getFirst().getActions();
+		}
+		return action;
 	}
 
 
-	public List<Action> update(Event event) {
+	public void update(Event event) {
+
+		events.addLast(event);
 		offset = 0;
 		if(event instanceof EventFamilyMemberChosen) {
-			actions = getActionsFamilyMemberChoosen((EventFamilyMemberChosen) event);
+			event.setActions(getActionsFamilyMemberChoosen((EventFamilyMemberChosen) event));
 		}
 		else if(event instanceof EventRequiredValueNotSatisfied) {
 			offset = ((EventRequiredValueNotSatisfied) event).getOccupiable().getRequiredValue() - ((EventRequiredValueNotSatisfied) event).getFamilyMember().getValue();
-			actions = getActionsRequiredValue((EventRequiredValueNotSatisfied) event);
+			event.setActions(getActionsRequiredValue((EventRequiredValueNotSatisfied) event));
 		}
 		else if(event instanceof EventStartTurn || event instanceof EventPlaceFamilyMember || event instanceof EventDiscardAction) {
-			actions = getActionsStartTurn(event);
+			event.setActions(getActionsStartTurn(event));
 		}
 		else if(event instanceof EventRequestStatistics){
-			actions = getActionsRequestStatistics(event);
+			event.setActions(getActionsRequestStatistics(event));
 		}
 		else if(event instanceof EventViewStatistics){
-			actions = getActionsViewStatistics(event);
+			event.setActions(getActionsViewStatistics(event));
 		}
 		else if(event instanceof EventTowerChosen){
-			actions = getActionsTowerChosen((EventTowerChosen) event);
+			event.setActions(getActionsTowerChosen((EventTowerChosen) event));
 		}
 		else if(event instanceof EventWorkplaceChosen){
-			actions = getActionsWorkplaceChosen((EventWorkplaceChosen) event);
+			event.setActions(getActionsWorkplaceChosen((EventWorkplaceChosen) event));
 		}
 		else if(event instanceof EventMarketChosen){
-			actions = getActionsMarketChosen((EventMarketChosen) event);
+			event.setActions(getActionsMarketChosen((EventMarketChosen) event));
 		}
 		else if(event instanceof EventFreeAction){
-			actions = getFreeActions((EventFreeAction) event);
+			event.setActions(getFreeActions((EventFreeAction) event));
 		}
+		else
+			events.removeFirst();
 
-		event.setActions(actions);
-		return actions;
+		if(events.size() == 1) {
+			actions = event.getActions();
+
+		}
+		//return actions;
+	}
+
+	private void setActions() {
+
 	}
 
 	private List<Action> getFreeActions(EventFreeAction event) {

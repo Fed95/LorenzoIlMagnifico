@@ -11,18 +11,26 @@ import it.polimi.ingsw.gc_12.resource.ResourceType;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public abstract class ClientHandler extends UnicastRemoteObject {
 	protected MatchInstance match;
 	protected View view;
 	protected List<Action> actions = new ArrayList<>();
+	protected LinkedList<Event> events = new LinkedList<>();
 
 	protected ClientHandler() throws RemoteException {
 		super();
 	}
 
-	public void handleEvent(Event event) {
+	public void handleEvent() {
+		Event event = events.peekFirst();
+		if(event == null)
+			return;
+
+		System.out.println("HANDLING "+event.getClass().getSimpleName());
+
 		if(event instanceof EventStartMatch) {
 			System.out.println("ClientRMI: EventStartMatch recognised. Creating view with local match.");
 			EventStartMatch eventStartMatch = (EventStartMatch) event;
@@ -30,6 +38,7 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 		}
 		if(event.getPlayer() != null && isMyTurn(event.getPlayer())) {
 			if (event instanceof EventRequiredValueNotSatisfied) {
+				actions = event.getActions();
 				printServantsChoice(event);
 			}
 			else {
@@ -47,7 +56,13 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 				for (int i = 0; i < actions.size(); i++)
 					System.out.println(i + " - " + actions.get(i));
 			}
+			if(event.getActions().size() == 0) {
+				events.removeFirst();
+				handleEvent();
+			}
 		}
+		else
+			events.removeFirst();
 	}
 
 	private void printServantsChoice(Event event) {
@@ -82,6 +97,10 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 
 	public List<Action> getActions() {
 		return actions;
+	}
+
+	public LinkedList<Event> getEvents() {
+		return events;
 	}
 
 	protected abstract boolean isMyTurn(Player player);
