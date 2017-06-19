@@ -49,7 +49,7 @@ public class ServerRMIView extends View implements RMIViewRemote {
 
 	@Override
 	public void update(Event event) {
-		System.out.println("RMIVIEW: SENDING THE CHANGE TO THE CLIENT");
+		System.out.println("RMIVIEW: SENDING " + event.getClass() + " CHANGE TO THE CLIENT");
 		for (ClientViewRemote clientStub : this.clients) {
 			try {
 				clientStub.updateClient(event);

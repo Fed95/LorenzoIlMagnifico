@@ -73,11 +73,11 @@ public abstract class ActionPlace extends Action {
 		try{
 			//Can throw exceptions (in which case effects are discarded directly in EffectHandler)
 			executedEffects = match.getEffectHandler().executeEffects(match, event);
-			familyMember.setValue(familyMember.getValue()+player.getResourceValue(ResourceType.SERVANT));
+			familyMember.setValue(familyMember.getValue() + player.getResourceValue(ResourceType.SERVANT));
 			this.canBeExecuted(match);
 		}
 		catch (Exception e) {
-			familyMember.setValue(familyMember.getValue()-player.getResourceValue(ResourceType.SERVANT));
+			familyMember.setValue(familyMember.getValue() - player.getResourceValue(ResourceType.SERVANT));
 			match.getEffectHandler().discardEffects(executedEffects, event);
 			return false;
 		}

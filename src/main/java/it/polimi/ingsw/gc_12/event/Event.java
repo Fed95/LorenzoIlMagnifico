@@ -38,7 +38,7 @@ public abstract class Event extends Change implements EventInterface {
 
 	public boolean equals(Object obj) {
 		if (this.getClass() != obj.getClass()) {
-			System.out.println("Recieved: " + obj + ". I am: " + this + ". CLASS MISMATCH ");
+			//System.out.println("Recieved: " + obj + ". I am: " + this + ". CLASS MISMATCH ");
 			return false;
 		}
 		return true;

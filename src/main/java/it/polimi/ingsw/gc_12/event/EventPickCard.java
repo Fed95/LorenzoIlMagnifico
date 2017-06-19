@@ -57,7 +57,8 @@ public class EventPickCard extends Event {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(System.getProperty("line.separator"));
-        sb.append(player.getName() + " picked the following card: " + card.getName());
+        sb.append(player.getName() + " picked the following card: ").append(System.getProperty("line.separator"));
+        sb.append(card);
         return sb.toString();
     }
 }

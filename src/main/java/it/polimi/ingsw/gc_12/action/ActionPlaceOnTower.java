@@ -61,9 +61,13 @@ public class ActionPlaceOnTower extends ActionPlace {
         CardDevelopment card = towerFloor.getCard();
         player.removeResources(card.getRequirements());
         player.getPersonalBoard().placeCard(card);
-        executeImmediateEffects(match, player, card);
         match.placeFamilyMember(towerFloor, familyMember);
+        executeImmediateEffects(match, player, card);
         towerFloor.removeCard();
+        //TODO: IMPLEMENT SOME WAY OF WAITING FOR THE FREE ACTION TO FINISH
+        EventPlaceFamilyMember event = new EventPlaceFamilyMember(match.getBoard().getTrackTurnOrder().getCurrentPlayer(), occupiable, familyMember);
+        match.getActionHandler().update(event);
+        match.notifyObserver(event);
     }
 
     public void executeImmediateEffects(Match match, Player player, CardDevelopment card) {

@@ -29,7 +29,9 @@ public class EffectFreeAction extends Effect {
     @Override
     public void execute(Match match, Event event) {
         this.familyMember = new FamilyMember(match.getBoard().getTrackTurnOrder().getCurrentPlayer(), value);
-        match.notifyObserver(new EventFreeAction(match.getBoard().getTrackTurnOrder().getCurrentPlayer(), familyMember, occupiables));
+        Event eventFreeAction = new EventFreeAction(match.getBoard().getTrackTurnOrder().getCurrentPlayer(), familyMember, occupiables);
+        match.getActionHandler().update(eventFreeAction);
+        match.notifyObserver(eventFreeAction);
     }
 
     @Override

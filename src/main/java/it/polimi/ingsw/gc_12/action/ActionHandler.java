@@ -88,10 +88,9 @@ public class ActionHandler /*implements Observer<Event> */{
 				ActionPlace action = ActionFactory.createActionPlace(player, event.getFamilyMember(), occupiable);
 				if(action.isValid(match))
 					actions.add(action);
-
 		}
 		actions.add(new DiscardAction(player));
-		return null;
+		return actions;
 	}
 
 
@@ -115,7 +114,7 @@ public class ActionHandler /*implements Observer<Event> */{
 	public List<Action> getActionsFamilyMemberChoosen(EventFamilyMemberChosen event) {
 		Player player = event.getPlayer();
 		List<Action> actions = new ArrayList<>();
-		//Adds the towers with at least one valid floor TODO: ADD CHECK FOR MARKET AND WORK
+		//Adds the towers with at least one valid floor TODO: ADD CHECK FOR MARKET AND WORK (or remove for tower)
 		for(Tower tower : match.getBoard().getTowerSet().getTowers().values()){
 			for(TowerFloor towerFloor : tower.getFloors()){
 				ActionPlace action = ActionFactory.createActionPlace(player, event.getFamilyMember(), towerFloor);

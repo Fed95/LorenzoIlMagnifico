@@ -35,13 +35,15 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 			else {
 				if(event instanceof EventViewStatistics)
 					printStatistics(event);
-				else if (event instanceof EventPlaceFamilyMember) {
+				if (event instanceof EventPlaceFamilyMember) {
 					EventPlaceFamilyMember eventPlaceFamilyMember = (EventPlaceFamilyMember) event;
 					match.placeFamilyMember(eventPlaceFamilyMember.getOccupiable(), eventPlaceFamilyMember.getFamilyMember());
 				}
 				actions = event.getActions();
-				System.out.println("What would you like to do?");
-				System.out.println();
+				if(!(event instanceof EventPickCard)) {
+					System.out.println("What would you like to do?");
+					System.out.println();
+				}
 				for (int i = 0; i < actions.size(); i++)
 					System.out.println(i + " - " + actions.get(i));
 			}
@@ -52,9 +54,7 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 		int minValue = ((EventRequiredValueNotSatisfied) event).getOccupiable().getRequiredValue() - ((EventRequiredValueNotSatisfied) event).getFamilyMember().getValue();
 		int maxValue = event.getPlayer().getResourceValue(ResourceType.SERVANT);
 		System.out.println("You have " + maxValue + " Servants");
-		System.out.println("How many would you like to use?	min: " + minValue + ", max: " + maxValue + " (Press 0 to go back)");
-		/*System.out.println();
-		System.out.println("0 - Back to the start");*/
+		System.out.println("How many would you like to use?	min: " + minValue + ", max: " + maxValue + " - (Press 0 to go back)");
 	}
 
 	private void printStatistics(Event event) {

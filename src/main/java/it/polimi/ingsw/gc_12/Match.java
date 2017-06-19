@@ -49,7 +49,7 @@ public class Match extends Observable<Event> implements MatchRemote, Serializabl
 
 	public void init(List<Player> players) {
 		this.players = players;
-		cardDeckSet.shuffle();
+		//cardDeckSet.shuffle();
 		createBoard();
 
 		for (Player player : players) {
@@ -95,9 +95,14 @@ public class Match extends Observable<Event> implements MatchRemote, Serializabl
 		occupiable.placeFamilyMember(familyMember);
 		if(familyMember.getColor() != null)
 			familyMember.setBusy(true);
-		EventPlaceFamilyMember event = new EventPlaceFamilyMember(board.getTrackTurnOrder().getCurrentPlayer(), occupiable, familyMember);
-		actionHandler.update(event);
-		this.notifyObserver(event);
+		if(occupiable instanceof TowerFloor){
+			EventPickCard eventPickCard = new EventPickCard(board.getTrackTurnOrder().getCurrentPlayer(), ((TowerFloor) occupiable).getCard());
+			this.notifyObserver(eventPickCard);
+		}else {
+			EventPlaceFamilyMember event = new EventPlaceFamilyMember(board.getTrackTurnOrder().getCurrentPlayer(), occupiable, familyMember);
+			actionHandler.update(event);
+			this.notifyObserver(event);
+		}
 	}
 
 	public void setPlayers(List<Player> players) {

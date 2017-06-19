@@ -20,7 +20,7 @@ public class SpaceWorkZone implements Zone, Serializable {
     //Checks whether the workspace is already taken by a member of the same family
     @Override
     public boolean canBeOccupiedBy(FamilyMember familyMember) {
-        if(familyMember.getColor().equals(FamilyMemberColor.NEUTRAL))
+        if(familyMember.getColor() == null || familyMember.getColor().equals(FamilyMemberColor.NEUTRAL))
             return true;
 
         for(SpaceWork spaceWork : spaceWorks)
