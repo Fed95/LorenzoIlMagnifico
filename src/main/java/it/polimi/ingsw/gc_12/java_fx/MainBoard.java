@@ -4,10 +4,12 @@ package it.polimi.ingsw.gc_12.java_fx;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.transform.Scale;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class MainBoard extends Application{
@@ -24,11 +26,8 @@ public class MainBoard extends Application{
 		//Parent rootLayout= FXMLLoader.load(getClass().getResource("/FXML/FXMLMainBoard.fxml"));
 		Scene scene = new Scene(rootLayout,1920,1080);
 		primaryStage.setTitle("Lorenzo il magnifico");
-		//double dim = 1000.0/1080.0;
-		//Scale scale = new Scale(1, dim);
-		//scale.setPivotX(0);
-		//scale.setPivotY(0);
-		//scene.getRoot().getTransforms().setAll(scale);
+
+
 		primaryStage.setScene(scene);
 		primaryStage.show();
 		responsive(scene, rootLayout, primaryStage);
