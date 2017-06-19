@@ -44,8 +44,8 @@ public class ActionHandler /*implements Observer<Event> */{
 	}*/
 
 	public Action getAvailableAction(int input) {
-
-		Action action = actions.get(input-offset);
+		int inputReal = input-offset+1 > 0 ? input-offset : 0;
+		Action action = actions.get(inputReal);
 		if(events.size() > 0) {
 			events.removeFirst();
 			if(events.size() > 0)
@@ -170,13 +170,14 @@ public class ActionHandler /*implements Observer<Event> */{
 	public List<Action> getActionsRequiredValue(EventRequiredValueNotSatisfied event) {
 		Player player = event.getPlayer();
 		List<Action> actions = new ArrayList<>();
+		actions.add(new DiscardAction(player));
 		int i = event.getOccupiable().getRequiredValue()-event.getFamilyMember().getValue();
 		for (; i <= player.getResourceValue(ResourceType.SERVANT); i++) {
 			Action action = ActionFactory.createActionPlace(player, event.getFamilyMember(), event.getOccupiable(), new Servant(i));
 			if(action.isValid(match))
 				actions.add(action);
 		}
-		actions.add(new DiscardAction(player));
+
 		return actions;
 	}
 
