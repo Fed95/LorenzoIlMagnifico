@@ -2,6 +2,7 @@ package it.polimi.ingsw.gc_12.java_fx;
 
 
 import it.polimi.ingsw.gc_12.MatchInstance;
+import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.ClientSender;
 import it.polimi.ingsw.gc_12.client.rmi.ClientRMI;
@@ -21,6 +22,7 @@ import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -50,6 +52,10 @@ public class MainBoardController implements Initializable {
 
     @FXML void familyClicked(MouseEvent event) {
         ImageView familyMemberClicked = (ImageView) event.getSource();
+        List<Action> actions = clientView.getActions();
+        for(Action action: actions)
+            System.out.println(action);
+
         if(familyMemberClicked.equals(lastFamClicked)){
             System.out.println("uguali");
             double selection = familyMemberClicked.getOpacity();

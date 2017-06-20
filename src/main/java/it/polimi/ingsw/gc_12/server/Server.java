@@ -73,26 +73,21 @@ public class Server {
 	public void startMatch() throws AlreadyBoundException, CloneNotSupportedException, RemoteException {
 		ServerRMIView serverRmiView = views.peek();
 		List<Player> players = new ArrayList<>();
-		Map<ResourceType, Resource> resources = new HashMap<>();
-		for(ResourceType resourceType: ResourceType.values()) {
-			resources.put(resourceType, ResourceBuilder.create(resourceType, 100));
-
-		}
 		List<PlayerColor> playerColors = Arrays.asList(PlayerColor.values());
 		int i = 0;
 		for(ClientViewRemote client : serverRmiView.getClients()) {
-			Player player = new Player(client.getName(), playerColors.get(i), resources);
+			Player player = new Player(client.getName(), playerColors.get(i));
 			players.add(player);
 			i++;
 		}
 		for(String name : names) {
-			Player player = new Player(name, playerColors.get(i), resources);
+			Player player = new Player(name, playerColors.get(i));
 			players.add(player);
 			i++;
 		}
 		match.init(players);
-		MatchRemote matchRemote = (MatchRemote) UnicastRemoteObject.exportObject(match, 0);
-		registry.rebind(MODEL_NAME, matchRemote);
+		//MatchRemote matchRemote = (MatchRemote) UnicastRemoteObject.exportObject(match, 0);
+		//registry.rebind(MODEL_NAME, matchRemote);
 
 
 	}

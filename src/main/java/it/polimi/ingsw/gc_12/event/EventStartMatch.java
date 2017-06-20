@@ -11,13 +11,13 @@ import it.polimi.ingsw.gc_12.effect.EffectProvider;
 
 public class EventStartMatch extends Event{
 	
-	private MatchRemote match;
+	private Match match;
 	
-	public EventStartMatch(MatchRemote match) throws CloneNotSupportedException, RemoteException {
+	public EventStartMatch(Match match) {
 		this.match = match;
 	}
 	
-	public MatchRemote getMatch() {
+	public Match getMatch() {
 		return match;
 	}
 

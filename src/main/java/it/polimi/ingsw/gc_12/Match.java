@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class Match extends Observable<Event> implements MatchRemote, Serializable{
+public class Match extends Observable<Event> implements Serializable{
 	private transient List<Player> players = new ArrayList<>();
 	private transient final List<BonusTile> bonusTiles;
 	private transient List<Card> cards = new ArrayList<>();
@@ -146,11 +146,6 @@ public class Match extends Observable<Event> implements MatchRemote, Serializabl
 	//@Override
 	public Player getCurrentPlayer() throws RemoteException {
 		return getBoard().getTrackTurnOrder().getCurrentPlayer();
-	}
-
-	@Override
-	public Board getBoardRemote() throws RemoteException {
-		return board;
 	}
 
 	//@Override

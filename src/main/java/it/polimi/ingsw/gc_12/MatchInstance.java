@@ -29,8 +29,8 @@ public class MatchInstance implements Serializable, Cloneable {
 
 	}
 
-	public void init(MatchRemote match) throws RemoteException {
-		this.board = match.getBoardRemote();
+	public void init(Match match) {
+		this.board = match.getBoard();
 		this.roundNum = 1;
 	}
 

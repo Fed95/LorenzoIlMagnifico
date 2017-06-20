@@ -11,6 +11,7 @@ import it.polimi.ingsw.gc_12.effect.EffectProvider;
 import it.polimi.ingsw.gc_12.event.EventSupportChurch;
 import it.polimi.ingsw.gc_12.personal_board.PersonalBoard;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
+import it.polimi.ingsw.gc_12.resource.ResourceBuilder;
 import it.polimi.ingsw.gc_12.resource.ResourceExchange;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.event.Event;
@@ -29,10 +30,15 @@ public class Player implements Serializable{
 	private Map<FamilyMemberColor, FamilyMember> familymembers = new HashMap<>();
 	private PlayerState state;
 	
-	public Player(String name, PlayerColor playerColor,  Map<ResourceType, Resource> resources){
+	public Player(String name, PlayerColor playerColor){
 		this.name = name;
 		this.playerColor = playerColor;
 		this.personalBoard = new PersonalBoard();
+		Map<ResourceType, Resource> resources = new HashMap<>();
+		for(ResourceType resourceType: ResourceType.values()) {
+			resources.put(resourceType, ResourceBuilder.create(resourceType, 100));
+
+		}
 		this.resources = resources;
 		personalBoard.getResourceContainer().syncronize(this.resources);
 		this.state = PlayerState.ACTION;
