@@ -1,7 +1,6 @@
 package it.polimi.ingsw.gc_12.server;
 
 import it.polimi.ingsw.gc_12.Match;
-import it.polimi.ingsw.gc_12.MatchRemote;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.PlayerColor;
 import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
@@ -86,9 +85,6 @@ public class Server {
 			i++;
 		}
 		match.init(players);
-		//MatchRemote matchRemote = (MatchRemote) UnicastRemoteObject.exportObject(match, 0);
-		//registry.rebind(MODEL_NAME, matchRemote);
-
 
 	}
 

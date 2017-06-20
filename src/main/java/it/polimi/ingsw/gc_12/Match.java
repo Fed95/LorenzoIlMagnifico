@@ -143,31 +143,6 @@ public class Match extends Observable<Event> implements Serializable{
 		return board.toString();
 	}
 
-	//@Override
-	public Player getCurrentPlayer() throws RemoteException {
-		return getBoard().getTrackTurnOrder().getCurrentPlayer();
-	}
-
-	//@Override
-	public boolean isFMPlaced() throws RemoteException {
-		return isFMPlaced;
-	}
-
-	//@Override
-	public List<Zone> getZones() throws RemoteException {
-		return getBoard().getZones();
-	}
-
-	//@Override
-	public Tower getTower(CardType cardType) throws RemoteException {
-		return getBoard().getTowerSet().getTower(cardType);
-	}
-
-	//@Override
-	public SpaceWorkZone getSpaceWorkZone(WorkType workType) throws RemoteException {
-		return getBoard().getSpaceWorkZones().get(workType);
-	}
-
 	public EffectHandler getEffectHandler() {
 		return effectHandler;
 	}
