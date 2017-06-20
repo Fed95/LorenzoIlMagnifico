@@ -24,6 +24,10 @@ public class EventViewStatistics extends Event {
         return null;
     }
 
+    public Player getChosenPlayer() {
+        return chosenPlayer;
+    }
+
     @Override
     public String toString() {
         return player.getName() + " is viewing " + chosenPlayer.getName() + "'s stats.";

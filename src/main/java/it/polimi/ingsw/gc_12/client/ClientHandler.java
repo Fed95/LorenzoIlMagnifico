@@ -79,7 +79,7 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 	}
 
 	private void printStatistics(Event event) {
-		Player chosenPlayer = event.getPlayer();
+		Player chosenPlayer = ((EventViewStatistics) event).getChosenPlayer();
 		StringBuilder sb = new StringBuilder();
 		sb.append(System.getProperty("line.separator"));
 		sb.append("Viewing statistics of " + chosenPlayer.getName() + ":").append(System.getProperty("line.separator"));

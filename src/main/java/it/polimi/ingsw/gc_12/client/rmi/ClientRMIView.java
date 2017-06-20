@@ -18,11 +18,10 @@ public class ClientRMIView extends ClientHandler implements ClientViewRemote, Se
 
 	@Override
 	public synchronized void updateClient(Event event) {
-		System.out.println("RECEIVED "+event.getClass().getSimpleName());
+		System.out.println("RECEIVED " + event.getClass().getSimpleName());
 		events.addLast(event);
 		if(events.size() <= 1) {
 			handleEvent();
-
 		}
 	}
 
