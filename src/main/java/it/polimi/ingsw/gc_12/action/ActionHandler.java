@@ -8,9 +8,7 @@ import it.polimi.ingsw.gc_12.occupiables.*;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.resource.Servant;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class ActionHandler /*implements Observer<Event> */{
 	private List<Action> actions = new ArrayList<>();
@@ -21,6 +19,7 @@ public class ActionHandler /*implements Observer<Event> */{
 
 	public ActionHandler(Match match) {
 		this.match = match;
+		this.actions = new ArrayList<>(Collections.singletonList(new ActionReady(null)));
 		//match.registerObserver(this);
 	}
 

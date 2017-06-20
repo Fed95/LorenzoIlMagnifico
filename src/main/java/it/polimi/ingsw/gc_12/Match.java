@@ -35,6 +35,7 @@ public class Match extends Observable<Event> implements MatchRemote, Serializabl
 	public transient final static int DEFAULT_TOTAL_PERIODS_NUM = DEFAULT_ROUND_NUM / DEFAULT_PERIODS_LEN;
 	private State gameState;
 	private boolean isFMPlaced;
+	private int numReady;
 
 	public Match() {
 		this.roundNum = 1;
@@ -178,5 +179,18 @@ public class Match extends Observable<Event> implements MatchRemote, Serializabl
 
 	public ActionHandler getActionHandler() {
 		return actionHandler;
+	}
+
+	public void addReady() {
+		numReady++;
+		if(numReady == 2) {
+			try {
+				start();
+			} catch (CloneNotSupportedException e) {
+				e.printStackTrace();
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

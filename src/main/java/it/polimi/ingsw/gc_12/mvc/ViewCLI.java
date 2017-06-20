@@ -29,9 +29,11 @@ public class ViewCLI extends Observable implements View {
 		this.adapter = new CLIAdapter(this, client);
 		this.in = new Scanner(System.in);
 		this.clientHandler = clientHandler;
+
 	}
 
 	public void start() throws IOException {
+		adapter.sendAction(0);
 		while (true) {
 			//Capture input from user
 			int inputInt = in.nextInt();

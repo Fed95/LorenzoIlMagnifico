@@ -93,11 +93,7 @@ public class Server {
 		match.init(players);
 		MatchRemote matchRemote = (MatchRemote) UnicastRemoteObject.exportObject(match, 0);
 		registry.rebind(MODEL_NAME, matchRemote);
-		match.start();
-		List<Player> matchPlayers = match.getPlayers();
-		for (Player player : matchPlayers) {
-			System.out.println(player);
-		}
+
 
 	}
 
