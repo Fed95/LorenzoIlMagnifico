@@ -36,10 +36,26 @@ public class MainBoardController implements Initializable {
     @FXML private ImageView cardFloor13;
     @FXML private ImageView cardFloor14;
     @FXML private ImageView cardFloor15;
+    private ImageView lastFamClicked = null;
 
     @FXML void familyClicked(MouseEvent event) {
+        ImageView familyMemberClicked = (ImageView) event.getSource();
+        if(familyMemberClicked.equals(lastFamClicked)){
+            System.out.println("uguali");
+            double selection = familyMemberClicked.getOpacity();
+            if(selection != 1){
+                familyMemberClicked.setOpacity(1);
+            }else{
+                familyMemberClicked.setOpacity(0.5);
+            }
+        }else{
+            System.out.println("diversi");
+            if(lastFamClicked!=null)
+                lastFamClicked.setOpacity(1);
+            familyMemberClicked.setOpacity(0.5);
+        }
         System.out.println(event.getPickResult().getIntersectedNode().getId());
-        //System.out.println("famclick");
+        lastFamClicked = familyMemberClicked;
     }
     @FXML void showCard(MouseEvent event){
         ImageView imageView = (ImageView) event.getSource();
