@@ -7,6 +7,7 @@ import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.action.ActionPlace;
 import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
 import it.polimi.ingsw.gc_12.event.Event;
+import it.polimi.ingsw.gc_12.event.EventTowerChosen;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.server.Server;
 import it.polimi.ingsw.gc_12.server.controller.Change;
@@ -25,6 +26,7 @@ public class ServerRMIView extends View implements RMIViewRemote {
 	private Set<ClientViewRemote> clients;
 	private Server server;
 	private Match match;
+	private boolean recievedAnsewr = false;
 
 	public ServerRMIView(Server server, Match match) {
 		this.clients = new HashSet<>();
@@ -49,6 +51,8 @@ public class ServerRMIView extends View implements RMIViewRemote {
 
 	@Override
 	public void update(Event event) {
+		if(event instanceof EventTowerChosen)
+			recievedAnsewr = false;
 		System.out.println("RMIVIEW: SENDING " + event.getClass() + " CHANGE TO THE CLIENT");
 		for (ClientViewRemote clientStub : this.clients) {
 			try {
@@ -70,6 +74,7 @@ public class ServerRMIView extends View implements RMIViewRemote {
 
 	@Override
 	public void receiveAction(int input){
+		recievedAnsewr = true;
 		Action action = match.getActionHandler().getAvailableAction(input);
 		System.out.println("ServerRMIView: " + action.getClass().getSimpleName() + " received from ClientRMI. Notifying observers (Server Controller).");
 		this.notifyObserver(action);

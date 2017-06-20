@@ -5,6 +5,7 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.occupiables.*;
+import it.polimi.ingsw.gc_12.resource.ResourceExchange;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.resource.Servant;
 
@@ -86,6 +87,9 @@ public class ActionHandler /*implements Observer<Event> */{
 		else if(event instanceof EventFreeAction){
 			event.setActions(getFreeActions((EventFreeAction) event));
 		}
+		else if(event instanceof EventChooseExchange){
+			event.setActions(getActionsChooseExchange((EventChooseExchange) event));
+		}
 		else
 			events.removeFirst();
 
@@ -94,6 +98,14 @@ public class ActionHandler /*implements Observer<Event> */{
 
 		}
 		//return actions;
+	}
+
+	private List<Action> getActionsChooseExchange(EventChooseExchange event) {
+		Player player = event.getPlayer();
+		List<Action> actions = new ArrayList<>();
+		for (ResourceExchange exchange : event.getExchanges())
+			actions.add(new ActionChooseExchange(player, exchange));
+		return actions;
 	}
 
 	private void setActions() {
