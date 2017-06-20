@@ -57,9 +57,7 @@ public abstract class ActionPlace extends Action {
 				executedEffects = match.getEffectHandler().executeEffects(match, event);
 				familyMember.setValue(familyMember.getValue()+servant.getValue());
 				canBeExecuted(match);
-
 				execute(match);
-
 			}
 			catch (RequiredValueNotSatisfiedException e) {
 				Event eventException = new EventServantsRequested(player, occupiable, familyMember);
@@ -69,6 +67,7 @@ public abstract class ActionPlace extends Action {
 			catch(Exception e) {
 				match.getEffectHandler().discardEffects(executedEffects, event);
 				System.out.println("Effects discarded due to " + e);
+				e.printStackTrace();
 			} finally {
 				familyMember.setValue(familyMember.getValue()-servant.getValue());
 			}

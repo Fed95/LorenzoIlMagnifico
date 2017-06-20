@@ -6,9 +6,8 @@ import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.card.CardDevelopment;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.effect.EffectFreeAction;
-import it.polimi.ingsw.gc_12.event.Event;
+import it.polimi.ingsw.gc_12.event.EventPlacementEnded;
 import it.polimi.ingsw.gc_12.event.EventPickCard;
-import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.occupiables.Tower;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
@@ -64,7 +63,7 @@ public class ActionPlaceOnTower extends ActionPlace {
             if(effect instanceof EffectFreeAction)
                 return;
         }
-        EventPlaceFamilyMember event = new EventPlaceFamilyMember(player, occupiable, familyMember);
+        EventPlacementEnded event = new EventPlacementEnded(player);
         match.getActionHandler().update(event);
         match.notifyObserver(event);
     }

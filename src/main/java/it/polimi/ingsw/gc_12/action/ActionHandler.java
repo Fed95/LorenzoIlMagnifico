@@ -66,7 +66,7 @@ public class ActionHandler /*implements Observer<Event> */{
 		else if(event instanceof EventServantsRequested) {
 			event.setActions(getActionsRequiredValue((EventServantsRequested) event));
 		}
-		else if(event instanceof EventStartTurn || event instanceof EventPlaceFamilyMember || event instanceof EventDiscardAction) {
+		else if(event instanceof EventStartTurn || event instanceof EventPlacementEnded || event instanceof EventDiscardAction) {
 			event.setActions(getActionsStartTurn(event));
 		}
 		else if(event instanceof EventRequestStatistics){
@@ -105,7 +105,7 @@ public class ActionHandler /*implements Observer<Event> */{
 	}
 
 	private void saveActions(Event event) {
-		if(events.getFirst() == event) {
+		if(events.size() > 0 && events.getFirst() == event) {
 			actions = event.getActions();
 		}
 	}
@@ -128,7 +128,7 @@ public class ActionHandler /*implements Observer<Event> */{
 		List<Action> actions = new ArrayList<>();
 		if(event instanceof EventStartTurn)
 			hasPlaced = false;
-		if(event instanceof EventPlaceFamilyMember)
+		if(event instanceof EventPlacementEnded)
 			hasPlaced = true;
 		if(!hasPlaced) {
 			for (FamilyMember familyMember : player.getAvailableFamilyMembers()) {
