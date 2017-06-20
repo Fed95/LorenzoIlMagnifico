@@ -22,5 +22,5 @@ public abstract class Effect implements Serializable {
 	
 	public abstract void execute(Match match, Event event) throws RuntimeException, IOException;
 	
-	public abstract void discard(Event event) throws RuntimeException;
+	public abstract void discard(Event event) throws RuntimeException, IOException;
 }

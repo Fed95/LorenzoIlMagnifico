@@ -28,7 +28,7 @@ public class EffectFreeAction extends Effect {
     }
 
     @Override
-    public void execute(Match match, Event event) {
+    public void execute(Match match, Event event) throws IOException {
         this.familyMember = new FamilyMember(match.getBoard().getTrackTurnOrder().getCurrentPlayer(), value);
         List<Occupiable> realOccupiables = new ArrayList<>();
         for(Occupiable occupiable : this.occupiables){

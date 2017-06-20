@@ -13,6 +13,7 @@ import it.polimi.ingsw.gc_12.occupiables.Tower;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 import it.polimi.ingsw.gc_12.resource.Servant;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ActionPlaceOnTower extends ActionPlace {
@@ -49,7 +50,7 @@ public class ActionPlaceOnTower extends ActionPlace {
     }
 
     @Override
-    protected void execute(Match match) {
+    protected void execute(Match match) throws IOException {
         if (!tower.isTaken())
             tower.activateMalus();
         CardDevelopment card = towerFloor.getCard();
@@ -68,7 +69,7 @@ public class ActionPlaceOnTower extends ActionPlace {
         match.notifyObserver(event);
     }
 
-    public void executeImmediateEffects(Match match, Player player, CardDevelopment card) {
+    public void executeImmediateEffects(Match match, Player player, CardDevelopment card) throws IOException {
         EventPickCard event = new EventPickCard(player, card);
         match.getEffectHandler().executeEffects(match, event);
     }

@@ -40,7 +40,7 @@ public class ActionPlaceOnMarket extends ActionPlace {
     }
 
     @Override
-    protected void execute(Match match) {
+    protected void execute(Match match) throws IOException {
         match.placeFamilyMember(spaceMarket, familyMember);
     }
 }

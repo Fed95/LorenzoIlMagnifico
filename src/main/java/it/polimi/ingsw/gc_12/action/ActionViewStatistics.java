@@ -4,6 +4,8 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.EventViewStatistics;
 
+import java.io.IOException;
+
 
 /**
  * Created by feder on 2017-06-16.
@@ -24,7 +26,7 @@ public class ActionViewStatistics extends Action {
     }
 
     @Override
-    public void start(Match match){
+    public void start(Match match) throws IOException {
         EventViewStatistics event = new EventViewStatistics(player, chosenPlayer);
         match.getActionHandler().update(event);
         //Notifies the ServerRMIView
