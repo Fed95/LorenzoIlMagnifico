@@ -57,4 +57,8 @@ public class PersonalBoard implements Serializable{
     public ResourcesContainer getResourceContainer() {
         return resourceContainer;
     }
+
+    public BonusTile getBonusTile() {
+        return bonusTile;
+    }
 }

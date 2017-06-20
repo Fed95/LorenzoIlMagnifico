@@ -19,6 +19,7 @@ public abstract class Event extends Change implements EventInterface {
 	public Event(Player player) {
 		if(player != null) {
 			this.player = player;
+			effectProviders.add(player.getPersonalBoard().getBonusTile());
 			effectProviders.addAll(player.getCards());
 			effectProviders.addAll(player.getExcommunications());
 		}else{

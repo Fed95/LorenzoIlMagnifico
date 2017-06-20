@@ -13,6 +13,7 @@ public class BonusTile implements EffectProvider {
 	public BonusTile(List<Effect> effects){
 		this.effects = effects;
 	}
+
 	@Override
 	public List<Effect> getEffects(){
 		return effects;

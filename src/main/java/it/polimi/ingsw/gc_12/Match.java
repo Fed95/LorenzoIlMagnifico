@@ -15,6 +15,8 @@ import it.polimi.ingsw.gc_12.server.observer.Observable;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,6 +52,10 @@ public class Match extends Observable<Event> implements Serializable{
 
 	public void init(List<Player> players) {
 		this.players = players;
+		Collections.shuffle(bonusTiles);
+		for (Player player : players){
+			player.getPersonalBoard().setBonusTile(bonusTiles.get(players.indexOf(player)));
+		}
 		//cardDeckSet.shuffle();
 		createBoard();
 
