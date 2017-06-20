@@ -65,7 +65,7 @@ public class ActionPlaceOnTower extends ActionPlace {
         executeImmediateEffects(match, player, card);
         towerFloor.removeCard();
         //TODO: IMPLEMENT SOME WAY OF WAITING FOR THE FREE ACTION TO FINISH
-        EventPlaceFamilyMember event = new EventPlaceFamilyMember(match.getBoard().getTrackTurnOrder().getCurrentPlayer(), occupiable, familyMember);
+        EventPlaceFamilyMember event = new EventPlaceFamilyMember(player, occupiable, familyMember);
         match.getActionHandler().update(event);
         match.notifyObserver(event);
     }

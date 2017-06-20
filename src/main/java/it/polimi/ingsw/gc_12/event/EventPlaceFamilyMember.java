@@ -86,17 +86,17 @@ public class EventPlaceFamilyMember extends Event{
             System.out.println("classes don't match");
             return false;
         }
-        EventPlaceFamilyMember other = (EventPlaceFamilyMember) obj;
+        EventPlaceFamilyMember that = (EventPlaceFamilyMember) obj;
 
-        if(!this.familyMember.equals(other.getFamilyMember())){
+        if(this.familyMember.getValue() < that.getFamilyMember().getValue()){
             return false;
         }
 
         // Check if they have an occupiable in common
         List<Occupiable> common = new ArrayList<>(occupiables);
-        common.retainAll(other.occupiables);
+        common.retainAll(that.occupiables);
         if (occupiables == null) {
-            if (other.occupiables != null)
+            if (that.occupiables != null)
                 return false;
         } else if (common.size() == 0){
             System.out.println("no occupiables in common found");
