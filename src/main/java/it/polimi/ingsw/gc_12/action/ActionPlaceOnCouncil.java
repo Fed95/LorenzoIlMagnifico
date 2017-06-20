@@ -11,13 +11,13 @@ public class ActionPlaceOnCouncil extends ActionPlace {
 
     private CouncilPalace councilPalace;
 
-    public ActionPlaceOnCouncil(Player player, FamilyMember familyMember, CouncilPalace councilPalace, Servant servant) {
-        super(player, familyMember, councilPalace, servant);
+    public ActionPlaceOnCouncil(Player player, FamilyMember familyMember, CouncilPalace councilPalace, Servant servant, boolean complete) {
+        super(player, familyMember, councilPalace, servant, complete);
         this.councilPalace = councilPalace;
     }
 
     public ActionPlaceOnCouncil(Player player, FamilyMember familyMember, CouncilPalace councilPalace) {
-        this(player, familyMember, councilPalace, new Servant(0));
+        this(player, familyMember, councilPalace, new Servant(0), false);
     }
 
     @Override

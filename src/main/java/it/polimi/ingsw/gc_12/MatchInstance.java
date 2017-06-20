@@ -44,7 +44,10 @@ public class MatchInstance implements Serializable, Cloneable {
 
 	public void placeFamilyMember(Occupiable occupiable, FamilyMember familyMember) {
 		getOccupiable(occupiable).placeFamilyMember(familyMember);
-		getFamilyMember(familyMember).setBusy(true);
+		if(getFamilyMembers(familyMember).size() > 0) {
+			getFamilyMembers(familyMember).get(0).setBusy(true);
+		}
+
 	}
 
 	private Occupiable getOccupiable(Occupiable occupiable) {
@@ -54,9 +57,9 @@ public class MatchInstance implements Serializable, Cloneable {
 		return occupiables.get(0);
 	}
 
-	private FamilyMember getFamilyMember(FamilyMember familyMember) {
+	private List<FamilyMember> getFamilyMembers(FamilyMember familyMember) {
 		return board.getTrackTurnOrder().getCurrentPlayer().getFamilyMembers().values().stream()
-				.filter(myFamilyMember -> myFamilyMember.equals(familyMember)).collect(Collectors.toList()).get(0);
+				.filter(myFamilyMember -> myFamilyMember.equals(familyMember)).collect(Collectors.toList());
 	}
 
 	public int getRoundNum() {

@@ -51,6 +51,7 @@ public class ActionHandler /*implements Observer<Event> */{
 			if(events.size() > 0)
 				actions = events.getFirst().getActions();
 		}
+		offset = 0;
 		return action;
 	}
 
@@ -58,13 +59,12 @@ public class ActionHandler /*implements Observer<Event> */{
 	public void update(Event event) {
 
 		events.addLast(event);
-		offset = 0;
+
 		if(event instanceof EventFamilyMemberChosen) {
 			event.setActions(getActionsFamilyMemberChoosen((EventFamilyMemberChosen) event));
 		}
-		else if(event instanceof EventRequiredValueNotSatisfied) {
-			offset = ((EventRequiredValueNotSatisfied) event).getOccupiable().getRequiredValue() - ((EventRequiredValueNotSatisfied) event).getFamilyMember().getValue();
-			event.setActions(getActionsRequiredValue((EventRequiredValueNotSatisfied) event));
+		else if(event instanceof EventServantsRequested) {
+			event.setActions(getActionsRequiredValue((EventServantsRequested) event));
 		}
 		else if(event instanceof EventStartTurn || event instanceof EventPlaceFamilyMember || event instanceof EventDiscardAction) {
 			event.setActions(getActionsStartTurn(event));
@@ -93,11 +93,7 @@ public class ActionHandler /*implements Observer<Event> */{
 		else
 			events.removeFirst();
 
-		if(events.size() == 1) {
-			actions = event.getActions();
-
-		}
-		//return actions;
+		saveActions(event);
 	}
 
 	private List<Action> getActionsChooseExchange(EventChooseExchange event) {
@@ -108,8 +104,10 @@ public class ActionHandler /*implements Observer<Event> */{
 		return actions;
 	}
 
-	private void setActions() {
-
+	private void saveActions(Event event) {
+		if(events.getFirst() == event) {
+			actions = event.getActions();
+		}
 	}
 
 	private List<Action> getFreeActions(EventFreeAction event) {
@@ -178,17 +176,18 @@ public class ActionHandler /*implements Observer<Event> */{
 		return actions;
 	}
 
-	public List<Action> getActionsRequiredValue(EventRequiredValueNotSatisfied event) {
+	public List<Action> getActionsRequiredValue(EventServantsRequested event) {
 		Player player = event.getPlayer();
 		List<Action> actions = new ArrayList<>();
-		actions.add(new DiscardAction(player));
 		int i = event.getOccupiable().getRequiredValue()-event.getFamilyMember().getValue();
+		i = i < 0 ? 0 : i;
+		offset = i;
 		for (; i <= player.getResourceValue(ResourceType.SERVANT); i++) {
-			Action action = ActionFactory.createActionPlace(player, event.getFamilyMember(), event.getOccupiable(), new Servant(i));
+			Action action = ActionFactory.createActionPlace(player, event.getFamilyMember(), event.getOccupiable(), new Servant(i), true);
 			if(action.isValid(match))
 				actions.add(action);
 		}
-
+		actions.add(new DiscardAction(player));
 		return actions;
 	}
 

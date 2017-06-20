@@ -10,14 +10,14 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class EventRequiredValueNotSatisfied extends EventPlaceFamilyMember {
+public class EventServantsRequested extends EventPlaceFamilyMember {
 
-	public EventRequiredValueNotSatisfied(Player player, Occupiable occupiable, FamilyMember familyMember) {
+	public EventServantsRequested(Player player, Occupiable occupiable, FamilyMember familyMember) {
 		super(player, new ArrayList<>(Collections.singletonList(occupiable)), familyMember);
 	}
 
 	@Override
 	public String toString() {
-		return "EventRequiredValueNotSatisfied";
+		return "EventServantsRequested";
 	}
 }

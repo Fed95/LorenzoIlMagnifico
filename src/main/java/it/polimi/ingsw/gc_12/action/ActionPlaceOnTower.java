@@ -5,34 +5,29 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.card.CardDevelopment;
 import it.polimi.ingsw.gc_12.effect.Effect;
+import it.polimi.ingsw.gc_12.effect.EffectFreeAction;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPickCard;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
-import it.polimi.ingsw.gc_12.event.EventRequiredValueNotSatisfied;
 import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.occupiables.Tower;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 import it.polimi.ingsw.gc_12.resource.Servant;
 
-import java.io.IOException;
-import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.List;
-
-import static sun.audio.AudioPlayer.player;
 
 public class ActionPlaceOnTower extends ActionPlace {
 
     protected Tower tower;
     protected TowerFloor towerFloor;
 
-    public ActionPlaceOnTower(Player player, FamilyMember familyMember, TowerFloor towerFloor, Servant servant) {
-        super(player, familyMember, towerFloor, servant);
+    public ActionPlaceOnTower(Player player, FamilyMember familyMember, TowerFloor towerFloor, Servant servant, boolean complete) {
+        super(player, familyMember, towerFloor, servant, complete);
         this.towerFloor = towerFloor;
     }
 
     public ActionPlaceOnTower(Player player, FamilyMember familyMember, TowerFloor towerFloor) {
-        this(player, familyMember, towerFloor, new Servant(0));
+        this(player, familyMember, towerFloor, new Servant(0), false);
     }
 
     @Override
@@ -64,7 +59,11 @@ public class ActionPlaceOnTower extends ActionPlace {
         match.placeFamilyMember(towerFloor, familyMember);
         executeImmediateEffects(match, player, card);
         towerFloor.removeCard();
-        //TODO: IMPLEMENT SOME WAY OF WAITING FOR THE FREE ACTION TO FINISH
+        List<Effect> effects = card.getEffects();
+        for(Effect effect: effects) {
+            if(effect instanceof EffectFreeAction)
+                return;
+        }
         EventPlaceFamilyMember event = new EventPlaceFamilyMember(player, occupiable, familyMember);
         match.getActionHandler().update(event);
         match.notifyObserver(event);

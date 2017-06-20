@@ -42,7 +42,7 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 
 		}
 		if(event.getPlayer() != null && isMyTurn(event.getPlayer())) {
-			if (event instanceof EventRequiredValueNotSatisfied) {
+			if (event instanceof EventServantsRequested) {
 				actions = event.getActions();
 				printServantsChoice(event);
 			}
@@ -71,7 +71,8 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 	}
 
 	private void printServantsChoice(Event event) {
-		int minValue = ((EventRequiredValueNotSatisfied) event).getOccupiable().getRequiredValue() - ((EventRequiredValueNotSatisfied) event).getFamilyMember().getValue();
+		int minValue = ((EventServantsRequested) event).getOccupiable().getRequiredValue() - ((EventServantsRequested) event).getFamilyMember().getValue();
+		minValue = minValue >= 0 ? minValue : 0;
 		int maxValue = event.getPlayer().getResourceValue(ResourceType.SERVANT);
 		System.out.println("You have " + maxValue + " Servants");
 		System.out.println("How many would you like to use?	min: " + minValue + ", max: " + maxValue + " - (Press 0 to go back)");

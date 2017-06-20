@@ -19,13 +19,13 @@ public class ActionPlaceOnMarket extends ActionPlace {
 
     private SpaceMarket spaceMarket;
 
-    public ActionPlaceOnMarket(Player player, FamilyMember familyMember, SpaceMarket spaceMarket, Servant servant) {
-        super(player, familyMember, spaceMarket, servant);
+    public ActionPlaceOnMarket(Player player, FamilyMember familyMember, SpaceMarket spaceMarket, Servant servant, boolean complete) {
+        super(player, familyMember, spaceMarket, servant, false);
         this.spaceMarket = spaceMarket;
     }
 
     public ActionPlaceOnMarket(Player player, FamilyMember familyMember, SpaceMarket spaceMarket) {
-        this(player, familyMember, spaceMarket, new Servant(0));
+        this(player, familyMember, spaceMarket, new Servant(0), false);
     }
 
     @Override

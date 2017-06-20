@@ -7,7 +7,7 @@ import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
-import it.polimi.ingsw.gc_12.event.EventRequiredValueNotSatisfied;
+import it.polimi.ingsw.gc_12.event.EventServantsRequested;
 import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.resource.Servant;
@@ -21,16 +21,18 @@ public abstract class ActionPlace extends Action {
 	protected FamilyMember familyMember;
 	protected Servant servant;
 	protected Occupiable occupiable;
+	protected boolean complete;
 
-	public ActionPlace(Player player, FamilyMember familyMember, Occupiable occupiable, Servant servant) {
+	public ActionPlace(Player player, FamilyMember familyMember, Occupiable occupiable, Servant servant, boolean complete) {
 		super(player);
 		this.familyMember = familyMember;
 		this.occupiable = occupiable;
 		this.servant = servant;
+		this.complete = complete;
 	}
 
 	public ActionPlace(Player player, FamilyMember familyMember, Occupiable occupiable) {
-		this(player,familyMember, occupiable, new Servant(0));
+		this(player,familyMember, occupiable, new Servant(0), false);
 	}
 
 	public FamilyMember getFamilyMember() {
@@ -40,28 +42,38 @@ public abstract class ActionPlace extends Action {
 	@Override
 	public void start(Match match){
 		setup(match);
-		Event event = new EventPlaceFamilyMember(player, occupiable, familyMember);
+		if(!complete) {
+			EventServantsRequested eventServants = new EventServantsRequested(player, occupiable, familyMember);
+			match.getActionHandler().update(eventServants);
+			//Notifies the ServerRMIView
+			match.notifyObserver(eventServants);
+		}
+		else {
+			Event event = new EventPlaceFamilyMember(player, occupiable, familyMember);
 
-		List<Effect> executedEffects = new ArrayList<>();
-		try{
-			//Can throw exceptions (in which case effects are discarded directly in EffectHandler)
-			executedEffects = match.getEffectHandler().executeEffects(match, event);
-			familyMember.setValue(familyMember.getValue()+servant.getValue());
-			canBeExecuted(match);
+			List<Effect> executedEffects = new ArrayList<>();
+			try{
+				//Can throw exceptions (in which case effects are discarded directly in EffectHandler)
+				executedEffects = match.getEffectHandler().executeEffects(match, event);
+				familyMember.setValue(familyMember.getValue()+servant.getValue());
+				canBeExecuted(match);
 
-			execute(match);
+				execute(match);
+
+			}
+			catch (RequiredValueNotSatisfiedException e) {
+				Event eventException = new EventServantsRequested(player, occupiable, familyMember);
+				match.getActionHandler().update(eventException);
+				match.notifyObserver(eventException);
+			}
+			catch(Exception e) {
+				match.getEffectHandler().discardEffects(executedEffects, event);
+				System.out.println("Effects discarded due to " + e);
+			} finally {
+				familyMember.setValue(familyMember.getValue()-servant.getValue());
+			}
 		}
-		catch (RequiredValueNotSatisfiedException e) {
-			Event eventException = new EventRequiredValueNotSatisfied(player, occupiable, familyMember);
-			match.getActionHandler().update(eventException);
-			match.notifyObserver(eventException);
-		}
-		catch(Exception e) {
-			match.getEffectHandler().discardEffects(executedEffects, event);
-			System.out.println("Effects discarded due to " + e);
-		} finally {
-			familyMember.setValue(familyMember.getValue()-servant.getValue());
-		}
+
 	}
 
 	@Override

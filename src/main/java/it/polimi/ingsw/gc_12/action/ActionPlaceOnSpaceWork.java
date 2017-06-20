@@ -14,13 +14,13 @@ public class ActionPlaceOnSpaceWork extends ActionPlace {
     private SpaceWorkZone spaceWorkZone;
     private SpaceWork spaceWork;
 
-    public ActionPlaceOnSpaceWork(Player player, FamilyMember familyMember, SpaceWork spaceWork, Servant servant) {
-        super(player, familyMember, spaceWork, servant);
+    public ActionPlaceOnSpaceWork(Player player, FamilyMember familyMember, SpaceWork spaceWork, Servant servant, boolean complete) {
+        super(player, familyMember, spaceWork, servant, complete);
         this.spaceWork = spaceWork;
     }
 
     public ActionPlaceOnSpaceWork(Player player, FamilyMember familyMember, SpaceWork spaceWork) {
-        this(player, familyMember, spaceWork, new Servant(0));
+        this(player, familyMember, spaceWork, new Servant(0), false);
     }
 
     @Override
