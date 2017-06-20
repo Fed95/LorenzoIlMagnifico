@@ -29,12 +29,18 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 		if(event == null)
 			return;
 
+		actions = event.getActions();
+
 		System.out.println("HANDLING "+event.getClass().getSimpleName());
 
 		if(event instanceof EventStartMatch) {
 			System.out.println("ClientRMI: EventStartMatch recognised. Creating view with local match.");
 			EventStartMatch eventStartMatch = (EventStartMatch) event;
-			match = eventStartMatch.getMatchInstance();
+			try {
+				MatchInstance.instance().init(eventStartMatch.getMatch());
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
 		}
 		if(event.getPlayer() != null && isMyTurn(event.getPlayer())) {
 			if (event instanceof EventRequiredValueNotSatisfied) {
@@ -101,6 +107,11 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 
 	public LinkedList<Event> getEvents() {
 		return events;
+	}
+
+	public void setView(ClientSender client, View view) {
+		this.view = view;
+
 	}
 
 	protected abstract boolean isMyTurn(Player player);

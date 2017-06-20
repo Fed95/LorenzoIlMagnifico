@@ -85,11 +85,6 @@ public class Match extends Observable<Event> implements MatchRemote, Serializabl
 		actionHandler.update(event);
 		this.notifyObserver(event);
 	}
-
-	@Override
-	public MatchInstance getInstance() throws CloneNotSupportedException {
-		return new MatchInstance(this);
-	}
 	
 	public void placeFamilyMember(Occupiable occupiable, FamilyMember familyMember) {
 
@@ -151,6 +146,11 @@ public class Match extends Observable<Event> implements MatchRemote, Serializabl
 	//@Override
 	public Player getCurrentPlayer() throws RemoteException {
 		return getBoard().getTrackTurnOrder().getCurrentPlayer();
+	}
+
+	@Override
+	public Board getBoardRemote() throws RemoteException {
+		return board;
 	}
 
 	//@Override

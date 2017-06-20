@@ -9,6 +9,7 @@ import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.server.model.State;
 
 import java.io.Serializable;
+import java.rmi.RemoteException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,9 +19,18 @@ public class MatchInstance implements Serializable, Cloneable {
 	public transient final static int DEFAULT_ROUND_NUM = 6;
 	public transient final static int DEFAULT_PERIODS_LEN = 2;
 	public transient final static int DEFAULT_TOTAL_PERIODS_NUM = DEFAULT_ROUND_NUM/DEFAULT_PERIODS_LEN;
+	private static MatchInstance instance;
 
-	public MatchInstance(Match match) {
-		this.board = match.getBoard();
+	private MatchInstance() {}
+
+	public static MatchInstance instance() {
+		if(instance == null) instance = new MatchInstance();
+		return instance;
+
+	}
+
+	public void init(MatchRemote match) throws RemoteException {
+		this.board = match.getBoardRemote();
 		this.roundNum = 1;
 	}
 

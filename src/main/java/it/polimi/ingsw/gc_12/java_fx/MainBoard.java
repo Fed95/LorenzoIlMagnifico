@@ -1,6 +1,8 @@
 package it.polimi.ingsw.gc_12.java_fx;
 
 
+import it.polimi.ingsw.gc_12.client.ClientSender;
+import it.polimi.ingsw.gc_12.mvc.View;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXMLLoader;
@@ -12,12 +14,11 @@ import javafx.scene.transform.Scale;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-public class MainBoard extends Application{
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		launch(args);
-	}
+import java.io.IOException;
+
+public class MainBoard extends Application implements View{
+
+	private ClientSender client;
 	
 	public void start(Stage primaryStage) throws Exception{
 		FXMLLoader loader = new FXMLLoader();
@@ -32,6 +33,7 @@ public class MainBoard extends Application{
 		primaryStage.show();
 		responsive(scene, rootLayout, primaryStage);
 	}
+
 	private void responsive(Scene scene, Pane root, Stage primaryStage){
 		final double initWidth  = scene.getWidth();
 		final double initHeight = scene.getHeight();
@@ -39,5 +41,10 @@ public class MainBoard extends Application{
 		ResponsiveListener sizeListener = new ResponsiveListener(scene, ratio, initHeight, initWidth, root, primaryStage);
 		scene.widthProperty().addListener(sizeListener);
 		scene.heightProperty().addListener(sizeListener);
+	}
+
+	@Override
+	public void start() throws IOException {
+		launch();
 	}
 }

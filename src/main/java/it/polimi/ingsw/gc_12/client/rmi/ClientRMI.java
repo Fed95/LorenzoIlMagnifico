@@ -1,6 +1,7 @@
 package it.polimi.ingsw.gc_12.client.rmi;
 
 import it.polimi.ingsw.gc_12.client.ClientSender;
+import it.polimi.ingsw.gc_12.java_fx.MainBoard;
 import it.polimi.ingsw.gc_12.mvc.View;
 import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.mvc.ViewCLI;
@@ -20,10 +21,19 @@ public class ClientRMI implements ClientSender { //Main class of the Clients usi
 	public final static String HOST = "127.0.0.1";
 	public final static int PORT = 52365;
 	private static final String NAME = "lorenzo";
+	private static ClientRMI instance;
 
 	private RMIViewRemote serverStub;
 	private Registry registry;
 	private View view;
+	private ClientRMIView rmiView;
+
+	private ClientRMI() {}
+
+	public static ClientRMI instance() {
+		if(instance == null) instance = new ClientRMI();
+		return instance;
+	}
 
 	public void start() throws IOException, NotBoundException, AlreadyBoundException, CloneNotSupportedException {
 		//Get the remote registry
@@ -39,12 +49,15 @@ public class ClientRMI implements ClientSender { //Main class of the Clients usi
 			name = stdIn.nextLine();
 			if(!"\n".equals(name) && !"".equals(name)) {
 
-				ClientRMIView rmiView = new ClientRMIView(name);
+				rmiView = new ClientRMIView(name);
 				System.out.println("You are being registered on the server...");
 				// register the client view in the server side (to receive messages from the server)
 				serverStub.registerClient(rmiView);
-				view = new ViewCLI(this, rmiView);
-				view.start();
+				/*view = new ViewCLI(this, rmiView);
+				view.start();*/
+				view = new MainBoard();
+				rmiView.setView(this, view);
+ 				view.start();
 				break;
 			}
 			else {
@@ -52,12 +65,6 @@ public class ClientRMI implements ClientSender { //Main class of the Clients usi
 				//stdIn.next();
 			}
 		}
-
-
-
-
-
-
 	}
 	
 	/*public void askAction(boolean isFMPlaced) throws RemoteException {
@@ -68,8 +75,12 @@ public class ClientRMI implements ClientSender { //Main class of the Clients usi
 		serverStub.receiveAction(input);
 	}
 
+	public ClientRMIView getRmiView() {
+		return rmiView;
+	}
+
 	public static void main(String[] args) throws IOException, NotBoundException, AlreadyBoundException, CloneNotSupportedException {
-		ClientRMI clientRMI = new ClientRMI();
+		ClientRMI clientRMI = ClientRMI.instance();
 		clientRMI.start();
 
 	}

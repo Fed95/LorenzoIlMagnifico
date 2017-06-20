@@ -14,7 +14,7 @@ import it.polimi.ingsw.gc_12.occupiables.TowerSet;
  */
 public interface MatchRemote extends Remote {
 
-	MatchInstance getInstance() throws RemoteException, CloneNotSupportedException;
+	//MatchInstance getInstance() throws RemoteException, CloneNotSupportedException;
 	Player getCurrentPlayer() throws RemoteException;
 	Player getPlayer(String name) throws RemoteException;
 	boolean isFMPlaced() throws RemoteException;
@@ -22,4 +22,6 @@ public interface MatchRemote extends Remote {
 	Tower getTower(CardType cardType) throws RemoteException;
 	SpaceWorkZone getSpaceWorkZone(WorkType workType) throws RemoteException;
 	int getPeriodNum() throws RemoteException;
+
+	Board getBoardRemote() throws RemoteException;
 }

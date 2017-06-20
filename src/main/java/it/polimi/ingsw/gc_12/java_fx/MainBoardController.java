@@ -1,7 +1,12 @@
 package it.polimi.ingsw.gc_12.java_fx;
 
 
+import it.polimi.ingsw.gc_12.MatchInstance;
+import it.polimi.ingsw.gc_12.client.ClientHandler;
+import it.polimi.ingsw.gc_12.client.ClientSender;
+import it.polimi.ingsw.gc_12.client.rmi.ClientRMI;
 import it.polimi.ingsw.gc_12.event.*;
+import it.polimi.ingsw.gc_12.mvc.GUIAdapter;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -14,6 +19,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -37,6 +43,10 @@ public class MainBoardController implements Initializable {
     @FXML private ImageView cardFloor14;
     @FXML private ImageView cardFloor15;
     private ImageView lastFamClicked = null;
+
+    private GUIAdapter adapter;
+    private MatchInstance match = MatchInstance.instance();
+    private ClientHandler clientView;
 
     @FXML void familyClicked(MouseEvent event) {
         ImageView familyMemberClicked = (ImageView) event.getSource();
@@ -87,5 +97,13 @@ public class MainBoardController implements Initializable {
         cardFloor15.setImage(image1);
 
         showCards.setOpacity(0);
+
+        this.clientView = ClientRMI.instance().getRmiView();
+        this.adapter = new GUIAdapter(ClientRMI.instance());
+        try {
+            adapter.sendAction(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
