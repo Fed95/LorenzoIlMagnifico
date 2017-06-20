@@ -9,8 +9,6 @@ import it.polimi.ingsw.gc_12.occupiables.SpaceWorkSingle;
 import it.polimi.ingsw.gc_12.occupiables.SpaceWorkZone;
 import it.polimi.ingsw.gc_12.resource.Servant;
 
-import java.io.IOException;
-
 public class ActionPlaceOnSpaceWork extends ActionPlace {
 
     private SpaceWorkZone spaceWorkZone;
@@ -42,7 +40,7 @@ public class ActionPlaceOnSpaceWork extends ActionPlace {
     }
 
     @Override
-    protected void execute(Match match) throws IOException {
+    protected void execute(Match match) {
         match.placeFamilyMember(spaceWork, familyMember);
     }
 }

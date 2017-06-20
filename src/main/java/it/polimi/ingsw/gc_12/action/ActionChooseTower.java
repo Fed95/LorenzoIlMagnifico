@@ -6,8 +6,6 @@ import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.EventTowerChosen;
 import it.polimi.ingsw.gc_12.occupiables.Tower;
 
-import java.io.IOException;
-
 /**
  * Created by feder on 2017-06-17.
  */
@@ -28,7 +26,7 @@ public class ActionChooseTower extends Action {
     }
 
     @Override
-    public void start(Match match) throws IOException {
+    public void start(Match match) {
         EventTowerChosen event = new EventTowerChosen(player, familyMember, tower);
         match.getActionHandler().update(event);
         //Notifies the ServerRMIView

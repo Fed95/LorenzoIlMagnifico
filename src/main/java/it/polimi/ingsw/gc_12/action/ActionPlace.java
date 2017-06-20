@@ -13,7 +13,6 @@ import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.resource.Servant;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +40,7 @@ public abstract class ActionPlace extends Action {
 	}
 
 	@Override
-	public void start(Match match) throws IOException {
+	public void start(Match match){
 		setup(match);
 		if(!complete) {
 			EventServantsRequested eventServants = new EventServantsRequested(player, occupiable, familyMember);
@@ -77,7 +76,7 @@ public abstract class ActionPlace extends Action {
 	}
 
 	@Override
-	public boolean isValid(Match match) throws IOException {
+	public boolean isValid(Match match){
 		setup(match);
 		Event event = new EventPlaceFamilyMember(player, occupiable, familyMember);
 
@@ -111,7 +110,7 @@ public abstract class ActionPlace extends Action {
 
 	protected abstract void setup(Match match);
 	protected abstract void canBeExecuted(Match match) throws RequiredValueNotSatisfiedException;
-	protected abstract void execute(Match match) throws IOException;
+	protected abstract void execute(Match match);
 
 	@Override
 	public String toString() {

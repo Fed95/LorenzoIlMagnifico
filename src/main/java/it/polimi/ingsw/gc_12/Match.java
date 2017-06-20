@@ -12,7 +12,6 @@ import it.polimi.ingsw.gc_12.personal_board.BonusTile;
 import it.polimi.ingsw.gc_12.server.model.State;
 import it.polimi.ingsw.gc_12.server.observer.Observable;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
@@ -76,7 +75,7 @@ public class Match extends Observable<Event> implements Serializable{
 		board.getTowerSet().setCards(cardDeckSet);
 	}
 
-	public void start() throws CloneNotSupportedException, IOException {
+	public void start() throws CloneNotSupportedException, RemoteException {
 		this.gameState = State.RUNNING;
 		System.out.println("Match: notifying EventStartMatch");
 		this.notifyObserver(new EventStartMatch(this));
@@ -84,7 +83,7 @@ public class Match extends Observable<Event> implements Serializable{
 	}
 
 	//Increments turn counter in TrackTurnOrder
-	public void newTurn() throws IOException {
+	public void newTurn() {
 		System.out.println("Match: Starting new turn");
 		board.getTrackTurnOrder().newTurn();
 		System.out.println("Match: notifying EventStartTurn to ServerRMIView");
@@ -93,7 +92,7 @@ public class Match extends Observable<Event> implements Serializable{
 		this.notifyObserver(event);
 	}
 	
-	public void placeFamilyMember(Occupiable occupiable, FamilyMember familyMember) throws IOException {
+	public void placeFamilyMember(Occupiable occupiable, FamilyMember familyMember) {
 
 		occupiable.placeFamilyMember(familyMember);
 		if(familyMember.getColor() != null)
@@ -169,8 +168,6 @@ public class Match extends Observable<Event> implements Serializable{
 			} catch (CloneNotSupportedException e) {
 				e.printStackTrace();
 			} catch (RemoteException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}

@@ -4,8 +4,6 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.EventRequestStatistics;
 
-import java.io.IOException;
-
 public class ActionRequestStatistics extends  Action {
 
     public ActionRequestStatistics(Player player) {
@@ -18,7 +16,7 @@ public class ActionRequestStatistics extends  Action {
     }
 
     @Override
-    public void start(Match match) throws IOException {
+    public void start(Match match){
         EventRequestStatistics event = new EventRequestStatistics(player);
         match.getActionHandler().update(event);
         //Notifies the ServerRMIView
