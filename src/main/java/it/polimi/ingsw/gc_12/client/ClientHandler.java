@@ -54,7 +54,7 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 					match.placeFamilyMember(eventPlaceFamilyMember.getOccupiable(), eventPlaceFamilyMember.getFamilyMember());
 				}
 				actions = event.getActions();
-				if(!(event instanceof EventPickCard)) {
+				if(event.getActions().size() > 0) {
 					System.out.println("What would you like to do?");
 					System.out.println();
 				}
@@ -75,7 +75,7 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 		minValue = minValue >= 0 ? minValue : 0;
 		int maxValue = event.getPlayer().getResourceValue(ResourceType.SERVANT);
 		System.out.println("You have " + maxValue + " Servants");
-		System.out.println("How many would you like to use?	min: " + minValue + ", max: " + maxValue + " - (Press 0 to go back)");
+		System.out.println("How many would you like to use?	min: " + minValue + ", max: " + maxValue + " - (Press " + (maxValue+1) + " to go back)");
 	}
 
 	private void printStatistics(Event event) {

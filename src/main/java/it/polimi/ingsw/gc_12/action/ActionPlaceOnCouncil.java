@@ -3,6 +3,7 @@ package it.polimi.ingsw.gc_12.action;
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.event.EventPlacementEnded;
 import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.occupiables.CouncilPalace;
 import it.polimi.ingsw.gc_12.resource.Servant;
@@ -34,6 +35,9 @@ public class ActionPlaceOnCouncil extends ActionPlace {
     @Override
     protected void execute(Match match) throws IOException {
         match.placeFamilyMember(councilPalace, familyMember);
+        EventPlacementEnded event = new EventPlacementEnded(player);
+        match.getActionHandler().update(event);
+        match.notifyObserver(event);
     }
 
     private CouncilPalace getRealCouncilPalace(Match match) {

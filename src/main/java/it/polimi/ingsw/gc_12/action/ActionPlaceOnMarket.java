@@ -7,6 +7,7 @@ import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
+import it.polimi.ingsw.gc_12.event.EventPlacementEnded;
 import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.occupiables.SpaceMarket;
 import it.polimi.ingsw.gc_12.resource.Servant;
@@ -20,7 +21,7 @@ public class ActionPlaceOnMarket extends ActionPlace {
     private SpaceMarket spaceMarket;
 
     public ActionPlaceOnMarket(Player player, FamilyMember familyMember, SpaceMarket spaceMarket, Servant servant, boolean complete) {
-        super(player, familyMember, spaceMarket, servant, false);
+        super(player, familyMember, spaceMarket, servant, complete);
         this.spaceMarket = spaceMarket;
     }
 
@@ -42,5 +43,8 @@ public class ActionPlaceOnMarket extends ActionPlace {
     @Override
     protected void execute(Match match) throws IOException {
         match.placeFamilyMember(spaceMarket, familyMember);
+        EventPlacementEnded event = new EventPlacementEnded(player);
+        match.getActionHandler().update(event);
+        match.notifyObserver(event);
     }
 }
