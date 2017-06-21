@@ -14,7 +14,7 @@ public class EffectPlacementDenied extends Effect {
 
     @Override
     public void execute(Match match, Event event) throws RuntimeException {
-        throw new RuntimeException("A permanent effect prevents you from executing this placement!");
+        throw new RuntimeException("EffectPlacementDenied");
     }
 
     @Override

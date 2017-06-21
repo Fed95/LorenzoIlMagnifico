@@ -4,6 +4,8 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventChooseExchange;
+import it.polimi.ingsw.gc_12.event.EventReceiveResource;
+import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.resource.ResourceExchange;
 
 import java.util.ArrayList;
@@ -32,6 +34,11 @@ public class EffectChangeResource extends Effect {
 			for(ResourceExchange exchange : exchanges) {
 				player.removeResources(exchange.getCost());
 				player.addResources(exchange.getBonus());
+
+				for(Resource resource : exchange.getBonus()) {
+					EventReceiveResource e = new EventReceiveResource(player, resource);
+					match.getEffectHandler().executeEffects(match, e);
+				}
 			}
 		}
 		else {
@@ -64,6 +71,10 @@ public class EffectChangeResource extends Effect {
 
 	public List<ResourceExchange> getExchanges() {
 		return exchanges;
+	}
+
+	public boolean hasChoice(){
+		return choice;
 	}
 
 	@Override
