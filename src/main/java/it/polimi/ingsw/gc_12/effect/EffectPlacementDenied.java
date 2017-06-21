@@ -2,6 +2,7 @@ package it.polimi.ingsw.gc_12.effect;
 
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.event.Event;
+import it.polimi.ingsw.gc_12.exceptions.ActionDeniedException;
 
 /**
  * Created by feder on 2017-06-12.
@@ -13,8 +14,8 @@ public class EffectPlacementDenied extends Effect {
     }
 
     @Override
-    public void execute(Match match, Event event) throws RuntimeException {
-        throw new RuntimeException("EffectPlacementDenied");
+    public void execute(Match match, Event event) throws ActionDeniedException {
+        throw new ActionDeniedException("EffectPlacementDenied");
     }
 
     @Override

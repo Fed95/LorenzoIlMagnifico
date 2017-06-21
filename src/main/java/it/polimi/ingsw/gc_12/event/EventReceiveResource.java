@@ -21,11 +21,6 @@ public class EventReceiveResource extends Event {
         return null;
     }
 
-    @Override
-    public List<EffectProvider> getEffectProviders() {
-        return null;
-    }
-
     public Resource getResource() {
         return resource;
     }

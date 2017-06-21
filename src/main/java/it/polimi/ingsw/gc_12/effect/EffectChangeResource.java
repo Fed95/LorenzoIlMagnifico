@@ -5,6 +5,7 @@ import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventChooseExchange;
 import it.polimi.ingsw.gc_12.event.EventReceiveResource;
+import it.polimi.ingsw.gc_12.exceptions.ActionDeniedException;
 import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.resource.ResourceExchange;
 
@@ -28,7 +29,7 @@ public class EffectChangeResource extends Effect {
 		this(event, new ArrayList<>(Arrays.asList(exchange)), choice);
 	}
 	
-	public void execute(Match match, Event event) {
+	public void execute(Match match, Event event) throws ActionDeniedException {
 		Player player = event.getPlayer();
 		if(!choice) {
 			for(ResourceExchange exchange : exchanges) {

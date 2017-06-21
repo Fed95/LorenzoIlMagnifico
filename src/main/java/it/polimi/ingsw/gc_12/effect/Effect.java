@@ -2,6 +2,7 @@ package it.polimi.ingsw.gc_12.effect;
 
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.event.Event;
+import it.polimi.ingsw.gc_12.exceptions.ActionDeniedException;
 
 import java.io.Serializable;
 
@@ -17,7 +18,7 @@ public abstract class Effect implements Serializable {
 		return this.event;
 	}
 
-	public abstract void execute(Match match, Event event) ;
+	public abstract void execute(Match match, Event event) throws ActionDeniedException;
 	
 	public abstract void discard(Event event) ;
 }

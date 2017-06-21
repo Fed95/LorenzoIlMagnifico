@@ -2,6 +2,7 @@ package it.polimi.ingsw.gc_12.effect;
 
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.event.Event;
+import it.polimi.ingsw.gc_12.exceptions.ActionDeniedException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ public class EffectHandler {
 	public EffectHandler() {
 	}
 
-	public List<Effect> executeEffects(Match match, Event event) {
+	public List<Effect> executeEffects(Match match, Event event) throws ActionDeniedException {
 		List<Effect> effects = getPossibleEffects(event);
 		List<Effect> executedEffects = new ArrayList<>();
 		// If there is an effect (from the players' cards or the place where the family member has been placed):
@@ -23,9 +24,9 @@ public class EffectHandler {
 					executedEffects.add(effect);
 				}
 			}
-		}catch(Exception e){
+		}catch(ActionDeniedException e){
 			discardEffects(executedEffects, event);
-			System.out.println("Effects discarded due to " + e + ". Cause: " + e.getStackTrace());
+			throw e;
 		}
 		return executedEffects;
 	}
@@ -35,7 +36,7 @@ public class EffectHandler {
 
 		//(Discards all effects executed by executeEffects)
 		for(Effect effect : executedEffects) {
-				effect.discard(event);
+			effect.discard(event);
 		}
 	}
 	

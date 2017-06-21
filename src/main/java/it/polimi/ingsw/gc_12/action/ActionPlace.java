@@ -8,6 +8,7 @@ import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.event.EventServantsRequested;
 import it.polimi.ingsw.gc_12.exceptions.ActionNotAllowedException;
+import it.polimi.ingsw.gc_12.exceptions.ActionDeniedException;
 import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
@@ -64,10 +65,9 @@ public abstract class ActionPlace extends Action {
 				match.getActionHandler().update(eventException);
 				match.notifyObserver(eventException);
 			}
-			catch(Exception e) {
+			catch(ActionDeniedException | ActionNotAllowedException e) {
 				match.getEffectHandler().discardEffects(executedEffects, event);
-				System.out.println("Effects discarded due to " + e);
-				e.printStackTrace();
+				throw new IllegalStateException("ActionPlace: action started even if it's not allowed!");
 			} finally {
 				familyMember.setValue(familyMember.getValue()-servant.getValue());
 			}
@@ -87,10 +87,9 @@ public abstract class ActionPlace extends Action {
 			familyMember.setValue(familyMember.getValue() + player.getResourceValue(ResourceType.SERVANT));
 			this.canBeExecuted(match);
 		}
-		catch (Exception e) {
+		catch (RequiredValueNotSatisfiedException | ActionDeniedException | ActionNotAllowedException e) {
 			familyMember.setValue(familyMember.getValue() - player.getResourceValue(ResourceType.SERVANT));
 			match.getEffectHandler().discardEffects(executedEffects, event);
-			e.printStackTrace();
 			return false;
 		}
 		familyMember.setValue(familyMember.getValue()-player.getResourceValue(ResourceType.SERVANT));

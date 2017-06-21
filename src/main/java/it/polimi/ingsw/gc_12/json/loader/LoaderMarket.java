@@ -24,8 +24,8 @@ public class LoaderMarket extends Loader<Market> {
 	@Override
 	protected Market adapt(Market content, Match match) {
 		List<SpaceMarket> spaceMarkets = content.getSpaceMarkets();
-		Config config = new LoaderConfig().get(match).get(match.getPlayers());
-		int spaceMarketsNum = 4; //TODO: config.getSpaceMarketNum();
+		Config config = new LoaderConfig().get(match).get(match.getPlayers().size());
+		int spaceMarketsNum = config.getSpaceMarketNum();
 		spaceMarkets = new ArrayList<>(spaceMarkets.subList(0, spaceMarketsNum));
 		content.setSpaceMarkets(spaceMarkets);
 		return content;

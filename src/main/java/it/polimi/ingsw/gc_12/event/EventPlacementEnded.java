@@ -18,11 +18,6 @@ public class EventPlacementEnded extends Event{
 	}
 
 	@Override
-	public List<EffectProvider> getEffectProviders() {
-		return null;
-	}
-
-	@Override
 	public String toString() {
 		return null;
 	}

@@ -54,4 +54,8 @@ public abstract class Event extends Change implements EventInterface {
 	}
 
 	public abstract String toString();
+
+	public List<EffectProvider> getEffectProviders() {
+		return effectProviders;
+	}
 }

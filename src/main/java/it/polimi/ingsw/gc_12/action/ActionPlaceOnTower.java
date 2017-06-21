@@ -9,11 +9,13 @@ import it.polimi.ingsw.gc_12.effect.EffectFreeAction;
 import it.polimi.ingsw.gc_12.event.EventPickCard;
 import it.polimi.ingsw.gc_12.event.EventPlacementEnded;
 import it.polimi.ingsw.gc_12.exceptions.ActionNotAllowedException;
+import it.polimi.ingsw.gc_12.exceptions.ActionDeniedException;
 import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.occupiables.Tower;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 import it.polimi.ingsw.gc_12.resource.Servant;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ActionPlaceOnTower extends ActionPlace {
@@ -57,6 +59,7 @@ public class ActionPlaceOnTower extends ActionPlace {
         player.removeResources(card.getRequirements());
         player.getPersonalBoard().placeCard(card);
         match.placeFamilyMember(towerFloor, familyMember);
+
         executeImmediateEffects(match, player, card);
         towerFloor.removeCard();
         List<Effect> effects = card.getEffects();
@@ -71,7 +74,12 @@ public class ActionPlaceOnTower extends ActionPlace {
 
     public void executeImmediateEffects(Match match, Player player, CardDevelopment card) {
         EventPickCard event = new EventPickCard(player, card);
-        match.getEffectHandler().executeEffects(match, event);
+        List<Effect> executedEffects = new ArrayList<>();
+        try {
+            match.getEffectHandler().executeEffects(match, event);
+        } catch (ActionDeniedException e) {
+            e.printStackTrace();
+        }
     }
 
 }

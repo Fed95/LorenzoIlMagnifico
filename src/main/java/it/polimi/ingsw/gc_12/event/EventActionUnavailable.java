@@ -23,11 +23,6 @@ public class EventActionUnavailable extends Event {
 	}
 
 	@Override
-	public List<EffectProvider> getEffectProviders() {
-		return effectProviders;
-	}
-
-	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(System.getProperty("line.separator"));

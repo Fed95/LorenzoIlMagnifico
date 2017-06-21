@@ -21,12 +21,12 @@ public class EffectReduceReceivedResource extends Effect {
     @Override
     public void execute(Match match, Event event) {
        if(!(event instanceof EventReceiveResource))
-           throw new IllegalArgumentException("EffectReduceReceivedResource: received an unexpected event!");
+           throw new IllegalStateException("EffectReduceReceivedResource: received an unexpected event!");
 
        Player player = event.getPlayer();
        EventReceiveResource eventReceiveResource = (EventReceiveResource) event;
 
-       ResourceType type = ((EventReceiveResource) event).getResource().getType();
+       ResourceType type = eventReceiveResource.getResource().getType();
        int newValue = player.getResources().get(type).getValue() - ((EventReceiveResource) event).getResource().getValue();
 
        player.setResourceValue(type, newValue);

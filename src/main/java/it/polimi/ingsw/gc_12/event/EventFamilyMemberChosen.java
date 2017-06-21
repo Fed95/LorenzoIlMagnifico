@@ -34,11 +34,6 @@ public class EventFamilyMemberChosen extends Event {
 		attributes.add(familyMember);
 		return attributes;
 	}
-
-	@Override
-	public List<EffectProvider> getEffectProviders() {
-		return effectProviders;
-	}
 	
 	public FamilyMember getFamilyMember() {
 		return familyMember;

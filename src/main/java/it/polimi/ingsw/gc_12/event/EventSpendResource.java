@@ -19,6 +19,7 @@ public class EventSpendResource extends Event {
         this.resourceType = resource.getType();
         this.value = resource.getValue();
     }
+
     public EventSpendResource(Resource resource) {
         super();
         this.resourceType = resource.getType();
@@ -30,14 +31,6 @@ public class EventSpendResource extends Event {
         attributes.add(resourceType);
         attributes.add(value);
         return attributes;
-    }
-
-    @Override
-    public List<EffectProvider> getEffectProviders() {
-        List<EffectProvider> effectProviders = new ArrayList<>();
-        effectProviders.addAll(player.getCards());
-        effectProviders.addAll(player.getExcommunications());
-        return effectProviders;
     }
 
     @Override

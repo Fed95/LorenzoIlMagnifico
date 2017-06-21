@@ -28,11 +28,6 @@ public class EventChooseExchange extends Event {
     }
 
     @Override
-    public List<EffectProvider> getEffectProviders() {
-        return null;
-    }
-
-    @Override
     public String toString() {
         return "Choose the exchange you would like to activate";
     }

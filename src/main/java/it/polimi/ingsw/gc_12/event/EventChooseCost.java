@@ -32,11 +32,6 @@ public class EventChooseCost extends Event {
     }
 
     @Override
-    public List<EffectProvider> getEffectProviders() {
-        return null;
-    }
-
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(System.getProperty("line.separator"));

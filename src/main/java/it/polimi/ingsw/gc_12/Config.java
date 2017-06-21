@@ -11,7 +11,6 @@ public class Config {
 
 	public Config(int playersNum) {
 		this.playersNum = playersNum;
-		this.setSpaceMarketNum(playersNum - playersNum % 2);
 	}
 
 	public void setSpaceMarketNum(int spaceMarketNum) {

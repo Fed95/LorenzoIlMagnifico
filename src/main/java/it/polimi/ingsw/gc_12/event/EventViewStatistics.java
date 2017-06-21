@@ -19,11 +19,6 @@ public class EventViewStatistics extends Event {
         return null;
     }
 
-    @Override
-    public List<EffectProvider> getEffectProviders() {
-        return null;
-    }
-
     public Player getChosenPlayer() {
         return chosenPlayer;
     }

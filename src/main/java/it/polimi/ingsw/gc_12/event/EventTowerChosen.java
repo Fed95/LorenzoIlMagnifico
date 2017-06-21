@@ -33,11 +33,6 @@ public class EventTowerChosen extends Event {
     }
 
     @Override
-    public List<EffectProvider> getEffectProviders() {
-        return null;
-    }
-
-    @Override
     public String toString() {
         return player.getName() + " is viewing the " + tower.getType() + " tower.";
     }

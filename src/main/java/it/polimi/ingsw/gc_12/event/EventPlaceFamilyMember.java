@@ -60,11 +60,6 @@ public class EventPlaceFamilyMember extends Event{
         return attributes;
     }
 
-    @Override
-    public List<EffectProvider> getEffectProviders() {
-        return effectProviders;
-    }
-
     public FamilyMember getFamilyMember() {
         return familyMember;
     }

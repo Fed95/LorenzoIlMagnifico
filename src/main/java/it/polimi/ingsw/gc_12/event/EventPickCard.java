@@ -34,11 +34,6 @@ public class EventPickCard extends Event {
         return attributes;
     }
 
-    @Override
-    public List<EffectProvider> getEffectProviders() {
-        return effectProviders;
-    }
-
     public int getCardID() {
         return cardID;
     }

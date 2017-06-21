@@ -2,6 +2,7 @@ package it.polimi.ingsw.gc_12.effect;
 
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.event.Event;
+import it.polimi.ingsw.gc_12.exceptions.ActionDeniedException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,13 @@ public class EffectDenyEffect extends Effect {
         for(Effect effect : findEffects(event)) {
             if(effect instanceof EffectChangeResource && ((EffectChangeResource) effect).hasChoice())
                 throw new IllegalStateException("Trying to apply EffectDenyEffect to a ChangeResource effect with choice!");
-            effect.execute(match, event);
+
+            List<Effect> executedEffects = new ArrayList<>();
+            try {
+                executedEffects =  match.getEffectHandler().executeEffects(match, event);
+            } catch (ActionDeniedException e) {
+                match.getEffectHandler().discardEffects(executedEffects, event);
+            }
         }
     }
 

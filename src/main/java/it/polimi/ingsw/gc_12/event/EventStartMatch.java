@@ -24,11 +24,6 @@ public class EventStartMatch extends Event{
 	}
 
 	@Override
-	public List<EffectProvider> getEffectProviders() {
-		return effectProviders;
-	}
-
-	@Override
 	public String toString() {
 		return "Match started!";
 	}

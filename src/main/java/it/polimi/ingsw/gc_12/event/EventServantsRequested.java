@@ -9,8 +9,19 @@ import java.util.Collections;
 
 public class EventServantsRequested extends EventPlaceFamilyMember {
 
+	private int multiplier = 1;
+	private int adder = 0;
+
 	public EventServantsRequested(Player player, Occupiable occupiable, FamilyMember familyMember) {
 		super(player, new ArrayList<>(Collections.singletonList(occupiable)), familyMember);
+	}
+
+	public void setMultiplier(int multiplier) {
+		this.multiplier = multiplier;
+	}
+
+	public int getMultiplier() {
+		return multiplier;
 	}
 
 	@Override

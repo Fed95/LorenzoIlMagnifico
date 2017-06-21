@@ -24,9 +24,4 @@ public class EventRequestStatistics extends Event {
         return null;
     }
 
-    @Override
-    public List<EffectProvider> getEffectProviders() {
-        return null;
-    }
-
 }
