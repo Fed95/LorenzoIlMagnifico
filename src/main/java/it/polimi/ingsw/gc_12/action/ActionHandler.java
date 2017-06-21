@@ -14,7 +14,7 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ActionHandler /*implements Observer<Event> */{
+public class ActionHandler {
 	private List<Action> actions = new ArrayList<>();
 	private LinkedList<Event> events = new LinkedList<>();
 	private Match match;
@@ -24,27 +24,7 @@ public class ActionHandler /*implements Observer<Event> */{
 	public ActionHandler(Match match) {
 		this.match = match;
 		this.actions = new ArrayList<>(Collections.singletonList(new ActionReady(null)));
-		//match.registerObserver(this);
 	}
-
-	/*public List<Action> updateAvailableActions(Match match, Player player, FamilyMember familyMember, Servant servant) {
-		actions = new ArrayList<>();
-		for(Occupiable occupiable: match.getBoard().getOccupiables()) {
-			ActionPlace action = ActionFactory.createActionPlace(player, familyMember, occupiable, servant);
-			if(action.isValid(match)) {
-				actions.add(action);
-			}
-		}
-		return actions;
-	}
-
-	public List<Action> updateAvailableActions(Match match, Player player, FamilyMember familyMember) {
-		return updateAvailableActions(match, player, familyMember, new Servant(0));
-	}*/
-
-	/*public List<Action> getAvailableActions() {
-		return actions;
-	}*/
 
 	public Action getAvailableAction(int input) {
 		int inputReal = input-offset+1 > 0 ? input-offset : 0;
@@ -156,8 +136,20 @@ public class ActionHandler /*implements Observer<Event> */{
 				}
 			}
 		}
-		actions.add(new ActionChooseMarket(player, event.getFamilyMember()));
-		actions.add(new ActionChooseWorkplace(player, event.getFamilyMember()));
+		for(SpaceMarket spaceMarket : match.getBoard().getMarket().getSpaceMarkets()){
+			ActionPlace action = ActionFactory.createActionPlace(player, event.getFamilyMember(), spaceMarket);
+			if(action.isValid(match)) {
+				actions.add(new ActionChooseMarket(player, event.getFamilyMember()));
+				break;
+			}
+		}
+		for(SpaceWork spaceWork : match.getBoard().getSpaceWorks()){
+				ActionPlace action = ActionFactory.createActionPlace(player, event.getFamilyMember(), spaceWork);
+				if(action.isValid(match)) {
+					actions.add(new ActionChooseWorkplace(player, event.getFamilyMember()));
+					break;
+				}
+		}
 		actions.add(new ActionPlaceOnCouncil(player, event.getFamilyMember(), match.getBoard().getCouncilPalace()));
 		actions.add(new DiscardAction(player));
 		return actions;

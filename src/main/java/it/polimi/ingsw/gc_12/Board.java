@@ -70,6 +70,15 @@ public class Board implements Serializable{
 		return spaceWorkZones;
 	}
 
+	public List<SpaceWork> getSpaceWorks(){
+		List<SpaceWork> spaceWorks = new ArrayList<>();
+		for (SpaceWorkZone spaceWorkZone : spaceWorkZones.values()){
+			for(SpaceWork spaceWork : spaceWorkZone.getSpaceWorks())
+				spaceWorks.add(spaceWork);
+		}
+		return spaceWorks;
+	}
+
 	public SpaceDie getSpaceDie() {
 		return spaceDie;
 	}
