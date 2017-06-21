@@ -19,7 +19,7 @@ public class EffectReduceReceivedResource extends Effect {
     }
 
     @Override
-    public void execute(Match match, Event event) throws RuntimeException, IOException {
+    public void execute(Match match, Event event) {
        if(!(event instanceof EventReceiveResource))
            throw new IllegalArgumentException("EffectReduceReceivedResource: received an unexpected event!");
 
@@ -33,7 +33,7 @@ public class EffectReduceReceivedResource extends Effect {
     }
 
     @Override
-    public void discard(Event event) throws RuntimeException, IOException {
+    public void discard(Event event) {
 
     }
 }
