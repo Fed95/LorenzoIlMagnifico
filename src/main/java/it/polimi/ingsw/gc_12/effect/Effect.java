@@ -20,7 +20,7 @@ public abstract class Effect implements Serializable {
 		return this.event;
 	}
 	
-	public abstract void execute(Match match, Event event) throws RuntimeException, IOException;
+	public abstract void execute(Match match, Event event) throws RuntimeException, IOException; //TODO: IMPROVE THIS (only changeResource needs the match)
 	
 	public abstract void discard(Event event) throws RuntimeException, IOException;
 }
