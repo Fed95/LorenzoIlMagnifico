@@ -3,16 +3,23 @@
     "effects": [
       {
         "type": "EffectChangeResource",
-        "resources": [
+        "exchanges": [
           {
-            "resourceType": "Servant",
-            "type": "SERVANT",
-            "value": 2
-          },
-          {
-            "resourceType": "Money",
-            "type": "MONEY",
-            "value": 1
+            "cost": [
+              null
+            ],
+            "bonus": [
+              {
+                "resourceType": "Servant",
+                "type": "SERVANT",
+                "value": 2
+              },
+              {
+                "resourceType": "Money",
+                "type": "MONEY",
+                "value": 1
+              }
+            ]
           }
         ],
         "event": {
@@ -38,21 +45,28 @@
       },
       {
         "type": "EffectChangeResource",
-        "resources": [
+        "exchanges": [
           {
-            "resourceType": "Wood",
-            "type": "WOOD",
-            "value": 1
-          },
-          {
-            "resourceType": "Stone",
-            "type": "STONE",
-            "value": 1
-          },
-          {
-            "resourceType": "MilitaryPoint",
-            "type": "MILITARY_POINT",
-            "value": 1
+            "cost": [
+              null
+            ],
+            "bonus": [
+              {
+                "resourceType": "Wood",
+                "type": "WOOD",
+                "value": 1
+              },
+              {
+                "resourceType": "Stone",
+                "type": "STONE",
+                "value": 1
+              },
+              {
+                "resourceType": "MilitaryPoint",
+                "type": "MILITARY_POINT",
+                "value": 1
+              }
+            ]
           }
         ],
         "event": {
@@ -82,16 +96,23 @@
     "effects": [
       {
         "type": "EffectChangeResource",
-        "resources": [
+        "exchanges": [
           {
-            "resourceType": "MilitaryPoint",
-            "type": "MILITARY_POINT",
-            "value": 2
-          },
-          {
-            "resourceType": "Money",
-            "type": "MONEY",
-            "value": 1
+            "cost": [
+              null
+            ],
+            "bonus": [
+              {
+                "resourceType": "MilitaryPoint",
+                "type": "MILITARY_POINT",
+                "value": 2
+              },
+              {
+                "resourceType": "Money",
+                "type": "MONEY",
+                "value": 1
+              }
+            ]
           }
         ],
         "event": {
@@ -117,21 +138,28 @@
       },
       {
         "type": "EffectChangeResource",
-        "resources": [
+        "exchanges": [
           {
-            "resourceType": "Wood",
-            "type": "WOOD",
-            "value": 1
-          },
-          {
-            "resourceType": "Stone",
-            "type": "STONE",
-            "value": 1
-          },
-          {
-            "resourceType": "Servant",
-            "type": "SERVANT",
-            "value": 1
+            "cost": [
+              null
+            ],
+            "bonus": [
+              {
+                "resourceType": "Wood",
+                "type": "WOOD",
+                "value": 1
+              },
+              {
+                "resourceType": "Stone",
+                "type": "STONE",
+                "value": 1
+              },
+              {
+                "resourceType": "Servant",
+                "type": "SERVANT",
+                "value": 1
+              }
+            ]
           }
         ],
         "event": {
@@ -161,16 +189,23 @@
     "effects": [
       {
         "type": "EffectChangeResource",
-        "resources": [
+        "exchanges": [
           {
-            "resourceType": "Servant",
-            "type": "SERVANT",
-            "value": 1
-          },
-          {
-            "resourceType": "Money",
-            "type": "MONEY",
-            "value": 2
+            "cost": [
+              null
+            ],
+            "bonus": [
+              {
+                "resourceType": "Servant",
+                "type": "SERVANT",
+                "value": 1
+              },
+              {
+                "resourceType": "Money",
+                "type": "MONEY",
+                "value": 2
+              }
+            ]
           }
         ],
         "event": {
@@ -196,21 +231,28 @@
       },
       {
         "type": "EffectChangeResource",
-        "resources": [
+        "exchanges": [
           {
-            "resourceType": "Wood",
-            "type": "WOOD",
-            "value": 1
-          },
-          {
-            "resourceType": "Stone",
-            "type": "STONE",
-            "value": 1
-          },
-          {
-            "resourceType": "MilitaryPoint",
-            "type": "MILITARY_POINT",
-            "value": 1
+            "cost": [
+              null
+            ],
+            "bonus": [
+              {
+                "resourceType": "Wood",
+                "type": "WOOD",
+                "value": 1
+              },
+              {
+                "resourceType": "Stone",
+                "type": "STONE",
+                "value": 1
+              },
+              {
+                "resourceType": "MilitaryPoint",
+                "type": "MILITARY_POINT",
+                "value": 1
+              }
+            ]
           }
         ],
         "event": {
@@ -240,16 +282,23 @@
     "effects": [
       {
         "type": "EffectChangeResource",
-        "resources": [
+        "exchanges": [
           {
-            "resourceType": "Servant",
-            "type": "SERVANT",
-            "value": 1
-          },
-          {
-            "resourceType": "MilitaryPoint",
-            "type": "MILITARY_POINT",
-            "value": 2
+            "cost": [
+              null
+            ],
+            "bonus": [
+              {
+                "resourceType": "Servant",
+                "type": "SERVANT",
+                "value": 1
+              },
+              {
+                "resourceType": "MilitaryPoint",
+                "type": "MILITARY_POINT",
+                "value": 2
+              }
+            ]
           }
         ],
         "event": {
@@ -275,21 +324,28 @@
       },
       {
         "type": "EffectChangeResource",
-        "resources": [
+        "exchanges": [
           {
-            "resourceType": "Wood",
-            "type": "WOOD",
-            "value": 1
-          },
-          {
-            "resourceType": "Stone",
-            "type": "STONE",
-            "value": 1
-          },
-          {
-            "resourceType": "Money",
-            "type": "MONEY",
-            "value": 1
+            "cost": [
+              null
+            ],
+            "bonus": [
+              {
+                "resourceType": "Wood",
+                "type": "WOOD",
+                "value": 1
+              },
+              {
+                "resourceType": "Stone",
+                "type": "STONE",
+                "value": 1
+              },
+              {
+                "resourceType": "Money",
+                "type": "MONEY",
+                "value": 1
+              }
+            ]
           }
         ],
         "event": {
