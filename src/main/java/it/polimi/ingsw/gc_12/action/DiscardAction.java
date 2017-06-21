@@ -4,6 +4,8 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.EventDiscardAction;
 
+import java.io.IOException;
+
 public class DiscardAction extends Action {
 
     public DiscardAction(Player player) {
@@ -18,7 +20,7 @@ public class DiscardAction extends Action {
     }
 
     @Override
-    public void start(Match match) {
+    public void start(Match match) throws IOException {
         EventDiscardAction event = new EventDiscardAction(player);
         match.getActionHandler().update(event);
         //Notifies the ServerRMIView

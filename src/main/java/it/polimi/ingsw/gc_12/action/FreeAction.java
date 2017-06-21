@@ -15,7 +15,7 @@ public class FreeAction extends ActionPlace {
     }
 
     @Override
-    public void start(Match match) {
+    public void start(Match match) throws IOException {
         setup(match);
         execute(match);
     }
@@ -30,7 +30,7 @@ public class FreeAction extends ActionPlace {
     protected void canBeExecuted(Match match) throws RequiredValueNotSatisfiedException { }
 
     @Override
-    protected void execute(Match match) {
+    protected void execute(Match match) throws IOException {
         ActionFactory.createActionPlace(player, familyMember,occupiable).start(match);
     }
 }

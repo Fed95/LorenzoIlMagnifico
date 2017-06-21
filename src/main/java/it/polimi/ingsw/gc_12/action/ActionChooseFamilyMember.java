@@ -6,6 +6,8 @@ import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.EventActionUnavailable;
 import it.polimi.ingsw.gc_12.event.EventFamilyMemberChosen;
 
+import java.io.IOException;
+
 public class ActionChooseFamilyMember extends Action{
 
 	protected FamilyMember familyMember;
@@ -25,7 +27,7 @@ public class ActionChooseFamilyMember extends Action{
 	}
 
 	@Override
-	public void start(Match match){
+	public void start(Match match) throws IOException {
 		if (familyMember.isBusy()) {
 			match.notifyObserver(new EventActionUnavailable(false)); // TODO: check if isFMPlaced in this event is useful
 		}

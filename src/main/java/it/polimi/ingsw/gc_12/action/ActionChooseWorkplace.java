@@ -5,6 +5,8 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.EventWorkplaceChosen;
 
+import java.io.IOException;
+
 
 public class ActionChooseWorkplace extends Action {
 
@@ -21,7 +23,7 @@ public class ActionChooseWorkplace extends Action {
     }
 
     @Override
-    public void start(Match match) {
+    public void start(Match match) throws IOException {
         EventWorkplaceChosen event = new EventWorkplaceChosen(player, familyMember);
         match.getActionHandler().update(event);
         //Notifies the ServerRMIView

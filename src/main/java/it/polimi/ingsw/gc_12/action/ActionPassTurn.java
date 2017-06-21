@@ -14,7 +14,7 @@ public class ActionPassTurn extends Action{
 	}
 
 	@Override
-	public void start(Match match){
+	public void start(Match match) throws IOException {
 		match.newTurn();
 	}
 

@@ -9,6 +9,7 @@ import it.polimi.ingsw.gc_12.resource.ResourceExchange;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.resource.Servant;
 
+import java.io.IOException;
 import java.util.*;
 
 public class ActionHandler /*implements Observer<Event> */{
@@ -56,7 +57,7 @@ public class ActionHandler /*implements Observer<Event> */{
 	}
 
 
-	public void update(Event event) {
+	public void update(Event event) throws IOException {
 
 		events.addLast(event);
 
@@ -110,7 +111,7 @@ public class ActionHandler /*implements Observer<Event> */{
 		}
 	}
 
-	private List<Action> getFreeActions(EventFreeAction event) {
+	private List<Action> getFreeActions(EventFreeAction event) throws IOException {
 		Player player = event.getPlayer();
 		List<Action> actions = new ArrayList<>();
 		for(Occupiable occupiable: event.getOccupiables()) {
@@ -140,7 +141,7 @@ public class ActionHandler /*implements Observer<Event> */{
 		return actions;
 	}
 
-	public List<Action> getActionsFamilyMemberChoosen(EventFamilyMemberChosen event) {
+	public List<Action> getActionsFamilyMemberChoosen(EventFamilyMemberChosen event) throws IOException {
 		Player player = event.getPlayer();
 		List<Action> actions = new ArrayList<>();
 		//Adds the towers with at least one valid floor TODO: ADD CHECK FOR MARKET AND WORK (or remove for tower)
@@ -176,7 +177,7 @@ public class ActionHandler /*implements Observer<Event> */{
 		return actions;
 	}
 
-	public List<Action> getActionsRequiredValue(EventServantsRequested event) {
+	public List<Action> getActionsRequiredValue(EventServantsRequested event) throws IOException {
 		Player player = event.getPlayer();
 		List<Action> actions = new ArrayList<>();
 		int i = event.getOccupiable().getRequiredValue()-event.getFamilyMember().getValue();
@@ -191,7 +192,7 @@ public class ActionHandler /*implements Observer<Event> */{
 		return actions;
 	}
 
-	private List<Action> getActionsTowerChosen(EventTowerChosen event) {
+	private List<Action> getActionsTowerChosen(EventTowerChosen event) throws IOException {
 		Player player = event.getPlayer();
 		List<Action> actions = new ArrayList<>();
 
@@ -205,7 +206,7 @@ public class ActionHandler /*implements Observer<Event> */{
 		return actions;
 	}
 
-	private List<Action> getActionsWorkplaceChosen(EventWorkplaceChosen event) {
+	private List<Action> getActionsWorkplaceChosen(EventWorkplaceChosen event) throws IOException {
 		Player player = event.getPlayer();
 		List<Action> actions = new ArrayList<>();
 		for(SpaceWorkZone spaceWorkZone : match.getBoard().getSpaceWorkZones().values()){
@@ -219,7 +220,7 @@ public class ActionHandler /*implements Observer<Event> */{
 		return actions;
 	}
 
-	private List<Action> getActionsMarketChosen(EventMarketChosen event) {
+	private List<Action> getActionsMarketChosen(EventMarketChosen event) throws IOException {
 		Player player = event.getPlayer();
 		List<Action> actions = new ArrayList<>();
 		for(SpaceMarket spaceMarket : match.getBoard().getMarket().getSpaceMarkets()){
