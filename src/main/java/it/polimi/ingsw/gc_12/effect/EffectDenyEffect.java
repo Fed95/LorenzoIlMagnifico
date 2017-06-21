@@ -3,6 +3,9 @@ package it.polimi.ingsw.gc_12.effect;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.event.Event;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EffectDenyEffect extends Effect {
 
     private Match match;
