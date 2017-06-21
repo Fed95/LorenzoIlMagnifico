@@ -1,6 +1,5 @@
 package it.polimi.ingsw.gc_12.client.socket;
 
-import it.polimi.ingsw.gc_12.client.rmi.ClientRMIView;
 import it.polimi.ingsw.gc_12.mvc.View;
 import it.polimi.ingsw.gc_12.mvc.ViewCLI;
 

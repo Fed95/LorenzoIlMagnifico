@@ -1,12 +1,12 @@
 package it.polimi.ingsw.gc_12.effect;
 
-import java.util.Map;
-
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.FamilyMemberColor;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
+
+import java.util.Map;
 
 public class EffectChangeFamilyMemberValue extends Effect{
 	
@@ -38,12 +38,12 @@ public class EffectChangeFamilyMemberValue extends Effect{
 		if(event instanceof EventPlaceFamilyMember) {
 			EventPlaceFamilyMember eventSpecific = (EventPlaceFamilyMember) event;
 			FamilyMember familyMember = eventSpecific.getFamilyMember();
-			changeFamilyMemberValue(familyMember, amount);
+			changeFamilyMemberValue(familyMember, -amount);
 		}
 		else {
 			Map<FamilyMemberColor, FamilyMember> familyMembers = event.getPlayer().getFamilyMembers();
 			for(FamilyMember familyMember: familyMembers.values()) {
-				changeFamilyMemberValue(familyMember, amount);
+				changeFamilyMemberValue(familyMember, -amount);
 			}
 		}
 	}

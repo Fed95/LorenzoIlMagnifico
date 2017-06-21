@@ -1,23 +1,13 @@
 package it.polimi.ingsw.gc_12.mvc;
 
-import java.io.IOException;
-import java.rmi.RemoteException;
-import java.util.*;
-
-import it.polimi.ingsw.gc_12.*;
 import it.polimi.ingsw.gc_12.action.Action;
-import it.polimi.ingsw.gc_12.action.ActionFactory;
-import it.polimi.ingsw.gc_12.action.ActionPlace;
-import it.polimi.ingsw.gc_12.action.ActionPlaceOnTower;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.ClientSender;
-import it.polimi.ingsw.gc_12.client.rmi.ClientRMI;
-import it.polimi.ingsw.gc_12.client.rmi.ClientRMIView;
-import it.polimi.ingsw.gc_12.event.Event;
-import it.polimi.ingsw.gc_12.occupiables.Occupiable;
-import it.polimi.ingsw.gc_12.resource.ResourceType;
-import it.polimi.ingsw.gc_12.resource.Servant;
-import it.polimi.ingsw.gc_12.server.controller.Change;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Observable;
+import java.util.Scanner;
 
 public class ViewCLI extends Observable implements View {
 

@@ -1,8 +1,8 @@
 package it.polimi.ingsw.gc_12.event;
 
-import java.util.List;
-
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
+
+import java.util.List;
 
 public interface EventInterface {
 	

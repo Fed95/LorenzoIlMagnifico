@@ -4,7 +4,6 @@ import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.FamilyMemberColor;
 import it.polimi.ingsw.gc_12.WorkType;
 import it.polimi.ingsw.gc_12.Zone;
-import it.polimi.ingsw.gc_12.resource.ResourceType;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,6 +1,5 @@
 package it.polimi.ingsw.gc_12.client.socket;
 
-import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.client.ClientSender;
 
 import java.io.IOException;

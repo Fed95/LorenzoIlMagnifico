@@ -1,13 +1,12 @@
 package it.polimi.ingsw.gc_12.occupiables;
 
+import it.polimi.ingsw.gc_12.FamilyMember;
+import it.polimi.ingsw.gc_12.effect.Effect;
+import it.polimi.ingsw.gc_12.effect.EffectProvider;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import it.polimi.ingsw.gc_12.effect.EffectProvider;
-import it.polimi.ingsw.gc_12.FamilyMember;
-import it.polimi.ingsw.gc_12.effect.Effect;
-import it.polimi.ingsw.gc_12.resource.Servant;
 
 public abstract class Occupiable implements EffectProvider, Serializable {
 

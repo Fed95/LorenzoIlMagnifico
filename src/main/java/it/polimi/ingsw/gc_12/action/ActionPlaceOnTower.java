@@ -6,14 +6,14 @@ import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.card.CardDevelopment;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.effect.EffectFreeAction;
-import it.polimi.ingsw.gc_12.event.EventPlacementEnded;
 import it.polimi.ingsw.gc_12.event.EventPickCard;
+import it.polimi.ingsw.gc_12.event.EventPlacementEnded;
+import it.polimi.ingsw.gc_12.exceptions.ActionNotAllowedException;
 import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.occupiables.Tower;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 import it.polimi.ingsw.gc_12.resource.Servant;
 
-import java.io.IOException;
 import java.util.List;
 
 public class ActionPlaceOnTower extends ActionPlace {
@@ -36,21 +36,21 @@ public class ActionPlaceOnTower extends ActionPlace {
     }
 
     @Override
-    public void canBeExecuted(Match match) throws RequiredValueNotSatisfiedException{
+    public void canBeExecuted(Match match) throws RequiredValueNotSatisfiedException, ActionNotAllowedException{
         if(towerFloor.isOccupied())
-            throw new RuntimeException("This TowerFloor is already taken!");
+            throw new ActionNotAllowedException("This TowerFloor is already taken!");
         if(towerFloor.getCard() == null)
-            throw new RuntimeException("There is no card on this floor!");
+            throw new ActionNotAllowedException("There is no card on this floor!");
         if(!towerFloor.isRequiredValueSatisfied(familyMember))
             throw new RequiredValueNotSatisfiedException();
         if(!player.hasResources(towerFloor.getCard().getRequirements()))
-            throw new RuntimeException("You don't have enough resources to take this card!");
+            throw new ActionNotAllowedException("You don't have enough resources to take this card!");
         if(!player.getPersonalBoard().canPlaceCard(player, towerFloor.getCard()))
-            throw new RuntimeException("You can't place this card on your board!");
+            throw new ActionNotAllowedException("You can't place this card on your board!");
     }
 
     @Override
-    protected void execute(Match match) throws IOException {
+    protected void execute(Match match) {
         if (!tower.isTaken())
             tower.activateMalus();
         CardDevelopment card = towerFloor.getCard();
@@ -69,7 +69,7 @@ public class ActionPlaceOnTower extends ActionPlace {
         match.notifyObserver(event);
     }
 
-    public void executeImmediateEffects(Match match, Player player, CardDevelopment card) throws IOException {
+    public void executeImmediateEffects(Match match, Player player, CardDevelopment card) {
         EventPickCard event = new EventPickCard(player, card);
         match.getEffectHandler().executeEffects(match, event);
     }

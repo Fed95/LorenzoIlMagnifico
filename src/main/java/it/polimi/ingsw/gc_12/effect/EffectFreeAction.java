@@ -2,14 +2,10 @@ package it.polimi.ingsw.gc_12.effect;
 
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Match;
-import it.polimi.ingsw.gc_12.Player;
-import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventFreeAction;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 
-import java.io.IOException;
-import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +24,7 @@ public class EffectFreeAction extends Effect {
     }
 
     @Override
-    public void execute(Match match, Event event) throws IOException {
+    public void execute(Match match, Event event) {
         this.familyMember = new FamilyMember(match.getBoard().getTrackTurnOrder().getCurrentPlayer(), value);
         List<Occupiable> realOccupiables = new ArrayList<>();
         for(Occupiable occupiable : this.occupiables){

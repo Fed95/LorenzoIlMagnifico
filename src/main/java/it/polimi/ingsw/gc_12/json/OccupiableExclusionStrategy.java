@@ -2,8 +2,6 @@ package it.polimi.ingsw.gc_12.json;
 
 import com.google.gson.ExclusionStrategy;
 import com.google.gson.FieldAttributes;
-import it.polimi.ingsw.gc_12.effect.EffectProvider;
-import it.polimi.ingsw.gc_12.card.Card;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.occupiables.SpaceWork;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;

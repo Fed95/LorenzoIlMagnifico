@@ -4,10 +4,9 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.PlayerColor;
 import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
-import it.polimi.ingsw.gc_12.resource.*;
 import it.polimi.ingsw.gc_12.server.controller.Controller;
-import it.polimi.ingsw.gc_12.server.view.ServerRMIView;
 import it.polimi.ingsw.gc_12.server.view.RMIViewRemote;
+import it.polimi.ingsw.gc_12.server.view.ServerRMIView;
 import it.polimi.ingsw.gc_12.server.view.ServerSocketView;
 
 import java.io.IOException;
@@ -18,7 +17,10 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Stack;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 

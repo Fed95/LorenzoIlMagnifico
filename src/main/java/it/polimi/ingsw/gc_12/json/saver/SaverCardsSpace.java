@@ -1,16 +1,10 @@
 package it.polimi.ingsw.gc_12.json.saver;
 
 import it.polimi.ingsw.gc_12.card.CardType;
-import it.polimi.ingsw.gc_12.effect.Effect;
-import it.polimi.ingsw.gc_12.effect.EffectChangeResource;
-import it.polimi.ingsw.gc_12.GameMode;
-import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.personal_board.CardSlot;
 import it.polimi.ingsw.gc_12.personal_board.CardsSpace;
 import it.polimi.ingsw.gc_12.resource.MilitaryPoint;
 import it.polimi.ingsw.gc_12.resource.Resource;
-import it.polimi.ingsw.gc_12.resource.ResourceExchange;
-import it.polimi.ingsw.gc_12.resource.VictoryPoint;
 
 import java.util.*;
 

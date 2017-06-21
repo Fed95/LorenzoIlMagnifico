@@ -1,8 +1,9 @@
 package it.polimi.ingsw.gc_12.excommunication;
-import java.util.*;
-import java.util.stream.Collectors;
 
 import it.polimi.ingsw.gc_12.Match;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ExcommunicationSpace {
 

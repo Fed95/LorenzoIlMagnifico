@@ -3,10 +3,6 @@ package it.polimi.ingsw.gc_12.effect;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.event.Event;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 public class EffectDenyEffect extends Effect {
 
     private Match match;
@@ -22,14 +18,14 @@ public class EffectDenyEffect extends Effect {
     }
 
     @Override
-    public void execute(Match match, Event event) throws RuntimeException, IOException {
+    public void execute(Match match, Event event) {
         this.match = match;
         for(Effect effect : findEffects(event))
             effect.discard(event);
     }
 
     @Override
-    public void discard(Event event) throws RuntimeException, IOException {
+    public void discard(Event event) {
         if(match == null)
             throw new RuntimeException("EffectDenyEffect: trying to discard (execute) the effect when not executed (discarded)! confused? lol");
         for(Effect effect : findEffects(event))

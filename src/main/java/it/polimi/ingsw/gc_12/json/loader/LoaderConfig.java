@@ -3,7 +3,6 @@ package it.polimi.ingsw.gc_12.json.loader;
 import com.google.gson.reflect.TypeToken;
 import it.polimi.ingsw.gc_12.Config;
 import it.polimi.ingsw.gc_12.Match;
-import it.polimi.ingsw.gc_12.occupiables.Market;
 
 import java.lang.reflect.Type;
 import java.util.Map;

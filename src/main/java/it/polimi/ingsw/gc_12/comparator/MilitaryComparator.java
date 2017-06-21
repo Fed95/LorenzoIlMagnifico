@@ -1,9 +1,9 @@
 package it.polimi.ingsw.gc_12.comparator;
 
-import java.util.Comparator;
-
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
+
+import java.util.Comparator;
 
 public class MilitaryComparator implements Comparator<Player> {
 	@Override

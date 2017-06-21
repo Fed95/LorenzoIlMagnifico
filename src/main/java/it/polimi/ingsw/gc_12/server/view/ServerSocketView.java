@@ -4,15 +4,11 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.server.Server;
-import it.polimi.ingsw.gc_12.server.controller.Change;
-import it.polimi.ingsw.gc_12.server.controller.query.Query;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.rmi.AlreadyBoundException;
-import java.util.Set;
 
 public class ServerSocketView extends View implements Runnable {
 

@@ -4,13 +4,12 @@ import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.EventPlacementEnded;
+import it.polimi.ingsw.gc_12.exceptions.ActionNotAllowedException;
 import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.occupiables.SpaceWork;
 import it.polimi.ingsw.gc_12.occupiables.SpaceWorkSingle;
 import it.polimi.ingsw.gc_12.occupiables.SpaceWorkZone;
 import it.polimi.ingsw.gc_12.resource.Servant;
-
-import java.io.IOException;
 
 public class ActionPlaceOnSpaceWork extends ActionPlace {
 
@@ -32,18 +31,18 @@ public class ActionPlaceOnSpaceWork extends ActionPlace {
     }
 
     @Override
-    protected void canBeExecuted(Match match) throws RequiredValueNotSatisfiedException {
+    protected void canBeExecuted(Match match) throws RequiredValueNotSatisfiedException, ActionNotAllowedException {
         if(spaceWork instanceof SpaceWorkSingle)
             if(spaceWork.isOccupied())
-                throw new RuntimeException("This SpaceWork is already taken!");
+                throw new ActionNotAllowedException("This SpaceWork is already taken!");
         if(!spaceWork.isRequiredValueSatisfied(familyMember))
             throw new RequiredValueNotSatisfiedException();
         if(!spaceWorkZone.canBeOccupiedBy(familyMember))
-            throw new RuntimeException("There is another member of your family working here already!");
+            throw new ActionNotAllowedException("There is another member of your family working here already!");
     }
 
     @Override
-    protected void execute(Match match) throws IOException {
+    protected void execute(Match match) {
         match.placeFamilyMember(spaceWork, familyMember);
         EventPlacementEnded event = new EventPlacementEnded(player);
         match.getActionHandler().update(event);

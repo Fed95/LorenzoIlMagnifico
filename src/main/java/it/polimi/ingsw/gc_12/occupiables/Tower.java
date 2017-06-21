@@ -1,18 +1,22 @@
 package it.polimi.ingsw.gc_12.occupiables;
 
+import it.polimi.ingsw.gc_12.FamilyMember;
+import it.polimi.ingsw.gc_12.FamilyMemberColor;
+import it.polimi.ingsw.gc_12.Zone;
+import it.polimi.ingsw.gc_12.card.CardDeck;
+import it.polimi.ingsw.gc_12.card.CardDevelopment;
+import it.polimi.ingsw.gc_12.card.CardType;
+import it.polimi.ingsw.gc_12.effect.Effect;
+import it.polimi.ingsw.gc_12.effect.EffectChangeResource;
+import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
+import it.polimi.ingsw.gc_12.resource.Money;
+import it.polimi.ingsw.gc_12.resource.Resource;
+import it.polimi.ingsw.gc_12.resource.ResourceExchange;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import it.polimi.ingsw.gc_12.FamilyMember;
-import it.polimi.ingsw.gc_12.FamilyMemberColor;
-import it.polimi.ingsw.gc_12.Match;
-import it.polimi.ingsw.gc_12.Zone;
-import it.polimi.ingsw.gc_12.card.*;
-import it.polimi.ingsw.gc_12.effect.*;
-import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
-import it.polimi.ingsw.gc_12.resource.*;
 
 public class Tower implements Zone, Serializable{
 	private final CardType type;

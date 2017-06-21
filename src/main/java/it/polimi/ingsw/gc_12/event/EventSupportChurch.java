@@ -1,9 +1,7 @@
 package it.polimi.ingsw.gc_12.event;
 
-import it.polimi.ingsw.gc_12.effect.EffectProvider;
-import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
-import it.polimi.ingsw.gc_12.track.FaithSlot;
+import it.polimi.ingsw.gc_12.effect.EffectProvider;
 
 import java.util.ArrayList;
 import java.util.List;

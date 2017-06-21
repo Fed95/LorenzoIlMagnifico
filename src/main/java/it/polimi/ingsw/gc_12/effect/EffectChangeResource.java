@@ -1,15 +1,14 @@
 package it.polimi.ingsw.gc_12.effect;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventChooseExchange;
 import it.polimi.ingsw.gc_12.resource.ResourceExchange;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class EffectChangeResource extends Effect {
 
@@ -27,7 +26,7 @@ public class EffectChangeResource extends Effect {
 		this(event, new ArrayList<>(Arrays.asList(exchange)), choice);
 	}
 	
-	public void execute(Match match, Event event) throws RuntimeException, IOException {
+	public void execute(Match match, Event event) {
 		Player player = event.getPlayer();
 		if(!choice) {
 			for(ResourceExchange exchange : exchanges) {
@@ -48,7 +47,7 @@ public class EffectChangeResource extends Effect {
 
 	}
 	
-	public void discard(Event event) throws RuntimeException {
+	public void discard(Event event) {
 		Player player = event.getPlayer();
 
 		if(exchangeChosen == null) {

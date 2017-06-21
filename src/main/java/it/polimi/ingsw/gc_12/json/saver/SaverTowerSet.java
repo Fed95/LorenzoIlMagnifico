@@ -1,12 +1,12 @@
 package it.polimi.ingsw.gc_12.json.saver;
 
-import it.polimi.ingsw.gc_12.*;
-import it.polimi.ingsw.gc_12.json.OccupiableExclusionStrategy;
+import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.effect.EffectChangeResource;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
+import it.polimi.ingsw.gc_12.json.OccupiableExclusionStrategy;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.occupiables.Tower;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;

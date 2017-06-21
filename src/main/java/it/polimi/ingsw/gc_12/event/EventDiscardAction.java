@@ -1,8 +1,6 @@
 package it.polimi.ingsw.gc_12.event;
 
-import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
-import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
 
 import java.util.List;

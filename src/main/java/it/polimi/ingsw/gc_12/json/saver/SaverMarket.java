@@ -1,17 +1,16 @@
 package it.polimi.ingsw.gc_12.json.saver;
 
 import it.polimi.ingsw.gc_12.FamilyMember;
-import it.polimi.ingsw.gc_12.json.OccupiableExclusionStrategy;
-import it.polimi.ingsw.gc_12.occupiables.Market;
-import it.polimi.ingsw.gc_12.occupiables.Occupiable;
-import it.polimi.ingsw.gc_12.occupiables.SpaceMarket;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.effect.EffectChangeResource;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
+import it.polimi.ingsw.gc_12.json.OccupiableExclusionStrategy;
+import it.polimi.ingsw.gc_12.occupiables.Market;
+import it.polimi.ingsw.gc_12.occupiables.Occupiable;
+import it.polimi.ingsw.gc_12.occupiables.SpaceMarket;
 import it.polimi.ingsw.gc_12.resource.*;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

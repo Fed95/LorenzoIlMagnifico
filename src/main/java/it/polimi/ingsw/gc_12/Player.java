@@ -1,24 +1,18 @@
 package it.polimi.ingsw.gc_12;
 
+import it.polimi.ingsw.gc_12.card.Card;
+import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
+import it.polimi.ingsw.gc_12.personal_board.PersonalBoard;
+import it.polimi.ingsw.gc_12.resource.Resource;
+import it.polimi.ingsw.gc_12.resource.ResourceBuilder;
+import it.polimi.ingsw.gc_12.resource.ResourceType;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
-import it.polimi.ingsw.gc_12.effect.EffectProvider;
-import it.polimi.ingsw.gc_12.event.EventSupportChurch;
-import it.polimi.ingsw.gc_12.personal_board.PersonalBoard;
-import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
-import it.polimi.ingsw.gc_12.resource.ResourceBuilder;
-import it.polimi.ingsw.gc_12.resource.ResourceExchange;
-import it.polimi.ingsw.gc_12.resource.ResourceType;
-import it.polimi.ingsw.gc_12.event.Event;
-import it.polimi.ingsw.gc_12.card.Card;
-import it.polimi.ingsw.gc_12.effect.EffectHandler;
-import it.polimi.ingsw.gc_12.resource.Resource;
-import it.polimi.ingsw.gc_12.track.FaithSlot;
 
 public class Player implements Serializable{
 	

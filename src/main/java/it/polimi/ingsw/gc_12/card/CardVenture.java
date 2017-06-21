@@ -1,9 +1,9 @@
 package it.polimi.ingsw.gc_12.card;
 
-import java.util.List;
-
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.resource.Resource;
+
+import java.util.List;
 
 public class CardVenture extends CardDevelopment{
 

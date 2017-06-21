@@ -1,13 +1,13 @@
 package it.polimi.ingsw.gc_12.event;
 
+import it.polimi.ingsw.gc_12.FamilyMember;
+import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.effect.EffectProvider;
+import it.polimi.ingsw.gc_12.occupiables.Occupiable;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import it.polimi.ingsw.gc_12.effect.EffectProvider;
-import it.polimi.ingsw.gc_12.FamilyMember;
-import it.polimi.ingsw.gc_12.occupiables.Occupiable;
-import it.polimi.ingsw.gc_12.Player;
 
 public class EventPlaceFamilyMember extends Event{
 
@@ -99,7 +99,6 @@ public class EventPlaceFamilyMember extends Event{
             if (that.occupiables != null)
                 return false;
         } else if (common.size() == 0){
-            System.out.println("no occupiables in common found");
             return false;
         }
         return true;

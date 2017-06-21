@@ -1,12 +1,12 @@
 package it.polimi.ingsw.gc_12.card;
 
+import it.polimi.ingsw.gc_12.effect.Effect;
+import it.polimi.ingsw.gc_12.effect.EffectProvider;
+import it.polimi.ingsw.gc_12.resource.Resource;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import it.polimi.ingsw.gc_12.effect.EffectProvider;
-import it.polimi.ingsw.gc_12.effect.Effect;
-import it.polimi.ingsw.gc_12.resource.Resource;
 
 public class Card implements EffectProvider, Serializable {
 	private List<Effect> effects = new ArrayList<>();

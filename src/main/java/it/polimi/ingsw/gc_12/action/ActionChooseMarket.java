@@ -5,8 +5,6 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.EventMarketChosen;
 
-import java.io.IOException;
-
 /**
  * Created by feder on 2017-06-18.
  */
@@ -25,7 +23,7 @@ public class ActionChooseMarket extends Action {
     }
 
     @Override
-    public void start(Match match) throws IOException {
+    public void start(Match match) {
         EventMarketChosen event = new EventMarketChosen(player, familyMember);
         match.getActionHandler().update(event);
         //Notifies the ServerRMIView

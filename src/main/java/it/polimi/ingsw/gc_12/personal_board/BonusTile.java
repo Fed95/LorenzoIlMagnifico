@@ -1,11 +1,10 @@
 package it.polimi.ingsw.gc_12.personal_board;
 
-import java.io.Serializable;
-import java.util.List;
-
-import it.polimi.ingsw.gc_12.GameMode;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
+
+import java.io.Serializable;
+import java.util.List;
 
 public class BonusTile implements EffectProvider, Serializable {
 

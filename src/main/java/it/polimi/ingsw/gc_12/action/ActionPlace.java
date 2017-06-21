@@ -2,18 +2,17 @@ package it.polimi.ingsw.gc_12.action;
 
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Match;
-
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc_12.event.EventServantsRequested;
+import it.polimi.ingsw.gc_12.exceptions.ActionNotAllowedException;
 import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
+import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.resource.Servant;
-import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +40,7 @@ public abstract class ActionPlace extends Action {
 	}
 
 	@Override
-	public void start(Match match) throws IOException {
+	public void start(Match match) {
 		setup(match);
 		if(!complete) {
 			EventServantsRequested eventServants = new EventServantsRequested(player, occupiable, familyMember);
@@ -77,7 +76,7 @@ public abstract class ActionPlace extends Action {
 	}
 
 	@Override
-	public boolean isValid(Match match) throws IOException {
+	public boolean isValid(Match match) {
 		setup(match);
 		Event event = new EventPlaceFamilyMember(player, occupiable, familyMember);
 
@@ -91,6 +90,7 @@ public abstract class ActionPlace extends Action {
 		catch (Exception e) {
 			familyMember.setValue(familyMember.getValue() - player.getResourceValue(ResourceType.SERVANT));
 			match.getEffectHandler().discardEffects(executedEffects, event);
+			e.printStackTrace();
 			return false;
 		}
 		familyMember.setValue(familyMember.getValue()-player.getResourceValue(ResourceType.SERVANT));
@@ -110,8 +110,8 @@ public abstract class ActionPlace extends Action {
 	}
 
 	protected abstract void setup(Match match);
-	protected abstract void canBeExecuted(Match match) throws RequiredValueNotSatisfiedException;
-	protected abstract void execute(Match match) throws IOException;
+	protected abstract void canBeExecuted(Match match) throws RequiredValueNotSatisfiedException, ActionNotAllowedException;
+	protected abstract void execute(Match match);
 
 	@Override
 	public String toString() {

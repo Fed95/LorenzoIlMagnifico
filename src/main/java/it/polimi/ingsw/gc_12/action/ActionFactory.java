@@ -1,8 +1,7 @@
 package it.polimi.ingsw.gc_12.action;
 
-import java.rmi.RemoteException;
-
-import it.polimi.ingsw.gc_12.*;
+import it.polimi.ingsw.gc_12.FamilyMember;
+import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.occupiables.*;
 import it.polimi.ingsw.gc_12.resource.Servant;
 

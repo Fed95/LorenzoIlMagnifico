@@ -1,11 +1,10 @@
 package it.polimi.ingsw.gc_12.track;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TrackFaithPoints {
 

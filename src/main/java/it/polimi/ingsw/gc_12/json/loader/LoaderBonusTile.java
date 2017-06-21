@@ -1,9 +1,8 @@
 package it.polimi.ingsw.gc_12.json.loader;
 
 import com.google.gson.reflect.TypeToken;
-import it.polimi.ingsw.gc_12.personal_board.BonusTile;
-import it.polimi.ingsw.gc_12.GameMode;
 import it.polimi.ingsw.gc_12.Match;
+import it.polimi.ingsw.gc_12.personal_board.BonusTile;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;

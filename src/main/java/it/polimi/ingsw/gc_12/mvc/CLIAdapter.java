@@ -1,23 +1,8 @@
 package it.polimi.ingsw.gc_12.mvc;
 
-import it.polimi.ingsw.gc_12.FamilyMember;
-import it.polimi.ingsw.gc_12.Zone;
-import it.polimi.ingsw.gc_12.action.ActionChooseFamilyMember;
-import it.polimi.ingsw.gc_12.action.Action;
-import it.polimi.ingsw.gc_12.action.ActionPassTurn;
-import it.polimi.ingsw.gc_12.action.ActionPlace;
 import it.polimi.ingsw.gc_12.client.ClientSender;
-import it.polimi.ingsw.gc_12.action.FreeAction;
-import it.polimi.ingsw.gc_12.card.Card;
-import it.polimi.ingsw.gc_12.card.CardType;
-import it.polimi.ingsw.gc_12.client.rmi.ClientRMI;
-import it.polimi.ingsw.gc_12.client.rmi.ClientRMIView;
-import it.polimi.ingsw.gc_12.occupiables.Occupiable;
-import it.polimi.ingsw.gc_12.resource.Servant;
 
 import java.io.IOException;
-import java.rmi.RemoteException;
-import java.util.List;
 
 public class CLIAdapter {
 

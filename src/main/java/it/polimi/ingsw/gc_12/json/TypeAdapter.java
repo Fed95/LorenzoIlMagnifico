@@ -5,8 +5,8 @@ import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import it.polimi.ingsw.gc_12.card.*;
 import it.polimi.ingsw.gc_12.effect.*;
 import it.polimi.ingsw.gc_12.event.*;
-import it.polimi.ingsw.gc_12.resource.*;
 import it.polimi.ingsw.gc_12.occupiables.*;
+import it.polimi.ingsw.gc_12.resource.*;
 
 /**
  * Created by marco on 27/05/2017.

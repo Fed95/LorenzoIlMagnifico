@@ -2,14 +2,17 @@ package it.polimi.ingsw.gc_12.json.saver;
 
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.FamilyMemberColor;
+import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.card.*;
 import it.polimi.ingsw.gc_12.effect.*;
 import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.json.loader.LoaderCard;
-import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
-import it.polimi.ingsw.gc_12.card.*;
-import it.polimi.ingsw.gc_12.resource.*;
+import it.polimi.ingsw.gc_12.resource.Resource;
+import it.polimi.ingsw.gc_12.resource.ResourceBuilder;
+import it.polimi.ingsw.gc_12.resource.ResourceExchange;
+import it.polimi.ingsw.gc_12.resource.ResourceType;
 
 import java.io.File;
 import java.util.ArrayList;

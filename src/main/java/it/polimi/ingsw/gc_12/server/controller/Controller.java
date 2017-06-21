@@ -2,11 +2,7 @@ package it.polimi.ingsw.gc_12.server.controller;
 
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.action.Action;
-import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.server.observer.Observer;
-
-import java.io.IOException;
-import java.rmi.RemoteException;
 
 public class Controller implements Observer<Action>{
 	
@@ -20,15 +16,8 @@ public class Controller implements Observer<Action>{
 
 		System.out.println("Server Controller: Notified of new " + action.getClass().getSimpleName() + " from ServerRMIView.");
 		Observer.super.update(action);
-		try {
-			System.out.println("Server Controller: Starting the " + action.getClass().getSimpleName() + "...");
-			action.start(match);
-		} catch (RuntimeException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		System.out.println("Server Controller: Starting the " + action.getClass().getSimpleName() + "...");
+		action.start(match);
 	}
 
 	@Override
