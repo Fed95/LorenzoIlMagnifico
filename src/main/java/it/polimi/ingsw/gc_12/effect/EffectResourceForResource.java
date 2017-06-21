@@ -23,12 +23,16 @@ public class EffectResourceForResource extends Effect {
 
     @Override
     public void execute(Match match, Event event) throws RuntimeException {
-        int numOfResources = player.getResourceValue(ownedResource.getType()) / ownedResource.getValue();
-        resource.setValue(resource.getValue()*numOfResources);
 
-        List<Resource> resources = new ArrayList<>();
-        resources.add(resource);
-        player.addResources(resources);
+        int value = player.getResourceValue(ownedResource.getType()) / ownedResource.getValue();
+        resource.setValue(resource.getValue() * value);
+
+        int newValue = player.getResources().get(resource.getType()).getValue() + value;
+
+        if(newValue < 0)
+            player.setResourceValue(resource.getType(), 0);
+        else
+            player.setResourceValue(resource.getType(), value);
     }
 
     @Override
