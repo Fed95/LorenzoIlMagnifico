@@ -23,13 +23,12 @@ public class LoaderBonusTile extends Loader<List<BonusTile>> {
 
 	@Override
 	protected List<BonusTile> adapt(List<BonusTile> content, Match match) {
-		List<BonusTile> newContent = content;
-		newContent = new ArrayList<>();
-		BonusTile bonusTile = content.get(0);
+		List<BonusTile> newContent = new ArrayList<>();
+
 		int playersNum = match.getPlayers().size();
 
 		for (int i = 0; i < playersNum; i++) {
-			newContent.add(bonusTile);
+			newContent.add(content.get(i));
 		}
 
 		return newContent;

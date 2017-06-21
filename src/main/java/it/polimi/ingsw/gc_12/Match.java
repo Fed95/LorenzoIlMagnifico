@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 
 public class Match extends Observable<Event> implements Serializable{
 	private transient List<Player> players = new ArrayList<>();
-	private transient final List<BonusTile> bonusTiles;
+	private transient List<BonusTile> bonusTiles;
 	private transient List<Card> cards = new ArrayList<>();
 	private transient List<ExcommunicationTile> excommunicationTiles = new ArrayList<>();
 	private transient CardDeckSet cardDeckSet;
@@ -42,7 +42,6 @@ public class Match extends Observable<Event> implements Serializable{
 	public Match() {
 		this.roundNum = 1;
 		this.cards = new LoaderCard().get(this);
-		this.bonusTiles = new LoaderBonusTile().get(this);
 		this.cardDeckSet = new CardDeckSet(cards, DEFAULT_ROUND_NUM / DEFAULT_PERIODS_LEN);
 		this.effectHandler = new EffectHandler();
 		this.actionHandler = new ActionHandler(this);
@@ -52,11 +51,16 @@ public class Match extends Observable<Event> implements Serializable{
 
 	public void init(List<Player> players) {
 		this.players = players;
+
+		this.bonusTiles = new LoaderBonusTile().get(this);
 		Collections.shuffle(bonusTiles);
+
 		for (Player player : players){
 			player.getPersonalBoard().setBonusTile(bonusTiles.get(players.indexOf(player)));
 		}
-		//cardDeckSet.shuffle();
+		cardDeckSet.shuffle();
+
+
 		createBoard();
 
 		for (Player player : players) {
