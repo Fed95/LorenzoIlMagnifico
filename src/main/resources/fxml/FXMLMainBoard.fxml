@@ -41,9 +41,9 @@
               </content>
             </TitledPane>
            
-            <TabPane layoutX="610.0" layoutY="445.0" prefHeight="568.0" prefWidth="1310.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="playersBoards" layoutX="610.0" layoutY="445.0" prefHeight="568.0" prefWidth="1310.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                  <Tab text="Giocatore 1">
+                  <Tab fx:id="bluePlayer" text="Giocatore 1">
                       <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="416.0" prefWidth="1125.0">
                               <children>
@@ -105,7 +105,7 @@
                               </Label>
                               </children></AnchorPane>                  </content>
                   </Tab>
-                <Tab text="Giocatore 2">
+                <Tab fx:id="greenPlayer" text="Giocatore 2">
                   <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="416.0" prefWidth="1125.0">
                           <children>
@@ -146,9 +146,28 @@
                                       <Image url="@../img/boardviolaeblu2.png" />
                                   </image>
                               </ImageView>
+                              <Label fx:id="blackValuePl2" layoutX="50.0" layoutY="45.0" text="0" textFill="WHITE">
+                                  <font>
+                                      <Font size="30.0" />
+                                  </font></Label>
+                              <Label fx:id="whiteValuePl2" layoutX="106.0" layoutY="45.0" text="0" textFill="WHITE">
+                                  <font>
+                                      <Font size="30.0" />
+                                  </font>
+                              </Label>
+                              <Label fx:id="orangeValuePl2" layoutX="162.0" layoutY="45.0" text="0" textFill="WHITE">
+                                  <font>
+                                      <Font size="30.0" />
+                                  </font>
+                              </Label>
+                              <Label fx:id="neutralValuePl2" layoutX="218.0" layoutY="45.0" text="0" textFill="WHITE">
+                                  <font>
+                                      <Font size="30.0" />
+                                  </font>
+                              </Label>
                           </children></AnchorPane>                  </content>
                 </Tab>
-                  <Tab text="Giocatore 3">
+                  <Tab fx:id="redPlayer" text="Giocatore 3">
                       <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="416.0" prefWidth="1125.0">
                               <children>
@@ -189,9 +208,28 @@
                                           <Image url="@../img/boardviolaeblu2.png" />
                                       </image>
                                   </ImageView>
+                                  <Label fx:id="blackValuePl3" layoutX="50.0" layoutY="45.0" text="0" textFill="WHITE">
+                                      <font>
+                                          <Font size="30.0" />
+                                      </font></Label>
+                                  <Label fx:id="whiteValuePl3" layoutX="106.0" layoutY="45.0" text="0" textFill="WHITE">
+                                      <font>
+                                          <Font size="30.0" />
+                                      </font>
+                                  </Label>
+                                  <Label fx:id="orangeValuePl3" layoutX="162.0" layoutY="45.0" text="0" textFill="WHITE">
+                                      <font>
+                                          <Font size="30.0" />
+                                      </font>
+                                  </Label>
+                                  <Label fx:id="neutralValuePl3" layoutX="218.0" layoutY="45.0" text="0" textFill="WHITE">
+                                      <font>
+                                          <Font size="30.0" />
+                                      </font>
+                                  </Label>
                               </children></AnchorPane>                  </content>
                   </Tab>
-                  <Tab text="Giocatore 4">
+                  <Tab fx:id="yellowPlayer" text="Giocatore 4">
                       <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="416.0" prefWidth="1125.0">
                               <children>
@@ -232,11 +270,25 @@
                                           <Image url="@../img/boardviolaeblu2.png" />
                                       </image>
                                   </ImageView>
-                              <Label layoutX="51.0" layoutY="48.0" text="0" textFill="WHITE">
-                                 <font>
-                                    <Font size="30.0" />
-                                 </font>
-                              </Label>
+                                  <Label fx:id="blackValuePl4" layoutX="50.0" layoutY="45.0" text="0" textFill="WHITE">
+                                      <font>
+                                          <Font size="30.0" />
+                                      </font></Label>
+                                  <Label fx:id="whiteValuePl4" layoutX="106.0" layoutY="45.0" text="0" textFill="WHITE">
+                                      <font>
+                                          <Font size="30.0" />
+                                      </font>
+                                  </Label>
+                                  <Label fx:id="orangeValuePl4" layoutX="162.0" layoutY="45.0" text="0" textFill="WHITE">
+                                      <font>
+                                          <Font size="30.0" />
+                                      </font>
+                                  </Label>
+                                  <Label fx:id="neutralValuePl4" layoutX="218.0" layoutY="45.0" text="0" textFill="WHITE">
+                                      <font>
+                                          <Font size="30.0" />
+                                      </font>
+                                  </Label>
                               </children></AnchorPane>                  </content>
                   </Tab>
               </tabs>
