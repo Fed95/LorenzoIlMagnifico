@@ -23,7 +23,7 @@ public class EffectResourceForCards extends Effect{
     }
 
     @Override
-    public void execute(Match match, Event event) throws RuntimeException {
+    public void execute(Match match, Event event) {
         int numOfCards = player.getPersonalBoard().getCards(cardType).size();
         resource.setValue(resource.getValue()*numOfCards);
 
@@ -33,7 +33,7 @@ public class EffectResourceForCards extends Effect{
     }
 
     @Override
-    public void discard(Event event) throws RuntimeException {
+    public void discard(Event event) {
         List<Resource> resources = new ArrayList<>();
         resources.add(resource);
         player.removeResources(resources);

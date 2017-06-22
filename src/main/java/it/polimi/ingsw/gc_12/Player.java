@@ -81,7 +81,9 @@ public class Player implements Serializable{
 	private void removeResource(Resource resourceToRemove) {
 		if(resourceToRemove != null) {
 			Resource ownedResource = this.resources.get(resourceToRemove.getType());
-			ownedResource.setValue(ownedResource.getValue() - resourceToRemove.getValue());
+			int newValue = ownedResource.getValue() - resourceToRemove.getValue();
+			newValue = newValue < 0 ? 0 : newValue;
+			ownedResource.setValue(newValue);
 		}
 	}
 
@@ -89,21 +91,11 @@ public class Player implements Serializable{
 		//fills the array with the affected resources updating their values
 		for(Resource resource: resourcesToRemove)
 			this.removeResource(resource);
-		for(Resource resource : resources.values())
-			if(resource.getValue() < 0)
-				throw new RuntimeException();
 		personalBoard.getResourceContainer().syncronize(this.resources);
 	}
 
 	public boolean hasResources(List<Resource> resources) {
-		try {
-			this.removeResources(resources);
-		}catch (RuntimeException e){
-			this.addResources(resources);
-			return false;
-		}
-		this.addResources(resources);
-		return true;
+		return resources.stream().allMatch(resource -> resource.getValue() < this.resources.get(resource.getType()).getValue());
 	}
 	
 	public Map<ResourceType, Resource> getResources() {

@@ -116,7 +116,7 @@ public class FamilyMember implements Observer, Serializable {
 		if(color != null)
 			sb.append(" Color: " + color);
 
-		sb.append(" busy: " + isBusy() + " ]");
+		sb.append(" value: " + value + " busy: " + isBusy() + " ]");
 		return sb.toString();
 	}
 

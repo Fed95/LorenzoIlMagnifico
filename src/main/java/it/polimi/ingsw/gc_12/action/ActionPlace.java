@@ -54,7 +54,7 @@ public abstract class ActionPlace extends Action {
 			try {
 				match.getEffectHandler().executeEffects(match, eventServants);
 			} catch (ActionDeniedException e) {
-				e.printStackTrace();
+				throw new IllegalStateException("ActionPlace: starting an action that has been denied.");
 			}
 
 			match.getActionHandler().update(eventServants);
@@ -64,26 +64,17 @@ public abstract class ActionPlace extends Action {
 		else {
 			Event event = new EventPlaceFamilyMember(player, occupiable, familyMember);
 
-			List<Effect> executedEffects = new ArrayList<>();
 			int multiplier = ((EventPlaceFamilyMember) event).getMultiplier();
 			int increment = (multiplier > 1 ? servant.getValue() / multiplier : servant.getValue());
 
 			try{
-				//Can throw exceptions (in which case effects are discarded directly in EffectHandler)
-				executedEffects = match.getEffectHandler().executeEffects(match, event);
-
+				match.getEffectHandler().executeEffects(match, event);
 				familyMember.setValue(familyMember.getValue() + increment);
 				canBeExecuted(match);
 				execute(match);
 			}
-			catch (RequiredValueNotSatisfiedException e) {
-				Event eventException = new EventServantsRequested(player, occupiable, familyMember);
-				match.getActionHandler().update(eventException);
-				match.notifyObserver(eventException);
-			}
-			catch(ActionDeniedException | ActionNotAllowedException e) {
-				match.getEffectHandler().discardEffects(executedEffects, event);
-				throw new IllegalStateException("ActionPlace: action started even if it's not allowed!");
+			catch (RequiredValueNotSatisfiedException | ActionDeniedException | ActionNotAllowedException e) {
+				throw new IllegalStateException("ActionPlace the action cannot be performed even if it has been considered valid");
 			} finally {
 				familyMember.setValue(familyMember.getValue() - increment);
 			}

@@ -4,9 +4,6 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.exceptions.ActionDeniedException;
 
-/**
- * Created by feder on 2017-06-12.
- */
 public class EffectPlacementDenied extends Effect {
 
     public EffectPlacementDenied(Event event) {
@@ -19,9 +16,7 @@ public class EffectPlacementDenied extends Effect {
     }
 
     @Override
-    public void discard(Event event) throws RuntimeException {
-
-    }
+    public void discard(Event event) {}
 
     @Override
     public String toString() {
