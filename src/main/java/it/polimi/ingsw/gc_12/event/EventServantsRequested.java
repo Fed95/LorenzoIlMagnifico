@@ -13,7 +13,7 @@ public class EventServantsRequested extends EventPlaceFamilyMember {
 
 	public EventServantsRequested(Player player, Occupiable occupiable, FamilyMember familyMember) {
 		super(player, new ArrayList<>(Collections.singletonList(occupiable)), familyMember);
-		multiplier = 2; //TODO: SET TO 1 AFTER TESTING
+		multiplier = 1;
 	}
 
 	public void setMultiplier(int multiplier) {

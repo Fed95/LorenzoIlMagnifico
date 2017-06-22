@@ -43,8 +43,9 @@ public class ViewCLI extends Observable implements View {
 
 			System.out.println("SENDING " + inputInt);
 			List<Action> actions = clientHandler.getActions();
+			int offset = clientHandler.getOffset();
 
-			if(inputInt >= actions.size()) {
+			if(inputInt < offset || inputInt >= actions.size()) {
 				System.out.println("The inserted number is not among the possible choices");
 			}
 			else {
@@ -55,7 +56,11 @@ public class ViewCLI extends Observable implements View {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				finally{
+					clientHandler.setOffset(0);
+				}
 			}
+
 		}
 	}
 }

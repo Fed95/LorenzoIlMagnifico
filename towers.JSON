@@ -1,1 +1,524 @@
-{"towers":{"VENTURE":{"type":"VENTURE","floors":[{"floorNum":0,"card":null,"cardType":"VENTURE","effects":[],"occupiers":[],"requiredValue":1},{"floorNum":1,"card":null,"cardType":"VENTURE","effects":[],"occupiers":[],"requiredValue":3},{"floorNum":2,"card":null,"cardType":"VENTURE","effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[]}],"choice":false,"exchangeChosen":null,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"TowerFloor","floorNum":2,"card":null,"cardType":"VENTURE","effects":[],"occupiers":[],"requiredValue":5}],"familyMember":{"owner":null,"color":null,"value":5},"player":null}}],"occupiers":[],"requiredValue":5},{"floorNum":3,"card":null,"cardType":"VENTURE","effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[]}],"choice":false,"exchangeChosen":null,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"TowerFloor","floorNum":3,"card":null,"cardType":"VENTURE","effects":[],"occupiers":[],"requiredValue":7}],"familyMember":{"owner":null,"color":null,"value":7},"player":null}}],"occupiers":[],"requiredValue":7}],"decks":{"1":{"cardType":"VENTURE","period":1,"cards":[]},"2":{"cardType":"VENTURE","period":2,"cards":[]},"3":{"cardType":"VENTURE","period":3,"cards":[]}}},"CHARACTER":{"type":"CHARACTER","floors":[{"floorNum":0,"card":null,"cardType":"CHARACTER","effects":[],"occupiers":[],"requiredValue": 1},{"floorNum":1,"card":null,"cardType":"CHARACTER","effects":[],"occupiers":[],"requiredValue":3},{"floorNum":2,"card":null,"cardType":"CHARACTER","effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[]}],"choice":false,"exchangeChosen":null,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"TowerFloor","floorNum":2,"card":null,"cardType":"CHARACTER","effects":[],"occupiers":[],"requiredValue":5}],"familyMember":{"owner":null,"color":null,"value":5},"player":null}}],"occupiers":[],"requiredValue":5},{"floorNum":3,"card":null,"cardType":"CHARACTER","effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[]}],"choice":false,"exchangeChosen":null,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"TowerFloor","floorNum":3,"card":null,"cardType":"CHARACTER","effects":[],"occupiers":[],"requiredValue":7}],"familyMember":{"owner":null,"color":null,"value":7},"player":null}}],"occupiers":[],"requiredValue":7}],"decks":{"1":{"cardType":"CHARACTER","period":1,"cards":[]},"2":{"cardType":"CHARACTER","period":2,"cards":[]},"3":{"cardType":"CHARACTER","period":3,"cards":[]}}},"BUILDING":{"type":"BUILDING","floors":[{"floorNum":0,"card":null,"cardType":"BUILDING","effects":[],"occupiers":[],"requiredValue":1},{"floorNum":1,"card":null,"cardType":"BUILDING","effects":[],"occupiers":[],"requiredValue":3},{"floorNum":2,"card":null,"cardType":"BUILDING","effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[]}],"choice":false,"exchangeChosen":null,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"TowerFloor","floorNum":2,"card":null,"cardType":"BUILDING","effects":[],"occupiers":[],"requiredValue":5}],"familyMember":{"owner":null,"color":null,"value":5},"player":null}}],"occupiers":[],"requiredValue":5},{"floorNum":3,"card":null,"cardType":"BUILDING","effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[]}],"choice":false,"exchangeChosen":null,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"TowerFloor","floorNum":3,"card":null,"cardType":"BUILDING","effects":[],"occupiers":[],"requiredValue":7}],"familyMember":{"owner":null,"color":null,"value":7},"player":null}}],"occupiers":[],"requiredValue":7}],"decks":{"1":{"cardType":"BUILDING","period":1,"cards":[]},"2":{"cardType":"BUILDING","period":2,"cards":[]},"3":{"cardType":"BUILDING","period":3,"cards":[]}}},"TERRITORY":{"type":"TERRITORY","floors":[{"floorNum":0,"card":null,"cardType":"TERRITORY","effects":[],"occupiers":[],"requiredValue":1},{"floorNum":1,"card":null,"cardType":"TERRITORY","effects":[],"occupiers":[],"requiredValue":3},{"floorNum":2,"card":null,"cardType":"TERRITORY","effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[]}],"choice":false,"exchangeChosen":null,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"TowerFloor","floorNum":2,"card":null,"cardType":"TERRITORY","effects":[],"occupiers":[],"requiredValue":5}],"familyMember":{"owner":null,"color":null,"value":5},"player":null}}],"occupiers":[],"requiredValue":5},{"floorNum":3,"card":null,"cardType":"TERRITORY","effects":[{"type":"EffectChangeResource","exchanges":[{"cost":[],"bonus":[]}],"choice":false,"exchangeChosen":null,"event":{"eventType":"EventPlaceFamilyMember","occupiables":[{"occupiable":"TowerFloor","floorNum":3,"card":null,"cardType":"TERRITORY","effects":[],"occupiers":[],"requiredValue":7}],"familyMember":{"owner":null,"color":null,"value":7},"player":null}}],"occupiers":[],"requiredValue":7}],"decks":{"1":{"cardType":"TERRITORY","period":1,"cards":[]},"2":{"cardType":"TERRITORY","period":2,"cards":[]},"3":{"cardType":"TERRITORY","period":3,"cards":[]}}}}}
+{
+  "towers": {
+    "VENTURE": {
+      "type": "VENTURE",
+      "floors": [
+        {
+          "floorNum": 0,
+          "card": null,
+          "cardType": "VENTURE",
+          "effects": [],
+          "occupiers": [],
+          "requiredValue": 1
+        },
+        {
+          "floorNum": 1,
+          "card": null,
+          "cardType": "VENTURE",
+          "effects": [],
+          "occupiers": [],
+          "requiredValue": 3
+        },
+        {
+          "floorNum": 2,
+          "card": null,
+          "cardType": "VENTURE",
+          "effects": [
+            {
+              "type": "EffectChangeResource",
+              "exchanges": [
+                {
+                  "cost": [],
+                  "bonus": [
+                    {
+                      "resourceType": "Money",
+                      "type": "MONEY",
+                      "value": 1
+                    }
+                  ]
+                }
+              ],
+              "choice": false,
+              "exchangeChosen": null,
+              "event": {
+                "eventType": "EventPlaceFamilyMember",
+                "occupiables": [
+                  {
+                    "occupiable": "TowerFloor",
+                    "floorNum": 2,
+                    "card": null,
+                    "cardType": "VENTURE",
+                    "effects": [],
+                    "occupiers": [],
+                    "requiredValue": 5
+                  }
+                ],
+                "familyMember": {
+                  "owner": null,
+                  "color": null,
+                  "value": 5
+                },
+                "player": null
+              }
+            }
+          ],
+          "occupiers": [],
+          "requiredValue": 5
+        },
+        {
+          "floorNum": 3,
+          "card": null,
+          "cardType": "VENTURE",
+          "effects": [
+            {
+              "type": "EffectChangeResource",
+              "exchanges": [
+                {
+                  "cost": [],
+                  "bonus": [
+                    {
+                      "resourceType": "Money",
+                      "type": "MONEY",
+                      "value": 2
+                    }
+                  ]
+                }
+              ],
+              "choice": false,
+              "exchangeChosen": null,
+              "event": {
+                "eventType": "EventPlaceFamilyMember",
+                "occupiables": [
+                  {
+                    "occupiable": "TowerFloor",
+                    "floorNum": 3,
+                    "card": null,
+                    "cardType": "VENTURE",
+                    "effects": [],
+                    "occupiers": [],
+                    "requiredValue": 7
+                  }
+                ],
+                "familyMember": {
+                  "owner": null,
+                  "color": null,
+                  "value": 7
+                },
+                "player": null
+              }
+            }
+          ],
+          "occupiers": [],
+          "requiredValue": 7
+        }
+      ],
+      "decks": {
+        "1": {
+          "cardType": "VENTURE",
+          "period": 1,
+          "cards": []
+        },
+        "2": {
+          "cardType": "VENTURE",
+          "period": 2,
+          "cards": []
+        },
+        "3": {
+          "cardType": "VENTURE",
+          "period": 3,
+          "cards": []
+        }
+      }
+    },
+    "CHARACTER": {
+      "type": "CHARACTER",
+      "floors": [
+        {
+          "floorNum": 0,
+          "card": null,
+          "cardType": "CHARACTER",
+          "effects": [],
+          "occupiers": [],
+          "requiredValue": 1
+        },
+        {
+          "floorNum": 1,
+          "card": null,
+          "cardType": "CHARACTER",
+          "effects": [],
+          "occupiers": [],
+          "requiredValue": 3
+        },
+        {
+          "floorNum": 2,
+          "card": null,
+          "cardType": "CHARACTER",
+          "effects": [
+            {
+              "type": "EffectChangeResource",
+              "exchanges": [
+                {
+                  "cost": [],
+                  "bonus": [
+                    {
+                      "resourceType": "Stone",
+                      "type": "STONE",
+                      "value": 1
+                    }
+                  ]
+                }
+              ],
+              "choice": false,
+              "exchangeChosen": null,
+              "event": {
+                "eventType": "EventPlaceFamilyMember",
+                "occupiables": [
+                  {
+                    "occupiable": "TowerFloor",
+                    "floorNum": 2,
+                    "card": null,
+                    "cardType": "CHARACTER",
+                    "effects": [],
+                    "occupiers": [],
+                    "requiredValue": 5
+                  }
+                ],
+                "familyMember": {
+                  "owner": null,
+                  "color": null,
+                  "value": 5
+                },
+                "player": null
+              }
+            }
+          ],
+          "occupiers": [],
+          "requiredValue": 5
+        },
+        {
+          "floorNum": 3,
+          "card": null,
+          "cardType": "CHARACTER",
+          "effects": [
+            {
+              "type": "EffectChangeResource",
+              "exchanges": [
+                {
+                  "cost": [],
+                  "bonus": [
+                    {
+                      "resourceType": "Stone",
+                      "type": "STONE",
+                      "value": 2
+                    }
+                  ]
+                }
+              ],
+              "choice": false,
+              "exchangeChosen": null,
+              "event": {
+                "eventType": "EventPlaceFamilyMember",
+                "occupiables": [
+                  {
+                    "occupiable": "TowerFloor",
+                    "floorNum": 3,
+                    "card": null,
+                    "cardType": "CHARACTER",
+                    "effects": [],
+                    "occupiers": [],
+                    "requiredValue": 7
+                  }
+                ],
+                "familyMember": {
+                  "owner": null,
+                  "color": null,
+                  "value": 7
+                },
+                "player": null
+              }
+            }
+          ],
+          "occupiers": [],
+          "requiredValue": 7
+        }
+      ],
+      "decks": {
+        "1": {
+          "cardType": "CHARACTER",
+          "period": 1,
+          "cards": []
+        },
+        "2": {
+          "cardType": "CHARACTER",
+          "period": 2,
+          "cards": []
+        },
+        "3": {
+          "cardType": "CHARACTER",
+          "period": 3,
+          "cards": []
+        }
+      }
+    },
+    "BUILDING": {
+      "type": "BUILDING",
+      "floors": [
+        {
+          "floorNum": 0,
+          "card": null,
+          "cardType": "BUILDING",
+          "effects": [],
+          "occupiers": [],
+          "requiredValue": 1
+        },
+        {
+          "floorNum": 1,
+          "card": null,
+          "cardType": "BUILDING",
+          "effects": [],
+          "occupiers": [],
+          "requiredValue": 3
+        },
+        {
+          "floorNum": 2,
+          "card": null,
+          "cardType": "BUILDING",
+          "effects": [
+            {
+              "type": "EffectChangeResource",
+              "exchanges": [
+                {
+                  "cost": [],
+                  "bonus": [
+                    {
+                      "resourceType": "VictoryPoint",
+                      "type": "VICTORY_POINT",
+                      "value": 1
+                    }
+                  ]
+                }
+              ],
+              "choice": false,
+              "exchangeChosen": null,
+              "event": {
+                "eventType": "EventPlaceFamilyMember",
+                "occupiables": [
+                  {
+                    "occupiable": "TowerFloor",
+                    "floorNum": 2,
+                    "card": null,
+                    "cardType": "BUILDING",
+                    "effects": [],
+                    "occupiers": [],
+                    "requiredValue": 5
+                  }
+                ],
+                "familyMember": {
+                  "owner": null,
+                  "color": null,
+                  "value": 5
+                },
+                "player": null
+              }
+            }
+          ],
+          "occupiers": [],
+          "requiredValue": 5
+        },
+        {
+          "floorNum": 3,
+          "card": null,
+          "cardType": "BUILDING",
+          "effects": [
+            {
+              "type": "EffectChangeResource",
+              "exchanges": [
+                {
+                  "cost": [],
+                  "bonus": [
+                    {
+                      "resourceType": "VictoryPoint",
+                      "type": "VICTORY_POINT",
+                      "value": 2
+                    }
+                  ]
+                }
+              ],
+              "choice": false,
+              "exchangeChosen": null,
+              "event": {
+                "eventType": "EventPlaceFamilyMember",
+                "occupiables": [
+                  {
+                    "occupiable": "TowerFloor",
+                    "floorNum": 3,
+                    "card": null,
+                    "cardType": "BUILDING",
+                    "effects": [],
+                    "occupiers": [],
+                    "requiredValue": 7
+                  }
+                ],
+                "familyMember": {
+                  "owner": null,
+                  "color": null,
+                  "value": 7
+                },
+                "player": null
+              }
+            }
+          ],
+          "occupiers": [],
+          "requiredValue": 7
+        }
+      ],
+      "decks": {
+        "1": {
+          "cardType": "BUILDING",
+          "period": 1,
+          "cards": []
+        },
+        "2": {
+          "cardType": "BUILDING",
+          "period": 2,
+          "cards": []
+        },
+        "3": {
+          "cardType": "BUILDING",
+          "period": 3,
+          "cards": []
+        }
+      }
+    },
+    "TERRITORY": {
+      "type": "TERRITORY",
+      "floors": [
+        {
+          "floorNum": 0,
+          "card": null,
+          "cardType": "TERRITORY",
+          "effects": [],
+          "occupiers": [],
+          "requiredValue": 1
+        },
+        {
+          "floorNum": 1,
+          "card": null,
+          "cardType": "TERRITORY",
+          "effects": [],
+          "occupiers": [],
+          "requiredValue": 3
+        },
+        {
+          "floorNum": 2,
+          "card": null,
+          "cardType": "TERRITORY",
+          "effects": [
+            {
+              "type": "EffectChangeResource",
+              "exchanges": [
+                {
+                  "cost": [],
+                  "bonus": [
+                    {
+                      "resourceType": "Wood",
+                      "type": "WOOD",
+                      "value": 1
+                    }
+                  ]
+                }
+              ],
+              "choice": false,
+              "exchangeChosen": null,
+              "event": {
+                "eventType": "EventPlaceFamilyMember",
+                "occupiables": [
+                  {
+                    "occupiable": "TowerFloor",
+                    "floorNum": 2,
+                    "card": null,
+                    "cardType": "TERRITORY",
+                    "effects": [],
+                    "occupiers": [],
+                    "requiredValue": 5
+                  }
+                ],
+                "familyMember": {
+                  "owner": null,
+                  "color": null,
+                  "value": 5
+                },
+                "player": null
+              }
+            }
+          ],
+          "occupiers": [],
+          "requiredValue": 5
+        },
+        {
+          "floorNum": 3,
+          "card": null,
+          "cardType": "TERRITORY",
+          "effects": [
+            {
+              "type": "EffectChangeResource",
+              "exchanges": [
+                {
+                  "cost": [],
+                  "bonus": [
+                    {
+                      "resourceType": "Wood",
+                      "type": "WOOD",
+                      "value": 2
+                    }
+                  ]
+                }
+              ],
+              "choice": false,
+              "exchangeChosen": null,
+              "event": {
+                "eventType": "EventPlaceFamilyMember",
+                "occupiables": [
+                  {
+                    "occupiable": "TowerFloor",
+                    "floorNum": 3,
+                    "card": null,
+                    "cardType": "TERRITORY",
+                    "effects": [],
+                    "occupiers": [],
+                    "requiredValue": 7
+                  }
+                ],
+                "familyMember": {
+                  "owner": null,
+                  "color": null,
+                  "value": 7
+                },
+                "player": null
+              }
+            }
+          ],
+          "occupiers": [],
+          "requiredValue": 7
+        }
+      ],
+      "decks": {
+        "1": {
+          "cardType": "TERRITORY",
+          "period": 1,
+          "cards": []
+        },
+        "2": {
+          "cardType": "TERRITORY",
+          "period": 2,
+          "cards": []
+        },
+        "3": {
+          "cardType": "TERRITORY",
+          "period": 3,
+          "cards": []
+        }
+      }
+    }
+  }
+}

@@ -19,7 +19,7 @@ public class EventPlaceFamilyMember extends Event{
         super(player);
         this.occupiables = occupiables;
         this.familyMember = familyMember;
-        this.multiplier = 2;//TODO: SET TO 1 AFTER TESTING
+        this.multiplier = 1;
 
         effectProviders.addAll(occupiables);
     }
@@ -27,7 +27,7 @@ public class EventPlaceFamilyMember extends Event{
         super();
         this.occupiables = occupiables;
         this.familyMember = familyMember;
-        this.multiplier = 2;
+        this.multiplier = 1;
 
         effectProviders.addAll(occupiables);
     }
@@ -35,7 +35,7 @@ public class EventPlaceFamilyMember extends Event{
     public EventPlaceFamilyMember(List<Occupiable> occupiables){
         super();
         this.occupiables = occupiables;
-        this.multiplier = 2;
+        this.multiplier = 1;
 
         effectProviders.addAll(occupiables);
     }
@@ -115,7 +115,7 @@ public class EventPlaceFamilyMember extends Event{
 
     @Override
     public String toString() {
-        return "EventPlaceFamilyMember on "+occupiables;
+        return "EventPlaceFamilyMember on " + occupiables;
     }
 
     @Override
