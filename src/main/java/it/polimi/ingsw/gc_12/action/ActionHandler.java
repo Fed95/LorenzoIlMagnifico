@@ -181,8 +181,8 @@ public class ActionHandler {
 		i = (i < 0 ? 0 : i);
 		this.offset = i;
 		this.multiplier = event.getMultiplier();
-		for (; i <= player.getResourceValue(ResourceType.SERVANT) / event.getMultiplier(); i++) {
-			Action action = ActionFactory.createActionPlace(player, event.getFamilyMember(), event.getOccupiable(), new Servant(i * event.getMultiplier()), true);
+		for (; i <= player.getResourceValue(ResourceType.SERVANT); i++) {
+			Action action = ActionFactory.createActionPlace(player, event.getFamilyMember(), event.getOccupiable(), new Servant(i), true);
 			if(action.isValid(match))
 				actions.add(action);
 		}
