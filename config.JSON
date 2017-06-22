@@ -1,1 +1,227 @@
-{"2":{"playersNum":2,"spaceMarketNum":2,"spaceWorkMultiple":false},"3":{"playersNum":3,"spaceMarketNum":2,"spaceWorkMultiple":true},"4":{"playersNum":4,"spaceMarketNum":4,"spaceWorkMultiple":true}}
+{
+  "2": {
+    "initialResources": [
+      [{
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 5
+      }, {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 2
+      }, {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 2
+      }, {
+        "resourceType": "Servant",
+        "type": "SERVANT",
+        "value": 3
+      }],
+      [{
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 6
+      }, {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 2
+      }, {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 2
+      }, {
+        "resourceType": "Servant",
+        "type": "SERVANT",
+        "value": 3
+      }],
+      [{
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 7
+      }, {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 2
+      }, {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 2
+      }, {
+        "resourceType": "Servant",
+        "type": "SERVANT",
+        "value": 3
+      }],
+      [{
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 8
+      }, {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 2
+      }, {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 2
+      }, {
+        "resourceType": "Servant",
+        "type": "SERVANT",
+        "value": 3
+      }]
+    ],
+    "playersNum": 2,
+    "spaceMarketNum": 2,
+    "spaceWorkMultiple": false
+  },
+  "3": {
+    "initialResources": [
+      [{
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 5
+      }, {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 2
+      }, {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 2
+      }, {
+        "resourceType": "Servant",
+        "type": "SERVANT",
+        "value": 3
+      }],
+      [{
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 6
+      }, {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 2
+      }, {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 2
+      }, {
+        "resourceType": "Servant",
+        "type": "SERVANT",
+        "value": 3
+      }],
+      [{
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 7
+      }, {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 2
+      }, {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 2
+      }, {
+        "resourceType": "Servant",
+        "type": "SERVANT",
+        "value": 3
+      }],
+      [{
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 8
+      }, {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 2
+      }, {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 2
+      }, {
+        "resourceType": "Servant",
+        "type": "SERVANT",
+        "value": 3
+      }]
+    ],
+    "playersNum": 3,
+    "spaceMarketNum": 2,
+    "spaceWorkMultiple": true
+  },
+  "4": {
+    "initialResources": [
+      [{
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 5
+      }, {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 2
+      }, {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 2
+      }, {
+        "resourceType": "Servant",
+        "type": "SERVANT",
+        "value": 3
+      }],
+      [{
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 6
+      }, {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 2
+      }, {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 2
+      }, {
+        "resourceType": "Servant",
+        "type": "SERVANT",
+        "value": 3
+      }],
+      [{
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 7
+      }, {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 2
+      }, {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 2
+      }, {
+        "resourceType": "Servant",
+        "type": "SERVANT",
+        "value": 3
+      }],
+      [{
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 8
+      }, {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 2
+      }, {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 2
+      }, {
+        "resourceType": "Servant",
+        "type": "SERVANT",
+        "value": 3
+      }]
+    ],
+    "playersNum": 4,
+    "spaceMarketNum": 4,
+    "spaceWorkMultiple": true
+  }
+}

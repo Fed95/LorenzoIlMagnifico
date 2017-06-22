@@ -1,7 +1,12 @@
 package it.polimi.ingsw.gc_12;
 
+import it.polimi.ingsw.gc_12.resource.Resource;
+
+import java.util.List;
+
 public class Config {
 
+	List<List<Resource>> initialResources;
 	private int playersNum;
 	private int spaceMarketNum;
 	private boolean spaceWorkMultiple;
@@ -27,5 +32,9 @@ public class Config {
 
 	public boolean isSpaceWorkMultiple() {
 		return spaceWorkMultiple;
+	}
+
+	public List<List<Resource>> getInitialResources() {
+		return initialResources;
 	}
 }

@@ -30,8 +30,8 @@ public class Player implements Serializable{
 		this.personalBoard = new PersonalBoard();
 		Map<ResourceType, Resource> resources = new HashMap<>();
 		for(ResourceType resourceType: ResourceType.values()) {
+			// TODO: set to 0 before the deadline
 			resources.put(resourceType, ResourceBuilder.create(resourceType, 100));
-
 		}
 		this.resources = resources;
 		personalBoard.getResourceContainer().syncronize(this.resources);

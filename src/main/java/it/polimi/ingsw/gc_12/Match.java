@@ -11,6 +11,7 @@ import it.polimi.ingsw.gc_12.json.loader.*;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 import it.polimi.ingsw.gc_12.personal_board.BonusTile;
+import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.server.model.State;
 import it.polimi.ingsw.gc_12.server.observer.Observable;
 
@@ -60,13 +61,8 @@ public class Match extends Observable<Event> implements Serializable{
 		}
 		cardDeckSet.shuffle();
 
-
 		createBoard();
-
-		for (Player player : players) {
-			player.init();
-			player.getPersonalBoard().setCardsSpaces(new LoaderCardsSpace().get(this));
-		}
+		initPlayers();
 	}
 
 	private void createBoard() {
@@ -77,6 +73,21 @@ public class Match extends Observable<Event> implements Serializable{
 		board.setMarket(new LoaderMarket().get(this));
 		System.out.println(board.getMarket().getSpaceMarkets());
 		board.getTowerSet().setCards(cardDeckSet);
+	}
+
+	private void initPlayers() {
+		Config config = new LoaderConfig().get(this).get(players.size());
+		for (int i = 0; i < players.size(); i++) {
+			Player player = players.get(i);
+			// TODO: remove the comment before the deadline
+			// It has been commented to have a lot of resources for testing
+			/*List<Resource> resources = config.getInitialResources().get(i);
+			for(Resource resource: resources) {
+				player.setResourceValue(resource.getType(), resource.getValue());
+			}*/
+			player.init();
+			player.getPersonalBoard().setCardsSpaces(new LoaderCardsSpace().get(this));
+		}
 	}
 
 	public void start() {
