@@ -22,9 +22,9 @@ import java.util.stream.Collectors;
 
 
 public class Match extends Observable<Event> implements Serializable{
-	private transient List<Player> players = new ArrayList<>();
-	private transient List<BonusTile> bonusTiles;
-	private transient List<Card> cards = new ArrayList<>();
+	private List<Player> players = new ArrayList<>();
+	private List<BonusTile> bonusTiles;
+	private List<Card> cards = new ArrayList<>();
 	private transient List<ExcommunicationTile> excommunicationTiles = new ArrayList<>();
 	private transient CardDeckSet cardDeckSet;
 	private Board board;
