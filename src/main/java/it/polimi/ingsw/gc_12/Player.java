@@ -38,6 +38,11 @@ public class Player implements Serializable{
 		this.state = PlayerState.ACTION;
 	}
 
+	public Player(PlayerColor playerColor) {
+		this.playerColor = playerColor;
+		this.name = null;
+	}
+
 	public void setPersonalBoard(PersonalBoard personalBoard) {
 		this.personalBoard = personalBoard;
 	}
@@ -159,5 +164,20 @@ public class Player implements Serializable{
 		for(FamilyMember fm : familymembers.values())
 			sb.append(" - " + fm.getColor() + " [" + fm.getValue() + "] busy: " + fm.isBusy()).append(System.getProperty("line.separator"));
 		return sb.toString();
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Player)) return false;
+
+		Player player = (Player) o;
+
+		return playerColor == player.playerColor;
+	}
+
+	@Override
+	public int hashCode() {
+		return playerColor.hashCode();
 	}
 }
