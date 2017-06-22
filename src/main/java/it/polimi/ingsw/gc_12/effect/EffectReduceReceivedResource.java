@@ -12,10 +12,12 @@ import java.io.IOException;
 public class EffectReduceReceivedResource extends Effect {
 
     private int value;
+    private ResourceType resourceType;
 
     public EffectReduceReceivedResource(Event event, int value) {
         super(event);
         this.value = value;
+        this. resourceType = ((EventReceiveResource) event).getResource().getType();
     }
 
     @Override
@@ -23,13 +25,13 @@ public class EffectReduceReceivedResource extends Effect {
        if(!(event instanceof EventReceiveResource))
            throw new IllegalStateException("EffectReduceReceivedResource: received an unexpected event!");
 
-       Player player = event.getPlayer();
-       EventReceiveResource eventReceiveResource = (EventReceiveResource) event;
+       ResourceType type = ((EventReceiveResource) event).getResource().getType();
 
-       ResourceType type = eventReceiveResource.getResource().getType();
-       int newValue = player.getResources().get(type).getValue() - ((EventReceiveResource) event).getResource().getValue();
-
-       player.setResourceValue(type, newValue);
+       //TODO: this is a redundant check
+       if(this.resourceType.equals(type)) {
+           int newValue = ((EventReceiveResource) event).getResource().getValue() + value;
+           ((EventReceiveResource) event).getResource().setValue(newValue);
+       }
     }
 
     @Override

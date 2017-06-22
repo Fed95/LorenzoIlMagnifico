@@ -16,7 +16,10 @@ public class EventServantsRequested extends EventPlaceFamilyMember {
 		multiplier = 1;
 	}
 
-	public void setMultiplier(int multiplier) {
+    public EventServantsRequested() {
+    }
+
+    public void setMultiplier(int multiplier) {
 		this.multiplier = multiplier;
 	}
 

@@ -26,4 +26,7 @@ public final class CardBuilder {
 				throw new IllegalArgumentException("The CardType does not exist.");
 		}
 	}
+	public static CardDevelopment create(CardType cardType) throws IllegalArgumentException {
+		return create(cardType, 0, "generic", 0, null, null);
+	}
 }

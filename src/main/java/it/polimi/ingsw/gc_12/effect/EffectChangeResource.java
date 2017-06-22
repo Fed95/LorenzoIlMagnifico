@@ -34,12 +34,15 @@ public class EffectChangeResource extends Effect {
 		if(!choice) {
 			for(ResourceExchange exchange : exchanges) {
 				player.removeResources(exchange.getCost());
-				player.addResources(exchange.getBonus());
 
+				List<Resource> newBonus  = new ArrayList<>();
 				for(Resource resource : exchange.getBonus()) {
 					EventReceiveResource e = new EventReceiveResource(player, resource);
 					match.getEffectHandler().executeEffects(match, e);
+					newBonus.add(e.getResource());
 				}
+
+				player.addResources(newBonus);
 			}
 		}
 		else {

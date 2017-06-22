@@ -1,7 +1,6 @@
 package it.polimi.ingsw.gc_12.event;
 
 import it.polimi.ingsw.gc_12.Player;
-import it.polimi.ingsw.gc_12.effect.EffectProvider;
 import it.polimi.ingsw.gc_12.resource.Resource;
 
 import java.util.List;
@@ -13,6 +12,11 @@ public class EventReceiveResource extends Event {
 
     public EventReceiveResource(Player player, Resource resource) {
         super(player);
+        this.resource = resource;
+    }
+
+    public EventReceiveResource(Resource resource) {
+        super();
         this.resource = resource;
     }
 

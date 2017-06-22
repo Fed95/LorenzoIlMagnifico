@@ -34,11 +34,6 @@ public class Card implements EffectProvider, Serializable {
 	public List<Effect> getEffects() {
 		return effects;
 	}
-	
-	/*@Override
-	public String toString() {
-		return name;
-	}*/
 
 	@Override
 	public String toString() {

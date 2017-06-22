@@ -46,7 +46,6 @@ public class EventPlaceFamilyMember extends Event{
         effectProviders.addAll(occupiables);
     }
 
-
     public EventPlaceFamilyMember(Player player, Occupiable occupiable, FamilyMember familyMember) {
         this(player, new ArrayList<>(Arrays.asList(occupiable)), familyMember);
     }

@@ -8,9 +8,6 @@ import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.occupiables.*;
 import it.polimi.ingsw.gc_12.resource.*;
 
-/**
- * Created by marco on 27/05/2017.
- */
 public class TypeAdapter {
 
 	private TypeAdapter() {}
@@ -26,7 +23,8 @@ public class TypeAdapter {
 				.registerSubtype(SpaceMarket.class, SpaceMarket.class.getSimpleName())
 				.registerSubtype(TowerFloor.class, TowerFloor.class.getSimpleName())
 				.registerSubtype(SpaceWorkMultiple.class, SpaceWorkMultiple.class.getSimpleName())
-				.registerSubtype(SpaceWorkSingle.class, SpaceWorkSingle.class.getSimpleName());//council palace
+				.registerSubtype(SpaceWorkSingle.class, SpaceWorkSingle.class.getSimpleName())
+				.registerSubtype(CouncilPalace.class, CouncilPalace.class.getSimpleName());
 
 		final RuntimeTypeAdapterFactory<Card> factoryCard = RuntimeTypeAdapterFactory
 				.of(Card.class, "type")
@@ -53,7 +51,10 @@ public class TypeAdapter {
 				.registerSubtype(EffectChangeFamilyMemberValue.class, EffectChangeFamilyMemberValue.class.getSimpleName())
 				.registerSubtype(EffectFreeAction.class, EffectFreeAction.class.getSimpleName())
 				.registerSubtype(EffectResourceForCards.class, EffectResourceForCards.class.getSimpleName())
-				.registerSubtype(EffectResourceForResource.class, EffectResourceForResource.class.getSimpleName());	// if the flag equals the class name, you can skip the second parameter. This is only necessary, when the "type" field does not equal the class name.
+				.registerSubtype(EffectResourceForResource.class, EffectResourceForResource.class.getSimpleName())
+				.registerSubtype(EffectReduceReceivedResource.class, EffectReduceReceivedResource.class.getSimpleName())
+				.registerSubtype(EffectServantsMultipier.class, EffectServantsMultipier.class.getSimpleName())
+				.registerSubtype(EffectPlacementDenied.class, EffectPlacementDenied.class.getSimpleName());	// if the flag equals the class name, you can skip the second parameter. This is only necessary, when the "type" field does not equal the class name.
 
 		final RuntimeTypeAdapterFactory<Event> factoryEvent = RuntimeTypeAdapterFactory
 				.of(Event.class, "eventType")
@@ -62,7 +63,8 @@ public class TypeAdapter {
 				.registerSubtype(EventPickCard.class, EventPickCard.class.getSimpleName())
 				.registerSubtype(EventSpendResource.class, EventSpendResource.class.getSimpleName())
 				.registerSubtype(EventSupportChurch.class, EventSupportChurch.class.getSimpleName())
-				.registerSubtype(EventEndMatch.class, EventEndMatch.class.getSimpleName());
+				.registerSubtype(EventEndMatch.class, EventEndMatch.class.getSimpleName())
+				.registerSubtype(EventReceiveResource.class, EventReceiveResource.class.getSimpleName());
 
 
 		return new GsonBuilder()

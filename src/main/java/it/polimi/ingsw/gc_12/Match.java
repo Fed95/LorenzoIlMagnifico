@@ -59,7 +59,7 @@ public class Match extends Observable<Event> implements Serializable{
 		for (Player player : players){
 			player.getPersonalBoard().setBonusTile(bonusTiles.get(players.indexOf(player)));
 		}
-		cardDeckSet.shuffle();
+		//cardDeckSet.shuffle();
 
 		createBoard();
 		initPlayers();
