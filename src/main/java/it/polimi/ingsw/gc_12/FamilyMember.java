@@ -121,18 +121,25 @@ public class FamilyMember implements Observer, Serializable {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if(obj == null)
-			return true;
-		else {
-			FamilyMember other = (FamilyMember) obj;
-			// The attributes of two family members are the same if at least one is null or they have the same value
-			// Two family members are equals if they have the same color and the same owner
-			if(this.getColor() == null || other.getColor() == null || this.getColor() == other.getColor()) {
-				if(this.getOwner() == null || other.getOwner() == null || this.getOwner() == other.getOwner())
-					return true;
-			}
-			return false;
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof FamilyMember)) return false;
+
+		FamilyMember that = (FamilyMember) o;
+
+		// The attributes of two family members are the same if at least one is null or they have the same value
+		// Two family members are equals if they have the same color and the same owner
+		if(this.getColor() == null || that.getColor() == null || this.getColor() == that.getColor()) {
+			if(this.getOwner() == null || that.getOwner() == null || this.getOwner() == that.getOwner())
+				return true;
 		}
+		return false;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = ownerColor != null ? ownerColor.hashCode() : 0;
+		result = 31 * result + (color != null ? color.hashCode() : 0);
+		return result;
 	}
 }

@@ -32,16 +32,4 @@ public class ActionPlaceOnCouncil extends ActionPlace {
             throw new RequiredValueNotSatisfiedException();
     }
 
-    @Override
-    protected void execute(Match match) {
-        player.removeResources(Collections.singletonList(servant));
-        match.placeFamilyMember(councilPalace, familyMember);
-        EventPlacementEnded event = new EventPlacementEnded(player);
-        match.getActionHandler().update(event);
-        match.notifyObserver(event);
-    }
-
-    private CouncilPalace getRealCouncilPalace(Match match) {
-        return match.getBoard().getCouncilPalace();
-    }
 }

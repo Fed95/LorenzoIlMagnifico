@@ -37,4 +37,19 @@ public class ActionChooseTower extends Action {
     public String toString() {
         return tower.getType() + " Tower";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ActionChooseTower)) return false;
+
+        ActionChooseTower that = (ActionChooseTower) o;
+
+        return tower != null ? tower.equals(that.tower) : that.tower == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return tower != null ? tower.hashCode() : 0;
+    }
 }

@@ -4,6 +4,7 @@ import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.card.Card;
 import it.polimi.ingsw.gc_12.card.CardDevelopment;
 import it.polimi.ingsw.gc_12.card.CardType;
+import it.polimi.ingsw.gc_12.exceptions.ActionNotAllowedException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,12 +17,16 @@ public class PersonalBoard implements Serializable{
     private transient ResourcesContainer resourceContainer = new ResourcesContainer();
     private transient BonusTile bonusTile;
 
-    public PersonalBoard(){
-    }
+    public PersonalBoard(){ }
 
     public boolean canPlaceCard(Player owner, CardDevelopment card) {
         //Can throw an exception
-        CardSlot cardSlot = cardsSpaces.get(card.getType()).getFirstFreeSlot();
+        CardSlot cardSlot;
+        try {
+            cardSlot = cardsSpaces.get(card.getType()).getFirstFreeSlot();
+        } catch (ActionNotAllowedException e) {
+            return false;
+        }
 
         if(cardSlot.getRequisites() != null)
             if(!owner.hasResources(cardSlot.getRequisites()))
@@ -38,7 +43,11 @@ public class PersonalBoard implements Serializable{
     }
 
     public void placeCard(CardDevelopment card){
-        cardsSpaces.get(card.getType()).getFirstFreeSlot().placeCard(card);
+        try {
+            cardsSpaces.get(card.getType()).getFirstFreeSlot().placeCard(card);
+        } catch (ActionNotAllowedException e) {
+            throw new IllegalStateException("Placing card in a full cardSpace");
+        }
     }
 
     public List<Card> getCards(){

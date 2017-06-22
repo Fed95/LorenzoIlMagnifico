@@ -121,4 +121,19 @@ public class Tower implements Zone, Serializable{
 	public String toString() {
 		return "Tower of type " + type + "  (Taken: " + isTaken() + ")";
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Tower)) return false;
+
+		Tower tower = (Tower) o;
+
+		return type == tower.type;
+	}
+
+	@Override
+	public int hashCode() {
+		return type != null ? type.hashCode() : 0;
+	}
 }

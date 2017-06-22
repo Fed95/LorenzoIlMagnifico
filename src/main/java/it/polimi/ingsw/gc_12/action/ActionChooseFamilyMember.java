@@ -40,4 +40,19 @@ public class ActionChooseFamilyMember extends Action{
 	public String toString() {
 		return "Place "+familyMember;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof ActionChooseFamilyMember)) return false;
+
+		ActionChooseFamilyMember that = (ActionChooseFamilyMember) o;
+
+		return familyMember != null ? familyMember.equals(that.familyMember) : that.familyMember == null;
+	}
+
+	@Override
+	public int hashCode() {
+		return familyMember != null ? familyMember.hashCode() : 0;
+	}
 }

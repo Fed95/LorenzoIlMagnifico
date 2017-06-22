@@ -45,7 +45,7 @@ public class EffectFreeAction extends Effect {
     }
 
     @Override
-    public void discard(Event event) throws RuntimeException {
+    public void discard(Event event) {
         //TODO: CHECK THIS
     }
 

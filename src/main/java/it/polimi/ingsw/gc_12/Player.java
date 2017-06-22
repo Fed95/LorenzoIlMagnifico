@@ -78,14 +78,14 @@ public class Player implements Serializable{
 		personalBoard.getResourceContainer().syncronize(resources);
 	}
 
-	private void removeResource(Resource resourceToRemove) throws RuntimeException {
+	private void removeResource(Resource resourceToRemove) {
 		if(resourceToRemove != null) {
 			Resource ownedResource = this.resources.get(resourceToRemove.getType());
 			ownedResource.setValue(ownedResource.getValue() - resourceToRemove.getValue());
 		}
 	}
 
-	public void removeResources(List<Resource> resourcesToRemove) throws RuntimeException {
+	public void removeResources(List<Resource> resourcesToRemove) {
 		//fills the array with the affected resources updating their values
 		for(Resource resource: resourcesToRemove)
 			this.removeResource(resource);
@@ -95,7 +95,7 @@ public class Player implements Serializable{
 		personalBoard.getResourceContainer().syncronize(this.resources);
 	}
 
-	public boolean hasResources(List<Resource> resources) throws RuntimeException{
+	public boolean hasResources(List<Resource> resources) {
 		try {
 			this.removeResources(resources);
 		}catch (RuntimeException e){

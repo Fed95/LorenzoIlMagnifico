@@ -22,7 +22,7 @@ public class EffectResourceForResource extends Effect {
     }
 
     @Override
-    public void execute(Match match, Event event) throws RuntimeException {
+    public void execute(Match match, Event event) {
 
         int value = player.getResourceValue(ownedResource.getType()) / ownedResource.getValue();
         resource.setValue(resource.getValue() * value);
@@ -36,7 +36,7 @@ public class EffectResourceForResource extends Effect {
     }
 
     @Override
-    public void discard(Event event) throws RuntimeException {
+    public void discard(Event event) {
         List<Resource> resources = new ArrayList<>();
         resources.add(resource);
         player.removeResources(resources);

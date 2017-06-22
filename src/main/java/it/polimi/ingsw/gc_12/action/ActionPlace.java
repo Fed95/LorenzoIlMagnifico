@@ -6,6 +6,7 @@ import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
+import it.polimi.ingsw.gc_12.event.EventPlacementEnded;
 import it.polimi.ingsw.gc_12.event.EventServantsRequested;
 import it.polimi.ingsw.gc_12.exceptions.ActionNotAllowedException;
 import it.polimi.ingsw.gc_12.exceptions.ActionDeniedException;
@@ -15,6 +16,7 @@ import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.resource.Servant;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class ActionPlace extends Action {
@@ -42,6 +44,9 @@ public abstract class ActionPlace extends Action {
 
 	@Override
 	public void start(Match match) {
+		if(player.getName() == null)
+			throw new IllegalArgumentException("Cannot start an action without a real player.");
+
 		setup(match);
 		if(!complete) {
 			EventServantsRequested eventServants = new EventServantsRequested(player, occupiable, familyMember);
@@ -88,6 +93,9 @@ public abstract class ActionPlace extends Action {
 
 	@Override
 	public boolean isValid(Match match) {
+		if(player.getName() == null)
+			throw new IllegalArgumentException("Cannot call isValid on an action without a real player.");
+
 		setup(match);
 		Event event = new EventPlaceFamilyMember(player, occupiable, familyMember);
 
@@ -119,9 +127,16 @@ public abstract class ActionPlace extends Action {
 		return servant.getValue();
 	}
 
+	protected void execute(Match match) {
+		player.removeResources(Collections.singletonList(servant));
+		match.placeFamilyMember(occupiable, familyMember);
+		EventPlacementEnded event = new EventPlacementEnded(player);
+		match.getActionHandler().update(event);
+		match.notifyObserver(event);
+	}
+
 	protected abstract void setup(Match match);
 	protected abstract void canBeExecuted(Match match) throws RequiredValueNotSatisfiedException, ActionNotAllowedException;
-	protected abstract void execute(Match match);
 
 	@Override
 	public String toString() {

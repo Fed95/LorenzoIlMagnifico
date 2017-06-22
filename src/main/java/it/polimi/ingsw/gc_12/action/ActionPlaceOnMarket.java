@@ -35,12 +35,4 @@ public class ActionPlaceOnMarket extends ActionPlace {
             throw new ActionNotAllowedException("Your FamilyMember does not satisfy the required value for this placement!");
     }
 
-    @Override
-    protected void execute(Match match) {
-        player.removeResources(Collections.singletonList(servant));
-        match.placeFamilyMember(spaceMarket, familyMember);
-        EventPlacementEnded event = new EventPlacementEnded(player);
-        match.getActionHandler().update(event);
-        match.notifyObserver(event);
-    }
 }

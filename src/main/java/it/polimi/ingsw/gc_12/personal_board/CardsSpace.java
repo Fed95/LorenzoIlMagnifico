@@ -3,6 +3,7 @@ package it.polimi.ingsw.gc_12.personal_board;
 import it.polimi.ingsw.gc_12.card.Card;
 import it.polimi.ingsw.gc_12.card.CardDevelopment;
 import it.polimi.ingsw.gc_12.card.CardType;
+import it.polimi.ingsw.gc_12.exceptions.ActionNotAllowedException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,9 +18,9 @@ public class CardsSpace implements Serializable{
         this.type = type;
     }
 
-    public void placeCard(CardDevelopment card) throws RuntimeException {
+    public void placeCard(CardDevelopment card) {
         if(card.getType().equals(type))
-            throw new RuntimeException("Incompatible CardType");
+            throw new IllegalArgumentException("Incompatible CardType");
         //else
         for(CardSlot cardSpace : slots)
             if(cardSpace.isEmpty()) {
@@ -29,11 +30,11 @@ public class CardsSpace implements Serializable{
             }
     }
 
-    public CardSlot getFirstFreeSlot() throws RuntimeException {
+    public CardSlot getFirstFreeSlot() throws ActionNotAllowedException {
         for(CardSlot slot : slots)
             if(slot.isEmpty())
                 return slot;
-        throw new RuntimeException("Your CardSpace for this CardType is already full.");
+        throw new ActionNotAllowedException("Your CardSpace for this CardType is already full.");
     }
 
     public List<Card> getCards(){

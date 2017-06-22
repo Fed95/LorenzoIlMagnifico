@@ -42,13 +42,4 @@ public class ActionPlaceOnSpaceWork extends ActionPlace {
         if(!spaceWorkZone.canBeOccupiedBy(familyMember))
             throw new ActionNotAllowedException("There is another member of your family working here already!");
     }
-
-    @Override
-    protected void execute(Match match) {
-        player.removeResources(Collections.singletonList(servant));
-        match.placeFamilyMember(spaceWork, familyMember);
-        EventPlacementEnded event = new EventPlacementEnded(player);
-        match.getActionHandler().update(event);
-        match.notifyObserver(event);
-    }
 }
