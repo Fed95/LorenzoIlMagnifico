@@ -28,4 +28,8 @@ public class EventStartMatch extends Event{
 		return "Match started!";
 	}
 
+	@Override
+	public String toStringClient() {
+		return "The match has started!";
+	}
 }

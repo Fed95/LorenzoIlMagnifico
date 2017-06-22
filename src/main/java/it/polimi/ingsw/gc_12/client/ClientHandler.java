@@ -29,12 +29,13 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 		if(event == null)
 			return;
 
+		if(event.toStringClient() != null)
+			System.out.println(event.toStringClient());
 		actions = event.getActions();
 
 		System.out.println("HANDLING "+event.getClass().getSimpleName());
 
 		if(event instanceof EventStartMatch) {
-			System.out.println("ClientRMI: EventStartMatch recognised. Creating view with local match.");
 			EventStartMatch eventStartMatch = (EventStartMatch) event;
 
 			match = MatchInstance.instance();

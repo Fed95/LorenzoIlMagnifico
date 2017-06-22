@@ -31,4 +31,9 @@ public class EventStartTurn extends Event{
 		sb.append("It's " + player.getName() + "'s turn.");
 		return sb.toString();
 	}
+
+	@Override
+	public String toStringClient() {
+		return "It's " + player.getName() + "'s turn.";
+	}
 }

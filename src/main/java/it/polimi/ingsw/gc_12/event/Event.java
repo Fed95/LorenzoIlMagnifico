@@ -58,4 +58,8 @@ public abstract class Event extends Change implements EventInterface {
 	public List<EffectProvider> getEffectProviders() {
 		return effectProviders;
 	}
+
+	public String toStringClient() {
+		return null;
+	}
 }

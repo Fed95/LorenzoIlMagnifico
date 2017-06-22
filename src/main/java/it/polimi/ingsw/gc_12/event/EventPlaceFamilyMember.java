@@ -103,6 +103,11 @@ public class EventPlaceFamilyMember extends Event{
 
     @Override
     public String toString() {
+        return "EventPlaceFamilyMember on "+occupiables;
+    }
+
+    @Override
+    public String toStringClient() {
         StringBuilder sb = new StringBuilder();
         sb.append(System.getProperty("line.separator"));
         sb.append(player.getName() + " has placed the " + familyMember.getColor() + " Family Member (of value " + familyMember.getValue() + ") on:").append(System.getProperty("line.separator"));

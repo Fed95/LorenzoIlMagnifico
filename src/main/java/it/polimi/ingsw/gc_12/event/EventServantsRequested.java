@@ -28,4 +28,9 @@ public class EventServantsRequested extends EventPlaceFamilyMember {
 	public String toString() {
 		return "EventServantsRequested";
 	}
+
+	@Override
+	public String toStringClient() {
+		return "";
+	}
 }

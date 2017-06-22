@@ -31,7 +31,7 @@ public class EffectDenyEffect extends Effect {
     @Override
     public void discard(Event event) {
         if(match == null)
-            throw new RuntimeException("EffectDenyEffect: trying to discard (execute) the effect when not executed (discarded)! confused? lol");
+            throw new IllegalStateException("EffectDenyEffect: trying to discard (execute) the effect when not executed (discarded)! confused? lol");
         for(Effect effect : findEffects(event)) {
             if(effect instanceof EffectChangeResource && ((EffectChangeResource) effect).hasChoice())
                 throw new IllegalStateException("Trying to apply EffectDenyEffect to a ChangeResource effect with choice!");
