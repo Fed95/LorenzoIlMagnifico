@@ -17,10 +17,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -39,12 +36,14 @@ public class Server {
 	private Stack<ServerRMIView> views;
 	private List<String> names;
 	public int numOfClients;
+	private LinkedList<PlayerColor> playerColors = new LinkedList<>();
 
 	public Server() {
 		this.match = new Match();
 		this.controller = new Controller(match);
 		this.views = new Stack<>();
 		this.names = new ArrayList<>();
+		this.playerColors.addAll(Arrays.asList(PlayerColor.values()));
 		this.numOfClients = 0;
 	}
 
@@ -55,7 +54,7 @@ public class Server {
 		System.out.println("Constructing the RMI registry");
 
 		// Create the RMI View, that will be shared with the client
-		ServerRMIView serverRmiView = new ServerRMIView(this, match);
+		ServerRMIView serverRmiView = new ServerRMIView(this, match, playerColors);
 		views.push(serverRmiView);
 
 		//controller observes this view
@@ -98,7 +97,9 @@ public class Server {
 		names = new ArrayList<>();
 		match = new Match();
 		controller = new Controller(match);
-		ServerRMIView serverRmiView = new ServerRMIView(this, match);
+		playerColors = new LinkedList<>();
+		playerColors.addAll(Arrays.asList(PlayerColor.values()));
+		ServerRMIView serverRmiView = new ServerRMIView(this, match, playerColors);
 		views.push(serverRmiView);
 
 		// publish the view in the registry as a remote object
@@ -129,7 +130,7 @@ public class Server {
 			Socket socket = serverSocket.accept();
 
 			// creates the view (server side) associated with the new client
-			ServerSocketView view = new ServerSocketView(socket, this.match, this);
+			ServerSocketView view = new ServerSocketView(socket, this.match, this, playerColors);
 
 			// the view observes the model
 			this.match.registerObserver(view);

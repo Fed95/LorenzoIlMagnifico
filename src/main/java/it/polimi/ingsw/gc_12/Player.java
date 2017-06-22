@@ -143,6 +143,10 @@ public class Player implements Serializable{
 		this.state = state;
 	}
 
+	public PlayerColor getColor() {
+		return playerColor;
+	}
+
 	public String printResources(){
 		StringBuilder sb = new StringBuilder();
 		for(Resource resource : resources.values())

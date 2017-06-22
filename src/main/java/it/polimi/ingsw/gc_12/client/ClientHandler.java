@@ -3,6 +3,7 @@ package it.polimi.ingsw.gc_12.client;
 
 import it.polimi.ingsw.gc_12.MatchInstance;
 import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.PlayerColor;
 import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.mvc.View;
@@ -21,6 +22,8 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 	protected LinkedList<Event> events = new LinkedList<>();
 	protected int offset;
 	protected int multiplier;
+	private boolean myTurn;
+	protected PlayerColor color;
 
 	protected ClientHandler() throws RemoteException {
 		super();
@@ -45,7 +48,10 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 			match.init(eventStartMatch.getMatch());
 
 		}
-		if(event.getPlayer() != null && isMyTurn(event.getPlayer())) {
+		else if(event instanceof EventStartTurn) {
+			myTurn = (color == event.getPlayer().getColor());
+		}
+		if(event.getPlayer() != null && myTurn) {
 			if (event instanceof EventServantsRequested) {
 				actions = event.getActions();
 				printServantsChoice((EventServantsRequested) event);
@@ -137,5 +143,7 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 		return multiplier;
 	}
 
-	protected abstract boolean isMyTurn(Player player);
+	public boolean isMyTurn() {
+		return myTurn;
+	}
 }

@@ -1,6 +1,8 @@
 package it.polimi.ingsw.gc_12.server.view;
 
 import it.polimi.ingsw.gc_12.Match;
+import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.PlayerColor;
 import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.server.Server;
@@ -9,6 +11,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ServerSocketView extends View implements Runnable {
 
@@ -17,12 +21,14 @@ public class ServerSocketView extends View implements Runnable {
 	private ObjectInputStream socketIn;
 	private ObjectOutputStream socketOut;
 	private Match match;
+	private LinkedList<PlayerColor> playerColors;
 
-	public ServerSocketView(Socket socket, Match match, Server server) throws IOException {
+	public ServerSocketView(Socket socket, Match match, Server server, LinkedList<PlayerColor> playerColors) throws IOException {
 		// creates the streams to communicate with the client-side, and the reference to the model
 		this.socket = socket;
 		this.match = match;
 		this.server = server;
+		this.playerColors = playerColors;
 	}
 
 	@Override
@@ -50,6 +56,8 @@ public class ServerSocketView extends View implements Runnable {
 		try {
 			socketIn = new ObjectInputStream(socket.getInputStream());
 			socketOut = new ObjectOutputStream(socket.getOutputStream());
+
+			socketOut.writeObject(playerColors.poll());
 
 			//server.increaseClientsNum();
 			while (true) {

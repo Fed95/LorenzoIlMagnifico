@@ -24,9 +24,23 @@ public class ViewCLI extends Observable implements View {
 
 	public void start() throws IOException {
 		adapter.sendAction(0);
-		while (true) {
+		while(in.hasNext()) {
 			//Capture input from user
-			int inputInt = in.nextInt();
+			String inputLine = in.nextLine();
+			int inputInt;
+			try {
+				inputInt = Integer.parseInt(inputLine);
+			}
+			catch (NumberFormatException e) {
+				System.out.println("You can only insert numbers!");
+				continue;
+			}
+
+			if(!clientHandler.isMyTurn()) {
+				System.out.println("It's not your turn!");
+				continue;
+			}
+
 			System.out.println("SENDING " + inputInt);
 			List<Action> actions = clientHandler.getActions();
 
@@ -42,7 +56,6 @@ public class ViewCLI extends Observable implements View {
 					e.printStackTrace();
 				}
 			}
-
 		}
 	}
 }
