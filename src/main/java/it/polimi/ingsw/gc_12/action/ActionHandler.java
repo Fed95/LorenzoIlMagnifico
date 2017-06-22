@@ -198,8 +198,8 @@ public class ActionHandler {
 			ActionPlace action = ActionFactory.createActionPlace(event.getPlayer(), event.getFamilyMember(), towerFloor);
 			if(action.isValid(match))
 				actions.add(new ActionPlaceOnTower(player, event.getFamilyMember(), towerFloor));
-
 		}
+		Collections.reverse(actions);
 		actions.add(new DiscardAction(player));
 		return actions;
 	}
