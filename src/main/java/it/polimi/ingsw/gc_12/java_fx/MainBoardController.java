@@ -6,8 +6,12 @@ import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.rmi.ClientRMI;
 import it.polimi.ingsw.gc_12.mvc.GUIAdapter;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -38,6 +42,31 @@ public class MainBoardController implements Initializable, Observer {
     @FXML private ImageView cardFloor13;
     @FXML private ImageView cardFloor14;
     @FXML private ImageView cardFloor15;
+    @FXML private Label blackValuePl1;
+    @FXML private Label orangeValuepl1;
+    @FXML private Label whiteValuepl1;
+    @FXML private Label neutralValuepl1;
+    @FXML private Label blackValuePl2;
+    @FXML private Label orangeValuepl2;
+    @FXML private Label whiteValuepl2;
+    @FXML private Label neutralValuepl2;
+    @FXML private Label blackValuePl3;
+    @FXML private Label orangeValuepl3;
+    @FXML private Label whiteValuepl3;
+    @FXML private Label neutralValuepl3;
+    @FXML private Label blackValuePl4;
+    @FXML private Label orangeValuepl4;
+    @FXML private Label whiteValuepl4;
+    @FXML private Label neutralValuepl4;
+    //pane tb that contains tab of the players
+    @FXML private TabPane playersBoards;
+
+    //tab players
+    @FXML private Tab bluePlayer;
+    @FXML private Tab greenPlayer;
+    @FXML private Tab redPlayer;
+    @FXML private Tab yellowPlayer;
+
     private ImageView lastFamClicked = null;
 
     private GUIAdapter adapter;
@@ -45,10 +74,12 @@ public class MainBoardController implements Initializable, Observer {
     private ClientHandler clientView;
 
     @FXML void familyClicked(MouseEvent event) {
-        ImageView familyMemberClicked = (ImageView) event.getSource();
+        ImageView familyMemberClicked = (ImageView) event.getTarget();
         List<Action> actions = clientView.getActions();
         for(Action action: actions)
             System.out.println(action);
+
+
 
         if(familyMemberClicked.equals(lastFamClicked)){
             System.out.println("uguali");
@@ -66,6 +97,7 @@ public class MainBoardController implements Initializable, Observer {
         }
         System.out.println(event.getPickResult().getIntersectedNode().getId());
         lastFamClicked = familyMemberClicked;
+        match.getFamilyMemberBlueRepresentationObservableList().get(0).setValueProperty(10);
     }
     @FXML void showCard(MouseEvent event){
         ImageView imageView = (ImageView) event.getSource();
@@ -100,7 +132,6 @@ public class MainBoardController implements Initializable, Observer {
         cardFloor15.setImage(image1);
 
         showCards.setOpacity(0);
-
         this.clientView = ClientRMI.instance().getRmiView();
         this.adapter = new GUIAdapter(ClientRMI.instance());
         try {
@@ -112,6 +143,8 @@ public class MainBoardController implements Initializable, Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-
+        Platform.runLater(() -> {
+            blackValuePl1.textProperty().bind(match.getFamilyMemberBlueRepresentationObservableList().get(0).getValueProperty().asString());
+        });
     }
 }
