@@ -15,10 +15,12 @@ import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.ResourceBundle;
 
 
-public class MainBoardController implements Initializable {
+public class MainBoardController implements Initializable, Observer {
     @FXML private ImageView showCards;
     @FXML private ImageView cardFloor0;
     @FXML private ImageView cardFloor1;
@@ -39,7 +41,7 @@ public class MainBoardController implements Initializable {
     private ImageView lastFamClicked = null;
 
     private GUIAdapter adapter;
-    private MatchInstance match = MatchInstance.instance();
+    private MatchInstance match;
     private ClientHandler clientView;
 
     @FXML void familyClicked(MouseEvent event) {
@@ -74,6 +76,9 @@ public class MainBoardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        match = MatchInstance.instance();
+        match.addObserver(this);
+
         Image image = new Image("img/Card/card_1.png");
         Image image1 = new Image("img/Card/card_2.png");
 
@@ -103,5 +108,10 @@ public class MainBoardController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+
     }
 }

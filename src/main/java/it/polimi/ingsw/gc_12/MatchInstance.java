@@ -4,9 +4,10 @@ import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Observable;
 import java.util.stream.Collectors;
 
-public class MatchInstance implements Serializable, Cloneable {
+public class MatchInstance extends Observable implements Serializable, Cloneable {
 	private Board board;
 	private int roundNum;
 	public transient final static int DEFAULT_ROUND_NUM = 6;
@@ -25,6 +26,8 @@ public class MatchInstance implements Serializable, Cloneable {
 	public void init(Match match) {
 		this.board = match.getBoard();
 		this.roundNum = 1;
+		setChanged();
+		notifyObservers();
 	}
 
 	public Board getBoard() {
