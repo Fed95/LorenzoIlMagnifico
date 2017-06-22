@@ -15,12 +15,18 @@ public class EffectFreeAction extends Effect {
 
     private List<Occupiable> occupiables;
     private FamilyMember familyMember;
+    private String description;
     int value;
 
     public EffectFreeAction(Event event, List<Occupiable> occupiables, int value) {
         super(event);
         this.occupiables = occupiables;
         this.value = value;
+    }
+
+    public EffectFreeAction(Event event, List<Occupiable> occupiables, int value, String description) {
+        this(event, occupiables, value);
+        this.description = description;
     }
 
     @Override
@@ -45,6 +51,8 @@ public class EffectFreeAction extends Effect {
 
     @Override
     public String toString() {
-        return event.getClass().getSimpleName() + ": " + this.getClass().getSimpleName() + " of value " + value;
+        if(description == null)
+            return event.getClass().getSimpleName() + ": " + this.getClass().getSimpleName() + " of value " + value;
+        return description;
     }
 }

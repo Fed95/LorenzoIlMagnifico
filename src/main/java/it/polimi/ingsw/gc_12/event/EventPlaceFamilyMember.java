@@ -14,6 +14,7 @@ public class EventPlaceFamilyMember extends Event{
     private List<Occupiable> occupiables = new ArrayList<>();
     private FamilyMember familyMember;
     private int multiplier;
+    private String description;
 
     public EventPlaceFamilyMember(Player player, List<Occupiable> occupiables, FamilyMember familyMember) {
         super(player);
@@ -23,13 +24,18 @@ public class EventPlaceFamilyMember extends Event{
 
         effectProviders.addAll(occupiables);
     }
-    public EventPlaceFamilyMember(List<Occupiable> occupiables, FamilyMember familyMember) {
-        super();
-        this.occupiables = occupiables;
-        this.familyMember = familyMember;
-        this.multiplier = 1;
 
-        effectProviders.addAll(occupiables);
+    public EventPlaceFamilyMember(List<Occupiable> occupiables, FamilyMember familyMember) {
+        this(null, occupiables, familyMember);
+    }
+
+    public EventPlaceFamilyMember(Player player, List<Occupiable> occupiables, FamilyMember familyMember, String description) {
+        this(player, occupiables, familyMember);
+        this.description = description;
+    }
+
+    public EventPlaceFamilyMember(List<Occupiable> occupiables, FamilyMember familyMember, String description) {
+        this(null, occupiables, familyMember, description);
     }
 
     public EventPlaceFamilyMember(List<Occupiable> occupiables){
@@ -115,7 +121,9 @@ public class EventPlaceFamilyMember extends Event{
 
     @Override
     public String toString() {
-        return "EventPlaceFamilyMember on " + occupiables;
+        if(description == null)
+            return "EventPlaceFamilyMember";
+        return description;
     }
 
     @Override

@@ -47,7 +47,7 @@ public class Card implements EffectProvider, Serializable {
 		sb.append("		Requirements: " + requirements).append(System.getProperty("line.separator"));
 		sb.append("		Effects: ").append(System.getProperty("line.separator"));
 		for(Effect effect : effects)
-			sb.append("           " + effect).append(System.getProperty("line.separator"));
+			sb.append("         - " + effect).append(System.getProperty("line.separator"));
 		sb.append(System.getProperty("line.separator"));
 		return sb.toString();
 	}

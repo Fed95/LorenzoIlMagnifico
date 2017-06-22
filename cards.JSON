@@ -21,6 +21,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a HARVEST WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -88,6 +89,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a HARVEST WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -140,6 +142,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a HARVEST WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -207,6 +210,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a HARVEST WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -274,6 +278,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a HARVEST WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -351,6 +356,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a HARVEST WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -403,6 +409,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a HARVEST WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -470,6 +477,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a HARVEST WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -537,6 +545,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a HARVEST WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -609,6 +618,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a HARVEST WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -686,6 +696,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a HARVEST WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -753,6 +764,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a HARVEST WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -830,6 +842,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a HARVEST WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -897,6 +910,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a HARVEST WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -949,6 +963,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a HARVEST WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -1026,6 +1041,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a HARVEST WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -1098,6 +1114,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a HARVEST WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -1175,6 +1192,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a HARVEST WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -1247,6 +1265,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a HARVEST WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -1319,6 +1338,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a HARVEST WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -1396,6 +1416,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a HARVEST WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -1468,6 +1489,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a HARVEST WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -1545,6 +1567,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a HARVEST WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -1622,6 +1645,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a HARVEST WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -1682,6 +1706,7 @@
         },
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a PRODUCTION WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -1753,6 +1778,7 @@
         },
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a PRODUCTION WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -1824,6 +1850,7 @@
         },
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a PRODUCTION WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -1895,6 +1922,7 @@
         },
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a PRODUCTION WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -1995,6 +2023,7 @@
         "choice": true,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a PRODUCTION WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -2095,6 +2124,7 @@
         "choice": true,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a PRODUCTION WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -2179,6 +2209,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a PRODUCTION WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -2258,6 +2289,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a PRODUCTION WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -2342,6 +2374,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a PRODUCTION WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -2442,6 +2475,7 @@
         "choice": true,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a PRODUCTION WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -2537,6 +2571,7 @@
         "choice": true,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a PRODUCTION WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -2632,6 +2667,7 @@
         "choice": true,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a PRODUCTION WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -2721,6 +2757,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a PRODUCTION WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -2815,6 +2852,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a PRODUCTION WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -2894,6 +2932,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a PRODUCTION WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -2977,6 +3016,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a PRODUCTION WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -3060,6 +3100,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a PRODUCTION WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -3154,6 +3195,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a PRODUCTION WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -3232,6 +3274,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a PRODUCTION WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -3320,6 +3363,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a PRODUCTION WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -3414,6 +3458,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a PRODUCTION WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -3524,6 +3569,7 @@
         "choice": true,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a PRODUCTION WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -3613,6 +3659,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a PRODUCTION WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -3701,6 +3748,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a PRODUCTION WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -3767,6 +3815,7 @@
         "amount": 2,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on any TowerFloor of the TERRITORY Tower",
           "occupiables": [
             {
               "occupiable": "TowerFloor",
@@ -3824,34 +3873,31 @@
         "amount": 2,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on any TowerFloor of the BUILDING Tower",
           "occupiables": [
             {
               "occupiable": "TowerFloor",
               "floorNum": 0,
               "cardType": "BUILDING",
-              "occupiers": [],
-              "requiredValue": 1
+              "occupiers": []
             },
             {
               "occupiable": "TowerFloor",
               "floorNum": 1,
               "cardType": "BUILDING",
-              "occupiers": [],
-              "requiredValue": 3
+              "occupiers": []
             },
             {
               "occupiable": "TowerFloor",
               "floorNum": 2,
               "cardType": "BUILDING",
-              "occupiers": [],
-              "requiredValue": 5
+              "occupiers": []
             },
             {
               "occupiable": "TowerFloor",
               "floorNum": 3,
               "cardType": "BUILDING",
-              "occupiers": [],
-              "requiredValue": 7
+              "occupiers": []
             }
           ],
           "familyMember": {
@@ -3887,34 +3933,31 @@
         "choice": true,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on any TowerFloor of the BUILDING Tower",
           "occupiables": [
             {
               "occupiable": "TowerFloor",
               "floorNum": 0,
               "cardType": "BUILDING",
-              "occupiers": [],
-              "requiredValue": 1
+              "occupiers": []
             },
             {
               "occupiable": "TowerFloor",
               "floorNum": 1,
               "cardType": "BUILDING",
-              "occupiers": [],
-              "requiredValue": 3
+              "occupiers": []
             },
             {
               "occupiable": "TowerFloor",
               "floorNum": 2,
               "cardType": "BUILDING",
-              "occupiers": [],
-              "requiredValue": 5
+              "occupiers": []
             },
             {
               "occupiable": "TowerFloor",
               "floorNum": 3,
               "cardType": "BUILDING",
-              "occupiers": [],
-              "requiredValue": 7
+              "occupiers": []
             }
           ],
           "familyMember": {
@@ -3944,34 +3987,31 @@
         "amount": 2,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on any TowerFloor of the CHARACTER Tower",
           "occupiables": [
             {
               "occupiable": "TowerFloor",
               "floorNum": 0,
               "cardType": "CHARACTER",
-              "occupiers": [],
-              "requiredValue": 1
+              "occupiers": []
             },
             {
               "occupiable": "TowerFloor",
               "floorNum": 1,
               "cardType": "CHARACTER",
-              "occupiers": [],
-              "requiredValue": 3
+              "occupiers": []
             },
             {
               "occupiable": "TowerFloor",
               "floorNum": 2,
               "cardType": "CHARACTER",
-              "occupiers": [],
-              "requiredValue": 5
+              "occupiers": []
             },
             {
               "occupiable": "TowerFloor",
               "floorNum": 3,
               "cardType": "CHARACTER",
-              "occupiers": [],
-              "requiredValue": 7
+              "occupiers": []
             }
           ],
           "familyMember": {
@@ -3997,34 +4037,31 @@
         "choice": false,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on any TowerFloor of the CHARACTER Tower",
           "occupiables": [
             {
               "occupiable": "TowerFloor",
               "floorNum": 0,
               "cardType": "CHARACTER",
-              "occupiers": [],
-              "requiredValue": 1
+              "occupiers": []
             },
             {
               "occupiable": "TowerFloor",
               "floorNum": 1,
               "cardType": "CHARACTER",
-              "occupiers": [],
-              "requiredValue": 3
+              "occupiers": []
             },
             {
               "occupiable": "TowerFloor",
               "floorNum": 2,
               "cardType": "CHARACTER",
-              "occupiers": [],
-              "requiredValue": 5
+              "occupiers": []
             },
             {
               "occupiable": "TowerFloor",
               "floorNum": 3,
               "cardType": "CHARACTER",
-              "occupiers": [],
-              "requiredValue": 7
+              "occupiers": []
             }
           ],
           "familyMember": {
@@ -4074,34 +4111,31 @@
         "amount": 2,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on any TowerFloor of the VENTURE Tower",
           "occupiables": [
             {
               "occupiable": "TowerFloor",
               "floorNum": 0,
               "cardType": "VENTURE",
-              "occupiers": [],
-              "requiredValue": 1
+              "occupiers": []
             },
             {
               "occupiable": "TowerFloor",
               "floorNum": 1,
               "cardType": "VENTURE",
-              "occupiers": [],
-              "requiredValue": 3
+              "occupiers": []
             },
             {
               "occupiable": "TowerFloor",
               "floorNum": 2,
               "cardType": "VENTURE",
-              "occupiers": [],
-              "requiredValue": 5
+              "occupiers": []
             },
             {
               "occupiable": "TowerFloor",
               "floorNum": 3,
               "cardType": "VENTURE",
-              "occupiers": [],
-              "requiredValue": 7
+              "occupiers": []
             }
           ],
           "familyMember": {
@@ -4131,6 +4165,7 @@
         "amount": 2,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a HARVEST WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -4193,6 +4228,7 @@
           "eventType": "EventPickCard",
           "cardID": 55
         },
+        "description": "Free action of value 4 on any TowerFloor",
         "occupiables": [
           {
             "occupiable": "TowerFloor",
@@ -4242,6 +4278,7 @@
         "amount": 2,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a PRODUCTION WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -4325,6 +4362,7 @@
           "eventType": "EventPickCard",
           "cardID": 56
         },
+        "description": "Free action of value 6 on any TowerFloor of the TERRITORY Tower",
         "occupiables": [
           {
             "occupiable": "TowerFloor",
@@ -4376,15 +4414,6 @@
           "eventType": "EventPickCard",
           "cardID": 56
         }
-      },
-      {
-        "type": "EffectFreeAction",
-        "ctype": "TERRITORY",
-        "value": 6,
-        "event": {
-          "eventType": "EventPickCard",
-          "cardID": 56
-        }
       }
     ],
     "name": "Capitano",
@@ -4408,6 +4437,7 @@
           "eventType": "EventPickCard",
           "cardID": 57
         },
+        "description": "Free action of value 6 on any TowerFloor of the BUILDING Tower",
         "occupiables": [
           {
             "occupiable": "TowerFloor",
@@ -4460,15 +4490,6 @@
           }
         ],
         "choice": false,
-        "event": {
-          "eventType": "EventPickCard",
-          "cardID": 57
-        }
-      },
-      {
-        "type": "EffectFreeAction",
-        "ctype": "BUILDING",
-        "value": 6,
         "event": {
           "eventType": "EventPickCard",
           "cardID": 57
@@ -4547,15 +4568,6 @@
           "eventType": "EventPickCard",
           "cardID": 58
         }
-      },
-      {
-        "type": "EffectFreeAction",
-        "ctype": "CHARACTER",
-        "value": 6,
-        "event": {
-          "eventType": "EventPickCard",
-          "cardID": 58
-        }
       }
     ],
     "name": "Mecenate",
@@ -4630,15 +4642,6 @@
           "eventType": "EventPickCard",
           "cardID": 59
         }
-      },
-      {
-        "type": "EffectFreeAction",
-        "ctype": "VENTURE",
-        "value": 6,
-        "event": {
-          "eventType": "EventPickCard",
-          "cardID": 59
-        }
       }
     ],
     "name": "Eroe",
@@ -4661,6 +4664,7 @@
         "amount": 3,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a HARVEST WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -4702,6 +4706,7 @@
         "amount": 3,
         "event": {
           "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on a PRODUCTION WorkSpace",
           "occupiables": [
             {
               "occupiable": "SpaceWorkSingle",
@@ -4942,6 +4947,7 @@
           "eventType": "EventPickCard",
           "cardID": 68
         },
+        "description": "Free action of value 4 on a HARVEST WorkSpace",
         "occupiables": [
           {
             "occupiable": "SpaceWorkSingle",
@@ -5000,6 +5006,7 @@
           "eventType": "EventPickCard",
           "cardID": 69
         },
+        "description": "Free action of value 4 on a PRODUCTION WorkSpace",
         "occupiables": [
           {
             "occupiable": "SpaceWorkSingle",
@@ -5091,6 +5098,7 @@
           "eventType": "EventPickCard",
           "cardID": 71
         },
+        "description": "Free action of value 7 on any TowerFloor",
         "occupiables": [
           {
             "occupiable": "TowerFloor",
@@ -5134,15 +5142,6 @@
           }
         ],
         "choice": false,
-        "event": {
-          "eventType": "EventPickCard",
-          "cardID": 71
-        }
-      },
-      {
-        "type": "EffectFreeAction",
-        "ctype": "TERRITORY",
-        "value": 7,
         "event": {
           "eventType": "EventPickCard",
           "cardID": 71
@@ -5825,6 +5824,7 @@
           "eventType": "EventPickCard",
           "cardID": 83
         },
+        "description": "Free action of value 4 on a HARVEST WorkSpace",
         "occupiables": [
           {
             "occupiable": "SpaceWorkSingle",
@@ -6162,6 +6162,7 @@
           "eventType": "EventPickCard",
           "cardID": 89
         },
+        "description": "Free action of value 7 on any TowerFloor",
         "occupiables": [
           {
             "occupiable": "TowerFloor",
@@ -6205,15 +6206,6 @@
           }
         ],
         "choice": false,
-        "event": {
-          "eventType": "EventPickCard",
-          "cardID": 89
-        }
-      },
-      {
-        "type": "EffectFreeAction",
-        "ctype": null,
-        "value": 7,
         "event": {
           "eventType": "EventPickCard",
           "cardID": 89
@@ -6430,6 +6422,7 @@
           "eventType": "EventPickCard",
           "cardID": 93
         },
+        "description": "Free action of value 3 on a PRODUCTION WorkSpace",
         "occupiables": [
           {
             "occupiable": "SpaceWorkSingle",
