@@ -9,6 +9,8 @@ import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.occupiables.SpaceMarket;
 import it.polimi.ingsw.gc_12.resource.Servant;
 
+import java.util.Collections;
+
 public class ActionPlaceOnMarket extends ActionPlace {
 
     private SpaceMarket spaceMarket;
@@ -35,6 +37,7 @@ public class ActionPlaceOnMarket extends ActionPlace {
 
     @Override
     protected void execute(Match match) {
+        player.removeResources(Collections.singletonList(servant));
         match.placeFamilyMember(spaceMarket, familyMember);
         EventPlacementEnded event = new EventPlacementEnded(player);
         match.getActionHandler().update(event);

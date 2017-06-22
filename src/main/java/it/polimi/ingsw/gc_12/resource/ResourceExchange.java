@@ -11,8 +11,10 @@ public class ResourceExchange implements Serializable {
 	private List<Resource> bonus;
 
 	public ResourceExchange(List<Resource> cost, List<Resource> bonus) {
-		this.cost = cost;
-		this.bonus = bonus;
+		if(cost != null)
+			this.cost = cost;
+		if(bonus != null)
+			this.bonus = bonus;
 	}
 
 	public ResourceExchange(Resource cost, Resource resource) {

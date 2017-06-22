@@ -19,15 +19,17 @@ public class ActionHandler {
 	private LinkedList<Event> events = new LinkedList<>();
 	private Match match;
 	private int offset;
+	private int multiplier;
 	private boolean hasPlaced = false;
 
 	public ActionHandler(Match match) {
 		this.match = match;
 		this.actions = new ArrayList<>(Collections.singletonList(new ActionReady(null)));
+		this.multiplier = 1;
 	}
 
 	public Action getAvailableAction(int input) {
-		int inputReal = input-offset+1 > 0 ? input-offset : 0;
+		int inputReal = (input - offset*multiplier > 0 ? input - offset*multiplier : 0);
 		Action action = actions.get(inputReal);
 		if(events.size() > 0) {
 			events.removeFirst();
@@ -35,6 +37,7 @@ public class ActionHandler {
 				actions = events.getFirst().getActions();
 		}
 		offset = 0;
+		multiplier = 1;
 		return action;
 	}
 
@@ -174,11 +177,12 @@ public class ActionHandler {
 	public List<Action> getActionsRequiredValue(EventServantsRequested event){
 		Player player = event.getPlayer();
 		List<Action> actions = new ArrayList<>();
-		int i = event.getOccupiable().getRequiredValue()-event.getFamilyMember().getValue();
-		i = i < 0 ? 0 : i;
-		offset = i;
-		for (; i <= player.getResourceValue(ResourceType.SERVANT); i++) {
-			Action action = ActionFactory.createActionPlace(player, event.getFamilyMember(), event.getOccupiable(), new Servant(i), true);
+		int i = event.getOccupiable().getRequiredValue() - event.getFamilyMember().getValue();
+		i = (i < 0 ? 0 : i);
+		this.offset = i;
+		this.multiplier = event.getMultiplier();
+		for (; i <= player.getResourceValue(ResourceType.SERVANT) / event.getMultiplier(); i++) {
+			Action action = ActionFactory.createActionPlace(player, event.getFamilyMember(), event.getOccupiable(), new Servant(i * event.getMultiplier()), true);
 			if(action.isValid(match))
 				actions.add(action);
 		}

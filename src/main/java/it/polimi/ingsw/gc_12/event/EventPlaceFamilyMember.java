@@ -13,11 +13,13 @@ public class EventPlaceFamilyMember extends Event{
 
     private List<Occupiable> occupiables = new ArrayList<>();
     private FamilyMember familyMember;
+    private int multiplier;
 
     public EventPlaceFamilyMember(Player player, List<Occupiable> occupiables, FamilyMember familyMember) {
         super(player);
         this.occupiables = occupiables;
         this.familyMember = familyMember;
+        this.multiplier = 2;//TODO: SET TO 1 AFTER TESTING
 
         effectProviders.addAll(occupiables);
     }
@@ -25,6 +27,7 @@ public class EventPlaceFamilyMember extends Event{
         super();
         this.occupiables = occupiables;
         this.familyMember = familyMember;
+        this.multiplier = 2;
 
         effectProviders.addAll(occupiables);
     }
@@ -32,6 +35,7 @@ public class EventPlaceFamilyMember extends Event{
     public EventPlaceFamilyMember(List<Occupiable> occupiables){
         super();
         this.occupiables = occupiables;
+        this.multiplier = 2;
 
         effectProviders.addAll(occupiables);
     }
@@ -62,6 +66,14 @@ public class EventPlaceFamilyMember extends Event{
 
     public FamilyMember getFamilyMember() {
         return familyMember;
+    }
+
+    public int getMultiplier() {
+        return multiplier;
+    }
+
+    public void setMultiplier(int multiplier) {
+        this.multiplier = multiplier;
     }
 
     @Override

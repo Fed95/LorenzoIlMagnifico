@@ -19,9 +19,12 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 	protected View view;
 	protected List<Action> actions = new ArrayList<>();
 	protected LinkedList<Event> events = new LinkedList<>();
+	protected int offset;
+	protected int multiplier;
 
 	protected ClientHandler() throws RemoteException {
 		super();
+		this.multiplier = 1;
 	}
 
 	public void handleEvent() {
@@ -45,7 +48,7 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 		if(event.getPlayer() != null && isMyTurn(event.getPlayer())) {
 			if (event instanceof EventServantsRequested) {
 				actions = event.getActions();
-				printServantsChoice(event);
+				printServantsChoice((EventServantsRequested) event);
 			}
 			else {
 				if(event instanceof EventViewStatistics)
@@ -71,12 +74,20 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 			events.removeFirst();
 	}
 
-	private void printServantsChoice(Event event) {
-		int minValue = ((EventServantsRequested) event).getOccupiable().getRequiredValue() - ((EventServantsRequested) event).getFamilyMember().getValue();
-		minValue = minValue >= 0 ? minValue : 0;
-		int maxValue = event.getPlayer().getResourceValue(ResourceType.SERVANT);
-		System.out.println("You have " + maxValue + " Servants");
-		System.out.println("How many would you like to use?	min: " + minValue + ", max: " + maxValue + " - (Press " + (maxValue+1) + " to go back)");
+	private void printServantsChoice(EventServantsRequested event) {
+		int multiplier = event.getMultiplier();
+		offset = (event.getOccupiable().getRequiredValue() - event.getFamilyMember().getValue()) * multiplier;
+		offset = (offset < 0 ? 0 : offset);
+		int maxValue = event.getPlayer().getResourceValue(ResourceType.SERVANT) / offset;
+
+		System.out.println("You have " + event.getPlayer().getResourceValue(ResourceType.SERVANT) + " Servants");
+
+		if(multiplier > 1){
+			this.multiplier = multiplier;
+			double value = 1.0 / (double) multiplier;
+			System.out.println("(An effect multiplies the value of your servants by : " + value + ")");
+		}
+		System.out.println("How many would you like to use?	min: " + offset + ", max: " + maxValue + " - (Press " + (maxValue + 1) + " to go back)");
 	}
 
 	private void printStatistics(Event event) {
@@ -112,7 +123,18 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 
 	public void setView(ClientSender client, View view) {
 		this.view = view;
+	}
 
+	public int getOffset() {
+		return offset;
+	}
+
+	public void setOffset(int offset) {
+		this.offset = offset;
+	}
+
+	public int getMultiplier() {
+		return multiplier;
 	}
 
 	protected abstract boolean isMyTurn(Player player);

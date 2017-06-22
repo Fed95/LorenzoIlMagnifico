@@ -45,6 +45,13 @@ public abstract class ActionPlace extends Action {
 		setup(match);
 		if(!complete) {
 			EventServantsRequested eventServants = new EventServantsRequested(player, occupiable, familyMember);
+
+			try {
+				match.getEffectHandler().executeEffects(match, eventServants);
+			} catch (ActionDeniedException e) {
+				e.printStackTrace();
+			}
+
 			match.getActionHandler().update(eventServants);
 			//Notifies the ServerRMIView
 			match.notifyObserver(eventServants);
@@ -53,10 +60,14 @@ public abstract class ActionPlace extends Action {
 			Event event = new EventPlaceFamilyMember(player, occupiable, familyMember);
 
 			List<Effect> executedEffects = new ArrayList<>();
+			int multiplier = ((EventPlaceFamilyMember) event).getMultiplier();
+			int increment = (multiplier > 1 ? servant.getValue() / multiplier : servant.getValue());
+
 			try{
 				//Can throw exceptions (in which case effects are discarded directly in EffectHandler)
 				executedEffects = match.getEffectHandler().executeEffects(match, event);
-				familyMember.setValue(familyMember.getValue()+servant.getValue());
+
+				familyMember.setValue(familyMember.getValue() + increment);
 				canBeExecuted(match);
 				execute(match);
 			}
@@ -69,7 +80,7 @@ public abstract class ActionPlace extends Action {
 				match.getEffectHandler().discardEffects(executedEffects, event);
 				throw new IllegalStateException("ActionPlace: action started even if it's not allowed!");
 			} finally {
-				familyMember.setValue(familyMember.getValue()-servant.getValue());
+				familyMember.setValue(familyMember.getValue() - increment);
 			}
 		}
 

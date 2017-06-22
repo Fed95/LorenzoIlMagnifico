@@ -8,6 +8,8 @@ import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.occupiables.CouncilPalace;
 import it.polimi.ingsw.gc_12.resource.Servant;
 
+import java.util.Collections;
+
 public class ActionPlaceOnCouncil extends ActionPlace {
 
     private CouncilPalace councilPalace;
@@ -32,6 +34,7 @@ public class ActionPlaceOnCouncil extends ActionPlace {
 
     @Override
     protected void execute(Match match) {
+        player.removeResources(Collections.singletonList(servant));
         match.placeFamilyMember(councilPalace, familyMember);
         EventPlacementEnded event = new EventPlacementEnded(player);
         match.getActionHandler().update(event);

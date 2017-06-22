@@ -11,6 +11,8 @@ import it.polimi.ingsw.gc_12.occupiables.SpaceWorkSingle;
 import it.polimi.ingsw.gc_12.occupiables.SpaceWorkZone;
 import it.polimi.ingsw.gc_12.resource.Servant;
 
+import java.util.Collections;
+
 public class ActionPlaceOnSpaceWork extends ActionPlace {
 
     private SpaceWorkZone spaceWorkZone;
@@ -43,6 +45,7 @@ public class ActionPlaceOnSpaceWork extends ActionPlace {
 
     @Override
     protected void execute(Match match) {
+        player.removeResources(Collections.singletonList(servant));
         match.placeFamilyMember(spaceWork, familyMember);
         EventPlacementEnded event = new EventPlacementEnded(player);
         match.getActionHandler().update(event);

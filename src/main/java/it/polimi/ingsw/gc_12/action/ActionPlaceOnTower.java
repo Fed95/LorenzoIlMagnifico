@@ -16,6 +16,7 @@ import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 import it.polimi.ingsw.gc_12.resource.Servant;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ActionPlaceOnTower extends ActionPlace {
@@ -56,6 +57,8 @@ public class ActionPlaceOnTower extends ActionPlace {
         if (!tower.isTaken())
             tower.activateMalus();
         CardDevelopment card = towerFloor.getCard();
+
+        player.removeResources(Collections.singletonList(servant));
         player.removeResources(card.getRequirements());
         player.getPersonalBoard().placeCard(card);
         match.placeFamilyMember(towerFloor, familyMember);

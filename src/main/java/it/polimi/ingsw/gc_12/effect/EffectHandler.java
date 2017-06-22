@@ -31,7 +31,6 @@ public class EffectHandler {
 		return executedEffects;
 	}
 
-	
 	public void discardEffects(List<Effect> executedEffects, Event event) {
 
 		//(Discards all effects executed by executeEffects)
