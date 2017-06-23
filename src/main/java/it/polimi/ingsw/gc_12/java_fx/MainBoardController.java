@@ -74,7 +74,7 @@ public class MainBoardController implements Initializable, Observer {
     @FXML private Tab greenPlayer;
     @FXML private Tab redPlayer;
     @FXML private Tab yellowPlayer;
-
+    private Map<PlayerColor, Tab> mapPlayerColorTab = new HashMap<>();
     private Map<FamilyMemberColor, Label> bluePlayerLabel = new HashMap<>();
     private Map<FamilyMemberColor, Label> greenPlayerLabel = new HashMap<>();
     private Map<FamilyMemberColor, Label> redPlayerLabel = new HashMap<>();
@@ -111,7 +111,7 @@ public class MainBoardController implements Initializable, Observer {
         }
         System.out.println(event.getPickResult().getIntersectedNode().getId());
         lastFamClicked = familyMemberClicked;
-        match.getFamilyMemberBlueRepresentationObservableList().get(0).setValueProperty(10);
+       //match.getFamilyMemberBlueRepresentationObservableList().get(0).setValueProperty(10);
     }
     @FXML void showCard(MouseEvent event){
         ImageView imageView = (ImageView) event.getSource();
@@ -172,6 +172,11 @@ public class MainBoardController implements Initializable, Observer {
         mapPlayerColorFamilyColorLabel.put(PlayerColor.RED, redPlayerLabel);
         mapPlayerColorFamilyColorLabel.put(PlayerColor.YELLOW, yellowPlayerLabel);
 
+        mapPlayerColorTab.put(PlayerColor.BLUE, bluePlayer);
+        mapPlayerColorTab.put(PlayerColor.GREEN, greenPlayer);
+        mapPlayerColorTab.put(PlayerColor.RED, redPlayer);
+        mapPlayerColorTab.put(PlayerColor.YELLOW, yellowPlayer);
+
         bluePlayer.setDisable(true);
         greenPlayer.setDisable(true);
         redPlayer.setDisable(true);
@@ -210,15 +215,7 @@ public class MainBoardController implements Initializable, Observer {
     }
     private void disableTab(MatchInstance match){
         for(Player player : match.getPlayers()) {
-            if(player.getColor().equals(PlayerColor.BLUE)){
-                bluePlayer.setDisable(false);
-            }else if(player.getColor().equals(PlayerColor.GREEN)){
-                greenPlayer.setDisable(false);
-            }else if(player.getColor().equals(PlayerColor.RED)){
-                redPlayer.setDisable(false);
-            }else if(player.getColor().equals(PlayerColor.YELLOW)){
-                yellowPlayer.setDisable(false);
-            }
+            mapPlayerColorTab.get(player.getColor()).setDisable(false);
         }
     }
 }
