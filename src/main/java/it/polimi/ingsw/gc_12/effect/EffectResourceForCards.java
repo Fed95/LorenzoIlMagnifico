@@ -23,7 +23,7 @@ public class EffectResourceForCards extends Effect{
     }
 
     @Override
-    public void execute(Match match, Event event) {
+    public void execute(Match match, Event event, boolean validation) {
         int numOfCards = player.getPersonalBoard().getCards(cardType).size();
         resource.setValue(resource.getValue()*numOfCards);
 

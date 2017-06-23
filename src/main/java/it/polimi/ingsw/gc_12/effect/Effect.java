@@ -18,7 +18,11 @@ public abstract class Effect implements Serializable {
 		return this.event;
 	}
 
-	public abstract void execute(Match match, Event event) throws ActionDeniedException;
+	public abstract void execute(Match match, Event event, boolean validation) throws ActionDeniedException;
+
+	public void execute(Match match, Event event) throws ActionDeniedException {
+		execute(match, event, false);
+	}
 	
 	public abstract void discard(Event event) ;
 }

@@ -17,7 +17,7 @@ public class EffectChangeFamilyMemberValue extends Effect{
 		this.amount = amount;
 	}
 	
-	public void execute(Match match, Event event) {
+	public void execute(Match match, Event event, boolean validation) {
 		applyChange(event, amount);
 	}
 

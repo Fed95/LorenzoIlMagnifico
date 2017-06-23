@@ -4,13 +4,17 @@ import it.polimi.ingsw.gc_12.action.ActionHandler;
 import it.polimi.ingsw.gc_12.card.Card;
 import it.polimi.ingsw.gc_12.card.CardDeckSet;
 import it.polimi.ingsw.gc_12.card.CardType;
+import it.polimi.ingsw.gc_12.effect.Effect;
+import it.polimi.ingsw.gc_12.effect.EffectChangeResource;
 import it.polimi.ingsw.gc_12.effect.EffectHandler;
+import it.polimi.ingsw.gc_12.effect.EffectProvider;
 import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
 import it.polimi.ingsw.gc_12.json.loader.*;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 import it.polimi.ingsw.gc_12.personal_board.BonusTile;
+import it.polimi.ingsw.gc_12.resource.CouncilPrivilege;
 import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.server.model.State;
 import it.polimi.ingsw.gc_12.server.observer.Observable;
@@ -22,7 +26,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class Match extends Observable<Event> implements Serializable{
+public class Match extends Observable<Event> implements Serializable, EffectProvider{
 	private List<Player> players = new ArrayList<>();
 	private List<BonusTile> bonusTiles;
 	private List<Card> cards = new ArrayList<>();
@@ -37,7 +41,6 @@ public class Match extends Observable<Event> implements Serializable{
 	public transient final static int DEFAULT_PERIODS_LEN = 2;
 	public transient final static int DEFAULT_TOTAL_PERIODS_NUM = DEFAULT_ROUND_NUM / DEFAULT_PERIODS_LEN;
 	private State gameState;
-	private boolean isFMPlaced;
 	private int numReady;
 
 	public Match() {
@@ -81,10 +84,10 @@ public class Match extends Observable<Event> implements Serializable{
 			Player player = players.get(i);
 			// TODO: remove the comment before the deadline
 			// It has been commented to have a lot of resources for testing
-			/*List<Resource> resources = config.getInitialResources().get(i);
+			List<Resource> resources = config.getInitialResources().get(i);
 			for(Resource resource: resources) {
 				player.setResourceValue(resource.getType(), resource.getValue());
-			}*/
+			}
 			player.init();
 			player.getPersonalBoard().setCardsSpaces(new LoaderCardsSpace().get(this));
 		}
@@ -100,9 +103,9 @@ public class Match extends Observable<Event> implements Serializable{
 	//Increments turn counter in TrackTurnOrder
 	public void newTurn() {
 		System.out.println("Match: Starting new turn");
-		board.getTrackTurnOrder().newTurn();
+		Player player = board.getTrackTurnOrder().newTurn();
 		System.out.println("Match: notifying EventStartTurn to ServerRMIView");
-		EventStartTurn event = new EventStartTurn(board.getTrackTurnOrder().getCurrentPlayer());
+		EventStartTurn event = new EventStartTurn(player);
 		actionHandler.update(event);
 		this.notifyObserver(event);
 	}
@@ -180,5 +183,10 @@ public class Match extends Observable<Event> implements Serializable{
 		if(numReady == 2) {
 			start();
 		}
+	}
+
+	@Override
+	public List<Effect> getEffects() {
+		return null;
 	}
 }

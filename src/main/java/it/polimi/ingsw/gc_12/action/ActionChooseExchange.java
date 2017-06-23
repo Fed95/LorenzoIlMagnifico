@@ -27,4 +27,9 @@ public class ActionChooseExchange extends Action {
         player.removeResources(exchange.getCost());
         player.addResources(exchange.getBonus());
     }
+
+    @Override
+    public String toString() {
+        return exchange.toString();
+    }
 }

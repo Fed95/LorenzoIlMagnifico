@@ -77,7 +77,7 @@ public class ActionHandler {
 			event.setActions(getActionsChooseExchange((EventChooseExchange) event));
 		}
 		else
-			events.removeFirst();
+			events.removeLast();
 
 		saveActions(event);
 	}

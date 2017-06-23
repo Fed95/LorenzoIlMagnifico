@@ -44,10 +44,12 @@ public class TrackTurnOrder implements Serializable{
 		return turnOrder.get(turn);
 	}
 
-	public void newTurn() {
+	public Player newTurn() {
 		turn++;
 		if (turn == turnOrder.size())
 			turn = 0;
+
+		return turnOrder.get(turn);
 	}
 
 	//Places the specified player on top, shifting the position of the other players

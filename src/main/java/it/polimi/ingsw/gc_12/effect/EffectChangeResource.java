@@ -2,6 +2,7 @@ package it.polimi.ingsw.gc_12.effect;
 
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventChooseExchange;
 import it.polimi.ingsw.gc_12.event.EventReceiveResource;
@@ -29,20 +30,32 @@ public class EffectChangeResource extends Effect {
 		this(event, new ArrayList<>(Arrays.asList(exchange)), choice);
 	}
 	
-	public void execute(Match match, Event event) throws ActionDeniedException {
+	public void execute(Match match, Event event, boolean validation) throws ActionDeniedException {
 		Player player = event.getPlayer();
-		if(!choice) {
-			for(ResourceExchange exchange : exchanges) {
-				player.removeResources(exchange.getCost());
+		if(!validation) {
+			if(!choice) {
+				for(ResourceExchange exchange : exchanges) {
+					player.removeResources(exchange.getCost());
 
-				List<Resource> newBonus  = new ArrayList<>();
-				for(Resource resource : exchange.getBonus()) {
-					EventReceiveResource e = new EventReceiveResource(player, resource);
-					match.getEffectHandler().executeEffects(match, e);
-					newBonus.add(e.getResource());
+					List<Resource> newBonus  = new ArrayList<>();
+					for(Resource resource : exchange.getBonus()) {
+						EventReceiveResource e = new EventReceiveResource(player, resource);
+						match.getEffectHandler().executeEffects(match, e);
+						newBonus.add(e.getResource());
+					}
+
+					player.addResources(newBonus);
 				}
-
-				player.addResources(newBonus);
+			}
+			else {
+				List<ResourceExchange> possibleExchanges = new ArrayList<>();
+				for (ResourceExchange exchange : exchanges) {
+					if (player.hasResources(exchange.getCost()))
+						possibleExchanges.add(exchange);
+				}
+				EventChooseExchange eventExchange = new EventChooseExchange(player, possibleExchanges);
+				match.getActionHandler().update(eventExchange);
+				match.notifyObserver(eventExchange);
 			}
 		}
 		else {
@@ -51,10 +64,10 @@ public class EffectChangeResource extends Effect {
 				if (player.hasResources(exchange.getCost()))
 					possibleExchanges.add(exchange);
 			}
-			EventChooseExchange eventExchange = new EventChooseExchange(player, possibleExchanges);
-			match.getActionHandler().update(eventExchange);
-			match.notifyObserver(eventExchange);
+			if(possibleExchanges.size() <= 0)
+				throw new ActionDeniedException("You don't have enough resources to perform an exchange.");
 		}
+
 
 	}
 	

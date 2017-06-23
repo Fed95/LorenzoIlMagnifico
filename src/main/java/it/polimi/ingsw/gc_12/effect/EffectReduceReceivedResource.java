@@ -21,7 +21,7 @@ public class EffectReduceReceivedResource extends Effect {
     }
 
     @Override
-    public void execute(Match match, Event event) {
+    public void execute(Match match, Event event, boolean validation) {
        if(!(event instanceof EventReceiveResource))
            throw new IllegalStateException("EffectReduceReceivedResource: received an unexpected event!");
 

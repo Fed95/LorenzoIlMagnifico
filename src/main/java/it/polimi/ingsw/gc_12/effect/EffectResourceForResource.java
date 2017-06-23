@@ -22,7 +22,7 @@ public class EffectResourceForResource extends Effect {
     }
 
     @Override
-    public void execute(Match match, Event event) {
+    public void execute(Match match, Event event, boolean validation) {
 
         int value = player.getResourceValue(ownedResource.getType()) / ownedResource.getValue();
         resource.setValue(resource.getValue() * value);

@@ -12,7 +12,7 @@ public class EffectHandler {
 	public EffectHandler() {
 	}
 
-	public List<Effect> executeEffects(Match match, Event event) throws ActionDeniedException {
+	public List<Effect> executeEffects(Match match, Event event, boolean validation) throws ActionDeniedException {
 		List<Effect> effects = getPossibleEffects(event);
 		List<Effect> executedEffects = new ArrayList<>();
 		// If there is an effect (from the players' cards or the place where the family member has been placed):
@@ -20,7 +20,7 @@ public class EffectHandler {
 			for (Effect effect : effects) {
 				//System.out.println("effect handler: events found: " + effect + ": "+ effect.event);
 				if (event.equals(effect.getEvent())) {
-					effect.execute(match, event);
+					effect.execute(match, event, validation);
 					executedEffects.add(effect);
 				}
 			}
@@ -29,6 +29,10 @@ public class EffectHandler {
 			throw e;
 		}
 		return executedEffects;
+	}
+
+	public List<Effect> executeEffects(Match match, Event event) throws ActionDeniedException {
+		return executeEffects(match, event, false);
 	}
 
 	public void discardEffects(List<Effect> executedEffects, Event event) {

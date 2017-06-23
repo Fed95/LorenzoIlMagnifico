@@ -26,4 +26,6 @@ public class SpaceWorkSingle extends SpaceWork{
 		sb.append(super.toString());
 		return sb.toString();
 	}
+
+
 }

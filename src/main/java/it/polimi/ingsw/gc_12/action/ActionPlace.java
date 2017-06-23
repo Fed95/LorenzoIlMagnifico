@@ -68,8 +68,8 @@ public abstract class ActionPlace extends Action {
 			int increment = (multiplier > 1 ? servant.getValue() / multiplier : servant.getValue());
 
 			try{
-				match.getEffectHandler().executeEffects(match, event);
 				familyMember.setValue(familyMember.getValue() + increment);
+				match.getEffectHandler().executeEffects(match, event);
 				canBeExecuted(match);
 				execute(match);
 			}
@@ -92,18 +92,19 @@ public abstract class ActionPlace extends Action {
 
 		List<Effect> executedEffects = new ArrayList<>();
 		try{
-			//Can throw exceptions (in which case effects are discarded directly in EffectHandler)
-			executedEffects = match.getEffectHandler().executeEffects(match, event);
 			familyMember.setValue(familyMember.getValue() + player.getResourceValue(ResourceType.SERVANT));
+			//Can throw exceptions (in which case effects are discarded directly in EffectHandler)
+			executedEffects = match.getEffectHandler().executeEffects(match, event, true);
+
 			this.canBeExecuted(match);
 		}
 		catch (RequiredValueNotSatisfiedException | ActionDeniedException | ActionNotAllowedException e) {
 			familyMember.setValue(familyMember.getValue() - player.getResourceValue(ResourceType.SERVANT));
-			match.getEffectHandler().discardEffects(executedEffects, event);
+			//match.getEffectHandler().discardEffects(executedEffects, event);
 			return false;
 		}
 		familyMember.setValue(familyMember.getValue()-player.getResourceValue(ResourceType.SERVANT));
-		match.getEffectHandler().discardEffects(executedEffects, event);
+		//match.getEffectHandler().discardEffects(executedEffects, event);
 		return true;
 	}
 	
