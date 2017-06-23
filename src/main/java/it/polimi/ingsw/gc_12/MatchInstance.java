@@ -1,9 +1,14 @@
 package it.polimi.ingsw.gc_12;
 
+import it.polimi.ingsw.gc_12.card.CardDevelopment;
+import it.polimi.ingsw.gc_12.card.CardType;
+import it.polimi.ingsw.gc_12.java_fx.CardFloorRepresentation;
 import it.polimi.ingsw.gc_12.java_fx.FamilyMemberRepresentation;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
+import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -19,12 +24,24 @@ public class MatchInstance extends Observable implements Serializable, Cloneable
 	public transient final static int DEFAULT_PERIODS_LEN = 2;
 	public transient final static int DEFAULT_TOTAL_PERIODS_NUM = DEFAULT_ROUND_NUM/DEFAULT_PERIODS_LEN;
 	private static MatchInstance instance;
+	//Observable and Map for family member
 	private ObservableList<FamilyMemberRepresentation> familyMemberBlueRepresentationObservableList = FXCollections.observableArrayList();
 	private ObservableList<FamilyMemberRepresentation> familyMemberGreenRepresentationObservableList = FXCollections.observableArrayList();
 	private ObservableList<FamilyMemberRepresentation> familyMemberRedRepresentationObservableList = FXCollections.observableArrayList();
 	private ObservableList<FamilyMemberRepresentation> familyMemberYellowRepresentationObservableList = FXCollections.observableArrayList();
 	private Map<PlayerColor, ObservableList<FamilyMemberRepresentation>> mapFamilyMember = new HashMap<>();
+
     private Map<PlayerColor, Player> players;
+
+	//Observable and Map cardFloor
+    private ObservableList<CardFloorRepresentation> cardFloorTerritoryRepresentation = FXCollections.observableArrayList();
+    private ObservableList<CardFloorRepresentation> cardFloorCharactherRepresentation = FXCollections.observableArrayList();
+    private ObservableList<CardFloorRepresentation> cardFloorVentureRepresentation = FXCollections.observableArrayList();
+    private ObservableList<CardFloorRepresentation> cardFloorBuildingRepresentation = FXCollections.observableArrayList();
+
+    private Map<CardType,ObservableList<CardFloorRepresentation>> mapTypeCardFloorRepresentation = new HashMap<>();
+
+
 	private MatchInstance() {}
 	private FamilyMemberRepresentation familyMemberRepresentation;
 	public static MatchInstance instance() {
@@ -39,12 +56,14 @@ public class MatchInstance extends Observable implements Serializable, Cloneable
 		this.players = match.getPlayers();
 
 		createFamilyMemberRepresentation(match);
-
+        createCardTowerFloorRepresentation(match);
 		setChanged();
 		notifyObservers();
 	}
 
-	public Board getBoard() {
+
+
+    public Board getBoard() {
 		return board;
 	}
 
@@ -103,14 +122,32 @@ public class MatchInstance extends Observable implements Serializable, Cloneable
 				mapFamilyMember.get( familyMember.getOwner().getColor()).add(familyMemberRepresentation);
             }
 		}
-		//familyMemberRepresentation = new FamilyMemberRepresentation(5,"black","blue");
-
 	}
-	public ObservableList<FamilyMemberRepresentation> getFamilyMemberBlueRepresentationObservableList() {
-		return familyMemberBlueRepresentationObservableList;
+
+    private void createCardTowerFloorRepresentation(Match match) {
+        mapTypeCardFloorRepresentation.put(CardType.TERRITORY, cardFloorTerritoryRepresentation);
+        mapTypeCardFloorRepresentation.put(CardType.BUILDING, cardFloorBuildingRepresentation);
+        mapTypeCardFloorRepresentation.put(CardType.CHARACTER, cardFloorCharactherRepresentation);
+        mapTypeCardFloorRepresentation.put(CardType.VENTURE, cardFloorVentureRepresentation);
+        //prendere le carte divise nei 4 piani
+        for(CardType cardType : CardType.values()){
+            List<TowerFloor> towerFloors = match.getBoard().getTowerSet().getTower(cardType).getFloors();
+            for (TowerFloor towerFloor : towerFloors){
+                //prendi id carta e metterlo nel path creando una nuova card floor aggiungerl poi alla mappa
+                int floor = towerFloor.getFloorNum();
+                CardDevelopment cardonthefloor = towerFloor.getCard();
+                int cardid = cardonthefloor.getId();
+                String path = "img/Card/card_"+cardid+".png";
+                CardFloorRepresentation cardFloorRepresentation = new CardFloorRepresentation(path, floor);
+                mapTypeCardFloorRepresentation.get(cardType).add(cardFloorRepresentation);
+            }
+        }
 	}
 
     public Map<PlayerColor, ObservableList<FamilyMemberRepresentation>> getMapPlayerColorObservableLiseFMRepr() {
         return mapFamilyMember;
+    }
+    public Map<CardType, ObservableList<CardFloorRepresentation>> getMapTypeCardFloorRepresentation() {
+        return mapTypeCardFloorRepresentation;
     }
 }

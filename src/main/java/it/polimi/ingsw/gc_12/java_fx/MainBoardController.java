@@ -6,13 +6,14 @@ import it.polimi.ingsw.gc_12.MatchInstance;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.PlayerColor;
 import it.polimi.ingsw.gc_12.action.Action;
+import it.polimi.ingsw.gc_12.card.Card;
+import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.rmi.ClientRMI;
 import it.polimi.ingsw.gc_12.mvc.GUIAdapter;
+import it.polimi.ingsw.gc_12.server.observer.*;
 import javafx.application.Platform;
 import javafx.beans.binding.StringBinding;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -27,12 +28,15 @@ import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import java.util.Observable;
+import java.util.Observer;
 
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 
 public class MainBoardController implements Initializable, Observer {
+    //Card on floors
     @FXML private ImageView showCards;
     @FXML private ImageView cardFloor0;
     @FXML private ImageView cardFloor1;
@@ -50,6 +54,12 @@ public class MainBoardController implements Initializable, Observer {
     @FXML private ImageView cardFloor13;
     @FXML private ImageView cardFloor14;
     @FXML private ImageView cardFloor15;
+    private Map<Integer, ImageView> mapCardFloorTerritory = new HashMap<>();
+    private Map<Integer, ImageView> mapCardFloorBuildings = new HashMap<>();
+    private Map<Integer, ImageView> mapCardFloorCharacter = new HashMap<>();
+    private Map<Integer, ImageView> mapCardFloorVenture = new HashMap<>();
+    private Map<CardType, Map<Integer, ImageView>> mapCardTypeMapIntegerCardFloors = new HashMap<>();
+
     @FXML private Label blackValuePl1;
     @FXML private Label orangeValuePl1;
     @FXML private Label whiteValuePl1;
@@ -75,6 +85,8 @@ public class MainBoardController implements Initializable, Observer {
     @FXML private Tab redPlayer;
     @FXML private Tab yellowPlayer;
     private Map<PlayerColor, Tab> mapPlayerColorTab = new HashMap<>();
+
+    //familyMember
     private Map<FamilyMemberColor, Label> bluePlayerLabel = new HashMap<>();
     private Map<FamilyMemberColor, Label> greenPlayerLabel = new HashMap<>();
     private Map<FamilyMemberColor, Label> redPlayerLabel = new HashMap<>();
@@ -92,7 +104,8 @@ public class MainBoardController implements Initializable, Observer {
         List<Action> actions = clientView.getActions();
         for(Action action: actions)
             System.out.println(action);
-
+        Image image = new Image("img/Card/card_92.png");
+        match.getMapTypeCardFloorRepresentation().get(CardType.TERRITORY).get(0).setPath(image);
 
 
         if(familyMemberClicked.equals(lastFamClicked)){
@@ -125,26 +138,6 @@ public class MainBoardController implements Initializable, Observer {
         match = MatchInstance.instance();
         match.addObserver(this);
 
-        Image image = new Image("img/Card/card_1.png");
-        Image image1 = new Image("img/Card/card_2.png");
-
-        cardFloor0.setImage(image);
-        cardFloor1.setImage(image1);
-        cardFloor2.setImage(image);
-        cardFloor3.setImage(image1);
-        cardFloor4.setImage(image);
-        cardFloor5.setImage(image1);
-        cardFloor6.setImage(image);
-        cardFloor7.setImage(image1);
-        cardFloor8.setImage(image);
-        cardFloor9.setImage(image1);
-        cardFloor10.setImage(image);
-        cardFloor11.setImage(image1);
-        cardFloor12.setImage(image);
-        cardFloor13.setImage(image1);
-        cardFloor14.setImage(image);
-        cardFloor15.setImage(image1);
-
         //creating List of label for each player
         bluePlayerLabel.put(FamilyMemberColor.BLACK, blackValuePl1);
         bluePlayerLabel.put(FamilyMemberColor.WHITE, whiteValuePl1);
@@ -172,11 +165,40 @@ public class MainBoardController implements Initializable, Observer {
         mapPlayerColorFamilyColorLabel.put(PlayerColor.RED, redPlayerLabel);
         mapPlayerColorFamilyColorLabel.put(PlayerColor.YELLOW, yellowPlayerLabel);
 
+        //associating tab with colo player
         mapPlayerColorTab.put(PlayerColor.BLUE, bluePlayer);
         mapPlayerColorTab.put(PlayerColor.GREEN, greenPlayer);
         mapPlayerColorTab.put(PlayerColor.RED, redPlayer);
         mapPlayerColorTab.put(PlayerColor.YELLOW, yellowPlayer);
 
+        //associating floor number to id
+        mapCardFloorTerritory.put(3, cardFloor0);
+        mapCardFloorTerritory.put(2, cardFloor1);
+        mapCardFloorTerritory.put(1, cardFloor2);
+        mapCardFloorTerritory.put(0, cardFloor3);
+
+        mapCardFloorCharacter.put(3, cardFloor4);
+        mapCardFloorCharacter.put(2, cardFloor5);
+        mapCardFloorCharacter.put(1, cardFloor6);
+        mapCardFloorCharacter.put(0, cardFloor7);
+
+        mapCardFloorBuildings.put(3, cardFloor8);
+        mapCardFloorBuildings.put(2, cardFloor9);
+        mapCardFloorBuildings.put(1, cardFloor10);
+        mapCardFloorBuildings.put(0, cardFloor11);
+
+
+
+        mapCardFloorVenture.put(3, cardFloor12);
+        mapCardFloorVenture.put(2, cardFloor13);
+        mapCardFloorVenture.put(1, cardFloor14);
+        mapCardFloorVenture.put(0, cardFloor15);
+        mapCardTypeMapIntegerCardFloors.put(CardType.TERRITORY, mapCardFloorTerritory);
+        mapCardTypeMapIntegerCardFloors.put(CardType.BUILDING, mapCardFloorBuildings);
+        mapCardTypeMapIntegerCardFloors.put(CardType.CHARACTER, mapCardFloorCharacter);
+        mapCardTypeMapIntegerCardFloors.put(CardType.VENTURE, mapCardFloorVenture);
+
+        //disabling all tab player
         bluePlayer.setDisable(true);
         greenPlayer.setDisable(true);
         redPlayer.setDisable(true);
@@ -195,12 +217,13 @@ public class MainBoardController implements Initializable, Observer {
     @Override
     public void update(Observable o, Object arg) {
         Platform.runLater(() -> {
-            bindAllFamilyMember(match);
-            disableTab(match);
+            bindAllFamilyMember();
+            disableTab();
+            bindCardsToFloor();
         });
     }
 
-    private void bindAllFamilyMember(MatchInstance match){
+    private void bindAllFamilyMember(){
         Map<PlayerColor, ObservableList<FamilyMemberRepresentation>> mapColorFamilyRepresentation = match.getMapPlayerColorObservableLiseFMRepr();
         for(Player player : match.getPlayers().values()){
             PlayerColor playerColor = player.getColor();
@@ -213,9 +236,18 @@ public class MainBoardController implements Initializable, Observer {
         }
 
     }
-    private void disableTab(MatchInstance match){
+    private void disableTab(){
         for(Player player : match.getPlayers().values()) {
             mapPlayerColorTab.get(player.getColor()).setDisable(false);
+        }
+    }
+    private void bindCardsToFloor(){
+        for(CardType cardType : CardType.values()){
+                ObservableList<CardFloorRepresentation> cardFloorRepresentations = match.getMapTypeCardFloorRepresentation().get(cardType);
+                for(CardFloorRepresentation cardFloorRepresentations1 : cardFloorRepresentations){
+                    int floor = cardFloorRepresentations1.getFloorNumber();
+                    mapCardTypeMapIntegerCardFloors.get(cardType).get(floor).imageProperty().bind(match.getMapTypeCardFloorRepresentation().get(cardType).get(floor).getPathProperty());
+                }
         }
     }
 }

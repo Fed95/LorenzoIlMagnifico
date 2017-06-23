@@ -27,10 +27,10 @@ import java.util.stream.Collectors;
 public class Match extends Observable<Event> implements Serializable, EffectProvider{
 	private Map<PlayerColor, Player> players = new HashMap<>();
 	private List<BonusTile> bonusTiles;
-	private List<Card> cards = new ArrayList<>();
+	private transient List<Card> cards = new ArrayList<>();
 	private transient List<ExcommunicationTile> excommunicationTiles;
 	private transient CardDeckSet cardDeckSet;
-	private Board board;
+    private Board board;
 	private int roundNum;
 	private transient EffectHandler effectHandler;
 	private transient ActionHandler actionHandler;
