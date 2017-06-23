@@ -3914,260 +3914,26 @@
             {
               "occupiable": "TowerFloor",
               "floorNum": 0,
-              "card": {
-                "cardType": "VENTURE",
-                "period": 1,
-                "effects": [
-                  {
-                    "type": "EffectChangeResource",
-                    "exchanges": [
-                      {
-                        "cost": [],
-                        "bonus": [
-                          {
-                            "resourceType": "Money",
-                            "type": "MONEY",
-                            "value": 3
-                          }
-                        ]
-                      }
-                    ],
-                    "choice": false,
-                    "event": {
-                      "eventType": "EventPickCard",
-                      "cardID": 76
-                    }
-                  },
-                  {
-                    "type": "EffectChangeResource",
-                    "exchanges": [
-                      {
-                        "cost": [],
-                        "bonus": [
-                          {
-                            "resourceType": "VictoryPoint",
-                            "type": "VICTORY_POINT",
-                            "value": 5
-                          }
-                        ]
-                      }
-                    ],
-                    "choice": false,
-                    "event": {
-                      "eventType": "EventEndMatch",
-                      "actions": []
-                    }
-                  }
-                ],
-                "name": "Campagna Militare",
-                "id": 76,
-                "requirements": [
-                  {
-                    "resourceType": "MilitaryPoint",
-                    "type": "MILITARY_POINT",
-                    "value": 3
-                  }
-                ]
-              },
               "cardType": "VENTURE",
-              "occupiers": [],
-              "requiredValue": 1
+              "occupiers": []
             },
             {
               "occupiable": "TowerFloor",
               "floorNum": 1,
-              "card": {
-                "cardType": "VENTURE",
-                "period": 1,
-                "effects": [
-                  {
-                    "type": "EffectChangeResource",
-                    "exchanges": [
-                      {
-                        "cost": [],
-                        "bonus": [
-                          {
-                            "resourceType": "Servant",
-                            "type": "SERVANT",
-                            "value": 4
-                          }
-                        ]
-                      }
-                    ],
-                    "choice": false,
-                    "event": {
-                      "eventType": "EventPickCard",
-                      "cardID": 77
-                    }
-                  },
-                  {
-                    "type": "EffectChangeResource",
-                    "exchanges": [
-                      {
-                        "cost": [],
-                        "bonus": [
-                          {
-                            "resourceType": "VictoryPoint",
-                            "type": "VICTORY_POINT",
-                            "value": 4
-                          }
-                        ]
-                      }
-                    ],
-                    "choice": false,
-                    "event": {
-                      "eventType": "EventEndMatch",
-                      "actions": []
-                    }
-                  }
-                ],
-                "name": "Ospitare i Mendicanti",
-                "id": 77,
-                "requirements": [
-                  {
-                    "resourceType": "Wood",
-                    "type": "WOOD",
-                    "value": 3
-                  }
-                ]
-              },
               "cardType": "VENTURE",
-              "occupiers": [],
-              "requiredValue": 3
+              "occupiers": []
             },
             {
               "occupiable": "TowerFloor",
               "floorNum": 2,
-              "card": {
-                "cardType": "VENTURE",
-                "period": 1,
-                "effects": [
-                  {
-                    "type": "EffectChangeResource",
-                    "exchanges": [
-                      {
-                        "cost": [],
-                        "bonus": [
-                          {
-                            "resourceType": "FaithPoint",
-                            "type": "FAITH_POINT",
-                            "value": 2
-                          }
-                        ]
-                      }
-                    ],
-                    "choice": false,
-                    "event": {
-                      "eventType": "EventPickCard",
-                      "cardID": 78
-                    }
-                  },
-                  {
-                    "type": "EffectChangeResource",
-                    "exchanges": [
-                      {
-                        "cost": [],
-                        "bonus": [
-                          {
-                            "resourceType": "VictoryPoint",
-                            "type": "VICTORY_POINT",
-                            "value": 5
-                          }
-                        ]
-                      }
-                    ],
-                    "choice": false,
-                    "event": {
-                      "eventType": "EventEndMatch",
-                      "actions": []
-                    }
-                  }
-                ],
-                "name": "Combattere le Eresie",
-                "id": 78,
-                "requirements": [
-                  {
-                    "resourceType": "MilitaryPoint",
-                    "type": "MILITARY_POINT",
-                    "value": 5
-                  }
-                ]
-              },
               "cardType": "VENTURE",
-              "occupiers": [],
-              "requiredValue": 5
+              "occupiers": []
             },
             {
               "occupiable": "TowerFloor",
               "floorNum": 3,
-              "card": {
-                "cardType": "VENTURE",
-                "period": 1,
-                "effects": [
-                  {
-                    "type": "EffectChangeResource",
-                    "exchanges": [
-                      {
-                        "cost": [],
-                        "bonus": [
-                          {
-                            "resourceType": "FaithPoint",
-                            "type": "FAITH_POINT",
-                            "value": 3
-                          }
-                        ]
-                      }
-                    ],
-                    "choice": false,
-                    "event": {
-                      "eventType": "EventPickCard",
-                      "cardID": 79
-                    }
-                  },
-                  {
-                    "type": "EffectChangeResource",
-                    "exchanges": [
-                      {
-                        "cost": [],
-                        "bonus": [
-                          {
-                            "resourceType": "VictoryPoint",
-                            "type": "VICTORY_POINT",
-                            "value": 1
-                          }
-                        ]
-                      }
-                    ],
-                    "choice": false,
-                    "event": {
-                      "eventType": "EventEndMatch",
-                      "actions": []
-                    }
-                  }
-                ],
-                "name": "Sostegno al Vescovo",
-                "id": 79,
-                "requirements": [
-                  {
-                    "resourceType": "Wood",
-                    "type": "WOOD",
-                    "value": 1
-                  },
-                  {
-                    "resourceType": "Money",
-                    "type": "MONEY",
-                    "value": 2
-                  },
-                  {
-                    "resourceType": "Stone",
-                    "type": "STONE",
-                    "value": 1
-                  }
-                ]
-              },
               "cardType": "VENTURE",
-              "occupiers": [],
-              "requiredValue": 7
+              "occupiers": []
             }
           ],
           "familyMember": {
@@ -4193,228 +3959,28 @@
             {
               "occupiable": "TowerFloor",
               "floorNum": 0,
-              "card": {
-                "cardType": "CHARACTER",
-                "period": 1,
-                "effects": [
-                  {
-                    "type": "EffectChangeFamilyMemberValue",
-                    "amount": 2,
-                    "event": {
-                      "eventType": "EventPlaceFamilyMember",
-                      "occupiables": [
-                        {
-                          "occupiable": "SpaceWorkSingle",
-                          "workType": "HARVEST",
-                          "occupiers": [],
-                          "requiredValue": 1
-                        },
-                        {
-                          "occupiable": "SpaceWorkMultiple",
-                          "workType": "HARVEST",
-                          "occupiers": [],
-                          "requiredValue": 1
-                        }
-                      ],
-                      "familyMember": {
-                        "value": 0,
-                        "busy": false
-                      },
-                      "multiplier": 1,
-                      "description": "Placement on a HARVEST WorkSpace",
-                      "actions": []
-                    }
-                  }
-                ],
-                "name": "Contadino",
-                "id": 52,
-                "requirements": [
-                  {
-                    "resourceType": "Money",
-                    "type": "MONEY",
-                    "value": 3
-                  }
-                ]
-              },
               "cardType": "CHARACTER",
-              "occupiers": [],
-              "requiredValue": 1
+              "occupiers": []
             },
             {
               "occupiable": "TowerFloor",
               "floorNum": 1,
-              "card": {
-                "cardType": "CHARACTER",
-                "period": 1,
-                "effects": [
-                  {
-                    "type": "EffectChangeResource",
-                    "exchanges": [
-                      {
-                        "cost": [],
-                        "bonus": [
-                          {
-                            "resourceType": "FaithPoint",
-                            "type": "FAITH_POINT",
-                            "value": 1
-                          }
-                        ]
-                      }
-                    ],
-                    "choice": false,
-                    "event": {
-                      "eventType": "EventPickCard",
-                      "cardID": 55
-                    }
-                  },
-                  {
-                    "type": "EffectFreeAction",
-                    "occupiables": [
-                      {
-                        "occupiable": "TowerFloor",
-                        "floorNum": 0,
-                        "occupiers": [],
-                        "requiredValue": 0
-                      },
-                      {
-                        "occupiable": "TowerFloor",
-                        "floorNum": 1,
-                        "occupiers": [],
-                        "requiredValue": 0
-                      },
-                      {
-                        "occupiable": "TowerFloor",
-                        "floorNum": 2,
-                        "occupiers": [],
-                        "requiredValue": 0
-                      },
-                      {
-                        "occupiable": "TowerFloor",
-                        "floorNum": 3,
-                        "occupiers": [],
-                        "requiredValue": 0
-                      }
-                    ],
-                    "description": "Free action of value 4 on any TowerFloor",
-                    "value": 4,
-                    "event": {
-                      "eventType": "EventPickCard",
-                      "cardID": 55
-                    }
-                  }
-                ],
-                "name": "Badessa",
-                "id": 55,
-                "requirements": [
-                  {
-                    "resourceType": "Money",
-                    "type": "MONEY",
-                    "value": 3
-                  }
-                ]
-              },
               "cardType": "CHARACTER",
-              "occupiers": [],
-              "requiredValue": 3
+              "occupiers": []
             },
             {
               "occupiable": "TowerFloor",
               "floorNum": 2,
-              "card": {
-                "cardType": "CHARACTER",
-                "period": 1,
-                "effects": [
-                  {
-                    "type": "EffectChangeFamilyMemberValue",
-                    "amount": 2,
-                    "event": {
-                      "eventType": "EventPlaceFamilyMember",
-                      "occupiables": [
-                        {
-                          "occupiable": "SpaceWorkSingle",
-                          "workType": "PRODUCTION",
-                          "occupiers": [],
-                          "requiredValue": 1
-                        },
-                        {
-                          "occupiable": "SpaceWorkMultiple",
-                          "workType": "PRODUCTION",
-                          "occupiers": [],
-                          "requiredValue": 1
-                        }
-                      ],
-                      "familyMember": {
-                        "value": 0,
-                        "busy": false
-                      },
-                      "multiplier": 1,
-                      "description": "Placement on a PRODUCTION WorkSpace",
-                      "actions": []
-                    }
-                  }
-                ],
-                "name": "Artigiano",
-                "id": 53,
-                "requirements": [
-                  {
-                    "resourceType": "Money",
-                    "type": "MONEY",
-                    "value": 3
-                  }
-                ]
-              },
               "cardType": "CHARACTER",
-              "occupiers": [],
-              "requiredValue": 5
+              "occupiers": []
             },
             {
               "occupiable": "TowerFloor",
               "floorNum": 3,
-              "card": {
-                "cardType": "CHARACTER",
-                "period": 1,
-                "effects": [
-                  {
-                    "type": "EffectChangeResource",
-                    "exchanges": [
-                      {
-                        "cost": [],
-                        "bonus": [
-                          {
-                            "resourceType": "FaithPoint",
-                            "type": "FAITH_POINT",
-                            "value": 4
-                          }
-                        ]
-                      }
-                    ],
-                    "choice": false,
-                    "event": {
-                      "eventType": "EventPickCard",
-                      "cardID": 54
-                    }
-                  }
-                ],
-                "name": "Predicatore",
-                "id": 54,
-                "requirements": [
-                  {
-                    "resourceType": "Money",
-                    "type": "MONEY",
-                    "value": 2
-                  },
-                  {
-                    "resourceType": "FaithPoint",
-                    "type": "FAITH_POINT",
-                    "value": 4
-                  }
-                ]
-              },
               "cardType": "CHARACTER",
-              "occupiers": [],
-              "requiredValue": 7
+              "occupiers": []
             }
-          ],
+            ],
           "familyMember": {
             "value": 0,
             "busy": false
@@ -4438,398 +4004,28 @@
             {
               "occupiable": "TowerFloor",
               "floorNum": 0,
-              "card": {
-                "cardType": "BUILDING",
-                "period": 1,
-                "effects": [
-                  {
-                    "type": "EffectChangeResource",
-                    "exchanges": [
-                      {
-                        "cost": [],
-                        "bonus": [
-                          {
-                            "resourceType": "VictoryPoint",
-                            "type": "VICTORY_POINT",
-                            "value": 3
-                          }
-                        ]
-                      }
-                    ],
-                    "choice": false,
-                    "event": {
-                      "eventType": "EventPickCard",
-                      "cardID": 28
-                    }
-                  },
-                  {
-                    "type": "EffectChangeResource",
-                    "exchanges": [
-                      {
-                        "cost": [
-                          {
-                            "resourceType": "Wood",
-                            "type": "WOOD",
-                            "value": 1
-                          }
-                        ],
-                        "bonus": [
-                          {
-                            "resourceType": "Money",
-                            "type": "MONEY",
-                            "value": 3
-                          }
-                        ]
-                      },
-                      {
-                        "cost": [
-                          {
-                            "resourceType": "Wood",
-                            "type": "WOOD",
-                            "value": 2
-                          }
-                        ],
-                        "bonus": [
-                          {
-                            "resourceType": "Money",
-                            "type": "MONEY",
-                            "value": 5
-                          }
-                        ]
-                      }
-                    ],
-                    "choice": true,
-                    "event": {
-                      "eventType": "EventPlaceFamilyMember",
-                      "occupiables": [
-                        {
-                          "occupiable": "SpaceWorkSingle",
-                          "workType": "PRODUCTION",
-                          "occupiers": [],
-                          "requiredValue": 1
-                        },
-                        {
-                          "occupiable": "SpaceWorkMultiple",
-                          "workType": "PRODUCTION",
-                          "occupiers": [],
-                          "requiredValue": 1
-                        }
-                      ],
-                      "familyMember": {
-                        "value": 4,
-                        "busy": false
-                      },
-                      "multiplier": 1,
-                      "description": "Placement on a PRODUCTION WorkSpace",
-                      "actions": []
-                    }
-                  }
-                ],
-                "name": "Falegnameria",
-                "id": 28,
-                "requirements": [
-                  {
-                    "resourceType": "Money",
-                    "type": "MONEY",
-                    "value": 1
-                  },
-                  {
-                    "resourceType": "Wood",
-                    "type": "WOOD",
-                    "value": 2
-                  }
-                ]
-              },
               "cardType": "BUILDING",
-              "occupiers": [],
-              "requiredValue": 1
+              "occupiers": []
             },
             {
               "occupiable": "TowerFloor",
               "floorNum": 1,
-              "card": {
-                "cardType": "BUILDING",
-                "period": 1,
-                "effects": [
-                  {
-                    "type": "EffectChangeResource",
-                    "exchanges": [
-                      {
-                        "cost": [],
-                        "bonus": [
-                          {
-                            "resourceType": "VictoryPoint",
-                            "type": "VICTORY_POINT",
-                            "value": 2
-                          }
-                        ]
-                      }
-                    ],
-                    "choice": false,
-                    "event": {
-                      "eventType": "EventPickCard",
-                      "cardID": 29
-                    }
-                  },
-                  {
-                    "type": "EffectChangeResource",
-                    "exchanges": [
-                      {
-                        "cost": [
-                          {
-                            "resourceType": "Stone",
-                            "type": "STONE",
-                            "value": 1
-                          }
-                        ],
-                        "bonus": [
-                          {
-                            "resourceType": "Money",
-                            "type": "MONEY",
-                            "value": 3
-                          }
-                        ]
-                      },
-                      {
-                        "cost": [
-                          {
-                            "resourceType": "Stone",
-                            "type": "STONE",
-                            "value": 2
-                          }
-                        ],
-                        "bonus": [
-                          {
-                            "resourceType": "Money",
-                            "type": "MONEY",
-                            "value": 5
-                          }
-                        ]
-                      }
-                    ],
-                    "choice": true,
-                    "event": {
-                      "eventType": "EventPlaceFamilyMember",
-                      "occupiables": [
-                        {
-                          "occupiable": "SpaceWorkSingle",
-                          "workType": "PRODUCTION",
-                          "occupiers": [],
-                          "requiredValue": 1
-                        },
-                        {
-                          "occupiable": "SpaceWorkMultiple",
-                          "workType": "PRODUCTION",
-                          "occupiers": [],
-                          "requiredValue": 1
-                        }
-                      ],
-                      "familyMember": {
-                        "value": 3,
-                        "busy": false
-                      },
-                      "multiplier": 1,
-                      "description": "Placement on a PRODUCTION WorkSpace",
-                      "actions": []
-                    }
-                  }
-                ],
-                "name": "Tagliapietre",
-                "id": 29,
-                "requirements": [
-                  {
-                    "resourceType": "Money",
-                    "type": "MONEY",
-                    "value": 1
-                  },
-                  {
-                    "resourceType": "Stone",
-                    "type": "STONE",
-                    "value": 2
-                  }
-                ]
-              },
               "cardType": "BUILDING",
-              "occupiers": [],
-              "requiredValue": 3
+              "occupiers": []
             },
             {
               "occupiable": "TowerFloor",
               "floorNum": 2,
-              "card": {
-                "cardType": "BUILDING",
-                "period": 1,
-                "effects": [
-                  {
-                    "type": "EffectChangeResource",
-                    "exchanges": [
-                      {
-                        "cost": [],
-                        "bonus": [
-                          {
-                            "resourceType": "FaithPoint",
-                            "type": "FAITH_POINT",
-                            "value": 1
-                          }
-                        ]
-                      }
-                    ],
-                    "choice": false,
-                    "event": {
-                      "eventType": "EventPickCard",
-                      "cardID": 30
-                    }
-                  },
-                  {
-                    "type": "EffectChangeResource",
-                    "exchanges": [
-                      {
-                        "cost": [
-                          {
-                            "resourceType": "Money",
-                            "type": "MONEY",
-                            "value": 1
-                          }
-                        ],
-                        "bonus": [
-                          {
-                            "resourceType": "FaithPoint",
-                            "type": "FAITH_POINT",
-                            "value": 1
-                          }
-                        ]
-                      }
-                    ],
-                    "choice": false,
-                    "event": {
-                      "eventType": "EventPlaceFamilyMember",
-                      "occupiables": [
-                        {
-                          "occupiable": "SpaceWorkSingle",
-                          "workType": "PRODUCTION",
-                          "occupiers": [],
-                          "requiredValue": 1
-                        },
-                        {
-                          "occupiable": "SpaceWorkMultiple",
-                          "workType": "PRODUCTION",
-                          "occupiers": [],
-                          "requiredValue": 1
-                        }
-                      ],
-                      "familyMember": {
-                        "value": 2,
-                        "busy": false
-                      },
-                      "multiplier": 1,
-                      "description": "Placement on a PRODUCTION WorkSpace",
-                      "actions": []
-                    }
-                  }
-                ],
-                "name": "Cappella",
-                "id": 30,
-                "requirements": [
-                  {
-                    "resourceType": "Wood",
-                    "type": "WOOD",
-                    "value": 2
-                  }
-                ]
-              },
               "cardType": "BUILDING",
-              "occupiers": [],
-              "requiredValue": 5
+              "occupiers": []
             },
             {
               "occupiable": "TowerFloor",
               "floorNum": 3,
-              "card": {
-                "cardType": "BUILDING",
-                "period": 1,
-                "effects": [
-                  {
-                    "type": "EffectChangeResource",
-                    "exchanges": [
-                      {
-                        "cost": [],
-                        "bonus": [
-                          {
-                            "resourceType": "VictoryPoint",
-                            "type": "VICTORY_POINT",
-                            "value": 1
-                          }
-                        ]
-                      }
-                    ],
-                    "choice": false,
-                    "event": {
-                      "eventType": "EventPickCard",
-                      "cardID": 31
-                    }
-                  },
-                  {
-                    "type": "EffectChangeResource",
-                    "exchanges": [
-                      {
-                        "cost": [
-                          {
-                            "resourceType": "Money",
-                            "type": "MONEY",
-                            "value": 1
-                          }
-                        ],
-                        "bonus": [
-                          {
-                            "resourceType": "CouncilPrivilege",
-                            "type": "COUNCIL_PRIVILEGE",
-                            "value": 1
-                          }
-                        ]
-                      }
-                    ],
-                    "choice": false,
-                    "event": {
-                      "eventType": "EventPlaceFamilyMember",
-                      "occupiables": [
-                        {
-                          "occupiable": "SpaceWorkSingle",
-                          "workType": "PRODUCTION",
-                          "occupiers": [],
-                          "requiredValue": 1
-                        },
-                        {
-                          "occupiable": "SpaceWorkMultiple",
-                          "workType": "PRODUCTION",
-                          "occupiers": [],
-                          "requiredValue": 1
-                        }
-                      ],
-                      "familyMember": {
-                        "value": 1,
-                        "busy": false
-                      },
-                      "multiplier": 1,
-                      "description": "Placement on a PRODUCTION WorkSpace",
-                      "actions": []
-                    }
-                  }
-                ],
-                "name": "Residenza",
-                "id": 31,
-                "requirements": [
-                  {
-                    "resourceType": "Stone",
-                    "type": "STONE",
-                    "value": 2
-                  }
-                ]
-              },
               "cardType": "BUILDING",
-              "occupiers": [],
-              "requiredValue": 7
+              "occupiers": []
             }
-          ],
+            ],
           "familyMember": {
             "value": 0,
             "busy": false
@@ -4853,301 +4049,26 @@
             {
               "occupiable": "TowerFloor",
               "floorNum": 0,
-              "card": {
-                "cardType": "TERRITORY",
-                "period": 1,
-                "effects": [
-                  {
-                    "type": "EffectChangeResource",
-                    "exchanges": [
-                      {
-                        "cost": [],
-                        "bonus": [
-                          {
-                            "resourceType": "Wood",
-                            "type": "WOOD",
-                            "value": 1
-                          }
-                        ]
-                      }
-                    ],
-                    "choice": false,
-                    "event": {
-                      "eventType": "EventPickCard",
-                      "cardID": 4
-                    }
-                  },
-                  {
-                    "type": "EffectChangeResource",
-                    "exchanges": [
-                      {
-                        "cost": [],
-                        "bonus": [
-                          {
-                            "resourceType": "Wood",
-                            "type": "WOOD",
-                            "value": 3
-                          }
-                        ]
-                      }
-                    ],
-                    "choice": false,
-                    "event": {
-                      "eventType": "EventPlaceFamilyMember",
-                      "occupiables": [
-                        {
-                          "occupiable": "SpaceWorkSingle",
-                          "workType": "HARVEST",
-                          "occupiers": [],
-                          "requiredValue": 1
-                        },
-                        {
-                          "occupiable": "SpaceWorkMultiple",
-                          "workType": "HARVEST",
-                          "occupiers": [],
-                          "requiredValue": 1
-                        }
-                      ],
-                      "familyMember": {
-                        "value": 5,
-                        "busy": false
-                      },
-                      "multiplier": 1,
-                      "description": "Placement on a HARVEST WorkSpace",
-                      "actions": []
-                    }
-                  }
-                ],
-                "name": "Foresta",
-                "id": 4,
-                "requirements": []
-              },
               "cardType": "TERRITORY",
-              "occupiers": [],
-              "requiredValue": 1
+              "occupiers": []
             },
             {
               "occupiable": "TowerFloor",
               "floorNum": 1,
-              "card": {
-                "cardType": "TERRITORY",
-                "period": 1,
-                "effects": [
-                  {
-                    "type": "EffectChangeResource",
-                    "exchanges": [
-                      {
-                        "cost": [],
-                        "bonus": [
-                          {
-                            "resourceType": "MilitaryPoint",
-                            "type": "MILITARY_POINT",
-                            "value": 2
-                          },
-                          {
-                            "resourceType": "Servant",
-                            "type": "SERVANT",
-                            "value": 1
-                          }
-                        ]
-                      }
-                    ],
-                    "choice": false,
-                    "event": {
-                      "eventType": "EventPickCard",
-                      "cardID": 5
-                    }
-                  },
-                  {
-                    "type": "EffectChangeResource",
-                    "exchanges": [
-                      {
-                        "cost": [],
-                        "bonus": [
-                          {
-                            "resourceType": "FaithPoint",
-                            "type": "FAITH_POINT",
-                            "value": 1
-                          },
-                          {
-                            "resourceType": "Stone",
-                            "type": "STONE",
-                            "value": 1
-                          }
-                        ]
-                      }
-                    ],
-                    "choice": false,
-                    "event": {
-                      "eventType": "EventPlaceFamilyMember",
-                      "occupiables": [
-                        {
-                          "occupiable": "SpaceWorkSingle",
-                          "workType": "HARVEST",
-                          "occupiers": [],
-                          "requiredValue": 1
-                        },
-                        {
-                          "occupiable": "SpaceWorkMultiple",
-                          "workType": "HARVEST",
-                          "occupiers": [],
-                          "requiredValue": 1
-                        }
-                      ],
-                      "familyMember": {
-                        "value": 6,
-                        "busy": false
-                      },
-                      "multiplier": 1,
-                      "description": "Placement on a HARVEST WorkSpace",
-                      "actions": []
-                    }
-                  }
-                ],
-                "name": "Monastero",
-                "id": 5,
-                "requirements": []
-              },
               "cardType": "TERRITORY",
-              "occupiers": [],
-              "requiredValue": 3
+              "occupiers": []
             },
             {
               "occupiable": "TowerFloor",
               "floorNum": 2,
-              "card": {
-                "cardType": "TERRITORY",
-                "period": 1,
-                "effects": [
-                  {
-                    "type": "EffectChangeResource",
-                    "exchanges": [
-                      {
-                        "cost": [],
-                        "bonus": [
-                          {
-                            "resourceType": "MilitaryPoint",
-                            "type": "MILITARY_POINT",
-                            "value": 2
-                          },
-                          {
-                            "resourceType": "Stone",
-                            "type": "STONE",
-                            "value": 1
-                          }
-                        ]
-                      }
-                    ],
-                    "choice": false,
-                    "event": {
-                      "eventType": "EventPlaceFamilyMember",
-                      "occupiables": [
-                        {
-                          "occupiable": "SpaceWorkSingle",
-                          "workType": "HARVEST",
-                          "occupiers": [],
-                          "requiredValue": 1
-                        },
-                        {
-                          "occupiable": "SpaceWorkMultiple",
-                          "workType": "HARVEST",
-                          "occupiers": [],
-                          "requiredValue": 1
-                        }
-                      ],
-                      "familyMember": {
-                        "value": 5,
-                        "busy": false
-                      },
-                      "multiplier": 1,
-                      "description": "Placement on a HARVEST WorkSpace",
-                      "actions": []
-                    }
-                  }
-                ],
-                "name": "Rocca",
-                "id": 6,
-                "requirements": []
-              },
               "cardType": "TERRITORY",
-              "occupiers": [],
-              "requiredValue": 5
+              "occupiers": []
             },
             {
               "occupiable": "TowerFloor",
               "floorNum": 3,
-              "card": {
-                "cardType": "TERRITORY",
-                "period": 1,
-                "effects": [
-                  {
-                    "type": "EffectChangeResource",
-                    "exchanges": [
-                      {
-                        "cost": [],
-                        "bonus": [
-                          {
-                            "resourceType": "Money",
-                            "type": "MONEY",
-                            "value": 3
-                          }
-                        ]
-                      }
-                    ],
-                    "choice": false,
-                    "event": {
-                      "eventType": "EventPickCard",
-                      "cardID": 7
-                    }
-                  },
-                  {
-                    "type": "EffectChangeResource",
-                    "exchanges": [
-                      {
-                        "cost": [],
-                        "bonus": [
-                          {
-                            "resourceType": "CouncilPrivilege",
-                            "type": "COUNCIL_PRIVILEGE",
-                            "value": 1
-                          }
-                        ]
-                      }
-                    ],
-                    "choice": false,
-                    "event": {
-                      "eventType": "EventPlaceFamilyMember",
-                      "occupiables": [
-                        {
-                          "occupiable": "SpaceWorkSingle",
-                          "workType": "HARVEST",
-                          "occupiers": [],
-                          "requiredValue": 1
-                        },
-                        {
-                          "occupiable": "SpaceWorkMultiple",
-                          "workType": "HARVEST",
-                          "occupiers": [],
-                          "requiredValue": 1
-                        }
-                      ],
-                      "familyMember": {
-                        "value": 6,
-                        "busy": false
-                      },
-                      "multiplier": 1,
-                      "description": "Placement on a HARVEST WorkSpace",
-                      "actions": []
-                    }
-                  }
-                ],
-                "name": "Citta'",
-                "id": 7,
-                "requirements": []
-              },
               "cardType": "TERRITORY",
-              "occupiers": [],
-              "requiredValue": 7
+              "occupiers": []
             }
           ],
           "familyMember": {
@@ -5178,20 +4099,17 @@
             {
               "occupiable": "SpaceMarket",
               "marketNum": 1,
-              "occupiers": [],
-              "requiredValue": 1
+              "occupiers": []
             },
             {
               "occupiable": "SpaceMarket",
               "marketNum": 2,
-              "occupiers": [],
-              "requiredValue": 1
+              "occupiers": []
             },
             {
               "occupiable": "SpaceMarket",
               "marketNum": 3,
-              "occupiers": [],
-              "requiredValue": 1
+              "occupiers": []
             }
           ],
           "familyMember": {
@@ -5214,7 +4132,6 @@
         "event": {
           "eventType": "EventPlaceFamilyMember",
           "occupiables": [],
-          "multiplier": 1,
           "actions": []
         }
       },
@@ -5224,7 +4141,6 @@
         "event": {
           "eventType": "EventServantsRequested",
           "occupiables": [],
-          "mult": 1,
           "actions": []
         }
       }
