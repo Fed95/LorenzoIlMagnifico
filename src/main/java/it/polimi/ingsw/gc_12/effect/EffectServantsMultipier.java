@@ -16,7 +16,7 @@ public class EffectServantsMultipier extends Effect {
 
     @Override
     public void execute(Match match, Event event, boolean validation) {
-        if(!(event instanceof EventServantsRequested || event instanceof EventPlaceFamilyMember))
+        if(event instanceof EventServantsRequested)
             ((EventServantsRequested) event).setMultiplier(value);
         else if(event instanceof EventPlaceFamilyMember)
             ((EventPlaceFamilyMember) event).setMultiplier(value);
