@@ -1,12 +1,16 @@
 package it.polimi.ingsw.gc_12.json;
 
 import com.google.gson.GsonBuilder;
+import com.google.gson.InstanceCreator;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import it.polimi.ingsw.gc_12.card.*;
 import it.polimi.ingsw.gc_12.effect.*;
 import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.occupiables.*;
 import it.polimi.ingsw.gc_12.resource.*;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 public class TypeAdapter {
 
@@ -73,7 +77,8 @@ public class TypeAdapter {
 				.registerTypeAdapterFactory(factoryCard)
 				.registerTypeAdapterFactory(factoryResource)
 				.registerTypeAdapterFactory(factoryEffect)
-				.registerTypeAdapterFactory(factoryEvent);
+				.registerTypeAdapterFactory(factoryEvent)
+				.registerTypeAdapter(CardDevelopment.class, new CardDevelopmentInstanceCreator());
 	}
-
+	
 }
