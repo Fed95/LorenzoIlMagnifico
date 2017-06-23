@@ -32,6 +32,11 @@ public class ClientRMIView extends ClientHandler implements ClientViewRemote, Se
 	}
 
 	@Override
+	public PlayerColor getPlayerColor() throws RemoteException {
+		return color;
+	}
+
+	@Override
 	public void setColor(PlayerColor playerColor) throws RemoteException {
 		color = playerColor;
 		System.out.println("Your color is "+color);

@@ -57,7 +57,8 @@ public class ServerSocketView extends View implements Runnable {
 			socketIn = new ObjectInputStream(socket.getInputStream());
 			socketOut = new ObjectOutputStream(socket.getOutputStream());
 
-			socketOut.writeObject(playerColors.poll());
+			PlayerColor playerColor = playerColors.poll();
+			socketOut.writeObject(playerColor);
 
 			//server.increaseClientsNum();
 			while (true) {
@@ -68,7 +69,7 @@ public class ServerSocketView extends View implements Runnable {
 					if (object instanceof String) {
 						String name = (String) object;
 						System.out.println("Player " + name + " received");
-						server.addClientSocket(name);
+						server.addClientSocket(name, playerColor);
 					}
 					else if (object instanceof Integer) {
 						int input = (Integer) object;

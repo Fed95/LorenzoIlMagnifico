@@ -11,5 +11,6 @@ public interface ClientViewRemote extends Remote{
 	// Interface to receive information from the server
 	void updateClient(Event event) throws RemoteException;
 	String getName() throws RemoteException;
+	PlayerColor getPlayerColor() throws RemoteException;
 	void setColor(PlayerColor playerColor) throws RemoteException;
 }

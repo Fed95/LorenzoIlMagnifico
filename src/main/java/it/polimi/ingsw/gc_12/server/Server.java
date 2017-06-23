@@ -34,7 +34,7 @@ public class Server {
 	private Controller controller;
 	private Registry registry;
 	private Stack<ServerRMIView> views;
-	private List<String> names;
+	private List<Player> playersSocket;
 	public int numOfClients;
 	private LinkedList<PlayerColor> playerColors = new LinkedList<>();
 
@@ -42,7 +42,7 @@ public class Server {
 		this.match = new Match();
 		this.controller = new Controller(match);
 		this.views = new Stack<>();
-		this.names = new ArrayList<>();
+		this.playersSocket = new ArrayList<>();
 		this.playerColors.addAll(Arrays.asList(PlayerColor.values()));
 		this.numOfClients = 0;
 	}
@@ -73,16 +73,14 @@ public class Server {
 	public void startMatch() throws AlreadyBoundException, CloneNotSupportedException, RemoteException {
 		ServerRMIView serverRmiView = views.peek();
 		Map<PlayerColor, Player> players = new HashMap<>();
-		List<PlayerColor> playerColors = Arrays.asList(PlayerColor.values());
 		int i = 0;
 		for(ClientViewRemote client : serverRmiView.getClients()) {
-			Player player = new Player(client.getName(), playerColors.get(i));
-			players.put(playerColors.get(i), player);
+			Player player = new Player(client.getName(), client.getPlayerColor());
+			players.put(client.getPlayerColor(), player);
 			i++;
 		}
-		for(String name : names) {
-			Player player = new Player(name, playerColors.get(i));
-			players.put(playerColors.get(i), player);
+		for(Player playerSocket : playersSocket) {
+			players.put(playerSocket.getColor(), playerSocket);
 			i++;
 		}
 		match.init(players);
@@ -94,7 +92,7 @@ public class Server {
 		/*RMIViewRemote viewRemote=(RMIViewRemote) UnicastRemoteObject.
 				exportObject(serverRmiView, 0);*/
 		numOfClients = 0;
-		names = new ArrayList<>();
+		playersSocket = new ArrayList<>();
 		match = new Match();
 		controller = new Controller(match);
 		playerColors = new LinkedList<>();
@@ -153,9 +151,9 @@ public class Server {
 		}
 	}*/
 
-	public void addClientSocket(String name) throws CloneNotSupportedException, AlreadyBoundException, RemoteException {
+	public void addClientSocket(String name, PlayerColor playerColor) throws CloneNotSupportedException, AlreadyBoundException, RemoteException {
 		System.out.println("Adding player " + name);
-		names.add(name);
+		playersSocket.add(new Player(name, playerColor));
 		numOfClients++;
 		System.out.println(numOfClients);
 		if(numOfClients == 2) {
