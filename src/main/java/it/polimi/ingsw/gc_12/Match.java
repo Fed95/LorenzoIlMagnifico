@@ -30,7 +30,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	private List<Player> players = new ArrayList<>();
 	private List<BonusTile> bonusTiles;
 	private List<Card> cards = new ArrayList<>();
-	private transient List<ExcommunicationTile> excommunicationTiles = new ArrayList<>();
+	private transient List<ExcommunicationTile> excommunicationTiles;
 	private transient CardDeckSet cardDeckSet;
 	private Board board;
 	private int roundNum;
@@ -46,6 +46,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	public Match() {
 		this.roundNum = 1;
 		this.cards = new LoaderCard().get(this);
+		this.excommunicationTiles = new LoaderExcommmunications().get(this);
 		this.cardDeckSet = new CardDeckSet(cards, DEFAULT_ROUND_NUM / DEFAULT_PERIODS_LEN);
 		this.effectHandler = new EffectHandler();
 		this.actionHandler = new ActionHandler(this);
@@ -62,6 +63,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		for (Player player : players){
 			player.getPersonalBoard().setBonusTile(bonusTiles.get(players.indexOf(player)));
 		}
+		//TODO: remove comment before deadline (disbled shuffle for testing)
 		//cardDeckSet.shuffle();
 
 		createBoard();
@@ -73,6 +75,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		board = new Board(players);
 		board.setTowerSet(new LoaderTowerSet().get(this));
 		board.getTowerSet().setCards(cardDeckSet);
+		board.getExcommunicationSpace().setTilesDeck(excommunicationTiles);
 		board.setMarket(new LoaderMarket().get(this));
 		System.out.println(board.getMarket().getSpaceMarkets());
 		board.getTowerSet().setCards(cardDeckSet);

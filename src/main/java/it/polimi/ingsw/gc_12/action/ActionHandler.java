@@ -29,7 +29,7 @@ public class ActionHandler {
 	}
 
 	public Action getAvailableAction(int input) {
-		int inputReal = (input - offset*multiplier > 0 ? input - offset*multiplier : 0);
+		int inputReal = (input - offset * multiplier > 0 ? input - offset*multiplier : 0);
 		Action action = actions.get(inputReal);
 		if(events.size() > 0) {
 			events.removeFirst();

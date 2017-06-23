@@ -10,7 +10,10 @@ public class ExcommunicationSpace {
 	private List<ExcommunicationTile> tilesDeck = new ArrayList<>();
 	private Map<Integer, ExcommunicationTile> tiles = new HashMap<>();
 
-	public ExcommunicationSpace(List<ExcommunicationTile> tilesDeck){
+	public ExcommunicationSpace(){
+	}
+
+	public void setTilesDeck(List<ExcommunicationTile> tilesDeck) {
 		this.tilesDeck = tilesDeck;
 		chooseTiles();
 	}

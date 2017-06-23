@@ -55,7 +55,7 @@ public class SaverCard extends Saver<List<Card>> {
 			List<Resource> requirements = askResource();
 			List<Effect> effects = askEffect(id);
 
-			CardDevelopment card;
+			Card card;
 			try {
 				card = CardBuilder.create(cardType, id, name, period, requirements, effects);
 			} catch (IllegalArgumentException e) {

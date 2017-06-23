@@ -84,7 +84,7 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 		int multiplier = event.getMultiplier();
 		offset = (event.getOccupiable().getRequiredValue() - event.getFamilyMember().getValue()) * multiplier;
 		offset = (offset < 0 ? 0 : offset);
-		int minValue = (offset*multiplier);
+		int minValue = (offset * multiplier);
 		int maxValue = event.getPlayer().getResourceValue(ResourceType.SERVANT);
 
 		System.out.println("You have " + event.getPlayer().getResourceValue(ResourceType.SERVANT) + " Servants");

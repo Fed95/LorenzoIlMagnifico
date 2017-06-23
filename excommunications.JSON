@@ -461,7 +461,7 @@
                         "value": 0,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a HARVEST WorkSpace",
                       "actions": []
                     }
@@ -588,7 +588,7 @@
                         "value": 0,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a PRODUCTION WorkSpace",
                       "actions": []
                     }
@@ -739,7 +739,7 @@
                         "value": 4,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a PRODUCTION WorkSpace",
                       "actions": []
                     }
@@ -848,7 +848,7 @@
                         "value": 3,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a PRODUCTION WorkSpace",
                       "actions": []
                     }
@@ -941,7 +941,7 @@
                         "value": 2,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a PRODUCTION WorkSpace",
                       "actions": []
                     }
@@ -1029,7 +1029,7 @@
                         "value": 1,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a PRODUCTION WorkSpace",
                       "actions": []
                     }
@@ -1111,7 +1111,7 @@
                         "value": 5,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a HARVEST WorkSpace",
                       "actions": []
                     }
@@ -1197,7 +1197,7 @@
                         "value": 6,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a HARVEST WorkSpace",
                       "actions": []
                     }
@@ -1258,7 +1258,7 @@
                         "value": 5,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a HARVEST WorkSpace",
                       "actions": []
                     }
@@ -1334,7 +1334,7 @@
                         "value": 6,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a HARVEST WorkSpace",
                       "actions": []
                     }
@@ -1705,7 +1705,7 @@
                         "value": 0,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a HARVEST WorkSpace",
                       "actions": []
                     }
@@ -1832,7 +1832,7 @@
                         "value": 0,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a PRODUCTION WorkSpace",
                       "actions": []
                     }
@@ -1983,7 +1983,7 @@
                         "value": 4,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a PRODUCTION WorkSpace",
                       "actions": []
                     }
@@ -2092,7 +2092,7 @@
                         "value": 3,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a PRODUCTION WorkSpace",
                       "actions": []
                     }
@@ -2185,7 +2185,7 @@
                         "value": 2,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a PRODUCTION WorkSpace",
                       "actions": []
                     }
@@ -2273,7 +2273,7 @@
                         "value": 1,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a PRODUCTION WorkSpace",
                       "actions": []
                     }
@@ -2355,7 +2355,7 @@
                         "value": 5,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a HARVEST WorkSpace",
                       "actions": []
                     }
@@ -2441,7 +2441,7 @@
                         "value": 6,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a HARVEST WorkSpace",
                       "actions": []
                     }
@@ -2502,7 +2502,7 @@
                         "value": 5,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a HARVEST WorkSpace",
                       "actions": []
                     }
@@ -2578,7 +2578,7 @@
                         "value": 6,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a HARVEST WorkSpace",
                       "actions": []
                     }
@@ -2949,7 +2949,7 @@
                         "value": 0,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a HARVEST WorkSpace",
                       "actions": []
                     }
@@ -3076,7 +3076,7 @@
                         "value": 0,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a PRODUCTION WorkSpace",
                       "actions": []
                     }
@@ -3227,7 +3227,7 @@
                         "value": 4,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a PRODUCTION WorkSpace",
                       "actions": []
                     }
@@ -3336,7 +3336,7 @@
                         "value": 3,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a PRODUCTION WorkSpace",
                       "actions": []
                     }
@@ -3429,7 +3429,7 @@
                         "value": 2,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a PRODUCTION WorkSpace",
                       "actions": []
                     }
@@ -3517,7 +3517,7 @@
                         "value": 1,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a PRODUCTION WorkSpace",
                       "actions": []
                     }
@@ -3599,7 +3599,7 @@
                         "value": 5,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a HARVEST WorkSpace",
                       "actions": []
                     }
@@ -3685,7 +3685,7 @@
                         "value": 6,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a HARVEST WorkSpace",
                       "actions": []
                     }
@@ -3746,7 +3746,7 @@
                         "value": 5,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a HARVEST WorkSpace",
                       "actions": []
                     }
@@ -3822,7 +3822,7 @@
                         "value": 6,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a HARVEST WorkSpace",
                       "actions": []
                     }
@@ -4220,7 +4220,7 @@
                         "value": 0,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a HARVEST WorkSpace",
                       "actions": []
                     }
@@ -4347,7 +4347,7 @@
                         "value": 0,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a PRODUCTION WorkSpace",
                       "actions": []
                     }
@@ -4519,7 +4519,7 @@
                         "value": 4,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a PRODUCTION WorkSpace",
                       "actions": []
                     }
@@ -4628,7 +4628,7 @@
                         "value": 3,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a PRODUCTION WorkSpace",
                       "actions": []
                     }
@@ -4721,7 +4721,7 @@
                         "value": 2,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a PRODUCTION WorkSpace",
                       "actions": []
                     }
@@ -4809,7 +4809,7 @@
                         "value": 1,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a PRODUCTION WorkSpace",
                       "actions": []
                     }
@@ -4912,7 +4912,7 @@
                         "value": 5,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a HARVEST WorkSpace",
                       "actions": []
                     }
@@ -4998,7 +4998,7 @@
                         "value": 6,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a HARVEST WorkSpace",
                       "actions": []
                     }
@@ -5059,7 +5059,7 @@
                         "value": 5,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a HARVEST WorkSpace",
                       "actions": []
                     }
@@ -5135,7 +5135,7 @@
                         "value": 6,
                         "busy": false
                       },
-                      "multiplier": 0,
+                      "multiplier": 1,
                       "description": "Placement on a HARVEST WorkSpace",
                       "actions": []
                     }
@@ -5199,6 +5199,272 @@
             "busy": false
           },
           "multiplier": 1,
+          "actions": []
+        }
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "period": 2,
+    "effects": [
+      {
+        "type": "EffectServantsMultipier",
+        "value": 2,
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [],
+          "multiplier": 1,
+          "actions": []
+        }
+      },
+      {
+        "type": "EffectServantsMultipier",
+        "value": 2,
+        "event": {
+          "eventType": "EventServantsRequested",
+          "occupiables": [],
+          "mult": 1,
+          "actions": []
+        }
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectDenyEffect",
+        "effectProvider": {
+          "effectProvider": "CardTerritory",
+          "cardType": "TERRITORY",
+          "period": 0,
+          "name": "generic",
+          "id": 0
+        },
+        "event": {
+          "eventType": "EventEndMatch",
+          "actions": []
+        }
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectDenyEffect",
+        "effectProvider": {
+          "effectProvider": "CardBuilder",
+          "cardType": "BUILDING",
+          "period": 0,
+          "name": "generic",
+          "id": 0
+        },
+        "event": {
+          "eventType": "EventEndMatch",
+          "actions": []
+        }
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectDenyEffect",
+        "effectProvider": {
+          "effectProvider": "CardCharacter",
+          "cardType": "CHARACTER",
+          "period": 0,
+          "name": "generic",
+          "id": 0
+        },
+        "event": {
+          "eventType": "EventEndMatch",
+          "actions": []
+        }
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectDenyEffect",
+        "effectProvider": {
+          "effectProvider": "CardVenture",
+          "cardType": "VENTURE",
+          "period": 0,
+          "name": "generic",
+          "id": 0
+        },
+        "event": {
+          "eventType": "EventEndMatch",
+          "actions": []
+        }
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectResourceForResource",
+        "ownedResource": {
+          "resourceType": "VictoryPoint",
+          "type": "VICTORY_POINT",
+          "value": 5
+        },
+        "resource": {
+          "resourceType": "VictoryPoint",
+          "type": "VICTORY_POINT",
+          "value": -1
+        },
+        "event": {
+          "eventType": "EventEndMatch",
+          "actions": []
+        }
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectResourceForResource",
+        "ownedResource": {
+          "resourceType": "MilitaryPoint",
+          "type": "MILITARY_POINT",
+          "value": 1
+        },
+        "resource": {
+          "resourceType": "VictoryPoint",
+          "type": "VICTORY_POINT",
+          "value": -1
+        },
+        "event": {
+          "eventType": "EventEndMatch",
+          "actions": []
+        }
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectResourceForResource",
+        "ownedResource": {
+          "resourceType": "Wood",
+          "type": "WOOD",
+          "value": 1
+        },
+        "resource": {
+          "resourceType": "VictoryPoint",
+          "type": "VICTORY_POINT",
+          "value": -1
+        },
+        "event": {
+          "eventType": "EventEndMatch",
+          "actions": []
+        }
+      },
+      {
+        "type": "EffectResourceForResource",
+        "ownedResource": {
+          "resourceType": "Stone",
+          "type": "STONE",
+          "value": 1
+        },
+        "resource": {
+          "resourceType": "VictoryPoint",
+          "type": "VICTORY_POINT",
+          "value": -1
+        },
+        "event": {
+          "eventType": "EventEndMatch",
+          "actions": []
+        }
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "period": 3,
+    "effects": [
+      {
+        "type": "EffectResourceForResource",
+        "ownedResource": {
+          "resourceType": "Money",
+          "type": "MONEY",
+          "value": 1
+        },
+        "resource": {
+          "resourceType": "VictoryPoint",
+          "type": "VICTORY_POINT",
+          "value": -1
+        },
+        "event": {
+          "eventType": "EventEndMatch",
+          "actions": []
+        }
+      },
+      {
+        "type": "EffectResourceForResource",
+        "ownedResource": {
+          "resourceType": "Wood",
+          "type": "WOOD",
+          "value": 1
+        },
+        "resource": {
+          "resourceType": "VictoryPoint",
+          "type": "VICTORY_POINT",
+          "value": -1
+        },
+        "event": {
+          "eventType": "EventEndMatch",
+          "actions": []
+        }
+      },
+      {
+        "type": "EffectResourceForResource",
+        "ownedResource": {
+          "resourceType": "Stone",
+          "type": "STONE",
+          "value": 1
+        },
+        "resource": {
+          "resourceType": "VictoryPoint",
+          "type": "VICTORY_POINT",
+          "value": -1
+        },
+        "event": {
+          "eventType": "EventEndMatch",
+          "actions": []
+        }
+      },
+      {
+        "type": "EffectResourceForResource",
+        "ownedResource": {
+          "resourceType": "Servant",
+          "type": "SERVANT",
+          "value": 1
+        },
+        "resource": {
+          "resourceType": "VictoryPoint",
+          "type": "VICTORY_POINT",
+          "value": -1
+        },
+        "event": {
+          "eventType": "EventEndMatch",
           "actions": []
         }
       }

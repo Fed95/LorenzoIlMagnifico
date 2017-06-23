@@ -218,7 +218,7 @@ public class SaverExcommunications extends Saver<List<ExcommunicationTile>> {
                 case 5:
                     value = askValue();
                     effects.add(new EffectServantsMultipier(new EventPlaceFamilyMember(), value));
-                    effects.add(new EffectServantsMultipier(new EventServantsRequested(), value));
+                    //effects.add(new EffectServantsMultipier(new EventServantsRequested(), value));
                     break;
 
                 case 6:

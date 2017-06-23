@@ -32,7 +32,7 @@ public class EffectResourceForResource extends Effect {
         if(newValue < 0)
             player.setResourceValue(resource.getType(), 0);
         else
-            player.setResourceValue(resource.getType(), value);
+            player.setResourceValue(resource.getType(), newValue);
     }
 
     @Override

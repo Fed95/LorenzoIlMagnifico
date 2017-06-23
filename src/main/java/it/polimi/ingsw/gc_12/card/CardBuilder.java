@@ -12,7 +12,7 @@ public final class CardBuilder {
 
 	private CardBuilder() {}
 
-	public static CardDevelopment create(CardType cardType, int id, String name, int period, List<Resource> requirements, List<Effect> effects) throws IllegalArgumentException {
+	public static Card create(CardType cardType, int id, String name, int period, List<Resource> requirements, List<Effect> effects) throws IllegalArgumentException {
 		switch (cardType) {
 			case BUILDING:
 				return new CardBuilding(id, name, period, requirements, effects);
@@ -26,7 +26,7 @@ public final class CardBuilder {
 				throw new IllegalArgumentException("The CardType does not exist.");
 		}
 	}
-	public static CardDevelopment create(CardType cardType) throws IllegalArgumentException {
+	public static Card create(CardType cardType) throws IllegalArgumentException {
 		return create(cardType, 0, "generic", 0, null, null);
 	}
 }

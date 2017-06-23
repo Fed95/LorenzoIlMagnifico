@@ -1,16 +1,12 @@
 package it.polimi.ingsw.gc_12.json;
 
 import com.google.gson.GsonBuilder;
-import com.google.gson.InstanceCreator;
 import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import it.polimi.ingsw.gc_12.card.*;
 import it.polimi.ingsw.gc_12.effect.*;
 import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.occupiables.*;
 import it.polimi.ingsw.gc_12.resource.*;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 
 public class TypeAdapter {
 
@@ -20,7 +16,12 @@ public class TypeAdapter {
 		final RuntimeTypeAdapterFactory<EffectProvider> factoryEffectProvider = RuntimeTypeAdapterFactory
 				.of(EffectProvider.class, "effectProvider")
 				.registerSubtype(Card.class, Card.class.getSimpleName())
-				.registerSubtype(Occupiable.class, Occupiable.class.getSimpleName());
+				.registerSubtype(Occupiable.class, Occupiable.class.getSimpleName())
+				.registerSubtype(CardTerritory.class, CardTerritory.class.getSimpleName())
+				.registerSubtype(CardBuilding.class, CardBuilder.class.getSimpleName())
+				.registerSubtype(CardCharacter.class, CardCharacter.class.getSimpleName())
+				.registerSubtype(CardVenture.class, CardVenture.class.getSimpleName());
+
 
 		final RuntimeTypeAdapterFactory<Occupiable> factoryOccupiable = RuntimeTypeAdapterFactory
 				.of(Occupiable.class, "occupiable")
@@ -36,7 +37,7 @@ public class TypeAdapter {
 				.registerSubtype(CardCharacter.class, CardCharacter.class.getSimpleName())
 				.registerSubtype(CardTerritory.class, CardTerritory.class.getSimpleName())
 				.registerSubtype(CardVenture.class, CardVenture.class.getSimpleName());
-		//registerSubtype(CardLeader.class, "LEADER");
+				//registerSubtype(CardLeader.class, "LEADER");
 
 		final RuntimeTypeAdapterFactory<Resource> factoryResource = RuntimeTypeAdapterFactory
 				.of(Resource.class, "resourceType")
@@ -58,6 +59,7 @@ public class TypeAdapter {
 				.registerSubtype(EffectResourceForResource.class, EffectResourceForResource.class.getSimpleName())
 				.registerSubtype(EffectReduceReceivedResource.class, EffectReduceReceivedResource.class.getSimpleName())
 				.registerSubtype(EffectServantsMultipier.class, EffectServantsMultipier.class.getSimpleName())
+				.registerSubtype(EffectDenyEffect.class, EffectDenyEffect.class.getSimpleName())
 				.registerSubtype(EffectPlacementDenied.class, EffectPlacementDenied.class.getSimpleName());	// if the flag equals the class name, you can skip the second parameter. This is only necessary, when the "type" field does not equal the class name.
 
 		final RuntimeTypeAdapterFactory<Event> factoryEvent = RuntimeTypeAdapterFactory
@@ -68,6 +70,7 @@ public class TypeAdapter {
 				.registerSubtype(EventSpendResource.class, EventSpendResource.class.getSimpleName())
 				.registerSubtype(EventSupportChurch.class, EventSupportChurch.class.getSimpleName())
 				.registerSubtype(EventEndMatch.class, EventEndMatch.class.getSimpleName())
+				.registerSubtype(EventServantsRequested.class, EventServantsRequested.class.getSimpleName())
 				.registerSubtype(EventReceiveResource.class, EventReceiveResource.class.getSimpleName());
 
 
@@ -75,7 +78,7 @@ public class TypeAdapter {
 				.registerTypeAdapterFactory(factoryEffectProvider)
 				.registerTypeAdapterFactory(factoryOccupiable)
 				.registerTypeAdapterFactory(factoryCard)
-				.registerTypeAdapterFactory(factoryResource)
+ 					.registerTypeAdapterFactory(factoryResource)
 				.registerTypeAdapterFactory(factoryEffect)
 				.registerTypeAdapterFactory(factoryEvent)
 				.registerTypeAdapter(CardDevelopment.class, new CardDevelopmentInstanceCreator());
