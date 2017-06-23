@@ -84,10 +84,10 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 			Player player = players.get(i);
 			// TODO: remove the comment before the deadline
 			// It has been commented to have a lot of resources for testing
-			List<Resource> resources = config.getInitialResources().get(i);
+			/*List<Resource> resources = config.getInitialResources().get(i);
 			for(Resource resource: resources) {
 				player.setResourceValue(resource.getType(), resource.getValue());
-			}
+			}*/
 			player.init();
 			player.getPersonalBoard().setCardsSpaces(new LoaderCardsSpace().get(this));
 		}

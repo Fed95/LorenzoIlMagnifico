@@ -31,7 +31,7 @@ public class Player implements Serializable{
 		Map<ResourceType, Resource> resources = new HashMap<>();
 		for(ResourceType resourceType: ResourceType.values()) {
 			// TODO: set to 0 before the deadline
-			resources.put(resourceType, ResourceBuilder.create(resourceType, 0));
+			resources.put(resourceType, ResourceBuilder.create(resourceType, 100));
 		}
 		this.resources = resources;
 		personalBoard.getResourceContainer().syncronize(this.resources);
@@ -95,8 +95,6 @@ public class Player implements Serializable{
 	}
 
 	public boolean hasResources(List<Resource> resources) {
-		if (resources.size() == 0)
-			return true;
 		return resources.stream().allMatch(resource -> resource == null || (resource.getValue() < this.resources.get(resource.getType()).getValue()));
 	}
 	
