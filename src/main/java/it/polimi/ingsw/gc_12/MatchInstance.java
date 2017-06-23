@@ -6,7 +6,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Observable;
 import java.util.stream.Collectors;
 
@@ -21,7 +23,8 @@ public class MatchInstance extends Observable implements Serializable, Cloneable
 	private ObservableList<FamilyMemberRepresentation> familyMemberGreenRepresentationObservableList = FXCollections.observableArrayList();
 	private ObservableList<FamilyMemberRepresentation> familyMemberRedRepresentationObservableList = FXCollections.observableArrayList();
 	private ObservableList<FamilyMemberRepresentation> familyMemberYellowRepresentationObservableList = FXCollections.observableArrayList();
-
+	private Map<PlayerColor, ObservableList<FamilyMemberRepresentation>> mapFamilyMember = new HashMap<>();
+    private List<Player> players;
 	private MatchInstance() {}
 	private FamilyMemberRepresentation familyMemberRepresentation;
 	public static MatchInstance instance() {
@@ -33,6 +36,8 @@ public class MatchInstance extends Observable implements Serializable, Cloneable
 	public void init(Match match) {
 		this.board = match.getBoard();
 		this.roundNum = 1;
+		this.players = match.getPlayers();
+
 		createFamilyMemberRepresentation(match);
 
 		setChanged();
@@ -43,7 +48,11 @@ public class MatchInstance extends Observable implements Serializable, Cloneable
 		return board;
 	}
 
-	public void newTurn() {
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void newTurn() {
 		board.getTrackTurnOrder().newTurn();
 	}
 
@@ -72,23 +81,27 @@ public class MatchInstance extends Observable implements Serializable, Cloneable
 	}
 	private void createFamilyMemberRepresentation(Match match){
 		List<Player> players = match.getPlayers();
-		for(Player player : players ) {
+		for(Player player : players){
+		    if(player.getColor().equals(PlayerColor.BLUE)){
+                mapFamilyMember.put(PlayerColor.BLUE, familyMemberBlueRepresentationObservableList);
+            }
+            if(player.getColor().equals(PlayerColor.GREEN)){
+                mapFamilyMember.put(PlayerColor.GREEN, familyMemberGreenRepresentationObservableList);
+            }
+            if(player.getColor().equals(PlayerColor.RED)){
+                mapFamilyMember.put(PlayerColor.RED, familyMemberRedRepresentationObservableList);
+            }
+            if(player.getColor().equals(PlayerColor.YELLOW)){
+                mapFamilyMember.put(PlayerColor.YELLOW, familyMemberYellowRepresentationObservableList);
+            }
+        }
+
+        for(Player player : players ) {
 			List<FamilyMember> familyMembers = player.getAvailableFamilyMembers();
 			for (FamilyMember familyMember : familyMembers) {
 				familyMemberRepresentation = new FamilyMemberRepresentation(familyMember.getValue(), familyMember.getColor().toString(), familyMember.getOwner().getColor().toString(), familyMember.isBusy());
-				if(familyMember.getOwner().getColor().equals(PlayerColor.BLUE)){
-					familyMemberBlueRepresentationObservableList.add(familyMemberRepresentation);
-				}
-				if(familyMember.getOwner().getColor().equals(PlayerColor.GREEN)){
-					familyMemberGreenRepresentationObservableList.add(familyMemberRepresentation);
-				}
-				if(familyMember.getOwner().getColor().equals(PlayerColor.RED)){
-					familyMemberRedRepresentationObservableList.add(familyMemberRepresentation);
-				}
-				if(familyMember.getOwner().getColor().equals(PlayerColor.YELLOW)){
-					familyMemberYellowRepresentationObservableList.add(familyMemberRepresentation);
-				}
-			}
+				mapFamilyMember.get( familyMember.getOwner().getColor()).add(familyMemberRepresentation);
+            }
 		}
 		//familyMemberRepresentation = new FamilyMemberRepresentation(5,"black","blue");
 
@@ -96,4 +109,8 @@ public class MatchInstance extends Observable implements Serializable, Cloneable
 	public ObservableList<FamilyMemberRepresentation> getFamilyMemberBlueRepresentationObservableList() {
 		return familyMemberBlueRepresentationObservableList;
 	}
+
+    public Map<PlayerColor, ObservableList<FamilyMemberRepresentation>> getMapPlayerColorObservableLiseFMRepr() {
+        return mapFamilyMember;
+    }
 }
