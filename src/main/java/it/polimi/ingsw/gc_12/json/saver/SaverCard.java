@@ -1,9 +1,6 @@
 package it.polimi.ingsw.gc_12.json.saver;
 
-import it.polimi.ingsw.gc_12.FamilyMember;
-import it.polimi.ingsw.gc_12.FamilyMemberColor;
-import it.polimi.ingsw.gc_12.Match;
-import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.*;
 import it.polimi.ingsw.gc_12.card.*;
 import it.polimi.ingsw.gc_12.effect.*;
 import it.polimi.ingsw.gc_12.event.*;
@@ -15,10 +12,7 @@ import it.polimi.ingsw.gc_12.resource.ResourceExchange;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class SaverCard extends Saver<List<Card>> {
 
@@ -31,7 +25,7 @@ public class SaverCard extends Saver<List<Card>> {
 
 	@Override
 	public void create(){
-		List<Player> players = new ArrayList<>();
+		Map<PlayerColor, Player> players = new HashMap<>();
 		match.init(players);
 		int id = -1;
 		List<Card> cards = new ArrayList<>();

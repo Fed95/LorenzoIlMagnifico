@@ -72,17 +72,17 @@ public class Server {
 
 	public void startMatch() throws AlreadyBoundException, CloneNotSupportedException, RemoteException {
 		ServerRMIView serverRmiView = views.peek();
-		List<Player> players = new ArrayList<>();
+		Map<PlayerColor, Player> players = new HashMap<>();
 		List<PlayerColor> playerColors = Arrays.asList(PlayerColor.values());
 		int i = 0;
 		for(ClientViewRemote client : serverRmiView.getClients()) {
 			Player player = new Player(client.getName(), playerColors.get(i));
-			players.add(player);
+			players.put(playerColors.get(i), player);
 			i++;
 		}
 		for(String name : names) {
 			Player player = new Player(name, playerColors.get(i));
-			players.add(player);
+			players.put(playerColors.get(i), player);
 			i++;
 		}
 		match.init(players);

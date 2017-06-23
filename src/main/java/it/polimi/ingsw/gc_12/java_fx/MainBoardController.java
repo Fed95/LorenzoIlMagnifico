@@ -202,7 +202,7 @@ public class MainBoardController implements Initializable, Observer {
 
     private void bindAllFamilyMember(MatchInstance match){
         Map<PlayerColor, ObservableList<FamilyMemberRepresentation>> mapColorFamilyRepresentation = match.getMapPlayerColorObservableLiseFMRepr();
-        for(Player player : match.getPlayers()){
+        for(Player player : match.getPlayers().values()){
             PlayerColor playerColor = player.getColor();
             for(FamilyMemberColor familyMemberColor: FamilyMemberColor.values()){
                 //prendo la rappresentazione giusta tramite il famili member e ne prendo la property valore, lo setto poi alla label
@@ -214,7 +214,7 @@ public class MainBoardController implements Initializable, Observer {
 
     }
     private void disableTab(MatchInstance match){
-        for(Player player : match.getPlayers()) {
+        for(Player player : match.getPlayers().values()) {
             mapPlayerColorTab.get(player.getColor()).setDisable(false);
         }
     }

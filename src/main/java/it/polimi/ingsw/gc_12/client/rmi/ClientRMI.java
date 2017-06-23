@@ -1,6 +1,7 @@
 package it.polimi.ingsw.gc_12.client.rmi;
 
 import it.polimi.ingsw.gc_12.client.ClientSender;
+import it.polimi.ingsw.gc_12.java_fx.MainBoard;
 import it.polimi.ingsw.gc_12.mvc.View;
 import it.polimi.ingsw.gc_12.mvc.ViewCLI;
 import it.polimi.ingsw.gc_12.server.view.RMIViewRemote;

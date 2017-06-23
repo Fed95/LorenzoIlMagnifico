@@ -24,7 +24,7 @@ public class MatchInstance extends Observable implements Serializable, Cloneable
 	private ObservableList<FamilyMemberRepresentation> familyMemberRedRepresentationObservableList = FXCollections.observableArrayList();
 	private ObservableList<FamilyMemberRepresentation> familyMemberYellowRepresentationObservableList = FXCollections.observableArrayList();
 	private Map<PlayerColor, ObservableList<FamilyMemberRepresentation>> mapFamilyMember = new HashMap<>();
-    private List<Player> players;
+    private Map<PlayerColor, Player> players;
 	private MatchInstance() {}
 	private FamilyMemberRepresentation familyMemberRepresentation;
 	public static MatchInstance instance() {
@@ -48,7 +48,7 @@ public class MatchInstance extends Observable implements Serializable, Cloneable
 		return board;
 	}
 
-    public List<Player> getPlayers() {
+    public Map<PlayerColor, Player> getPlayers() {
         return players;
     }
 
@@ -80,8 +80,8 @@ public class MatchInstance extends Observable implements Serializable, Cloneable
 		return roundNum;
 	}
 	private void createFamilyMemberRepresentation(Match match){
-		List<Player> players = match.getPlayers();
-		for(Player player : players){
+		Map<PlayerColor, Player> players = match.getPlayers();
+		for(Player player : players.values()){
 		    if(player.getColor().equals(PlayerColor.BLUE)){
                 mapFamilyMember.put(PlayerColor.BLUE, familyMemberBlueRepresentationObservableList);
             }
@@ -96,7 +96,7 @@ public class MatchInstance extends Observable implements Serializable, Cloneable
             }
         }
 
-        for(Player player : players ) {
+        for(Player player : players.values()) {
 			List<FamilyMember> familyMembers = player.getAvailableFamilyMembers();
 			for (FamilyMember familyMember : familyMembers) {
 				familyMemberRepresentation = new FamilyMemberRepresentation(familyMember.getValue(), familyMember.getColor().toString(), familyMember.getOwner().getColor().toString(), familyMember.isBusy());

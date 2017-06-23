@@ -20,14 +20,12 @@ import it.polimi.ingsw.gc_12.server.model.State;
 import it.polimi.ingsw.gc_12.server.observer.Observable;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
 public class Match extends Observable<Event> implements Serializable, EffectProvider{
-	private List<Player> players = new ArrayList<>();
+	private Map<PlayerColor, Player> players = new HashMap<>();
 	private List<BonusTile> bonusTiles;
 	private List<Card> cards = new ArrayList<>();
 	private transient List<ExcommunicationTile> excommunicationTiles;
@@ -54,14 +52,15 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		this.gameState = State.PENDING;
 	}
 
-	public void init(List<Player> players) {
+	public void init(Map<PlayerColor, Player> players) {
 		this.players = players;
 
 		this.bonusTiles = new LoaderBonusTile().get(this);
 		Collections.shuffle(bonusTiles);
 
-		for (Player player : players){
-			player.getPersonalBoard().setBonusTile(bonusTiles.get(players.indexOf(player)));
+		List<Player> playersList = new ArrayList<>(players.values());
+		for (int i = 0; i < playersList.size(); i++) {
+			playersList.get(i).getPersonalBoard().setBonusTile(bonusTiles.get(i));
 		}
 		//TODO: remove comment before deadline (disbled shuffle for testing)
 		//cardDeckSet.shuffle();
@@ -72,7 +71,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 
 	private void createBoard() {
 		System.out.println("Match: Creating the board");
-		board = new Board(players);
+		board = new Board(new ArrayList<>(players.values()));
 		board.setTowerSet(new LoaderTowerSet().get(this));
 		board.getTowerSet().setCards(cardDeckSet);
 		board.getExcommunicationSpace().setTilesDeck(excommunicationTiles);
@@ -83,8 +82,9 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 
 	private void initPlayers() {
 		Config config = new LoaderConfig().get(this).get(players.size());
-		for (int i = 0; i < players.size(); i++) {
-			Player player = players.get(i);
+		List<Player> playerList = new ArrayList<>(players.values());
+		for (int i = 0; i < playerList.size(); i++) {
+			Player player = playerList.get(i);
 			// TODO: remove the comment before the deadline
 			// It has been commented to have a lot of resources for testing
 			/*List<Resource> resources = config.getInitialResources().get(i);
@@ -131,17 +131,19 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		}
 	}
 
-	public void setPlayers(List<Player> players) {
+
+
+	public void setPlayers(Map<PlayerColor, Player> players) {
 		this.players = players;
 	}
 
 
-	public List<Player> getPlayers() {
+	public Map<PlayerColor, Player> getPlayers() {
 		return players;
 	}
 
 	public Player getPlayer(String name) {
-		List<Player> playersFiltered = players.stream().filter(player -> name.equals(player.getName())).collect(Collectors.toList());
+		List<Player> playersFiltered = players.values().stream().filter(player -> name.equals(player.getName())).collect(Collectors.toList());
 		if(playersFiltered.size() > 0)
 			return playersFiltered.get(0);
 		else

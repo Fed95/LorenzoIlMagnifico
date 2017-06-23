@@ -161,7 +161,7 @@ public class ActionHandler {
 	public List<Action> getActionsRequestStatistics(Event event) {
 		Player player = event.getPlayer();
 		List<Action> actions = new ArrayList<>();
-		for(Player p : match.getPlayers())
+		for(Player p : match.getPlayers().values())
 			actions.add(new ActionViewStatistics(player, p));
 		actions.add(new DiscardAction(player));
 		return actions;
