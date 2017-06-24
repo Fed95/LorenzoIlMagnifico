@@ -8,6 +8,7 @@ import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.rmi.ClientRMI;
 import it.polimi.ingsw.gc_12.mvc.GUIAdapter;
+import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.server.observer.*;
 import javafx.application.Platform;
 import javafx.beans.binding.StringBinding;
@@ -89,6 +90,32 @@ public class MainBoardController implements Initializable, Observer {
     private Map<FamilyMemberColor, Label> redPlayerLabel = new HashMap<>();
     private Map<FamilyMemberColor, Label> yellowPlayerLabel = new HashMap<>();
     private Map<PlayerColor , Map<FamilyMemberColor,Label>> mapPlayerColorFamilyColorLabel = new HashMap<>();
+
+    //resource for player
+    @FXML private Label moneyValuePl1;
+    @FXML private Label stoneValuePl1;
+    @FXML private Label servantValuePl1;
+    @FXML private Label woodValuePl1;
+    private Map<ResourceType,Label> resourcePlayer1 = new HashMap<>();
+
+    @FXML private Label moneyValuePl2;
+    @FXML private Label stoneValuePl2;
+    @FXML private Label servantValuePl2;
+    @FXML private Label woodValuePl2;
+    private Map<ResourceType,Label> resourcePlayer2 = new HashMap<>();
+
+    @FXML private Label moneyValuePl3;
+    @FXML private Label stoneValuePl3;
+    @FXML private Label servantValuePl3;
+    @FXML private Label woodValuePl3;
+    private Map<ResourceType,Label> resourcePlayer3 = new HashMap<>();
+
+    @FXML private Label moneyValuePl4;
+    @FXML private Label stoneValuePl4;
+    @FXML private Label servantValuePl4;
+    @FXML private Label woodValuePl4;
+    private Map<ResourceType,Label> resourcePlayer4 = new HashMap<>();
+    private Map<PlayerColor, Map<ResourceType, Label>> mapPlayerColorResourceLabel= new HashMap<>();
 
     private ImageView lastFamClicked = null;
 
@@ -184,8 +211,6 @@ public class MainBoardController implements Initializable, Observer {
         mapCardFloorBuildings.put(1, cardFloor10);
         mapCardFloorBuildings.put(0, cardFloor11);
 
-
-
         mapCardFloorVenture.put(3, cardFloor12);
         mapCardFloorVenture.put(2, cardFloor13);
         mapCardFloorVenture.put(1, cardFloor14);
@@ -194,6 +219,30 @@ public class MainBoardController implements Initializable, Observer {
         mapCardTypeMapIntegerCardFloors.put(CardType.BUILDING, mapCardFloorBuildings);
         mapCardTypeMapIntegerCardFloors.put(CardType.CHARACTER, mapCardFloorCharacter);
         mapCardTypeMapIntegerCardFloors.put(CardType.VENTURE, mapCardFloorVenture);
+        //creating the list and map resources
+        resourcePlayer1.put(ResourceType.MONEY, moneyValuePl1);
+        resourcePlayer1.put(ResourceType.STONE, stoneValuePl1);
+        resourcePlayer1.put(ResourceType.WOOD, woodValuePl1);
+        resourcePlayer1.put(ResourceType.SERVANT, servantValuePl1);
+
+        resourcePlayer2.put(ResourceType.MONEY, moneyValuePl2);
+        resourcePlayer2.put(ResourceType.STONE, stoneValuePl2);
+        resourcePlayer2.put(ResourceType.WOOD, woodValuePl2);
+        resourcePlayer2.put(ResourceType.SERVANT, servantValuePl2);
+
+        resourcePlayer3.put(ResourceType.MONEY, moneyValuePl3);
+        resourcePlayer3.put(ResourceType.STONE, stoneValuePl3);
+        resourcePlayer3.put(ResourceType.WOOD, woodValuePl3);
+        resourcePlayer3.put(ResourceType.SERVANT, servantValuePl3);
+
+        resourcePlayer4.put(ResourceType.MONEY, moneyValuePl4);
+        resourcePlayer4.put(ResourceType.STONE, stoneValuePl4);
+        resourcePlayer4.put(ResourceType.WOOD, woodValuePl4);
+        resourcePlayer4.put(ResourceType.SERVANT, servantValuePl4);
+        mapPlayerColorResourceLabel.put(PlayerColor.BLUE, resourcePlayer1);
+        mapPlayerColorResourceLabel.put(PlayerColor.GREEN, resourcePlayer2);
+        mapPlayerColorResourceLabel.put(PlayerColor.RED, resourcePlayer3);
+        mapPlayerColorResourceLabel.put(PlayerColor.YELLOW, resourcePlayer4);
 
         //disabling all tab player
         bluePlayer.setDisable(true);
@@ -217,6 +266,7 @@ public class MainBoardController implements Initializable, Observer {
             bindAllFamilyMember();
             disableTab();
             bindCardsToFloor();
+            bindResources();
         });
     }
 
@@ -241,10 +291,19 @@ public class MainBoardController implements Initializable, Observer {
     private void bindCardsToFloor(){
         for(CardType cardType : CardType.values()){
                 ObservableList<CardFloorRepresentation> cardFloorRepresentations = match.getMapTypeCardFloorRepresentation().get(cardType);
-                for(CardFloorRepresentation cardFloorRepresentations1 : cardFloorRepresentations){
-                    int floor = cardFloorRepresentations1.getFloorNumber();
+                for(CardFloorRepresentation cardFloorRepresentation : cardFloorRepresentations){
+                    int floor = cardFloorRepresentation.getFloorNumber();
                     mapCardTypeMapIntegerCardFloors.get(cardType).get(floor).imageProperty().bind(match.getMapTypeCardFloorRepresentation().get(cardType).get(floor).getPathProperty());
                 }
+        }
+    }
+    private void bindResources(){
+        for(Player player : match.getPlayers().values()) {
+            ObservableList<ResourceRepresentation> resourceRepresentation = match.getMapPlayerColorResourceRepresentation().get(player.getColor());
+            mapPlayerColorResourceLabel.get(player.getColor()).get(ResourceType.MONEY).textProperty().bind(resourceRepresentation.get(0).getMoneyProperty().asString());
+            mapPlayerColorResourceLabel.get(player.getColor()).get(ResourceType.WOOD).textProperty().bind(resourceRepresentation.get(0).getWoodProperty().asString());
+            mapPlayerColorResourceLabel.get(player.getColor()).get(ResourceType.STONE).textProperty().bind(resourceRepresentation.get(0).getStoneProperty().asString());
+            mapPlayerColorResourceLabel.get(player.getColor()).get(ResourceType.SERVANT).textProperty().bind(resourceRepresentation.get(0).getServantProperty().asString());
         }
     }
 }

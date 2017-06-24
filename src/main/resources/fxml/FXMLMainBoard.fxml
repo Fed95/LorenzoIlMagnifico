@@ -67,23 +67,13 @@
                                           <Image url="@../img/player/blue_player/bluplayer_neutral.png" />
                                       </image>
                                   </ImageView>
-                                  <ImageView fitHeight="406.0" fitWidth="588.0" layoutX="75.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
-                                      <image>
-                                          <Image url="@../img/boardcutright.png" />
-                                      </image>
-                                  </ImageView>
                                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="655.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true" />
-                                  <ImageView fitHeight="405.0" fitWidth="46.0" layoutX="29.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
+                                  <ImageView fitHeight="416.0" fitWidth="43.0" layoutX="24.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
                                       <image>
                                           <Image url="@../img/tilecut.png" />
                                       </image>
                                   </ImageView>
                                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="628.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true" />
-                                  <ImageView fitHeight="411.0" fitWidth="597.0" layoutX="662.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
-                                      <image>
-                                          <Image url="@../img/boardviolaeblu2.png" />
-                                      </image>
-                                  </ImageView>
                               <Label fx:id="blackValuePl1" layoutX="50.0" layoutY="45.0" text="0" textFill="WHITE">
                                  <font>
                                     <Font size="30.0" />
@@ -103,6 +93,27 @@
                                     <Font size="30.0" />
                                   </font>
                               </Label>
+                              <ImageView fitHeight="418.0" fitWidth="1098.0" layoutX="79.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/boardcomplete1.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="moneyValuePl1" layoutX="128.0" layoutY="418.0" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font></Label>
+                              <Label fx:id="woodValuePl1" layoutX="222.0" layoutY="418.0" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font></Label>
+                                  <Label fx:id="stoneValuePl1" layoutX="316.0" layoutY="418.0" text="0" textFill="WHITE">
+                                      <font>
+                                          <Font size="30.0" />
+                                      </font></Label>
+                              <Label fx:id="servantValuePl1" layoutX="404.0" layoutY="428.0" text="0" textFill="WHITE">
+                                  <font>
+                                      <Font size="30.0" />
+                                  </font></Label>
                               </children></AnchorPane>                  </content>
                   </Tab>
                 <Tab fx:id="greenPlayer" text="Giocatore 2">
@@ -129,21 +140,14 @@
                                       <Image url="@../img/player/green_player/greenplayer_neutral.png" />
                                   </image>
                               </ImageView>
-                              <ImageView fitHeight="406.0" fitWidth="588.0" layoutX="75.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
-                                  <image>
-                                      <Image url="@../img/boardcutright.png" />
-                                  </image>
-                              </ImageView>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="655.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fitHeight="405.0" fitWidth="46.0" layoutX="29.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
+                             <ImageView fitHeight="416.0" fitWidth="43.0" layoutX="24.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
                                   <image>
                                       <Image url="@../img/tilecut.png" />
                                   </image>
                               </ImageView>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="628.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true" />
-                              <ImageView fitHeight="411.0" fitWidth="597.0" layoutX="662.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="418.0" fitWidth="1098.0" layoutX="79.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
                                   <image>
-                                      <Image url="@../img/boardviolaeblu2.png" />
+                                      <Image url="@../img/boardcomplete1.png" />
                                   </image>
                               </ImageView>
                               <Label fx:id="blackValuePl2" layoutX="50.0" layoutY="45.0" text="0" textFill="WHITE">
@@ -165,6 +169,22 @@
                                       <Font size="30.0" />
                                   </font>
                               </Label>
+                              <Label fx:id="moneyValuePl2" layoutX="128.0" layoutY="418.0" text="0" textFill="WHITE">
+                                  <font>
+                                      <Font size="30.0" />
+                                  </font></Label>
+                              <Label fx:id="woodValuePl2" layoutX="222.0" layoutY="418.0" text="0" textFill="WHITE">
+                                  <font>
+                                      <Font size="30.0" />
+                                  </font></Label>
+                              <Label fx:id="stoneValuePl2" layoutX="316.0" layoutY="418.0" text="0" textFill="WHITE">
+                                  <font>
+                                      <Font size="30.0" />
+                                  </font></Label>
+                              <Label fx:id="servantValuePl2" layoutX="404.0" layoutY="428.0" text="0" textFill="WHITE">
+                                  <font>
+                                      <Font size="30.0" />
+                                  </font></Label>
                           </children></AnchorPane>                  </content>
                 </Tab>
                   <Tab fx:id="redPlayer" text="Giocatore 3">
@@ -191,21 +211,14 @@
                                           <Image url="@../img/player/red_player/redplayer_neutral.png" />
                                       </image>
                                   </ImageView>
-                                  <ImageView fitHeight="406.0" fitWidth="588.0" layoutX="75.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
-                                      <image>
-                                          <Image url="@../img/boardcutright.png" />
-                                      </image>
-                                  </ImageView>
-                                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="655.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true" />
-                                  <ImageView fitHeight="405.0" fitWidth="46.0" layoutX="29.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
+                                  <ImageView fitHeight="416.0" fitWidth="43.0" layoutX="24.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
                                       <image>
                                           <Image url="@../img/tilecut.png" />
                                       </image>
                                   </ImageView>
-                                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="628.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true" />
-                                  <ImageView fitHeight="411.0" fitWidth="597.0" layoutX="662.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
+                                  <ImageView fitHeight="418.0" fitWidth="1098.0" layoutX="79.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
                                       <image>
-                                          <Image url="@../img/boardviolaeblu2.png" />
+                                          <Image url="@../img/boardcomplete1.png" />
                                       </image>
                                   </ImageView>
                                   <Label fx:id="blackValuePl3" layoutX="50.0" layoutY="45.0" text="0" textFill="WHITE">
@@ -227,6 +240,22 @@
                                           <Font size="30.0" />
                                       </font>
                                   </Label>
+                                  <Label fx:id="moneyValuePl3" layoutX="128.0" layoutY="418.0" text="0" textFill="WHITE">
+                                      <font>
+                                          <Font size="30.0" />
+                                      </font></Label>
+                                  <Label fx:id="woodValuePl3" layoutX="222.0" layoutY="418.0" text="0" textFill="WHITE">
+                                      <font>
+                                          <Font size="30.0" />
+                                      </font></Label>
+                                  <Label fx:id="stoneValuePl3" layoutX="316.0" layoutY="418.0" text="0" textFill="WHITE">
+                                      <font>
+                                          <Font size="30.0" />
+                                      </font></Label>
+                                  <Label fx:id="servantValuePl3" layoutX="404.0" layoutY="428.0" text="0" textFill="WHITE">
+                                      <font>
+                                          <Font size="30.0" />
+                                      </font></Label>
                               </children></AnchorPane>                  </content>
                   </Tab>
                   <Tab fx:id="yellowPlayer" text="Giocatore 4">
@@ -253,21 +282,14 @@
                                           <Image url="@../img/player/yellow_player/yellowplayer_neutral.png" />
                                       </image>
                                   </ImageView>
-                                  <ImageView fitHeight="406.0" fitWidth="588.0" layoutX="75.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
-                                      <image>
-                                          <Image url="@../img/boardcutright.png" />
-                                      </image>
-                                  </ImageView>
-                                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="655.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true" />
-                                  <ImageView fitHeight="405.0" fitWidth="46.0" layoutX="29.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
+                                  <ImageView fitHeight="416.0" fitWidth="43.0" layoutX="24.0" layoutY="112.0" pickOnBounds="true" preserveRatio="true">
                                       <image>
                                           <Image url="@../img/tilecut.png" />
                                       </image>
                                   </ImageView>
-                                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="628.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true" />
-                                  <ImageView fitHeight="411.0" fitWidth="597.0" layoutX="662.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
+                                  <ImageView fitHeight="418.0" fitWidth="1098.0" layoutX="79.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
                                       <image>
-                                          <Image url="@../img/boardviolaeblu2.png" />
+                                          <Image url="@../img/boardcomplete1.png" />
                                       </image>
                                   </ImageView>
                                   <Label fx:id="blackValuePl4" layoutX="50.0" layoutY="45.0" text="0" textFill="WHITE">
@@ -289,6 +311,22 @@
                                           <Font size="30.0" />
                                       </font>
                                   </Label>
+                                  <Label fx:id="moneyValuePl4" layoutX="128.0" layoutY="418.0" text="0" textFill="WHITE">
+                                      <font>
+                                          <Font size="30.0" />
+                                      </font></Label>
+                                  <Label fx:id="woodValuePl4" layoutX="222.0" layoutY="418.0" text="0" textFill="WHITE">
+                                      <font>
+                                          <Font size="30.0" />
+                                      </font></Label>
+                                  <Label fx:id="stoneValuePl4" layoutX="316.0" layoutY="418.0" text="0" textFill="WHITE">
+                                      <font>
+                                          <Font size="30.0" />
+                                      </font></Label>
+                                  <Label fx:id="servantValuePl4" layoutX="404.0" layoutY="428.0" text="0" textFill="WHITE">
+                                      <font>
+                                          <Font size="30.0" />
+                                      </font></Label>
                               </children></AnchorPane>                  </content>
                   </Tab>
               </tabs>

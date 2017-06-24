@@ -5,7 +5,10 @@ import it.polimi.ingsw.gc_12.card.CardDevelopment;
 import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.java_fx.CardFloorRepresentation;
 import it.polimi.ingsw.gc_12.java_fx.FamilyMemberRepresentation;
+import it.polimi.ingsw.gc_12.java_fx.ResourceRepresentation;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
+import it.polimi.ingsw.gc_12.resource.Resource;
+import it.polimi.ingsw.gc_12.resource.ResourceType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -33,7 +36,14 @@ public class MatchInstanceGUI extends MatchInstance {
 
 	private FamilyMemberRepresentation familyMemberRepresentation;
 
-	private MatchInstanceGUI() {}
+    //Observable and map for resources
+    private ObservableList<ResourceRepresentation> resourceBlueRepresentationObservableList = FXCollections.observableArrayList();
+    private ObservableList<ResourceRepresentation> resourceGreenRepresentationObservableList = FXCollections.observableArrayList();
+    private ObservableList<ResourceRepresentation> resourceRedRepresentationObservableList = FXCollections.observableArrayList();
+    private ObservableList<ResourceRepresentation> resourceYellowRepresentationObservableList = FXCollections.observableArrayList();
+    private Map<PlayerColor, ObservableList<ResourceRepresentation>> mapPlayerColorResourceRepresentation = new HashMap<>();
+
+    private MatchInstanceGUI() {}
 
 	public static MatchInstanceGUI instance() {
 		if(instance == null) instance = new MatchInstanceGUI();
@@ -45,6 +55,7 @@ public class MatchInstanceGUI extends MatchInstance {
 		super.init(match);
 		createFamilyMemberRepresentation(match);
 		createCardTowerFloorRepresentation(match);
+		createResourceRepresentation(match);
 		setChanged();
 		notifyObservers();
 	}
@@ -94,11 +105,27 @@ public class MatchInstanceGUI extends MatchInstance {
 			}
 		}
 	}
-
+    private void createResourceRepresentation(Match match){
+        mapPlayerColorResourceRepresentation.put(PlayerColor.BLUE, resourceBlueRepresentationObservableList);
+        mapPlayerColorResourceRepresentation.put(PlayerColor.GREEN, resourceGreenRepresentationObservableList);
+        mapPlayerColorResourceRepresentation.put(PlayerColor.RED, resourceRedRepresentationObservableList);
+        mapPlayerColorResourceRepresentation.put(PlayerColor.YELLOW, resourceYellowRepresentationObservableList);
+        Map<PlayerColor, Player> players = match.getPlayers();
+	    for(Player player : players.values()){
+            PlayerColor playerColor = player.getColor();
+            Map<ResourceType, Resource> resources = player.getResources();
+            ResourceRepresentation resourceRepresentation = new ResourceRepresentation(playerColor.toString(), resources.get(ResourceType.STONE).getValue(), resources.get(ResourceType.MONEY).getValue(), resources.get(ResourceType.SERVANT).getValue(), resources.get(ResourceType.WOOD).getValue(), resources.get(ResourceType.VICTORY_POINT).getValue(), resources.get(ResourceType.MILITARY_POINT).getValue(), resources.get(ResourceType.FAITH_POINT).getValue(), resources.get(ResourceType.COUNCIL_PRIVILEGE).getValue());
+            mapPlayerColorResourceRepresentation.get(playerColor).add(resourceRepresentation);
+        }
+    }
 	public Map<PlayerColor, ObservableList<FamilyMemberRepresentation>> getMapPlayerColorObservableLiseFMRepr() {
 		return mapFamilyMember;
 	}
 	public Map<CardType, ObservableList<CardFloorRepresentation>> getMapTypeCardFloorRepresentation() {
 		return mapTypeCardFloorRepresentation;
 	}
+
+    public Map<PlayerColor, ObservableList<ResourceRepresentation>> getMapPlayerColorResourceRepresentation() {
+        return mapPlayerColorResourceRepresentation;
+    }
 }
