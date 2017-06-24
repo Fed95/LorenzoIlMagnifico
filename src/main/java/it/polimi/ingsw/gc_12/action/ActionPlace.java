@@ -25,6 +25,7 @@ public abstract class ActionPlace extends Action {
 	protected Servant servant;
 	protected Occupiable occupiable;
 	protected boolean complete;
+	protected int multiplier;
 
 	public ActionPlace(Player player, FamilyMember familyMember, Occupiable occupiable, Servant servant, boolean complete) {
 		super(player);
@@ -64,8 +65,7 @@ public abstract class ActionPlace extends Action {
 		else {
 			Event event = new EventPlaceFamilyMember(player, occupiable, familyMember);
 
-			int multiplier = ((EventPlaceFamilyMember) event).getMultiplier();
-			int increment = (multiplier > 1 ? servant.getValue() / multiplier : servant.getValue());
+			int increment = (multiplier > 1 ? (servant.getValue() / multiplier) : servant.getValue());
 
 			try{
 				familyMember.setValue(familyMember.getValue() + increment);
@@ -77,6 +77,7 @@ public abstract class ActionPlace extends Action {
 				throw new IllegalStateException("ActionPlace the action cannot be performed even if it has been considered valid");
 			} finally {
 				familyMember.setValue(familyMember.getValue() - increment);
+				multiplier = 1; //TODO: CHECK THIS
 			}
 		}
 
@@ -125,6 +126,10 @@ public abstract class ActionPlace extends Action {
 		EventPlacementEnded event = new EventPlacementEnded(player);
 		match.getActionHandler().update(event);
 		match.notifyObserver(event);
+	}
+
+	public void setMultiplier(int multiplier) {
+		this.multiplier = multiplier;
 	}
 
 	protected abstract void setup(Match match);
