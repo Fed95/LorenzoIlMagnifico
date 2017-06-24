@@ -37,11 +37,6 @@ public class SpaceWorkZone implements Zone, Serializable {
         return spaceWorks;
     }
 
-    public void refresh() {
-        for(SpaceWork spaceWork : spaceWorks)
-            spaceWork.free();
-    }
-
     @Override
     public List<Occupiable> getOccupiables() {
         List<Occupiable> occupiables = new ArrayList<>();

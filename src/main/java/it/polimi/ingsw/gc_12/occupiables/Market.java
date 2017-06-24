@@ -12,21 +12,6 @@ public class Market implements Zone, Serializable{
 	private List<SpaceMarket> spaceMarkets = new ArrayList<>();
 	public static final int DEFAULT_SET_NUM = 4;
 
-	/*
-	public Market(int setNumber){
-		if(setNumber < 0){
-			throw new IllegalArgumentException();
-		for(int i = 0; i < setNumber; i++){
-			spaceMarkets.add(new SpaceMarket(i, 2, null));
-		}
-	}
-
-	
-	public Market(){
-		this(DEFAULT_SET_NUM);
-	}
-	*/
-
 	public List<SpaceMarket> getSpaceMarkets() {
 		return spaceMarkets;
 	}
@@ -34,11 +19,6 @@ public class Market implements Zone, Serializable{
 	public void setSpaceMarkets(List<SpaceMarket> spaceMarkets) {
 		this.spaceMarkets = spaceMarkets;
 	}
-
-    public void refresh() {
-		for(SpaceMarket spaceMarket : spaceMarkets)
-			spaceMarket.free();
-    }
 
 	@Override
 	public boolean canBeOccupiedBy(FamilyMember familyMember) {

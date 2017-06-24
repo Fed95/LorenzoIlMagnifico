@@ -89,6 +89,7 @@ public class Tower implements Zone, Serializable{
 	public void refresh(int period){
 		for(TowerFloor floor : floors)
 			floor.setCard(decks.get(period).pickCard());
+		deactivateMalus();
 	}
 
 	public void activateMalus(){

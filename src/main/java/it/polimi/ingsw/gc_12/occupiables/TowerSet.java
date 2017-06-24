@@ -37,10 +37,8 @@ public class TowerSet implements Serializable{
 	//Fills the towerfloors with new cards from the corresponding deck
 	//Deactivates malus if it has been activated during the turn
 	public void refresh(int period){
-		for(Tower tower : towers.values()){
+		for(Tower tower : towers.values())
 			tower.refresh(period);
-			tower.deactivateMalus();
-		}
 	}
 
 	public void setCards(CardDeckSet cardDeckSet) {

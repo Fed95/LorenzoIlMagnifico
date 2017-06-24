@@ -21,9 +21,8 @@ public class SpaceDie {
     }
 	
     public void rollDice(){
-		//call roll method for each die;
-		for(DieColor dieColor : DieColor.values()){
-    		dice.get(dieColor).roll();
+		for(Die die : dice.values()){
+    		die.roll();
     	}
 	}
     

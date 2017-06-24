@@ -59,11 +59,13 @@ public class Board implements Serializable{
 	public void refresh(int round, int period){
 		//Sets the players' order for the new round and prepares the board
 		trackTurnOrder.newRound();
+		spaceDie.rollDice();
+		for(Occupiable occupiable : getOccupiables()){
+			for (FamilyMember familyMember : occupiable.getOccupiers())
+				familyMember.setBusy(false);
+			occupiable.free();
+		}
 		towerSet.refresh(period);
-		market.refresh();
-		councilPalace.free();
-		for(SpaceWorkZone spaceWorkZone : spaceWorkZones.values())
-			spaceWorkZone.refresh();
 	}
 
 	public Map<WorkType, SpaceWorkZone> getSpaceWorkZones(){
