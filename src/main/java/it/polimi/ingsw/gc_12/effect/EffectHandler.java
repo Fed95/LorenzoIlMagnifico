@@ -25,7 +25,7 @@ public class EffectHandler {
 				}
 			}
 		}catch(ActionDeniedException e){
-			discardEffects(executedEffects, event);
+			discardEffects(match, executedEffects, event);
 			throw e;
 		}
 		return executedEffects;
@@ -35,11 +35,11 @@ public class EffectHandler {
 		return executeEffects(match, event, false);
 	}
 
-	public void discardEffects(List<Effect> executedEffects, Event event) {
+	public void discardEffects(Match match, List<Effect> executedEffects, Event event) {
 
 		//(Discards all effects executed by executeEffects)
 		for(Effect effect : executedEffects) {
-			effect.discard(event);
+			effect.discard(match, event);
 		}
 	}
 	

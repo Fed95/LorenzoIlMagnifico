@@ -16,7 +16,7 @@ public class EffectPlacementDenied extends Effect {
     }
 
     @Override
-    public void discard(Event event) {}
+    public void discard(Match match, Event event) {}
 
     @Override
     public String toString() {

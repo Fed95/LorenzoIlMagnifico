@@ -25,7 +25,7 @@ public class EffectServantsMultipier extends Effect {
     }
 
     @Override
-    public void discard(Event event) {
+    public void discard(Match match, Event event) {
 
     }
 }

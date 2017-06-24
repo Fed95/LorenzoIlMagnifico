@@ -21,7 +21,7 @@ public class EffectChangeFamilyMemberValue extends Effect{
 		applyChange(event, amount);
 	}
 
-	public void discard(Event event) {
+	public void discard(Match match, Event event) {
 		applyChange(event, -amount);
 	}
 

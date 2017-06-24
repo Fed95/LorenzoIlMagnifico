@@ -25,11 +25,11 @@ public class EffectDenyEffect extends Effect {
     public void execute(Match match, Event event, boolean validation) {
         this.match = match;
         for(Effect effect : findEffects(event))
-            effect.discard(event);
+            effect.discard(match, event);
     }
 
     @Override
-    public void discard(Event event) {
+    public void discard(Match match, Event event) {
         if(match == null)
             throw new IllegalStateException("EffectDenyEffect: trying to discard (execute) the effect when not executed (discarded)! confused? lol");
         for(Effect effect : findEffects(event)) {
@@ -40,7 +40,7 @@ public class EffectDenyEffect extends Effect {
             try {
                 executedEffects =  match.getEffectHandler().executeEffects(match, event);
             } catch (ActionDeniedException e) {
-                match.getEffectHandler().discardEffects(executedEffects, event);
+                match.getEffectHandler().discardEffects(match, executedEffects, event);
             }
         }
     }

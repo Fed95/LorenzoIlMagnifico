@@ -25,17 +25,18 @@ public class EffectReduceReceivedResource extends Effect {
        if(!(event instanceof EventReceiveResource))
            throw new IllegalStateException("EffectReduceReceivedResource: received an unexpected event!");
 
-       ResourceType type = ((EventReceiveResource) event).getResource().getType();
+       EventReceiveResource eventReceiveResource = (EventReceiveResource) event;
+       ResourceType type = eventReceiveResource.getResource().getType();
 
        //TODO: this is a redundant check
        if(this.resourceType.equals(type)) {
-           int newValue = ((EventReceiveResource) event).getResource().getValue() + value;
-           ((EventReceiveResource) event).getResource().setValue(newValue);
+           int newValue = eventReceiveResource.getResource().getValue() + value;
+           eventReceiveResource.getResource().setValue(newValue);
        }
     }
 
     @Override
-    public void discard(Event event) {
+    public void discard(Match match, Event event) {
 
     }
 }

@@ -5,6 +5,7 @@ import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.resource.Resource;
+import it.polimi.ingsw.gc_12.resource.ResourceExchange;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,15 +28,13 @@ public class EffectResourceForCards extends Effect{
         int numOfCards = player.getPersonalBoard().getCards(cardType).size();
         resource.setValue(resource.getValue()*numOfCards);
 
-        List<Resource> resources = new ArrayList<>();
-        resources.add(resource);
+        List<Resource> resources = applyResourceBonus(new ResourceExchange(null, resource), match, player);
         player.addResources(resources);
     }
 
     @Override
-    public void discard(Event event) {
-        List<Resource> resources = new ArrayList<>();
-        resources.add(resource);
+    public void discard(Match match, Event event) {
+        List<Resource> resources = applyResourceBonus(new ResourceExchange(null, resource), match, player);
         player.removeResources(resources);
     }
 

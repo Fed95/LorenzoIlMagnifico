@@ -45,7 +45,7 @@ public class EffectFreeAction extends Effect {
     }
 
     @Override
-    public void discard(Event event) {
+    public void discard(Match match, Event event) {
         //TODO: CHECK THIS
     }
 

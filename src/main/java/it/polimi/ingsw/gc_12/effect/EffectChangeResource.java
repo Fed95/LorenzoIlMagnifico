@@ -37,13 +37,7 @@ public class EffectChangeResource extends Effect {
 				for(ResourceExchange exchange : exchanges) {
 					player.removeResources(exchange.getCost());
 
-					List<Resource> newBonus  = new ArrayList<>();
-					for(Resource resource : exchange.getBonus()) {
-						EventReceiveResource e = new EventReceiveResource(player, resource);
-						match.getEffectHandler().executeEffects(match, e);
-						newBonus.add(e.getResource());
-					}
-
+					List<Resource> newBonus = applyResourceBonus(exchange, match, player);
 					player.addResources(newBonus);
 				}
 			}
@@ -71,13 +65,14 @@ public class EffectChangeResource extends Effect {
 
 	}
 	
-	public void discard(Event event) {
+	public void discard(Match match, Event event) {
 		Player player = event.getPlayer();
 
 		if(exchangeChosen == null) {
 			for(ResourceExchange exchange : exchanges) {
 				player.addResources(exchange.getCost());
-				player.removeResources(exchange.getBonus());
+				List<Resource> newBonus = applyResourceBonus(exchange, match, player);
+				player.removeResources(newBonus);
 			}
 		}
 		else {
