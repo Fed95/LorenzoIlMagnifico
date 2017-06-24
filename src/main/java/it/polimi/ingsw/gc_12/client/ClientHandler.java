@@ -1,12 +1,11 @@
 package it.polimi.ingsw.gc_12.client;
 
 
-import it.polimi.ingsw.gc_12.MatchInstance;
-import it.polimi.ingsw.gc_12.Player;
-import it.polimi.ingsw.gc_12.PlayerColor;
+import it.polimi.ingsw.gc_12.*;
 import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.mvc.View;
+import it.polimi.ingsw.gc_12.mvc.ViewCLI;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 
 import java.rmi.RemoteException;
@@ -44,7 +43,7 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 		if(event instanceof EventStartMatch) {
 			EventStartMatch eventStartMatch = (EventStartMatch) event;
 
-			match = MatchInstance.instance();
+			match = createMatchInstance();
 			match.init(eventStartMatch.getMatch());
 
 		}
@@ -146,5 +145,12 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 
 	public boolean isMyTurn() {
 		return myTurn;
+	}
+
+	protected MatchInstance createMatchInstance() {
+		if(view instanceof ViewCLI)
+			return MatchInstanceCLI.instance();
+		else
+			return MatchInstanceGUI.instance();
 	}
 }

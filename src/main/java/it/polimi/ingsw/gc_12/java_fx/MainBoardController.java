@@ -1,10 +1,7 @@
 package it.polimi.ingsw.gc_12.java_fx;
 
 
-import it.polimi.ingsw.gc_12.FamilyMemberColor;
-import it.polimi.ingsw.gc_12.MatchInstance;
-import it.polimi.ingsw.gc_12.Player;
-import it.polimi.ingsw.gc_12.PlayerColor;
+import it.polimi.ingsw.gc_12.*;
 import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.card.Card;
 import it.polimi.ingsw.gc_12.card.CardType;
@@ -96,7 +93,7 @@ public class MainBoardController implements Initializable, Observer {
     private ImageView lastFamClicked = null;
 
     private GUIAdapter adapter;
-    private MatchInstance match;
+    private MatchInstanceGUI match;
     private ClientHandler clientView;
 
     @FXML void familyClicked(MouseEvent event) {
@@ -135,7 +132,7 @@ public class MainBoardController implements Initializable, Observer {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        match = MatchInstance.instance();
+        match = MatchInstanceGUI.instance();
         match.addObserver(this);
 
         //creating List of label for each player

@@ -52,11 +52,12 @@ public class ClientRMI implements ClientSender { //Main class of the Clients usi
 				System.out.println("You are being registered on the server...");
 				// register the client view in the server side (to receive messages from the server)
 				serverStub.registerClient(rmiView);
-				/*view = new ViewCLI(this, rmiView);
-				view.start();*/
-				view = new MainBoard();
+				view = new ViewCLI(this, rmiView);
 				rmiView.setView(this, view);
- 				view.start();
+				/*view = new MainBoard();
+				rmiView.setView(this, view);*/
+
+				view.start();
 				break;
 			}
 			else {
