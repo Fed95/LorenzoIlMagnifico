@@ -33,6 +33,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
     private Board board;
 	private int roundNum;
 	private int turnCounter;
+	private int reportCounter;
 	private final int DEFAULT_FAMILY_MEMBERS = 4;
 	private transient EffectHandler effectHandler;
 	private transient ActionHandler actionHandler;
@@ -46,6 +47,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	public Match() {
 		this.roundNum = 1;
 		this.turnCounter = 1;
+		this.reportCounter = 0;
 		this.cards = new LoaderCard().get(this);
 		this.excommunicationTiles = new LoaderExcommmunications().get(this);
 		this.cardDeckSet = new CardDeckSet(cards, DEFAULT_ROUND_NUM / DEFAULT_PERIODS_LEN);
@@ -105,27 +107,45 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		newTurn();
 	}
 
+	public void vaticanReport(){
+		for(Player player : players.values()) {
+			Event event = new EventVaticanReport(player, excommunicationTiles.get(getPeriodNum()));
+			actionHandler.update(event);
+			notifyObserver(event);
+		}
+	}
+
+	public synchronized void countReport(){
+		reportCounter ++;
+		if(reportCounter == players.size()){
+			reportCounter = 0;
+			newTurn();
+		}
+	}
+
 	public void newRound(){
 		roundNum ++;
 		turnCounter = 1;
+		vaticanReport();
 		board.refresh(roundNum, getPeriodNum());
 		System.out.println("-------------------------------");
-		System.out.println("--------  ROUND " + roundNum + "    ----------");
+		System.out.println("----------  ROUND " + roundNum + "  ----------");
 		System.out.println("-------------------------------");
 	}
 
 	//Increments turn counter in TrackTurnOrder
 	public void newTurn() {
-		if(turnCounter == (players.size() * DEFAULT_FAMILY_MEMBERS))
+		if(turnCounter == (players.size() * DEFAULT_FAMILY_MEMBERS) + 1)
 			newRound();
-
-		System.out.println("Match: Starting new turn");
-		Player player = board.getTrackTurnOrder().newTurn();
-		System.out.println("Match: notifying EventStartTurn to ServerRMIView");
-		EventStartTurn event = new EventStartTurn(player);
-		actionHandler.update(event);
-		this.notifyObserver(event);
-		this.turnCounter ++;
+		else {
+			System.out.println("Match: Starting new turn");
+			Player player = board.getTrackTurnOrder().newTurn();
+			System.out.println("Match: notifying EventStartTurn to ServerRMIView");
+			EventStartTurn event = new EventStartTurn(player);
+			actionHandler.update(event);
+			this.notifyObserver(event);
+			this.turnCounter++;
+		}
 	}
 	
 	public void placeFamilyMember(Occupiable occupiable, FamilyMember familyMember) {

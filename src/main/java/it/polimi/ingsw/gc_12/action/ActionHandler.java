@@ -88,10 +88,21 @@ public class ActionHandler {
 		else if(event instanceof EventCouncilPrivilegeReceived){
 			event.setActions(getActionsCouncilPrivilege((EventCouncilPrivilegeReceived) event));
 		}
+		else if(event instanceof EventVaticanReport){
+			event.setActions(getActionsVaticanReport((EventVaticanReport) event));
+		}
 		else
 			events.removeLast();
 
 		saveActions(event);
+	}
+
+	private List<Action> getActionsVaticanReport(EventVaticanReport event) {
+		Player player = event.getPlayer();
+		List<Action> actions = new ArrayList<>();
+		actions.add(new ActionSupportChurch(player));
+		actions.add(new ActionReceiveExcommunication(player, event.getTile()));
+		return actions;
 	}
 
 	private List<Action> getActionsChooseExchange(EventChooseExchange event) {

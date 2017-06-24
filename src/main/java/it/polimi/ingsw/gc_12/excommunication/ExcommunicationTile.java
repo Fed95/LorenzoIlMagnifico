@@ -3,10 +3,11 @@ package it.polimi.ingsw.gc_12.excommunication;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExcommunicationTile implements EffectProvider {
+public class ExcommunicationTile implements EffectProvider, Serializable {
 
 	private final int id;
 	private int period;

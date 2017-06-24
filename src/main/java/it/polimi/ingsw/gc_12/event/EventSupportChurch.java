@@ -11,9 +11,11 @@ public class EventSupportChurch extends Event {
     public EventSupportChurch(Player player){
         super(player);
     }
+
     public EventSupportChurch(){
         super();
     }
+
     @Override
     public List<Object> getAttributes() {
         List<Object> attributes = new ArrayList<>();

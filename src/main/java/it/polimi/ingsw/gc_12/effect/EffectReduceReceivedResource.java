@@ -37,6 +37,10 @@ public class EffectReduceReceivedResource extends Effect {
 
     @Override
     public void discard(Match match, Event event) {
+    }
 
+    @Override
+    public String toString() {
+        return "For every " + resourceType + " resource you receive, its value will be changed by " + value;
     }
 }

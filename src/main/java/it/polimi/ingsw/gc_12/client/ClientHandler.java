@@ -47,7 +47,7 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 			match.init(eventStartMatch.getMatch());
 
 		}
-		else if(event instanceof EventStartTurn) {
+		else if(event instanceof EventStartTurn || event instanceof EventVaticanReport) {
 			myTurn = (color == event.getPlayer().getColor());
 		}
 		if(event.getPlayer() != null && myTurn) {
