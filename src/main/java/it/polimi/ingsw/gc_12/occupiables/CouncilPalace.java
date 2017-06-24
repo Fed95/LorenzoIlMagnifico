@@ -16,8 +16,8 @@ import java.util.List;
 
 public class CouncilPalace extends Occupiable implements Zone, Serializable {
 
-    public CouncilPalace(int requiredValue, List<Effect> effects){
-        super(requiredValue, effects);
+    public CouncilPalace(int requiredValue){
+        super(requiredValue, new ArrayList<>());
         Event event = new EventPlaceFamilyMember(new ArrayList<>(Collections.singletonList(this)));
         ResourceExchange resourceExchange = new ResourceExchange(new ArrayList<>(), new ArrayList<>(Collections.singletonList(new CouncilPrivilege(1))));
         this.effects.add(new EffectChangeResource(event, resourceExchange, false));

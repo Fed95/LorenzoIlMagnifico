@@ -4,6 +4,7 @@ import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.*;
+import it.polimi.ingsw.gc_12.json.loader.LoaderConfig;
 import it.polimi.ingsw.gc_12.occupiables.*;
 import it.polimi.ingsw.gc_12.resource.*;
 
@@ -20,6 +21,7 @@ public class ActionHandler {
 	private int multiplier;
 	private boolean hasPlaced = false;
 	private int councilPrivileges = 0;
+	private List<List<Resource>> councilPrivilegeResources = new ArrayList<>();
 
 	public ActionHandler(Match match) {
 		this.match = match;
@@ -243,12 +245,14 @@ public class ActionHandler {
 	private List<Action> getActionsCouncilPrivilege(EventCouncilPrivilegeReceived event) {
 		Player player = event.getPlayer();
 		List<Action> actions = new ArrayList<>();
+		if(councilPrivilegeResources.size() == 0)
+			this.councilPrivilegeResources = new LoaderConfig().get(match).get(match.getPlayers().size()).getCouncilPrivilegeResources();
 		councilPrivileges = event.getCouncilPrivilege().getValue();
 
-		actions.add(new ActionChooseExchange(player, new ResourceExchange(new CouncilPrivilege(1), new Money(5))));
-		actions.add(new ActionChooseExchange(player, new ResourceExchange(new CouncilPrivilege(1), new Servant(5))));
-
-
+		for(List<Resource> resources: councilPrivilegeResources) {
+			ResourceExchange resourceExchange = new ResourceExchange(new ArrayList<>(Collections.singletonList(new CouncilPrivilege(1))), resources);
+			actions.add(new ActionChooseExchange(player, resourceExchange));
+		}
 		return actions;
 	}
 }

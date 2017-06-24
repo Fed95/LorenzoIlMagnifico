@@ -7,6 +7,7 @@ import java.util.List;
 public class Config {
 
 	List<List<Resource>> initialResources;
+	List<List<Resource>> councilPrivilegeResources;
 	private int playersNum;
 	private int spaceMarketNum;
 	private boolean spaceWorkMultiple;
@@ -36,5 +37,13 @@ public class Config {
 
 	public List<List<Resource>> getInitialResources() {
 		return initialResources;
+	}
+
+	public void setInitialResources(List<List<Resource>> initialResources) {
+		this.initialResources = initialResources;
+	}
+
+	public List<List<Resource>> getCouncilPrivilegeResources() {
+		return councilPrivilegeResources;
 	}
 }

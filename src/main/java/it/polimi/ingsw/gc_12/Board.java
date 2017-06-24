@@ -1,9 +1,12 @@
 package it.polimi.ingsw.gc_12;
 
 import it.polimi.ingsw.gc_12.dice.SpaceDie;
+import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationSpace;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
+import it.polimi.ingsw.gc_12.json.loader.LoaderConfig;
 import it.polimi.ingsw.gc_12.occupiables.*;
+import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.track.TrackFaithPoints;
 import it.polimi.ingsw.gc_12.track.TrackMilitaryPoints;
 import it.polimi.ingsw.gc_12.track.TrackTurnOrder;
@@ -32,7 +35,7 @@ public class Board implements Serializable{
 
 	public Board(List<Player> players) {
 		this.spaceDie = SpaceDie.instance();
-		this.councilPalace = new CouncilPalace(1, null);
+		this.councilPalace = new CouncilPalace(1);
 		this.trackTurnOrder = new TrackTurnOrder(players, councilPalace);
 		this.trackMilitaryPoints = new TrackMilitaryPoints();
 		this.victroyPointsTrack = new TrackVictoryPoints();

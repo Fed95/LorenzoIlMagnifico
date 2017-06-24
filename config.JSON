@@ -70,6 +70,37 @@
         "value": 3
       }]
     ],
+    "councilPrivilegeResources": [
+      [{
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 1
+      }, {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 1
+      }],
+      [{
+        "resourceType": "Servant",
+        "type": "SERVANT",
+        "value": 2
+      }],
+      [{
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 2
+      }],
+      [{
+        "resourceType": "MilitaryPoint",
+        "type": "MILITARY_POINT",
+        "value": 2
+      }],
+      [{
+        "resourceType": "FaithPoint",
+        "type": "FAITH_POINT",
+        "value": 1
+      }]
+    ],
     "playersNum": 2,
     "spaceMarketNum": 2,
     "spaceWorkMultiple": false
@@ -145,6 +176,37 @@
         "value": 3
       }]
     ],
+    "councilPrivilegeResources": [
+      [{
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 1
+      }, {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 1
+      }],
+      [{
+        "resourceType": "Servant",
+        "type": "SERVANT",
+        "value": 2
+      }],
+      [{
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 2
+      }],
+      [{
+        "resourceType": "MilitaryPoint",
+        "type": "MILITARY_POINT",
+        "value": 2
+      }],
+      [{
+        "resourceType": "FaithPoint",
+        "type": "FAITH_POINT",
+        "value": 1
+      }]
+    ],
     "playersNum": 3,
     "spaceMarketNum": 2,
     "spaceWorkMultiple": true
@@ -218,6 +280,37 @@
         "resourceType": "Servant",
         "type": "SERVANT",
         "value": 3
+      }]
+    ],
+    "councilPrivilegeResources": [
+      [{
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 1
+      }, {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 1
+      }],
+      [{
+        "resourceType": "Servant",
+        "type": "SERVANT",
+        "value": 2
+      }],
+      [{
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 2
+      }],
+      [{
+        "resourceType": "MilitaryPoint",
+        "type": "MILITARY_POINT",
+        "value": 2
+      }],
+      [{
+        "resourceType": "FaithPoint",
+        "type": "FAITH_POINT",
+        "value": 1
       }]
     ],
     "playersNum": 4,
