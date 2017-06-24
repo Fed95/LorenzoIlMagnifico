@@ -146,7 +146,17 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		}
 	}
 
+	public void addResources(Player player, List<Resource> resources) {
+		for(Resource resource: resources) {
+			if(resource instanceof CouncilPrivilege) {
+				Event event = new EventCouncilPrivilegeReceived(player, (CouncilPrivilege) resource);
+				actionHandler.update(event);
+				notifyObserver(event);
+			}
+		}
 
+		player.addResources(resources);
+	}
 
 	public void setPlayers(Map<PlayerColor, Player> players) {
 		this.players = players;

@@ -5,9 +5,7 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.occupiables.*;
-import it.polimi.ingsw.gc_12.resource.ResourceExchange;
-import it.polimi.ingsw.gc_12.resource.ResourceType;
-import it.polimi.ingsw.gc_12.resource.Servant;
+import it.polimi.ingsw.gc_12.resource.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,6 +19,7 @@ public class ActionHandler {
 	private int offset;
 	private int multiplier;
 	private boolean hasPlaced = false;
+	private int councilPrivileges = 0;
 
 	public ActionHandler(Match match) {
 		this.match = match;
@@ -31,10 +30,18 @@ public class ActionHandler {
 	public Action getAvailableAction(int input) {
 		int inputReal = (input - offset * multiplier > 0 ? input - offset*multiplier : 0);
 		Action action = actions.get(inputReal);
+
 		if(events.size() > 0) {
-			events.removeFirst();
-			if(events.size() > 0)
-				actions = events.getFirst().getActions();
+			if(councilPrivileges <= 1) {
+				events.removeFirst();
+				if(events.size() > 0)
+					actions = events.getFirst().getActions();
+			}
+			else{
+				councilPrivileges--;
+				actions.remove(inputReal);
+			}
+
 		}
 		offset = 0;
 		multiplier = 1;
@@ -75,6 +82,9 @@ public class ActionHandler {
 		}
 		else if(event instanceof EventChooseExchange){
 			event.setActions(getActionsChooseExchange((EventChooseExchange) event));
+		}
+		else if(event instanceof EventCouncilPrivilegeReceived){
+			event.setActions(getActionsCouncilPrivilege((EventCouncilPrivilegeReceived) event));
 		}
 		else
 			events.removeLast();
@@ -227,6 +237,18 @@ public class ActionHandler {
 				actions.add(new ActionPlaceOnMarket(player, event.getFamilyMember(), spaceMarket));
 		}
 		actions.add(new DiscardAction(player));
+		return actions;
+	}
+
+	private List<Action> getActionsCouncilPrivilege(EventCouncilPrivilegeReceived event) {
+		Player player = event.getPlayer();
+		List<Action> actions = new ArrayList<>();
+		councilPrivileges = event.getCouncilPrivilege().getValue();
+
+		actions.add(new ActionChooseExchange(player, new ResourceExchange(new CouncilPrivilege(1), new Money(5))));
+		actions.add(new ActionChooseExchange(player, new ResourceExchange(new CouncilPrivilege(1), new Servant(5))));
+
+
 		return actions;
 	}
 }

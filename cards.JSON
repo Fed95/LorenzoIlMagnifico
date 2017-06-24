@@ -4788,17 +4788,7 @@
               {
                 "resourceType": "CouncilPrivilege",
                 "type": "COUNCIL_PRIVILEGE",
-                "value": 1
-              },
-              {
-                "resourceType": "CouncilPrivilege",
-                "type": "COUNCIL_PRIVILEGE",
-                "value": 1
-              },
-              {
-                "resourceType": "CouncilPrivilege",
-                "type": "COUNCIL_PRIVILEGE",
-                "value": 1
+                "value": 3
               }
             ]
           }
@@ -5352,12 +5342,7 @@
               {
                 "resourceType": "CouncilPrivilege",
                 "type": "COUNCIL_PRIVILEGE",
-                "value": 1
-              },
-              {
-                "resourceType": "CouncilPrivilege",
-                "type": "COUNCIL_PRIVILEGE",
-                "value": 1
+                "value": 2
               }
             ]
           }

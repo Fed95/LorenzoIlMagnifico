@@ -2,8 +2,10 @@ package it.polimi.ingsw.gc_12.action;
 
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.event.EventCouncilPrivilegeReceived;
 import it.polimi.ingsw.gc_12.event.EventReceiveResource;
 import it.polimi.ingsw.gc_12.exceptions.ActionDeniedException;
+import it.polimi.ingsw.gc_12.resource.CouncilPrivilege;
 import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.resource.ResourceExchange;
 
@@ -15,9 +17,18 @@ public class ActionChooseExchange extends Action {
 
     private ResourceExchange exchange;
 
+    private int remainingCouncilPrivileges;
+    private List<Integer> choices;
+
     public ActionChooseExchange(Player player, ResourceExchange exchange) {
         super(player);
         this.exchange = exchange;
+    }
+
+    public ActionChooseExchange(Player player, ResourceExchange exchange, int remainingCouncilPrivileges, List<Integer> choices) {
+        this(player, exchange);
+        this.remainingCouncilPrivileges = remainingCouncilPrivileges;
+        this.choices = choices;
     }
 
     @Override
@@ -39,7 +50,9 @@ public class ActionChooseExchange extends Action {
             }
             newBonus.add(e.getResource());
         }
-        player.addResources(newBonus);
+        match.addResources(player, newBonus);
+        /*if(remainingCouncilPrivileges != 0)
+            new EventCouncilPrivilegeReceived(player, new CouncilPrivilege(remainingCouncilPrivileges))*/
     }
 
     @Override

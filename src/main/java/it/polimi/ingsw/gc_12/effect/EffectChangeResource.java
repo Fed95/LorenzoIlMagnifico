@@ -38,7 +38,7 @@ public class EffectChangeResource extends Effect {
 					player.removeResources(exchange.getCost());
 
 					List<Resource> newBonus = applyResourceBonus(exchange, match, player);
-					player.addResources(newBonus);
+					match.addResources(player, newBonus);
 				}
 			}
 			else {
@@ -70,13 +70,13 @@ public class EffectChangeResource extends Effect {
 
 		if(exchangeChosen == null) {
 			for(ResourceExchange exchange : exchanges) {
-				player.addResources(exchange.getCost());
+				match.addResources(player, exchange.getCost());
 				List<Resource> newBonus = applyResourceBonus(exchange, match, player);
 				player.removeResources(newBonus);
 			}
 		}
 		else {
-			player.addResources(exchangeChosen.getCost());
+			match.addResources(player, exchangeChosen.getCost());
 			player.removeResources(exchangeChosen.getCost());
 		}
 	}

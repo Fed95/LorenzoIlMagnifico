@@ -53,10 +53,9 @@ public class ClientRMI implements ClientSender { //Main class of the Clients usi
 				// register the client view in the server side (to receive messages from the server)
 				serverStub.registerClient(rmiView);
 				view = new ViewCLI(this, rmiView);
-				rmiView.setView(this, view);
-				/*view = new MainBoard();
-				rmiView.setView(this, view);*/
+				/*view = new MainBoard();*/
 
+				rmiView.setView(this, view);
 				view.start();
 				break;
 			}

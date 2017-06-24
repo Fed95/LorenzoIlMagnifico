@@ -29,7 +29,7 @@ public class EffectResourceForCards extends Effect{
         resource.setValue(resource.getValue()*numOfCards);
 
         List<Resource> resources = applyResourceBonus(new ResourceExchange(null, resource), match, player);
-        player.addResources(resources);
+        match.addResources(player, resources);
     }
 
     @Override

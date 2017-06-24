@@ -3,6 +3,9 @@ package it.polimi.ingsw.gc_12.mvc;
 import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.ClientSender;
+import it.polimi.ingsw.gc_12.event.Event;
+import it.polimi.ingsw.gc_12.event.EventCouncilPrivilegeReceived;
+import it.polimi.ingsw.gc_12.resource.CouncilPrivilege;
 
 import java.io.IOException;
 import java.util.List;
@@ -52,7 +55,19 @@ public class ViewCLI extends Observable implements View {
 				try {
 					adapter.sendAction(inputInt);
 					clientHandler.setOffset(0);
-					clientHandler.getEvents().removeFirst();
+					Event event = clientHandler.getEvents().getFirst();
+					if(event instanceof EventCouncilPrivilegeReceived) {
+						EventCouncilPrivilegeReceived eventCP = (EventCouncilPrivilegeReceived) event;
+						CouncilPrivilege councilPrivilege = eventCP.getCouncilPrivilege();
+						if(councilPrivilege.getValue() > 1) {
+							councilPrivilege.setValue(councilPrivilege.getValue()-1);
+							actions.remove(inputInt);
+						}
+						else
+							clientHandler.getEvents().removeFirst();
+					}
+					else
+						clientHandler.getEvents().removeFirst();
 					clientHandler.handleEvent();
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -61,4 +76,5 @@ public class ViewCLI extends Observable implements View {
 
 		}
 	}
+
 }
