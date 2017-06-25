@@ -34,7 +34,7 @@ public class Board implements Serializable{
 	private transient List<Integer> trackFaithPointsValues = new ArrayList<>();
 
 	public Board(List<Player> players) {
-		this.spaceDie = SpaceDie.instance();
+		this.spaceDie = new SpaceDie();
 		this.councilPalace = new CouncilPalace(1);
 		this.trackTurnOrder = new TrackTurnOrder(players, councilPalace);
 		this.trackMilitaryPoints = new TrackMilitaryPoints();
@@ -78,8 +78,7 @@ public class Board implements Serializable{
 	public List<SpaceWork> getSpaceWorks(){
 		List<SpaceWork> spaceWorks = new ArrayList<>();
 		for (SpaceWorkZone spaceWorkZone : spaceWorkZones.values()){
-			for(SpaceWork spaceWork : spaceWorkZone.getSpaceWorks())
-				spaceWorks.add(spaceWork);
+			spaceWorks.addAll(spaceWorkZone.getSpaceWorks());
 		}
 		return spaceWorks;
 	}

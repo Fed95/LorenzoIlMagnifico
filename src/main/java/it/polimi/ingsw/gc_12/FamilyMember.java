@@ -21,23 +21,6 @@ public class FamilyMember implements Observer, Serializable {
 		this.color = color;
 		this.value = value;
 		this.busy = false;
-		try {
-			if(color != null && value == 0) {
-				DieColor dieColor = DieColor.valueOf(color.name());
-				// Check if there is a die with the same color of the family member's one
-				// (exclude neutral family member)
-				Die die = SpaceDie.instance().getDie(dieColor);
-				if(die != null) {
-					this.value = die.getValue();
-
-					// To update the family member's value when the dice have been rolled
-					die.addObserver(this);
-				}
-			}
-
-		}catch (IllegalArgumentException e) {
-			this.value = 0;
-		}	
 	}
 
 	public FamilyMember(Player owner, FamilyMemberColor color) {
@@ -95,7 +78,7 @@ public class FamilyMember implements Observer, Serializable {
 	//Receive notification that the dice have been rolled and update value
 	@Override
 	public void update(Observable o, Object value) {
-		this.setValue((int) value);		
+		this.value = (int)value;
 	}
 
 	public Player getOwner() {

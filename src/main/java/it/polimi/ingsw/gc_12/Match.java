@@ -45,7 +45,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	private int numReady;
 
 	public Match() {
-		this.roundNum = 1;
+		this.roundNum = 0;
 		this.turnCounter = 1;
 		this.reportCounter = 0;
 		this.cards = new LoaderCard().get(this);
@@ -91,20 +91,19 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 			Player player = playerList.get(i);
 			// TODO: remove the comment before the deadline
 			// It has been commented to have a lot of resources for testing
-			/*List<Resource> resources = config.getInitialResources().get(i);
-			for(Resource resource: resources) {
-				player.setResourceValue(resource.getType(), resource.getValue());
-			}*/
-			player.init();
+			// player.setInitialResources(config.getInitialResources().get(i));
+			player.init(board.getSpaceDie());
 			player.getPersonalBoard().setCardsSpaces(new LoaderCardsSpace().get(this));
 		}
 	}
 
 	public void start() {
 		this.gameState = State.RUNNING;
+		newRound();
+		newTurn();
 		System.out.println("Match: notifying EventStartMatch");
 		this.notifyObserver(new EventStartMatch(this));
-		newTurn();
+
 	}
 
 	public void vaticanReport(){
@@ -124,7 +123,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	}
 
 	public void newRound(){
-		roundNum ++;
+		roundNum++;
 		turnCounter = 1;
 		vaticanReport();
 		board.refresh(roundNum, getPeriodNum());

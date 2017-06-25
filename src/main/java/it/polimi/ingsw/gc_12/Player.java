@@ -1,6 +1,9 @@
 package it.polimi.ingsw.gc_12;
 
 import it.polimi.ingsw.gc_12.card.Card;
+import it.polimi.ingsw.gc_12.dice.Die;
+import it.polimi.ingsw.gc_12.dice.DieColor;
+import it.polimi.ingsw.gc_12.dice.SpaceDie;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
 import it.polimi.ingsw.gc_12.personal_board.PersonalBoard;
 import it.polimi.ingsw.gc_12.resource.Resource;
@@ -47,10 +50,27 @@ public class Player implements Serializable{
 		this.personalBoard = personalBoard;
 	}
 
-	public void init() {
+	public void init(SpaceDie spaceDie) {
 		for(FamilyMemberColor color : FamilyMemberColor.values()) {
-			familymembers.put(color, new FamilyMember(this, color));
+			FamilyMember familyMember = new FamilyMember(this, color);
+			familymembers.put(color, familyMember);
+			// Check if there is a die with the same color of the family member's one
+			// (exclude neutral family member)
+			try{
+				DieColor dieColor = DieColor.valueOf(color.name());
+				Die die = spaceDie.getDie(dieColor);
+				die.addObserver(familyMember);
+			}
+			catch (IllegalArgumentException ignored) {}
+
 		}
+	}
+
+	public void setInitialResources(List<Resource> resources) {
+		for(Resource resource: resources) {
+			setResourceValue(resource.getType(), resource.getValue());
+		}
+
 	}
 
 	private void addResource(Resource resource) {
