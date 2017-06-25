@@ -64,8 +64,6 @@ public class Board implements Serializable{
 		trackTurnOrder.newRound();
 		spaceDie.rollDice();
 		for(Occupiable occupiable : getOccupiables()){
-			for (FamilyMember familyMember : occupiable.getOccupiers())
-				familyMember.setBusy(false);
 			occupiable.free();
 		}
 		towerSet.refresh(period);

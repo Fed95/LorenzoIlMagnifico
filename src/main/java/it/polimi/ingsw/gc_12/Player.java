@@ -122,6 +122,12 @@ public class Player implements Serializable{
 		return resources;
 	}
 
+	public void resetFamilyMembers() {
+		for(FamilyMember familyMember: familymembers.values()) {
+			familyMember.setBusy(false);
+		}
+	}
+
 	public String getName() {
 		return name;
 	}

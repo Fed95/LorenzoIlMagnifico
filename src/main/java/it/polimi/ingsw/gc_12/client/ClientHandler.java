@@ -45,7 +45,6 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 
 			match = createMatchInstance();
 			match.init(eventStartMatch.getMatch());
-
 		}
 		else if(event instanceof EventStartTurn || event instanceof EventVaticanReport) {
 			myTurn = (color == event.getPlayer().getColor());
@@ -75,8 +74,12 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 				handleEvent();
 			}
 		}
-		else
+		else {
 			events.removeFirst();
+			if(events.size() > 0)
+				handleEvent();
+		}
+
 	}
 
 	private void printServantsChoice(EventServantsRequested event) {

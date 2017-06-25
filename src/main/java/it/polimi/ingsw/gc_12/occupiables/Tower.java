@@ -111,7 +111,6 @@ public class Tower implements Zone, Serializable{
 
 	public void setDecks(Map<Integer, CardDeck> decks) {
 		this.decks = decks;
-		refresh(1);
 	}
 
 	public boolean isTaken() {

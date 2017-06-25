@@ -44,8 +44,6 @@ public abstract class Occupiable implements EffectProvider, Serializable {
 	}
 
 	public void free(){
-		for(FamilyMember occupier : occupiers)
-			occupier.setBusy(false);
 		this.occupiers.clear();
 	}
 
