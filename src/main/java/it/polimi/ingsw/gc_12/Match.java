@@ -20,6 +20,7 @@ import it.polimi.ingsw.gc_12.server.model.State;
 import it.polimi.ingsw.gc_12.server.observer.Observable;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -111,8 +112,10 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 
 	//Increments turn counter in TrackTurnOrder
 	public void newTurn() {
-		if(turnCounter == (players.size() * DEFAULT_FAMILY_MEMBERS)) {
-			newRound();
+		if(turnCounter == (players.size() /* * DEFAULT_FAMILY_MEMBERS*/)) {
+			boolean stop = newRound();
+			if(stop)
+				return;
 		}
 
 		System.out.println("Match: Starting new turn");
@@ -123,7 +126,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		this.turnCounter++;
 	}
 
-	private void newRound(){
+	private boolean newRound(){
 		if(roundNum != 0 && roundNum%2 == 0) {
 			endPeriod();
 			newPeriod();
@@ -133,6 +136,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		resetFamilyMembers();
 		board.refresh(roundNum, getPeriodNum());
 		this.notifyObserver(new EventStartRound(roundNum));
+		return !(roundNum != 0 && roundNum % 2 == 0);
 	}
 
 	private void resetFamilyMembers() {
@@ -142,19 +146,17 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	}
 
 	private void endPeriod() {
-		vaticanReport();
+		vaticanReport(board.getTrackTurnOrder().getOrderedPlayers());
 	}
 
 	private void newPeriod() {
 		this.notifyObserver(new EventStartPeriod());
 	}
 
-	private void vaticanReport(){
-		for(Player player : players.values()) {
-			Event event = new EventVaticanReport(player, excommunicationTiles.get(getPeriodNum()));
-			actionHandler.update(event);
-			notifyObserver(event);
-		}
+	public void vaticanReport(List<Player> playerList){
+		Event event = new EventVaticanReport(playerList.get(0), excommunicationTiles.get(getPeriodNum()), playerList);
+		actionHandler.update(event);
+		notifyObserver(event);
 	}
 
 	public synchronized void countReport(){

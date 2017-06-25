@@ -8,14 +8,24 @@ import java.util.List;
 public class EventVaticanReport extends Event {
 
     private ExcommunicationTile tile;
+    private List<Player> players;
 
-    public EventVaticanReport(Player player, ExcommunicationTile tile) {
+    public EventVaticanReport(Player player, ExcommunicationTile tile, List<Player> players) {
         super(player);
         this.tile = tile;
+        this.players = players;
     }
 
     public ExcommunicationTile getTile() {
         return tile;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
     }
 
     @Override

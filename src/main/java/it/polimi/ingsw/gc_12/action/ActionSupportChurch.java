@@ -2,7 +2,11 @@ package it.polimi.ingsw.gc_12.action;
 
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.event.Event;
+import it.polimi.ingsw.gc_12.event.EventVaticanReport;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
+
+import java.util.List;
 
 public class ActionSupportChurch extends Action {
 
@@ -19,7 +23,12 @@ public class ActionSupportChurch extends Action {
     public void start(Match match) {
         player.setResourceValue(ResourceType.FAITH_POINT, 0);
         //TODO: IMPLEMENT VICTORY POINTS
-        match.countReport();
+        List<Player> players = match.getActionHandler().getPlayers();
+        if(players.size() > 0) {
+            match.vaticanReport(players);
+        }
+        else
+            match.newTurn();
     }
 
     @Override

@@ -2,7 +2,11 @@ package it.polimi.ingsw.gc_12.action;
 
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.event.Event;
+import it.polimi.ingsw.gc_12.event.EventVaticanReport;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
+
+import java.util.List;
 
 /**
  * Created by feder on 2017-06-24.
@@ -24,7 +28,12 @@ public class ActionReceiveExcommunication extends Action {
     @Override
     public void start(Match match) {
         player.getExcommunications().add(tile);
-        match.countReport();
+        List<Player> players = match.getActionHandler().getPlayers();
+        if(players.size() > 0) {
+            match.vaticanReport(players);
+        }
+        else
+            match.newTurn();
     }
 
     @Override

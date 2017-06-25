@@ -44,6 +44,10 @@ public class TrackTurnOrder implements Serializable{
 		return turnOrder.get(turn);
 	}
 
+	public List<Player> getOrderedPlayers() {
+		return turnOrder;
+	}
+
 	public Player newTurn() {
 		turn++;
 		if (turn == turnOrder.size())

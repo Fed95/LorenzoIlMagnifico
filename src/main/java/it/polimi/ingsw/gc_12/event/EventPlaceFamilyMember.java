@@ -95,7 +95,6 @@ public class EventPlaceFamilyMember extends Event{
             return true;
         //Compares class
         if (!super.equals(obj)) {
-            System.out.println("classes don't match");
             return false;
         }
         EventPlaceFamilyMember that = (EventPlaceFamilyMember) obj;

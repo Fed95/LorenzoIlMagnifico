@@ -35,6 +35,8 @@ public abstract class Effect implements Serializable {
 	protected List<Resource> applyResourceBonus(ResourceExchange exchange, Match match, Player player) {
 		List<Resource> newBonus  = new ArrayList<>();
 		for(Resource resource : exchange.getBonus()) {
+			if(resource == null)
+				continue;
 			EventReceiveResource e = new EventReceiveResource(player, resource);
 			try {
 				match.getEffectHandler().executeEffects(match, e);

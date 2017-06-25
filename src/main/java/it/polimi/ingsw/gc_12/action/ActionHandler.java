@@ -22,6 +22,7 @@ public class ActionHandler {
 	private boolean hasPlaced = false;
 	private int councilPrivileges = 0;
 	private List<List<Resource>> councilPrivilegeResources = new ArrayList<>();
+	private List<Player> players;
 
 	public ActionHandler(Match match) {
 		this.match = match;
@@ -102,6 +103,8 @@ public class ActionHandler {
 		List<Action> actions = new ArrayList<>();
 		actions.add(new ActionSupportChurch(player));
 		actions.add(new ActionReceiveExcommunication(player, event.getTile()));
+		players = new ArrayList<>(event.getPlayers().subList(1, event.getPlayers().size()));
+		event.setPlayers(players);
 		return actions;
 	}
 
@@ -265,5 +268,9 @@ public class ActionHandler {
 			actions.add(new ActionChooseExchange(player, resourceExchange));
 		}
 		return actions;
+	}
+
+	public List<Player> getPlayers() {
+		return players;
 	}
 }
