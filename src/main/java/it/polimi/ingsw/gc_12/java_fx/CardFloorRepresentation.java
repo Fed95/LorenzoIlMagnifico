@@ -18,13 +18,17 @@ public class CardFloorRepresentation  {
     private SimpleIntegerProperty floorNumber;
     private SimpleObjectProperty<Image> path;
     private SimpleObjectProperty<Paint> pathWhenTaken;//da settare con l'immgine del familymember quando arriva event e il floor e' preso
+
+
     private SimpleBooleanProperty taken;
 
     public CardFloorRepresentation(String url ,int floor, Boolean taken) {
         this.floorNumber = new SimpleIntegerProperty(floor);
         this.path = new SimpleObjectProperty<Image>();
         this.taken = new SimpleBooleanProperty(taken);
+
         Image image = new Image(url);
+
         path.set(image);
         Paint paint = new Color(0.11,0.11,0.11,0);
         this.pathWhenTaken = new SimpleObjectProperty<Paint>(this,"try", paint);

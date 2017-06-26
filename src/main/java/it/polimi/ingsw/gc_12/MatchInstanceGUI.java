@@ -91,20 +91,16 @@ public class MatchInstanceGUI extends MatchInstance {
 		mapTypeCardFloorRepresentation.put(CardType.BUILDING, cardFloorBuildingRepresentation);
 		mapTypeCardFloorRepresentation.put(CardType.CHARACTER, cardFloorCharactherRepresentation);
 		mapTypeCardFloorRepresentation.put(CardType.VENTURE, cardFloorVentureRepresentation);
-		//prendere le carte divise nei 4 piani
 		for(CardType cardType : CardType.values()){
 			List<TowerFloor> towerFloors = match.getBoard().getTowerSet().getTower(cardType).getFloors();
 			for (TowerFloor towerFloor : towerFloors){
-				//prendi id carta e metterlo nel path creando una nuova card floor aggiungerl poi alla mappa
 				int floor = towerFloor.getFloorNum();
-				CardDevelopment cardonthefloor = towerFloor.getCard();
-				int cardid = cardonthefloor.getId();
                 List<FamilyMember> occupiers = towerFloor.getOccupiers();
                 Boolean taken = true;
                 if(occupiers == null){
                     taken = false;
                 }
-				String path = "img/Card/card_"+cardid+".png";
+				String path = "img/Card/transparentCard.png";//setting trasparent card because the cards arrive with eventStarTurn
 				CardFloorRepresentation cardFloorRepresentation = new CardFloorRepresentation(path, floor, taken);
 				mapTypeCardFloorRepresentation.get(cardType).add(cardFloorRepresentation);
 			}
