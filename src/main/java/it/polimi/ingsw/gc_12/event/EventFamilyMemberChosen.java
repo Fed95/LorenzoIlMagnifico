@@ -2,7 +2,9 @@ package it.polimi.ingsw.gc_12.event;
 
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
+import it.polimi.ingsw.gc_12.occupiables.Tower;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,16 +31,22 @@ public class EventFamilyMemberChosen extends Event {
 	}
 
 	@Override
+	public void executeClientSide(ClientHandler client) {
+		for(Tower tower: client.getMatch().getBoard().getTowerSet().getTowers().values()) {
+			System.out.println(tower);
+		}
+	}
+
+	@Override
 	public List<Object> getAttributes() {
 		List<Object> attributes = new ArrayList<>();
 		attributes.add(familyMember);
 		return attributes;
 	}
-	
+
 	public FamilyMember getFamilyMember() {
 		return familyMember;
 	}
-
 
 	@Override
 	public String toString() {

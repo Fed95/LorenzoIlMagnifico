@@ -45,6 +45,7 @@ public class ClientSocket {
 				System.out.println("Creation of the view..");
 
 				view = new ViewCLI(clientOut, clientIn);
+				clientIn.setView(view);
 				view.start();
 				break;
 			}

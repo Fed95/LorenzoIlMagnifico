@@ -135,7 +135,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		turnCounter = 0;
 		resetFamilyMembers();
 		board.refresh(roundNum, getPeriodNum());
-		this.notifyObserver(new EventStartRound(roundNum));
+		this.notifyObserver(new EventStartRound(roundNum, board.getTowerSet()));
 		return !(roundNum != 0 && roundNum % 2 == 0);
 	}
 

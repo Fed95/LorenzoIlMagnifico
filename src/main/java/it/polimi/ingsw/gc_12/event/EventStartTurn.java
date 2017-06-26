@@ -2,6 +2,7 @@ package it.polimi.ingsw.gc_12.event;
 
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.action.Action;
+import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
 
 import java.util.ArrayList;
@@ -21,6 +22,15 @@ public class EventStartTurn extends Event{
 	@Override
 	public List<Object> getAttributes() {
 		return new ArrayList<>();
+	}
+
+	@Override
+	public void executeClientSide(ClientHandler client) {
+
+		boolean myTurn = client.getColor().equals(player.getColor());
+		client.setMyTurn(myTurn);
+		if(myTurn)
+			super.executeClientSide(client);
 	}
 
 	@Override

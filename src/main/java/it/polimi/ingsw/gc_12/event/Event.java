@@ -1,15 +1,17 @@
 package it.polimi.ingsw.gc_12.event;
 
+import it.polimi.ingsw.gc_12.MatchInstance;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.action.ActionHandler;
+import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
 import it.polimi.ingsw.gc_12.server.controller.Change;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Event extends Change implements EventInterface {
+public abstract class Event extends Change {
 
 	protected Player player;
 	protected List<EffectProvider> effectProviders = new ArrayList<>();
@@ -29,6 +31,17 @@ public abstract class Event extends Change implements EventInterface {
 
 	public void setActionHandler(ActionHandler actionHandler){
 		this.actionHandler = actionHandler;
+	}
+
+	public void executeClientSide(ClientHandler client) {
+		if(actions.size() > 0) {
+			System.out.println("What would you like to do?");
+			System.out.println();
+		}
+
+		for (int i = 0; i < actions.size(); i++)
+			System.out.println(i + " - " + actions.get(i));
+
 	}
 
 	public Event() {}
@@ -53,7 +66,7 @@ public abstract class Event extends Change implements EventInterface {
 		this.actions = actions;
 	}
 
-	public abstract String toString();
+
 
 	public List<EffectProvider> getEffectProviders() {
 		return effectProviders;
@@ -62,4 +75,8 @@ public abstract class Event extends Change implements EventInterface {
 	public String toStringClient() {
 		return null;
 	}
+
+	public abstract List<Object> getAttributes();
+	public abstract String toString();
+
 }

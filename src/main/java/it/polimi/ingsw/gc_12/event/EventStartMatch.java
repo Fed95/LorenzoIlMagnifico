@@ -1,7 +1,13 @@
 package it.polimi.ingsw.gc_12.event;
 
 import it.polimi.ingsw.gc_12.Match;
+import it.polimi.ingsw.gc_12.MatchInstance;
+import it.polimi.ingsw.gc_12.MatchInstanceCLI;
+import it.polimi.ingsw.gc_12.MatchInstanceGUI;
+import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
+import it.polimi.ingsw.gc_12.mvc.View;
+import it.polimi.ingsw.gc_12.mvc.ViewCLI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +27,20 @@ public class EventStartMatch extends Event{
 	@Override
 	public List<Object> getAttributes() {
 		return new ArrayList<>();
+	}
+
+	@Override
+	public void executeClientSide(ClientHandler client) {
+		MatchInstance matchInstance = createMatchInstance(client.getView());
+		matchInstance.init(match);
+		client.setMatch(matchInstance);
+	}
+
+	private MatchInstance createMatchInstance(View view) {
+		if(view instanceof ViewCLI)
+			return MatchInstanceCLI.instance();
+		else
+			return MatchInstanceGUI.instance();
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package it.polimi.ingsw.gc_12.event;
 
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class EventPlaceFamilyMember extends Event{
 
-    private List<Occupiable> occupiables = new ArrayList<>();
+    protected List<Occupiable> occupiables = new ArrayList<>();
     private FamilyMember familyMember;
     private int multiplier;
     private String description;
@@ -67,6 +68,14 @@ public class EventPlaceFamilyMember extends Event{
         attributes.addAll(occupiables);
         attributes.add(familyMember);
         return attributes;
+    }
+
+    @Override
+    public void executeClientSide(ClientHandler client) {
+        if(client.isMyTurn()) {
+            client.getMatch().placeFamilyMember(getOccupiable(), familyMember);
+            super.executeClientSide(client);
+        }
     }
 
     public FamilyMember getFamilyMember() {
