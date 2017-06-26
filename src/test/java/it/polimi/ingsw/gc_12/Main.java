@@ -11,9 +11,6 @@ import java.util.List;
 public class Main {
 
 	public static void main(String[] args) {
-		SaverConfig saverConfig = new SaverConfig();
-		saverConfig.create();
-
 /*
 		List<Player> players = new ArrayList<>();
 
