@@ -43,8 +43,8 @@ public class ServerSocketView extends View implements Runnable {
 		// sending the info to the client
 		try {
 			this.socketOut.writeObject(event);
-			this.socketOut.reset();
 			this.socketOut.flush();
+			this.socketOut.reset();
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

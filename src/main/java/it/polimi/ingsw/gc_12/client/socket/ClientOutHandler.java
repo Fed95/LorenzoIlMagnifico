@@ -24,6 +24,7 @@ public class ClientOutHandler implements Runnable, ClientSender {
 		try {
 			socketOut.writeObject(name);
 			socketOut.flush();
+			socketOut.reset();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
