@@ -6,6 +6,7 @@ import it.polimi.ingsw.gc_12.java_fx.CardFloorRepresentation;
 import it.polimi.ingsw.gc_12.java_fx.FamilyMemberRepresentation;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
+import it.polimi.ingsw.gc_12.occupiables.TowerSet;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
@@ -17,7 +18,7 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.stream.Collectors;
 
-public class MatchInstance extends Observable {
+public abstract class MatchInstance extends Observable {
 	protected Board board;
 	protected int roundNum;
 	protected Map<PlayerColor, Player> players;
@@ -31,6 +32,7 @@ public class MatchInstance extends Observable {
 		this.roundNum = 1;
 		this.players = match.getPlayers();
 	}
+    abstract public void setCards(TowerSet towers);
 
     public Board getBoard() {
 		return board;

@@ -7,10 +7,12 @@ import it.polimi.ingsw.gc_12.java_fx.CardFloorRepresentation;
 import it.polimi.ingsw.gc_12.java_fx.FamilyMemberRepresentation;
 import it.polimi.ingsw.gc_12.java_fx.ResourceRepresentation;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
+import it.polimi.ingsw.gc_12.occupiables.TowerSet;
 import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 
 import java.util.HashMap;
 import java.util.List;
@@ -54,13 +56,28 @@ public class MatchInstanceGUI extends MatchInstance {
 	public void init(Match match) {
 		super.init(match);
 		createFamilyMemberRepresentation(match);
-		createCardTowerFloorRepresentation(match);
 		createResourceRepresentation(match);
-		setChanged();
+        createCardTowerFloorRepresentation(match);
+        setChanged();
 		notifyObservers();
 	}
 
-	private void createFamilyMemberRepresentation(Match match){
+    @Override
+    public void setCards(TowerSet towers) {
+        for(CardType cardType : CardType.values()){
+            List<TowerFloor> towerFloors = towers.getTower(cardType).getFloors();
+            for (TowerFloor towerFloor : towerFloors){
+                CardDevelopment cardOnTheFloor = towerFloor.getCard();
+                int cardId = cardOnTheFloor.getId();
+                int floor = towerFloor.getFloorNum();
+                String path = "img/Card/card_"+cardId+".png";//setting trasparent card because the cards arrive with eventStarTurn
+                Image image = new Image(path);
+                mapTypeCardFloorRepresentation.get(cardType).get(floor).setPath(image);
+            }
+        }
+    }
+
+    private void createFamilyMemberRepresentation(Match match){
 		Map<PlayerColor, Player> players = match.getPlayers();
 		for(Player player : players.values()){
 			if(player.getColor().equals(PlayerColor.BLUE)){

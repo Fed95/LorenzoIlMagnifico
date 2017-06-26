@@ -21,7 +21,8 @@ public class EventStartRound extends Event {
 
 	@Override
 	public void executeClientSide(ClientHandler client) {
-		client.getMatch().getBoard().setTowerSet(towers);
+	    client.getMatch().getBoard().setTowerSet(towers);
+	    client.getMatch().setCards(towers);
 	}
 
 	@Override

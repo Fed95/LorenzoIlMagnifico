@@ -1,6 +1,8 @@
 package it.polimi.ingsw.gc_12;
 
 
+import it.polimi.ingsw.gc_12.occupiables.TowerSet;
+
 public class MatchInstanceCLI extends MatchInstance {
 
 	private static MatchInstanceCLI instance;
@@ -12,4 +14,8 @@ public class MatchInstanceCLI extends MatchInstance {
 		return instance;
 	}
 
+    @Override
+    public void setCards(TowerSet towers) {
+
+    }
 }
