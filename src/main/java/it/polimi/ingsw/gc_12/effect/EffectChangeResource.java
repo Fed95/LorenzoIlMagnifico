@@ -48,7 +48,7 @@ public class EffectChangeResource extends Effect {
 						possibleExchanges.add(exchange);
 				}
 				EventChooseExchange eventExchange = new EventChooseExchange(player, possibleExchanges);
-				match.getActionHandler().update(eventExchange);
+				match.getActionHandler().update(eventExchange, match);
 				match.notifyObserver(eventExchange);
 			}
 		}

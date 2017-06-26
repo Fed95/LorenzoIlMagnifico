@@ -40,7 +40,7 @@ public class EffectFreeAction extends Effect {
             }
         }
         Event eventFreeAction = new EventFreeAction(match.getBoard().getTrackTurnOrder().getCurrentPlayer(), familyMember, realOccupiables);
-        match.getActionHandler().update(eventFreeAction);
+        match.getActionHandler().update(eventFreeAction, match);
         match.notifyObserver(eventFreeAction);
     }
 

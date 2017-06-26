@@ -119,7 +119,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		System.out.println("Match: Starting new turn");
 		Player player = board.getTrackTurnOrder().newTurn();
 		EventStartTurn event = new EventStartTurn(player);
-		actionHandler.update(event);
+		actionHandler.update(event, this);
 		this.notifyObserver(event);
 		this.turnCounter++;
 	}
@@ -140,7 +140,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	public void excludeCurrentPlayer() {
 		Player player = board.getTrackTurnOrder().getCurrentPlayer();
 		Event event = new EventExcluded(player);
-		actionHandler.update(event);
+		actionHandler.update(event, this);
 		notifyObserver(event);
 	}
 
@@ -160,7 +160,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 
 	public void vaticanReport(List<Player> playerList){
 		Event event = new EventVaticanReport(playerList.get(0), excommunicationTiles.get(getPeriodNum()), playerList);
-		actionHandler.update(event);
+		actionHandler.update(event, this);
 		notifyObserver(event);
 	}
 
@@ -180,7 +180,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 
 		if(familyMember.getColor() != null) {
 			EventPlaceFamilyMember event = new EventPlaceFamilyMember(board.getTrackTurnOrder().getCurrentPlayer(), occupiable, familyMember);
-			actionHandler.update(event);
+			actionHandler.update(event, this);
 			this.notifyObserver(event);
 		}
 
@@ -194,7 +194,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		for(Resource resource: resources) {
 			if(resource instanceof CouncilPrivilege) {
 				Event event = new EventCouncilPrivilegeReceived(player, (CouncilPrivilege) resource);
-				actionHandler.update(event);
+				actionHandler.update(event, this);
 				notifyObserver(event);
 			}
 		}

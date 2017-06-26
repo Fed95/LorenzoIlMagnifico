@@ -71,7 +71,7 @@ public class ActionPlaceOnTower extends ActionPlace {
                 return;
         }
         EventPlacementEnded event = new EventPlacementEnded(player);
-        match.getActionHandler().update(event);
+        match.getActionHandler().update(event, match);
         match.notifyObserver(event);
     }
 

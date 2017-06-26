@@ -58,7 +58,7 @@ public abstract class ActionPlace extends Action {
 				throw new IllegalStateException("ActionPlace: starting an action that has been denied.");
 			}
 
-			match.getActionHandler().update(eventServants);
+			match.getActionHandler().update(eventServants, match);
 			//Notifies the ServerRMIView
 			match.notifyObserver(eventServants);
 		}
@@ -124,7 +124,7 @@ public abstract class ActionPlace extends Action {
 		player.removeResources(Collections.singletonList(servant));
 		match.placeFamilyMember(occupiable, familyMember);
 		EventPlacementEnded event = new EventPlacementEnded(player);
-		match.getActionHandler().update(event);
+		match.getActionHandler().update(event, match);
 		match.notifyObserver(event);
 	}
 

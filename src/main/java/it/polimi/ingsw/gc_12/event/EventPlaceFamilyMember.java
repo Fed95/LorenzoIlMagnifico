@@ -13,7 +13,7 @@ import java.util.List;
 public class EventPlaceFamilyMember extends Event{
 
     protected List<Occupiable> occupiables = new ArrayList<>();
-    private FamilyMember familyMember;
+    protected FamilyMember familyMember;
     private int multiplier;
     private String description;
 

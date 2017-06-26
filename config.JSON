@@ -101,5 +101,5 @@
     }]
   ],
   "requiredValues": [1, 3, 5, 7],
-  "timeoutAction": 5000
+  "timeoutAction": 600000
 }

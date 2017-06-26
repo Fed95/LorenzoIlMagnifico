@@ -22,7 +22,7 @@ public class ActionViewStatistics extends Action {
     @Override
     public void start(Match match) {
         EventViewStatistics event = new EventViewStatistics(player, chosenPlayer);
-        match.getActionHandler().update(event);
+        match.getActionHandler().update(event, match);
         //Notifies the ServerRMIView
         match.notifyObserver(event);
     }

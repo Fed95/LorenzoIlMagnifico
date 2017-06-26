@@ -1,8 +1,9 @@
 package it.polimi.ingsw.gc_12.event;
 
+import it.polimi.ingsw.gc_12.FamilyMember;
+import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
-import it.polimi.ingsw.gc_12.action.Action;
-import it.polimi.ingsw.gc_12.action.ActionPassTurn;
+import it.polimi.ingsw.gc_12.action.*;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.ClientSender;
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
@@ -29,7 +30,6 @@ public class EventStartTurn extends Event{
 
 	@Override
 	public void executeClientSide(ClientHandler client) {
-
 		boolean myTurn = client.getColor().equals(player.getColor());
 		client.setMyTurn(myTurn);
 		if(myTurn) {
@@ -38,17 +38,23 @@ public class EventStartTurn extends Event{
 					if(actions.get(i) instanceof ActionPassTurn) {
 						new Thread(new PassTurnSender(i, client.getView().getClientSender())).start();
 					}
-
 				}
-
 			}
 			else {
 				super.executeClientSide(client);
 			}
-
 		}
+	}
 
-
+	@Override
+	public void setActions(ActionHandler actionHandler, Match match) {
+		actions = new ArrayList<>();
+		actionHandler.setHasPlaced(false);
+		for (FamilyMember familyMember : player.getAvailableFamilyMembers()) {
+			actions.add(new ActionChooseFamilyMember(player, familyMember));
+		}
+		actions.add(new ActionPassTurn(player));
+		actions.add(new ActionRequestStatistics(player));
 	}
 
 	@Override

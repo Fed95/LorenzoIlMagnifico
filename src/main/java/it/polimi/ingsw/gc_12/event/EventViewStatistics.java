@@ -1,9 +1,13 @@
 package it.polimi.ingsw.gc_12.event;
 
+import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.action.ActionHandler;
+import it.polimi.ingsw.gc_12.action.DiscardAction;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EventViewStatistics extends Event {
@@ -44,6 +48,12 @@ public class EventViewStatistics extends Event {
             System.out.println(sb.toString());
             super.executeClientSide(client);
         }
+    }
+
+    @Override
+    public void setActions(ActionHandler actionHandler, Match match) {
+        actions = new ArrayList<>();
+        actions.add(new DiscardAction(player));
     }
 
     public Player getChosenPlayer() {

@@ -20,7 +20,7 @@ public class DiscardAction extends Action {
     @Override
     public void start(Match match) {
         EventDiscardAction event = new EventDiscardAction(player);
-        match.getActionHandler().update(event);
+        match.getActionHandler().update(event, match);
         //Notifies the ServerRMIView
         match.notifyObserver(event);
     }

@@ -1,10 +1,15 @@
 package it.polimi.ingsw.gc_12.event;
 
+import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.MatchInstance;
 import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.action.ActionHandler;
+import it.polimi.ingsw.gc_12.action.ActionReceiveExcommunication;
+import it.polimi.ingsw.gc_12.action.ActionSupportChurch;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EventVaticanReport extends Event {
@@ -16,6 +21,14 @@ public class EventVaticanReport extends Event {
         super(player);
         this.tile = tile;
         this.players = players;
+    }
+
+    @Override
+    public void setActions(ActionHandler actionHandler, Match match) {
+        actions = new ArrayList<>();
+        actions.add(new ActionSupportChurch(player));
+        actions.add(new ActionReceiveExcommunication(player, tile));
+        players = new ArrayList<>(players.subList(1, players.size()));
     }
 
     public ExcommunicationTile getTile() {

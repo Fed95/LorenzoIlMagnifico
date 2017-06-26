@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc_12.event;
 
+import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.MatchInstance;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.action.Action;
@@ -62,11 +63,9 @@ public abstract class Event extends Change {
 		return actions;
 	}
 
-	public void setActions(List<Action> actions) {
-		this.actions = actions;
+	public void setActions(ActionHandler actionHandler, Match match) {
+		actionHandler.removeLastEvent();
 	}
-
-
 
 	public List<EffectProvider> getEffectProviders() {
 		return effectProviders;

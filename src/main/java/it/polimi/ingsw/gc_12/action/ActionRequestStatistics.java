@@ -18,7 +18,7 @@ public class ActionRequestStatistics extends  Action {
     @Override
     public void start(Match match) {
         EventRequestStatistics event = new EventRequestStatistics(player);
-        match.getActionHandler().update(event);
+        match.getActionHandler().update(event, match);
         //Notifies the ServerRMIView
         match.notifyObserver(event);
     }

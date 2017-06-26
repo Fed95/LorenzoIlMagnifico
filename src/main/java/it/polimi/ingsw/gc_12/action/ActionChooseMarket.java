@@ -5,9 +5,6 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.EventMarketChosen;
 
-/**
- * Created by feder on 2017-06-18.
- */
 public class ActionChooseMarket extends Action {
 
     private FamilyMember familyMember;
@@ -25,7 +22,7 @@ public class ActionChooseMarket extends Action {
     @Override
     public void start(Match match) {
         EventMarketChosen event = new EventMarketChosen(player, familyMember);
-        match.getActionHandler().update(event);
+        match.getActionHandler().update(event, match);
         //Notifies the ServerRMIView
         match.notifyObserver(event);
     }

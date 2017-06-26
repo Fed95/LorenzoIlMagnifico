@@ -1,8 +1,9 @@
 package it.polimi.ingsw.gc_12.event;
 
 import it.polimi.ingsw.gc_12.FamilyMember;
+import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
-import it.polimi.ingsw.gc_12.action.Action;
+import it.polimi.ingsw.gc_12.action.*;
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 
@@ -23,6 +24,17 @@ public class EventFreeAction extends Event {
 
     public EventFreeAction(Player player, FamilyMember familyMember, List<Occupiable> occupiables){
         this(player, familyMember, occupiables, new ArrayList<>());
+    }
+
+    @Override
+    public void setActions(ActionHandler actionHandler, Match match) {
+        actions = new ArrayList<>();
+        for(Occupiable occupiable: occupiables) {
+            ActionPlace action = ActionFactory.createActionPlace(player, familyMember, occupiable);
+            if(action.isValid(match))
+                actions.add(action);
+        }
+        actions.add(new DiscardAction(player));
     }
 
     public List<Occupiable> getOccupiables() {
