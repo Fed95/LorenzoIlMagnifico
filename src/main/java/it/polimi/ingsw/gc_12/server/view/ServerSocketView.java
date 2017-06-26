@@ -5,6 +5,8 @@ import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.PlayerColor;
 import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.event.Event;
+import it.polimi.ingsw.gc_12.event.EventStartRound;
+import it.polimi.ingsw.gc_12.event.EventStartTurn;
 import it.polimi.ingsw.gc_12.server.Server;
 
 import java.io.IOException;
@@ -20,13 +22,13 @@ public class ServerSocketView extends View implements Runnable {
 	private Server server;
 	private ObjectInputStream socketIn;
 	private ObjectOutputStream socketOut;
-	private Match match;
+
 	private LinkedList<PlayerColor> playerColors;
 
 	public ServerSocketView(Socket socket, Match match, Server server, LinkedList<PlayerColor> playerColors) throws IOException {
+		super(match);
 		// creates the streams to communicate with the client-side, and the reference to the model
 		this.socket = socket;
-		this.match = match;
 		this.server = server;
 		this.playerColors = playerColors;
 	}
@@ -39,6 +41,12 @@ public class ServerSocketView extends View implements Runnable {
 	@Override
 	public void update(Event event) {
 		System.out.println("Sending to the client " + event.getClass().getSimpleName());
+
+		if(event instanceof EventStartTurn && i == 0) {
+			setTimeoutAction();
+			i++;
+		}
+
 
 		// sending the info to the client
 		try {

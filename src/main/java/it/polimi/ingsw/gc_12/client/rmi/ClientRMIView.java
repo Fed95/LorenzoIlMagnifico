@@ -4,9 +4,12 @@ import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.PlayerColor;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.event.Event;
+import it.polimi.ingsw.gc_12.event.EventExcluded;
+import it.polimi.ingsw.gc_12.event.EventStartTurn;
 
 import java.io.Serializable;
 import java.rmi.RemoteException;
+import java.util.LinkedList;
 
 public class ClientRMIView extends ClientHandler implements ClientViewRemote, Serializable{
 
@@ -20,7 +23,10 @@ public class ClientRMIView extends ClientHandler implements ClientViewRemote, Se
 	@Override
 	public synchronized void updateClient(Event event) {
 		System.out.println("RECEIVED " + event.getClass().getSimpleName());
+		if(event instanceof EventExcluded)
+			events = new LinkedList<>();
 		events.addLast(event);
+
 		if(events.size() <= 1) {
 			handleEvent();
 		}

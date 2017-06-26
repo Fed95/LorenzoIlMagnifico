@@ -93,6 +93,9 @@ public class ActionHandler {
 		else if(event instanceof EventVaticanReport){
 			event.setActions(getActionsVaticanReport((EventVaticanReport) event));
 		}
+		else if(event instanceof EventExcluded) {
+			events = new LinkedList<>();
+		}
 		else
 			events.removeLast();
 

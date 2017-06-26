@@ -3,8 +3,10 @@ package it.polimi.ingsw.gc_12.server.view;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.PlayerColor;
 import it.polimi.ingsw.gc_12.action.Action;
+import it.polimi.ingsw.gc_12.action.ActionPassTurn;
 import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
 import it.polimi.ingsw.gc_12.event.Event;
+import it.polimi.ingsw.gc_12.event.EventStartTurn;
 import it.polimi.ingsw.gc_12.event.EventTowerChosen;
 import it.polimi.ingsw.gc_12.server.Server;
 
@@ -20,14 +22,13 @@ public class ServerRMIView extends View implements RMIViewRemote {
 
 	private Set<ClientViewRemote> clients;
 	private Server server;
-	private Match match;
 	private LinkedList<PlayerColor> playerColors;
 	private boolean recievedAnsewr = false;
 
 	public ServerRMIView(Server server, Match match, LinkedList<PlayerColor> playerColors) {
+		super(match);
 		this.clients = new HashSet<>();
 		this.server = server;
-		this.match = match;
 		this.playerColors = playerColors;
 	}
 
@@ -51,6 +52,11 @@ public class ServerRMIView extends View implements RMIViewRemote {
 	public void update(Event event) {
 		if(event instanceof EventTowerChosen)
 			recievedAnsewr = false;
+
+		if(event instanceof EventStartTurn && i == 0) {
+			setTimeoutAction();
+			i++;
+		}
 		System.out.println("RMIVIEW: SENDING " + event.getClass() + " CHANGE TO THE CLIENT");
 		for (ClientViewRemote clientStub : this.clients) {
 			try {

@@ -9,6 +9,7 @@ public class Config {
 	private List<List<Resource>> initialResources;
 	private List<List<Resource>> councilPrivilegeResources;
 	private List<Integer> requiredValues;
+	private int timeoutAction;
 
 	public List<List<Resource>> getInitialResources() {
 		return initialResources;
@@ -32,5 +33,9 @@ public class Config {
 
 	public void setRequiredValues(List<Integer> requiredValues) {
 		this.requiredValues = requiredValues;
+	}
+
+	public int getTimeoutAction() {
+		return timeoutAction;
 	}
 }

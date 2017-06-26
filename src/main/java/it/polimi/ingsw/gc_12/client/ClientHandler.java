@@ -21,6 +21,7 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 	protected int multiplier;
 	private boolean myTurn;
 	protected PlayerColor color;
+	private boolean excluded;
 
 	protected ClientHandler() throws RemoteException {
 		super();
@@ -39,7 +40,7 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 		System.out.println("HANDLING "+event.getClass().getSimpleName());
 		event.executeClientSide(this);
 
-		if(event.getPlayer() != null && myTurn) {
+		if(event.getPlayer() != null && myTurn && !excluded) {
 			if(event.getActions().size() == 0) {
 				events.removeFirst();
 				handleEvent();
@@ -104,5 +105,13 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 
 	public void setActions(List<Action> actions) {
 		this.actions = actions;
+	}
+
+	public boolean isExcluded() {
+		return excluded;
+	}
+
+	public void setExcluded(boolean excluded) {
+		this.excluded = excluded;
 	}
 }

@@ -4,10 +4,12 @@ import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.PlayerColor;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.event.Event;
+import it.polimi.ingsw.gc_12.event.EventExcluded;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.rmi.RemoteException;
+import java.util.LinkedList;
 
 
 public class ClientInHandler extends ClientHandler implements Runnable {
@@ -30,6 +32,8 @@ public class ClientInHandler extends ClientHandler implements Runnable {
 				if(object instanceof Event) {
 					Event event = (Event) object;
 					System.out.println("RECEIVED "+event.getClass().getSimpleName());
+					if(event instanceof EventExcluded && color.equals(event.getPlayer().getColor()))
+						events = new LinkedList<>();
 					events.addLast(event);
 					if(events.size() <= 1) {
 						handleEvent();

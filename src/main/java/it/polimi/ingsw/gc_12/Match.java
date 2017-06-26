@@ -137,6 +137,13 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		return !(roundNum != 0 && roundNum % 2 == 0);
 	}
 
+	public void excludeCurrentPlayer() {
+		Player player = board.getTrackTurnOrder().getCurrentPlayer();
+		Event event = new EventExcluded(player);
+		actionHandler.update(event);
+		notifyObserver(event);
+	}
+
 	private void resetFamilyMembers() {
 		for(Player player: players.values()) {
 			player.resetFamilyMembers();

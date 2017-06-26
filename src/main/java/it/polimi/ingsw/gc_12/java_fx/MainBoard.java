@@ -42,4 +42,9 @@ public class MainBoard extends Application implements View{
 	public void start() throws IOException {
 		launch();
 	}
+
+	@Override
+	public ClientSender getClientSender() {
+		return client;
+	}
 }

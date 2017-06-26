@@ -12,35 +12,39 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Scanner;
 
-public class ViewCLI extends Observable implements View {
+public class ViewCLI extends Observable implements View{
 
 	private Scanner in;
-	private CLIAdapter adapter;
+	private ClientSender clientSender;
 	private ClientHandler clientHandler;
 
-	public ViewCLI(ClientSender client, ClientHandler clientHandler) {
-		this.adapter = new CLIAdapter(this, client);
+	public ViewCLI(ClientSender clientSender, ClientHandler clientHandler) {
 		this.in = new Scanner(System.in);
+		this.clientSender = clientSender;
 		this.clientHandler = clientHandler;
-
 	}
 
 	public void start() throws IOException {
-		adapter.sendAction(0);
+		clientSender.sendAction(0);
 		while(in.hasNext()) {
 			//Capture input from user
 			String inputLine = in.nextLine();
+			if(clientHandler.isExcluded()) {
+				clientHandler.setExcluded(false);
+				System.out.println("Welcome back! You can start playing again.");
+			}
+
+			if(!clientHandler.isMyTurn()) {
+				System.out.println("It's not your turn!");
+				continue;
+			}
+
 			int inputInt;
 			try {
 				inputInt = Integer.parseInt(inputLine);
 			}
 			catch (NumberFormatException e) {
 				System.out.println("You can only insert numbers!");
-				continue;
-			}
-
-			if(!clientHandler.isMyTurn()) {
-				System.out.println("It's not your turn!");
 				continue;
 			}
 
@@ -53,7 +57,7 @@ public class ViewCLI extends Observable implements View {
 			}
 			else {
 				try {
-					adapter.sendAction(inputInt);
+					clientSender.sendAction(inputInt);
 					clientHandler.setOffset(0);
 					Event event = clientHandler.getEvents().getFirst();
 					if(event instanceof EventCouncilPrivilegeReceived) {
@@ -77,4 +81,8 @@ public class ViewCLI extends Observable implements View {
 		}
 	}
 
+	@Override
+	public ClientSender getClientSender() {
+		return clientSender;
+	}
 }
