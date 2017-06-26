@@ -99,8 +99,13 @@ public class MatchInstanceGUI extends MatchInstance {
 				int floor = towerFloor.getFloorNum();
 				CardDevelopment cardonthefloor = towerFloor.getCard();
 				int cardid = cardonthefloor.getId();
+                List<FamilyMember> occupiers = towerFloor.getOccupiers();
+                Boolean taken = true;
+                if(occupiers == null){
+                    taken = false;
+                }
 				String path = "img/Card/card_"+cardid+".png";
-				CardFloorRepresentation cardFloorRepresentation = new CardFloorRepresentation(path, floor);
+				CardFloorRepresentation cardFloorRepresentation = new CardFloorRepresentation(path, floor, taken);
 				mapTypeCardFloorRepresentation.get(cardType).add(cardFloorRepresentation);
 			}
 		}

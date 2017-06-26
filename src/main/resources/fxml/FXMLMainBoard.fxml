@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane minHeight="1080.0" minWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.gc_12.java_fx.MainBoardController">
@@ -342,10 +343,10 @@
                                     <Image url="@../img/militarbritannic.png" />
                                  </image>
                               </ImageView>
-                              <TableView layoutX="90.0" layoutY="49.0" prefHeight="227.0" prefWidth="225.0">
+                              <TableView layoutX="14.0" layoutY="44.0" prefHeight="306.0" prefWidth="311.0">
                                 <columns>
-                                  <TableColumn prefWidth="75.0" text="C1" />
-                                  <TableColumn prefWidth="75.0" text="C2" />
+                                  <TableColumn prefWidth="204.0" text="Player Name" />
+                                  <TableColumn minWidth="0.0" prefWidth="106.0" text="Points" />
                                 </columns>
                               </TableView>
                            </children></AnchorPane>
@@ -381,6 +382,23 @@
              <ImageView fx:id="cardFloor13" fitHeight="115.0" fitWidth="81.0" layoutX="447.0" layoutY="170.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
              <ImageView fx:id="cardFloor14" fitHeight="114.0" fitWidth="81.0" layoutX="447.0" layoutY="307.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
              <ImageView fx:id="cardFloor15" fitHeight="114.0" fitWidth="80.0" layoutX="448.0" layoutY="443.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
+             <Circle fx:id="floorToBeClicked0" fill="#1f88f8" layoutX="118.0" layoutY="89.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+             <Circle fx:id="floorToBeClicked1" fill="#1f88f8" layoutX="118.0" layoutY="225.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+             <Circle fx:id="floorToBeClicked2" fill="#1f88f8" layoutX="118.0" layoutY="362.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+             <Circle fx:id="floorToBeClicked3" fill="#1f88f8" layoutX="118.0" layoutY="498.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+             <Circle fx:id="floorToBeClicked4" fill="#1f88f8" layoutX="265.0" layoutY="89.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+             <Circle fx:id="floorToBeClicked5" fill="#1f88f8" layoutX="265.0" layoutY="225.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+             <Circle fx:id="floorToBeClicked6" fill="#1f88f8" layoutX="265.0" layoutY="362.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+             <Circle fx:id="floorToBeClicked7" fill="#1f88f8" layoutX="265.0" layoutY="498.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+             <Circle fx:id="floorToBeClicked8" fill="#1f88f8" layoutX="412.0" layoutY="89.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+             <Circle fx:id="floorToBeClicked9" fill="#1f88f8" layoutX="412.0" layoutY="225.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+             <Circle fx:id="floorToBeClicked10" fill="#1f88f8" layoutX="412.0" layoutY="362.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+             <Circle fx:id="floorToBeClicked11" fill="#1f88f8" layoutX="412.0" layoutY="498.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+             <Circle fx:id="floorToBeClicked12" fill="#1f88f8" layoutX="558.0" layoutY="89.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+             <Circle fx:id="floorToBeClicked13" fill="#1f88f8" layoutX="558.0" layoutY="225.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+             <Circle fx:id="floorToBeClicked14" fill="#1f88f8" layoutX="558.0" layoutY="362.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+             <Circle fx:id="floorToBeClicked15" fill="#1f88f8" layoutX="558.0" layoutY="498.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+
          </children>
       </Pane>
    </center>

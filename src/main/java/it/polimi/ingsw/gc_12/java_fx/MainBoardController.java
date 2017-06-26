@@ -3,13 +3,11 @@ package it.polimi.ingsw.gc_12.java_fx;
 
 import it.polimi.ingsw.gc_12.*;
 import it.polimi.ingsw.gc_12.action.Action;
-import it.polimi.ingsw.gc_12.card.Card;
 import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.rmi.ClientRMI;
 import it.polimi.ingsw.gc_12.mvc.GUIAdapter;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
-import it.polimi.ingsw.gc_12.server.observer.*;
 import javafx.application.Platform;
 import javafx.beans.binding.StringBinding;
 import javafx.collections.FXCollections;
@@ -22,6 +20,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Circle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -117,7 +116,30 @@ public class MainBoardController implements Initializable, Observer {
     private Map<ResourceType,Label> resourcePlayer4 = new HashMap<>();
     private Map<PlayerColor, Map<ResourceType, Label>> mapPlayerColorResourceLabel= new HashMap<>();
 
+    @FXML private Circle floorToBeClicked0;
+    @FXML private Circle floorToBeClicked1;
+    @FXML private Circle floorToBeClicked2;
+    @FXML private Circle floorToBeClicked3;
+    @FXML private Circle floorToBeClicked4;
+    @FXML private Circle floorToBeClicked5;
+    @FXML private Circle floorToBeClicked6;
+    @FXML private Circle floorToBeClicked7;
+    @FXML private Circle floorToBeClicked8;
+    @FXML private Circle floorToBeClicked9;
+    @FXML private Circle floorToBeClicked10;
+    @FXML private Circle floorToBeClicked11;
+    @FXML private Circle floorToBeClicked12;
+    @FXML private Circle floorToBeClicked13;
+    @FXML private Circle floorToBeClicked14;
+    @FXML private Circle floorToBeClicked15;
+    private Map<Integer, Circle> mapfloorToBeClickedTerritory = new HashMap<>();
+    private Map<Integer, Circle> mapfloorToBeClickedBuildings = new HashMap<>();
+    private Map<Integer, Circle> mapfloorToBeClickedCharacter = new HashMap<>();
+    private Map<Integer, Circle> mapfloorToBeClickedVenture = new HashMap<>();
+    private Map<CardType, Map<Integer, Circle>> mapCardTypeFloorCircle = new HashMap<>();
+
     private ImageView lastFamClicked = null;
+
 
     private GUIAdapter adapter;
     private MatchInstanceGUI match;
@@ -155,6 +177,10 @@ public class MainBoardController implements Initializable, Observer {
         Image card = imageView.getImage();
         showCards.setImage(card);
         showCards.setOpacity(1);
+    }
+    @FXML void floorClicked(MouseEvent event){
+        System.out.println("click");
+        Circle floorClicked = (Circle) event.getTarget();
     }
 
     @Override
@@ -250,6 +276,32 @@ public class MainBoardController implements Initializable, Observer {
         redPlayer.setDisable(true);
         yellowPlayer.setDisable(true);
 
+        //associating floor number to id
+        mapfloorToBeClickedTerritory.put(3, floorToBeClicked0);
+        mapfloorToBeClickedTerritory.put(2, floorToBeClicked1);
+        mapfloorToBeClickedTerritory.put(1, floorToBeClicked2);
+        mapfloorToBeClickedTerritory.put(0, floorToBeClicked3);
+
+        mapfloorToBeClickedCharacter.put(3, floorToBeClicked4);
+        mapfloorToBeClickedCharacter.put(2, floorToBeClicked5);
+        mapfloorToBeClickedCharacter.put(1, floorToBeClicked6);
+        mapfloorToBeClickedCharacter.put(0, floorToBeClicked7);
+
+        mapfloorToBeClickedBuildings.put(3, floorToBeClicked8);
+        mapfloorToBeClickedBuildings.put(2, floorToBeClicked9);
+        mapfloorToBeClickedBuildings.put(1, floorToBeClicked10);
+        mapfloorToBeClickedBuildings.put(0, floorToBeClicked11);
+
+        mapfloorToBeClickedVenture.put(3, floorToBeClicked12);
+        mapfloorToBeClickedVenture.put(2, floorToBeClicked13);
+        mapfloorToBeClickedVenture.put(1, floorToBeClicked14);
+        mapfloorToBeClickedVenture.put(0, floorToBeClicked15);
+
+        mapCardTypeFloorCircle.put(CardType.TERRITORY, mapfloorToBeClickedTerritory);
+        mapCardTypeFloorCircle.put(CardType.BUILDING, mapfloorToBeClickedBuildings);
+        mapCardTypeFloorCircle.put(CardType.CHARACTER, mapfloorToBeClickedCharacter);
+        mapCardTypeFloorCircle.put(CardType.VENTURE, mapfloorToBeClickedVenture);
+
         showCards.setOpacity(0);
         this.clientView = ClientRMI.instance().getRmiView();
         this.adapter = new GUIAdapter(ClientRMI.instance());
@@ -294,6 +346,7 @@ public class MainBoardController implements Initializable, Observer {
                 for(CardFloorRepresentation cardFloorRepresentation : cardFloorRepresentations){
                     int floor = cardFloorRepresentation.getFloorNumber();
                     mapCardTypeMapIntegerCardFloors.get(cardType).get(floor).imageProperty().bind(match.getMapTypeCardFloorRepresentation().get(cardType).get(floor).getPathProperty());
+                    mapCardTypeFloorCircle.get(cardType).get(floor).fillProperty().bind(match.getMapTypeCardFloorRepresentation().get(cardType).get(floor).pathWhenTakenProperty());
                 }
         }
     }
