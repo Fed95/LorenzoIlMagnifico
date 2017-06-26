@@ -78,7 +78,7 @@ public class TypeAdapter {
 				.registerTypeAdapterFactory(factoryEffectProvider)
 				.registerTypeAdapterFactory(factoryOccupiable)
 				.registerTypeAdapterFactory(factoryCard)
- 					.registerTypeAdapterFactory(factoryResource)
+ 				.registerTypeAdapterFactory(factoryResource)
 				.registerTypeAdapterFactory(factoryEffect)
 				.registerTypeAdapterFactory(factoryEvent)
 				.registerTypeAdapter(CardDevelopment.class, new CardDevelopmentInstanceCreator());

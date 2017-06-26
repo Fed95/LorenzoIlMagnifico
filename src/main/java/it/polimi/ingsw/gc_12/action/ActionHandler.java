@@ -5,6 +5,7 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.json.loader.LoaderConfig;
+import it.polimi.ingsw.gc_12.json.loader.LoaderConfigPlayers;
 import it.polimi.ingsw.gc_12.occupiables.*;
 import it.polimi.ingsw.gc_12.resource.*;
 
@@ -260,7 +261,7 @@ public class ActionHandler {
 		Player player = event.getPlayer();
 		List<Action> actions = new ArrayList<>();
 		if(councilPrivilegeResources.size() == 0)
-			this.councilPrivilegeResources = new LoaderConfig().get(match).get(match.getPlayers().size()).getCouncilPrivilegeResources();
+			this.councilPrivilegeResources = new LoaderConfig().get(match).getCouncilPrivilegeResources();
 		councilPrivileges = event.getCouncilPrivilege().getValue();
 
 		for(List<Resource> resources: councilPrivilegeResources) {

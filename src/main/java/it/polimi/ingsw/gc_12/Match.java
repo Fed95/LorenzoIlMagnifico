@@ -5,7 +5,6 @@ import it.polimi.ingsw.gc_12.card.Card;
 import it.polimi.ingsw.gc_12.card.CardDeckSet;
 import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.effect.Effect;
-import it.polimi.ingsw.gc_12.effect.EffectChangeResource;
 import it.polimi.ingsw.gc_12.effect.EffectHandler;
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
 import it.polimi.ingsw.gc_12.event.*;
@@ -20,7 +19,6 @@ import it.polimi.ingsw.gc_12.server.model.State;
 import it.polimi.ingsw.gc_12.server.observer.Observable;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -88,7 +86,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	}
 
 	private void initPlayers() {
-		Config config = new LoaderConfig().get(this).get(players.size());
+		Config config = new LoaderConfig().get(this);
 		List<Player> playerList = new ArrayList<>(players.values());
 		for (int i = 0; i < playerList.size(); i++) {
 			Player player = playerList.get(i);
@@ -112,7 +110,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 
 	//Increments turn counter in TrackTurnOrder
 	public void newTurn() {
-		if(turnCounter == (players.size() /* * DEFAULT_FAMILY_MEMBERS*/)) {
+		if(turnCounter == (players.size() * FamilyMemberColor.values().length)) {
 			boolean stop = newRound();
 			if(stop)
 				return;

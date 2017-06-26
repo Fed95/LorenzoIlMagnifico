@@ -31,13 +31,6 @@ public class EventFamilyMemberChosen extends Event {
 	}
 
 	@Override
-	public void executeClientSide(ClientHandler client) {
-		for(Tower tower: client.getMatch().getBoard().getTowerSet().getTowers().values()) {
-			System.out.println(tower);
-		}
-	}
-
-	@Override
 	public List<Object> getAttributes() {
 		List<Object> attributes = new ArrayList<>();
 		attributes.add(familyMember);

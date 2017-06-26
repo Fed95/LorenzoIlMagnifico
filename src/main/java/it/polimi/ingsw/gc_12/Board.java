@@ -1,12 +1,9 @@
 package it.polimi.ingsw.gc_12;
 
 import it.polimi.ingsw.gc_12.dice.SpaceDie;
-import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationSpace;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
-import it.polimi.ingsw.gc_12.json.loader.LoaderConfig;
 import it.polimi.ingsw.gc_12.occupiables.*;
-import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.track.TrackFaithPoints;
 import it.polimi.ingsw.gc_12.track.TrackMilitaryPoints;
 import it.polimi.ingsw.gc_12.track.TrackTurnOrder;
@@ -41,7 +38,7 @@ public class Board implements Serializable{
 		this.victroyPointsTrack = new TrackVictoryPoints();
 		this.trackFaithPoints = new TrackFaithPoints(trackFaithPointsValues);
 		this.excommunicationSpace = new ExcommunicationSpace();
-		createSpaceWork();
+		createSpaceWork(players.size());
 	}
 	public void setTowerSet(TowerSet towerSet) {
 		this.towerSet = towerSet;
@@ -50,11 +47,13 @@ public class Board implements Serializable{
 		this.market = market;
 	}
 
-	public void createSpaceWork() {
+	public void createSpaceWork(int playersNum) {
+		ConfigPlayers configPlayers = new ConfigPlayers(playersNum);
 		for(WorkType workType : WorkType.values()){
 			SpaceWorkZone spaceWorkZone = new SpaceWorkZone();
 			spaceWorkZone.addSpaceWork(new SpaceWorkSingle(workType));
-			spaceWorkZone.addSpaceWork(new SpaceWorkMultiple(workType));
+			if(configPlayers.isSpaceWorkMultiple())
+				spaceWorkZone.addSpaceWork(new SpaceWorkMultiple(workType));
 			spaceWorkZones.put(workType, spaceWorkZone);
 		}
 	}

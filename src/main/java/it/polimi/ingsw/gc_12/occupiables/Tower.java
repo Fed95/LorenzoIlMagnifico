@@ -9,6 +9,7 @@ import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.effect.EffectChangeResource;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
+import it.polimi.ingsw.gc_12.json.loader.LoaderConfig;
 import it.polimi.ingsw.gc_12.resource.Money;
 import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.resource.ResourceExchange;
@@ -24,12 +25,6 @@ public class Tower implements Zone, Serializable{
 	private Map<Integer, CardDeck> decks;
 	// It will be loaded from JSON file
 	private final static Resource towerTakenMalus = new Money(3);
-	private final static List<Integer> DEFAULT_REQUIRED_VALUES = new ArrayList<Integer>() {{
-		add(1);
-		add(3);
-		add(5);
-		add(6);
-	}};
 
 	public Tower(CardType type){
 		this.type = type;
@@ -57,8 +52,9 @@ public class Tower implements Zone, Serializable{
 	}
 	
 	public void initializeFloors() {
+		List<Integer> requiredValues = new LoaderConfig().get(null).getRequiredValues();
 		for (int i = 0; i < CardType.values().length; i++) {
-			TowerFloor floor = new TowerFloor(i, DEFAULT_REQUIRED_VALUES.get(i), type);
+			TowerFloor floor = new TowerFloor(i, requiredValues.get(i), type);
 			floors.add(floor);
 		}
 	}

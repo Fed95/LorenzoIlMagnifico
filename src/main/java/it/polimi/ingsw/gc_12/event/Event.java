@@ -34,14 +34,14 @@ public abstract class Event extends Change {
 	}
 
 	public void executeClientSide(ClientHandler client) {
-		if(actions.size() > 0) {
-			System.out.println("What would you like to do?");
-			System.out.println();
+		if(client.isMyTurn()) {
+			if(actions.size() > 0) {
+				System.out.println("What would you like to do?");
+				System.out.println();
+			}
+			for (int i = 0; i < actions.size(); i++)
+				System.out.println(i + " - " + actions.get(i));
 		}
-
-		for (int i = 0; i < actions.size(); i++)
-			System.out.println(i + " - " + actions.get(i));
-
 	}
 
 	public Event() {}
