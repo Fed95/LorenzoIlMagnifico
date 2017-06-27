@@ -1,6 +1,7 @@
 package it.polimi.ingsw.gc_12.java_fx;
 
 
+import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.ClientSender;
 import it.polimi.ingsw.gc_12.mvc.View;
 import javafx.application.Application;
@@ -12,8 +13,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainBoard extends Application implements View{
-
-	private ClientSender client;
 	
 	public void start(Stage primaryStage) throws Exception{
 		FXMLLoader loader = new FXMLLoader();
@@ -45,6 +44,16 @@ public class MainBoard extends Application implements View{
 
 	@Override
 	public ClientSender getClientSender() {
-		return client;
+		return null;
+	}
+
+	@Override
+	public void setClientSender(ClientSender clientSender) {
+
+	}
+
+	@Override
+	public void setClientHandler(ClientHandler clientHandler) {
+
 	}
 }

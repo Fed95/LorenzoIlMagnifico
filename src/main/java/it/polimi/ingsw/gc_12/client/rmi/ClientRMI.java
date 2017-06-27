@@ -1,5 +1,7 @@
 package it.polimi.ingsw.gc_12.client.rmi;
 
+import it.polimi.ingsw.gc_12.client.ClientFactory;
+import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.ClientSender;
 import it.polimi.ingsw.gc_12.java_fx.MainBoard;
 import it.polimi.ingsw.gc_12.mvc.View;
@@ -20,49 +22,27 @@ public class ClientRMI implements ClientSender { //Main class of the Clients usi
 	public final static String HOST = "127.0.0.1";
 	public final static int PORT = 52365;
 	private static final String NAME = "lorenzo";
-	private static ClientRMI instance;
 
 	private RMIViewRemote serverStub;
 	private Registry registry;
-	private View view;
 	private ClientRMIView rmiView;
 
-	private ClientRMI() {}
-
-	public static ClientRMI instance() {
-		if(instance == null) instance = new ClientRMI();
-		return instance;
-	}
-
-	public void start() throws IOException, NotBoundException, AlreadyBoundException, CloneNotSupportedException {
+	public void start(View view, String name) throws IOException, NotBoundException, AlreadyBoundException, CloneNotSupportedException {
 		//Get the remote registry
 		registry = LocateRegistry.getRegistry(HOST, PORT);
 
 		//get the stub (local object) of the remote view
 		serverStub = (RMIViewRemote) registry.lookup(NAME);
 
-		Scanner stdIn = new Scanner(System.in);
-		System.out.println("Choose a name");
-		String name = "";
-		while (true) {
-			name = stdIn.nextLine();
-			if(!"\n".equals(name) && !"".equals(name)) {
-
-				rmiView = new ClientRMIView(name);
-				System.out.println("You are being registered on the server...");
-				// register the client view in the server side (to receive messages from the server)
-				serverStub.registerClient(rmiView);
-				/*view = new ViewCLI(this, rmiView);*/
-				view = new MainBoard();
-				rmiView.setView(view);
-				view.start();
-				break;
-			}
-			else {
-				System.out.println("Choose a name");
-				//stdIn.next();
-			}
-		}
+		rmiView = new ClientRMIView(name, view);
+		ClientFactory.setClientHandler(rmiView);
+		System.out.println("You are being registered on the server...");
+		// register the client view in the server side (to receive messages from the server)
+		serverStub.registerClient(rmiView);
+		//view = new ViewCLI(this, rmiView);
+		view.setClientSender(this);
+		view.setClientHandler(rmiView);
+		view.start();
 	}
 	
 	/*public void askAction(boolean isFMPlaced) throws RemoteException {
@@ -72,18 +52,4 @@ public class ClientRMI implements ClientSender { //Main class of the Clients usi
 	public void sendAction(int input) throws RemoteException {
 		serverStub.receiveAction(input);
 	}
-
-	public ClientRMIView getRmiView() {
-		return rmiView;
-	}
-
-	public static void main(String[] args) throws IOException, NotBoundException, AlreadyBoundException, CloneNotSupportedException {
-		ClientRMI clientRMI = ClientRMI.instance();
-		clientRMI.start();
-
-	}
-
-
-
-
 }

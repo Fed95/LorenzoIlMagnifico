@@ -18,9 +18,15 @@ public class ViewCLI extends Observable implements View{
 	private ClientSender clientSender;
 	private ClientHandler clientHandler;
 
-	public ViewCLI(ClientSender clientSender, ClientHandler clientHandler) {
+	public ViewCLI() {
 		this.in = new Scanner(System.in);
+	}
+
+	public void setClientSender(ClientSender clientSender) {
 		this.clientSender = clientSender;
+	}
+
+	public void setClientHandler(ClientHandler clientHandler) {
 		this.clientHandler = clientHandler;
 	}
 
@@ -48,7 +54,6 @@ public class ViewCLI extends Observable implements View{
 				continue;
 			}
 
-			System.out.println("SENDING " + inputInt);
 			List<Action> actions = clientHandler.getActions();
 			int offset = clientHandler.getOffset();
 

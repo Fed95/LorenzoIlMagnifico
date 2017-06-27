@@ -5,7 +5,8 @@ import it.polimi.ingsw.gc_12.*;
 import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
-import it.polimi.ingsw.gc_12.client.rmi.ClientRMI;
+import it.polimi.ingsw.gc_12.client.ClientFactory;
+import it.polimi.ingsw.gc_12.client.ClientSender;
 import it.polimi.ingsw.gc_12.mvc.GUIAdapter;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 import javafx.application.Platform;
@@ -156,11 +157,11 @@ public class MainBoardController implements Initializable, Observer {
 
     private GUIAdapter adapter;
     private MatchInstanceGUI match;
-    private ClientHandler clientView;
+    private ClientHandler clientHandler;
 
     @FXML void familyClicked(MouseEvent event) {
         ImageView familyMemberClicked = (ImageView) event.getTarget();
-        List<Action> actions = clientView.getActions();
+        List<Action> actions = clientHandler.getActions();
         for(Action action: actions)
             System.out.println(action);
         Image image = new Image("img/Card/card_92.png");
@@ -327,8 +328,10 @@ public class MainBoardController implements Initializable, Observer {
         pointsVictoryPoints.setCellValueFactory(cellData -> cellData.getValue().getVictoryPointProperty().asString());
 
         showCards.setOpacity(0);
-        this.clientView = ClientRMI.instance().getRmiView();
-        this.adapter = new GUIAdapter(ClientRMI.instance());
+        this.clientHandler = ClientFactory.getClientHandler();
+        ClientSender clientSender = ClientFactory.getClientSender();
+        this.adapter = new GUIAdapter(ClientFactory.getClientSender());
+
         try {
             adapter.sendAction(0);
         } catch (IOException e) {

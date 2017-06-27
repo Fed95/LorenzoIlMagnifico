@@ -23,8 +23,9 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 	protected PlayerColor color;
 	private boolean excluded;
 
-	protected ClientHandler() throws RemoteException {
+	protected ClientHandler(View view) throws RemoteException {
 		super();
+		this.view = view;
 		this.multiplier = 1;
 	}
 

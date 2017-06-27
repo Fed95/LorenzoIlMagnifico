@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc_12.client.socket;
 
+import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.ClientSender;
 
 import java.io.IOException;
@@ -12,7 +13,7 @@ public class ClientOutHandler implements Runnable, ClientSender {
 	private ObjectOutputStream socketOut;
 	private String name;
 
-	public ClientOutHandler(ObjectOutputStream socketOut, String name, Scanner scanner) {
+	public ClientOutHandler(ObjectOutputStream socketOut, String name) {
 		this.socketOut = socketOut;
 		this.name = name;
 	}
@@ -45,4 +46,5 @@ public class ClientOutHandler implements Runnable, ClientSender {
 			e.printStackTrace();
 		}
 	}
+
 }
