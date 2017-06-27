@@ -8,9 +8,6 @@ import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
 
 import java.util.List;
 
-/**
- * Created by feder on 2017-06-24.
- */
 public class ActionReceiveExcommunication extends Action {
 
     private ExcommunicationTile tile;

@@ -68,6 +68,10 @@ public class ActionHandler {
 		return players;
 	}
 
+	public void setPlayers(List<Player> players) {
+		this.players = players;
+	}
+
 	public void removeLastEvent() {
 		events.removeLast();
 	}

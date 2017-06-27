@@ -125,7 +125,8 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	}
 
 	private boolean newRound(){
-		if(roundNum != 0 && roundNum%2 == 0) {
+		boolean vatican = roundNum != 0 && roundNum%2 == 0;
+		if(vatican) {
 			endPeriod();
 			newPeriod();
 		}
@@ -134,7 +135,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		resetFamilyMembers();
 		board.refresh(roundNum, getPeriodNum());
 		this.notifyObserver(new EventStartRound(roundNum, board.getTowerSet()));
-		return !(roundNum != 0 && roundNum % 2 == 0);
+		return vatican;
 	}
 
 	public void excludeCurrentPlayer() {

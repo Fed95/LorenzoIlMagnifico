@@ -29,6 +29,7 @@ public class EventVaticanReport extends Event {
         actions.add(new ActionSupportChurch(player));
         actions.add(new ActionReceiveExcommunication(player, tile));
         players = new ArrayList<>(players.subList(1, players.size()));
+        actionHandler.setPlayers(players);
     }
 
     public ExcommunicationTile getTile() {

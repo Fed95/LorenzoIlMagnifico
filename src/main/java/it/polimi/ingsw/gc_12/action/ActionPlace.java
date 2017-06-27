@@ -1,8 +1,11 @@
 package it.polimi.ingsw.gc_12.action;
 
 import it.polimi.ingsw.gc_12.FamilyMember;
+import it.polimi.ingsw.gc_12.FamilyMemberColor;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.dice.Die;
+import it.polimi.ingsw.gc_12.dice.DieColor;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
@@ -100,13 +103,24 @@ public abstract class ActionPlace extends Action {
 			this.canBeExecuted(match);
 		}
 		catch (RequiredValueNotSatisfiedException | ActionDeniedException | ActionNotAllowedException e) {
-			familyMember.setValue(familyMember.getValue() - player.getResourceValue(ResourceType.SERVANT));
+			resetFamilyMemberValue(match);
 			//match.getEffectHandler().discardEffects(executedEffects, event);
 			return false;
 		}
-		familyMember.setValue(familyMember.getValue()-player.getResourceValue(ResourceType.SERVANT));
+		resetFamilyMemberValue(match);
 		//match.getEffectHandler().discardEffects(executedEffects, event);
 		return true;
+	}
+
+	private void resetFamilyMemberValue(Match match) {
+		int value = 0;
+		try{
+			DieColor dieColor = DieColor.valueOf(familyMember.getColor().toString());
+			value = match.getBoard().getSpaceDie().getDie(dieColor).getValue();
+		}
+		catch (IllegalArgumentException ignored) {}
+
+		familyMember.setValue(value);
 	}
 	
 	protected FamilyMember getRealFamilyMember(Match match){
