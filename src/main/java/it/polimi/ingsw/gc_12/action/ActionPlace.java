@@ -15,6 +15,7 @@ import it.polimi.ingsw.gc_12.exceptions.ActionNotAllowedException;
 import it.polimi.ingsw.gc_12.exceptions.ActionDeniedException;
 import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
+import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.resource.Servant;
 
@@ -29,6 +30,7 @@ public abstract class ActionPlace extends Action {
 	protected Occupiable occupiable;
 	protected boolean complete;
 	protected int multiplier;
+	protected List<Resource> discounts = new ArrayList<>();
 
 	public ActionPlace(Player player, FamilyMember familyMember, Occupiable occupiable, Servant servant, boolean complete) {
 		super(player);
@@ -54,6 +56,8 @@ public abstract class ActionPlace extends Action {
 		setup(match);
 		if(!complete) {
 			EventServantsRequested eventServants = new EventServantsRequested(player, occupiable, familyMember);
+			if(discounts.size() > 0)
+				eventServants.setDiscounts(discounts);
 
 			try {
 				match.getEffectHandler().executeEffects(match, eventServants);
@@ -93,35 +97,26 @@ public abstract class ActionPlace extends Action {
 
 		setup(match);
 		Event event = new EventPlaceFamilyMember(player, occupiable, familyMember);
+		int originalValue = familyMember.getValue();
 
 		List<Effect> executedEffects = new ArrayList<>();
 		try{
-			familyMember.setValue(familyMember.getValue() + player.getResourceValue(ResourceType.SERVANT));
+			familyMember.setValue(originalValue + player.getResourceValue(ResourceType.SERVANT));
 			//Can throw exceptions (in which case effects are discarded directly in EffectHandler)
 			executedEffects = match.getEffectHandler().executeEffects(match, event, true);
 
 			this.canBeExecuted(match);
 		}
 		catch (RequiredValueNotSatisfiedException | ActionDeniedException | ActionNotAllowedException e) {
-			resetFamilyMemberValue(match);
+			familyMember.setValue(originalValue);
 			//match.getEffectHandler().discardEffects(executedEffects, event);
 			return false;
 		}
-		resetFamilyMemberValue(match);
+		familyMember.setValue(originalValue);
 		//match.getEffectHandler().discardEffects(executedEffects, event);
 		return true;
 	}
 
-	private void resetFamilyMemberValue(Match match) {
-		int value = 0;
-		try{
-			DieColor dieColor = DieColor.valueOf(familyMember.getColor().toString());
-			value = match.getBoard().getSpaceDie().getDie(dieColor).getValue();
-		}
-		catch (IllegalArgumentException ignored) {}
-
-		familyMember.setValue(value);
-	}
 	
 	protected FamilyMember getRealFamilyMember(Match match){
     	return match.getBoard().getTrackTurnOrder().getCurrentPlayer().getFamilyMember(familyMember.getColor());

@@ -1,105 +1,105 @@
 {
-  "initialResources": [
-    [{
-      "resourceType": "Money",
-      "type": "MONEY",
-      "value": 5
-    }, {
-      "resourceType": "Wood",
-      "type": "WOOD",
-      "value": 2
-    }, {
-      "resourceType": "Stone",
-      "type": "STONE",
-      "value": 2
-    }, {
-      "resourceType": "Servant",
-      "type": "SERVANT",
-      "value": 3
-    }],
-    [{
-      "resourceType": "Money",
-      "type": "MONEY",
-      "value": 6
-    }, {
-      "resourceType": "Wood",
-      "type": "WOOD",
-      "value": 2
-    }, {
-      "resourceType": "Stone",
-      "type": "STONE",
-      "value": 2
-    }, {
-      "resourceType": "Servant",
-      "type": "SERVANT",
-      "value": 3
-    }],
-    [{
-      "resourceType": "Money",
-      "type": "MONEY",
-      "value": 7
-    }, {
-      "resourceType": "Wood",
-      "type": "WOOD",
-      "value": 2
-    }, {
-      "resourceType": "Stone",
-      "type": "STONE",
-      "value": 2
-    }, {
-      "resourceType": "Servant",
-      "type": "SERVANT",
-      "value": 3
-    }],
-    [{
-      "resourceType": "Money",
-      "type": "MONEY",
-      "value": 8
-    }, {
-      "resourceType": "Wood",
-      "type": "WOOD",
-      "value": 2
-    }, {
-      "resourceType": "Stone",
-      "type": "STONE",
-      "value": 2
-    }, {
-      "resourceType": "Servant",
-      "type": "SERVANT",
-      "value": 3
-    }]
-  ],
-  "councilPrivilegeResources": [
-    [{
-      "resourceType": "Wood",
-      "type": "WOOD",
-      "value": 1
-    }, {
-      "resourceType": "Stone",
-      "type": "STONE",
-      "value": 1
-    }],
-    [{
-      "resourceType": "Servant",
-      "type": "SERVANT",
-      "value": 2
-    }],
-    [{
-      "resourceType": "Money",
-      "type": "MONEY",
-      "value": 2
-    }],
-    [{
-      "resourceType": "MilitaryPoint",
-      "type": "MILITARY_POINT",
-      "value": 2
-    }],
-    [{
-      "resourceType": "FaithPoint",
-      "type": "FAITH_POINT",
-      "value": 1
-    }]
-  ],
-  "requiredValues": [1, 3, 5, 7],
-  "timeoutAction": 600000
+"initialResources": [
+[{
+"resourceType": "Money",
+"type": "MONEY",
+"value": 5
+}, {
+"resourceType": "Wood",
+"type": "WOOD",
+"value": 2
+}, {
+"resourceType": "Stone",
+"type": "STONE",
+"value": 2
+}, {
+"resourceType": "Servant",
+"type": "SERVANT",
+"value": 3
+}],
+[{
+"resourceType": "Money",
+"type": "MONEY",
+"value": 6
+}, {
+"resourceType": "Wood",
+"type": "WOOD",
+"value": 2
+}, {
+"resourceType": "Stone",
+"type": "STONE",
+"value": 2
+}, {
+"resourceType": "Servant",
+"type": "SERVANT",
+"value": 3
+}],
+[{
+"resourceType": "Money",
+"type": "MONEY",
+"value": 7
+}, {
+"resourceType": "Wood",
+"type": "WOOD",
+"value": 2
+}, {
+"resourceType": "Stone",
+"type": "STONE",
+"value": 2
+}, {
+"resourceType": "Servant",
+"type": "SERVANT",
+"value": 3
+}],
+[{
+"resourceType": "Money",
+"type": "MONEY",
+"value": 8
+}, {
+"resourceType": "Wood",
+"type": "WOOD",
+"value": 2
+}, {
+"resourceType": "Stone",
+"type": "STONE",
+"value": 2
+}, {
+"resourceType": "Servant",
+"type": "SERVANT",
+"value": 3
+}]
+],
+"councilPrivilegeResources": [
+[{
+"resourceType": "Wood",
+"type": "WOOD",
+"value": 1
+}, {
+"resourceType": "Stone",
+"type": "STONE",
+"value": 1
+}],
+[{
+"resourceType": "Servant",
+"type": "SERVANT",
+"value": 2
+}],
+[{
+"resourceType": "Money",
+"type": "MONEY",
+"value": 2
+}],
+[{
+"resourceType": "MilitaryPoint",
+"type": "MILITARY_POINT",
+"value": 2
+}],
+[{
+"resourceType": "FaithPoint",
+"type": "FAITH_POINT",
+"value": 1
+}]
+],
+"requiredValues": [1, 3, 5, 7],
+"timeoutAction": 600000
 }

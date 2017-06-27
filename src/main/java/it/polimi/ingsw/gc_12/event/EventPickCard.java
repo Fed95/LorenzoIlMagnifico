@@ -2,6 +2,7 @@ package it.polimi.ingsw.gc_12.event;
 
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.card.Card;
+import it.polimi.ingsw.gc_12.card.CardDevelopment;
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class EventPickCard extends Event {
     private int cardID;
     private Card card;
 
-    public EventPickCard(Player player, Card card) {
+    public EventPickCard(Player player, CardDevelopment card) {
         super(player);
         this.card = card;
         this.cardID = card.getId();
@@ -24,6 +25,14 @@ public class EventPickCard extends Event {
 
     public EventPickCard(int cardID) {
         this.cardID = cardID;
+    }
+
+    public EventPickCard(CardDevelopment card) {
+        this.card = card;
+    }
+
+    public Card getCard() {
+        return card;
     }
 
     @Override

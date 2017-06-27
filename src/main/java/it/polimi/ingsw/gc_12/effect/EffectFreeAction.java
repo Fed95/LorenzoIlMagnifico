@@ -5,6 +5,7 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventFreeAction;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
+import it.polimi.ingsw.gc_12.resource.Resource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ public class EffectFreeAction extends Effect {
 
 
     private List<Occupiable> occupiables;
+    private List<Resource> discounts = new ArrayList<>();
     private FamilyMember familyMember;
     private String description;
     int value;
@@ -22,6 +24,11 @@ public class EffectFreeAction extends Effect {
         super(event);
         this.occupiables = occupiables;
         this.value = value;
+    }
+
+    public EffectFreeAction(Event event, List<Occupiable> occupiables, int value, List<Resource> discounts) {
+        this(event, occupiables, value);
+        this.discounts = discounts;
     }
 
     public EffectFreeAction(Event event, List<Occupiable> occupiables, int value, String description) {
@@ -40,6 +47,8 @@ public class EffectFreeAction extends Effect {
             }
         }
         Event eventFreeAction = new EventFreeAction(match.getBoard().getTrackTurnOrder().getCurrentPlayer(), familyMember, realOccupiables);
+        if(discounts.size() > 0)
+            ((EventFreeAction) eventFreeAction).setDiscounts(discounts);
         match.getActionHandler().update(eventFreeAction, match);
         match.notifyObserver(eventFreeAction);
     }

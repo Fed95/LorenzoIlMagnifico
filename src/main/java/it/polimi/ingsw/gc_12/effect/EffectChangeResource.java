@@ -77,7 +77,7 @@ public class EffectChangeResource extends Effect {
 		}
 		else {
 			match.addResources(player, exchangeChosen.getCost());
-			player.removeResources(exchangeChosen.getCost());
+			player.removeResources(exchangeChosen.getBonus());
 		}
 	}
 

@@ -3797,6 +3797,77 @@
             "cost": [],
             "bonus": [
               {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 55
+        }
+      },
+      {
+        "type": "EffectFreeAction",
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 55
+        },
+        "description": "Free action of value 4 on any TowerFloor",
+        "occupiables": [
+          {
+            "occupiable": "TowerFloor",
+            "floorNum": 0,
+            "effects": [],
+            "occupiers": []
+          },
+          {
+            "occupiable": "TowerFloor",
+            "floorNum": 1,
+            "effects": [],
+            "occupiers": []
+          },
+          {
+            "occupiable": "TowerFloor",
+            "floorNum": 2,
+            "effects": [],
+            "occupiers": []
+          },
+          {
+            "occupiable": "TowerFloor",
+            "floorNum": 3,
+            "effects": [],
+            "occupiers": []
+          }
+        ],
+        "value": 4
+      }
+    ],
+    "name": "Badessa",
+    "id": 55,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 3
+      }
+    ]
+  },
+  {
+    "type": "CardCharacter",
+    "cardType": "CHARACTER",
+    "period": 1,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
                 "resourceType": "MilitaryPoint",
                 "type": "MILITARY_POINT",
                 "value": 3
@@ -4203,77 +4274,6 @@
     "period": 1,
     "effects": [
       {
-        "type": "EffectChangeResource",
-        "exchanges": [
-          {
-            "cost": [],
-            "bonus": [
-              {
-                "resourceType": "FaithPoint",
-                "type": "FAITH_POINT",
-                "value": 1
-              }
-            ]
-          }
-        ],
-        "choice": false,
-        "event": {
-          "eventType": "EventPickCard",
-          "cardID": 55
-        }
-      },
-      {
-        "type": "EffectFreeAction",
-        "event": {
-          "eventType": "EventPickCard",
-          "cardID": 55
-        },
-        "description": "Free action of value 4 on any TowerFloor",
-        "occupiables": [
-          {
-            "occupiable": "TowerFloor",
-            "floorNum": 0,
-            "effects": [],
-            "occupiers": []
-          },
-          {
-            "occupiable": "TowerFloor",
-            "floorNum": 1,
-            "effects": [],
-            "occupiers": []
-          },
-          {
-            "occupiable": "TowerFloor",
-            "floorNum": 2,
-            "effects": [],
-            "occupiers": []
-          },
-          {
-            "occupiable": "TowerFloor",
-            "floorNum": 3,
-            "effects": [],
-            "occupiers": []
-          }
-        ],
-        "value": 4
-      }
-    ],
-    "name": "Badessa",
-    "id": 55,
-    "requirements": [
-      {
-        "resourceType": "Money",
-        "type": "MONEY",
-        "value": 3
-      }
-    ]
-  },
-  {
-    "type": "CardCharacter",
-    "cardType": "CHARACTER",
-    "period": 1,
-    "effects": [
-      {
         "type": "EffectChangeFamilyMemberValue",
         "amount": 2,
         "event": {
@@ -4433,11 +4433,23 @@
     "effects": [
       {
         "type": "EffectFreeAction",
+        "description": "Free action of value 6 on any TowerFloor of the BUILDING Tower with the following discounts: [WOOD: 1, STONE: 1]",
+        "discounts": [
+          {
+            "resourceType": "Wood",
+            "type": "WOOD",
+            "value": 1
+          },
+          {
+            "resourceType": "Stone",
+            "type": "STONE",
+            "value": 1
+          }
+        ],
         "event": {
           "eventType": "EventPickCard",
           "cardID": 57
         },
-        "description": "Free action of value 6 on any TowerFloor of the BUILDING Tower",
         "occupiables": [
           {
             "occupiable": "TowerFloor",
@@ -4513,6 +4525,14 @@
     "effects": [
       {
         "type": "EffectFreeAction",
+        "description": "Free action of value 6 on any TowerFloor of the CHARACTER Tower with the following discounts: [MONEY: 2]",
+        "discounts": [
+          {
+            "resourceType": "Money",
+            "type": "MONEY",
+            "value": 2
+          }
+        ],
         "event": {
           "eventType": "EventPickCard",
           "cardID": 58

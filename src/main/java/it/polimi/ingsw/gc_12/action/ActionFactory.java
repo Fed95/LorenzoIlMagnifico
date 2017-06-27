@@ -3,13 +3,16 @@ package it.polimi.ingsw.gc_12.action;
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.occupiables.*;
+import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.resource.Servant;
+
+import java.util.List;
 
 public class ActionFactory {
 
-	public static ActionPlace createActionPlace(Player player, FamilyMember familyMember, Occupiable occupiable, Servant servant, boolean complete) {
+	public static ActionPlace createActionPlace(Player player, FamilyMember familyMember, Occupiable occupiable, Servant servant, boolean complete,  List<Resource> discounts) {
 		if(occupiable instanceof TowerFloor) {
-			return new ActionPlaceOnTower(player, familyMember,(TowerFloor) occupiable, servant, complete);
+			return new ActionPlaceOnTower(player, familyMember,(TowerFloor) occupiable, servant, complete, discounts);
 		}else if(occupiable instanceof SpaceWork){
 			return new ActionPlaceOnSpaceWork(player, familyMember, (SpaceWork) occupiable, servant, complete);
 		}else if(occupiable instanceof SpaceMarket){
@@ -22,6 +25,10 @@ public class ActionFactory {
 	}
 
 	public static ActionPlace createActionPlace(Player player, FamilyMember familyMember, Occupiable occupiable) {
-		return createActionPlace(player, familyMember, occupiable, new Servant(0), false);
+		return createActionPlace(player, familyMember, occupiable, new Servant(0), false, null);
+	}
+
+	public static ActionPlace createActionPlace(Player player, FamilyMember familyMember, Occupiable occupiable, List<Resource> discounts) {
+		return createActionPlace(player, familyMember, occupiable, new Servant(0), false, discounts);
 	}
 }

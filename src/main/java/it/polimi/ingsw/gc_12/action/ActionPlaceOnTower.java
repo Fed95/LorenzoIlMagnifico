@@ -1,8 +1,10 @@
 package it.polimi.ingsw.gc_12.action;
 
+import com.sun.org.apache.regexp.internal.RE;
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.card.Card;
 import it.polimi.ingsw.gc_12.card.CardDevelopment;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.effect.EffectFreeAction;
@@ -13,11 +15,12 @@ import it.polimi.ingsw.gc_12.exceptions.ActionDeniedException;
 import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.occupiables.Tower;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
+import it.polimi.ingsw.gc_12.resource.Resource;
+import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.resource.Servant;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.awt.image.RescaleOp;
+import java.util.*;
 
 public class ActionPlaceOnTower extends ActionPlace {
 
@@ -29,13 +32,28 @@ public class ActionPlaceOnTower extends ActionPlace {
         this.towerFloor = towerFloor;
     }
 
-    public ActionPlaceOnTower(Player player, FamilyMember familyMember, TowerFloor towerFloor) {
-        this(player, familyMember, towerFloor, new Servant(0), false);
+    public ActionPlaceOnTower(Player player, FamilyMember familyMember, TowerFloor towerFloor, Servant servant, boolean complete, List<Resource> discounts) {
+        this(player, familyMember, towerFloor, servant, complete);
+        if(discounts != null)
+            this.discounts = discounts;
     }
+
+    public ActionPlaceOnTower(Player player, FamilyMember familyMember, TowerFloor towerFloor, boolean complete) {
+        this(player, familyMember, towerFloor, new Servant(0), complete, null);
+    }
+
+    public ActionPlaceOnTower(Player player, FamilyMember familyMember, TowerFloor towerFloor) {
+        this(player, familyMember, towerFloor, new Servant(0), false, null);
+    }
+
 
     @Override
     protected void setup(Match match) {
         tower = match.getBoard().getTowerSet().getTower(towerFloor.getType());
+    }
+
+    public void setDiscounts(List<Resource> discounts) {
+        this.discounts = discounts;
     }
 
     @Override
@@ -59,7 +77,10 @@ public class ActionPlaceOnTower extends ActionPlace {
         CardDevelopment card = towerFloor.getCard();
 
         player.removeResources(Collections.singletonList(servant));
-        player.removeResources(card.getRequirements());
+        List<Resource> requirements = card.getRequirements();
+        if(discounts.size() > 0)
+            applyDiscounts(requirements);
+        player.removeResources(requirements);
         player.getPersonalBoard().placeCard(card);
         match.placeFamilyMember(towerFloor, familyMember);
 
@@ -82,6 +103,24 @@ public class ActionPlaceOnTower extends ActionPlace {
             match.getEffectHandler().executeEffects(match, event);
         } catch (ActionDeniedException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void applyDiscounts(List<Resource> requirements){
+
+        Map<ResourceType, Resource> cardRequirements = new HashMap<>();
+        for (Resource requirement : requirements)
+            cardRequirements.put(requirement.getType(), requirement);
+
+        for(Resource resource : discounts) {
+
+            ResourceType type = resource.getType();
+
+            if (cardRequirements.containsKey(type)) {
+                int currentValue = cardRequirements.get(type).getValue();
+                int newValue = (currentValue - resource.getValue() < 0 ? 0 : currentValue - resource.getValue());
+                cardRequirements.get(type).setValue(newValue);
+            }
         }
     }
 
