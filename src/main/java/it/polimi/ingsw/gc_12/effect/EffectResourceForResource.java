@@ -16,14 +16,13 @@ public class EffectResourceForResource extends Effect {
 
     public EffectResourceForResource(Event event, Resource ownedResource, Resource resource) {
         super(event);
-        this.player = event.getPlayer();
         this.ownedResource = ownedResource;
         this.resource = resource;
     }
 
     @Override
     public void execute(Match match, Event event, boolean validation) {
-
+        player = event.getPlayer();
         int value = player.getResourceValue(ownedResource.getType()) / ownedResource.getValue();
         resource.setValue(resource.getValue() * value);
 
@@ -37,6 +36,7 @@ public class EffectResourceForResource extends Effect {
 
     @Override
     public void discard(Match match, Event event) {
+        player = event.getPlayer();
         List<Resource> resources = new ArrayList<>();
         resources.add(resource);
         player.removeResources(resources);

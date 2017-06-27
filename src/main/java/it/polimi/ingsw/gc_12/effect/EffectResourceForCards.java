@@ -18,13 +18,13 @@ public class EffectResourceForCards extends Effect{
 
     public EffectResourceForCards(Event event, CardType cardType, Resource resource) {
         super(event);
-        this.player = event.getPlayer();
         this.cardType = cardType;
         this.resource = resource;
     }
 
     @Override
     public void execute(Match match, Event event, boolean validation) {
+        player = event.getPlayer();
         int numOfCards = player.getPersonalBoard().getCards(cardType).size();
         resource.setValue(resource.getValue()*numOfCards);
 
@@ -34,6 +34,7 @@ public class EffectResourceForCards extends Effect{
 
     @Override
     public void discard(Match match, Event event) {
+        player = event.getPlayer();
         List<Resource> resources = applyResourceBonus(new ResourceExchange(null, resource), match, player);
         player.removeResources(resources);
     }
