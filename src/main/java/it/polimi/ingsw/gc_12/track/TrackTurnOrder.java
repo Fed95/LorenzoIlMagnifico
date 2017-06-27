@@ -17,18 +17,17 @@ public class TrackTurnOrder implements Serializable{
 
 	public TrackTurnOrder(List<Player> players, CouncilPalace councilPalace) {
 		this.turnOrder = players;
-		System.out.println(players);
 		this.councilPalace =  councilPalace;
 		chooseRandomOrder();
 	}
 
 	public void chooseRandomOrder() {
-		this.turn = 0;
+		this.turn = -1;
 		Collections.shuffle(turnOrder);
 	}
 
 	public void newRound() {
-		this.turn = 0;
+		this.turn = -1;
 		List<Player> newTurnOrder = new ArrayList<>();
 		for(FamilyMember familyMember : councilPalace.getOccupiers()){
 			if(!newTurnOrder.contains(familyMember.getOwner())){
@@ -61,4 +60,7 @@ public class TrackTurnOrder implements Serializable{
 
 	}
 
+	public void setTurn(int turn) {
+		this.turn = turn;
+	}
 }

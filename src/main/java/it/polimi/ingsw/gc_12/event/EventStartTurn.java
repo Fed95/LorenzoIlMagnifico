@@ -14,13 +14,16 @@ import java.util.List;
 
 public class EventStartTurn extends Event{
 
-	public EventStartTurn(Player player, List<Action> actions) {
+	private int turn;
+
+	public EventStartTurn(Player player, List<Action> actions, int turn) {
 		super(player);
 		this.actions = actions;
+		this.turn = turn;
 	}
 
 	public EventStartTurn(Player player) {
-		this(player, new ArrayList<>());
+		this(player, new ArrayList<>(), 0);
 	}
 
 	@Override
@@ -30,6 +33,7 @@ public class EventStartTurn extends Event{
 
 	@Override
 	public void executeClientSide(ClientHandler client) {
+		client.getMatch().setTurn(turn);
 		boolean myTurn = client.getColor().equals(player.getColor());
 		client.setMyTurn(myTurn);
 		if(myTurn) {

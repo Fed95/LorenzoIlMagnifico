@@ -42,6 +42,10 @@ public abstract class MatchInstance extends Observable {
 		}
 	}
 
+	public void setTurn(int turn) {
+		board.getTrackTurnOrder().setTurn(turn);
+	}
+
     public Board getBoard() {
 		return board;
 	}
