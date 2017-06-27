@@ -138,6 +138,11 @@ public class MainBoardController implements Initializable, Observer {
     private Map<Integer, Circle> mapfloorToBeClickedVenture = new HashMap<>();
     private Map<CardType, Map<Integer, Circle>> mapCardTypeFloorCircle = new HashMap<>();
 
+    @FXML private Circle firstPlayerTurn;
+    @FXML private Circle secondPlayerTurn;
+    @FXML private Circle thirdPlayerTurn;
+    @FXML private Circle fourthPlayerTurn;
+    List<Circle> turnOrderTrack = new ArrayList<>();
     private ImageView lastFamClicked = null;
 
 
@@ -302,6 +307,11 @@ public class MainBoardController implements Initializable, Observer {
         mapCardTypeFloorCircle.put(CardType.CHARACTER, mapfloorToBeClickedCharacter);
         mapCardTypeFloorCircle.put(CardType.VENTURE, mapfloorToBeClickedVenture);
 
+        turnOrderTrack.add(firstPlayerTurn);
+        turnOrderTrack.add(secondPlayerTurn);
+        turnOrderTrack.add(thirdPlayerTurn);
+        turnOrderTrack.add(fourthPlayerTurn);
+
         showCards.setOpacity(0);
         this.clientView = ClientRMI.instance().getRmiView();
         this.adapter = new GUIAdapter(ClientRMI.instance());
@@ -319,6 +329,7 @@ public class MainBoardController implements Initializable, Observer {
             disableTab();
             bindCardsToFloor();
             bindResources();
+            bindTrackOrder();
         });
     }
 
@@ -357,6 +368,13 @@ public class MainBoardController implements Initializable, Observer {
             mapPlayerColorResourceLabel.get(player.getColor()).get(ResourceType.WOOD).textProperty().bind(resourceRepresentation.get(0).getWoodProperty().asString());
             mapPlayerColorResourceLabel.get(player.getColor()).get(ResourceType.STONE).textProperty().bind(resourceRepresentation.get(0).getStoneProperty().asString());
             mapPlayerColorResourceLabel.get(player.getColor()).get(ResourceType.SERVANT).textProperty().bind(resourceRepresentation.get(0).getServantProperty().asString());
+        }
+    }
+    private void bindTrackOrder(){
+        List<Player> players = match.getBoard().getTrackTurnOrder().getOrderedPlayers();
+        for(int i = 0; i < players.size(); i++){
+            turnOrderTrack.get(i).fillProperty().bind(match.getTurnOrderTrackFirstPositionRepresentationObservableList().get(i).getPlayerProperty());
+            turnOrderTrack.get(i).setOpacity(1);
         }
     }
 }

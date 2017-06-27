@@ -6,6 +6,7 @@ import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.java_fx.CardFloorRepresentation;
 import it.polimi.ingsw.gc_12.java_fx.FamilyMemberRepresentation;
 import it.polimi.ingsw.gc_12.java_fx.ResourceRepresentation;
+import it.polimi.ingsw.gc_12.java_fx.TurnOrderTrackPositionRepresentation;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 import it.polimi.ingsw.gc_12.occupiables.TowerSet;
 import it.polimi.ingsw.gc_12.resource.Resource;
@@ -13,7 +14,10 @@ import it.polimi.ingsw.gc_12.resource.ResourceType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +49,8 @@ public class MatchInstanceGUI extends MatchInstance {
     private ObservableList<ResourceRepresentation> resourceYellowRepresentationObservableList = FXCollections.observableArrayList();
     private Map<PlayerColor, ObservableList<ResourceRepresentation>> mapPlayerColorResourceRepresentation = new HashMap<>();
 
+    private ObservableList<TurnOrderTrackPositionRepresentation> turnOrderTrackFirstPositionRepresentationObservableList = FXCollections.observableArrayList();
+
     private MatchInstanceGUI() {}
 
 	public static MatchInstanceGUI instance() {
@@ -57,6 +63,7 @@ public class MatchInstanceGUI extends MatchInstance {
 		super.init(match);
 		createFamilyMemberRepresentation(match);
 		createResourceRepresentation(match);
+		createOrderedTruckRepresentation(match);
         createCardTowerFloorRepresentation(match);
         setChanged();
 		notifyObservers();
@@ -136,7 +143,30 @@ public class MatchInstanceGUI extends MatchInstance {
             mapPlayerColorResourceRepresentation.get(playerColor).add(resourceRepresentation);
         }
     }
-	public Map<PlayerColor, ObservableList<FamilyMemberRepresentation>> getMapPlayerColorObservableLiseFMRepr() {
+    private void createOrderedTruckRepresentation(Match match){
+        List<Player> orderedPlayer = match.getBoard().getTrackTurnOrder().getOrderedPlayers();
+        Paint red = new Color(1, 0.2353, 0.1608, 1);
+        Paint blue = new Color(0.0314, 0.2627, 0.9255, 1);
+        Paint green = new Color(0.0706, 0.6039, 0.2706, 1);
+        Paint yellow = new Color(1, 1, 0.0471, 1);
+        TurnOrderTrackPositionRepresentation turnOrderTrackPositionRepresentation = null;
+        for(Player player : orderedPlayer){
+            PlayerColor playerColor = player.getColor();
+            if(playerColor == PlayerColor.BLUE){
+                 turnOrderTrackPositionRepresentation = new TurnOrderTrackPositionRepresentation(blue);
+            }else if(playerColor == PlayerColor.GREEN){
+                 turnOrderTrackPositionRepresentation = new TurnOrderTrackPositionRepresentation(green);
+            }else if(playerColor == PlayerColor.RED){
+                 turnOrderTrackPositionRepresentation = new TurnOrderTrackPositionRepresentation(red);
+            }else if(playerColor == PlayerColor.YELLOW){
+                 turnOrderTrackPositionRepresentation = new TurnOrderTrackPositionRepresentation(yellow);
+            }
+            turnOrderTrackFirstPositionRepresentationObservableList.add(turnOrderTrackPositionRepresentation);
+        }
+
+    }
+
+    public Map<PlayerColor, ObservableList<FamilyMemberRepresentation>> getMapPlayerColorObservableLiseFMRepr() {
 		return mapFamilyMember;
 	}
 	public Map<CardType, ObservableList<CardFloorRepresentation>> getMapTypeCardFloorRepresentation() {
@@ -145,5 +175,9 @@ public class MatchInstanceGUI extends MatchInstance {
 
     public Map<PlayerColor, ObservableList<ResourceRepresentation>> getMapPlayerColorResourceRepresentation() {
         return mapPlayerColorResourceRepresentation;
+    }
+
+    public ObservableList<TurnOrderTrackPositionRepresentation> getTurnOrderTrackFirstPositionRepresentationObservableList() {
+        return turnOrderTrackFirstPositionRepresentationObservableList;
     }
 }

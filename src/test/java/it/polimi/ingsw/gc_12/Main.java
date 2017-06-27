@@ -1,8 +1,6 @@
 package it.polimi.ingsw.gc_12;
 
 import it.polimi.ingsw.gc_12.json.saver.SaverCard;
-import it.polimi.ingsw.gc_12.json.saver.SaverConfig;
-import it.polimi.ingsw.gc_12.json.saver.SaverConfigPlayers;
 import it.polimi.ingsw.gc_12.json.saver.SaverExcommunications;
 
 import java.util.ArrayList;

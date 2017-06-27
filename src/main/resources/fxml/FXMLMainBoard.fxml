@@ -338,17 +338,17 @@
                   <content>
                     <AnchorPane fx:id="paneMilitaryPointsTab" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <ImageView fitHeight="96.0" fitWidth="90.0" layoutX="355.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../img/militarbritannic.png" />
-                                 </image>
-                              </ImageView>
-                              <TableView layoutX="14.0" layoutY="44.0" prefHeight="306.0" prefWidth="311.0">
+                              <TableView fx:id="tableMilitaryPoints" layoutY="-3.0" prefHeight="416.0" prefWidth="461.0">
                                 <columns>
                                   <TableColumn prefWidth="204.0" text="Player Name" />
                                   <TableColumn minWidth="0.0" prefWidth="106.0" text="Points" />
                                 </columns>
                               </TableView>
+                              <ImageView fitHeight="96.0" fitWidth="90.0" layoutX="355.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/militarbritannic.png" />
+                                 </image>
+                              </ImageView>
                            </children></AnchorPane>
                   </content>
                 </Tab>
@@ -356,7 +356,13 @@
                   <content>
                     <AnchorPane fx:id="paneVictoryPointsTab" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <ImageView fitHeight="92.0" fitWidth="71.0" layoutX="356.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                              <TableView fx:id="tableVictoryPoints" layoutY="-3.0" prefHeight="416.0" prefWidth="461.0">
+                                <columns>
+                                  <TableColumn prefWidth="204.0" text="Player Name" />
+                                  <TableColumn prefWidth="106.0" text="Points" />
+                                </columns>
+                              </TableView>
+                              <ImageView fitHeight="92.0" fitWidth="71.0" layoutX="355.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../img/provavictory2.png" />
                                  </image>
@@ -398,6 +404,10 @@
              <Circle fx:id="floorToBeClicked13" fill="#1f88f8" layoutX="558.0" layoutY="225.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
              <Circle fx:id="floorToBeClicked14" fill="#1f88f8" layoutX="558.0" layoutY="362.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
              <Circle fx:id="floorToBeClicked15" fill="#1f88f8" layoutX="558.0" layoutY="498.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fx:id="firstPlayerTurn" fill="DODGERBLUE" layoutX="560.0" layoutY="564.0" opacity="0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+             <Circle fx:id="secondPlayerTurn" fill="DODGERBLUE" layoutX="560.0" layoutY="604.0" opacity="0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+             <Circle fx:id="thirdPlayerTurn" fill="DODGERBLUE" layoutX="560.0" layoutY="642.0" opacity="0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+             <Circle fx:id="fourthPlayerTurn" fill="DODGERBLUE" layoutX="560.0" layoutY="681.0" opacity="0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
 
          </children>
       </Pane>
