@@ -14,9 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -143,6 +141,16 @@ public class MainBoardController implements Initializable, Observer {
     @FXML private Circle thirdPlayerTurn;
     @FXML private Circle fourthPlayerTurn;
     List<Circle> turnOrderTrack = new ArrayList<>();
+
+    @FXML private TableView<ResourceRepresentation> tableVictoryPoints;
+    @FXML private TableColumn<ResourceRepresentation, String> nameVictoryPoints;
+    @FXML private TableColumn<ResourceRepresentation, String> pointsVictoryPoints;
+
+    @FXML private TableView<ResourceRepresentation> tableMilitaryPoints;
+    @FXML private TableColumn<ResourceRepresentation, String> nameMilitaryPoints;
+    @FXML private TableColumn<ResourceRepresentation, String> pointsMilitaryPoints;
+
+
     private ImageView lastFamClicked = null;
 
 
@@ -312,6 +320,12 @@ public class MainBoardController implements Initializable, Observer {
         turnOrderTrack.add(thirdPlayerTurn);
         turnOrderTrack.add(fourthPlayerTurn);
 
+        nameMilitaryPoints.setCellValueFactory(cellData -> cellData.getValue().getPlayerColorProperty());
+        pointsMilitaryPoints.setCellValueFactory(cellData -> cellData.getValue().getMilitaryPointProperty().asString());
+
+        nameVictoryPoints.setCellValueFactory(cellData -> cellData.getValue().getPlayerColorProperty());
+        pointsVictoryPoints.setCellValueFactory(cellData -> cellData.getValue().getVictoryPointProperty().asString());
+
         showCards.setOpacity(0);
         this.clientView = ClientRMI.instance().getRmiView();
         this.adapter = new GUIAdapter(ClientRMI.instance());
@@ -330,6 +344,7 @@ public class MainBoardController implements Initializable, Observer {
             bindCardsToFloor();
             bindResources();
             bindTrackOrder();
+            bindTrackMilitaryVictory();
         });
     }
 
@@ -376,5 +391,10 @@ public class MainBoardController implements Initializable, Observer {
             turnOrderTrack.get(i).fillProperty().bind(match.getTurnOrderTrackFirstPositionRepresentationObservableList().get(i).getPlayerProperty());
             turnOrderTrack.get(i).setOpacity(1);
         }
+    }
+    private void bindTrackMilitaryVictory(){
+        tableMilitaryPoints.setItems(match.getAllResourcerepresentationMilitary());
+        tableVictoryPoints.setItems(match.getAllResourcerepresentationVictory());
+
     }
 }

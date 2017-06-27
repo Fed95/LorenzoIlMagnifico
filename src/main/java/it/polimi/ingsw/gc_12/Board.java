@@ -23,8 +23,8 @@ public class Board implements Serializable{
 	private CouncilPalace councilPalace;
 	private Map<WorkType, SpaceWorkZone> spaceWorkZones = new HashMap<>();
 	private TrackTurnOrder trackTurnOrder;
-	private transient TrackMilitaryPoints trackMilitaryPoints;
-	private transient TrackVictoryPoints victroyPointsTrack;
+	private TrackMilitaryPoints trackMilitaryPoints;
+	private TrackVictoryPoints victroyPointsTrack;
 	private transient TrackFaithPoints trackFaithPoints;
 	private transient ExcommunicationSpace excommunicationSpace;
 	private transient List<ExcommunicationTile> excommunicationTiles;
@@ -100,7 +100,15 @@ public class Board implements Serializable{
 		return trackTurnOrder;
 	}
 
-	public List<Occupiable> getOccupiables() {
+    public TrackMilitaryPoints getTrackMilitaryPoints() {
+        return trackMilitaryPoints;
+    }
+
+    public TrackVictoryPoints getVictroyPointsTrack() {
+        return victroyPointsTrack;
+    }
+
+    public List<Occupiable> getOccupiables() {
 		List<Occupiable> occupiables = new ArrayList<>();
 		occupiables.addAll(towerSet.getOccupiables());
 		occupiables.addAll(market.getSpaceMarkets());

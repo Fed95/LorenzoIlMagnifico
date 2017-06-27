@@ -19,7 +19,7 @@ public class ResourceRepresentation {
     private IntegerProperty faithPoint;
     private IntegerProperty councilPrivilege;
     public ResourceRepresentation(String playerColor, int stone, int money, int servant, int wood, int victory, int military, int faith, int councilPrivilege){
-        this.playerColor = new SimpleStringProperty(this,"playerColorPropertyInside", playerColor);
+        this.playerColor = new SimpleStringProperty(playerColor);
         this.money = new SimpleIntegerProperty(money);
         this.wood = new SimpleIntegerProperty(wood);
         this.stone = new SimpleIntegerProperty(stone);

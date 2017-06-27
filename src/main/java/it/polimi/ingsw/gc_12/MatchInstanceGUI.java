@@ -51,6 +51,8 @@ public class MatchInstanceGUI extends MatchInstance {
     private ObservableList<ResourceRepresentation> resourceRedRepresentationObservableList = FXCollections.observableArrayList();
     private ObservableList<ResourceRepresentation> resourceYellowRepresentationObservableList = FXCollections.observableArrayList();
     private Map<PlayerColor, ObservableList<ResourceRepresentation>> mapPlayerColorResourceRepresentation = new HashMap<>();
+    ObservableList<ResourceRepresentation> allResourcerepresentationMilitary = FXCollections.observableArrayList();
+    ObservableList<ResourceRepresentation> allResourcerepresentationVictory = FXCollections.observableArrayList();
 
     private ObservableList<TurnOrderTrackPositionRepresentation> turnOrderTrackFirstPositionRepresentationObservableList = FXCollections.observableArrayList();
 
@@ -69,9 +71,9 @@ public class MatchInstanceGUI extends MatchInstance {
 		createOrderedTruckRepresentation(match);
         createCardTowerFloorRepresentation(match);
 		setFamilyMemberObservers();
+        createObservableListMilitary(match);
         setChanged();
 		notifyObservers();
-
 	}
 
     @Override
@@ -186,6 +188,17 @@ public class MatchInstanceGUI extends MatchInstance {
         }
 
     }
+    public void createObservableListMilitary(Match match){
+        List<Player> players = new ArrayList<>(match.getPlayers().values());
+        List<Player> orderedByMilitary = match.getBoard().getTrackMilitaryPoints().getPlayersOrder(players);
+        List<Player> orderedByVictory = match.getBoard().getVictroyPointsTrack().getPlayerOrdered(players);
+        for(Player player : orderedByMilitary){
+            allResourcerepresentationMilitary.add(mapPlayerColorResourceRepresentation.get(player.getColor()).get(0));
+        }
+        for(Player player : orderedByVictory){
+            allResourcerepresentationVictory.add(mapPlayerColorResourceRepresentation.get(player.getColor()).get(0));
+        }
+    }
 
     public Map<PlayerColor, ObservableList<FamilyMemberRepresentation>> getMapPlayerColorObservableLiseFMRepr() {
 		return mapFamilyMember;
@@ -200,5 +213,13 @@ public class MatchInstanceGUI extends MatchInstance {
 
     public ObservableList<TurnOrderTrackPositionRepresentation> getTurnOrderTrackFirstPositionRepresentationObservableList() {
         return turnOrderTrackFirstPositionRepresentationObservableList;
+    }
+
+    public ObservableList<ResourceRepresentation> getAllResourcerepresentationMilitary() {
+        return allResourcerepresentationMilitary;
+    }
+
+    public ObservableList<ResourceRepresentation> getAllResourcerepresentationVictory() {
+        return allResourcerepresentationVictory;
     }
 }
