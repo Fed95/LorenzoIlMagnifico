@@ -14,8 +14,19 @@ public class MatchInstanceCLI extends MatchInstance {
 		return instance;
 	}
 
-    @Override
+	@Override
+	public void init(Match match) {
+		super.init(match);
+		setFamilyMemberObservers();
+	}
+
+	@Override
     public void setCards(TowerSet towers) {
 
     }
+
+	@Override
+	protected void setFamilyMemberObservers() {
+
+	}
 }

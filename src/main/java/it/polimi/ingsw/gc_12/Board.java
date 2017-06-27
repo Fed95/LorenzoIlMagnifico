@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class Board implements Serializable{
 
-	private transient SpaceDie spaceDie;
+	private SpaceDie spaceDie;
 	private TowerSet towerSet;
 	private Market market;
 	private CouncilPalace councilPalace;

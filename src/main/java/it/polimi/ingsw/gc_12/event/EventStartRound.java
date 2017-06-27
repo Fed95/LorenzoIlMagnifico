@@ -1,18 +1,21 @@
 package it.polimi.ingsw.gc_12.event;
 
 import it.polimi.ingsw.gc_12.client.ClientHandler;
+import it.polimi.ingsw.gc_12.dice.SpaceDie;
 import it.polimi.ingsw.gc_12.occupiables.TowerSet;
 
 import java.util.List;
 
 public class EventStartRound extends Event {
 
-	int round;
-	TowerSet towers;
+	private int round;
+	private TowerSet towers;
+	private SpaceDie spaceDie;
 
-	public EventStartRound(int round, TowerSet towers) {
+	public EventStartRound(int round, TowerSet towers, SpaceDie spaceDie) {
 		this.round = round;
 		this.towers = towers;
+		this.spaceDie = spaceDie;
 	}
 
 	public int getRound() {
@@ -23,6 +26,7 @@ public class EventStartRound extends Event {
 	public void executeClientSide(ClientHandler client) {
 	    client.getMatch().getBoard().setTowerSet(towers);
 	    client.getMatch().setCards(towers);
+	    client.getMatch().setDice(spaceDie);
 	}
 
 	@Override

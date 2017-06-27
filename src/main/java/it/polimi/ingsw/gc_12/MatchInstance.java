@@ -2,6 +2,8 @@ package it.polimi.ingsw.gc_12;
 
 import it.polimi.ingsw.gc_12.card.CardDevelopment;
 import it.polimi.ingsw.gc_12.card.CardType;
+import it.polimi.ingsw.gc_12.dice.Die;
+import it.polimi.ingsw.gc_12.dice.SpaceDie;
 import it.polimi.ingsw.gc_12.java_fx.CardFloorRepresentation;
 import it.polimi.ingsw.gc_12.java_fx.FamilyMemberRepresentation;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
@@ -32,7 +34,13 @@ public abstract class MatchInstance extends Observable {
 		this.roundNum = 1;
 		this.players = match.getPlayers();
 	}
-    abstract public void setCards(TowerSet towers);
+
+	public void setDice(SpaceDie spaceDie) {
+		for(Die die: spaceDie.getDice().values()) {
+			Die boardDie = board.getSpaceDie().getDie(die.getColor());
+			boardDie.setValue(die.getValue());
+		}
+	}
 
     public Board getBoard() {
 		return board;
@@ -69,5 +77,9 @@ public abstract class MatchInstance extends Observable {
 	public int getRoundNum() {
 		return roundNum;
 	}
+
+	public abstract void setCards(TowerSet towers);
+	protected abstract void setFamilyMemberObservers();
+
 
 }

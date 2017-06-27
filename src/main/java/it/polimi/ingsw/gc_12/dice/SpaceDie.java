@@ -1,9 +1,10 @@
 package it.polimi.ingsw.gc_12.dice;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SpaceDie {
+public class SpaceDie implements Serializable{
 	private Map<DieColor, Die> dice = new HashMap<>();
 
     public SpaceDie(){

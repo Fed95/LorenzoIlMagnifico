@@ -3,6 +3,9 @@ package it.polimi.ingsw.gc_12;
 
 import it.polimi.ingsw.gc_12.card.CardDevelopment;
 import it.polimi.ingsw.gc_12.card.CardType;
+import it.polimi.ingsw.gc_12.dice.Die;
+import it.polimi.ingsw.gc_12.dice.DieColor;
+import it.polimi.ingsw.gc_12.dice.SpaceDie;
 import it.polimi.ingsw.gc_12.java_fx.CardFloorRepresentation;
 import it.polimi.ingsw.gc_12.java_fx.FamilyMemberRepresentation;
 import it.polimi.ingsw.gc_12.java_fx.ResourceRepresentation;
@@ -65,8 +68,10 @@ public class MatchInstanceGUI extends MatchInstance {
 		createResourceRepresentation(match);
 		createOrderedTruckRepresentation(match);
         createCardTowerFloorRepresentation(match);
+		setFamilyMemberObservers();
         setChanged();
 		notifyObservers();
+
 	}
 
     @Override
@@ -84,7 +89,23 @@ public class MatchInstanceGUI extends MatchInstance {
         }
     }
 
-    private void createFamilyMemberRepresentation(Match match){
+	@Override
+	protected void setFamilyMemberObservers() {
+		for(Player player: players.values()) {
+			for(FamilyMemberRepresentation familyMember: mapFamilyMember.get(player.getColor())) {
+				try{
+					DieColor dieColor = DieColor.valueOf(familyMember.getColorsFamilyMemberPropertyString());
+					Die die = board.getSpaceDie().getDie(dieColor);
+					die.addObserver(familyMember);
+				}
+				catch (IllegalArgumentException ignored) {}
+			}
+
+
+		}
+	}
+
+	private void createFamilyMemberRepresentation(Match match){
 		Map<PlayerColor, Player> players = match.getPlayers();
 		for(Player player : players.values()){
 			if(player.getColor().equals(PlayerColor.BLUE)){

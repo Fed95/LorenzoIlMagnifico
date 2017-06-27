@@ -1,8 +1,9 @@
 package it.polimi.ingsw.gc_12.dice;
 
+import java.io.Serializable;
 import java.util.Observable;
 
-public class Die extends Observable {
+public class Die extends Observable implements Serializable{
 	private DieColor color;
 	private Integer value;
 	private static final int MAX_VALUE = 6;
@@ -24,9 +25,10 @@ public class Die extends Observable {
 	public Integer getValue(){
 		return value;
 	}
-	
-	
-	
 
-	
+	public void setValue(Integer value) {
+		this.value = value;
+		setChanged();
+		notifyObservers(value);
+	}
 }

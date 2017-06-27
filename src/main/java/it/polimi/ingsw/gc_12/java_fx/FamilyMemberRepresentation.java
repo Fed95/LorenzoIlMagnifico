@@ -1,12 +1,13 @@
 package it.polimi.ingsw.gc_12.java_fx;
 
+import javafx.application.Platform;
 import javafx.beans.property.*;
 
+import java.util.Observable;
+import java.util.Observer;
 
-/**
- * Created by rugge on 20/06/2017.
- */
-public class FamilyMemberRepresentation {
+
+public class FamilyMemberRepresentation implements Observer {
       private SimpleIntegerProperty valueProperty;
     private SimpleStringProperty colorsFamilyMemberProperty;
     private SimpleStringProperty colorsPlayerProperty;
@@ -49,5 +50,13 @@ public class FamilyMemberRepresentation {
     }
     public StringProperty getColorsPlayerProperty() {
         return colorsPlayerProperty;
+    }
+
+    @Override
+    public void update(Observable o, Object value) {
+        if(value instanceof Integer) {
+            Platform.runLater(() -> setValueProperty((int) value));
+        }
+
     }
 }

@@ -82,7 +82,6 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		board.getTowerSet().setCards(cardDeckSet);
 		board.getExcommunicationSpace().setTilesDeck(excommunicationTiles);
 		board.setMarket(new LoaderMarket().get(this));
-		System.out.println(board.getMarket().getSpaceMarkets());
 	}
 
 	private void initPlayers() {
@@ -134,7 +133,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		turnCounter = 0;
 		resetFamilyMembers();
 		board.refresh(roundNum, getPeriodNum());
-		this.notifyObserver(new EventStartRound(roundNum, board.getTowerSet()));
+		this.notifyObserver(new EventStartRound(roundNum, board.getTowerSet(), board.getSpaceDie()));
 		return vatican;
 	}
 
