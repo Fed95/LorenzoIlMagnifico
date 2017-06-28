@@ -3,9 +3,13 @@ package it.polimi.ingsw.gc_12.action;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.Event;
+import it.polimi.ingsw.gc_12.event.EventSupportChurch;
 import it.polimi.ingsw.gc_12.event.EventVaticanReport;
+import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
+import it.polimi.ingsw.gc_12.resource.VictoryPoint;
 
+import java.util.Collections;
 import java.util.List;
 
 public class ActionSupportChurch extends Action {
@@ -21,8 +25,15 @@ public class ActionSupportChurch extends Action {
 
     @Override
     public void start(Match match) {
+
+        EventSupportChurch event = new EventSupportChurch(player);
+        match.notifyObserver(event);
+
         player.setResourceValue(ResourceType.FAITH_POINT, 0);
-        //TODO: IMPLEMENT VICTORY POINTS
+
+        Resource victoryPoints = match.getBoard().getTrackFaithPoints().getFaithSlot(player.getResourceValue(ResourceType.FAITH_POINT)).getVictoryPoints();
+        player.addResources(Collections.singletonList(victoryPoints));
+
         List<Player> players = match.getActionHandler().getPlayers();
         if(players.size() > 0) {
             match.vaticanReport(players);

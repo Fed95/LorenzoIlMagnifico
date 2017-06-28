@@ -25,10 +25,10 @@ public class Board implements Serializable{
 	private TrackTurnOrder trackTurnOrder;
 	private TrackMilitaryPoints trackMilitaryPoints;
 	private TrackVictoryPoints victroyPointsTrack;
+	private List<Integer> trackFaithPointsValues = new ArrayList<>();
 	private transient TrackFaithPoints trackFaithPoints;
 	private transient ExcommunicationSpace excommunicationSpace;
 	private transient List<ExcommunicationTile> excommunicationTiles;
-	private transient List<Integer> trackFaithPointsValues = new ArrayList<>();
 
 	public Board(List<Player> players) {
 		this.spaceDie = new SpaceDie();
@@ -36,7 +36,6 @@ public class Board implements Serializable{
 		this.trackTurnOrder = new TrackTurnOrder(players, councilPalace);
 		this.trackMilitaryPoints = new TrackMilitaryPoints();
 		this.victroyPointsTrack = new TrackVictoryPoints();
-		this.trackFaithPoints = new TrackFaithPoints(trackFaithPointsValues);
 		this.excommunicationSpace = new ExcommunicationSpace();
 		createSpaceWork(players.size());
 	}
@@ -45,6 +44,9 @@ public class Board implements Serializable{
 	}
 	public void setMarket(Market market) {
 		this.market = market;
+	}
+	public void setTrackFaithPoints(List<Integer> values){
+		this.trackFaithPoints = new TrackFaithPoints(values);
 	}
 
 	public void createSpaceWork(int playersNum) {

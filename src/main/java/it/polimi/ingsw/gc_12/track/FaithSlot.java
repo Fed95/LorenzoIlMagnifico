@@ -1,5 +1,8 @@
 package it.polimi.ingsw.gc_12.track;
 
+import it.polimi.ingsw.gc_12.resource.Resource;
+import it.polimi.ingsw.gc_12.resource.VictoryPoint;
+
 public class FaithSlot {
 
     private int victoryPoints;
@@ -8,7 +11,7 @@ public class FaithSlot {
         this.victoryPoints = victoryPoints;
     }
 
-    public int getVictoryPoints() {
-        return victoryPoints;
+    public Resource getVictoryPoints() {
+        return new VictoryPoint(victoryPoints);
     }
 }

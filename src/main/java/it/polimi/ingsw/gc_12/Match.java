@@ -26,8 +26,9 @@ import java.util.stream.Collectors;
 public class Match extends Observable<Event> implements Serializable, EffectProvider{
 	private Map<PlayerColor, Player> players = new HashMap<>();
 	private List<BonusTile> bonusTiles;
-	private transient List<Card> cards = new ArrayList<>();
+	private transient List<Card> cards;
 	private transient List<ExcommunicationTile> excommunicationTiles;
+	private transient List<Integer> trackFaithPointValues;
 	private transient CardDeckSet cardDeckSet;
     private Board board;
 	private int roundNum;
@@ -51,6 +52,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		this.period = 0;
 		this.cards = new LoaderCard().get(this);
 		this.excommunicationTiles = new LoaderExcommmunications().get(this);
+		this.trackFaithPointValues = new LoaderTrackFaithPointsValues().get(this);
 		this.cardDeckSet = new CardDeckSet(cards, DEFAULT_ROUND_NUM / DEFAULT_PERIODS_LEN);
 		this.effectHandler = new EffectHandler();
 		this.actionHandler = new ActionHandler(this);
@@ -82,6 +84,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		board.getTowerSet().setCards(cardDeckSet);
 		board.getExcommunicationSpace().setTilesDeck(excommunicationTiles);
 		board.setMarket(new LoaderMarket().get(this));
+		board.setTrackFaithPoints(trackFaithPointValues);
 	}
 
 	private void initPlayers() {
