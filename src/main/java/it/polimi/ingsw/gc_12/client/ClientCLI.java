@@ -7,12 +7,10 @@ import java.io.IOException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.NotBoundException;
 
-public class ClientCLI extends Client {
+public class ClientCLI {
 
 	public static void main(String[] args) throws IOException, CloneNotSupportedException, NotBoundException, AlreadyBoundException {
 		View view = new ViewCLI();
-		/*Client client = new ClientCLI();
-		client.start(view);*/
         view.start();
 	}
 }

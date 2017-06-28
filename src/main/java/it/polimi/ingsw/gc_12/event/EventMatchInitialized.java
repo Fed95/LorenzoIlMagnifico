@@ -14,16 +14,12 @@ public class EventMatchInitialized extends Event{
 		if(client.getView().isReady()) {
 			try {
 				ClientFactory.getClientSender().sendAction(0);
-
-
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
 		}
 		else
 			client.setStarted(true);
-
 	}
 
 	@Override

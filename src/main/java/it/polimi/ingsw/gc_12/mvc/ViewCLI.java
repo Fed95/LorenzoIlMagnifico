@@ -22,7 +22,6 @@ public class ViewCLI extends Observable implements View{
 	private Scanner in;
 	private ClientSender clientSender;
 	private ClientHandler clientHandler;
-	private boolean authorized;
 	private boolean ready;
 
 	public ViewCLI() {
@@ -38,6 +37,53 @@ public class ViewCLI extends Observable implements View{
 	}
 
 	public void start() throws IOException, CloneNotSupportedException, NotBoundException, AlreadyBoundException {
+		setup();
+
+		ready = true;
+		if(clientHandler.isStarted())
+			clientSender.sendAction(0);
+
+		while(in.hasNext()) {
+			//Capture input from user
+			String inputLine = in.nextLine();
+
+			if(!checkExclusion() ||  !checkAuthorization(inputLine) || !checkTurn())
+				continue;
+
+			int inputInt;
+			try {
+				inputInt = Integer.parseInt(inputLine);
+			}
+			catch (NumberFormatException e) {
+				System.out.println("You can only insert numbers!");
+				continue;
+			}
+
+			List<Action> actions = clientHandler.getActions();
+			int offset = clientHandler.getOffset();
+
+			if(inputInt < offset || inputInt >= actions.size()) {
+				System.out.println("The inserted number is not among the possible choices");
+			}
+			else {
+				try {
+					clientSender.sendAction(inputInt);
+					clientHandler.setOffset(0);
+					Event event = clientHandler.getEvents().getFirst();
+					if(event instanceof EventCouncilPrivilegeReceived)
+						handleCouncilPrivileges(inputInt, actions, (EventCouncilPrivilegeReceived) event);
+					else
+						clientHandler.getEvents().removeFirst();
+					clientHandler.handleEvent();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+		}
+	}
+
+	private void setup() throws NotBoundException, AlreadyBoundException, CloneNotSupportedException, IOException {
 		System.out.println("Choose a name");
 		String name = "";
 		loop: while (true) {
@@ -73,73 +119,45 @@ public class ViewCLI extends Observable implements View{
 							clientSocket.startClient(this, name);
 						}
 						break loop;
-
 					}
-
 				}
 			}
 		}
+	}
 
-		ready = true;
-		if(clientHandler.isStarted())
-			clientSender.sendAction(0);
-		while(in.hasNext()) {
-			//Capture input from user
-			String inputLine = in.nextLine();
-			if(clientHandler.isExcluded()) {
-				clientHandler.setExcluded(false);
-				System.out.println("Welcome back! You can start playing again.");
-			}
-
-			if(!clientHandler.isAuthorized()) {
-				clientSender.sendName(inputLine, clientHandler.getUnauthorizedId());
-				continue;
-			}
-
-			if(!clientHandler.isMyTurn()) {
-				System.out.println("It's not your turn!");
-				continue;
-			}
-
-			int inputInt;
-			try {
-				inputInt = Integer.parseInt(inputLine);
-			}
-			catch (NumberFormatException e) {
-				System.out.println("You can only insert numbers!");
-				continue;
-			}
-
-			List<Action> actions = clientHandler.getActions();
-			int offset = clientHandler.getOffset();
-
-			if(inputInt < offset || inputInt >= actions.size()) {
-				System.out.println("The inserted number is not among the possible choices");
-			}
-			else {
-				try {
-					clientSender.sendAction(inputInt);
-					clientHandler.setOffset(0);
-					Event event = clientHandler.getEvents().getFirst();
-					if(event instanceof EventCouncilPrivilegeReceived) {
-						EventCouncilPrivilegeReceived eventCP = (EventCouncilPrivilegeReceived) event;
-						CouncilPrivilege councilPrivilege = eventCP.getCouncilPrivilege();
-						if(councilPrivilege.getValue() > 1) {
-							councilPrivilege.setValue(councilPrivilege.getValue()-1);
-							actions.remove(inputInt);
-						}
-						else
-							clientHandler.getEvents().removeFirst();
-					}
-					else
-						clientHandler.getEvents().removeFirst();
-					clientHandler.handleEvent();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-
+	private boolean checkExclusion() {
+		if(clientHandler.isExcluded()) {
+			clientHandler.setExcluded(false);
+			System.out.println("Welcome back! You can start playing again.");
+			return false;
 		}
+		return true;
+	}
+
+	private boolean checkAuthorization(String inputLine) throws IOException {
+		if(!clientHandler.isAuthorized()) {
+			clientSender.sendName(inputLine, clientHandler.getUnauthorizedId());
+			return false;
+		}
+		return true;
+	}
+
+	private boolean checkTurn() {
+		if(!clientHandler.isMyTurn()) {
+			System.out.println("It's not your turn!");
+			return false;
+		}
+		return true;
+	}
+
+	private void handleCouncilPrivileges(int inputInt, List<Action> actions, EventCouncilPrivilegeReceived event) {
+		CouncilPrivilege councilPrivilege = event.getCouncilPrivilege();
+		if(councilPrivilege.getValue() > 1) {
+			councilPrivilege.setValue(councilPrivilege.getValue()-1);
+			actions.remove(inputInt);
+		}
+		else
+			clientHandler.getEvents().removeFirst();
 	}
 
 	@Override
