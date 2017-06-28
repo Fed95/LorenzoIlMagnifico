@@ -151,7 +151,7 @@ public class MainBoardController implements Initializable, Observer {
     @FXML private TableColumn<ResourceRepresentation, String> nameMilitaryPoints;
     @FXML private TableColumn<ResourceRepresentation, String> pointsMilitaryPoints;
 
-
+    @FXML private TextArea chatTextArea;
     private ImageView lastFamClicked = null;
 
 
@@ -402,4 +402,8 @@ public class MainBoardController implements Initializable, Observer {
         tableVictoryPoints.setItems(match.getAllResourcerepresentationVictory());
 
     }
+
+   public TextArea getChat(){
+        return chatTextArea;
+   }
 }

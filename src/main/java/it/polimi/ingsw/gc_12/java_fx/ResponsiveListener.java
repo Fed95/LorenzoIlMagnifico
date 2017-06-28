@@ -2,9 +2,11 @@ package it.polimi.ingsw.gc_12.java_fx;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.transform.Scale;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 
@@ -18,7 +20,7 @@ public class ResponsiveListener implements ChangeListener<Number> {
     private final double initWidth;
     private final Pane root;
     private final Stage primaryStage;
-
+    private double adjust = 1.6;//adjust size for minor screen size
     public ResponsiveListener(Scene scene, double ratio, double initHeight, double initWidth, Pane root, Stage primaryStage) {
         this.scene = scene;
         this.ratio = ratio;
@@ -31,14 +33,19 @@ public class ResponsiveListener implements ChangeListener<Number> {
     public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
         final double newWidth  = scene.getWidth();
         final double newHeight = scene.getHeight();
-        //System.out.println(newHeight);
-        //System.out.println(newWidth);
+        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+        double realWidth = primaryScreenBounds.getWidth();
+        double realHeight = primaryScreenBounds.getHeight();
+        if(realWidth == 1920 && realHeight == 1080){
+            adjust = 1;
+        }
+
         double scaleFactor;
         //usa come fattore di scala il lato piu piccolo  della finestra
         if(newWidth/newHeight > ratio){
-            scaleFactor = (newHeight / initHeight)/1.6;
+            scaleFactor = (newHeight / initHeight)/adjust;
         }else{
-            scaleFactor = (newWidth / initWidth)/1.6;
+            scaleFactor = (newWidth / initWidth)/adjust;
         }
 
         Scale scale = new Scale(scaleFactor, scaleFactor);
