@@ -5106,6 +5106,87 @@
             "cost": [],
             "bonus": [
               {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 3
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 79
+        }
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventEndMatch"
+        }
+      }
+    ],
+    "name": "Sostegno al Vescovo",
+    "id": 79,
+    "requirements": [
+      {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 1
+      },
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 2
+      },
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 1
+      }
+    ],
+    "militaryExchange": {
+      "cost": [
+        {
+          "resourceType": "MilitaryPoint",
+          "type": "MILITARY_POINT",
+          "value": 4
+        }
+      ],
+      "bonus": [
+        {
+          "resourceType": "MilitaryPoint",
+          "type": "MILITARY_POINT",
+          "value": 2
+        }
+      ]
+    }
+  },
+  {
+    "type": "CardVenture",
+    "cardType": "VENTURE",
+    "period": 1,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
                 "resourceType": "MilitaryPoint",
                 "type": "MILITARY_POINT",
                 "value": 5
@@ -5381,13 +5462,23 @@
     ],
     "name": "Campagna Militare",
     "id": 76,
-    "requirements": [
-      {
-        "resourceType": "MilitaryPoint",
-        "type": "MILITARY_POINT",
-        "value": 3
-      }
-    ]
+    "requirements": [],
+    "militaryExchange": {
+      "cost": [
+        {
+          "resourceType": "MilitaryPoint",
+          "type": "MILITARY_POINT",
+          "value": 3
+        }
+      ],
+      "bonus": [
+        {
+          "resourceType": "MilitaryPoint",
+          "type": "MILITARY_POINT",
+          "value": 1
+        }
+      ]
+    }
   },
   {
     "type": "CardVenture",
@@ -5491,78 +5582,23 @@
     ],
     "name": "Combattere le Eresie",
     "id": 78,
-    "requirements": [
-      {
-        "resourceType": "MilitaryPoint",
-        "type": "MILITARY_POINT",
-        "value": 5
-      }
-    ]
-  },
-  {
-    "type": "CardVenture",
-    "cardType": "VENTURE",
-    "period": 1,
-    "effects": [
-      {
-        "type": "EffectChangeResource",
-        "exchanges": [
-          {
-            "cost": [],
-            "bonus": [
-              {
-                "resourceType": "FaithPoint",
-                "type": "FAITH_POINT",
-                "value": 3
-              }
-            ]
-          }
-        ],
-        "choice": false,
-        "event": {
-          "eventType": "EventPickCard",
-          "cardID": 79
+    "requirements": [],
+    "militaryExchange": {
+      "cost": [
+        {
+          "resourceType": "MilitaryPoint",
+          "type": "MILITARY_POINT",
+          "value": 5
         }
-      },
-      {
-        "type": "EffectChangeResource",
-        "exchanges": [
-          {
-            "cost": [],
-            "bonus": [
-              {
-                "resourceType": "VictoryPoint",
-                "type": "VICTORY_POINT",
-                "value": 1
-              }
-            ]
-          }
-        ],
-        "choice": false,
-        "event": {
-          "eventType": "EventEndMatch"
+      ],
+      "bonus": [
+        {
+          "resourceType": "MilitaryPoint",
+          "type": "MILITARY_POINT",
+          "value": 2
         }
-      }
-    ],
-    "name": "Sostegno al Vescovo",
-    "id": 79,
-    "requirements": [
-      {
-        "resourceType": "Wood",
-        "type": "WOOD",
-        "value": 1
-      },
-      {
-        "resourceType": "Money",
-        "type": "MONEY",
-        "value": 2
-      },
-      {
-        "resourceType": "Stone",
-        "type": "STONE",
-        "value": 1
-      }
-    ]
+      ]
+    }
   },
   {
     "type": "CardVenture",
@@ -5819,13 +5855,23 @@
     ],
     "name": "Supporto al Re",
     "id": 83,
-    "requirements": [
-      {
-        "resourceType": "MilitaryPoint",
-        "type": "MILITARY_POINT",
-        "value": 6
-      }
-    ]
+    "requirements": [],
+    "militaryExchange": {
+      "cost": [
+        {
+          "resourceType": "MilitaryPoint",
+          "type": "MILITARY_POINT",
+          "value": 6
+        }
+      ],
+      "bonus": [
+        {
+          "resourceType": "MilitaryPoint",
+          "type": "MILITARY_POINT",
+          "value": 3
+        }
+      ]
+    }
   },
   {
     "type": "CardVenture",
@@ -5954,13 +6000,23 @@
     ],
     "name": "Crociata",
     "id": 86,
-    "requirements": [
-      {
-        "resourceType": "MilitaryPoint",
-        "type": "MILITARY_POINT",
-        "value": 8
-      }
-    ]
+    "requirements": [],
+    "militaryExchange": {
+      "cost": [
+        {
+          "resourceType": "MilitaryPoint",
+          "type": "MILITARY_POINT",
+          "value": 8
+        }
+      ],
+      "bonus": [
+        {
+          "resourceType": "MilitaryPoint",
+          "type": "MILITARY_POINT",
+          "value": 4
+        }
+      ]
+    }
   },
   {
     "type": "CardVenture",
@@ -6025,7 +6081,23 @@
         "type": "MONEY",
         "value": 3
       }
-    ]
+    ],
+    "militaryExchange": {
+      "cost": [
+        {
+          "resourceType": "MilitaryPoint",
+          "type": "MILITARY_POINT",
+          "value": 7
+        }
+      ],
+      "bonus": [
+        {
+          "resourceType": "MilitaryPoint",
+          "type": "MILITARY_POINT",
+          "value": 4
+        }
+      ]
+    }
   },
   {
     "type": "CardVenture",
@@ -6334,13 +6406,23 @@
     ],
     "name": "Conquista Militare",
     "id": 92,
-    "requirements": [
-      {
-        "resourceType": "MilitaryPoint",
-        "type": "MILITARY_POINT",
-        "value": 12
-      }
-    ]
+    "requirements": [],
+    "militaryExchange": {
+      "cost": [
+        {
+          "resourceType": "MilitaryPoint",
+          "type": "MILITARY_POINT",
+          "value": 12
+        }
+      ],
+      "bonus": [
+        {
+          "resourceType": "MilitaryPoint",
+          "type": "MILITARY_POINT",
+          "value": 6
+        }
+      ]
+    }
   },
   {
     "type": "CardVenture",
@@ -6452,13 +6534,23 @@
     ],
     "name": "Guerra Santa",
     "id": 94,
-    "requirements": [
-      {
-        "resourceType": "MilitaryPoint",
-        "type": "MILITARY_POINT",
-        "value": 15
-      }
-    ]
+    "requirements": [],
+    "militaryExchange": {
+      "cost": [
+        {
+          "resourceType": "MilitaryPoint",
+          "type": "MILITARY_POINT",
+          "value": 15
+        }
+      ],
+      "bonus": [
+        {
+          "resourceType": "MilitaryPoint",
+          "type": "MILITARY_POINT",
+          "value": 7
+        }
+      ]
+    }
   },
   {
     "type": "CardVenture",
@@ -6523,6 +6615,22 @@
         "type": "STONE",
         "value": 3
       }
-    ]
+    ],
+    "militaryExchange": {
+      "cost": [
+        {
+          "resourceType": "MilitaryPoint",
+          "type": "MILITARY_POINT",
+          "value": 10
+        }
+      ],
+      "bonus": [
+        {
+          "resourceType": "MilitaryPoint",
+          "type": "MILITARY_POINT",
+          "value": 5
+        }
+      ]
+    }
   }
 ]
