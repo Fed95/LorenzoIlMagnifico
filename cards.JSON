@@ -3978,63 +3978,27 @@
         }
       },
       {
-        "type": "EffectChangeResource",
-        "exchanges": [
-          {
-            "cost": [
-              {
-                "resourceType": "Wood",
-                "type": "WOOD",
-                "value": 1
-              }
-            ],
-            "bonus": []
-          },
-          {
-            "cost": [
-              {
-                "resourceType": "Stone",
-                "type": "STONE",
-                "value": 1
-              }
-            ],
-            "bonus": []
-          }
-        ],
-        "choice": true,
+        "type": "EffectCardDiscount",
+        "resource": {
+          "resourceType": "Wood",
+          "type": "WOOD",
+          "value": 1
+        },
         "event": {
-          "eventType": "EventPlaceFamilyMember",
-          "description": "Placement on any TowerFloor of the BUILDING Tower",
-          "occupiables": [
-            {
-              "occupiable": "TowerFloor",
-              "floorNum": 0,
-              "cardType": "BUILDING",
-              "occupiers": []
-            },
-            {
-              "occupiable": "TowerFloor",
-              "floorNum": 1,
-              "cardType": "BUILDING",
-              "occupiers": []
-            },
-            {
-              "occupiable": "TowerFloor",
-              "floorNum": 2,
-              "cardType": "BUILDING",
-              "occupiers": []
-            },
-            {
-              "occupiable": "TowerFloor",
-              "floorNum": 3,
-              "cardType": "BUILDING",
-              "occupiers": []
-            }
-          ],
-          "familyMember": {
-            "value": 0,
-            "busy": false
-          }
+          "eventType": "EventPickCard",
+          "cardType": "BUILDING"
+        }
+      },
+      {
+        "type": "EffectCardDiscount",
+        "resource": {
+          "resourceType": "Stone",
+          "type": "STONE",
+          "value": 1
+        },
+        "event": {
+          "eventType": "EventPickCard",
+          "cardType": "BUILDING"
         }
       }
     ],
@@ -4092,53 +4056,15 @@
         }
       },
       {
-        "type": "EffectChangeResource",
-        "exchanges": [
-          {
-            "cost": [
-              {
-                "resourceType": "Money",
-                "type": "MONEY",
-                "value": 1
-              }
-            ],
-            "bonus": []
-          }
-        ],
-        "choice": false,
+        "type": "EffectCardDiscount",
+        "resource": {
+          "resourceType": "Money",
+          "type": "MONEY",
+          "value": 1
+        },
         "event": {
-          "eventType": "EventPlaceFamilyMember",
-          "description": "Placement on any TowerFloor of the CHARACTER Tower",
-          "occupiables": [
-            {
-              "occupiable": "TowerFloor",
-              "floorNum": 0,
-              "cardType": "CHARACTER",
-              "occupiers": []
-            },
-            {
-              "occupiable": "TowerFloor",
-              "floorNum": 1,
-              "cardType": "CHARACTER",
-              "occupiers": []
-            },
-            {
-              "occupiable": "TowerFloor",
-              "floorNum": 2,
-              "cardType": "CHARACTER",
-              "occupiers": []
-            },
-            {
-              "occupiable": "TowerFloor",
-              "floorNum": 3,
-              "cardType": "CHARACTER",
-              "occupiers": []
-            }
-          ],
-          "familyMember": {
-            "value": 0,
-            "busy": false
-          }
+          "eventType": "EventPickCard",
+          "cardType": "CHARACTER"
         }
       }
     ],

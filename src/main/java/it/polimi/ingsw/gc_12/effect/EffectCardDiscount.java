@@ -27,7 +27,7 @@ public class EffectCardDiscount extends Effect {
     public void execute(Match match, Event event, boolean validation) throws ActionDeniedException {
         
         if(!(event instanceof EventPickCard))
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Expecting EventPickCard, received: " + event.getClass().getSimpleName());
 
         Player player = event.getPlayer();
         Card card = ((EventPickCard) event).getCard();
