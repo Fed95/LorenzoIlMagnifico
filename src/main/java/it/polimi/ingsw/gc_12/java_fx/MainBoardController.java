@@ -329,7 +329,6 @@ public class MainBoardController implements Initializable, Observer {
 
         showCards.setOpacity(0);
         this.clientHandler = ClientFactory.getClientHandler();
-        ClientSender clientSender = ClientFactory.getClientSender();
         this.adapter = new GUIAdapter(ClientFactory.getClientSender());
 
         try {

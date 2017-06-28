@@ -37,6 +37,7 @@ public class Server {
 	private List<Player> playersSocket;
 	public int numOfClients;
 	private LinkedList<PlayerColor> playerColors = new LinkedList<>();
+	private List<Player> waitingPlayers = new ArrayList<>();
 
 	public Server() {
 		this.match = new Match();
@@ -70,17 +71,19 @@ public class Server {
 		registry.bind(NAME, viewRemote);
 	}
 
-	public void startMatch() throws AlreadyBoundException, CloneNotSupportedException, RemoteException {
-		ServerRMIView serverRmiView = views.peek();
+	public synchronized void startMatch() throws AlreadyBoundException, CloneNotSupportedException, RemoteException {
 		Map<PlayerColor, Player> players = new HashMap<>();
-		int i = 0;
-		for(ClientViewRemote client : serverRmiView.getClients()) {
-			Player player = new Player(client.getName(), client.getPlayerColor());
-			players.put(client.getPlayerColor(), player);
-			i++;
-		}
-		for(Player playerSocket : playersSocket) {
-			players.put(playerSocket.getColor(), playerSocket);
+		Iterator<Player> itr = waitingPlayers.iterator();
+		int i = 1;
+		while(itr.hasNext()) {
+
+			Player player = itr.next();
+			players.put(player.getColor(), player);
+			itr.remove();
+
+			//Make sure that it doesn't create matches with more than the allowed players
+			if(i == 4) //TODO put it in a variable
+				break;
 			i++;
 		}
 		match.init(players);
@@ -151,12 +154,11 @@ public class Server {
 		}
 	}*/
 
-	public void addClientSocket(String name, PlayerColor playerColor) throws CloneNotSupportedException, AlreadyBoundException, RemoteException {
-		System.out.println("Adding player " + name);
-		playersSocket.add(new Player(name, playerColor));
-		numOfClients++;
+	public void addPlayer(Player player) throws CloneNotSupportedException, AlreadyBoundException, RemoteException {
+		System.out.println("Adding player " + player.getName());
+		waitingPlayers.add(player);
 		System.out.println(numOfClients);
-		if(numOfClients == 2) {
+		if(waitingPlayers.size() == 2) {
 			startMatch();
 			newMatch();
 		}

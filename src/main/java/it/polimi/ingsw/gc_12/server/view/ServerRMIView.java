@@ -1,6 +1,7 @@
 package it.polimi.ingsw.gc_12.server.view;
 
 import it.polimi.ingsw.gc_12.Match;
+import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.PlayerColor;
 import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.action.ActionPassTurn;
@@ -34,18 +35,15 @@ public class ServerRMIView extends View implements RMIViewRemote {
 
 	@Override
 	public void registerClient(ClientViewRemote clientStub) throws IOException, AlreadyBoundException, CloneNotSupportedException {
+		String name = clientStub.getName();
+
 		System.out.println("CLIENT REGISTERED");
 
 		this.clients.add(clientStub);
-		clientStub.setColor(playerColors.poll());
-		for (ClientViewRemote clientViewRemote : clients) {
-			System.out.println(clientViewRemote);
-		}
-		server.numOfClients++;
-		if(clients.size() == 2) {
-			server.startMatch();
-			server.newMatch();
-		}
+		PlayerColor playerColor = playerColors.poll();
+		clientStub.setColor(playerColor);
+		Player player = new Player(name, playerColor);
+		server.addPlayer(player);
 	}
 
 	@Override
@@ -70,10 +68,6 @@ public class ServerRMIView extends View implements RMIViewRemote {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-	}
-
-	public Set<ClientViewRemote> getClients() {
-		return clients;
 	}
 
 	@Override

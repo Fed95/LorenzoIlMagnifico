@@ -78,7 +78,7 @@ public class ServerSocketView extends View implements Runnable {
 					if (object instanceof String) {
 						String name = (String) object;
 						System.out.println("Player " + name + " received");
-						server.addClientSocket(name, playerColor);
+						server.addPlayer(new Player(name, playerColor));
 					}
 					else if (object instanceof Integer) {
 						int input = (Integer) object;
