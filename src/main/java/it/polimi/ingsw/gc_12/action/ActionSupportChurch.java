@@ -5,6 +5,7 @@ import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventSupportChurch;
 import it.polimi.ingsw.gc_12.event.EventVaticanReport;
+import it.polimi.ingsw.gc_12.exceptions.ActionDeniedException;
 import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.resource.VictoryPoint;
@@ -26,7 +27,12 @@ public class ActionSupportChurch extends Action {
     @Override
     public void start(Match match) {
 
-        EventSupportChurch event = new EventSupportChurch(player);
+        Event event = new EventSupportChurch(player);
+        try {
+            match.getEffectHandler().executeEffects(match, event);
+        } catch (ActionDeniedException e) {
+            throw new IllegalStateException();
+        }
         match.notifyObserver(event);
 
         player.setResourceValue(ResourceType.FAITH_POINT, 0);

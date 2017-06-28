@@ -7,8 +7,8 @@ import java.util.List;
 
 public class ResourceExchange implements Serializable {
 
-	private List<Resource> cost;
-	private List<Resource> bonus;
+	private List<Resource> cost = new ArrayList<>();
+	private List<Resource> bonus = new ArrayList<>();
 
 	public ResourceExchange(List<Resource> cost, List<Resource> bonus) {
 		if(cost != null)

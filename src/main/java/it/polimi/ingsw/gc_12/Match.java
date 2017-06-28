@@ -8,6 +8,7 @@ import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.effect.EffectHandler;
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
 import it.polimi.ingsw.gc_12.event.*;
+import it.polimi.ingsw.gc_12.exceptions.ActionDeniedException;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
 import it.polimi.ingsw.gc_12.json.loader.*;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
@@ -127,6 +128,10 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	}
 
 	private boolean newRound(){
+		if(roundNum != 0 && roundNum%1 == 0){
+			endMatch();
+			return true;
+		}
 		boolean vatican = roundNum != 0 && roundNum%2 == 0;
 		if(vatican) {
 			endPeriod();
@@ -167,14 +172,20 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		notifyObserver(event);
 	}
 
-	public synchronized void countReport(){
-		reportCounter ++;
-		if(reportCounter == players.size()){
-			reportCounter = 0;
-			newTurn();
+	private void endMatch(){
+		for (Player player : players.values()) {
+			Event event = new EventEndMatch(player);
+			try {
+				effectHandler.executeEffects(this, event);
+			} catch (ActionDeniedException e) {
+				throw new IllegalStateException();
+			}
 		}
+		List<Player> players = new ArrayList<>();
+		players.addAll(this.players.values());
+		notifyObserver(new EventEndMatch(getBoard().getVictroyPointsTrack().getPlayerOrdered(players)));
 	}
-	
+
 	public void placeFamilyMember(Occupiable occupiable, FamilyMember familyMember) {
 
 		occupiable.placeFamilyMember(familyMember);
