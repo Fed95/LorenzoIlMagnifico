@@ -4,6 +4,7 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.PlayerColor;
 import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
+import it.polimi.ingsw.gc_12.event.EventMatchInitialized;
 import it.polimi.ingsw.gc_12.server.controller.Controller;
 import it.polimi.ingsw.gc_12.server.view.RMIViewRemote;
 import it.polimi.ingsw.gc_12.server.view.ServerRMIView;
@@ -34,7 +35,7 @@ public class Server {
 	private Controller controller;
 	private Registry registry;
 	private Stack<ServerRMIView> views;
-	private List<Player> playersSocket;
+	private Map<Player, Match> playingPlayers = new HashMap<>();
 	public int numOfClients;
 	private LinkedList<PlayerColor> playerColors = new LinkedList<>();
 	private List<Player> waitingPlayers = new ArrayList<>();
@@ -43,7 +44,6 @@ public class Server {
 		this.match = new Match();
 		this.controller = new Controller(match);
 		this.views = new Stack<>();
-		this.playersSocket = new ArrayList<>();
 		this.playerColors.addAll(Arrays.asList(PlayerColor.values()));
 		this.numOfClients = 0;
 	}
@@ -79,6 +79,7 @@ public class Server {
 
 			Player player = itr.next();
 			players.put(player.getColor(), player);
+			playingPlayers.put(player, match);
 			itr.remove();
 
 			//Make sure that it doesn't create matches with more than the allowed players
@@ -87,6 +88,7 @@ public class Server {
 			i++;
 		}
 		match.init(players);
+		match.notifyObserver(new EventMatchInitialized());
 
 	}
 
@@ -95,7 +97,6 @@ public class Server {
 		/*RMIViewRemote viewRemote=(RMIViewRemote) UnicastRemoteObject.
 				exportObject(serverRmiView, 0);*/
 		numOfClients = 0;
-		playersSocket = new ArrayList<>();
 		match = new Match();
 		controller = new Controller(match);
 		playerColors = new LinkedList<>();
@@ -145,15 +146,6 @@ public class Server {
 		}
 	}
 
-	/*public void increaseClientsNum() throws CloneNotSupportedException, IOException, AlreadyBoundException {
-		numOfClients++;
-		System.out.println(numOfClients);
-		if(numOfClients == 2) {
-			startMatch();
-			newMatch();
-		}
-	}*/
-
 	public void addPlayer(Player player) throws CloneNotSupportedException, AlreadyBoundException, RemoteException {
 		System.out.println("Adding player " + player.getName());
 		waitingPlayers.add(player);
@@ -162,6 +154,18 @@ public class Server {
 			startMatch();
 			newMatch();
 		}
+	}
+
+	public boolean isNameTaken(String name) {
+		for (Player player: playingPlayers.keySet()) {
+			if(name.toLowerCase().equals(player.getName().toLowerCase()))
+				return true;
+		}
+		for(Player player: waitingPlayers) {
+			if(name.toLowerCase().equals(player.getName().toLowerCase()))
+				return true;
+		}
+		return false;
 	}
 
 	public static void main(String[] args) throws IOException, AlreadyBoundException, CloneNotSupportedException {

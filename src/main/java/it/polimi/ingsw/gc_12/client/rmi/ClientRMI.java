@@ -52,4 +52,8 @@ public class ClientRMI implements ClientSender { //Main class of the Clients usi
 	public void sendAction(int input) throws RemoteException {
 		serverStub.receiveAction(input);
 	}
+
+	public void sendName(String name, int unauthorizedId) throws IOException {
+		serverStub.receiveName(name, unauthorizedId);
+	}
 }

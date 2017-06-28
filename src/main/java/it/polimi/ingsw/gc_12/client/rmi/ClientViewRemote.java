@@ -4,6 +4,7 @@ import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.PlayerColor;
 import it.polimi.ingsw.gc_12.event.Event;
 
+import java.io.IOException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
@@ -11,6 +12,6 @@ public interface ClientViewRemote extends Remote{
 	// Interface to receive information from the server
 	void updateClient(Event event) throws RemoteException;
 	String getName() throws RemoteException;
-	PlayerColor getPlayerColor() throws RemoteException;
-	void setColor(PlayerColor playerColor) throws RemoteException;
+	void setColor(PlayerColor playerColor) throws IOException;
+	void askNewName(int unauthorizedId) throws RemoteException;
 }

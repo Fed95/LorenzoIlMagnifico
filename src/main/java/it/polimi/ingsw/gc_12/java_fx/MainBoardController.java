@@ -332,7 +332,8 @@ public class MainBoardController implements Initializable, Observer {
         this.adapter = new GUIAdapter(ClientFactory.getClientSender());
 
         try {
-            adapter.sendAction(0);
+            if(!clientHandler.isStarted())
+                adapter.sendAction(0);
         } catch (IOException e) {
             e.printStackTrace();
         }

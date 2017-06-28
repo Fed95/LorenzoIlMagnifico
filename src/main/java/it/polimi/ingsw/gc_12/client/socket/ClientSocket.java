@@ -41,6 +41,6 @@ public class ClientSocket {
 		view.setClientSender(clientOut);
 		view.setClientHandler(clientIn);
 		clientIn.setView(view);
-		view.start();
+		//view.start();
 	}
 }

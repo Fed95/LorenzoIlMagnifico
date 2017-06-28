@@ -6,4 +6,5 @@ import java.io.IOException;
 public interface ClientSender {
 
 	void sendAction(int input) throws IOException;
+	void sendName(String name, int unauthorizedId) throws IOException;
 }

@@ -1,13 +1,18 @@
 package it.polimi.ingsw.gc_12.mvc;
 
 import it.polimi.ingsw.gc_12.action.Action;
+import it.polimi.ingsw.gc_12.client.ClientFactory;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.ClientSender;
+import it.polimi.ingsw.gc_12.client.rmi.ClientRMI;
+import it.polimi.ingsw.gc_12.client.socket.ClientSocket;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventCouncilPrivilegeReceived;
 import it.polimi.ingsw.gc_12.resource.CouncilPrivilege;
 
 import java.io.IOException;
+import java.rmi.AlreadyBoundException;
+import java.rmi.NotBoundException;
 import java.util.List;
 import java.util.Observable;
 import java.util.Scanner;
@@ -17,6 +22,8 @@ public class ViewCLI extends Observable implements View{
 	private Scanner in;
 	private ClientSender clientSender;
 	private ClientHandler clientHandler;
+	private boolean authorized;
+	private boolean ready;
 
 	public ViewCLI() {
 		this.in = new Scanner(System.in);
@@ -30,14 +37,63 @@ public class ViewCLI extends Observable implements View{
 		this.clientHandler = clientHandler;
 	}
 
-	public void start() throws IOException {
-		clientSender.sendAction(0);
+	public void start() throws IOException, CloneNotSupportedException, NotBoundException, AlreadyBoundException {
+		System.out.println("Choose a name");
+		String name = "";
+		loop: while (true) {
+			name = in.nextLine();
+			if (!"\n".equals(name) && !"".equals(name)) {
+				System.out.println("Choose the technology");
+				System.out.println("0 - RMI");
+				System.out.println("1 - Socket");
+				while(in.hasNext()) {
+					//Capture input from user
+					String inputLine = in.nextLine();
+
+					int inputInt;
+					try {
+						inputInt = Integer.parseInt(inputLine);
+					}
+					catch (NumberFormatException e) {
+						System.out.println("You can only insert numbers!");
+						continue;
+					}
+
+					if(inputInt < 0 || inputInt > 1) {
+						System.out.println("The inserted number is not among the possible choices");
+					}
+					else {
+						if(inputInt == 0) {
+							ClientRMI clientRMI = new ClientRMI();
+							ClientFactory.setClientSender(clientRMI);
+							clientRMI.start(this, name);
+						}
+						else {
+							ClientSocket clientSocket = new ClientSocket();
+							clientSocket.startClient(this, name);
+						}
+						break loop;
+
+					}
+
+				}
+			}
+		}
+
+		ready = true;
+		if(clientHandler.isStarted())
+			clientSender.sendAction(0);
 		while(in.hasNext()) {
 			//Capture input from user
 			String inputLine = in.nextLine();
 			if(clientHandler.isExcluded()) {
 				clientHandler.setExcluded(false);
 				System.out.println("Welcome back! You can start playing again.");
+			}
+
+			if(!clientHandler.isAuthorized()) {
+				clientSender.sendName(inputLine, clientHandler.getUnauthorizedId());
+				continue;
 			}
 
 			if(!clientHandler.isMyTurn()) {
@@ -89,5 +145,10 @@ public class ViewCLI extends Observable implements View{
 	@Override
 	public ClientSender getClientSender() {
 		return clientSender;
+	}
+
+	@Override
+	public boolean isReady() {
+		return ready;
 	}
 }

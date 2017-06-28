@@ -11,8 +11,8 @@ public class ClientCLI extends Client {
 
 	public static void main(String[] args) throws IOException, CloneNotSupportedException, NotBoundException, AlreadyBoundException {
 		View view = new ViewCLI();
-		Client client = new ClientCLI();
-		client.start(view);
+		/*Client client = new ClientCLI();
+		client.start(view);*/
         view.start();
 	}
 }

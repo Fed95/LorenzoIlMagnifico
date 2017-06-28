@@ -22,6 +22,8 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 	private boolean myTurn;
 	protected PlayerColor color;
 	private boolean excluded;
+	protected int unauthorizedId;
+	private boolean started;
 
 	protected ClientHandler(View view) throws RemoteException {
 		super();
@@ -114,5 +116,21 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 
 	public void setExcluded(boolean excluded) {
 		this.excluded = excluded;
+	}
+
+	public boolean isAuthorized() {
+		return unauthorizedId == 0;
+	}
+
+	public int getUnauthorizedId() {
+		return unauthorizedId;
+	}
+
+	public boolean isStarted() {
+		return started;
+	}
+
+	public void setStarted(boolean started) {
+		this.started = started;
 	}
 }

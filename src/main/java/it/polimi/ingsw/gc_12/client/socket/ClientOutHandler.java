@@ -42,9 +42,21 @@ public class ClientOutHandler implements Runnable, ClientSender {
 		try {
 			socketOut.writeObject(input);
 			socketOut.flush();
+			socketOut.reset();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void sendName(String name, int unauthorizedId) throws IOException {
+		/*try {
+			socketOut.writeObject(input);
+			socketOut.flush();
+			socketOut.reset();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}*/
 	}
 
 }

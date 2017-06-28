@@ -17,7 +17,7 @@ public class MainBoard extends Application implements View{
 	private Stage primaryStage;
 	private LoginController controller;
 	private Client client;
-
+	private boolean ready;
 
 	public void start(Stage primaryStage) throws Exception{
 	    this.primaryStage = primaryStage;
@@ -51,6 +51,8 @@ public class MainBoard extends Application implements View{
         primaryStage.setScene(newScene);
         primaryStage.show();
         responsive(newScene, newLayout, primaryStage);
+        ready = true;
+
     }
 	private void responsive(Scene scene, Pane root, Stage primaryStage){
 		final double initWidth  = scene.getWidth();
@@ -84,4 +86,9 @@ public class MainBoard extends Application implements View{
     public LoginController getController() {
         return controller;
     }
+
+	@Override
+	public boolean isReady() {
+		return ready;
+	}
 }
