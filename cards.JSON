@@ -4532,6 +4532,26 @@
     "period": 2,
     "effects": [
       {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "CouncilPrivilege",
+                "type": "COUNCIL_PRIVILEGE",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 59
+        }
+      },
+      {
         "type": "EffectFreeAction",
         "event": {
           "eventType": "EventPickCard",
@@ -4568,26 +4588,6 @@
           }
         ],
         "value": 6
-      },
-      {
-        "type": "EffectChangeResource",
-        "exchanges": [
-          {
-            "cost": [],
-            "bonus": [
-              {
-                "resourceType": "CouncilPrivilege",
-                "type": "COUNCIL_PRIVILEGE",
-                "value": 1
-              }
-            ]
-          }
-        ],
-        "choice": false,
-        "event": {
-          "eventType": "EventPickCard",
-          "cardID": 59
-        }
       }
     ],
     "name": "Eroe",
@@ -5029,6 +5029,26 @@
     "period": 3,
     "effects": [
       {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "CouncilPrivilege",
+                "type": "COUNCIL_PRIVILEGE",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 71
+        }
+      },
+      {
         "type": "EffectFreeAction",
         "event": {
           "eventType": "EventPickCard",
@@ -5062,26 +5082,6 @@
           }
         ],
         "value": 7
-      },
-      {
-        "type": "EffectChangeResource",
-        "exchanges": [
-          {
-            "cost": [],
-            "bonus": [
-              {
-                "resourceType": "CouncilPrivilege",
-                "type": "COUNCIL_PRIVILEGE",
-                "value": 1
-              }
-            ]
-          }
-        ],
-        "choice": false,
-        "event": {
-          "eventType": "EventPickCard",
-          "cardID": 71
-        }
       }
     ],
     "name": "Ambasciatore",
@@ -5750,29 +5750,6 @@
     "period": 2,
     "effects": [
       {
-        "type": "EffectFreeAction",
-        "event": {
-          "eventType": "EventPickCard",
-          "cardID": 83
-        },
-        "description": "Free action of value 4 on a HARVEST WorkSpace",
-        "occupiables": [
-          {
-            "occupiable": "SpaceWorkSingle",
-            "workType": "HARVEST",
-            "occupiers": [],
-            "requiredValue": 1
-          },
-          {
-            "occupiable": "SpaceWorkMultiple",
-            "workType": "HARVEST",
-            "occupiers": [],
-            "requiredValue": 1
-          }
-        ],
-        "value": 4
-      },
-      {
         "type": "EffectChangeResource",
         "exchanges": [
           {
@@ -5796,6 +5773,29 @@
           "eventType": "EventPickCard",
           "cardID": 83
         }
+      },
+      {
+        "type": "EffectFreeAction",
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 83
+        },
+        "description": "Free action of value 4 on a HARVEST WorkSpace",
+        "occupiables": [
+          {
+            "occupiable": "SpaceWorkSingle",
+            "workType": "HARVEST",
+            "occupiers": [],
+            "requiredValue": 1
+          },
+          {
+            "occupiable": "SpaceWorkMultiple",
+            "workType": "HARVEST",
+            "occupiers": [],
+            "requiredValue": 1
+          }
+        ],
+        "value": 4
       },
       {
         "type": "EffectChangeResource",

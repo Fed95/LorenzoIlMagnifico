@@ -47,7 +47,7 @@ public class EffectFreeAction extends Effect {
             }
         }
         Event eventFreeAction = new EventFreeAction(match.getBoard().getTrackTurnOrder().getCurrentPlayer(), familyMember, realOccupiables);
-        if(discounts.size() > 0)
+        if(discounts != null && discounts.size() > 0)
             ((EventFreeAction) eventFreeAction).setDiscounts(discounts);
         match.getActionHandler().update(eventFreeAction, match);
         match.notifyObserver(eventFreeAction);

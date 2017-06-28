@@ -60,6 +60,7 @@ public class TypeAdapter {
 				.registerSubtype(EffectReduceReceivedResource.class, EffectReduceReceivedResource.class.getSimpleName())
 				.registerSubtype(EffectServantsMultipier.class, EffectServantsMultipier.class.getSimpleName())
 				.registerSubtype(EffectDenyEffect.class, EffectDenyEffect.class.getSimpleName())
+				.registerSubtype(EffectCardDiscount.class, EffectCardDiscount.class.getSimpleName())
 				.registerSubtype(EffectPlacementDenied.class, EffectPlacementDenied.class.getSimpleName());	// if the flag equals the class name, you can skip the second parameter. This is only necessary, when the "type" field does not equal the class name.
 
 		final RuntimeTypeAdapterFactory<Event> factoryEvent = RuntimeTypeAdapterFactory
