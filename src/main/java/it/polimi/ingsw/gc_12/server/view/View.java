@@ -3,11 +3,14 @@ package it.polimi.ingsw.gc_12.server.view;
 import it.polimi.ingsw.gc_12.Config;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.action.Action;
+import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.json.loader.LoaderConfig;
 import it.polimi.ingsw.gc_12.server.observer.Observable;
 import it.polimi.ingsw.gc_12.server.observer.Observer;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -17,6 +20,8 @@ public abstract class View extends Observable<Action> implements Observer<Event>
 	public final int TIMEOUT_ACTION;
 	protected Match match;
 	protected int i;
+	protected int incrementalId = 1;
+
 
 	public View(Match match) {
 		this.TIMEOUT_ACTION = new LoaderConfig().get(match).getTimeoutAction();

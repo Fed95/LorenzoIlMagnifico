@@ -1,7 +1,5 @@
 package it.polimi.ingsw.gc_12.java_fx;
 
-
-import it.polimi.ingsw.gc_12.client.Client;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.ClientSender;
 import it.polimi.ingsw.gc_12.mvc.View;
@@ -16,7 +14,6 @@ import java.io.IOException;
 public class MainBoard extends Application implements View{
 	private Stage primaryStage;
 	private LoginController controller;
-	private Client client;
 	private boolean ready;
 
 	public void start(Stage primaryStage) throws Exception{

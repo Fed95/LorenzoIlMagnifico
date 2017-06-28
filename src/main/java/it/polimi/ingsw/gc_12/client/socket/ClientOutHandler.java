@@ -2,6 +2,7 @@ package it.polimi.ingsw.gc_12.client.socket;
 
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.ClientSender;
+import it.polimi.ingsw.gc_12.client.NewName;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -50,13 +51,13 @@ public class ClientOutHandler implements Runnable, ClientSender {
 
 	@Override
 	public void sendName(String name, int unauthorizedId) throws IOException {
-		/*try {
-			socketOut.writeObject(input);
+		try {
+			socketOut.writeObject(new NewName(unauthorizedId, name));
 			socketOut.flush();
 			socketOut.reset();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}*/
+		}
 	}
 
 }

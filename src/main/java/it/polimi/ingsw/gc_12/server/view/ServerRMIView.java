@@ -4,7 +4,6 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.PlayerColor;
 import it.polimi.ingsw.gc_12.action.Action;
-import it.polimi.ingsw.gc_12.client.Client;
 import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventStartTurn;
@@ -21,8 +20,7 @@ public class ServerRMIView extends View implements RMIViewRemote {
 	private Set<ClientViewRemote> clients;
 	private Server server;
 	private LinkedList<PlayerColor> playerColors;
-	private boolean recievedAnsewr = false;
-	private int incrementalId = 1;
+	private boolean recievedAnsewr = false; // TODO: remove it?
 	private Map<Integer, ClientViewRemote> unauthorizedClients = new HashMap<>();
 
 	public ServerRMIView(Server server, Match match, LinkedList<PlayerColor> playerColors) {

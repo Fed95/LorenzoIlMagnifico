@@ -4,6 +4,8 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.PlayerColor;
 import it.polimi.ingsw.gc_12.action.Action;
+import it.polimi.ingsw.gc_12.client.NewName;
+import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventStartRound;
 import it.polimi.ingsw.gc_12.event.EventStartTurn;
@@ -13,8 +15,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class ServerSocketView extends View implements Runnable {
 
@@ -24,6 +28,7 @@ public class ServerSocketView extends View implements Runnable {
 	private ObjectOutputStream socketOut;
 
 	private LinkedList<PlayerColor> playerColors;
+	private Map<Integer, String> unauthorizedClients = new HashMap<>();
 
 	public ServerSocketView(Socket socket, Match match, Server server, LinkedList<PlayerColor> playerColors) throws IOException {
 		super(match);
@@ -78,13 +83,31 @@ public class ServerSocketView extends View implements Runnable {
 					if (object instanceof String) {
 						String name = (String) object;
 						System.out.println("Player " + name + " received");
-						server.addPlayer(new Player(name, playerColor));
+						if(server.isNameTaken(name)) {
+							while(server.isNameTaken(String.valueOf(incrementalId))){
+								incrementalId++;
+							}
+							unauthorizedClients.put(incrementalId, name);
+							socketOut.writeObject(new NewName(incrementalId, name));
+						}
+						else
+							server.addPlayer(new Player(name, playerColor));
 					}
 					else if (object instanceof Integer) {
 						int input = (Integer) object;
 						Action action = match.getActionHandler().getAvailableAction(input);
 						System.out.println("ServerRMIView: " + action.getClass().getSimpleName() + " received from ClientRMI. Notifying observers (Server Controller).");
 						this.notifyObserver(action);
+					}
+					else if(object instanceof NewName) {
+						NewName newName = (NewName) object;
+						String name = newName.getName();
+						if(server.isNameTaken(name)) {
+							unauthorizedClients.put(newName.getUnauthorizedId(), name);
+							socketOut.writeObject(new NewName(newName.getUnauthorizedId(), name));
+						}
+						else
+							server.addPlayer(new Player(name, playerColor));
 					}
 
 
