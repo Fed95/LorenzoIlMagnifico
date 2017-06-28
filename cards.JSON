@@ -4283,6 +4283,26 @@
     "period": 2,
     "effects": [
       {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "MilitaryPoint",
+                "type": "MILITARY_POINT",
+                "value": 2
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 56
+        }
+      },
+      {
         "type": "EffectFreeAction",
         "event": {
           "eventType": "EventPickCard",
@@ -4320,26 +4340,6 @@
           }
         ],
         "value": 6
-      },
-      {
-        "type": "EffectChangeResource",
-        "exchanges": [
-          {
-            "cost": [],
-            "bonus": [
-              {
-                "resourceType": "MilitaryPoint",
-                "type": "MILITARY_POINT",
-                "value": 2
-              }
-            ]
-          }
-        ],
-        "choice": false,
-        "event": {
-          "eventType": "EventPickCard",
-          "cardID": 56
-        }
       }
     ],
     "name": "Capitano",
@@ -4357,6 +4357,31 @@
     "cardType": "CHARACTER",
     "period": 2,
     "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "Wood",
+                "type": "WOOD",
+                "value": 1
+              },
+              {
+                "resourceType": "Stone",
+                "type": "STONE",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 57
+        }
+      },
       {
         "type": "EffectFreeAction",
         "description": "Free action of value 6 on any TowerFloor of the BUILDING Tower with the following discounts: [WOOD: 1, STONE: 1]",
@@ -4407,31 +4432,6 @@
           }
         ],
         "value": 6
-      },
-      {
-        "type": "EffectChangeResource",
-        "exchanges": [
-          {
-            "cost": [],
-            "bonus": [
-              {
-                "resourceType": "Wood",
-                "type": "WOOD",
-                "value": 1
-              },
-              {
-                "resourceType": "Stone",
-                "type": "STONE",
-                "value": 1
-              }
-            ]
-          }
-        ],
-        "choice": false,
-        "event": {
-          "eventType": "EventPickCard",
-          "cardID": 57
-        }
       }
     ],
     "name": "Architetto",
@@ -4449,6 +4449,26 @@
     "cardType": "CHARACTER",
     "period": 2,
     "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "Money",
+                "type": "MONEY",
+                "value": 2
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 58
+        }
+      },
       {
         "type": "EffectFreeAction",
         "description": "Free action of value 6 on any TowerFloor of the CHARACTER Tower with the following discounts: [MONEY: 2]",
@@ -4494,26 +4514,6 @@
           }
         ],
         "value": 6
-      },
-      {
-        "type": "EffectChangeResource",
-        "exchanges": [
-          {
-            "cost": [],
-            "bonus": [
-              {
-                "resourceType": "Money",
-                "type": "MONEY",
-                "value": 2
-              }
-            ]
-          }
-        ],
-        "choice": false,
-        "event": {
-          "eventType": "EventPickCard",
-          "cardID": 58
-        }
       }
     ],
     "name": "Mecenate",
@@ -4878,6 +4878,26 @@
     "period": 3,
     "effects": [
       {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 2
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 68
+        }
+      },
+      {
         "type": "EffectFreeAction",
         "event": {
           "eventType": "EventPickCard",
@@ -4899,26 +4919,6 @@
           }
         ],
         "value": 4
-      },
-      {
-        "type": "EffectChangeResource",
-        "exchanges": [
-          {
-            "cost": [],
-            "bonus": [
-              {
-                "resourceType": "FaithPoint",
-                "type": "FAITH_POINT",
-                "value": 2
-              }
-            ]
-          }
-        ],
-        "choice": false,
-        "event": {
-          "eventType": "EventPickCard",
-          "cardID": 68
-        }
       }
     ],
     "name": "Cardinale",
@@ -4936,6 +4936,26 @@
     "cardType": "CHARACTER",
     "period": 3,
     "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 69
+        }
+      },
       {
         "type": "EffectFreeAction",
         "event": {
@@ -4958,26 +4978,6 @@
           }
         ],
         "value": 4
-      },
-      {
-        "type": "EffectChangeResource",
-        "exchanges": [
-          {
-            "cost": [],
-            "bonus": [
-              {
-                "resourceType": "FaithPoint",
-                "type": "FAITH_POINT",
-                "value": 1
-              }
-            ]
-          }
-        ],
-        "choice": false,
-        "event": {
-          "eventType": "EventPickCard",
-          "cardID": 69
-        }
       }
     ],
     "name": "Vescovo",
@@ -5775,6 +5775,25 @@
         }
       },
       {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 3
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventEndMatch"
+        }
+      },
+      {
         "type": "EffectFreeAction",
         "event": {
           "eventType": "EventPickCard",
@@ -5796,25 +5815,6 @@
           }
         ],
         "value": 4
-      },
-      {
-        "type": "EffectChangeResource",
-        "exchanges": [
-          {
-            "cost": [],
-            "bonus": [
-              {
-                "resourceType": "VictoryPoint",
-                "type": "VICTORY_POINT",
-                "value": 3
-              }
-            ]
-          }
-        ],
-        "choice": false,
-        "event": {
-          "eventType": "EventEndMatch"
-        }
       }
     ],
     "name": "Supporto al Re",
@@ -6088,41 +6088,6 @@
     "period": 3,
     "effects": [
       {
-        "type": "EffectFreeAction",
-        "event": {
-          "eventType": "EventPickCard",
-          "cardID": 89
-        },
-        "description": "Free action of value 7 on any TowerFloor",
-        "occupiables": [
-          {
-            "occupiable": "TowerFloor",
-            "floorNum": 0,
-            "effects": [],
-            "occupiers": []
-          },
-          {
-            "occupiable": "TowerFloor",
-            "floorNum": 1,
-            "effects": [],
-            "occupiers": []
-          },
-          {
-            "occupiable": "TowerFloor",
-            "floorNum": 2,
-            "effects": [],
-            "occupiers": []
-          },
-          {
-            "occupiable": "TowerFloor",
-            "floorNum": 3,
-            "effects": [],
-            "occupiers": []
-          }
-        ],
-        "value": 7
-      },
-      {
         "type": "EffectChangeResource",
         "exchanges": [
           {
@@ -6160,6 +6125,41 @@
         "event": {
           "eventType": "EventEndMatch"
         }
+      },
+      {
+        "type": "EffectFreeAction",
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 89
+        },
+        "description": "Free action of value 7 on any TowerFloor",
+        "occupiables": [
+          {
+            "occupiable": "TowerFloor",
+            "floorNum": 0,
+            "effects": [],
+            "occupiers": []
+          },
+          {
+            "occupiable": "TowerFloor",
+            "floorNum": 1,
+            "effects": [],
+            "occupiers": []
+          },
+          {
+            "occupiable": "TowerFloor",
+            "floorNum": 2,
+            "effects": [],
+            "occupiers": []
+          },
+          {
+            "occupiable": "TowerFloor",
+            "floorNum": 3,
+            "effects": [],
+            "occupiers": []
+          }
+        ],
+        "value": 7
       }
     ],
     "name": "Riparare la Cattedrale",
@@ -6348,6 +6348,25 @@
     "period": 3,
     "effects": [
       {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 5
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventEndMatch"
+        }
+      },
+      {
         "type": "EffectFreeAction",
         "event": {
           "eventType": "EventPickCard",
@@ -6369,25 +6388,6 @@
           }
         ],
         "value": 3
-      },
-      {
-        "type": "EffectChangeResource",
-        "exchanges": [
-          {
-            "cost": [],
-            "bonus": [
-              {
-                "resourceType": "VictoryPoint",
-                "type": "VICTORY_POINT",
-                "value": 5
-              }
-            ]
-          }
-        ],
-        "choice": false,
-        "event": {
-          "eventType": "EventEndMatch"
-        }
       }
     ],
     "name": "Migliorare le Strade",
