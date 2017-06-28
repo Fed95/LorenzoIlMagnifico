@@ -7,7 +7,9 @@ import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventExcluded;
 import it.polimi.ingsw.gc_12.event.EventStartTurn;
+import it.polimi.ingsw.gc_12.java_fx.MainBoard;
 import it.polimi.ingsw.gc_12.mvc.View;
+import sun.applet.Main;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -53,6 +55,8 @@ public class ClientRMIView extends ClientHandler implements ClientViewRemote, Se
 		System.out.println("This name is already taken from another active player.");
 		System.out.println("Choose another one.");
 		this.unauthorizedId = unauthorizedId;
+		if(view instanceof MainBoard)
+			((MainBoard) view).errorNameTaken();
 	}
 
 	private static final long serialVersionUID = 6111979881550001331L;

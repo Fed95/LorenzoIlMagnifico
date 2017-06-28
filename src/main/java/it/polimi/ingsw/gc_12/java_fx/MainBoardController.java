@@ -186,12 +186,14 @@ public class MainBoardController implements Initializable, Observer {
         lastFamClicked = familyMemberClicked;
        //match.getFamilyMemberBlueRepresentationObservableList().get(0).setValueProperty(10);
     }
+
     @FXML void showCard(MouseEvent event){
         ImageView imageView = (ImageView) event.getSource();
         Image card = imageView.getImage();
         showCards.setImage(card);
         showCards.setOpacity(1);
     }
+
     @FXML void floorClicked(MouseEvent event){
         System.out.println("click");
         Circle floorClicked = (Circle) event.getTarget();
@@ -332,7 +334,7 @@ public class MainBoardController implements Initializable, Observer {
         this.adapter = new GUIAdapter(ClientFactory.getClientSender());
 
         try {
-            if(!clientHandler.isStarted())
+            if(clientHandler.isStarted())
                 adapter.sendAction(0);
         } catch (IOException e) {
             e.printStackTrace();

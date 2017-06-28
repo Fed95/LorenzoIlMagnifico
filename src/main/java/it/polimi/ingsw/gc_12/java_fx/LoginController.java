@@ -4,6 +4,7 @@ import it.polimi.ingsw.gc_12.client.ClientFactory;
 import it.polimi.ingsw.gc_12.client.rmi.ClientRMI;
 import it.polimi.ingsw.gc_12.client.socket.ClientSocket;
 import it.polimi.ingsw.gc_12.mvc.View;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -48,8 +49,6 @@ public class LoginController implements Initializable {
                 ClientSocket clientSocket = new ClientSocket();
                 clientSocket.startClient(mainBoard, name);
             }
-            MainBoard mb = (MainBoard) mainBoard;
-            mb.changeScene("FXMLMainBoard", 1980, 1080, true, "Lorenzo il magnifico");
         }
     }
 
@@ -58,9 +57,11 @@ public class LoginController implements Initializable {
         connectionChoice.setValue("RMI");
         connectionChoice.setItems(connectionList);
     }
+
     public void setMainBoard(MainBoard mainBoard){
         this.mainBoard = mainBoard;
     }
+
     private Boolean isNameValid(String name){
         if(name.equals("") || name.equals(" ")){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -71,5 +72,15 @@ public class LoginController implements Initializable {
             return false;
         }
         return true;
+    }
+
+    public void showErrorNameTaken() {
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Name taken");
+            alert.setContentText("This name is already taken from another active player.");
+            alert.showAndWait();
+        });
     }
 }

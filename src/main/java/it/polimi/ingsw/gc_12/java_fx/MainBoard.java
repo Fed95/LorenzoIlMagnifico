@@ -49,8 +49,8 @@ public class MainBoard extends Application implements View{
         primaryStage.show();
         responsive(newScene, newLayout, primaryStage);
         ready = true;
-
     }
+
 	private void responsive(Scene scene, Pane root, Stage primaryStage){
 		final double initWidth  = scene.getWidth();
 		final double initHeight = scene.getHeight();
@@ -87,5 +87,9 @@ public class MainBoard extends Application implements View{
 	@Override
 	public boolean isReady() {
 		return ready;
+	}
+
+	public void errorNameTaken() {
+		controller.showErrorNameTaken();
 	}
 }

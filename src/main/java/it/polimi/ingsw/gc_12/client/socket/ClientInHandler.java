@@ -6,6 +6,7 @@ import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.NewName;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventExcluded;
+import it.polimi.ingsw.gc_12.java_fx.MainBoard;
 import it.polimi.ingsw.gc_12.mvc.View;
 
 import java.io.IOException;
@@ -49,6 +50,8 @@ public class ClientInHandler extends ClientHandler implements Runnable {
 					System.out.println("This name is already taken from another active player.");
 					System.out.println("Choose another one.");
 					this.unauthorizedId = ((NewName) object).getUnauthorizedId();
+					if(view instanceof MainBoard)
+						((MainBoard) view).errorNameTaken();
 				}
 			} catch (ClassNotFoundException | IOException e) {
 				// TODO Auto-generated catch block
