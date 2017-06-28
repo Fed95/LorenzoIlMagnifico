@@ -13,6 +13,6 @@ public class ClientCLI extends Client {
 		View view = new ViewCLI();
 		Client client = new ClientCLI();
 		client.start(view);
-
+        view.start();
 	}
 }

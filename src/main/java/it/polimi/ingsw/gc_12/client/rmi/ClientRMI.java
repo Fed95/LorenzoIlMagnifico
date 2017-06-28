@@ -42,7 +42,7 @@ public class ClientRMI implements ClientSender { //Main class of the Clients usi
 		//view = new ViewCLI(this, rmiView);
 		view.setClientSender(this);
 		view.setClientHandler(rmiView);
-		view.start();
+		//view.start();
 	}
 	
 	/*public void askAction(boolean isFMPlaced) throws RemoteException {
