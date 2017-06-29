@@ -34,7 +34,7 @@ public class EventStartMatch extends Event{
 		MatchInstance matchInstance = createMatchInstance(client.getView());
 		matchInstance.init(match);
 		client.setMatch(matchInstance);
-        client.getMainBoardController().getChat().appendText("[SERVER]: Your Color is "+client.getColor()+"\n");
+      //client.getMainBoardController().getChat().appendText("[SERVER]: Your Color is "+client.getColor()+"\n");
 
     }
 
