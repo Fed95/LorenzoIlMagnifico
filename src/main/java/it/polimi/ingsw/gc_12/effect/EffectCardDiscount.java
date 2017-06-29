@@ -17,10 +17,12 @@ import java.util.Map;
 public class EffectCardDiscount extends Effect {
 
     private Resource resource;
+    private String description;
 
-    public EffectCardDiscount(Event event, Resource resource) {
+    public EffectCardDiscount(Event event, Resource resource, String description) {
         super(event);
         this.resource = resource;
+        this.description = description;
     }
 
     @Override
@@ -49,5 +51,10 @@ public class EffectCardDiscount extends Effect {
     @Override
     public void discard(Match match, Event event) {
 
+    }
+
+    @Override
+    public String toString() {
+        return description;
     }
 }

@@ -3979,6 +3979,7 @@
       },
       {
         "type": "EffectCardDiscount",
+        "description": "Discount of [WOOD: 1] on BUILDING Cards",
         "resource": {
           "resourceType": "Wood",
           "type": "WOOD",
@@ -3991,6 +3992,7 @@
       },
       {
         "type": "EffectCardDiscount",
+        "description": "Discount of [STONE: 1] on BUILDING Cards",
         "resource": {
           "resourceType": "Stone",
           "type": "STONE",
@@ -4057,6 +4059,7 @@
       },
       {
         "type": "EffectCardDiscount",
+        "description": "Discount of [MONEY: 1] on CHARACTER Cards",
         "resource": {
           "resourceType": "Money",
           "type": "MONEY",
