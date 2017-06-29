@@ -9,11 +9,18 @@ import java.util.Map;
 public class LeaderCard extends Card {
 
     Map<CardType, Integer> cardRequirements;
+    private boolean active;
 
     public LeaderCard(int id, String name, List<Resource> requirements, Map<CardType, Integer> cardRequirements, List<Effect> effects) {
         super(id, name, requirements, effects);
         this.cardRequirements = cardRequirements;
     }
 
+    public boolean isActive() {
+        return active;
+    }
 
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 }

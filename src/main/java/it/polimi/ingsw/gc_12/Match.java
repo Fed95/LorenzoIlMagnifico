@@ -86,6 +86,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		}
 		//TODO: remove comment before deadline (disabled shuffle for testing)
 		//cardDeckSet.shuffle();
+		//Collections.shuffle(leaderCards);
 
 		createBoard();
 		initPlayers();
@@ -111,6 +112,8 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 			// player.setInitialResources(config.getInitialResources().get(i));
 			player.init(board.getSpaceDie());
 			player.getPersonalBoard().setCardsSpaces(new LoaderCardsSpace().get(this));
+			for(int j = 0; j < 4; j++)
+				player.getPersonalBoard().getLeaderCardsSpace().getCards().add(leaderCards.get(4*i + j));
 		}
 	}
 
