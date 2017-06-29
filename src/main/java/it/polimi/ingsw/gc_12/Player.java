@@ -1,6 +1,9 @@
 package it.polimi.ingsw.gc_12;
 
 import it.polimi.ingsw.gc_12.card.Card;
+import it.polimi.ingsw.gc_12.card.CardCharacter;
+import it.polimi.ingsw.gc_12.card.CardDevelopment;
+import it.polimi.ingsw.gc_12.card.CardVenture;
 import it.polimi.ingsw.gc_12.dice.Die;
 import it.polimi.ingsw.gc_12.dice.DieColor;
 import it.polimi.ingsw.gc_12.dice.SpaceDie;
@@ -117,6 +120,16 @@ public class Player implements Serializable{
 	public boolean hasResources(List<Resource> resources) {
 		return resources.stream().allMatch(resource -> resource == null || (resource.getValue() < this.resources.get(resource.getType()).getValue()));
 	}
+
+	public boolean satisfiesCardRequirements(Card c, List<Resource> discountedRequirements){
+		if(c instanceof CardDevelopment){
+			CardDevelopment card = (CardDevelopment) c;
+			if(card instanceof CardVenture && ((CardVenture) card).hasChoice() && hasResources(((CardVenture)card).getMilitaryExchange().getCost()))
+				return true;
+		}
+		return hasResources(discountedRequirements);
+	}
+
 	
 	public Map<ResourceType, Resource> getResources() {
 		return resources;

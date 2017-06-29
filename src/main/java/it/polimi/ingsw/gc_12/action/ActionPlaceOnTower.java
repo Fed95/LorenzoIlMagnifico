@@ -1,13 +1,14 @@
 package it.polimi.ingsw.gc_12.action;
 
-import com.sun.org.apache.regexp.internal.RE;
 import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
-import it.polimi.ingsw.gc_12.card.Card;
+import it.polimi.ingsw.gc_12.card.CardCharacter;
 import it.polimi.ingsw.gc_12.card.CardDevelopment;
+import it.polimi.ingsw.gc_12.card.CardVenture;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.effect.EffectFreeAction;
+import it.polimi.ingsw.gc_12.event.EventChooseExchange;
 import it.polimi.ingsw.gc_12.event.EventPickCard;
 import it.polimi.ingsw.gc_12.event.EventPlacementEnded;
 import it.polimi.ingsw.gc_12.exceptions.ActionNotAllowedException;
@@ -16,10 +17,9 @@ import it.polimi.ingsw.gc_12.exceptions.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc_12.occupiables.Tower;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 import it.polimi.ingsw.gc_12.resource.Resource;
-import it.polimi.ingsw.gc_12.resource.ResourceType;
+import it.polimi.ingsw.gc_12.resource.ResourceExchange;
 import it.polimi.ingsw.gc_12.resource.Servant;
 
-import java.awt.image.RescaleOp;
 import java.util.*;
 
 public class ActionPlaceOnTower extends ActionPlace {
@@ -64,7 +64,7 @@ public class ActionPlaceOnTower extends ActionPlace {
             throw new ActionNotAllowedException("There is no card on this floor!");
         if(!towerFloor.isRequiredValueSatisfied(familyMember))
             throw new RequiredValueNotSatisfiedException();
-        if(!player.hasResources(towerFloor.getCard().getRequirements()))
+        if(!player.satisfiesCardRequirements(towerFloor.getCard(), towerFloor.getCard().getDiscountedRequirements(discounts)))
             throw new ActionNotAllowedException("You don't have enough resources to take this card!");
         if(!player.getPersonalBoard().canPlaceCard(player, towerFloor.getCard()))
             throw new ActionNotAllowedException("You can't place this card on your board!");
@@ -75,12 +75,15 @@ public class ActionPlaceOnTower extends ActionPlace {
         if (!tower.isTaken())
             tower.activateMalus();
         CardDevelopment card = towerFloor.getCard();
-
         player.removeResources(Collections.singletonList(servant));
-        List<Resource> requirements = card.getRequirements();
-        if(discounts.size() > 0)
-            applyDiscounts(requirements);
-        player.removeResources(requirements);
+        List<Resource> discountedRequirements = card.getDiscountedRequirements(discounts);
+
+        if(card instanceof CardVenture && ((CardVenture) card).hasChoice()){
+            handleRequirementChoice(match, discountedRequirements, (CardVenture) card);
+        }else {
+            player.removeResources(discountedRequirements);
+        }
+
         player.getPersonalBoard().placeCard(card);
         match.placeFamilyMember(towerFloor, familyMember);
 
@@ -96,32 +99,23 @@ public class ActionPlaceOnTower extends ActionPlace {
         match.notifyObserver(event);
     }
 
+    private void handleRequirementChoice(Match match, List<Resource> requirements, CardVenture card) {
+        List<ResourceExchange> possibleExchanges = new ArrayList<>();
+        for(Resource requirement : requirements){
+            possibleExchanges.add(new ResourceExchange(requirement, null));
+        }
+        possibleExchanges.add(card.getMilitaryExchange());
+        EventChooseExchange eventExchange = new EventChooseExchange(player, possibleExchanges);
+        match.getActionHandler().update(eventExchange, match);
+        match.notifyObserver(eventExchange);
+    }
+
     public void executeImmediateEffects(Match match, Player player, CardDevelopment card) {
         EventPickCard event = new EventPickCard(player, card);
-        List<Effect> executedEffects = new ArrayList<>();
         try {
             match.getEffectHandler().executeEffects(match, event);
         } catch (ActionDeniedException e) {
             e.printStackTrace();
         }
     }
-
-    private void applyDiscounts(List<Resource> requirements){
-
-        Map<ResourceType, Resource> cardRequirements = new HashMap<>();
-        for (Resource requirement : requirements)
-            cardRequirements.put(requirement.getType(), requirement);
-
-        for(Resource resource : discounts) {
-
-            ResourceType type = resource.getType();
-
-            if (cardRequirements.containsKey(type)) {
-                int currentValue = cardRequirements.get(type).getValue();
-                int newValue = (currentValue - resource.getValue() < 0 ? 0 : currentValue - resource.getValue());
-                cardRequirements.get(type).setValue(newValue);
-            }
-        }
-    }
-
 }
