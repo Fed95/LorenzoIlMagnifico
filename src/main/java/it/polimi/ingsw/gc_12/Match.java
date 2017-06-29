@@ -1,11 +1,10 @@
 package it.polimi.ingsw.gc_12;
 
 import it.polimi.ingsw.gc_12.action.ActionHandler;
-import it.polimi.ingsw.gc_12.card.Card;
-import it.polimi.ingsw.gc_12.card.CardDeckSet;
-import it.polimi.ingsw.gc_12.card.CardType;
+
 import it.polimi.ingsw.gc_12.client.rmi.ClientRMIView;
 import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
+import it.polimi.ingsw.gc_12.card.*;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.effect.EffectHandler;
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
@@ -30,7 +29,8 @@ import java.util.stream.Collectors;
 public class Match extends Observable<Event> implements Serializable, EffectProvider{
 	private Map<PlayerColor, Player> players = new HashMap<>();
 	private List<BonusTile> bonusTiles;
-	private transient List<Card> cards;
+	private List<CardDevelopment> developmentCards = new ArrayList<>();
+	private List<LeaderCard> leaderCards = new ArrayList<>();
 	private transient List<ExcommunicationTile> excommunicationTiles;
 	private transient List<Integer> trackFaithPointValues;
 	private transient CardDeckSet cardDeckSet;
@@ -54,14 +54,24 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		this.turnCounter = 0;
 		this.reportCounter = 0;
 		this.period = 0;
-		this.cards = new LoaderCard().get(this);
+		handleCards();
 		this.excommunicationTiles = new LoaderExcommmunications().get(this);
 		this.trackFaithPointValues = new LoaderTrackFaithPointsValues().get(this);
-		this.cardDeckSet = new CardDeckSet(cards, DEFAULT_ROUND_NUM / DEFAULT_PERIODS_LEN);
+		this.cardDeckSet = new CardDeckSet(developmentCards, DEFAULT_ROUND_NUM / DEFAULT_PERIODS_LEN);
 		this.effectHandler = new EffectHandler();
 		this.actionHandler = new ActionHandler(this);
 
 		this.gameState = State.PENDING;
+	}
+
+	private void handleCards(){
+		List<Card> cards = new LoaderCard().get(this);
+		for(Card card : cards) {
+			if (card instanceof CardDevelopment)
+				developmentCards.add((CardDevelopment) card);
+			else
+				leaderCards.add((LeaderCard) card);
+		}
 	}
 
 	public void init(Map<PlayerColor, Player> players) {
@@ -277,6 +287,9 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	}
 
 	public List<Card> getCards(CardType cardType) {
+		List<Card> cards = new ArrayList<>();
+		cards.addAll(developmentCards);
+		cards.addAll(leaderCards);
 		return cards;
 	}
 

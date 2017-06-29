@@ -10,10 +10,10 @@ public class CardDeckSet {
     private List<CardDevelopment> cards = new ArrayList<>();
     private Map<CardType, Map<Integer, CardDeck>> decks = new HashMap<>();
 
-    public CardDeckSet(List<Card> cards, int periods){
+    public CardDeckSet(List<CardDevelopment> cards, int periods){
 
-        for(Card card : cards)
-            this.cards.add((CardDevelopment) card);
+        for(CardDevelopment card : cards)
+            this.cards.add(card);
 
         //Creates DevelopmentDecks grouping them by type and period
         for(CardType type: CardType.values()){

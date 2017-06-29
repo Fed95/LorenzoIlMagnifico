@@ -20,7 +20,8 @@ public class TypeAdapter {
 				.registerSubtype(CardTerritory.class, CardTerritory.class.getSimpleName())
 				.registerSubtype(CardBuilding.class, CardBuilder.class.getSimpleName())
 				.registerSubtype(CardCharacter.class, CardCharacter.class.getSimpleName())
-				.registerSubtype(CardVenture.class, CardVenture.class.getSimpleName());
+				.registerSubtype(CardVenture.class, CardVenture.class.getSimpleName())
+				.registerSubtype(TowerFloor.class, TowerFloor.class.getSimpleName());
 
 
 		final RuntimeTypeAdapterFactory<Occupiable> factoryOccupiable = RuntimeTypeAdapterFactory
@@ -36,8 +37,8 @@ public class TypeAdapter {
 				.registerSubtype(CardBuilding.class, CardBuilding.class.getSimpleName())
 				.registerSubtype(CardCharacter.class, CardCharacter.class.getSimpleName())
 				.registerSubtype(CardTerritory.class, CardTerritory.class.getSimpleName())
-				.registerSubtype(CardVenture.class, CardVenture.class.getSimpleName());
-				//registerSubtype(CardLeader.class, "LEADER");
+				.registerSubtype(CardVenture.class, CardVenture.class.getSimpleName())
+				.registerSubtype(LeaderCard.class, LeaderCard.class.getSimpleName());
 
 		final RuntimeTypeAdapterFactory<Resource> factoryResource = RuntimeTypeAdapterFactory
 				.of(Resource.class, "resourceType")
@@ -71,6 +72,7 @@ public class TypeAdapter {
 				.registerSubtype(EventSpendResource.class, EventSpendResource.class.getSimpleName())
 				.registerSubtype(EventSupportChurch.class, EventSupportChurch.class.getSimpleName())
 				.registerSubtype(EventEndMatch.class, EventEndMatch.class.getSimpleName())
+				.registerSubtype(EventStartTurn.class, EventStartTurn.class.getSimpleName())
 				.registerSubtype(EventServantsRequested.class, EventServantsRequested.class.getSimpleName())
 				.registerSubtype(EventReceiveResource.class, EventReceiveResource.class.getSimpleName());
 

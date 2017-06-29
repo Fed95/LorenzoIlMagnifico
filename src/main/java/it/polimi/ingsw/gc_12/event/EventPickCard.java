@@ -19,6 +19,7 @@ public class EventPickCard extends Event {
     private int cardID;
     private Card card;
     private CardType cardType;
+    private boolean anyCard = false;
 
     public EventPickCard(Player player, CardDevelopment card) {
         super(player);
@@ -36,6 +37,14 @@ public class EventPickCard extends Event {
 
     public EventPickCard(CardDevelopment card) {
         this.card = card;
+    }
+
+    public EventPickCard(){
+        anyCard = true;
+    }
+
+    public boolean isAnyCard() {
+        return anyCard;
     }
 
     public Card getCard() {
@@ -61,9 +70,11 @@ public class EventPickCard extends Event {
     @Override
     public boolean equals(Object obj) {
         if(super.equals(obj)) {
-
             //This is the event created in the game, Other is the one found in the card
             EventPickCard other = (EventPickCard) obj;
+
+            if(other.isAnyCard())
+                return true;
 
             if(other.getCardType() != null && ((CardDevelopment) card).getType().equals(other.getCardType()))
                 return true;
@@ -71,7 +82,7 @@ public class EventPickCard extends Event {
             if ((cardID) == other.getCardID())
                 return true;
         }
-        return false;
+        return true;
     }
 
     @Override

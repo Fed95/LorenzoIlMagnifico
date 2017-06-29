@@ -26,6 +26,9 @@ public class EventStartTurn extends Event{
 		this(player, new ArrayList<>(), 0);
 	}
 
+	public EventStartTurn() {
+	}
+
 	@Override
 	public List<Object> getAttributes() {
 		return new ArrayList<>();

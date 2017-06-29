@@ -6678,5 +6678,490 @@
         }
       ]
     }
+  },
+  {
+    "id": 96,
+    "type": "LeaderCard",
+    "name": "Francesco Sfroza",
+    "requirements": [],
+    "cardRequirements": {
+      "VENTURE": 5
+    },
+    "effects": [
+      {
+        "type": "EffectFreeAction",
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 93
+        },
+        "description": "Free action of value 1 on a PRODUCTION WorkSpace",
+        "occupiables": [
+          {
+            "occupiable": "SpaceWorkSingle",
+            "workType": "PRODUCTION",
+            "occupiers": [],
+            "requiredValue": 1
+          },
+          {
+            "occupiable": "SpaceWorkMultiple",
+            "workType": "PRODUCTION",
+            "occupiers": [],
+            "requiredValue": 1
+          }
+        ],
+        "value": 1
+      }
+    ]
+  },
+  {
+    "id": 97,
+    "type": "LeaderCard",
+    "name": "Leonardo da Vinci",
+    "requirements": [],
+    "cardRequirements": {
+      "TERRITORY": 2,
+      "CHARACTER": 4
+    },
+    "effects": [
+      {
+        "type": "EffectFreeAction",
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 93
+        },
+        "description": "Free action of value 0 on a PRODUCTION WorkSpace",
+        "occupiables": [
+          {
+            "occupiable": "SpaceWorkSingle",
+            "workType": "PRODUCTION",
+            "occupiers": [],
+            "requiredValue": 1
+          },
+          {
+            "occupiable": "SpaceWorkMultiple",
+            "workType": "PRODUCTION",
+            "occupiers": [],
+            "requiredValue": 1
+          }
+        ],
+        "value": 0
+      }
+    ]
+  },
+  {
+    "id": 98,
+    "type": "LeaderCard",
+    "name": "Filippo Brunelleschi",
+    "requirements": [],
+    "cardRequirements": {
+      "BUILDING": 5
+    },
+    "effects": [
+      {
+        "type": "EffectDenyEffect",
+        "effectProvider": {
+          "effectProvider": "TowerFloor",
+          "floorNum": -1,
+          "occupiers": [],
+          "requiredValue": 0
+        },
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": -1,
+              "occupiers": [],
+              "requiredValue": 0
+            }
+          ],
+          "multiplier": 1,
+          "actions": []
+        }
+      }
+    ]
+  },
+  {
+    "id": 99,
+    "type": "LeaderCard",
+    "name": "Pico della Mirandola",
+    "requirements": [],
+    "cardRequirements": {
+      "BUILDING": 2,
+      "VENTURE": 4
+    },
+    "effects": [
+      {
+        "type": "EffectCardDiscount",
+        "description": "Discount of [MONEY: 3] on any Card",
+        "resource": {
+          "resourceType": "Money",
+          "type": "MONEY",
+          "value": 3
+        },
+        "event": {
+          "eventType": "EventPickCard"
+        }
+      }
+    ]
+  },
+  {
+    "id": 99,
+    "type": "LeaderCard",
+    "name": "Sigmondo Malatesta",
+    "requirements": [
+      {
+        "resourceType": "MilitaryPoint",
+        "type": "MILITARY_POINT",
+        "value": 7
+      },
+      {
+        "resourceType": "FaithPoint",
+        "type": "FAITH_POINT",
+        "value": 3
+      }
+    ],
+    "cardRequirements": {},
+    "effects": [
+      {
+        "type": "EffectChangeFamilyMemberValue",
+        "amount": 3,
+        "setValue": false,
+        "colors": [
+          "NEUTRAL"
+        ],
+        "event": {
+          "eventType": "EventStartTurn"
+        }
+      }
+    ]
+  },
+  {
+    "id": 100,
+    "type": "LeaderCard",
+    "name": "Ludovico il Moro",
+    "requirements": [],
+    "cardRequirements": {
+      "BUILDING": 2,
+      "VENTURE": 2,
+      "CHARACTER": 2,
+      "TERRITORY": 2
+    },
+    "effects": [
+      {
+        "type": "EffectChangeFamilyMemberValue",
+        "amount": 5,
+        "setValue": true,
+        "colors": [
+          "WHITE",
+          "BLACK",
+          "ORANGE"
+        ],
+        "event": {
+          "eventType": "EventStartTurn"
+        }
+      }
+    ]
+  },
+  {
+    "id": 101,
+    "type": "LeaderCard",
+    "name": "Ludovico III Gonzaga",
+    "requirements": [
+      {
+        "resourceType": "Servant",
+        "type": "SERVANT",
+        "value": 15
+      }
+    ],
+    "cardRequirements": {},
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "CouncilPrivilege",
+                "type": "COUNCIL_PRIVILEGE",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventStartTurn"
+        }
+      }
+    ]
+  },
+  {
+    "id": 102,
+    "type": "LeaderCard",
+    "name": "Sandro Botticelli",
+    "requirements": [
+      {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 10
+      }
+    ],
+    "cardRequirements": {},
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "MilitaryPoint",
+                "type": "MILITARY_POINT",
+                "value": 2
+              },
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventStartTurn"
+        }
+      }
+    ]
+  },
+  {
+    "id": 103,
+    "type": "LeaderCard",
+    "name": "Bartolomeo Colleoni",
+    "requirements": [],
+    "cardRequirements": {
+      "VENTURE": 2,
+      "TERRITORY": 4
+    },
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 4
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventStartTurn"
+        }
+      }
+    ]
+  },
+  {
+    "id": 104,
+    "type": "LeaderCard",
+    "name": "Cosimo de Medici",
+    "requirements": [],
+    "cardRequirements": {
+      "CHARACTER": 2,
+      "BUILDING": 4
+    },
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "Servant",
+                "type": "SERVANT",
+                "value": 3
+              },
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventStartTurn"
+        }
+      }
+    ]
+  },
+  {
+    "id": 105,
+    "type": "LeaderCard",
+    "name": "Giovanni dalle Bande Nere",
+    "requirements": [
+      {
+        "resourceType": "MilitaryPoint",
+        "type": "MILITARY_POINT",
+        "value": 12
+      }
+    ],
+    "cardRequirements": {},
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "Wood",
+                "type": "WOOD",
+                "value": 1
+              },
+              {
+                "resourceType": "Money",
+                "type": "MONEY",
+                "value": 1
+              },
+              {
+                "resourceType": "Stone",
+                "type": "STONE",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventStartTurn"
+        }
+      }
+    ]
+  },
+  {
+    "id": 106,
+    "type": "LeaderCard",
+    "name": "Michelangelo Buonarroti",
+    "requirements": [
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 10
+      }
+    ],
+    "cardRequirements": {},
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "Money",
+                "type": "MONEY",
+                "value": 3
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventStartTurn"
+        }
+      }
+    ]
+  },
+  {
+    "id": 107,
+    "type": "LeaderCard",
+    "name": "Girolamo Savonarona",
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 18
+      }
+    ],
+    "cardRequirements": {},
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 1
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventStartTurn"
+        }
+      }
+    ]
+  },
+  {
+    "id": 108,
+    "type": "LeaderCard",
+    "name": "Sisto IV",
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 6
+      },
+      {
+        "resourceType": "Stone",
+        "type": "STONE",
+        "value": 6
+      },
+      {
+        "resourceType": "Wood",
+        "type": "WOOD",
+        "value": 6
+      },
+      {
+        "resourceType": "Servant",
+        "type": "SERVANT",
+        "value": 6
+      }
+    ],
+    "cardRequirements": {},
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 5
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventSupportChurch"
+        }
+      }
+    ]
   }
 ]

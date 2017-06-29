@@ -6,17 +6,28 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlaceFamilyMember;
 
+import java.util.List;
 import java.util.Map;
 
 public class EffectChangeFamilyMemberValue extends Effect{
 	
 	private int amount;
+	private List<FamilyMemberColor> colors;
+	private boolean setValue = false;
 	
 	public EffectChangeFamilyMemberValue(Event event, int amount) {
 		super(event);
 		this.amount = amount;
 	}
-	
+
+	//Used in Json
+	public EffectChangeFamilyMemberValue(Event event, int amount, List<FamilyMemberColor> colors, boolean setValue) {
+		super(event);
+		this.amount = amount;
+		this.colors = colors;
+		this.setValue = setValue;
+	}
+
 	public void execute(Match match, Event event, boolean validation) {
 		applyChange(event, amount);
 	}
@@ -33,8 +44,12 @@ public class EffectChangeFamilyMemberValue extends Effect{
 		}
 		else {
 			Map<FamilyMemberColor, FamilyMember> familyMembers = event.getPlayer().getFamilyMembers();
-			for(FamilyMember familyMember: familyMembers.values()) {
-				changeFamilyMemberValue(familyMember, amount);
+			for(FamilyMemberColor color : familyMembers.keySet()){
+				if (colors.contains(color))
+					if(setValue)
+						familyMembers.get(color).setValue(amount);
+					else
+						changeFamilyMemberValue(familyMembers.get(color), amount);
 			}
 		}
 	}

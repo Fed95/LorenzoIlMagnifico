@@ -2,8 +2,12 @@ package it.polimi.ingsw.gc_12.card;
 
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.resource.Resource;
+import it.polimi.ingsw.gc_12.resource.ResourceType;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public abstract class CardDevelopment extends Card{
 	private final CardType cardType;
@@ -15,12 +19,44 @@ public abstract class CardDevelopment extends Card{
 		this.period = period;
 	}
 
+	public CardDevelopment(CardType type){
+		this(0, type, "generic", 0, null, null);
+	}
+
 	public int getPeriod(){
 		return period;
 	}
 
 	public CardType getType(){
 		return cardType;
+	}
+
+
+
+	public List<Resource> getDiscountedRequirements(List<Resource> discounts){
+		if(discounts.size() > 0) {
+
+			Map<ResourceType, Resource> cardRequirements = new HashMap<>();
+			List<Resource> requirements = new ArrayList<>(this.requirements);
+
+			for (Resource requirement : requirements)
+				cardRequirements.put(requirement.getType(), requirement);
+
+			for (Resource resource : discounts) {
+
+				ResourceType type = resource.getType();
+
+				if (cardRequirements.containsKey(type)) {
+					int currentValue = cardRequirements.get(type).getValue();
+					int newValue = (currentValue - resource.getValue() < 0 ? 0 : currentValue - resource.getValue());
+					cardRequirements.get(type).setValue(newValue);
+				}
+			}
+			return requirements;
+		}
+		else{
+			return requirements;
+		}
 	}
 
 	@Override

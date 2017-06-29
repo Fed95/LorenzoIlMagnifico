@@ -25,33 +25,6 @@ public class Card implements EffectProvider, Serializable {
 		this.effects = effects;
 	}
 
-
-	public List<Resource> getDiscountedRequirements(List<Resource> discounts){
-		if(discounts.size() > 0) {
-
-			Map<ResourceType, Resource> cardRequirements = new HashMap<>();
-			List<Resource> requirements = new ArrayList<>(this.requirements);
-
-			for (Resource requirement : requirements)
-				cardRequirements.put(requirement.getType(), requirement);
-
-			for (Resource resource : discounts) {
-
-				ResourceType type = resource.getType();
-
-				if (cardRequirements.containsKey(type)) {
-					int currentValue = cardRequirements.get(type).getValue();
-					int newValue = (currentValue - resource.getValue() < 0 ? 0 : currentValue - resource.getValue());
-					cardRequirements.get(type).setValue(newValue);
-				}
-			}
-			return requirements;
-		}
-		else{
-			return requirements;
-		}
-	}
-
 	public String getName() {
 		return name;
 	}
