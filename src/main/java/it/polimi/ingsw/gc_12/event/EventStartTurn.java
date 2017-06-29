@@ -39,7 +39,6 @@ public class EventStartTurn extends Event{
 		client.getMatch().setTurn(turn);
 		boolean myTurn = client.getColor().equals(player.getColor());
 		client.setMyTurn(myTurn);
-
 		if(myTurn) {
 			if(client.isExcluded()) {
 				for (int i = 0; i < actions.size(); i++) {

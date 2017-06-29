@@ -149,4 +149,8 @@ public abstract class ClientHandler extends UnicastRemoteObject {
     public void setMainBoardController(MainBoardController mainBoardController) {
         this.mainBoardController = mainBoardController;
     }
+
+    public MainBoardController getMainBoardController() {
+        return mainBoardController;
+    }
 }
