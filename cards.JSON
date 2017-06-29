@@ -5880,7 +5880,50 @@
     "type": "CardVenture",
     "cardType": "VENTURE",
     "period": 2,
-    "effects": [],
+    "effects": [
+      {
+        "type": "EffectFreeAction",
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 93
+        },
+        "description": "Free action of value 3 on a PRODUCTION WorkSpace",
+        "occupiables": [
+          {
+            "occupiable": "SpaceWorkSingle",
+            "workType": "PRODUCTION",
+            "occupiers": [],
+            "requiredValue": 1
+          },
+          {
+            "occupiable": "SpaceWorkMultiple",
+            "workType": "PRODUCTION",
+            "occupiers": [],
+            "requiredValue": 1
+          }
+        ],
+        "value": 4
+      },
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
+                "resourceType": "VictoryPoint",
+                "type": "VICTORY_POINT",
+                "value": 3
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventEndMatch"
+        }
+      }
+    ],
     "name": "Scavare Canalizzazioni",
     "id": 84,
     "requirements": [
