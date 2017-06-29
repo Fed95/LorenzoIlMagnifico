@@ -6,14 +6,13 @@ import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.dice.Die;
 import it.polimi.ingsw.gc_12.dice.DieColor;
 import it.polimi.ingsw.gc_12.dice.SpaceDie;
-import it.polimi.ingsw.gc_12.java_fx.CardFloorRepresentation;
-import it.polimi.ingsw.gc_12.java_fx.FamilyMemberRepresentation;
-import it.polimi.ingsw.gc_12.java_fx.ResourceRepresentation;
-import it.polimi.ingsw.gc_12.java_fx.TurnOrderTrackPositionRepresentation;
+import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
+import it.polimi.ingsw.gc_12.java_fx.*;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 import it.polimi.ingsw.gc_12.occupiables.TowerSet;
 import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
+import it.polimi.ingsw.gc_12.server.observer.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
@@ -51,10 +50,14 @@ public class MatchInstanceGUI extends MatchInstance {
     private ObservableList<ResourceRepresentation> resourceRedRepresentationObservableList = FXCollections.observableArrayList();
     private ObservableList<ResourceRepresentation> resourceYellowRepresentationObservableList = FXCollections.observableArrayList();
     private Map<PlayerColor, ObservableList<ResourceRepresentation>> mapPlayerColorResourceRepresentation = new HashMap<>();
-    ObservableList<ResourceRepresentation> allResourcerepresentationMilitary = FXCollections.observableArrayList();
-    ObservableList<ResourceRepresentation> allResourcerepresentationVictory = FXCollections.observableArrayList();
+    private ObservableList<ResourceRepresentation> allResourcerepresentationMilitary = FXCollections.observableArrayList();
+    private ObservableList<ResourceRepresentation> allResourcerepresentationVictory = FXCollections.observableArrayList();
 
     private ObservableList<TurnOrderTrackPositionRepresentation> turnOrderTrackFirstPositionRepresentationObservableList = FXCollections.observableArrayList();
+
+    //excommmunication tile representation
+    private ObservableList<ExcommunicationTileRepresentation> excommunicationTileRepresentationObservableList = FXCollections.observableArrayList();
+
 
     private MatchInstanceGUI() {}
 
@@ -72,6 +75,7 @@ public class MatchInstanceGUI extends MatchInstance {
         createCardTowerFloorRepresentation(match);
 		setFamilyMemberObservers();
         createObservableListMilitary(match);
+        createExcomTileRepresentation(match);
         setChanged();
 		notifyObservers();
 	}
@@ -188,7 +192,7 @@ public class MatchInstanceGUI extends MatchInstance {
         }
 
     }
-    public void createObservableListMilitary(Match match){
+    private void createObservableListMilitary(Match match){
         List<Player> players = new ArrayList<>(match.getPlayers().values());
         List<Player> orderedByMilitary = match.getBoard().getTrackMilitaryPoints().getPlayersOrder(players);
         List<Player> orderedByVictory = match.getBoard().getVictroyPointsTrack().getPlayerOrdered(players);
@@ -199,7 +203,16 @@ public class MatchInstanceGUI extends MatchInstance {
             allResourcerepresentationVictory.add(mapPlayerColorResourceRepresentation.get(player.getColor()).get(0));
         }
     }
-
+    private void createExcomTileRepresentation(Match match){
+        Map<Integer, ExcommunicationTile> tiles = match.getBoard().getExcommunicationSpace().getTiles();
+        for(ExcommunicationTile excommunicationTile : tiles.values()){
+            int period = excommunicationTile.getPeriod();
+            String path = "img/excomunicationTile/excomm_"+excommunicationTile.getId()+".png";
+            System.out.println(path);
+            ExcommunicationTileRepresentation excomTileR = new ExcommunicationTileRepresentation(period, path);
+            excommunicationTileRepresentationObservableList.add(excomTileR);
+        }
+    }
     public Map<PlayerColor, ObservableList<FamilyMemberRepresentation>> getMapPlayerColorObservableLiseFMRepr() {
 		return mapFamilyMember;
 	}
@@ -221,5 +234,9 @@ public class MatchInstanceGUI extends MatchInstance {
 
     public ObservableList<ResourceRepresentation> getAllResourcerepresentationVictory() {
         return allResourcerepresentationVictory;
+    }
+
+    public ObservableList<ExcommunicationTileRepresentation> getExcommunicationTileRepresentationObservableList() {
+        return excommunicationTileRepresentationObservableList;
     }
 }

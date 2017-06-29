@@ -2,10 +2,11 @@ package it.polimi.ingsw.gc_12.excommunication;
 
 import it.polimi.ingsw.gc_12.Match;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class ExcommunicationSpace {
+public class ExcommunicationSpace implements Serializable{
 
 	private List<ExcommunicationTile> tilesDeck = new ArrayList<>();
 	private Map<Integer, ExcommunicationTile> tiles = new HashMap<>();

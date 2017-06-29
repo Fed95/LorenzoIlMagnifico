@@ -28,7 +28,7 @@ public class MainBoard extends Application implements View{
         //Parent rootLayout= FXMLLoader.load(getClass().getResource("/FXML/FXMLMainBoard.fxml"));
 		//Scene scene = new Scene(rootLayout,1920,1080);
         Scene scene = new Scene(rootLayout,688,454);
-        primaryStage.setTitle("Lorenzo il magnifico");
+        primaryStage.setTitle("Benvenuto");
         primaryStage.setResizable(false);
 
         primaryStage.setScene(scene);
@@ -39,7 +39,6 @@ public class MainBoard extends Application implements View{
     public void changeScene(String fxml,int widthScene, int heightScene, Boolean resize, String title) throws IOException {
         FXMLLoader loader1 = new FXMLLoader();
         String path = "/FXML/"+fxml+".fxml";
-        System.out.println(path);
         loader1.setLocation(MainBoard.class.getResource(path));
         Pane newLayout = loader1.load();
         Scene newScene = new Scene(newLayout,widthScene,heightScene);

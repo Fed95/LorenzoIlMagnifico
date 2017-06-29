@@ -17,6 +17,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane minHeight="1080.0" minWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.gc_12.java_fx.MainBoardController">
@@ -42,7 +43,7 @@
               <content>
                 <AnchorPane fx:id="paneDetailsTab" minHeight="0.0" minWidth="0.0" prefHeight="430.0" prefWidth="376.0">
                      <children>
-                        <ImageView fx:id="showCards" fitHeight="384.0" fitWidth="271.0" layoutX="39.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="showCards" fitHeight="384.0" fitWidth="271.0" layoutX="51.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
                      </children></AnchorPane>
 
               </content>
@@ -414,7 +415,10 @@
              <Circle fx:id="secondPlayerTurn" fill="DODGERBLUE" layoutX="560.0" layoutY="604.0" opacity="0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
              <Circle fx:id="thirdPlayerTurn" fill="DODGERBLUE" layoutX="560.0" layoutY="642.0" opacity="0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
              <Circle fx:id="fourthPlayerTurn" fill="DODGERBLUE" layoutX="560.0" layoutY="681.0" opacity="0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
-
+            <Rectangle fx:id="councilPalace" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="64.0" layoutX="314.0" layoutY="577.0" opacity="0.18" stroke="BLACK" strokeType="INSIDE" width="184.0" />
+            <ImageView fx:id="excomTile1" fitHeight="93.0" fitWidth="57.0" layoutX="103.0" layoutY="633.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="excomTile2" fitHeight="89.0" fitWidth="50.0" layoutX="160.0" layoutY="645.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="excomTile3" fitHeight="105.0" fitWidth="49.0" layoutX="217.0" layoutY="632.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
    </center>

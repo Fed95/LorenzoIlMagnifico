@@ -41,6 +41,7 @@ public class LoginController implements Initializable {
         String name = nameField.getText();
         String connection = connectionChoice.getValue().toString();
         if(isNameValid(name)) {
+            playButton.setDisable(true);
             if(connection.equals("RMI")){
                 ClientRMI clientRMI = new ClientRMI();
                 ClientFactory.setClientSender(clientRMI);
@@ -76,6 +77,7 @@ public class LoginController implements Initializable {
 
     public void showErrorNameTaken() {
         Platform.runLater(() -> {
+            playButton.setDisable(false);
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Name taken");

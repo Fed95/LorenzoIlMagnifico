@@ -19,6 +19,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 
 import java.io.IOException;
@@ -151,6 +152,11 @@ public class MainBoardController implements Initializable, Observer {
     @FXML private TableColumn<ResourceRepresentation, String> nameMilitaryPoints;
     @FXML private TableColumn<ResourceRepresentation, String> pointsMilitaryPoints;
 
+    @FXML private ImageView excomTile1;
+    @FXML private ImageView excomTile2;
+    @FXML private ImageView excomTile3;
+    private Map<Integer, ImageView> mapPeriodImageViewTile = new HashMap<>();
+
     @FXML private TextArea chatTextArea;
     private ImageView lastFamClicked = null;
 
@@ -162,8 +168,10 @@ public class MainBoardController implements Initializable, Observer {
     @FXML void familyClicked(MouseEvent event) {
         ImageView familyMemberClicked = (ImageView) event.getTarget();
         List<Action> actions = clientHandler.getActions();
+
         for(Action action: actions)
             System.out.println(action);
+
         Image image = new Image("img/Card/card_92.png");
         match.getMapTypeCardFloorRepresentation().get(CardType.TERRITORY).get(0).setPath(image);
 
@@ -329,6 +337,10 @@ public class MainBoardController implements Initializable, Observer {
         nameVictoryPoints.setCellValueFactory(cellData -> cellData.getValue().getPlayerColorProperty());
         pointsVictoryPoints.setCellValueFactory(cellData -> cellData.getValue().getVictoryPointProperty().asString());
 
+        mapPeriodImageViewTile.put(0, excomTile1);
+        mapPeriodImageViewTile.put(1, excomTile2);
+        mapPeriodImageViewTile.put(2, excomTile3);
+
         showCards.setOpacity(0);
         this.clientHandler = ClientFactory.getClientHandler();
         this.adapter = new GUIAdapter(ClientFactory.getClientSender());
@@ -350,6 +362,7 @@ public class MainBoardController implements Initializable, Observer {
             bindResources();
             bindTrackOrder();
             bindTrackMilitaryVictory();
+            bindExcomunocationTile();
         });
     }
 
@@ -402,7 +415,13 @@ public class MainBoardController implements Initializable, Observer {
         tableVictoryPoints.setItems(match.getAllResourcerepresentationVictory());
 
     }
-
+    private void bindExcomunocationTile(){
+        for(int i = 0; i < mapPeriodImageViewTile.values().size(); i++){
+            int j = i+1;
+            ExcommunicationTileRepresentation excommunicationTileRepresentation = match.getExcommunicationTileRepresentationObservableList().stream().filter(period -> period.getPeriod() == j).collect(collectingAndThen(toList(), l -> FXCollections.observableArrayList(l))).get(0);
+            mapPeriodImageViewTile.get(i).imageProperty().bind(excommunicationTileRepresentation.getpathProperty());
+        }
+    }
    public TextArea getChat(){
         return chatTextArea;
    }

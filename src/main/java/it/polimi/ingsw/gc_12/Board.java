@@ -27,7 +27,7 @@ public class Board implements Serializable{
 	private TrackVictoryPoints victroyPointsTrack;
 	private List<Integer> trackFaithPointsValues = new ArrayList<>();
 	private transient TrackFaithPoints trackFaithPoints;
-	private transient ExcommunicationSpace excommunicationSpace;
+	private ExcommunicationSpace excommunicationSpace;
 	private transient List<ExcommunicationTile> excommunicationTiles;
 
 	public Board(List<Player> players) {
