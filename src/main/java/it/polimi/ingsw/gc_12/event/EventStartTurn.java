@@ -39,6 +39,7 @@ public class EventStartTurn extends Event{
 		client.getMatch().setTurn(turn);
 		boolean myTurn = client.getColor().equals(player.getColor());
 		client.setMyTurn(myTurn);
+
 		if(myTurn) {
 			if(client.isExcluded()) {
 				for (int i = 0; i < actions.size(); i++) {
@@ -77,7 +78,10 @@ public class EventStartTurn extends Event{
 	public String toStringClient() {
 		return "It's " + player.getName() + "'s turn.";
 	}
-
+	@Override
+    public String toStringClientGUI(){
+        return "It's " + player.getName() + "'s turn.";
+    }
 	class PassTurnSender implements Runnable {
 		ClientSender clientSender;
 		int input;

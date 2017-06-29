@@ -71,4 +71,8 @@ public class EventVaticanReport extends Event {
         sb.append("----------------------------------------").append(System.getProperty("line.separator"));
         return sb.toString();
     }
+    @Override
+    public String toStringClientGUI() {
+        return "VATICAN REPORT";
+    }
 }

@@ -4,6 +4,7 @@ package it.polimi.ingsw.gc_12.client;
 import it.polimi.ingsw.gc_12.*;
 import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.event.*;
+import it.polimi.ingsw.gc_12.java_fx.MainBoardController;
 import it.polimi.ingsw.gc_12.mvc.View;
 
 import java.rmi.RemoteException;
@@ -24,7 +25,7 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 	private boolean excluded;
 	protected int unauthorizedId;
 	private boolean started;
-
+	private MainBoardController mainBoardController;
 	protected ClientHandler(View view) throws RemoteException {
 		super();
 		this.view = view;
@@ -36,8 +37,11 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 		if(event == null)
 			return;
 
-		if(event.toStringClient() != null)
-			System.out.println(event.toStringClient());
+		if(event.toStringClient() != null) {
+            System.out.println(event.toStringClient());
+            mainBoardController.getChat().appendText("[SERVER]: " + event.toStringClientGUI()+"\n");
+        }
+
 		actions = event.getActions();
 
 		System.out.println("HANDLING "+event.getClass().getSimpleName());
@@ -102,11 +106,11 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 		this.myTurn = myTurn;
 	}
 
-	public PlayerColor getColor() {
+    public PlayerColor getColor() {
 		return color;
 	}
 
-	public void setActions(List<Action> actions) {
+    public void setActions(List<Action> actions) {
 		this.actions = actions;
 	}
 
@@ -137,4 +141,12 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 	public void setColor(PlayerColor color) {
 		this.color = color;
 	}
+
+    public Boolean getMyTurn(){
+	    return myTurn;
+    }
+
+    public void setMainBoardController(MainBoardController mainBoardController) {
+        this.mainBoardController = mainBoardController;
+    }
 }

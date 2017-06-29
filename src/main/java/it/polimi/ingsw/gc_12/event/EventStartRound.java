@@ -47,4 +47,8 @@ public class EventStartRound extends Event {
 		stringBuilder.append("-------------------------------");
 		return stringBuilder.toString();
 	}
+	@Override
+    public String toStringClientGUI(){
+	    return "ROUND "+round;
+    }
 }

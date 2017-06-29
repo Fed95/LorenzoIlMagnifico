@@ -56,7 +56,7 @@ public class MainBoardController implements Initializable, Observer {
     private Map<Integer, ImageView> mapCardFloorCharacter = new HashMap<>();
     private Map<Integer, ImageView> mapCardFloorVenture = new HashMap<>();
     private Map<CardType, Map<Integer, ImageView>> mapCardTypeMapIntegerCardFloors = new HashMap<>();
-
+    //players family member value
     @FXML private Label blackValuePl1;
     @FXML private Label orangeValuePl1;
     @FXML private Label whiteValuePl1;
@@ -73,8 +73,43 @@ public class MainBoardController implements Initializable, Observer {
     @FXML private Label orangeValuePl4;
     @FXML private Label whiteValuePl4;
     @FXML private Label neutralValuePl4;
+    //familyMember
+    private Map<FamilyMemberColor, Label> bluePlayerLabel = new HashMap<>();
+    private Map<FamilyMemberColor, Label> greenPlayerLabel = new HashMap<>();
+    private Map<FamilyMemberColor, Label> redPlayerLabel = new HashMap<>();
+    private Map<FamilyMemberColor, Label> yellowPlayerLabel = new HashMap<>();
+    private Map<PlayerColor , Map<FamilyMemberColor,Label>> mapPlayerColorFamilyColorLabel = new HashMap<>();
+    //player family member image
+    @FXML private ImageView blueBlack;
+    @FXML private ImageView blueWhite;
+    @FXML private ImageView blueOrange;
+    @FXML private ImageView blueNeutral;
+    @FXML private ImageView greenBlack;
+    @FXML private ImageView greenWhite;
+    @FXML private ImageView greenOrange;
+    @FXML private ImageView greenNeutral;
+    @FXML private ImageView redBlack;
+    @FXML private ImageView redWhite;
+    @FXML private ImageView redOrange;
+    @FXML private ImageView redNeutral;
+    @FXML private ImageView yellowBlack;
+    @FXML private ImageView yellowWhite;
+    @FXML private ImageView yellowOrange;
+    @FXML private ImageView yellowNeutral;
+    private Map<FamilyMemberColor, ImageView> famPl1 = new HashMap<>();
+    private Map<FamilyMemberColor, ImageView> famPl2 = new HashMap<>();
+    private Map<FamilyMemberColor, ImageView> famPl3 = new HashMap<>();
+    private Map<FamilyMemberColor, ImageView> famPl4 = new HashMap<>();
+
+    private Map<PlayerColor,Map<FamilyMemberColor, ImageView>>  mapPlayerColorFamImageView = new HashMap<>();
+
+
+
+
+    @FXML private Pane mainPane;
     //pane tb that contains tab of the players
     @FXML private TabPane playersBoards;
+
 
     //tab players
     @FXML private Tab bluePlayer;
@@ -83,12 +118,7 @@ public class MainBoardController implements Initializable, Observer {
     @FXML private Tab yellowPlayer;
     private Map<PlayerColor, Tab> mapPlayerColorTab = new HashMap<>();
 
-    //familyMember
-    private Map<FamilyMemberColor, Label> bluePlayerLabel = new HashMap<>();
-    private Map<FamilyMemberColor, Label> greenPlayerLabel = new HashMap<>();
-    private Map<FamilyMemberColor, Label> redPlayerLabel = new HashMap<>();
-    private Map<FamilyMemberColor, Label> yellowPlayerLabel = new HashMap<>();
-    private Map<PlayerColor , Map<FamilyMemberColor,Label>> mapPlayerColorFamilyColorLabel = new HashMap<>();
+
 
     //resource for player
     @FXML private Label moneyValuePl1;
@@ -168,30 +198,22 @@ public class MainBoardController implements Initializable, Observer {
     @FXML void familyClicked(MouseEvent event) {
         ImageView familyMemberClicked = (ImageView) event.getTarget();
         List<Action> actions = clientHandler.getActions();
+        PlayerColor color = (PlayerColor)mainPane.getUserData();
 
-        for(Action action: actions)
-            System.out.println(action);
+        if(isMyFam(color, familyMemberClicked) && isMyTurn()){
+            for(Action action: actions)
+                System.out.println(action);
 
-        Image image = new Image("img/Card/card_92.png");
-        match.getMapTypeCardFloorRepresentation().get(CardType.TERRITORY).get(0).setPath(image);
+            highlightFamilyMember(familyMemberClicked);
 
+            Image image = new Image("img/Card/card_92.png");
+            match.getMapTypeCardFloorRepresentation().get(CardType.TERRITORY).get(0).setPath(image);
 
-        if(familyMemberClicked.equals(lastFamClicked)){
-            System.out.println("uguali");
-            double selection = familyMemberClicked.getOpacity();
-            if(selection != 1){
-                familyMemberClicked.setOpacity(1);
-            }else{
-                familyMemberClicked.setOpacity(0.5);
-            }
-        }else{
-            System.out.println("diversi");
-            if(lastFamClicked!=null)
-                lastFamClicked.setOpacity(1);
-            familyMemberClicked.setOpacity(0.5);
         }
-        System.out.println(event.getPickResult().getIntersectedNode().getId());
-        lastFamClicked = familyMemberClicked;
+
+
+
+
        //match.getFamilyMemberBlueRepresentationObservableList().get(0).setValueProperty(10);
     }
 
@@ -211,140 +233,25 @@ public class MainBoardController implements Initializable, Observer {
     public void initialize(URL location, ResourceBundle resources) {
         match = MatchInstanceGUI.instance();
         match.addObserver(this);
-
-        //creating List of label for each player
-        bluePlayerLabel.put(FamilyMemberColor.BLACK, blackValuePl1);
-        bluePlayerLabel.put(FamilyMemberColor.WHITE, whiteValuePl1);
-        bluePlayerLabel.put(FamilyMemberColor.ORANGE, orangeValuePl1);
-        bluePlayerLabel.put(FamilyMemberColor.NEUTRAL, neutralValuePl1);
-
-        greenPlayerLabel.put(FamilyMemberColor.BLACK, blackValuePl2);
-        greenPlayerLabel.put(FamilyMemberColor.WHITE, whiteValuePl2);
-        greenPlayerLabel.put(FamilyMemberColor.ORANGE, orangeValuePl2);
-        greenPlayerLabel.put(FamilyMemberColor.NEUTRAL, neutralValuePl2);
-
-        redPlayerLabel.put(FamilyMemberColor.BLACK, blackValuePl3);
-        redPlayerLabel.put(FamilyMemberColor.WHITE, whiteValuePl3);
-        redPlayerLabel.put(FamilyMemberColor.ORANGE, orangeValuePl3);
-        redPlayerLabel.put(FamilyMemberColor.NEUTRAL, neutralValuePl3);
-
-        yellowPlayerLabel.put(FamilyMemberColor.BLACK, blackValuePl4);
-        yellowPlayerLabel.put(FamilyMemberColor.WHITE, whiteValuePl4);
-        yellowPlayerLabel.put(FamilyMemberColor.ORANGE, orangeValuePl4);
-        yellowPlayerLabel.put(FamilyMemberColor.NEUTRAL, neutralValuePl4);
-
-        //creating map player list of label player
-        mapPlayerColorFamilyColorLabel.put(PlayerColor.BLUE, bluePlayerLabel);
-        mapPlayerColorFamilyColorLabel.put(PlayerColor.GREEN, greenPlayerLabel);
-        mapPlayerColorFamilyColorLabel.put(PlayerColor.RED, redPlayerLabel);
-        mapPlayerColorFamilyColorLabel.put(PlayerColor.YELLOW, yellowPlayerLabel);
-
-        //associating tab with colo player
-        mapPlayerColorTab.put(PlayerColor.BLUE, bluePlayer);
-        mapPlayerColorTab.put(PlayerColor.GREEN, greenPlayer);
-        mapPlayerColorTab.put(PlayerColor.RED, redPlayer);
-        mapPlayerColorTab.put(PlayerColor.YELLOW, yellowPlayer);
-
-        //associating floor number to id
-        mapCardFloorTerritory.put(3, cardFloor0);
-        mapCardFloorTerritory.put(2, cardFloor1);
-        mapCardFloorTerritory.put(1, cardFloor2);
-        mapCardFloorTerritory.put(0, cardFloor3);
-
-        mapCardFloorCharacter.put(3, cardFloor4);
-        mapCardFloorCharacter.put(2, cardFloor5);
-        mapCardFloorCharacter.put(1, cardFloor6);
-        mapCardFloorCharacter.put(0, cardFloor7);
-
-        mapCardFloorBuildings.put(3, cardFloor8);
-        mapCardFloorBuildings.put(2, cardFloor9);
-        mapCardFloorBuildings.put(1, cardFloor10);
-        mapCardFloorBuildings.put(0, cardFloor11);
-
-        mapCardFloorVenture.put(3, cardFloor12);
-        mapCardFloorVenture.put(2, cardFloor13);
-        mapCardFloorVenture.put(1, cardFloor14);
-        mapCardFloorVenture.put(0, cardFloor15);
-        mapCardTypeMapIntegerCardFloors.put(CardType.TERRITORY, mapCardFloorTerritory);
-        mapCardTypeMapIntegerCardFloors.put(CardType.BUILDING, mapCardFloorBuildings);
-        mapCardTypeMapIntegerCardFloors.put(CardType.CHARACTER, mapCardFloorCharacter);
-        mapCardTypeMapIntegerCardFloors.put(CardType.VENTURE, mapCardFloorVenture);
-        //creating the list and map resources
-        resourcePlayer1.put(ResourceType.MONEY, moneyValuePl1);
-        resourcePlayer1.put(ResourceType.STONE, stoneValuePl1);
-        resourcePlayer1.put(ResourceType.WOOD, woodValuePl1);
-        resourcePlayer1.put(ResourceType.SERVANT, servantValuePl1);
-
-        resourcePlayer2.put(ResourceType.MONEY, moneyValuePl2);
-        resourcePlayer2.put(ResourceType.STONE, stoneValuePl2);
-        resourcePlayer2.put(ResourceType.WOOD, woodValuePl2);
-        resourcePlayer2.put(ResourceType.SERVANT, servantValuePl2);
-
-        resourcePlayer3.put(ResourceType.MONEY, moneyValuePl3);
-        resourcePlayer3.put(ResourceType.STONE, stoneValuePl3);
-        resourcePlayer3.put(ResourceType.WOOD, woodValuePl3);
-        resourcePlayer3.put(ResourceType.SERVANT, servantValuePl3);
-
-        resourcePlayer4.put(ResourceType.MONEY, moneyValuePl4);
-        resourcePlayer4.put(ResourceType.STONE, stoneValuePl4);
-        resourcePlayer4.put(ResourceType.WOOD, woodValuePl4);
-        resourcePlayer4.put(ResourceType.SERVANT, servantValuePl4);
-        mapPlayerColorResourceLabel.put(PlayerColor.BLUE, resourcePlayer1);
-        mapPlayerColorResourceLabel.put(PlayerColor.GREEN, resourcePlayer2);
-        mapPlayerColorResourceLabel.put(PlayerColor.RED, resourcePlayer3);
-        mapPlayerColorResourceLabel.put(PlayerColor.YELLOW, resourcePlayer4);
+        initializeAllMapsAndLists();
 
         //disabling all tab player
         bluePlayer.setDisable(true);
         greenPlayer.setDisable(true);
         redPlayer.setDisable(true);
         yellowPlayer.setDisable(true);
-
-        //associating floor number to id
-        mapfloorToBeClickedTerritory.put(3, floorToBeClicked0);
-        mapfloorToBeClickedTerritory.put(2, floorToBeClicked1);
-        mapfloorToBeClickedTerritory.put(1, floorToBeClicked2);
-        mapfloorToBeClickedTerritory.put(0, floorToBeClicked3);
-
-        mapfloorToBeClickedCharacter.put(3, floorToBeClicked4);
-        mapfloorToBeClickedCharacter.put(2, floorToBeClicked5);
-        mapfloorToBeClickedCharacter.put(1, floorToBeClicked6);
-        mapfloorToBeClickedCharacter.put(0, floorToBeClicked7);
-
-        mapfloorToBeClickedBuildings.put(3, floorToBeClicked8);
-        mapfloorToBeClickedBuildings.put(2, floorToBeClicked9);
-        mapfloorToBeClickedBuildings.put(1, floorToBeClicked10);
-        mapfloorToBeClickedBuildings.put(0, floorToBeClicked11);
-
-        mapfloorToBeClickedVenture.put(3, floorToBeClicked12);
-        mapfloorToBeClickedVenture.put(2, floorToBeClicked13);
-        mapfloorToBeClickedVenture.put(1, floorToBeClicked14);
-        mapfloorToBeClickedVenture.put(0, floorToBeClicked15);
-
-        mapCardTypeFloorCircle.put(CardType.TERRITORY, mapfloorToBeClickedTerritory);
-        mapCardTypeFloorCircle.put(CardType.BUILDING, mapfloorToBeClickedBuildings);
-        mapCardTypeFloorCircle.put(CardType.CHARACTER, mapfloorToBeClickedCharacter);
-        mapCardTypeFloorCircle.put(CardType.VENTURE, mapfloorToBeClickedVenture);
-
-        turnOrderTrack.add(firstPlayerTurn);
-        turnOrderTrack.add(secondPlayerTurn);
-        turnOrderTrack.add(thirdPlayerTurn);
-        turnOrderTrack.add(fourthPlayerTurn);
-
+        //saying to the table where to find the values in the representation class for Military points
         nameMilitaryPoints.setCellValueFactory(cellData -> cellData.getValue().getPlayerColorProperty());
         pointsMilitaryPoints.setCellValueFactory(cellData -> cellData.getValue().getMilitaryPointProperty().asString());
-
+        //saying to the table where to find the values in the representation class for Victory points
         nameVictoryPoints.setCellValueFactory(cellData -> cellData.getValue().getPlayerColorProperty());
         pointsVictoryPoints.setCellValueFactory(cellData -> cellData.getValue().getVictoryPointProperty().asString());
 
-        mapPeriodImageViewTile.put(0, excomTile1);
-        mapPeriodImageViewTile.put(1, excomTile2);
-        mapPeriodImageViewTile.put(2, excomTile3);
 
         showCards.setOpacity(0);
         this.clientHandler = ClientFactory.getClientHandler();
         this.adapter = new GUIAdapter(ClientFactory.getClientSender());
-
+        clientHandler.setMainBoardController(this);
         try {
             if(clientHandler.isStarted())
                 adapter.sendAction(0);
@@ -363,6 +270,7 @@ public class MainBoardController implements Initializable, Observer {
             bindTrackOrder();
             bindTrackMilitaryVictory();
             bindExcomunocationTile();
+            setPlayerToPane();
         });
     }
 
@@ -422,7 +330,201 @@ public class MainBoardController implements Initializable, Observer {
             mapPeriodImageViewTile.get(i).imageProperty().bind(excommunicationTileRepresentation.getpathProperty());
         }
     }
+    private void setPlayerToPane(){
+        mainPane.setUserData(clientHandler.getColor());
+    }
+    private Boolean isMyFam(PlayerColor color, ImageView famMemb){
+        Map<FamilyMemberColor,ImageView> allMyFamily = mapPlayerColorFamImageView.get(color);
+        for(ImageView imageViewFam: allMyFamily.values()){
+            if(imageViewFam.equals(famMemb)){
+                return true;
+            }
+        }
+        return false;
+    }
+    private Boolean isMyTurn(){
+        Boolean isMyTurn = clientHandler.getMyTurn();
+        if(isMyTurn){
+            return true;
+        }else{
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Not Your Turn");
+            alert.setContentText("Wait your turn bra!");
+            alert.showAndWait();
+            return false;
+        }
+    }
+    private void highlightFamilyMember(ImageView familyMemberClicked){
+
+        if(familyMemberClicked.equals(lastFamClicked)){
+            double selection = familyMemberClicked.getOpacity();
+            if(selection != 1){
+                familyMemberClicked.setOpacity(1);
+            }else{
+                familyMemberClicked.setOpacity(0.5);
+            }
+        }else{
+            if(lastFamClicked!=null)
+                lastFamClicked.setOpacity(1);
+            familyMemberClicked.setOpacity(0.5);
+        }
+        lastFamClicked = familyMemberClicked;
+
+    }
    public TextArea getChat(){
         return chatTextArea;
+   }
+
+
+
+
+
+   private void initializeAllMapsAndLists(){
+       famPl1.put(FamilyMemberColor.BLACK, blueBlack);
+       famPl1.put(FamilyMemberColor.WHITE, blueWhite);
+       famPl1.put(FamilyMemberColor.ORANGE, blueOrange);
+       famPl1.put(FamilyMemberColor.NEUTRAL, blueNeutral);
+
+       famPl2.put(FamilyMemberColor.BLACK, greenBlack);
+       famPl2.put(FamilyMemberColor.WHITE, greenWhite);
+       famPl2.put(FamilyMemberColor.ORANGE, greenOrange);
+       famPl2.put(FamilyMemberColor.NEUTRAL, greenNeutral);
+
+       famPl3.put(FamilyMemberColor.BLACK, redBlack);
+       famPl3.put(FamilyMemberColor.WHITE, redWhite);
+       famPl3.put(FamilyMemberColor.ORANGE, redOrange);
+       famPl3.put(FamilyMemberColor.NEUTRAL, redNeutral);
+
+       famPl4.put(FamilyMemberColor.BLACK, yellowBlack);
+       famPl4.put(FamilyMemberColor.WHITE, yellowWhite);
+       famPl4.put(FamilyMemberColor.ORANGE, yellowOrange);
+       famPl4.put(FamilyMemberColor.NEUTRAL, yellowNeutral);
+
+       mapPlayerColorFamImageView.put(PlayerColor.BLUE, famPl1);
+       mapPlayerColorFamImageView.put(PlayerColor.GREEN, famPl2);
+       mapPlayerColorFamImageView.put(PlayerColor.RED, famPl3);
+       mapPlayerColorFamImageView.put(PlayerColor.YELLOW, famPl4);
+
+
+       //creating List of label for each player
+       bluePlayerLabel.put(FamilyMemberColor.BLACK, blackValuePl1);
+       bluePlayerLabel.put(FamilyMemberColor.WHITE, whiteValuePl1);
+       bluePlayerLabel.put(FamilyMemberColor.ORANGE, orangeValuePl1);
+       bluePlayerLabel.put(FamilyMemberColor.NEUTRAL, neutralValuePl1);
+
+       greenPlayerLabel.put(FamilyMemberColor.BLACK, blackValuePl2);
+       greenPlayerLabel.put(FamilyMemberColor.WHITE, whiteValuePl2);
+       greenPlayerLabel.put(FamilyMemberColor.ORANGE, orangeValuePl2);
+       greenPlayerLabel.put(FamilyMemberColor.NEUTRAL, neutralValuePl2);
+
+       redPlayerLabel.put(FamilyMemberColor.BLACK, blackValuePl3);
+       redPlayerLabel.put(FamilyMemberColor.WHITE, whiteValuePl3);
+       redPlayerLabel.put(FamilyMemberColor.ORANGE, orangeValuePl3);
+       redPlayerLabel.put(FamilyMemberColor.NEUTRAL, neutralValuePl3);
+
+       yellowPlayerLabel.put(FamilyMemberColor.BLACK, blackValuePl4);
+       yellowPlayerLabel.put(FamilyMemberColor.WHITE, whiteValuePl4);
+       yellowPlayerLabel.put(FamilyMemberColor.ORANGE, orangeValuePl4);
+       yellowPlayerLabel.put(FamilyMemberColor.NEUTRAL, neutralValuePl4);
+
+       //creating map player list of label player
+       mapPlayerColorFamilyColorLabel.put(PlayerColor.BLUE, bluePlayerLabel);
+       mapPlayerColorFamilyColorLabel.put(PlayerColor.GREEN, greenPlayerLabel);
+       mapPlayerColorFamilyColorLabel.put(PlayerColor.RED, redPlayerLabel);
+       mapPlayerColorFamilyColorLabel.put(PlayerColor.YELLOW, yellowPlayerLabel);
+
+       //associating tab with colo player
+       mapPlayerColorTab.put(PlayerColor.BLUE, bluePlayer);
+       mapPlayerColorTab.put(PlayerColor.GREEN, greenPlayer);
+       mapPlayerColorTab.put(PlayerColor.RED, redPlayer);
+       mapPlayerColorTab.put(PlayerColor.YELLOW, yellowPlayer);
+
+       //associating floor number to id
+       mapCardFloorTerritory.put(3, cardFloor0);
+       mapCardFloorTerritory.put(2, cardFloor1);
+       mapCardFloorTerritory.put(1, cardFloor2);
+       mapCardFloorTerritory.put(0, cardFloor3);
+
+       mapCardFloorCharacter.put(3, cardFloor4);
+       mapCardFloorCharacter.put(2, cardFloor5);
+       mapCardFloorCharacter.put(1, cardFloor6);
+       mapCardFloorCharacter.put(0, cardFloor7);
+
+       mapCardFloorBuildings.put(3, cardFloor8);
+       mapCardFloorBuildings.put(2, cardFloor9);
+       mapCardFloorBuildings.put(1, cardFloor10);
+       mapCardFloorBuildings.put(0, cardFloor11);
+
+       mapCardFloorVenture.put(3, cardFloor12);
+       mapCardFloorVenture.put(2, cardFloor13);
+       mapCardFloorVenture.put(1, cardFloor14);
+       mapCardFloorVenture.put(0, cardFloor15);
+       mapCardTypeMapIntegerCardFloors.put(CardType.TERRITORY, mapCardFloorTerritory);
+       mapCardTypeMapIntegerCardFloors.put(CardType.BUILDING, mapCardFloorBuildings);
+       mapCardTypeMapIntegerCardFloors.put(CardType.CHARACTER, mapCardFloorCharacter);
+       mapCardTypeMapIntegerCardFloors.put(CardType.VENTURE, mapCardFloorVenture);
+       //creating the list and map resources
+       resourcePlayer1.put(ResourceType.MONEY, moneyValuePl1);
+       resourcePlayer1.put(ResourceType.STONE, stoneValuePl1);
+       resourcePlayer1.put(ResourceType.WOOD, woodValuePl1);
+       resourcePlayer1.put(ResourceType.SERVANT, servantValuePl1);
+
+       resourcePlayer2.put(ResourceType.MONEY, moneyValuePl2);
+       resourcePlayer2.put(ResourceType.STONE, stoneValuePl2);
+       resourcePlayer2.put(ResourceType.WOOD, woodValuePl2);
+       resourcePlayer2.put(ResourceType.SERVANT, servantValuePl2);
+
+       resourcePlayer3.put(ResourceType.MONEY, moneyValuePl3);
+       resourcePlayer3.put(ResourceType.STONE, stoneValuePl3);
+       resourcePlayer3.put(ResourceType.WOOD, woodValuePl3);
+       resourcePlayer3.put(ResourceType.SERVANT, servantValuePl3);
+
+       resourcePlayer4.put(ResourceType.MONEY, moneyValuePl4);
+       resourcePlayer4.put(ResourceType.STONE, stoneValuePl4);
+       resourcePlayer4.put(ResourceType.WOOD, woodValuePl4);
+       resourcePlayer4.put(ResourceType.SERVANT, servantValuePl4);
+       mapPlayerColorResourceLabel.put(PlayerColor.BLUE, resourcePlayer1);
+       mapPlayerColorResourceLabel.put(PlayerColor.GREEN, resourcePlayer2);
+       mapPlayerColorResourceLabel.put(PlayerColor.RED, resourcePlayer3);
+       mapPlayerColorResourceLabel.put(PlayerColor.YELLOW, resourcePlayer4);
+
+
+       //associating floor number to id
+       mapfloorToBeClickedTerritory.put(3, floorToBeClicked0);
+       mapfloorToBeClickedTerritory.put(2, floorToBeClicked1);
+       mapfloorToBeClickedTerritory.put(1, floorToBeClicked2);
+       mapfloorToBeClickedTerritory.put(0, floorToBeClicked3);
+
+       mapfloorToBeClickedCharacter.put(3, floorToBeClicked4);
+       mapfloorToBeClickedCharacter.put(2, floorToBeClicked5);
+       mapfloorToBeClickedCharacter.put(1, floorToBeClicked6);
+       mapfloorToBeClickedCharacter.put(0, floorToBeClicked7);
+
+       mapfloorToBeClickedBuildings.put(3, floorToBeClicked8);
+       mapfloorToBeClickedBuildings.put(2, floorToBeClicked9);
+       mapfloorToBeClickedBuildings.put(1, floorToBeClicked10);
+       mapfloorToBeClickedBuildings.put(0, floorToBeClicked11);
+
+       mapfloorToBeClickedVenture.put(3, floorToBeClicked12);
+       mapfloorToBeClickedVenture.put(2, floorToBeClicked13);
+       mapfloorToBeClickedVenture.put(1, floorToBeClicked14);
+       mapfloorToBeClickedVenture.put(0, floorToBeClicked15);
+
+       mapCardTypeFloorCircle.put(CardType.TERRITORY, mapfloorToBeClickedTerritory);
+       mapCardTypeFloorCircle.put(CardType.BUILDING, mapfloorToBeClickedBuildings);
+       mapCardTypeFloorCircle.put(CardType.CHARACTER, mapfloorToBeClickedCharacter);
+       mapCardTypeFloorCircle.put(CardType.VENTURE, mapfloorToBeClickedVenture);
+
+       turnOrderTrack.add(firstPlayerTurn);
+       turnOrderTrack.add(secondPlayerTurn);
+       turnOrderTrack.add(thirdPlayerTurn);
+       turnOrderTrack.add(fourthPlayerTurn);
+
+
+       mapPeriodImageViewTile.put(0, excomTile1);
+       mapPeriodImageViewTile.put(1, excomTile2);
+       mapPeriodImageViewTile.put(2, excomTile3);
+
    }
 }

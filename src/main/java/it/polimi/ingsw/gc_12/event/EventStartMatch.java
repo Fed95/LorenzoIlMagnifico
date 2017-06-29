@@ -52,4 +52,9 @@ public class EventStartMatch extends Event{
 	public String toStringClient() {
 		return "The match has started!";
 	}
+
+    @Override
+    public String toStringClientGUI() {
+        return "The match has started!";
+    }
 }

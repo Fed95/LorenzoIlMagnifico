@@ -22,7 +22,7 @@
 
 <BorderPane minHeight="1080.0" minWidth="1920.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.gc_12.java_fx.MainBoardController">
    <center>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <Pane fx:id="mainPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <ImageView fx:id="Board" fitHeight="1014.0" fitWidth="696.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -82,21 +82,21 @@
                                       </image>
                                   </ImageView>
                                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="628.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label fx:id="blackValuePl1" layoutX="50.0" layoutY="45.0" text="0" textFill="WHITE">
+                              <Label fx:id="blackValuePl1" layoutX="49.0" layoutY="45.0" mouseTransparent="true" text="0"  textFill="WHITE">
                                  <font>
                                     <Font size="30.0" />
                                  </font></Label>
-                              <Label fx:id="whiteValuePl1" layoutX="106.0" layoutY="45.0" text="0" textFill="WHITE">
+                              <Label fx:id="whiteValuePl1" layoutX="106.0" layoutY="45.0" mouseTransparent="true" text="0" textFill="WHITE">
                                  <font>
                                     <Font size="30.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="orangeValuePl1" layoutX="162.0" layoutY="45.0" text="0" textFill="WHITE">
+                              <Label fx:id="orangeValuePl1" layoutX="162.0" layoutY="45.0" mouseTransparent="true" text="0" textFill="WHITE">
                                   <font>
                                       <Font size="30.0" />
                                   </font>
                               </Label>
-                              <Label fx:id="neutralValuePl1" layoutX="218.0" layoutY="45.0" text="0" textFill="WHITE">
+                              <Label fx:id="neutralValuePl1" layoutX="218.0" layoutY="45.0" mouseTransparent="true" text="0" textFill="WHITE">
                                   <font>
                                     <Font size="30.0" />
                                   </font>
@@ -158,21 +158,21 @@
                                       <Image url="@../img/boardcomplete1.png" />
                                   </image>
                               </ImageView>
-                              <Label fx:id="blackValuePl2" layoutX="50.0" layoutY="45.0" text="0" textFill="WHITE">
+                              <Label fx:id="blackValuePl2" layoutX="50.0" layoutY="45.0" mouseTransparent="true" text="0" textFill="WHITE">
                                   <font>
                                       <Font size="30.0" />
                                   </font></Label>
-                              <Label fx:id="whiteValuePl2" layoutX="106.0" layoutY="45.0" text="0" textFill="WHITE">
+                              <Label fx:id="whiteValuePl2" layoutX="106.0" layoutY="45.0" mouseTransparent="true" text="0" textFill="WHITE">
                                   <font>
                                       <Font size="30.0" />
                                   </font>
                               </Label>
-                              <Label fx:id="orangeValuePl2" layoutX="162.0" layoutY="45.0" text="0" textFill="WHITE">
+                              <Label fx:id="orangeValuePl2" layoutX="162.0" layoutY="45.0" mouseTransparent="true" text="0" textFill="WHITE">
                                   <font>
                                       <Font size="30.0" />
                                   </font>
                               </Label>
-                              <Label fx:id="neutralValuePl2" layoutX="218.0" layoutY="45.0" text="0" textFill="WHITE">
+                              <Label fx:id="neutralValuePl2" layoutX="218.0" layoutY="45.0" mouseTransparent="true" text="0" textFill="WHITE">
                                   <font>
                                       <Font size="30.0" />
                                   </font>
@@ -229,21 +229,21 @@
                                           <Image url="@../img/boardcomplete1.png" />
                                       </image>
                                   </ImageView>
-                                  <Label fx:id="blackValuePl3" layoutX="50.0" layoutY="45.0" text="0" textFill="WHITE">
+                                  <Label fx:id="blackValuePl3" layoutX="50.0" layoutY="45.0" mouseTransparent="true" text="0" textFill="WHITE">
                                       <font>
                                           <Font size="30.0" />
                                       </font></Label>
-                                  <Label fx:id="whiteValuePl3" layoutX="106.0" layoutY="45.0" text="0" textFill="WHITE">
+                                  <Label fx:id="whiteValuePl3" layoutX="106.0" layoutY="45.0" mouseTransparent="true" text="0" textFill="WHITE">
                                       <font>
                                           <Font size="30.0" />
                                       </font>
                                   </Label>
-                                  <Label fx:id="orangeValuePl3" layoutX="162.0" layoutY="45.0" text="0" textFill="WHITE">
+                                  <Label fx:id="orangeValuePl3" layoutX="162.0" layoutY="45.0" mouseTransparent="true" text="0" textFill="WHITE">
                                       <font>
                                           <Font size="30.0" />
                                       </font>
                                   </Label>
-                                  <Label fx:id="neutralValuePl3" layoutX="218.0" layoutY="45.0" text="0" textFill="WHITE">
+                                  <Label fx:id="neutralValuePl3" layoutX="218.0" layoutY="45.0" mouseTransparent="true" text="0" textFill="WHITE">
                                       <font>
                                           <Font size="30.0" />
                                       </font>
@@ -300,21 +300,21 @@
                                           <Image url="@../img/boardcomplete1.png" />
                                       </image>
                                   </ImageView>
-                                  <Label fx:id="blackValuePl4" layoutX="50.0" layoutY="45.0" text="0" textFill="WHITE">
+                                  <Label fx:id="blackValuePl4" layoutX="50.0" layoutY="45.0" mouseTransparent="true" text="0" textFill="WHITE">
                                       <font>
                                           <Font size="30.0" />
                                       </font></Label>
-                                  <Label fx:id="whiteValuePl4" layoutX="106.0" layoutY="45.0" text="0" textFill="WHITE">
+                                  <Label fx:id="whiteValuePl4" layoutX="106.0" layoutY="45.0" mouseTransparent="true" text="0" textFill="WHITE">
                                       <font>
                                           <Font size="30.0" />
                                       </font>
                                   </Label>
-                                  <Label fx:id="orangeValuePl4" layoutX="162.0" layoutY="45.0" text="0" textFill="WHITE">
+                                  <Label fx:id="orangeValuePl4" layoutX="162.0" layoutY="45.0" mouseTransparent="true" text="0" textFill="WHITE">
                                       <font>
                                           <Font size="30.0" />
                                       </font>
                                   </Label>
-                                  <Label fx:id="neutralValuePl4" layoutX="218.0" layoutY="45.0" text="0" textFill="WHITE">
+                                  <Label fx:id="neutralValuePl4" layoutX="218.0" layoutY="45.0" mouseTransparent="true" text="0" textFill="WHITE">
                                       <font>
                                           <Font size="30.0" />
                                       </font>

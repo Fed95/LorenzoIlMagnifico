@@ -74,6 +74,9 @@ public abstract class Event extends Change {
 	public String toStringClient() {
 		return null;
 	}
+    public String toStringClientGUI() {
+        return null;
+    }
 
 	public abstract List<Object> getAttributes();
 	public abstract String toString();

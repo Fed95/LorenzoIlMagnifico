@@ -10,6 +10,7 @@ import it.polimi.ingsw.gc_12.event.EventExcluded;
 import it.polimi.ingsw.gc_12.event.EventPlayerReconnected;
 import it.polimi.ingsw.gc_12.event.EventStartTurn;
 import it.polimi.ingsw.gc_12.java_fx.MainBoard;
+import it.polimi.ingsw.gc_12.java_fx.MainBoardController;
 import it.polimi.ingsw.gc_12.mvc.View;
 import it.polimi.ingsw.gc_12.server.view.RMIViewRemote;
 import sun.applet.Main;
@@ -50,7 +51,6 @@ public class ClientRMIView extends ClientHandler implements ClientViewRemote, Se
 		color = playerColor;
 		System.out.println("Your color is "+color);
 		unauthorizedId = 0;
-
 	}
 
 	@Override

@@ -51,4 +51,17 @@ public class EventEndMatch extends Event {
 
         return sb.toString();
     }
+    @Override
+    public  String toStringClientGUI(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("THE MATCH HAS ENDED").append(System.getProperty("line.separator"));
+        sb.append("Results:").append(System.getProperty("line.separator")).append(System.getProperty("line.separator"));
+        int i = 1;
+        for(Player player : players){
+            sb.append(i + " - " + player.getName() + "(" + player.getResourceValue(ResourceType.VICTORY_POINT) + " points)").append(System.getProperty("line.separator"));
+            i++;
+        }
+
+        return sb.toString();
+    }
 }

@@ -14,6 +14,7 @@ import java.io.IOException;
 public class MainBoard extends Application implements View{
 	private Stage primaryStage;
 	private LoginController controller;
+	private MainBoardController controllerMainBoard;
 	private boolean ready;
 
 	public void start(Stage primaryStage) throws Exception{
@@ -30,7 +31,6 @@ public class MainBoard extends Application implements View{
         Scene scene = new Scene(rootLayout,688,454);
         primaryStage.setTitle("Benvenuto");
         primaryStage.setResizable(false);
-
         primaryStage.setScene(scene);
 		primaryStage.show();
 		responsive(scene, rootLayout, primaryStage);
@@ -41,6 +41,8 @@ public class MainBoard extends Application implements View{
         String path = "/FXML/"+fxml+".fxml";
         loader1.setLocation(MainBoard.class.getResource(path));
         Pane newLayout = loader1.load();
+        MainBoardController controller = loader1.getController();
+        this.controllerMainBoard = controller;
         Scene newScene = new Scene(newLayout,widthScene,heightScene);
         primaryStage.setResizable(resize);
         primaryStage.setTitle(title);
@@ -79,11 +81,15 @@ public class MainBoard extends Application implements View{
 
 	}
 
-    public LoginController getController() {
+    public LoginController getLoginController() {
         return controller;
     }
 
-	@Override
+    public MainBoardController getControllerMainBoard() {
+        return controllerMainBoard;
+    }
+
+    @Override
 	public boolean isReady() {
 		return ready;
 	}
