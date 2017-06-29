@@ -5,9 +5,7 @@ import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.PlayerColor;
 import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
-import it.polimi.ingsw.gc_12.event.Event;
-import it.polimi.ingsw.gc_12.event.EventStartTurn;
-import it.polimi.ingsw.gc_12.event.EventTowerChosen;
+import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.server.Server;
 
 import java.io.IOException;
@@ -18,6 +16,7 @@ import java.util.*;
 public class ServerRMIView extends View implements RMIViewRemote {
 
 	private Set<ClientViewRemote> clients;
+	private Map<ClientViewRemote, Player> clientPlayers = new HashMap<>();
 	private Server server;
 	private LinkedList<PlayerColor> playerColors;
 	private boolean recievedAnsewr = false; // TODO: remove it?
@@ -45,19 +44,39 @@ public class ServerRMIView extends View implements RMIViewRemote {
 			setTimeoutAction();
 			i++;
 		}
-		System.out.println("RMIVIEW: SENDING " + event.getClass() + " CHANGE TO THE CLIENT");
-		for (ClientViewRemote clientStub : this.clients) {
-			try {
-				clientStub.updateClient(event);
-			} catch (RemoteException e) {
-				e.printStackTrace();
+
+		if(event instanceof EventPlayerReconnected) {
+			EventPlayerReconnected eventReconnected = (EventPlayerReconnected) event;
+			if(eventReconnected.getClientRMI() != null) {
+				clients.add(eventReconnected.getClientRMI());
+				eventReconnected.setServerRMI(this);
 			}
 		}
+		System.out.println("RMIVIEW: SENDING " + event.getClass() + " CHANGE TO THE CLIENT");
+		Iterator<ClientViewRemote> itr = clients.iterator();
+		while(itr.hasNext()) {
+			ClientViewRemote clientStub = itr.next();
+			try {
+				clientStub.updateClient(event);
+			} catch (RemoteException ignored) {}
+		}
+
 	}
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+		Iterator<ClientViewRemote> itr = clients.iterator();
+		while(itr.hasNext()) {
+			ClientViewRemote clientStub = itr.next();
+			Player player = clientPlayers.get(clientStub);
+			try {
+				clientStub.checkConnection();
+			} catch (RemoteException e) {
+				if(!player.isDisconnected())
+					match.setDisconnectedPlayer(player);
+				itr.remove();
+			}
+		}
 	}
 
 	@Override
@@ -79,7 +98,8 @@ public class ServerRMIView extends View implements RMIViewRemote {
 
 	private void checkNewName(String name, ClientViewRemote client) throws IOException, AlreadyBoundException, CloneNotSupportedException {
 		if(server.isNameTaken(name)) {
-			askNewName(client);
+			if(!server.tryReconnection(new Player(name, null), client))
+				askNewName(client);
 		}
 		else {
 			acceptName(name, client);
@@ -99,7 +119,8 @@ public class ServerRMIView extends View implements RMIViewRemote {
 		PlayerColor playerColor = playerColors.poll();
 		client.setColor(playerColor);
 		Player player = new Player(name, playerColor);
-		server.addPlayer(player);
+		clientPlayers.put(client, player);
+		server.addPlayer(this, player);
 	}
 
 	public Match getMatch() {

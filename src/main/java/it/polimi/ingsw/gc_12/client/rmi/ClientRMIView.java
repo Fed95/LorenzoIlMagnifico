@@ -4,11 +4,14 @@ import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.PlayerColor;
 import it.polimi.ingsw.gc_12.client.ClientFactory;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
+import it.polimi.ingsw.gc_12.client.ClientSender;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventExcluded;
+import it.polimi.ingsw.gc_12.event.EventPlayerReconnected;
 import it.polimi.ingsw.gc_12.event.EventStartTurn;
 import it.polimi.ingsw.gc_12.java_fx.MainBoard;
 import it.polimi.ingsw.gc_12.mvc.View;
+import it.polimi.ingsw.gc_12.server.view.RMIViewRemote;
 import sun.applet.Main;
 
 import java.io.IOException;
@@ -43,7 +46,7 @@ public class ClientRMIView extends ClientHandler implements ClientViewRemote, Se
 	}
 
 	@Override
-	public void setColor(PlayerColor playerColor) throws IOException {
+	public void setColor(PlayerColor playerColor) {
 		color = playerColor;
 		System.out.println("Your color is "+color);
 		unauthorizedId = 0;
@@ -58,6 +61,9 @@ public class ClientRMIView extends ClientHandler implements ClientViewRemote, Se
 		if(view instanceof MainBoard)
 			((MainBoard) view).errorNameTaken();
 	}
+
+	@Override
+	public void checkConnection() throws RemoteException {}
 
 	private static final long serialVersionUID = 6111979881550001331L;
 }

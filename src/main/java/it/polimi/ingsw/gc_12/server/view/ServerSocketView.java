@@ -91,7 +91,7 @@ public class ServerSocketView extends View implements Runnable {
 							socketOut.writeObject(new NewName(incrementalId, name));
 						}
 						else
-							server.addPlayer(new Player(name, playerColor));
+							server.addPlayer(this, new Player(name, playerColor));
 					}
 					else if (object instanceof Integer) {
 						int input = (Integer) object;
@@ -107,7 +107,7 @@ public class ServerSocketView extends View implements Runnable {
 							socketOut.writeObject(new NewName(newName.getUnauthorizedId(), name));
 						}
 						else
-							server.addPlayer(new Player(name, playerColor));
+							server.addPlayer(this, new Player(name, playerColor));
 					}
 
 

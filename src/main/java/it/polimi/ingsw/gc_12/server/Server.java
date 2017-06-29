@@ -9,6 +9,7 @@ import it.polimi.ingsw.gc_12.server.controller.Controller;
 import it.polimi.ingsw.gc_12.server.view.RMIViewRemote;
 import it.polimi.ingsw.gc_12.server.view.ServerRMIView;
 import it.polimi.ingsw.gc_12.server.view.ServerSocketView;
+import it.polimi.ingsw.gc_12.server.view.View;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -39,6 +40,7 @@ public class Server {
 	public int numOfClients;
 	private LinkedList<PlayerColor> playerColors = new LinkedList<>();
 	private List<Player> waitingPlayers = new ArrayList<>();
+	private HashMap<Player, View> serverViews = new HashMap<>();
 
 	public Server() {
 		this.match = new Match();
@@ -48,7 +50,7 @@ public class Server {
 		this.numOfClients = 0;
 	}
 
-	private void startRMI() throws RemoteException, AlreadyBoundException{
+	private void startRMI() throws RemoteException, AlreadyBoundException {
 
 		//create the registry to publish remote objects
 		registry = LocateRegistry.createRegistry(RMI_PORT);
@@ -66,7 +68,7 @@ public class Server {
 
 		// publish the view in the registry as a remote object
 		RMIViewRemote viewRemote = (RMIViewRemote) UnicastRemoteObject.exportObject(serverRmiView, 0);
-		
+
 		System.out.println("Binding the server implementation to the registry");
 		registry.bind(NAME, viewRemote);
 	}
@@ -75,7 +77,7 @@ public class Server {
 		Map<PlayerColor, Player> players = new HashMap<>();
 		Iterator<Player> itr = waitingPlayers.iterator();
 		int i = 1;
-		while(itr.hasNext()) {
+		while (itr.hasNext()) {
 
 			Player player = itr.next();
 			players.put(player.getColor(), player);
@@ -83,7 +85,7 @@ public class Server {
 			itr.remove();
 
 			//Make sure that it doesn't create matches with more than the allowed players
-			if(i == 4) //TODO put it in a variable
+			if (i == 4) //TODO put it in a variable
 				break;
 			i++;
 		}
@@ -105,7 +107,7 @@ public class Server {
 		views.push(serverRmiView);
 
 		// publish the view in the registry as a remote object
-		RMIViewRemote viewRemote=(RMIViewRemote) UnicastRemoteObject.
+		RMIViewRemote viewRemote = (RMIViewRemote) UnicastRemoteObject.
 				exportObject(serverRmiView, 0);
 
 		registry.rebind(NAME, viewRemote);
@@ -115,7 +117,7 @@ public class Server {
 		//this view observes the model
 		this.match.registerObserver(serverRmiView);
 	}
-	
+
 	private void startSocket() throws IOException, AlreadyBoundException, CloneNotSupportedException {
 
 		// creates the thread pool to handle clients
@@ -146,24 +148,34 @@ public class Server {
 		}
 	}
 
-	public void addPlayer(Player player) throws CloneNotSupportedException, AlreadyBoundException, RemoteException {
+	public void addPlayer(View view, Player player) throws CloneNotSupportedException, AlreadyBoundException, RemoteException {
 		System.out.println("Adding player " + player.getName());
 		waitingPlayers.add(player);
+		serverViews.put(player, view);
 		System.out.println(numOfClients);
-		if(waitingPlayers.size() == 2) {
+		if (waitingPlayers.size() == 2) {
 			startMatch();
 			newMatch();
 		}
 	}
 
 	public boolean isNameTaken(String name) {
-		for (Player player: playingPlayers.keySet()) {
-			if(name.toLowerCase().equals(player.getName().toLowerCase()))
+		for (Player player : playingPlayers.keySet()) {
+			if (name.toLowerCase().equals(player.getName().toLowerCase()))
 				return true;
 		}
-		for(Player player: waitingPlayers) {
-			if(name.toLowerCase().equals(player.getName().toLowerCase()))
+		for (Player player : waitingPlayers) {
+			if (name.toLowerCase().equals(player.getName().toLowerCase()))
 				return true;
+		}
+		return false;
+	}
+
+	public boolean tryReconnection(Player player, ClientViewRemote clientStub) {
+		Match match = playingPlayers.get(player);
+		if(match.getPlayer(player.getName()).isDisconnected()) {
+			match.setReconnectedPlayer(player, clientStub);
+			return true;
 		}
 		return false;
 	}

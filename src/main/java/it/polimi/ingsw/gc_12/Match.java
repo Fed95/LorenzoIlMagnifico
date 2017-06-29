@@ -4,6 +4,8 @@ import it.polimi.ingsw.gc_12.action.ActionHandler;
 import it.polimi.ingsw.gc_12.card.Card;
 import it.polimi.ingsw.gc_12.card.CardDeckSet;
 import it.polimi.ingsw.gc_12.card.CardType;
+import it.polimi.ingsw.gc_12.client.rmi.ClientRMIView;
+import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.effect.EffectHandler;
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
@@ -21,6 +23,7 @@ import it.polimi.ingsw.gc_12.server.observer.Observable;
 
 import java.io.Serializable;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 
@@ -109,6 +112,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		newRound();
 		newTurn();
 		System.out.println("Match: notifying EventStartMatch");
+		checkConnection();
 	}
 
 	//Increments turn counter in TrackTurnOrder
@@ -121,10 +125,23 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 
 		System.out.println("Match: Starting new turn");
 		Player player = board.getTrackTurnOrder().newTurn();
+
 		EventStartTurn event = new EventStartTurn(player);
 		actionHandler.update(event, this);
 		this.notifyObserver(event);
 		this.turnCounter++;
+		if(player.isDisconnected())
+			newTurn();
+	}
+
+	private void checkConnection() {
+		Timer timer = new Timer();
+		timer.scheduleAtFixedRate(new TimerTask() {
+			@Override
+			public void run() {
+				notifyObserver();
+			}
+		}, 5000, 5000);
 	}
 
 	private boolean newRound(){
@@ -216,10 +233,32 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		player.addResources(resources);
 	}
 
+	public void setDisconnectedPlayer(Player player) {
+		if(player.equals(board.getTrackTurnOrder().getCurrentPlayer())) {
+			actionHandler.flushEvents();
+			newTurn();
+		}
+
+		player.setDisconnected(true);
+		System.out.println("PLAYER " + player.getName() + " DISCONNECTED");
+	}
+
+	public void setReconnectedPlayer(Player playerReconnected, ClientViewRemote client) {
+
+		for(Player player: players.values()) {
+			if(player.getName().toLowerCase().equals(playerReconnected.getName().toLowerCase())) {
+				System.out.println("PLAYER " + player.getName() + " RECONNECTED");
+				notifyObserver(new EventPlayerReconnected(player, this, client));
+				player.setDisconnected(false);
+				return;
+			}
+		}
+		throw new IllegalStateException("Set reconnection of a player that doesn't belong to this match");
+	}
+
 	public void setPlayers(Map<PlayerColor, Player> players) {
 		this.players = players;
 	}
-
 
 	public Map<PlayerColor, Player> getPlayers() {
 		return players;

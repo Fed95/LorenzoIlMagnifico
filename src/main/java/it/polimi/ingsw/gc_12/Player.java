@@ -29,6 +29,7 @@ public class Player implements Serializable{
 	private Map<ResourceType, Resource> resources;
 	private Map<FamilyMemberColor, FamilyMember> familymembers = new HashMap<>();
 	private PlayerState state;
+	private boolean disconnected;
 	
 	public Player(String name, PlayerColor playerColor){
 		this.name = name;
@@ -183,6 +184,14 @@ public class Player implements Serializable{
 		return playerColor;
 	}
 
+	public boolean isDisconnected() {
+		return disconnected;
+	}
+
+	public void setDisconnected(boolean disconnected) {
+		this.disconnected = disconnected;
+	}
+
 	public String printResources(){
 		StringBuilder sb = new StringBuilder();
 		for(Resource resource : resources.values())
@@ -204,11 +213,12 @@ public class Player implements Serializable{
 
 		Player player = (Player) o;
 
-		return playerColor == player.playerColor;
+		return playerColor == player.playerColor || name.toLowerCase().equals(player.getName().toLowerCase());
 	}
 
 	@Override
 	public int hashCode() {
-		return playerColor.hashCode();
+		int number =  name.toLowerCase().hashCode();
+		return number;
 	}
 }

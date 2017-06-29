@@ -133,4 +133,8 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 	public void setStarted(boolean started) {
 		this.started = started;
 	}
+
+	public void setColor(PlayerColor color) {
+		this.color = color;
+	}
 }
