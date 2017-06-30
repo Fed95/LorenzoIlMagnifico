@@ -4,6 +4,7 @@ package it.polimi.ingsw.gc_12.event;
 import it.polimi.ingsw.gc_12.client.ClientFactory;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.java_fx.MainBoard;
+import it.polimi.ingsw.gc_12.mvc.View;
 import javafx.application.Platform;
 
 import java.io.IOException;
@@ -23,16 +24,9 @@ public class EventMatchInitialized extends Event{
 		else
 			client.setStarted(true);
 
-		if(client.getView() instanceof MainBoard) {
-			Platform.runLater(() -> {
-				MainBoard mainBoard = (MainBoard) client.getView();
-				try {
-					mainBoard.changeScene("FXMLMainBoard", 1980, 1080, true, "Lorenzo il magnifico");
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			});
-
+		View view = client.getView();
+		if(view instanceof MainBoard) {
+			changeMainBoard(client);
 		}
 
 	}

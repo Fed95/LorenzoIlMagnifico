@@ -7,8 +7,11 @@ import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.action.ActionHandler;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
+import it.polimi.ingsw.gc_12.java_fx.MainBoard;
 import it.polimi.ingsw.gc_12.server.controller.Change;
+import javafx.application.Platform;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +34,8 @@ public abstract class Event extends Change {
 		}
 	}
 
+	public Event() {}
+
 	public void setActionHandler(ActionHandler actionHandler){
 		this.actionHandler = actionHandler;
 	}
@@ -46,7 +51,16 @@ public abstract class Event extends Change {
 		}
 	}
 
-	public Event() {}
+	public void changeMainBoard(ClientHandler client) {
+		Platform.runLater(() -> {
+			MainBoard mainBoard = (MainBoard) client.getView();
+			try {
+				mainBoard.changeScene("FXMLMainBoard", 1980, 1080, true, "Lorenzo il magnifico");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		});
+	}
 
 	public Player getPlayer() {
 		return player;

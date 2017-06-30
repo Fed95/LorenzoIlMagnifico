@@ -45,16 +45,9 @@ public class EventPlayerReconnected extends Event {
 				}
 			}
 
-			if(client.getView() instanceof MainBoard) {
-				Platform.runLater(() -> {
-					MainBoard mainBoard = (MainBoard) client.getView();
-					try {
-						mainBoard.changeScene("FXMLMainBoard", 1980, 1080, true, "Lorenzo il magnifico");
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				});
-
+			View view = client.getView();
+			if(view instanceof MainBoard) {
+				changeMainBoard(client);
 			}
 
 			MatchInstance matchInstance = createMatchInstance(client.getView());
@@ -64,7 +57,6 @@ public class EventPlayerReconnected extends Event {
 			client.getMatch().getBoard().setTowerSet(match.getBoard().getTowerSet());
 			client.getMatch().setCards(match.getBoard().getTowerSet());
 			client.getMatch().setDice(match.getBoard().getSpaceDie());
-
 		}
 	}
 
