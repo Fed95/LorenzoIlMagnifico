@@ -7,6 +7,7 @@ import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.client.NewName;
 import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
 import it.polimi.ingsw.gc_12.event.Event;
+import it.polimi.ingsw.gc_12.event.EventPlayerReconnected;
 import it.polimi.ingsw.gc_12.event.EventStartRound;
 import it.polimi.ingsw.gc_12.event.EventStartTurn;
 import it.polimi.ingsw.gc_12.server.Server;
@@ -57,6 +58,12 @@ public class ServerSocketView extends View implements Runnable {
 			i++;
 		}
 
+		// If sending an EventPlayerReconnected of a RMI client to a socket client, don't send the ServerRMI
+		if(event instanceof EventPlayerReconnected) {
+			EventPlayerReconnected eventRec = (EventPlayerReconnected) event;
+			if(eventRec.getClientViewRemote() != null)
+				event = new EventPlayerReconnected(eventRec.getPlayer(), eventRec.getMatch());
+		}
 
 		// sending the info to the client
 		try {
@@ -121,9 +128,6 @@ public class ServerSocketView extends View implements Runnable {
 		catch (ClassNotFoundException | CloneNotSupportedException | AlreadyBoundException e) {
 			e.printStackTrace();
 		}
-
-
-
 	}
 
 	private void askNewName() throws IOException {
@@ -137,7 +141,7 @@ public class ServerSocketView extends View implements Runnable {
 	private void acceptName() throws IOException, AlreadyBoundException, CloneNotSupportedException {
 		PlayerColor playerColor = playerColors.poll();
 		socketOut.writeObject(playerColor);
-		server.addPlayer(this, new Player(name, playerColor));
+		server.addPlayer(new Player(name, playerColor));
 	}
 
 }

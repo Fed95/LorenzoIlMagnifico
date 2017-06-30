@@ -37,21 +37,16 @@ public class Server {
 	private Match match;
 	private Controller controller;
 	private Registry registry;
-	private Stack<ServerRMIView> views;
 	private Map<Player, Match> playingPlayers = new HashMap<>();
-	public int numOfClients;
 	private LinkedList<PlayerColor> playerColors = new LinkedList<>();
 	private List<Player> waitingPlayers = new ArrayList<>();
-	private HashMap<Player, View> serverViews = new HashMap<>();
 	private HashMap<Match, Controller> controllers = new HashMap<>();
 
 	public Server() {
 		this.match = new Match();
 		this.controller = new Controller(match);
 		controllers.put(match, controller);
-		this.views = new Stack<>();
 		this.playerColors.addAll(Arrays.asList(PlayerColor.values()));
-		this.numOfClients = 0;
 	}
 
 	private void startRMI() throws RemoteException, AlreadyBoundException {
@@ -62,7 +57,6 @@ public class Server {
 
 		// Create the RMI View, that will be shared with the client
 		ServerRMIView serverRmiView = new ServerRMIView(this, match, playerColors);
-		views.push(serverRmiView);
 
 		//controller observes this view
 		serverRmiView.registerObserver(this.controller);
@@ -77,7 +71,7 @@ public class Server {
 		registry.bind(NAME, viewRemote);
 	}
 
-	public synchronized void startMatch() throws AlreadyBoundException, CloneNotSupportedException, RemoteException {
+	private synchronized void startMatch() throws AlreadyBoundException, CloneNotSupportedException, RemoteException {
 		Map<PlayerColor, Player> players = new HashMap<>();
 		Iterator<Player> itr = waitingPlayers.iterator();
 		int i = 1;
@@ -98,18 +92,16 @@ public class Server {
 
 	}
 
-	public void newMatch() throws RemoteException {
+	private void newMatch() throws RemoteException {
 		// publish the view in the registry as a remote object
 		/*RMIViewRemote viewRemote=(RMIViewRemote) UnicastRemoteObject.
 				exportObject(serverRmiView, 0);*/
-		numOfClients = 0;
 		match = new Match();
 		controller = new Controller(match);
 		controllers.put(match, controller);
 		playerColors = new LinkedList<>();
 		playerColors.addAll(Arrays.asList(PlayerColor.values()));
 		ServerRMIView serverRmiView = new ServerRMIView(this, match, playerColors);
-		views.push(serverRmiView);
 
 		// publish the view in the registry as a remote object
 		RMIViewRemote viewRemote = (RMIViewRemote) UnicastRemoteObject.
@@ -153,11 +145,9 @@ public class Server {
 		}
 	}
 
-	public void addPlayer(View view, Player player) throws CloneNotSupportedException, AlreadyBoundException, RemoteException {
+	public void addPlayer(Player player) throws CloneNotSupportedException, AlreadyBoundException, RemoteException {
 		System.out.println("Adding player " + player.getName());
 		waitingPlayers.add(player);
-		serverViews.put(player, view);
-		System.out.println(numOfClients);
 		if (waitingPlayers.size() == 2) {
 			startMatch();
 			newMatch();

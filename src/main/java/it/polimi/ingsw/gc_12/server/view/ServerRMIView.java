@@ -9,6 +9,7 @@ import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.server.Server;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.util.*;
@@ -122,7 +123,7 @@ public class ServerRMIView extends View implements RMIViewRemote {
 		client.setColor(playerColor);
 		Player player = new Player(name, playerColor);
 		clientPlayers.put(client, player);
-		server.addPlayer(this, player);
+		server.addPlayer(player);
 	}
 
 	public Match getMatch() {

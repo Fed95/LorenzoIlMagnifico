@@ -55,7 +55,7 @@ public class ClientInHandler extends ClientHandler implements Runnable {
 				}
 			} catch (ClassNotFoundException | IOException e) {
 				// TODO Auto-generated catch block
-				System.exit(1);
+				e.printStackTrace();
 			}
 		}
 	}
