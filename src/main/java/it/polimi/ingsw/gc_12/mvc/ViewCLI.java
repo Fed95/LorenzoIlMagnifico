@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.NotBoundException;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Observable;
 import java.util.Scanner;
 
@@ -75,6 +76,7 @@ public class ViewCLI extends Observable implements View{
 					else
 						clientHandler.getEvents().removeFirst();
 					clientHandler.handleEvent();
+				} catch (NoSuchElementException ignored){
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

@@ -50,4 +50,8 @@ public abstract class View extends Observable<Action> implements Observer<Event>
 			match.newTurn();
 		}
 	}
+
+	public void setMatch(Match match) {
+		this.match = match;
+	}
 }

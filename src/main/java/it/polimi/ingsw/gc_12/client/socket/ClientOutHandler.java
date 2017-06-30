@@ -45,7 +45,7 @@ public class ClientOutHandler implements Runnable, ClientSender {
 			socketOut.flush();
 			socketOut.reset();
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.exit(1);
 		}
 	}
 
@@ -56,7 +56,7 @@ public class ClientOutHandler implements Runnable, ClientSender {
 			socketOut.flush();
 			socketOut.reset();
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.exit(1);
 		}
 	}
 

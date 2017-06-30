@@ -10,11 +10,15 @@ import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventStartRound;
 import it.polimi.ingsw.gc_12.event.EventStartTurn;
 import it.polimi.ingsw.gc_12.server.Server;
+import it.polimi.ingsw.gc_12.server.controller.Controller;
+import it.polimi.ingsw.gc_12.server.observer.Observer;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.rmi.AlreadyBoundException;
+import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,6 +30,7 @@ public class ServerSocketView extends View implements Runnable {
 	private Server server;
 	private ObjectInputStream socketIn;
 	private ObjectOutputStream socketOut;
+	private String name;
 
 	private LinkedList<PlayerColor> playerColors;
 	private Map<Integer, String> unauthorizedClients = new HashMap<>();
@@ -60,8 +65,11 @@ public class ServerSocketView extends View implements Runnable {
 			this.socketOut.reset();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Player player = match.getPlayer(name);
+			if(!player.isDisconnected()) {
+				match.unregisterObserver(this);
+				match.setDisconnectedPlayer(player);
+			}
 		}
 	}
 
@@ -71,56 +79,65 @@ public class ServerSocketView extends View implements Runnable {
 			socketIn = new ObjectInputStream(socket.getInputStream());
 			socketOut = new ObjectOutputStream(socket.getOutputStream());
 
-			PlayerColor playerColor = playerColors.poll();
-			socketOut.writeObject(playerColor);
-
 			//server.increaseClientsNum();
 			while (true) {
 				// await for incoming data from the client
-				try {
-					Object object = socketIn.readObject();
-					System.out.println(object);
-					if (object instanceof String) {
-						String name = (String) object;
-						System.out.println("Player " + name + " received");
-						if(server.isNameTaken(name)) {
-							while(server.isNameTaken(String.valueOf(incrementalId))){
-								incrementalId++;
-							}
-							unauthorizedClients.put(incrementalId, name);
-							socketOut.writeObject(new NewName(incrementalId, name));
-						}
-						else
-							server.addPlayer(this, new Player(name, playerColor));
-					}
-					else if (object instanceof Integer) {
-						int input = (Integer) object;
-						Action action = match.getActionHandler().getAvailableAction(input);
-						System.out.println("ServerRMIView: " + action.getClass().getSimpleName() + " received from ClientRMI. Notifying observers (Server Controller).");
-						this.notifyObserver(action);
-					}
-					else if(object instanceof NewName) {
-						NewName newName = (NewName) object;
-						String name = newName.getName();
-						if(server.isNameTaken(name)) {
-							unauthorizedClients.put(newName.getUnauthorizedId(), name);
-							socketOut.writeObject(new NewName(newName.getUnauthorizedId(), name));
-						}
-						else
-							server.addPlayer(this, new Player(name, playerColor));
-					}
+				//try {
+				Object object = socketIn.readObject();
+				System.out.println(object);
+				if (object instanceof String) {
+					name = (String) object;
+					System.out.println("Player " + name + " received");
+					if (server.isNameTaken(name)) {
+						if(!server.tryReconnection(new Player(name, null), this))
+							askNewName();
+					} else
+						acceptName();
 
-
-				} catch (Exception e ) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				} else if (object instanceof Integer) {
+					int input = (Integer) object;
+					Action action = match.getActionHandler().getAvailableAction(input);
+					System.out.println("ServerRMIView: " + action.getClass().getSimpleName() + " received from ClientRMI. Notifying observers (Server Controller).");
+					this.notifyObserver(action);
+				} else if (object instanceof NewName) {
+					NewName newName = (NewName) object;
+					name = newName.getName();
+					if (server.isNameTaken(name)) {
+						unauthorizedClients.put(newName.getUnauthorizedId(), name);
+						socketOut.writeObject(new NewName(newName.getUnauthorizedId(), name));
+					} else
+						acceptName();
 				}
 			}
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
+			Player player = match.getPlayer(name);
+			if(!player.isDisconnected()) {
+
+				match.unregisterObserver(this);
+				match.setDisconnectedPlayer(player);
+			}
+		}
+		catch (ClassNotFoundException | CloneNotSupportedException | AlreadyBoundException e) {
 			e.printStackTrace();
 		}
 
 
+
+	}
+
+	private void askNewName() throws IOException {
+		while (server.isNameTaken(String.valueOf(incrementalId))) {
+			incrementalId++;
+		}
+		unauthorizedClients.put(incrementalId, name);
+		socketOut.writeObject(new NewName(incrementalId, name));
+	}
+
+	private void acceptName() throws IOException, AlreadyBoundException, CloneNotSupportedException {
+		PlayerColor playerColor = playerColors.poll();
+		socketOut.writeObject(playerColor);
+		server.addPlayer(this, new Player(name, playerColor));
 	}
 
 }

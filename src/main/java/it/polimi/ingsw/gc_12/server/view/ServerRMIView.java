@@ -47,8 +47,9 @@ public class ServerRMIView extends View implements RMIViewRemote {
 
 		if(event instanceof EventPlayerReconnected) {
 			EventPlayerReconnected eventReconnected = (EventPlayerReconnected) event;
-			if(eventReconnected.getClientRMI() != null) {
-				clients.add(eventReconnected.getClientRMI());
+			if(eventReconnected.getClientViewRemote() != null) {
+				clients.add(eventReconnected.getClientViewRemote());
+				clientPlayers.put(eventReconnected.getClientViewRemote(), event.getPlayer());
 				eventReconnected.setServerRMI(this);
 			}
 		}
@@ -98,7 +99,8 @@ public class ServerRMIView extends View implements RMIViewRemote {
 
 	private void checkNewName(String name, ClientViewRemote client) throws IOException, AlreadyBoundException, CloneNotSupportedException {
 		if(server.isNameTaken(name)) {
-			if(!server.tryReconnection(new Player(name, null), client))
+			Player player = new Player(name, null);
+			if(!server.tryReconnection(player, client))
 				askNewName(client);
 		}
 		else {

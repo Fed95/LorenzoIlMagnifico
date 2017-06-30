@@ -15,13 +15,18 @@ import it.polimi.ingsw.gc_12.server.view.ServerRMIView;
 import java.util.List;
 
 public class EventPlayerReconnected extends Event {
-	private ClientViewRemote clientRMI;
+	private ClientViewRemote clientViewRemote;
 	private RMIViewRemote serverRMI;
 	private Match match;
 
-	public EventPlayerReconnected(Player player, Match match, ClientViewRemote clientRMI) {
+	public EventPlayerReconnected(Player player, Match match, ClientViewRemote clientViewRemote) {
 		super(player);
-		this.clientRMI = clientRMI;
+		this.clientViewRemote = clientViewRemote;
+		this.match = match;
+	}
+
+	public EventPlayerReconnected(Player player, Match match) {
+		super(player);
 		this.match = match;
 	}
 
@@ -33,12 +38,15 @@ public class EventPlayerReconnected extends Event {
 				if(clientSender instanceof ClientRMI) {
 					ClientRMI clientRMI = (ClientRMI) clientSender;
 					clientRMI.setServerStub(serverRMI);
-					MatchInstance matchInstance = createMatchInstance(client.getView());
-					matchInstance.init(match);
-					client.setMatch(matchInstance);
-					client.setColor(player.getColor());
+
 				}
 			}
+
+			MatchInstance matchInstance = createMatchInstance(client.getView());
+			matchInstance.init(match);
+			client.setMatch(matchInstance);
+			client.setColor(player.getColor());
+
 		}
 	}
 
@@ -50,8 +58,8 @@ public class EventPlayerReconnected extends Event {
 	}
 
 
-	public ClientViewRemote getClientRMI() {
-		return clientRMI;
+	public ClientViewRemote getClientViewRemote() {
+		return clientViewRemote;
 	}
 
 	public void setServerRMI(RMIViewRemote serverRMI) {

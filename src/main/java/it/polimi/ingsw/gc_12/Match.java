@@ -2,9 +2,11 @@ package it.polimi.ingsw.gc_12;
 
 import it.polimi.ingsw.gc_12.action.ActionHandler;
 
+import it.polimi.ingsw.gc_12.client.ClientView;
 import it.polimi.ingsw.gc_12.client.rmi.ClientRMIView;
 import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
 import it.polimi.ingsw.gc_12.card.*;
+import it.polimi.ingsw.gc_12.client.socket.ClientInHandler;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.effect.EffectHandler;
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
@@ -154,7 +156,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 			public void run() {
 				notifyObserver();
 			}
-		}, 5000, 5000);
+		}, 2000, 2000);
 	}
 
 	private boolean newRound(){
@@ -257,7 +259,6 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	}
 
 	public void setReconnectedPlayer(Player playerReconnected, ClientViewRemote client) {
-
 		for(Player player: players.values()) {
 			if(player.getName().toLowerCase().equals(playerReconnected.getName().toLowerCase())) {
 				System.out.println("PLAYER " + player.getName() + " RECONNECTED");
@@ -268,6 +269,20 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		}
 		throw new IllegalStateException("Set reconnection of a player that doesn't belong to this match");
 	}
+
+	public void setReconnectedPlayer(Player playerReconnected) {
+		for(Player player: players.values()) {
+			if(player.getName().toLowerCase().equals(playerReconnected.getName().toLowerCase())) {
+				System.out.println("PLAYER " + player.getName() + " RECONNECTED");
+				notifyObserver(new EventPlayerReconnected(player, this));
+				player.setDisconnected(false);
+				return;
+			}
+		}
+		throw new IllegalStateException("Set reconnection of a player that doesn't belong to this match");
+	}
+
+
 
 	public void setPlayers(Map<PlayerColor, Player> players) {
 		this.players = players;

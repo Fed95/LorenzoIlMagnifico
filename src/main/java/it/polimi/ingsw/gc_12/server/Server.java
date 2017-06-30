@@ -3,7 +3,10 @@ package it.polimi.ingsw.gc_12.server;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.PlayerColor;
+import it.polimi.ingsw.gc_12.client.ClientView;
+import it.polimi.ingsw.gc_12.client.rmi.ClientRMIView;
 import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
+import it.polimi.ingsw.gc_12.client.socket.ClientInHandler;
 import it.polimi.ingsw.gc_12.event.EventMatchInitialized;
 import it.polimi.ingsw.gc_12.server.controller.Controller;
 import it.polimi.ingsw.gc_12.server.view.RMIViewRemote;
@@ -41,10 +44,12 @@ public class Server {
 	private LinkedList<PlayerColor> playerColors = new LinkedList<>();
 	private List<Player> waitingPlayers = new ArrayList<>();
 	private HashMap<Player, View> serverViews = new HashMap<>();
+	private HashMap<Match, Controller> controllers = new HashMap<>();
 
 	public Server() {
 		this.match = new Match();
 		this.controller = new Controller(match);
+		controllers.put(match, controller);
 		this.views = new Stack<>();
 		this.playerColors.addAll(Arrays.asList(PlayerColor.values()));
 		this.numOfClients = 0;
@@ -101,6 +106,7 @@ public class Server {
 		numOfClients = 0;
 		match = new Match();
 		controller = new Controller(match);
+		controllers.put(match, controller);
 		playerColors = new LinkedList<>();
 		playerColors.addAll(Arrays.asList(PlayerColor.values()));
 		ServerRMIView serverRmiView = new ServerRMIView(this, match, playerColors);
@@ -171,14 +177,31 @@ public class Server {
 		return false;
 	}
 
-	public boolean tryReconnection(Player player, ClientViewRemote clientStub) {
+	public boolean tryReconnection(Player player, ClientViewRemote client) {
 		Match match = playingPlayers.get(player);
 		if(match.getPlayer(player.getName()).isDisconnected()) {
-			match.setReconnectedPlayer(player, clientStub);
+			match.setReconnectedPlayer(player, client);
 			return true;
 		}
 		return false;
 	}
+
+	public boolean tryReconnection(Player player, ServerSocketView view) {
+		if(!playingPlayers.containsKey(player))
+			return false;
+		Match match = playingPlayers.get(player);
+		match.registerObserver(view);
+		view.unregisterObserver(Controller.class);
+		view.registerObserver(controllers.get(match));
+
+		if(match.getPlayer(player.getName()).isDisconnected()) {
+			view.setMatch(match);
+			match.setReconnectedPlayer(player);
+			return true;
+		}
+		return false;
+	}
+
 
 	public static void main(String[] args) throws IOException, AlreadyBoundException, CloneNotSupportedException {
 		Server server = new Server();
