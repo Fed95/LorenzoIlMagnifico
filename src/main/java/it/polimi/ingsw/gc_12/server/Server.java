@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc_12.server;
 
+import it.polimi.ingsw.gc_12.Config;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.PlayerColor;
@@ -7,6 +8,7 @@ import it.polimi.ingsw.gc_12.client.rmi.ClientRMIView;
 import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
 import it.polimi.ingsw.gc_12.client.socket.ClientInHandler;
 import it.polimi.ingsw.gc_12.event.EventMatchInitialized;
+import it.polimi.ingsw.gc_12.json.loader.LoaderConfig;
 import it.polimi.ingsw.gc_12.server.controller.Controller;
 import it.polimi.ingsw.gc_12.server.view.RMIViewRemote;
 import it.polimi.ingsw.gc_12.server.view.ServerRMIView;
@@ -34,6 +36,11 @@ public class Server {
 	private final String MODEL_NAME = "match";
 	private final static int RMI_PORT = 52365;
 
+	private final int TIMEOUT_START;
+	private final int MIN_PLAYERS;
+	private final int MAX_PLAYERS;
+	private Timer timer;
+
 	private Match match;
 	private Controller controller;
 	private Registry registry;
@@ -47,6 +54,11 @@ public class Server {
 		this.controller = new Controller(match);
 		controllers.put(match, controller);
 		this.playerColors.addAll(Arrays.asList(PlayerColor.values()));
+		Config config = new LoaderConfig().get(null);
+		MIN_PLAYERS = config.getMinPlayers();
+		MAX_PLAYERS = config.getMaxPlayers();
+		TIMEOUT_START = config.getTimeoutStart();
+		this.timer = new Timer();
 	}
 
 	private void startRMI() throws RemoteException, AlreadyBoundException {
@@ -89,7 +101,8 @@ public class Server {
 		}
 		match.init(players);
 		match.notifyObserver(new EventMatchInitialized());
-
+		timer.purge();
+		timer.cancel();
 	}
 
 	private void newMatch() throws RemoteException {
@@ -148,7 +161,10 @@ public class Server {
 	public void addPlayer(Player player) throws CloneNotSupportedException, AlreadyBoundException, RemoteException {
 		System.out.println("Adding player " + player.getName());
 		waitingPlayers.add(player);
-		if (waitingPlayers.size() == 2) {
+		if (waitingPlayers.size() == MIN_PLAYERS)  {
+			timer.schedule(new TimerMatchTask(match), TIMEOUT_START);  // TODO: set a proper number in config file before the deadline
+		}
+		else if (waitingPlayers.size() == MAX_PLAYERS) {
 			startMatch();
 			newMatch();
 		}
@@ -198,5 +214,24 @@ public class Server {
 		server.startRMI();
 		System.out.println("START SOCKET");
 		server.startSocket();
+	}
+
+	class TimerMatchTask extends TimerTask {
+
+		private Match match;
+
+		public TimerMatchTask(Match match) {
+			this.match = match;
+		}
+
+		@Override
+		public void run() {
+			try {
+				startMatch();
+				newMatch();
+			} catch (AlreadyBoundException | CloneNotSupportedException | RemoteException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }
