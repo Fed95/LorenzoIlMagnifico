@@ -38,8 +38,6 @@ public class EventStartMatch extends Event{
 		if(client.getMainBoardController()!=null) {
             client.getMainBoardController().getChat().appendText("[SERVER]: Your Color is " + client.getColor() + "\n");
         }
-
-
     }
 
 	private MatchInstance createMatchInstance(View view) {

@@ -287,11 +287,13 @@ public class MainBoardController implements Initializable, Observer {
         }
 
     }
+
     private void disableTab(){
         for(Player player : match.getPlayers().values()) {
             mapPlayerColorTab.get(player.getColor()).setDisable(false);
         }
     }
+
     private void bindCardsToFloor(){
         for(CardType cardType : CardType.values()){
                 ObservableList<CardFloorRepresentation> cardFloorRepresentations = match.getMapTypeCardFloorRepresentation().get(cardType);
@@ -302,6 +304,7 @@ public class MainBoardController implements Initializable, Observer {
                 }
         }
     }
+
     private void bindResources(){
         for(Player player : match.getPlayers().values()) {
             ObservableList<ResourceRepresentation> resourceRepresentation = match.getMapPlayerColorResourceRepresentation().get(player.getColor());
@@ -311,6 +314,7 @@ public class MainBoardController implements Initializable, Observer {
             mapPlayerColorResourceLabel.get(player.getColor()).get(ResourceType.SERVANT).textProperty().bind(resourceRepresentation.get(0).getServantProperty().asString());
         }
     }
+
     private void bindTrackOrder(){
         List<Player> players = match.getBoard().getTrackTurnOrder().getOrderedPlayers();
         for(int i = 0; i < players.size(); i++){
@@ -318,11 +322,13 @@ public class MainBoardController implements Initializable, Observer {
             turnOrderTrack.get(i).setOpacity(1);
         }
     }
+
     private void bindTrackMilitaryVictory(){
         tableMilitaryPoints.setItems(match.getAllResourcerepresentationMilitary());
         tableVictoryPoints.setItems(match.getAllResourcerepresentationVictory());
 
     }
+
     private void bindExcomunocationTile(){
         for(int i = 0; i < mapPeriodImageViewTile.values().size(); i++){
             int j = i+1;
@@ -330,9 +336,11 @@ public class MainBoardController implements Initializable, Observer {
             mapPeriodImageViewTile.get(i).imageProperty().bind(excommunicationTileRepresentation.getpathProperty());
         }
     }
+
     private void setPlayerToPane(){
         mainPane.setUserData(clientHandler.getColor());
     }
+
     private Boolean isMyFam(PlayerColor color, ImageView famMemb){
         Map<FamilyMemberColor,ImageView> allMyFamily = mapPlayerColorFamImageView.get(color);
         for(ImageView imageViewFam: allMyFamily.values()){
@@ -342,6 +350,7 @@ public class MainBoardController implements Initializable, Observer {
         }
         return false;
     }
+
     private Boolean isMyTurn(){
         Boolean isMyTurn = clientHandler.getMyTurn();
         if(isMyTurn){
@@ -355,6 +364,7 @@ public class MainBoardController implements Initializable, Observer {
             return false;
         }
     }
+
     private void highlightFamilyMember(ImageView familyMemberClicked){
 
         if(familyMemberClicked.equals(lastFamClicked)){
@@ -372,13 +382,10 @@ public class MainBoardController implements Initializable, Observer {
         lastFamClicked = familyMemberClicked;
 
     }
+
    public TextArea getChat(){
         return chatTextArea;
    }
-
-
-
-
 
    private void initializeAllMapsAndLists(){
        famPl1.put(FamilyMemberColor.BLACK, blueBlack);

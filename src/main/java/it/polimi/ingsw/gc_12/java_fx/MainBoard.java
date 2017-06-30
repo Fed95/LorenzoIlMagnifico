@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc_12.java_fx;
 
+import it.polimi.ingsw.gc_12.MatchInstanceGUI;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.ClientSender;
 import it.polimi.ingsw.gc_12.mvc.View;
@@ -50,6 +51,11 @@ public class MainBoard extends Application implements View{
         primaryStage.show();
         responsive(newScene, newLayout, primaryStage);
         ready = true;
+		MatchInstanceGUI match = MatchInstanceGUI.instance();
+		if(match.isInitialized()) {
+			match.notifyInit();
+		}
+
     }
 
 	private void responsive(Scene scene, Pane root, Stage primaryStage){

@@ -78,6 +78,7 @@ public class MatchInstanceGUI extends MatchInstance {
         createExcomTileRepresentation(match);
         setChanged();
 		notifyObservers();
+		initialized = true;
 	}
 
     @Override
@@ -239,4 +240,9 @@ public class MatchInstanceGUI extends MatchInstance {
     public ObservableList<ExcommunicationTileRepresentation> getExcommunicationTileRepresentationObservableList() {
         return excommunicationTileRepresentationObservableList;
     }
+
+    public void notifyInit() {
+    	setChanged();
+    	notifyObservers();
+	}
 }

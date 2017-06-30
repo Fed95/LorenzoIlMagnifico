@@ -7,11 +7,14 @@ import it.polimi.ingsw.gc_12.client.ClientSender;
 import it.polimi.ingsw.gc_12.client.rmi.ClientRMI;
 import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
 import it.polimi.ingsw.gc_12.client.socket.ClientInHandler;
+import it.polimi.ingsw.gc_12.java_fx.MainBoard;
 import it.polimi.ingsw.gc_12.mvc.View;
 import it.polimi.ingsw.gc_12.mvc.ViewCLI;
 import it.polimi.ingsw.gc_12.server.view.RMIViewRemote;
 import it.polimi.ingsw.gc_12.server.view.ServerRMIView;
+import javafx.application.Platform;
 
+import java.io.IOException;
 import java.util.List;
 
 public class EventPlayerReconnected extends Event {
@@ -42,10 +45,25 @@ public class EventPlayerReconnected extends Event {
 				}
 			}
 
+			if(client.getView() instanceof MainBoard) {
+				Platform.runLater(() -> {
+					MainBoard mainBoard = (MainBoard) client.getView();
+					try {
+						mainBoard.changeScene("FXMLMainBoard", 1980, 1080, true, "Lorenzo il magnifico");
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				});
+
+			}
+
 			MatchInstance matchInstance = createMatchInstance(client.getView());
 			matchInstance.init(match);
 			client.setMatch(matchInstance);
 			client.setColor(player.getColor());
+			client.getMatch().getBoard().setTowerSet(match.getBoard().getTowerSet());
+			client.getMatch().setCards(match.getBoard().getTowerSet());
+			client.getMatch().setDice(match.getBoard().getSpaceDie());
 
 		}
 	}

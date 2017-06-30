@@ -34,7 +34,7 @@ public abstract class Observable<C> {
 		}
 	}
 	
-	protected synchronized void notifyObserver() {
+	public synchronized void notifyObserver() {
 		List<Observer<C>> newObservers = new ArrayList<>();
 		newObservers.addAll(observers);
 		for(Observer<C> o: newObservers) {

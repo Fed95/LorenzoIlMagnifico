@@ -18,6 +18,7 @@ public class MatchInstanceCLI extends MatchInstance {
 	public void init(Match match) {
 		super.init(match);
 		setFamilyMemberObservers();
+		initialized = true;
 	}
 
 	@Override

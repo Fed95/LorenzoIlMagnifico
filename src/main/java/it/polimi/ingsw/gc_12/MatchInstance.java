@@ -27,7 +27,7 @@ public abstract class MatchInstance extends Observable {
 	public transient final static int DEFAULT_ROUND_NUM = 6;
 	public transient final static int DEFAULT_PERIODS_LEN = 2;
 	public transient final static int DEFAULT_TOTAL_PERIODS_NUM = DEFAULT_ROUND_NUM/DEFAULT_PERIODS_LEN;
-
+	protected boolean initialized;
 
 	public void init(Match match) {
 		this.board = match.getBoard();
@@ -80,6 +80,10 @@ public abstract class MatchInstance extends Observable {
 
 	public int getRoundNum() {
 		return roundNum;
+	}
+
+	public boolean isInitialized() {
+		return initialized;
 	}
 
 	public abstract void setCards(TowerSet towers);
