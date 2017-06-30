@@ -5,7 +5,6 @@ import it.polimi.ingsw.gc_12.PlayerColor;
 import it.polimi.ingsw.gc_12.client.ClientFactory;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.ClientSender;
-import it.polimi.ingsw.gc_12.client.ClientView;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventExcluded;
 import it.polimi.ingsw.gc_12.event.EventPlayerReconnected;
