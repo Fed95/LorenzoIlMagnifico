@@ -23,6 +23,7 @@ public abstract class Event extends Change {
 		if(player != null) {
 			this.player = player;
 			effectProviders.add(player.getPersonalBoard().getBonusTile());
+			effectProviders.addAll(player.getPersonalBoard().getActiveLeaderCards());
 			effectProviders.addAll(player.getCards());
 			effectProviders.addAll(player.getExcommunications());
 		}else{

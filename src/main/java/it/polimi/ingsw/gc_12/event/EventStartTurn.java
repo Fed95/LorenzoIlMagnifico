@@ -4,6 +4,7 @@ import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.action.*;
+import it.polimi.ingsw.gc_12.card.LeaderCard;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.ClientSender;
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
@@ -60,12 +61,16 @@ public class EventStartTurn extends Event{
 		for (FamilyMember familyMember : player.getAvailableFamilyMembers()) {
 			actions.add(new ActionChooseFamilyMember(player, familyMember));
 		}
+		if(player.getAvailableLeaderCards().size() > 0)
+			actions.add(new ActionViewAvalilableLeaderCards(player));
 		actions.add(new ActionPassTurn(player));
 		actions.add(new ActionRequestStatistics(player));
 	}
 
 	@Override
 	public String toString() {
+		if(player == null)
+			return this.getClass().getSimpleName();
 
 		StringBuilder sb = new StringBuilder();
 		sb.append(System.getProperty("line.separator"));

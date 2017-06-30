@@ -52,6 +52,18 @@ public class PersonalBoard implements Serializable{
         }
     }
 
+    public List<LeaderCard> getLeaderCards(){
+        return leaderCardsSpace.getCards();
+    }
+
+    public  List<LeaderCard> getActiveLeaderCards(){
+        List<LeaderCard> cards = new ArrayList<>();
+        for(LeaderCard card : getLeaderCards())
+            if(card.isActive())
+                cards.add(card);
+        return cards;
+    }
+
     public List<Card> getCards(){
         List<Card> cards = new ArrayList<>();
         for(CardsSpace cardsSpace : cardsSpaces.values())

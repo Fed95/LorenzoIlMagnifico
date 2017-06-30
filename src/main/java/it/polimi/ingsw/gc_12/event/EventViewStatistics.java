@@ -35,6 +35,9 @@ public class EventViewStatistics extends Event {
             sb.append("Family Members:").append(System.getProperty("line.separator"));
             sb.append(chosenPlayer.printFamilyMembers()).append(System.getProperty("line.separator"));
 
+            sb.append("LeaderCards:").append(System.getProperty("line.separator"));
+            sb.append(chosenPlayer.printLeaderCards()).append(System.getProperty("line.separator"));
+
             sb.append("Resources:").append(System.getProperty("line.separator"));
             sb.append(chosenPlayer.printResources()).append(System.getProperty("line.separator"));
 

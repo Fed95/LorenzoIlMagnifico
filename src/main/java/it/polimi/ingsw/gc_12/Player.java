@@ -1,9 +1,6 @@
 package it.polimi.ingsw.gc_12;
 
-import it.polimi.ingsw.gc_12.card.Card;
-import it.polimi.ingsw.gc_12.card.CardCharacter;
-import it.polimi.ingsw.gc_12.card.CardDevelopment;
-import it.polimi.ingsw.gc_12.card.CardVenture;
+import it.polimi.ingsw.gc_12.card.*;
 import it.polimi.ingsw.gc_12.dice.Die;
 import it.polimi.ingsw.gc_12.dice.DieColor;
 import it.polimi.ingsw.gc_12.dice.SpaceDie;
@@ -131,6 +128,28 @@ public class Player implements Serializable{
 		return hasResources(discountedRequirements);
 	}
 
+
+	private boolean hasEnoughCards(CardType type, int quantity){
+		return personalBoard.getCards(type).size() >= quantity;
+	}
+
+	private boolean canActivateLeaderCard(LeaderCard card){
+		if(!hasResources(card.getRequirements()))
+			return false;
+		for(CardType type : card.getCardRequirements().keySet()){
+			if(!hasEnoughCards(type, card.getCardRequirements().get(type)))
+				return false;
+		}
+		return true;
+	}
+
+	public List<LeaderCard> getAvailableLeaderCards(){
+		List<LeaderCard> cards = new ArrayList<>();
+		for(LeaderCard card : personalBoard.getLeaderCards())
+			if(!card.isActive() && canActivateLeaderCard(card))
+				cards.add(card);
+		return cards;
+	}
 	
 	public Map<ResourceType, Resource> getResources() {
 		return resources;
@@ -203,6 +222,13 @@ public class Player implements Serializable{
 		StringBuilder sb = new StringBuilder();
 		for(FamilyMember fm : familymembers.values())
 			sb.append(" - " + fm.getColor() + " [" + fm.getValue() + "] busy: " + fm.isBusy()).append(System.getProperty("line.separator"));
+		return sb.toString();
+	}
+
+	public String printLeaderCards() {
+		StringBuilder sb = new StringBuilder();
+		for(LeaderCard card : personalBoard.getLeaderCards())
+			sb.append(" - " + card).append(System.getProperty("line.separator"));
 		return sb.toString();
 	}
 
