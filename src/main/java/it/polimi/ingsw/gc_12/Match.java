@@ -1,8 +1,6 @@
 package it.polimi.ingsw.gc_12;
 
 import it.polimi.ingsw.gc_12.action.ActionHandler;
-
-import it.polimi.ingsw.gc_12.client.ClientView;
 import it.polimi.ingsw.gc_12.client.rmi.ClientRMIView;
 import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
 import it.polimi.ingsw.gc_12.card.*;

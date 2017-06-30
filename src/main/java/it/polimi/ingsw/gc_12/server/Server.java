@@ -3,7 +3,6 @@ package it.polimi.ingsw.gc_12.server;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.PlayerColor;
-import it.polimi.ingsw.gc_12.client.ClientView;
 import it.polimi.ingsw.gc_12.client.rmi.ClientRMIView;
 import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
 import it.polimi.ingsw.gc_12.client.socket.ClientInHandler;

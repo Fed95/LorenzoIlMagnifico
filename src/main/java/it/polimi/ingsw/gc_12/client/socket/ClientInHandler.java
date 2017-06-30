@@ -3,7 +3,6 @@ package it.polimi.ingsw.gc_12.client.socket;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.PlayerColor;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
-import it.polimi.ingsw.gc_12.client.ClientView;
 import it.polimi.ingsw.gc_12.client.NewName;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventExcluded;
@@ -16,7 +15,7 @@ import java.rmi.RemoteException;
 import java.util.LinkedList;
 
 
-public class ClientInHandler extends ClientHandler implements ClientView, Runnable {
+public class ClientInHandler extends ClientHandler implements Runnable {
 
 	private ObjectInputStream socketIn;
 	private ClientOutHandler clientOut;
