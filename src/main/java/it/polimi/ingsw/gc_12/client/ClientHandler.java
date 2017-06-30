@@ -39,7 +39,9 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 
 		if(event.toStringClient() != null) {
             System.out.println(event.toStringClient());
-            //mainBoardController.getChat().appendText("[SERVER]: " + event.toStringClientGUI()+"\n");
+            if(mainBoardController!=null) {
+                mainBoardController.getChat().appendText("[SERVER]: " + event.toStringClientGUI()+"\n");
+            }
         }
 
 		actions = event.getActions();
