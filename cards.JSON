@@ -3819,28 +3819,7 @@
         "description": "Free action of value 4 on any TowerFloor",
         "occupiables": [
           {
-            "occupiable": "TowerFloor",
-            "floorNum": 0,
-            "effects": [],
-            "occupiers": []
-          },
-          {
-            "occupiable": "TowerFloor",
-            "floorNum": 1,
-            "effects": [],
-            "occupiers": []
-          },
-          {
-            "occupiable": "TowerFloor",
-            "floorNum": 2,
-            "effects": [],
-            "occupiers": []
-          },
-          {
-            "occupiable": "TowerFloor",
-            "floorNum": 3,
-            "effects": [],
-            "occupiers": []
+            "occupiable": "TowerFloor"
           }
         ],
         "value": 4
@@ -4406,32 +4385,7 @@
         },
         "occupiables": [
           {
-            "occupiable": "TowerFloor",
-            "cardType": "BUILDING",
-            "floorNum": 0,
-            "effects": [],
-            "occupiers": []
-          },
-          {
-            "occupiable": "TowerFloor",
-            "cardType": "BUILDING",
-            "floorNum": 1,
-            "effects": [],
-            "occupiers": []
-          },
-          {
-            "occupiable": "TowerFloor",
-            "cardType": "BUILDING",
-            "floorNum": 2,
-            "effects": [],
-            "occupiers": []
-          },
-          {
-            "occupiable": "TowerFloor",
-            "cardType": "BUILDING",
-            "floorNum": 3,
-            "effects": [],
-            "occupiers": []
+            "occupiable": "TowerFloor"
           }
         ],
         "value": 6
@@ -5060,28 +5014,7 @@
         "description": "Free action of value 7 on any TowerFloor",
         "occupiables": [
           {
-            "occupiable": "TowerFloor",
-            "floorNum": 0,
-            "effects": [],
-            "occupiers": []
-          },
-          {
-            "occupiable": "TowerFloor",
-            "floorNum": 1,
-            "effects": [],
-            "occupiers": []
-          },
-          {
-            "occupiable": "TowerFloor",
-            "floorNum": 2,
-            "effects": [],
-            "occupiers": []
-          },
-          {
-            "occupiable": "TowerFloor",
-            "floorNum": 3,
-            "effects": [],
-            "occupiers": []
+            "occupiable": "TowerFloor"
           }
         ],
         "value": 7
@@ -6253,28 +6186,7 @@
         "description": "Free action of value 7 on any TowerFloor",
         "occupiables": [
           {
-            "occupiable": "TowerFloor",
-            "floorNum": 0,
-            "effects": [],
-            "occupiers": []
-          },
-          {
-            "occupiable": "TowerFloor",
-            "floorNum": 1,
-            "effects": [],
-            "occupiers": []
-          },
-          {
-            "occupiable": "TowerFloor",
-            "floorNum": 2,
-            "effects": [],
-            "occupiers": []
-          },
-          {
-            "occupiable": "TowerFloor",
-            "floorNum": 3,
-            "effects": [],
-            "occupiers": []
+            "occupiable": "TowerFloor"
           }
         ],
         "value": 7
@@ -6750,7 +6662,6 @@
       }
     ]
   },
-  /*
   {
     "id": 98,
     "type": "LeaderCard",
@@ -6772,10 +6683,7 @@
           "eventType": "EventPlaceFamilyMember",
           "occupiables": [
             {
-              "occupiable": "TowerFloor",
-              "floorNum": -1,
-              "occupiers": [],
-              "requiredValue": 0
+              "occupiable": "TowerFloor"
             }
           ],
           "multiplier": 1,
@@ -6784,7 +6692,6 @@
       }
     ]
   },
-  */
   {
     "id": 99,
     "type": "LeaderCard",

@@ -10,6 +10,7 @@ import java.util.List;
 public class TowerFloor extends Occupiable{
 
 	private int floorNum;
+	private boolean anyfloor = false;//(used by cards)
 	private CardDevelopment card;
 	private CardType cardType;
 
@@ -23,16 +24,17 @@ public class TowerFloor extends Occupiable{
 		this(floorNum, requiredValue, cardType, null);
 	}
 
+	public TowerFloor(){
+		this(0, 0, null);
+		this.anyfloor = true;
+	}
+
 	public TowerFloor(int floorNum, CardType cardType){
 		this(floorNum, 0, cardType, null);
 	}
 
 	public TowerFloor(int floorNum){
 		this(floorNum, 0, null, null);
-	}
-
-	public TowerFloor(){
-		this(-1, 0, null, null);
 	}
 
 	public int getFloorNum() {
@@ -73,7 +75,9 @@ public class TowerFloor extends Occupiable{
 
 		TowerFloor that = (TowerFloor) o;
 
-		if (that.floorNum != -1 && floorNum != that.floorNum) return false;
+		if(that.anyfloor == true) return true;
+
+		if (floorNum != that.floorNum) return false;
 
 		if(this.cardType == null || that.cardType == null)
 			return true;

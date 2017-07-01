@@ -70,16 +70,17 @@ public class EventPickCard extends Event {
     @Override
     public boolean equals(Object obj) {
         if(super.equals(obj)) {
-            //This is the event created in the game, Other is the one found in the card
-            EventPickCard other = (EventPickCard) obj;
+            //"this" is the event created in the game
+            //"that" is the event found in the card
+            EventPickCard that = (EventPickCard) obj;
 
-            if(other.isAnyCard())
+            if(that.isAnyCard())
                 return true;
 
-            if(other.getCardType() != null && ((CardDevelopment) card).getType().equals(other.getCardType()))
+            if(that.getCardType() != null && ((CardDevelopment) card).getType().equals(that.getCardType()))
                 return true;
 
-            if ((cardID) == other.getCardID())
+            if ((cardID) == that.getCardID())
                 return true;
         }
         return true;
