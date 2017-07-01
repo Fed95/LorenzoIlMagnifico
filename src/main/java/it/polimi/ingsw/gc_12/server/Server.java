@@ -181,7 +181,7 @@ public class Server {
 
 	public boolean tryReconnection(Player player, ClientViewRemote client) {
 		Match match = playingPlayers.get(player);
-		if(match.getPlayer(player.getName()).isDisconnected()) {
+		if(match != null && match.getPlayer(player.getName()).isDisconnected()) {
 			match.setReconnectedPlayer(player, client);
 			return true;
 		}

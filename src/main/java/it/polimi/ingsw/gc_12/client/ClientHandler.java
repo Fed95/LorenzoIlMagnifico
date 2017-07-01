@@ -3,9 +3,11 @@ package it.polimi.ingsw.gc_12.client;
 
 import it.polimi.ingsw.gc_12.*;
 import it.polimi.ingsw.gc_12.action.Action;
+import it.polimi.ingsw.gc_12.client.socket.ClientOutHandler;
 import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.java_fx.MainBoardController;
 import it.polimi.ingsw.gc_12.mvc.ClientView;
+import it.polimi.ingsw.gc_12.mvc.ViewCLI;
 import javafx.application.Platform;
 
 import java.rmi.RemoteException;
@@ -16,7 +18,6 @@ import java.util.List;
 
 public abstract class ClientHandler extends UnicastRemoteObject {
 	protected MatchInstance match;
-	protected ClientView view;
 	protected List<Action> actions = new ArrayList<>();
 	protected LinkedList<Event> events = new LinkedList<>();
 	protected int offset;
@@ -27,10 +28,14 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 	protected int unauthorizedId;
 	private boolean started;
 	private MainBoardController mainBoardController;
+	private ClientObservable clientObservable;
+	private ClientViewType viewType;
 
 	protected ClientHandler(ClientView view) throws RemoteException {
 		super();
-		this.view = view;
+		this.viewType = view.getType();
+		this.clientObservable = new ClientObservable();
+		clientObservable.registerObserver(view);
 		this.multiplier = 1;
 	}
 
@@ -38,6 +43,8 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 		Event event = events.peekFirst();
 		if(event == null)
 			return;
+
+		notifyView(event);
 
 		if(event.toStringClient() != null) {
             System.out.println(event.toStringClient());
@@ -64,6 +71,12 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 		}
 	}
 
+	public MatchInstance createMatchInstance() {
+		if(viewType == ClientViewType.CLI)
+			return MatchInstanceCLI.instance();
+		else
+			return MatchInstanceGUI.instance();
+	}
 
 	public List<Action> getActions() {
 		return actions;
@@ -71,14 +84,6 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 
 	public LinkedList<Event> getEvents() {
 		return events;
-	}
-
-	public ClientView getView() {
-		return view;
-	}
-
-	public void setView(ClientView view) {
-		this.view = view;
 	}
 
 	public int getOffset() {
@@ -156,4 +161,12 @@ public abstract class ClientHandler extends UnicastRemoteObject {
     public MainBoardController getMainBoardController() {
         return mainBoardController;
     }
+
+    public void notifyView(Event event) {
+    	clientObservable.notifyObserver(event);
+	}
+
+	public void setUnauthorizedId(int unauthorizedId) {
+		this.unauthorizedId = unauthorizedId;
+	}
 }

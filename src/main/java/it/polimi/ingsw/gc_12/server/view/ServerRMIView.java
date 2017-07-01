@@ -113,7 +113,8 @@ public class ServerRMIView extends ServerView implements RMIViewRemote {
 			incrementalId++;
 		}
 		unauthorizedClients.put(incrementalId, client);
-		client.askNewName(incrementalId);
+		EventNewName event = new EventNewName(incrementalId);
+		client.updateClient(event);
 	}
 
 	private void acceptName(String name, ClientViewRemote client) throws IOException, AlreadyBoundException, CloneNotSupportedException {

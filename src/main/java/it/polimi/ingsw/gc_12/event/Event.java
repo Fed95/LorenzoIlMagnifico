@@ -50,17 +50,6 @@ public abstract class Event extends Change {
 		}
 	}
 
-	public void changeMainBoard(ClientHandler client) {
-		Platform.runLater(() -> {
-			MainBoard mainBoard = (MainBoard) client.getView();
-			try {
-				mainBoard.changeScene("FXMLMainBoard", 1980, 1080, true, "Lorenzo il magnifico");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		});
-	}
-
 	public Player getPlayer() {
 		return player;
 	}

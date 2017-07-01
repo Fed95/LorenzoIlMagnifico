@@ -537,4 +537,8 @@ public class MainBoardController extends Observable implements Initializable, Ob
        mapPeriodImageViewTile.put(2, excomTile3);
 
    }
+
+   public ClientHandler getClientHandler() {
+       return clientHandler;
+   }
 }

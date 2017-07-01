@@ -45,15 +45,6 @@ public class ClientRMIView extends ClientHandler implements ClientViewRemote, Se
 	}
 
 	@Override
-	public void askNewName(int unauthorizedId) throws RemoteException {
-		System.out.println("This name is already taken from another active player.");
-		System.out.println("Choose another one.");
-		this.unauthorizedId = unauthorizedId;
-		if(view instanceof MainBoard)
-			((MainBoard) view).errorNameTaken();
-	}
-
-	@Override
 	public void checkConnection() throws RemoteException {}
 
 	private static final long serialVersionUID = 6111979881550001331L;

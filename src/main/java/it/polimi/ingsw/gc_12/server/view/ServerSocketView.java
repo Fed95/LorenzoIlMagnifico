@@ -4,7 +4,7 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.PlayerColor;
 import it.polimi.ingsw.gc_12.action.Action;
-import it.polimi.ingsw.gc_12.client.NewName;
+import it.polimi.ingsw.gc_12.event.EventNewName;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlayerReconnected;
 import it.polimi.ingsw.gc_12.event.EventStartTurn;
@@ -100,12 +100,12 @@ public class ServerSocketView extends ServerView implements Runnable {
 					Action action = match.getActionHandler().getAvailableAction(input);
 					System.out.println("ServerRMIView: " + action.getClass().getSimpleName() + " received from ClientRMI. Notifying observers (Server Controller).");
 					this.notifyObserver(action);
-				} else if (object instanceof NewName) {
-					NewName newName = (NewName) object;
-					name = newName.getName();
+				} else if (object instanceof EventNewName) {
+					EventNewName eventNewName = (EventNewName) object;
+					name = eventNewName.getName();
 					if (server.isNameTaken(name)) {
-						unauthorizedClients.put(newName.getUnauthorizedId(), name);
-						socketOut.writeObject(new NewName(newName.getUnauthorizedId(), name));
+						unauthorizedClients.put(eventNewName.getUnauthorizedId(), name);
+						socketOut.writeObject(new EventNewName(eventNewName.getUnauthorizedId(), name));
 					} else
 						acceptName();
 				}
@@ -129,7 +129,7 @@ public class ServerSocketView extends ServerView implements Runnable {
 			incrementalId++;
 		}
 		unauthorizedClients.put(incrementalId, name);
-		socketOut.writeObject(new NewName(incrementalId, name));
+		socketOut.writeObject(new EventNewName(incrementalId, name));
 	}
 
 	private void acceptName() throws IOException, AlreadyBoundException, CloneNotSupportedException {

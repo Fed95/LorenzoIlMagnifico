@@ -14,6 +14,5 @@ public interface ClientViewRemote extends Remote{
 	void updateClient(Event event) throws RemoteException;
 	String getName() throws RemoteException;
 	void setColor(PlayerColor playerColor) throws IOException;
-	void askNewName(int unauthorizedId) throws RemoteException;
 	void checkConnection() throws RemoteException;
 }

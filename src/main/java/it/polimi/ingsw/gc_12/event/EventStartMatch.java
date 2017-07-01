@@ -26,7 +26,7 @@ public class EventStartMatch extends Event{
 
 	@Override
 	public void executeClientSide(ClientHandler client) {
-		MatchInstance matchInstance = createMatchInstance(client.getView());
+		MatchInstance matchInstance = client.createMatchInstance();
 		matchInstance.init(match);
 		client.setMatch(matchInstance);
 
@@ -34,13 +34,6 @@ public class EventStartMatch extends Event{
             Platform.runLater(() ->client.getMainBoardController().getChat().appendText("[SERVER]: Hi "+match.getPlayers().get(client.getColor()).getName()+" welcome to Lorenzo il Magnifico, your color is "+client.getColor() + "\n"));
         }
     }
-
-	private MatchInstance createMatchInstance(ClientView view) {
-		if(view instanceof ViewCLI)
-			return MatchInstanceCLI.instance();
-		else
-			return MatchInstanceGUI.instance();
-	}
 
 	@Override
 	public String toString() {

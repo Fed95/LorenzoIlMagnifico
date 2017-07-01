@@ -2,6 +2,7 @@ package it.polimi.ingsw.gc_12.client.rmi;
 
 import it.polimi.ingsw.gc_12.client.ClientFactory;
 import it.polimi.ingsw.gc_12.client.ClientSender;
+import it.polimi.ingsw.gc_12.event.EventNewName;
 import it.polimi.ingsw.gc_12.mvc.ClientView;
 import it.polimi.ingsw.gc_12.server.view.RMIViewRemote;
 
@@ -42,17 +43,26 @@ public class ClientRMI implements ClientSender { //Main class of the Clients usi
 		serverStub.receiveAction(input);
 	}
 
+	public void sendName(String name, int unauthorizedId) throws IOException {
+		serverStub.receiveName(name, unauthorizedId);
+	}
+
 	public void setServerStub(RMIViewRemote serverStub) {
 		this.serverStub = serverStub;
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
-		if(arg instanceof Integer)
-			try {
+		try {
+			if(arg instanceof Integer) {
 				sendAction((Integer) arg);
-			} catch (RemoteException e) {
-				e.printStackTrace();
 			}
+			else if (arg instanceof EventNewName) {
+				EventNewName event = (EventNewName) arg;
+				sendName(event.getName(), event.getUnauthorizedId());
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

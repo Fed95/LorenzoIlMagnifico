@@ -41,12 +41,7 @@ public class EventPlayerReconnected extends Event {
 				}
 			}
 
-			ClientView view = client.getView();
-			if(view instanceof MainBoard) {
-				changeMainBoard(client);
-			}
-
-			MatchInstance matchInstance = createMatchInstance(client.getView());
+			MatchInstance matchInstance = client.createMatchInstance();
 			matchInstance.init(match);
 			client.setMatch(matchInstance);
 			client.setColor(player.getColor());

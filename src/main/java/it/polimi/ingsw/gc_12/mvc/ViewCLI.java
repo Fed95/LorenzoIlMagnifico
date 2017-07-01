@@ -3,11 +3,10 @@ package it.polimi.ingsw.gc_12.mvc;
 import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.client.ClientFactory;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
-import it.polimi.ingsw.gc_12.client.NewName;
+import it.polimi.ingsw.gc_12.client.ClientViewType;
+import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.client.rmi.ClientRMI;
 import it.polimi.ingsw.gc_12.client.socket.ClientSocket;
-import it.polimi.ingsw.gc_12.event.Event;
-import it.polimi.ingsw.gc_12.event.EventCouncilPrivilegeReceived;
 import it.polimi.ingsw.gc_12.resource.CouncilPrivilege;
 
 import java.io.IOException;
@@ -23,6 +22,7 @@ public class ViewCLI extends Observable implements ClientView {
 	private Scanner in;
 	private ClientHandler clientHandler;
 	private boolean ready;
+	private final ClientViewType type = ClientViewType.CLI;
 
 	public ViewCLI() {
 		this.in = new Scanner(System.in);
@@ -131,7 +131,7 @@ public class ViewCLI extends Observable implements ClientView {
 	private boolean checkAuthorization(String inputLine) throws IOException {
 		if(!clientHandler.isAuthorized()) {
 			setChanged();
-			notifyObservers(new NewName(clientHandler.getUnauthorizedId(), inputLine));
+			notifyObservers(new EventNewName(clientHandler.getUnauthorizedId(), inputLine));
 			return false;
 		}
 		return true;
@@ -158,5 +158,27 @@ public class ViewCLI extends Observable implements ClientView {
 	@Override
 	public boolean isReady() {
 		return ready;
+	}
+
+	@Override
+	public void update(Event event) {
+		if(event instanceof EventMatchInitialized) {
+			if(ready) {
+				setChanged();
+				notifyObservers(0);
+			}
+			else
+				clientHandler.setStarted(true);
+		}
+	}
+
+	@Override
+	public void update() {
+
+	}
+
+	@Override
+	public ClientViewType getType() {
+		return type;
 	}
 }

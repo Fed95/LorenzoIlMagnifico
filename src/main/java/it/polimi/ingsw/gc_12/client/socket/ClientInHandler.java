@@ -2,7 +2,7 @@ package it.polimi.ingsw.gc_12.client.socket;
 
 import it.polimi.ingsw.gc_12.PlayerColor;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
-import it.polimi.ingsw.gc_12.client.NewName;
+import it.polimi.ingsw.gc_12.event.EventNewName;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventExcluded;
 import it.polimi.ingsw.gc_12.java_fx.MainBoard;
@@ -44,13 +44,6 @@ public class ClientInHandler extends ClientHandler implements Runnable {
 				else if(object instanceof PlayerColor) {
 					color = (PlayerColor) object;
 					System.out.println("Your color is "+color);
-				}
-				else if(object instanceof NewName) {
-					System.out.println("This name is already taken from another active player.");
-					System.out.println("Choose another one.");
-					this.unauthorizedId = ((NewName) object).getUnauthorizedId();
-					if(view instanceof MainBoard)
-						((MainBoard) view).errorNameTaken();
 				}
 			} catch (ClassNotFoundException | IOException e) {
 				// TODO Auto-generated catch block

@@ -1,13 +1,11 @@
 package it.polimi.ingsw.gc_12.client.socket;
 
-import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.ClientSender;
-import it.polimi.ingsw.gc_12.client.NewName;
+import it.polimi.ingsw.gc_12.event.EventNewName;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Observable;
-import java.util.Scanner;
 
 
 public class ClientOutHandler implements Runnable, ClientSender {
@@ -34,10 +32,17 @@ public class ClientOutHandler implements Runnable, ClientSender {
 		sendObject(input);
 	}
 
+	private void sendName(EventNewName name) {
+		sendObject(name);
+	}
+
 	@Override
 	public void update(Observable o, Object arg) {
 		if(arg instanceof Integer)
 			sendAction((Integer) arg);
+		else if (arg instanceof EventNewName) {
+			sendName((EventNewName) arg);
+		}
 	}
 
 	private void sendObject(Object object) {

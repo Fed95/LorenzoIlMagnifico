@@ -12,23 +12,7 @@ import java.util.List;
 public class EventMatchInitialized extends Event{
 
 	@Override
-	public void executeClientSide(ClientHandler client) {
-		if(client.getView().isReady()) {
-			try {
-				ClientFactory.getClientSender().sendAction(0);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		else
-			client.setStarted(true);
-
-		ClientView view = client.getView();
-		if(view instanceof MainBoard) {
-			changeMainBoard(client);
-		}
-
-	}
+	public void executeClientSide(ClientHandler client) {}
 
 	@Override
 	public String toString() {
