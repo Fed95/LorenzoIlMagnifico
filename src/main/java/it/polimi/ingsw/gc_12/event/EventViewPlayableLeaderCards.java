@@ -18,11 +18,6 @@ public class EventViewPlayableLeaderCards extends Event {
     }
 
     @Override
-    public List<Object> getAttributes() {
-        return null;
-    }
-
-    @Override
     public void executeClientSide(ClientHandler client) {
         if(client.isMyTurn()) {
             StringBuilder sb = new StringBuilder();

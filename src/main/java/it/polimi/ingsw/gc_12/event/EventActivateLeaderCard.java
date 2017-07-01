@@ -44,14 +44,6 @@ public class EventActivateLeaderCard extends Event {
     }
 
     @Override
-    public List<Object> getAttributes() {
-        List<Object> attributes = new ArrayList<>();
-        attributes.add(cardId);
-        attributes.add(card);
-        return attributes;
-    }
-
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(System.getProperty("line.separator"));

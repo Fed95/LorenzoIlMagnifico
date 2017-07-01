@@ -29,9 +29,4 @@ public class EventRequestStatistics extends Event {
         return "EventRequestStatistics";
     }
 
-    @Override
-    public List<Object> getAttributes() {
-        return null;
-    }
-
 }

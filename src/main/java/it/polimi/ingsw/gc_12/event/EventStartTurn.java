@@ -30,11 +30,6 @@ public class EventStartTurn extends Event{
 	}
 
 	@Override
-	public List<Object> getAttributes() {
-		return new ArrayList<>();
-	}
-
-	@Override
 	public void executeClientSide(ClientHandler client) {
 		client.getMatch().setTurn(turn);
 		boolean myTurn = client.getColor().equals(player.getColor());

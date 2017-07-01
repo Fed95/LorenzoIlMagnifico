@@ -25,11 +25,6 @@ public class EventStartMatch extends Event{
 	}
 
 	@Override
-	public List<Object> getAttributes() {
-		return new ArrayList<>();
-	}
-
-	@Override
 	public void executeClientSide(ClientHandler client) {
 		MatchInstance matchInstance = createMatchInstance(client.getView());
 		matchInstance.init(match);

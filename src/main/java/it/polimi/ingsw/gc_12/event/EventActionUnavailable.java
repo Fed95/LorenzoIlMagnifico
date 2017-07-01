@@ -18,11 +18,6 @@ public class EventActionUnavailable extends Event {
 	}
 
 	@Override
-	public List<Object> getAttributes() {
-		return new ArrayList<>();
-	}
-
-	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append(System.getProperty("line.separator"));

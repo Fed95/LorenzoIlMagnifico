@@ -20,11 +20,6 @@ public class EventReceiveResource extends Event {
         this.resource = resource;
     }
 
-    @Override
-    public List<Object> getAttributes() {
-        return null;
-    }
-
     public Resource getResource() {
         return resource;
     }

@@ -63,14 +63,6 @@ public class EventPlaceFamilyMember extends Event{
     }
 
     @Override
-    public List<Object> getAttributes() {
-        List<Object> attributes = new ArrayList<>();
-        attributes.addAll(occupiables);
-        attributes.add(familyMember);
-        return attributes;
-    }
-
-    @Override
     public void executeClientSide(ClientHandler client) {
         if(client.isMyTurn()) {
             client.getMatch().placeFamilyMember(getOccupiable(), familyMember);

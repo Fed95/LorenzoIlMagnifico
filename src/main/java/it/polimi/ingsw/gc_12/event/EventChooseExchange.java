@@ -34,11 +34,6 @@ public class EventChooseExchange extends Event {
     }
 
     @Override
-    public List<Object> getAttributes() {
-        return null;
-    }
-
-    @Override
     public String toString() {
         return "Choose the exchange you would like to activate";
     }

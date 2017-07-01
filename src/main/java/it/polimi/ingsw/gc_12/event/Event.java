@@ -92,7 +92,6 @@ public abstract class Event extends Change {
         return null;
     }
 
-	public abstract List<Object> getAttributes();
 	public abstract String toString();
 
 }

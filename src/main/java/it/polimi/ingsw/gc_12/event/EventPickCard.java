@@ -55,14 +55,6 @@ public class EventPickCard extends Event {
         return cardType;
     }
 
-    @Override
-    public List<Object> getAttributes() {
-        List<Object> attributes = new ArrayList<>();
-        attributes.add(cardID);
-        attributes.add(card);
-        return attributes;
-    }
-
     public int getCardID() {
         return cardID;
     }

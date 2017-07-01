@@ -25,13 +25,6 @@ public class EventSpendResource extends Event {
         this.resourceType = resource.getType();
         this.value = resource.getValue();
     }
-    @Override
-    public List<Object> getAttributes() {
-        List<Object> attributes = new ArrayList<>();
-        attributes.add(resourceType);
-        attributes.add(value);
-        return attributes;
-    }
 
     @Override
     public boolean equals(Object obj) {

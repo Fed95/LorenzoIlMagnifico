@@ -7,9 +7,6 @@ import it.polimi.ingsw.gc_12.resource.ResourceExchange;
 
 import java.util.List;
 
-/**
- * Created by feder on 2017-06-11.
- */
 public class EventChooseCost extends Event {
 
     private ResourceExchange militaryExchange;
@@ -24,11 +21,6 @@ public class EventChooseCost extends Event {
     public EventChooseCost(ResourceExchange militaryExchange, List<Resource> requirements) {
         this.militaryExchange = militaryExchange;
         this.requirements = requirements;
-    }
-
-    @Override
-    public List<Object> getAttributes() {
-        return null;
     }
 
     @Override

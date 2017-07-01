@@ -25,11 +25,6 @@ public class EventEndMatch extends Event {
     }
 
     @Override
-    public List<Object> getAttributes() {
-        return new ArrayList<Object>();
-    }
-
-    @Override
     public String toString() {
         return null;
     }
