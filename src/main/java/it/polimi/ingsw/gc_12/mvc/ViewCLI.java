@@ -161,7 +161,7 @@ public class ViewCLI extends Observable implements ClientView {
 	}
 
 	@Override
-	public void update(Event event) {
+	public void update(EventView event) {
 		if(event instanceof EventMatchInitialized) {
 			if(ready) {
 				setChanged();
@@ -181,4 +181,5 @@ public class ViewCLI extends Observable implements ClientView {
 	public ClientViewType getType() {
 		return type;
 	}
+
 }

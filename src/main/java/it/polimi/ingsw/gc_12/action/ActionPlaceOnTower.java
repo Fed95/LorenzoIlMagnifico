@@ -118,4 +118,19 @@ public class ActionPlaceOnTower extends ActionPlace {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ActionPlaceOnTower)) return false;
+
+        ActionPlaceOnTower that = (ActionPlaceOnTower) o;
+
+        return towerFloor.equals(that.towerFloor);
+    }
+
+    @Override
+    public int hashCode() {
+        return towerFloor.hashCode();
+    }
 }

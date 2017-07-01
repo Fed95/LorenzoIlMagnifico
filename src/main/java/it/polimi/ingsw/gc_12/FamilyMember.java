@@ -119,8 +119,8 @@ public class FamilyMember implements Observer, Serializable {
 
 		// The attributes of two family members are the same if at least one is null or they have the same value
 		// Two family members are equals if they have the same color and the same owner
-		if(this.getColor() == null || that.getColor() == null || this.getColor() == that.getColor()) {
-			if(this.getOwner() == null || that.getOwner() == null || this.getOwner() == that.getOwner())
+		if(this.getColor() == null || that.getColor() == null || this.getColor().equals(that.getColor())) {
+			if(this.getOwner() == null || that.getOwner() == null || this.getOwner().equals(that.getOwner()))
 				return true;
 		}
 		return false;

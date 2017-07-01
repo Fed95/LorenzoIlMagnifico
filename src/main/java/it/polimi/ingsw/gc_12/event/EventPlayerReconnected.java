@@ -10,10 +10,12 @@ import it.polimi.ingsw.gc_12.java_fx.MainBoard;
 import it.polimi.ingsw.gc_12.mvc.ClientView;
 import it.polimi.ingsw.gc_12.mvc.ViewCLI;
 import it.polimi.ingsw.gc_12.server.view.RMIViewRemote;
+import javafx.application.Platform;
 
+import java.io.IOException;
 import java.util.List;
 
-public class EventPlayerReconnected extends Event {
+public class EventPlayerReconnected extends Event implements EventView{
 	private ClientViewRemote clientViewRemote;
 	private RMIViewRemote serverRMI;
 	private Match match;
@@ -74,5 +76,16 @@ public class EventPlayerReconnected extends Event {
 	@Override
 	public String toString() {
 		return null;
+	}
+
+	@Override
+	public void executeViewSide(MainBoard view) {
+		Platform.runLater(() -> {
+			try {
+				view.changeScene("FXMLMainBoard", 1980, 1080, true, "Lorenzo il magnifico");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		});
 	}
 }

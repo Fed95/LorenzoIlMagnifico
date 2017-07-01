@@ -5,15 +5,18 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.action.*;
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
+import it.polimi.ingsw.gc_12.java_fx.MainBoard;
 import it.polimi.ingsw.gc_12.occupiables.Tower;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 
-public class EventTowerChosen extends Event {
+public class EventTowerChosen extends Event implements EventView{
 
     private Tower tower;
     private FamilyMember familyMember;
@@ -47,5 +50,12 @@ public class EventTowerChosen extends Event {
     @Override
     public String toString() {
         return player.getName() + " is viewing the " + tower.getType() + " tower.";
+    }
+
+    @Override
+    public void executeViewSide(MainBoard view) {
+        Platform.runLater(() -> {
+            view.getControllerMainBoard().sendAction();
+        });
     }
 }

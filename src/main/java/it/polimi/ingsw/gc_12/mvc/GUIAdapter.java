@@ -1,18 +1,31 @@
 package it.polimi.ingsw.gc_12.mvc;
 
+import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.client.ClientSender;
+import it.polimi.ingsw.gc_12.event.Event;
+import it.polimi.ingsw.gc_12.event.EventMarketChosen;
+import it.polimi.ingsw.gc_12.event.EventTowerChosen;
+import it.polimi.ingsw.gc_12.event.EventWorkplaceChosen;
+import it.polimi.ingsw.gc_12.java_fx.MainBoard;
+import it.polimi.ingsw.gc_12.java_fx.MainBoardController;
 
-import java.io.IOException;
+import java.util.Observer;
+import java.util.Observable;
 
-public class GUIAdapter {
-	private ClientSender client;
+public class GUIAdapter implements Observer {
 
+	private Action action;
 
-	public GUIAdapter(ClientSender client) {
-		this.client = client;
+	public GUIAdapter() {}
+
+	public void handleEvent(Event event, MainBoard view) {
+		if(event instanceof EventTowerChosen || event instanceof EventMarketChosen || event instanceof EventWorkplaceChosen)
+			view.getControllerMainBoard().notifyObservers(action);
 	}
 
-	public void sendAction(int input) throws IOException {
-		client.sendAction(input);
+	@Override
+	public void update(Observable o, Object arg) {
+		if(arg instanceof Action)
+			action = (Action)arg;
 	}
 }

@@ -7,6 +7,7 @@ import it.polimi.ingsw.gc_12.client.socket.ClientOutHandler;
 import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.java_fx.MainBoardController;
 import it.polimi.ingsw.gc_12.mvc.ClientView;
+import it.polimi.ingsw.gc_12.mvc.GUIAdapter;
 import it.polimi.ingsw.gc_12.mvc.ViewCLI;
 import javafx.application.Platform;
 
@@ -36,6 +37,10 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 		this.viewType = view.getType();
 		this.clientObservable = new ClientObservable();
 		clientObservable.registerObserver(view);
+		if(viewType == ClientViewType.GUI) {
+			GUIAdapter guiAdapter = new GUIAdapter();
+
+		}
 		this.multiplier = 1;
 	}
 
@@ -44,7 +49,8 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 		if(event == null)
 			return;
 
-		notifyView(event);
+		if(event instanceof EventView)
+			notifyView((EventView) event);
 
 		if(event.toStringClient() != null) {
             System.out.println(event.toStringClient());
@@ -162,7 +168,7 @@ public abstract class ClientHandler extends UnicastRemoteObject {
         return mainBoardController;
     }
 
-    public void notifyView(Event event) {
+    public void notifyView(EventView event) {
     	clientObservable.notifyObserver(event);
 	}
 

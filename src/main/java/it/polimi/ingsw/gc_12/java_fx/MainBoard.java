@@ -3,11 +3,9 @@ package it.polimi.ingsw.gc_12.java_fx;
 import it.polimi.ingsw.gc_12.MatchInstanceGUI;
 import it.polimi.ingsw.gc_12.client.ClientFactory;
 import it.polimi.ingsw.gc_12.client.ClientViewType;
-import it.polimi.ingsw.gc_12.event.Event;
-import it.polimi.ingsw.gc_12.event.EventMatchInitialized;
-import it.polimi.ingsw.gc_12.event.EventNewName;
-import it.polimi.ingsw.gc_12.event.EventPlayerReconnected;
+import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.mvc.ClientView;
+import it.polimi.ingsw.gc_12.mvc.GUIAdapter;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -24,6 +22,7 @@ public class MainBoard extends Application implements ClientView {
 	private final ClientViewType type = ClientViewType.GUI;
 
 	public void start(Stage primaryStage) throws Exception{
+		GUIAdapter guiAdapter = new GUIAdapter();
 	    this.primaryStage = primaryStage;
 		FXMLLoader loader = new FXMLLoader();
 		//loader.setLocation(MainBoard.class.getResource("/FXML/FXMLMainBoard.fxml"));
@@ -96,32 +95,11 @@ public class MainBoard extends Application implements ClientView {
 	}
 
 	@Override
-	public void update(Event event) {
-		try {
-			if(event instanceof EventNewName) {
-				controller.showErrorNameTaken();
-			}
-			else if(event instanceof EventMatchInitialized) {
-				if(ready) {
-					controllerMainBoard.notifyObservers(0);
-				}
-				else
-					controllerMainBoard.getClientHandler().setStarted(true);
+	public void update(EventView event) {
+		event.executeViewSide(this);
 
-
-					changeScene("FXMLMainBoard", 1980, 1080, true, "Lorenzo il magnifico");
-
-			}
-			else if(event instanceof EventPlayerReconnected) {
-				changeScene("FXMLMainBoard", 1980, 1080, true, "Lorenzo il magnifico");
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	@Override
-	public void update() {
-
-	}
+	public void update() {}
 }

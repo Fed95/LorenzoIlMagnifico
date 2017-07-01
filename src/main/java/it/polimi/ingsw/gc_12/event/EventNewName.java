@@ -1,8 +1,10 @@
 package it.polimi.ingsw.gc_12.event;
 
 import it.polimi.ingsw.gc_12.client.ClientHandler;
+import it.polimi.ingsw.gc_12.java_fx.MainBoard;
+import it.polimi.ingsw.gc_12.mvc.ClientView;
 
-public class EventNewName extends Event{
+public class EventNewName extends Event implements EventView{
 
 	private int unauthorizedId;
 	private String name;
@@ -38,5 +40,10 @@ public class EventNewName extends Event{
 	@Override
 	public String toString() {
 		return null;
+	}
+
+	@Override
+	public void executeViewSide(MainBoard view) {
+		view.getControllerMainBoard().notifyObservers(0);
 	}
 }
