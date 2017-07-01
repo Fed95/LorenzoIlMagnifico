@@ -10,9 +10,6 @@ import it.polimi.ingsw.gc_12.occupiables.SpaceMarket;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by feder on 2017-06-18.
- */
 public class EventMarketChosen extends Event {
 
     private FamilyMember familyMember;
@@ -35,11 +32,6 @@ public class EventMarketChosen extends Event {
 
     public FamilyMember getFamilyMember() {
         return familyMember;
-    }
-
-    @Override
-    public List<Object> getAttributes() {
-        return null;
     }
 
     @Override

@@ -17,13 +17,6 @@ public class EventSupportChurch extends Event {
     }
 
     @Override
-    public List<Object> getAttributes() {
-        List<Object> attributes = new ArrayList<>();
-        attributes.add(player.getCards());
-        return attributes;
-    }
-
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(System.getProperty("line.separator"));

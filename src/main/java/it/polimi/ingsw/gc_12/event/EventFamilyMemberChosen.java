@@ -66,13 +66,6 @@ public class EventFamilyMemberChosen extends Event {
 		actions.add(new DiscardAction(player));
 	}
 
-	@Override
-	public List<Object> getAttributes() {
-		List<Object> attributes = new ArrayList<>();
-		attributes.add(familyMember);
-		return attributes;
-	}
-
 	public FamilyMember getFamilyMember() {
 		return familyMember;
 	}
