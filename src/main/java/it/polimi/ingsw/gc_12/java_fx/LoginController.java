@@ -1,23 +1,19 @@
 package it.polimi.ingsw.gc_12.java_fx;
 
-import it.polimi.ingsw.gc_12.client.ClientFactory;
 import it.polimi.ingsw.gc_12.client.rmi.ClientRMI;
 import it.polimi.ingsw.gc_12.client.socket.ClientSocket;
-import it.polimi.ingsw.gc_12.mvc.View;
+import it.polimi.ingsw.gc_12.mvc.ClientView;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -35,7 +31,7 @@ public class LoginController implements Initializable {
     @FXML private Button playButton;
     @FXML private Pane mainPane;
     private ObservableList<String> connectionList = FXCollections.observableArrayList("RMI","SOCKET");
-    private View mainBoard;
+    private ClientView mainBoard;
 
     @FXML void startGame(MouseEvent event) throws NotBoundException, AlreadyBoundException, CloneNotSupportedException, IOException {
         String name = nameField.getText();

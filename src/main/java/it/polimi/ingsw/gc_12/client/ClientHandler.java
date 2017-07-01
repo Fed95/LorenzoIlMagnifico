@@ -5,8 +5,7 @@ import it.polimi.ingsw.gc_12.*;
 import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.java_fx.MainBoardController;
-import it.polimi.ingsw.gc_12.mvc.GUIAdapter;
-import it.polimi.ingsw.gc_12.mvc.View;
+import it.polimi.ingsw.gc_12.mvc.ClientView;
 import javafx.application.Platform;
 
 import java.rmi.RemoteException;
@@ -17,7 +16,7 @@ import java.util.List;
 
 public abstract class ClientHandler extends UnicastRemoteObject {
 	protected MatchInstance match;
-	protected View view;
+	protected ClientView view;
 	protected List<Action> actions = new ArrayList<>();
 	protected LinkedList<Event> events = new LinkedList<>();
 	protected int offset;
@@ -29,7 +28,7 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 	private boolean started;
 	private MainBoardController mainBoardController;
 
-	protected ClientHandler(View view) throws RemoteException {
+	protected ClientHandler(ClientView view) throws RemoteException {
 		super();
 		this.view = view;
 		this.multiplier = 1;
@@ -74,11 +73,11 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 		return events;
 	}
 
-	public View getView() {
+	public ClientView getView() {
 		return view;
 	}
 
-	public void setView(View view) {
+	public void setView(ClientView view) {
 		this.view = view;
 	}
 

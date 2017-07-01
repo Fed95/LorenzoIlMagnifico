@@ -5,27 +5,21 @@ import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.PlayerColor;
 import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.client.NewName;
-import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventPlayerReconnected;
-import it.polimi.ingsw.gc_12.event.EventStartRound;
 import it.polimi.ingsw.gc_12.event.EventStartTurn;
 import it.polimi.ingsw.gc_12.server.Server;
-import it.polimi.ingsw.gc_12.server.controller.Controller;
-import it.polimi.ingsw.gc_12.server.observer.Observer;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.rmi.AlreadyBoundException;
-import java.rmi.RemoteException;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
-public class ServerSocketView extends View implements Runnable {
+public class ServerSocketView extends ServerView implements Runnable {
 
 	private Socket socket;
 	private Server server;

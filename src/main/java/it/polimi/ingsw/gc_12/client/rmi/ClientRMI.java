@@ -1,11 +1,8 @@
 package it.polimi.ingsw.gc_12.client.rmi;
 
 import it.polimi.ingsw.gc_12.client.ClientFactory;
-import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.ClientSender;
-import it.polimi.ingsw.gc_12.java_fx.MainBoard;
-import it.polimi.ingsw.gc_12.mvc.View;
-import it.polimi.ingsw.gc_12.mvc.ViewCLI;
+import it.polimi.ingsw.gc_12.mvc.ClientView;
 import it.polimi.ingsw.gc_12.server.view.RMIViewRemote;
 
 import java.io.IOException;
@@ -15,7 +12,6 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Observable;
-import java.util.Scanner;
 
 public class ClientRMI implements ClientSender { //Main class of the Clients using RMI
 
@@ -26,7 +22,7 @@ public class ClientRMI implements ClientSender { //Main class of the Clients usi
 
 	private RMIViewRemote serverStub;
 
-	public void start(View view, String name) throws IOException, NotBoundException, AlreadyBoundException, CloneNotSupportedException {
+	public void start(ClientView view, String name) throws IOException, NotBoundException, AlreadyBoundException, CloneNotSupportedException {
 		//Get the remote registry
 		Registry registry = LocateRegistry.getRegistry(HOST, PORT);
 

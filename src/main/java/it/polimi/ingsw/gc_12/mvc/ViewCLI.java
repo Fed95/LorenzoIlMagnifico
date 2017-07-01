@@ -3,7 +3,6 @@ package it.polimi.ingsw.gc_12.mvc;
 import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.client.ClientFactory;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
-import it.polimi.ingsw.gc_12.client.ClientSender;
 import it.polimi.ingsw.gc_12.client.NewName;
 import it.polimi.ingsw.gc_12.client.rmi.ClientRMI;
 import it.polimi.ingsw.gc_12.client.socket.ClientSocket;
@@ -19,7 +18,7 @@ import java.util.NoSuchElementException;
 import java.util.Observable;
 import java.util.Scanner;
 
-public class ViewCLI extends Observable implements View{
+public class ViewCLI extends Observable implements ClientView {
 
 	private Scanner in;
 	private ClientHandler clientHandler;

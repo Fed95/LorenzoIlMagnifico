@@ -1,9 +1,7 @@
 package it.polimi.ingsw.gc_12.java_fx;
 
 import it.polimi.ingsw.gc_12.MatchInstanceGUI;
-import it.polimi.ingsw.gc_12.client.ClientHandler;
-import it.polimi.ingsw.gc_12.client.ClientSender;
-import it.polimi.ingsw.gc_12.mvc.View;
+import it.polimi.ingsw.gc_12.mvc.ClientView;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,7 +10,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MainBoard extends Application implements View{
+public class MainBoard extends Application implements ClientView {
 	private Stage primaryStage;
 	private LoginController controller;
 	private MainBoardController controllerMainBoard;

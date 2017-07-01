@@ -1,14 +1,12 @@
 package it.polimi.ingsw.gc_12.client.socket;
 
 import it.polimi.ingsw.gc_12.client.ClientFactory;
-import it.polimi.ingsw.gc_12.mvc.View;
+import it.polimi.ingsw.gc_12.mvc.ClientView;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -18,7 +16,7 @@ public class ClientSocket {
 	private final static int PORT = 29999;
 	private final static String IP = "127.0.0.1";
 
-	public void startClient(View view, String name) throws IOException {
+	public void startClient(ClientView view, String name) throws IOException {
 
 		Socket socket = new Socket(IP, PORT);
 

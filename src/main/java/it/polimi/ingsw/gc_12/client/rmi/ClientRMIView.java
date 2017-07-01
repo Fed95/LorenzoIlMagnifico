@@ -1,21 +1,12 @@
 package it.polimi.ingsw.gc_12.client.rmi;
 
-import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.PlayerColor;
-import it.polimi.ingsw.gc_12.client.ClientFactory;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
-import it.polimi.ingsw.gc_12.client.ClientSender;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventExcluded;
-import it.polimi.ingsw.gc_12.event.EventPlayerReconnected;
-import it.polimi.ingsw.gc_12.event.EventStartTurn;
 import it.polimi.ingsw.gc_12.java_fx.MainBoard;
-import it.polimi.ingsw.gc_12.java_fx.MainBoardController;
-import it.polimi.ingsw.gc_12.mvc.View;
-import it.polimi.ingsw.gc_12.server.view.RMIViewRemote;
-import sun.applet.Main;
+import it.polimi.ingsw.gc_12.mvc.ClientView;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.LinkedList;
@@ -24,7 +15,7 @@ public class ClientRMIView extends ClientHandler implements ClientViewRemote, Se
 
 	private String name;
 
-	protected ClientRMIView(String name, View view) throws RemoteException {
+	protected ClientRMIView(String name, ClientView view) throws RemoteException {
 		super(view);
 		this.name = name;
 	}

@@ -4,16 +4,13 @@ import it.polimi.ingsw.gc_12.Config;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.PlayerColor;
-import it.polimi.ingsw.gc_12.client.rmi.ClientRMIView;
 import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
-import it.polimi.ingsw.gc_12.client.socket.ClientInHandler;
 import it.polimi.ingsw.gc_12.event.EventMatchInitialized;
 import it.polimi.ingsw.gc_12.json.loader.LoaderConfig;
 import it.polimi.ingsw.gc_12.server.controller.Controller;
 import it.polimi.ingsw.gc_12.server.view.RMIViewRemote;
 import it.polimi.ingsw.gc_12.server.view.ServerRMIView;
 import it.polimi.ingsw.gc_12.server.view.ServerSocketView;
-import it.polimi.ingsw.gc_12.server.view.View;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -67,7 +64,7 @@ public class Server {
 		registry = LocateRegistry.createRegistry(RMI_PORT);
 		System.out.println("Constructing the RMI registry");
 
-		// Create the RMI View, that will be shared with the client
+		// Create the RMI ServerView, that will be shared with the client
 		ServerRMIView serverRmiView = new ServerRMIView(this, match, playerColors);
 
 		//controller observes this view

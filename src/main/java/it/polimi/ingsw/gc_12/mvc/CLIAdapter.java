@@ -28,7 +28,7 @@ public class CLIAdapter {
 				ActionPassTurn action = new ActionPassTurn(view.getCurrentPlayer());
 				client.sendAction(action);
 				break;
-			case 1: // View statistics
+			case 1: // ServerView statistics
 				//controller.viewStatistics();
 				break;
 			case 0: // Place Family Member

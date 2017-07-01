@@ -14,7 +14,7 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public abstract class View extends Observable<Action> implements Observer<Event> {
+public abstract class ServerView extends Observable<Action> implements Observer<Event> {
 
 	protected Timer timer = new Timer();
 	public final int TIMEOUT_ACTION;
@@ -23,7 +23,7 @@ public abstract class View extends Observable<Action> implements Observer<Event>
 	protected int incrementalId = 1;
 
 
-	public View(Match match) {
+	public ServerView(Match match) {
 		this.TIMEOUT_ACTION = new LoaderConfig().get(match).getTimeoutAction();
 		this.match = match;
 		i = 0;

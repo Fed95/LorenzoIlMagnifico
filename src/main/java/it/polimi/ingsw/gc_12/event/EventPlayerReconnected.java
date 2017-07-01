@@ -6,15 +6,11 @@ import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.ClientSender;
 import it.polimi.ingsw.gc_12.client.rmi.ClientRMI;
 import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
-import it.polimi.ingsw.gc_12.client.socket.ClientInHandler;
 import it.polimi.ingsw.gc_12.java_fx.MainBoard;
-import it.polimi.ingsw.gc_12.mvc.View;
+import it.polimi.ingsw.gc_12.mvc.ClientView;
 import it.polimi.ingsw.gc_12.mvc.ViewCLI;
 import it.polimi.ingsw.gc_12.server.view.RMIViewRemote;
-import it.polimi.ingsw.gc_12.server.view.ServerRMIView;
-import javafx.application.Platform;
 
-import java.io.IOException;
 import java.util.List;
 
 public class EventPlayerReconnected extends Event {
@@ -45,7 +41,7 @@ public class EventPlayerReconnected extends Event {
 				}
 			}
 
-			View view = client.getView();
+			ClientView view = client.getView();
 			if(view instanceof MainBoard) {
 				changeMainBoard(client);
 			}
@@ -60,7 +56,7 @@ public class EventPlayerReconnected extends Event {
 		}
 	}
 
-	private MatchInstance createMatchInstance(View view) {
+	private MatchInstance createMatchInstance(ClientView view) {
 		if(view instanceof ViewCLI)
 			return MatchInstanceCLI.instance();
 		else

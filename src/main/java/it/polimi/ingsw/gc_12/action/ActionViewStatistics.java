@@ -29,7 +29,7 @@ public class ActionViewStatistics extends Action {
 
     @Override
     public String toString() {
-        return "View statistics of: " + chosenPlayer.getName();
+        return "ServerView statistics of: " + chosenPlayer.getName();
 
     }
 }

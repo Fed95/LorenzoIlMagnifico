@@ -1,13 +1,12 @@
 package it.polimi.ingsw.gc_12.client.socket;
 
-import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.PlayerColor;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.NewName;
 import it.polimi.ingsw.gc_12.event.Event;
 import it.polimi.ingsw.gc_12.event.EventExcluded;
 import it.polimi.ingsw.gc_12.java_fx.MainBoard;
-import it.polimi.ingsw.gc_12.mvc.View;
+import it.polimi.ingsw.gc_12.mvc.ClientView;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -20,7 +19,7 @@ public class ClientInHandler extends ClientHandler implements Runnable {
 	private ObjectInputStream socketIn;
 	private ClientOutHandler clientOut;
 	
-	public ClientInHandler(ObjectInputStream socketIn, ClientOutHandler clientOut, View view) throws RemoteException {
+	public ClientInHandler(ObjectInputStream socketIn, ClientOutHandler clientOut, ClientView view) throws RemoteException {
 		super(view);
 		this.socketIn = socketIn;
 		this.clientOut = clientOut; // TODO: remove it?

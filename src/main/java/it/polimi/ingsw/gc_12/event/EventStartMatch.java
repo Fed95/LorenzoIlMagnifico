@@ -5,8 +5,7 @@ import it.polimi.ingsw.gc_12.MatchInstance;
 import it.polimi.ingsw.gc_12.MatchInstanceCLI;
 import it.polimi.ingsw.gc_12.MatchInstanceGUI;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
-import it.polimi.ingsw.gc_12.effect.EffectProvider;
-import it.polimi.ingsw.gc_12.mvc.View;
+import it.polimi.ingsw.gc_12.mvc.ClientView;
 import it.polimi.ingsw.gc_12.mvc.ViewCLI;
 import javafx.application.Platform;
 
@@ -41,7 +40,7 @@ public class EventStartMatch extends Event{
         }
     }
 
-	private MatchInstance createMatchInstance(View view) {
+	private MatchInstance createMatchInstance(ClientView view) {
 		if(view instanceof ViewCLI)
 			return MatchInstanceCLI.instance();
 		else
