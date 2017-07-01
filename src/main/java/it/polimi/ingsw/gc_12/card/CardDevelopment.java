@@ -1,6 +1,7 @@
 package it.polimi.ingsw.gc_12.card;
 
 import it.polimi.ingsw.gc_12.effect.Effect;
+import it.polimi.ingsw.gc_12.event.EventPickCard;
 import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 
@@ -29,6 +30,15 @@ public abstract class CardDevelopment extends Card{
 
 	public CardType getType(){
 		return cardType;
+	}
+
+	public List<Effect> getImmediateEffects() {
+		List<Effect> immediateeffects = new ArrayList<>();
+		for(Effect effect : effects){
+			if (effect.getEvent() instanceof EventPickCard)
+				effects.add(effect);
+		}
+		return immediateeffects;
 	}
 
 

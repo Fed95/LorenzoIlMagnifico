@@ -1,7 +1,6 @@
 package it.polimi.ingsw.gc_12.event;
 
 import it.polimi.ingsw.gc_12.Match;
-import it.polimi.ingsw.gc_12.MatchInstance;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.action.ActionHandler;
@@ -26,7 +25,7 @@ public abstract class Event extends Change {
 		if(player != null) {
 			this.player = player;
 			effectProviders.add(player.getPersonalBoard().getBonusTile());
-			effectProviders.addAll(player.getPersonalBoard().getActiveLeaderCards());
+			effectProviders.addAll(player.getPersonalBoard().getUsefulLeaderCards());
 			effectProviders.addAll(player.getCards());
 			effectProviders.addAll(player.getExcommunications());
 		}else{

@@ -6683,6 +6683,7 @@
     "id": 96,
     "type": "LeaderCard",
     "name": "Francesco Sfroza",
+    "permanent": false,
     "requirements": [],
     "cardRequirements": {
       "VENTURE": 5
@@ -6691,8 +6692,8 @@
       {
         "type": "EffectFreeAction",
         "event": {
-          "eventType": "EventPickCard",
-          "cardID": 93
+          "eventType": "EventActivateLeaderCard",
+          "cardId": 96
         },
         "description": "Free action of value 1 on a PRODUCTION WorkSpace",
         "occupiables": [
@@ -6717,6 +6718,7 @@
     "id": 97,
     "type": "LeaderCard",
     "name": "Leonardo da Vinci",
+    "permanent": false,
     "requirements": [],
     "cardRequirements": {
       "TERRITORY": 2,
@@ -6726,8 +6728,8 @@
       {
         "type": "EffectFreeAction",
         "event": {
-          "eventType": "EventPickCard",
-          "cardID": 93
+          "eventType": "EventActivateLeaderCard",
+          "cardId": 97
         },
         "description": "Free action of value 0 on a PRODUCTION WorkSpace",
         "occupiables": [
@@ -6787,6 +6789,7 @@
     "id": 99,
     "type": "LeaderCard",
     "name": "Pico della Mirandola",
+    "permanent": true,
     "requirements": [],
     "cardRequirements": {
       "BUILDING": 2,
@@ -6811,6 +6814,7 @@
     "id": 99,
     "type": "LeaderCard",
     "name": "Sigmondo Malatesta",
+    "permanent": true,
     "requirements": [
       {
         "resourceType": "MilitaryPoint",
@@ -6842,6 +6846,7 @@
     "id": 100,
     "type": "LeaderCard",
     "name": "Ludovico il Moro",
+    "permanent": true,
     "requirements": [],
     "cardRequirements": {
       "BUILDING": 2,
@@ -6869,6 +6874,7 @@
     "id": 101,
     "type": "LeaderCard",
     "name": "Ludovico III Gonzaga",
+    "permanent": false,
     "requirements": [
       {
         "resourceType": "Servant",
@@ -6880,6 +6886,10 @@
     "effects": [
       {
         "type": "EffectChangeResource",
+        "event": {
+          "eventType": "EventActivateLeaderCard",
+          "cardId": 101
+        },
         "exchanges": [
           {
             "cost": [],
@@ -6892,10 +6902,7 @@
             ]
           }
         ],
-        "choice": false,
-        "event": {
-          "eventType": "EventStartTurn"
-        }
+        "choice": false
       }
     ]
   },
@@ -6903,6 +6910,7 @@
     "id": 102,
     "type": "LeaderCard",
     "name": "Sandro Botticelli",
+    "permanent": false,
     "requirements": [
       {
         "resourceType": "Wood",
@@ -6914,6 +6922,10 @@
     "effects": [
       {
         "type": "EffectChangeResource",
+        "event": {
+          "eventType": "EventActivateLeaderCard",
+          "cardId": 102
+        },
         "exchanges": [
           {
             "cost": [],
@@ -6931,10 +6943,7 @@
             ]
           }
         ],
-        "choice": false,
-        "event": {
-          "eventType": "EventStartTurn"
-        }
+        "choice": false
       }
     ]
   },
@@ -6942,6 +6951,7 @@
     "id": 103,
     "type": "LeaderCard",
     "name": "Bartolomeo Colleoni",
+    "permanent": false,
     "requirements": [],
     "cardRequirements": {
       "VENTURE": 2,
@@ -6950,6 +6960,10 @@
     "effects": [
       {
         "type": "EffectChangeResource",
+        "event": {
+          "eventType": "EventActivateLeaderCard",
+          "cardId": 103
+        },
         "exchanges": [
           {
             "cost": [],
@@ -6962,10 +6976,7 @@
             ]
           }
         ],
-        "choice": false,
-        "event": {
-          "eventType": "EventStartTurn"
-        }
+        "choice": false
       }
     ]
   },
@@ -6973,6 +6984,7 @@
     "id": 104,
     "type": "LeaderCard",
     "name": "Cosimo de Medici",
+    "permanent": false,
     "requirements": [],
     "cardRequirements": {
       "CHARACTER": 2,
@@ -6981,6 +6993,10 @@
     "effects": [
       {
         "type": "EffectChangeResource",
+        "event": {
+          "eventType": "EventActivateLeaderCard",
+          "cardId": 104
+        },
         "exchanges": [
           {
             "cost": [],
@@ -6998,10 +7014,7 @@
             ]
           }
         ],
-        "choice": false,
-        "event": {
-          "eventType": "EventStartTurn"
-        }
+        "choice": false
       }
     ]
   },
@@ -7009,6 +7022,7 @@
     "id": 105,
     "type": "LeaderCard",
     "name": "Giovanni dalle Bande Nere",
+    "permanent": false,
     "requirements": [
       {
         "resourceType": "MilitaryPoint",
@@ -7020,6 +7034,10 @@
     "effects": [
       {
         "type": "EffectChangeResource",
+        "event": {
+          "eventType": "EventActivateLeaderCard",
+          "cardId": 105
+        },
         "exchanges": [
           {
             "cost": [],
@@ -7042,10 +7060,7 @@
             ]
           }
         ],
-        "choice": false,
-        "event": {
-          "eventType": "EventStartTurn"
-        }
+        "choice": false
       }
     ]
   },
@@ -7053,6 +7068,7 @@
     "id": 106,
     "type": "LeaderCard",
     "name": "Michelangelo Buonarroti",
+    "permanent": false,
     "requirements": [
       {
         "resourceType": "Stone",
@@ -7064,6 +7080,10 @@
     "effects": [
       {
         "type": "EffectChangeResource",
+        "event": {
+          "eventType": "EventActivateLeaderCard",
+          "cardId": 106
+        },
         "exchanges": [
           {
             "cost": [],
@@ -7076,10 +7096,7 @@
             ]
           }
         ],
-        "choice": false,
-        "event": {
-          "eventType": "EventStartTurn"
-        }
+        "choice": false
       }
     ]
   },
@@ -7087,6 +7104,7 @@
     "id": 107,
     "type": "LeaderCard",
     "name": "Girolamo Savonarona",
+    "permanent": false,
     "requirements": [
       {
         "resourceType": "Money",
@@ -7098,6 +7116,10 @@
     "effects": [
       {
         "type": "EffectChangeResource",
+        "event": {
+          "eventType": "EventActivateLeaderCard",
+          "cardId": 107
+        },
         "exchanges": [
           {
             "cost": [],
@@ -7110,10 +7132,7 @@
             ]
           }
         ],
-        "choice": false,
-        "event": {
-          "eventType": "EventStartTurn"
-        }
+        "choice": false
       }
     ]
   },
@@ -7121,6 +7140,7 @@
     "id": 108,
     "type": "LeaderCard",
     "name": "Sisto IV",
+    "permanent": true,
     "requirements": [
       {
         "resourceType": "Money",
@@ -7162,6 +7182,81 @@
         "choice": false,
         "event": {
           "eventType": "EventSupportChurch"
+        }
+      }
+    ]
+  },
+  {
+    "id": 109,
+    "type": "LeaderCard",
+    "name": "Santa Rita",
+    "permanent": true,
+    "requirements": [
+      {
+        "resourceType": "FaithPoint",
+        "type": "FAITH_POINT",
+        "value": 8
+      }
+    ],
+    "cardRequirements": {},
+    "effects": [
+      {
+        "type": "EffectMultiplyCardResourceBonus",
+        "multiplier": 2,
+        "types": [
+          "MONEY",
+          "WOOD",
+          "STONE",
+          "SERVANT"
+        ],
+        "event": {
+          "eventType": "EventPickCard"
+        }
+      }
+    ]
+  },
+  {
+    "id": 110,
+    "type": "LeaderCard",
+    "name": "Lucrezia Borgia",
+    "permanent": true,
+    "requirements": [],
+    "numOfRequiredCards": 6,
+    "effects": [
+      {
+        "type": "EffectChangeFamilyMemberValue",
+        "amount": 2,
+        "familyMember": {
+          "color": "WHITE",
+          "value": 0,
+          "busy": false
+        },
+        "event": {
+          "eventType": "EventStartTurn"
+        }
+      },
+      {
+        "type": "EffectChangeFamilyMemberValue",
+        "amount": 2,
+        "familyMember": {
+          "color": "BLACK",
+          "value": 0,
+          "busy": false
+        },
+        "event": {
+          "eventType": "EventStartTurn"
+        }
+      },
+      {
+        "type": "EffectChangeFamilyMemberValue",
+        "amount": 2,
+        "familyMember": {
+          "color": "ORANGE",
+          "value": 0,
+          "busy": false
+        },
+        "event": {
+          "eventType": "EventStartTurn"
         }
       }
     ]

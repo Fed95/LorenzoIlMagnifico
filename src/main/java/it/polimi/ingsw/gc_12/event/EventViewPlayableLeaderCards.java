@@ -2,7 +2,7 @@ package it.polimi.ingsw.gc_12.event;
 
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
-import it.polimi.ingsw.gc_12.action.ActionActivateLeaderCard;
+import it.polimi.ingsw.gc_12.action.ActionPlayLeaderCard;
 import it.polimi.ingsw.gc_12.action.ActionHandler;
 import it.polimi.ingsw.gc_12.action.DiscardAction;
 import it.polimi.ingsw.gc_12.card.LeaderCard;
@@ -11,9 +11,9 @@ import it.polimi.ingsw.gc_12.client.ClientHandler;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventViewAvaliableLeaderCards extends Event {
+public class EventViewPlayableLeaderCards extends Event {
 
-    public EventViewAvaliableLeaderCards(Player player) {
+    public EventViewPlayableLeaderCards(Player player) {
         super(player);
     }
 
@@ -37,8 +37,8 @@ public class EventViewAvaliableLeaderCards extends Event {
     @Override
     public void setActions(ActionHandler actionHandler, Match match) {
         actions = new ArrayList<>();
-        for(LeaderCard card : player.getAvailableLeaderCards())
-            actions.add(new ActionActivateLeaderCard(player, card));
+        for(LeaderCard card : player.getPlayableLeaderCards())
+            actions.add(new ActionPlayLeaderCard(player, card));
         actions.add(new DiscardAction(player));
     }
 

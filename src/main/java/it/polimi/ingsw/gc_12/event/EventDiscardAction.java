@@ -4,7 +4,6 @@ import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.action.*;
-import it.polimi.ingsw.gc_12.effect.EffectProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +23,10 @@ public class EventDiscardAction extends Event{
                 actions.add(new ActionChooseFamilyMember(player, familyMember));
             }
         }
+        if(player.getPlayableLeaderCards().size() > 0)
+            actions.add(new ActionViewPlayableLeaderCards(player));
         if(player.getAvailableLeaderCards().size() > 0)
-            actions.add(new ActionViewAvalilableLeaderCards(player));
+            actions.add(new ActionViewAvailableLeaderCards(player));
         actions.add(new ActionPassTurn(player));
         actions.add(new ActionRequestStatistics(player));
     }

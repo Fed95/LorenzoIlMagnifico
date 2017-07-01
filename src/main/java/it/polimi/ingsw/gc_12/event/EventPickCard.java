@@ -17,7 +17,7 @@ When created during the game it is created with a card so that the effects can b
 public class EventPickCard extends Event {
 
     private int cardID;
-    private Card card;
+    private CardDevelopment card;
     private CardType cardType;
     private boolean anyCard = false;
 
@@ -47,7 +47,7 @@ public class EventPickCard extends Event {
         return anyCard;
     }
 
-    public Card getCard() {
+    public CardDevelopment getCard() {
         return card;
     }
 

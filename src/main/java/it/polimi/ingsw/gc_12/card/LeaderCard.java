@@ -3,25 +3,63 @@ package it.polimi.ingsw.gc_12.card;
 import it.polimi.ingsw.gc_12.effect.Effect;
 import it.polimi.ingsw.gc_12.resource.Resource;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class LeaderCard extends Card {
 
-    Map<CardType, Integer> cardRequirements;
-    private boolean active = false;
+    private Map<CardType, Integer> cardRequirements = new HashMap<>();
+    private boolean played = false;
+    private boolean activated = false;
+    private boolean anyCard = false;
+    private boolean permanent;
+    private int numOfRequiredCards;
 
-    public LeaderCard(int id, String name, List<Resource> requirements, Map<CardType, Integer> cardRequirements, List<Effect> effects) {
+
+    public LeaderCard(int id, String name, List<Resource> requirements, Map<CardType, Integer> cardRequirements, List<Effect> effects, boolean permanent) {
         super(id, name, requirements, effects);
-        this.cardRequirements = cardRequirements;
+        if(cardRequirements != null)
+            this.cardRequirements = cardRequirements;
+        this.permanent = permanent;
     }
 
-    public boolean isActive() {
-        return active;
+    public LeaderCard(int id, String name, List<Resource> requirements, int numOfRequiredCards, List<Effect> effects, boolean permanent) {
+        this(id, name, requirements, null, effects, permanent);
+        this.anyCard = true;
+        this.numOfRequiredCards = numOfRequiredCards;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public boolean isPlayed() {
+        return played;
+    }
+
+    public void setPlayed(boolean played) {
+        this.played = played;
+    }
+
+    public boolean isActivated() {
+        return activated;
+    }
+
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
+
+    public boolean isPermanent() {
+        return permanent;
+    }
+
+    public void setPermanent(boolean permanent) {
+        this.permanent = permanent;
+    }
+
+    public boolean isAnyCard() {
+        return anyCard;
+    }
+
+    public int getNumOfRequiredCards() {
+        return numOfRequiredCards;
     }
 
     public Map<CardType, Integer> getCardRequirements() {
@@ -31,7 +69,7 @@ public class LeaderCard extends Card {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(" " + name + "    (Active: " + active + ")").append(System.getProperty("line.separator"));
+        sb.append(" " + name + "    (Played: " + played + " | Activated: " + activated + ")").append(System.getProperty("line.separator"));
         sb.append("		Resource Requirements: " + requirements).append(System.getProperty("line.separator"));
         sb.append("		Card Requirements: " + cardRequirements).append(System.getProperty("line.separator"));
         sb.append("		Effects: ").append(System.getProperty("line.separator"));

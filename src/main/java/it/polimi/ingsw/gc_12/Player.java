@@ -133,20 +133,38 @@ public class Player implements Serializable{
 		return personalBoard.getCards(type).size() >= quantity;
 	}
 
-	private boolean canActivateLeaderCard(LeaderCard card){
+	private boolean canPlayLeaderCard(LeaderCard card){
 		if(!hasResources(card.getRequirements()))
 			return false;
-		for(CardType type : card.getCardRequirements().keySet()){
-			if(!hasEnoughCards(type, card.getCardRequirements().get(type)))
-				return false;
+		if(card.isAnyCard() && !hasEnoughCards(card.getNumOfRequiredCards()))
+			return false;
+		else
+			for(CardType type : card.getCardRequirements().keySet()){
+				if(!hasEnoughCards(type, card.getCardRequirements().get(type)))
+					return false;
 		}
 		return true;
+	}
+
+	private boolean hasEnoughCards(int numOfRequiredCards) {
+		for(CardType type : CardType.values())
+			if(personalBoard.getCards(type).size() < numOfRequiredCards)
+				return false;
+		return true;
+	}
+
+	public List<LeaderCard> getPlayableLeaderCards(){
+		List<LeaderCard> cards = new ArrayList<>();
+		for(LeaderCard card : personalBoard.getLeaderCards())
+			if(!card.isPlayed() && canPlayLeaderCard(card))
+				cards.add(card);
+		return cards;
 	}
 
 	public List<LeaderCard> getAvailableLeaderCards(){
 		List<LeaderCard> cards = new ArrayList<>();
 		for(LeaderCard card : personalBoard.getLeaderCards())
-			if(!card.isActive() && canActivateLeaderCard(card))
+			if(card.isPlayed() && !card.isPermanent() && !card.isActivated())
 				cards.add(card);
 		return cards;
 	}

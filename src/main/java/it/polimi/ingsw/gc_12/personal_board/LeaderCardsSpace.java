@@ -16,4 +16,10 @@ public class LeaderCardsSpace implements Serializable {
     public List<LeaderCard> getCards() {
         return cards;
     }
+
+    public void newTurn(){
+        for(LeaderCard card : cards)
+            if(card.isPlayed())
+                card.setActivated(false);
+    }
 }

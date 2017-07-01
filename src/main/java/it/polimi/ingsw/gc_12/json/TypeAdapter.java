@@ -62,6 +62,8 @@ public class TypeAdapter {
 				.registerSubtype(EffectServantsMultipier.class, EffectServantsMultipier.class.getSimpleName())
 				.registerSubtype(EffectDenyEffect.class, EffectDenyEffect.class.getSimpleName())
 				.registerSubtype(EffectCardDiscount.class, EffectCardDiscount.class.getSimpleName())
+				.registerSubtype(EffectMultiplyCardResourceBonus.class, EffectMultiplyCardResourceBonus.class.getSimpleName())
+				.registerSubtype(EffectSetFamilyMemberValue.class, EffectSetFamilyMemberValue.class.getSimpleName())
 				.registerSubtype(EffectPlacementDenied.class, EffectPlacementDenied.class.getSimpleName());	// if the flag equals the class name, you can skip the second parameter. This is only necessary, when the "type" field does not equal the class name.
 
 		final RuntimeTypeAdapterFactory<Event> factoryEvent = RuntimeTypeAdapterFactory
@@ -74,6 +76,7 @@ public class TypeAdapter {
 				.registerSubtype(EventEndMatch.class, EventEndMatch.class.getSimpleName())
 				.registerSubtype(EventStartTurn.class, EventStartTurn.class.getSimpleName())
 				.registerSubtype(EventServantsRequested.class, EventServantsRequested.class.getSimpleName())
+				.registerSubtype(EventActivateLeaderCard.class, EventActivateLeaderCard.class.getSimpleName())
 				.registerSubtype(EventReceiveResource.class, EventReceiveResource.class.getSimpleName());
 
 

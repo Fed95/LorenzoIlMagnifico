@@ -5,9 +5,7 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.action.*;
 import it.polimi.ingsw.gc_12.card.LeaderCard;
-import it.polimi.ingsw.gc_12.client.ClientFactory;
-import it.polimi.ingsw.gc_12.client.ClientHandler;
-import it.polimi.ingsw.gc_12.client.ClientSender;
+import it.polimi.ingsw.gc_12.client.*;
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
 
 import java.io.IOException;
@@ -62,8 +60,10 @@ public class EventStartTurn extends Event{
 		for (FamilyMember familyMember : player.getAvailableFamilyMembers()) {
 			actions.add(new ActionChooseFamilyMember(player, familyMember));
 		}
+		if(player.getPlayableLeaderCards().size() > 0)
+			actions.add(new ActionViewPlayableLeaderCards(player));
 		if(player.getAvailableLeaderCards().size() > 0)
-			actions.add(new ActionViewAvalilableLeaderCards(player));
+			actions.add(new ActionViewAvailableLeaderCards(player));
 		actions.add(new ActionPassTurn(player));
 		actions.add(new ActionRequestStatistics(player));
 	}
@@ -87,6 +87,7 @@ public class EventStartTurn extends Event{
     public String toStringClientGUI(){
         return "It's " + player.getName() + "'s turn.";
     }
+
 	class PassTurnSender implements Runnable {
 		ClientSender clientSender;
 		int input;
