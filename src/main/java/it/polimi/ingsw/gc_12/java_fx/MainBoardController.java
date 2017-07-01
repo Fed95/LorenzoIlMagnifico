@@ -1,6 +1,8 @@
 package it.polimi.ingsw.gc_12.java_fx;
 
 
+
+import com.sun.xml.internal.ws.util.StringUtils;
 import it.polimi.ingsw.gc_12.*;
 import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.action.ActionChooseFamilyMember;
@@ -204,12 +206,14 @@ public class MainBoardController extends Observable implements Initializable, Ob
         ImageView familyMemberClicked = (ImageView) event.getTarget();
         List<Action> actions = clientHandler.getActions();
         PlayerColor color = (PlayerColor)mainPane.getUserData();
+        System.out.println(askMeAValue("servant","inserisci i servitori","0"));
 
         if(isMyFam(color, familyMemberClicked) && isMyTurn()){
             for(Action action: actions)
                 System.out.println(action);
 
             highlightFamilyMember(familyMemberClicked);
+
             for (Map.Entry<FamilyMemberColor, ImageView> entry : mapPlayerColorFamImageView.get(color).entrySet()) {
                 if(entry.getValue().equals(familyMemberClicked)) {
                     FamilyMember familyMember = new FamilyMember(color, entry.getKey());
@@ -226,6 +230,10 @@ public class MainBoardController extends Observable implements Initializable, Ob
                     break;
                 }
             }
+
+
+            Image image = new Image("img/Card/card_92.png");
+            match.getMapTypeCardFloorRepresentation().get(CardType.TERRITORY).get(0).setPath(image);
 
         }
 
@@ -593,5 +601,37 @@ public class MainBoardController extends Observable implements Initializable, Ob
         else {
             throw new IllegalStateException("Sending automatically action when it's not possible");
         }
+    }
+
+
+   public int askMeAValue(String title, String request, String minValue){
+       TextInputDialog dialog = new TextInputDialog(minValue);
+       dialog.setTitle(title);
+       dialog.setHeaderText(request);
+       dialog.setContentText("Value:");
+       Optional<String> result = dialog.showAndWait();
+        int defAult = 0;
+       if (result.isPresent()){
+
+           String resToString = result.get();
+           if(isInteger(resToString)){
+               int res = Integer.parseInt(resToString);
+               return res;
+           }else{
+               defAult = askMeAValue(title,request+"\nOnly numbers allowed",minValue);
+           }
+
+       }
+       return defAult;
+   }
+    private boolean isInteger(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch(NumberFormatException e) {
+            return false;
+        } catch(NullPointerException e) {
+            return false;
+        }
+        return true;
     }
 }
