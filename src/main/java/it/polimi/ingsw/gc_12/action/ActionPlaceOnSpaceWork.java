@@ -35,7 +35,7 @@ public class ActionPlaceOnSpaceWork extends ActionPlace {
     @Override
     protected void canBeExecuted(Match match) throws RequiredValueNotSatisfiedException, ActionNotAllowedException {
         if(spaceWork instanceof SpaceWorkSingle)
-            if(spaceWork.isOccupied())
+            if(spaceWork.isOccupied() && !familyMember.isFriendly())
                 throw new ActionNotAllowedException("This SpaceWork is already taken!");
         if(!spaceWork.isRequiredValueSatisfied(familyMember))
             throw new RequiredValueNotSatisfiedException();

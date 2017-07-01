@@ -29,7 +29,7 @@ public class ActionPlaceOnMarket extends ActionPlace {
 
     @Override
     protected void canBeExecuted(Match match) throws RequiredValueNotSatisfiedException, ActionNotAllowedException {
-        if(spaceMarket.isOccupied())
+        if(spaceMarket.isOccupied() && !familyMember.isFriendly())
             throw new ActionNotAllowedException("This SpaceMarket is already taken!");
         if(!spaceMarket.isRequiredValueSatisfied(familyMember))
             throw new ActionNotAllowedException("Your FamilyMember does not satisfy the required value for this placement!");

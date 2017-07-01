@@ -6669,7 +6669,7 @@
     "permanent": true,
     "requirements": [],
     "cardRequirements": {
-      //"BUILDING": 5 TODO: REMOVE AFTER TESTING
+      "BUILDING": 5
     },
     "effects": [
       {
@@ -7165,6 +7165,104 @@
         },
         "event": {
           "eventType": "EventStartTurn"
+        }
+      }
+    ]
+  },
+  {
+    "id": 111,
+    "type": "LeaderCard",
+    "name": "Federico da Montefeltro",
+    "permanent": false,
+    "requirements": [],
+    "cardRequirements": {
+      "TERRITORY": 5
+    },
+    "effects": [
+      {
+        "type": "EffectSetFamilyMemberValue",
+        "value": 6,
+        "event": {
+          "eventType": "EventActivateLeaderCard",
+          "cardId": 111
+        }
+      }
+    ]
+  },
+  {
+    "id": 112,
+    "type": "LeaderCard",
+    "name": "Ludovico Ariosto",
+    "permanent": true,
+    "requirements": [],
+    "cardRequirements": {
+      "CHARACTER": 5
+    },
+    "effects": [
+      {
+        "type": "EffectFriendlyFamilyMembers",
+        "event": {
+          "eventType": "EventStartTurn"
+        }
+      },
+      {
+        "type": "EffectFriendlyFamilyMembers",
+        "event": {
+          "eventType": "EventActivateLeaderCard",
+          "cardId": 112
+        }
+      }
+    ]
+  },
+  {
+    "id": 113,
+    "type": "LeaderCard",
+    "name": "Cesare Borgia",//TODO: NEEDS TESTING
+    "permanent": true,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 12
+      },
+      {
+        "resourceType": "FaithPoint",
+        "type": "FAITH_POINT",
+        "value": 3
+      }
+    ],
+    "cardRequirements": {
+      "BUILDING": 3
+    },
+    "effects": [
+      {
+        "type": "EffectNoRequisites",
+        "event": {
+          "eventType": "EventPickCard",
+          "cardType": "TERRITORY"
+        }
+      }
+    ]
+  },
+  {
+    "id": 114,
+    "type": "LeaderCard",
+    "name": "Lorenzo de' Medici",
+    "permanent": true,
+    "requirements": [
+      {
+        "resourceType": "VictoryPoint",
+        "type": "VICTORY_POINT",
+        "value": 35
+      }
+    ],
+    "cardRequirements": {},
+    "effects": [
+      {
+        "type": "EffectCopyLeaderCard",
+        "event": {
+          "eventType": "EventActivateLeaderCard",
+          "cardId": 114
         }
       }
     ]

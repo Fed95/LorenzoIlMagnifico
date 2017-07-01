@@ -18,12 +18,17 @@ public class EventStartTurn extends Event{
 
 	public EventStartTurn(Player player, List<Action> actions, int turn) {
 		super(player);
-		this.actions = actions;
+		if(actions != null)
+			this.actions = actions;
 		this.turn = turn;
 	}
 
+	public EventStartTurn(Player player, int turn){
+		this(player, null, turn);
+	}
+
 	public EventStartTurn(Player player) {
-		this(player, new ArrayList<>(), 0);
+		this(player, null, 0);
 	}
 
 	public EventStartTurn() {

@@ -3,7 +3,10 @@ package it.polimi.ingsw.gc_12.action;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.card.LeaderCard;
+import it.polimi.ingsw.gc_12.event.EventActivateLeaderCard;
+import it.polimi.ingsw.gc_12.event.EventDiscardAction;
 import it.polimi.ingsw.gc_12.event.EventStartTurn;
+import it.polimi.ingsw.gc_12.exceptions.ActionDeniedException;
 
 public class ActionPlayLeaderCard extends Action {
 
@@ -22,9 +25,16 @@ public class ActionPlayLeaderCard extends Action {
     @Override
     public void start(Match match) {
         player.getPersonalBoard().getLeaderCards().get(player.getPersonalBoard().getLeaderCards().indexOf(card)).setPlayed(true);
+        if(card.isPermanent())
+            try {
+                match.getEffectHandler().executeEffects(match, new EventActivateLeaderCard(player, card));
+            } catch (ActionDeniedException e) {
+                e.printStackTrace();
+            }
 
         EventStartTurn event = new EventStartTurn(player);
         match.getActionHandler().update(event, match);
+        //Notifies the ServerRMIView
         match.notifyObserver(event);
     }
 

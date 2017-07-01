@@ -1,7 +1,4 @@
 package it.polimi.ingsw.gc_12;
-import it.polimi.ingsw.gc_12.dice.Die;
-import it.polimi.ingsw.gc_12.dice.DieColor;
-import it.polimi.ingsw.gc_12.dice.SpaceDie;
 
 import java.io.Serializable;
 import java.util.Observable;
@@ -14,6 +11,7 @@ public class FamilyMember implements Observer, Serializable {
 	private FamilyMemberColor color;
 	private int value;
 	private boolean busy;
+	private boolean friendly = false;
 	
 	public FamilyMember(Player owner, FamilyMemberColor color, int value) {
 		this.owner = owner;
@@ -74,6 +72,13 @@ public class FamilyMember implements Observer, Serializable {
 		this.busy = busy;
 	}
 
+	public boolean isFriendly() {
+		return friendly;
+	}
+
+	public void setFriendly(boolean friendly) {
+		this.friendly = friendly;
+	}
 
 	//Receive notification that the dice have been rolled and update value
 	@Override
@@ -92,14 +97,16 @@ public class FamilyMember implements Observer, Serializable {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder("FamilyMember [");
+		/*
 		if(owner != null)
-			sb.append(" Owner: " + owner.getName());
+			sb.append(" Owner: " + owner.getName() + ",");
 		if(ownerColor != null)
-			sb.append(" OwnerColor: " + ownerColor);
+			sb.append(" OwnerColor: " + ownerColor + ",");
+		*/
 		if(color != null)
-			sb.append(" Color: " + color);
+			sb.append(" Color: " + color + ",");
 
-		sb.append(" value: " + value + " busy: " + isBusy() + " ]");
+		sb.append(" Value: " + value + ", busy: " + isBusy() + " ]");
 		return sb.toString();
 	}
 

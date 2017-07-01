@@ -29,7 +29,7 @@ public class PersonalBoard implements Serializable{
         } catch (ActionNotAllowedException e) {
             return false;
         }
-        if(cardSlot.getRequisites() != null)
+        if(!card.isNoRequisites() && cardSlot.getRequisites() != null)
             if(!owner.hasResources(cardSlot.getRequisites()))
                 return false;
         return true;
@@ -53,6 +53,14 @@ public class PersonalBoard implements Serializable{
 
     public List<LeaderCard> getLeaderCards(){
         return leaderCardsSpace.getCards();
+    }
+
+    public LeaderCard getLeaderCard(int cardId){
+        List<LeaderCard> cards = new ArrayList<>();
+        for(LeaderCard card : getLeaderCards())
+            if(card.getId() == cardId)
+                cards.add(card);
+        return cards.get(0);
     }
 
     public List<LeaderCard> getUsefulLeaderCards(){

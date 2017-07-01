@@ -3,7 +3,11 @@ package it.polimi.ingsw.gc_12.action;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.card.LeaderCard;
+import it.polimi.ingsw.gc_12.effect.Effect;
+import it.polimi.ingsw.gc_12.effect.EffectCopyLeaderCard;
+import it.polimi.ingsw.gc_12.effect.EffectSetFamilyMemberValue;
 import it.polimi.ingsw.gc_12.event.EventActivateLeaderCard;
+import it.polimi.ingsw.gc_12.event.EventDiscardAction;
 import it.polimi.ingsw.gc_12.event.EventStartTurn;
 import it.polimi.ingsw.gc_12.exceptions.ActionDeniedException;
 
@@ -29,8 +33,14 @@ public class ActionActivateLeaderCard extends Action {
             e.printStackTrace();
         }
         card.setActivated(true);
+
+        for(Effect effect : card.getEffects())
+            if(effect instanceof EffectSetFamilyMemberValue || effect instanceof EffectCopyLeaderCard)
+                return;
+
         EventStartTurn event = new EventStartTurn(player);
         match.getActionHandler().update(event, match);
+        //Notifies the ServerRMIView
         match.notifyObserver(event);
     }
 

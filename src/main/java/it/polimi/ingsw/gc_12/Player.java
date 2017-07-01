@@ -176,6 +176,7 @@ public class Player implements Serializable{
 	public void resetFamilyMembers() {
 		for(FamilyMember familyMember: familymembers.values()) {
 			familyMember.setBusy(false);
+			familyMember.setFriendly(false);
 		}
 	}
 

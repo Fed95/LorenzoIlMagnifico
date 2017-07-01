@@ -13,6 +13,7 @@ import java.util.Map;
 public abstract class CardDevelopment extends Card{
 	private final CardType cardType;
 	private final int period;
+	private boolean noRequisites;
 	
 	public CardDevelopment(int id, CardType cardType, String name, int period, List<Resource> requirements, List<Effect> effects) {
 		super(id, name, requirements, effects);
@@ -67,6 +68,14 @@ public abstract class CardDevelopment extends Card{
 		else{
 			return requirements;
 		}
+	}
+
+	public boolean isNoRequisites() {
+		return noRequisites;
+	}
+
+	public void setNoRequisites(boolean noRequisites) {
+		this.noRequisites = noRequisites;
 	}
 
 	@Override
