@@ -7,6 +7,7 @@ import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.java_fx.MainBoardController;
 import it.polimi.ingsw.gc_12.mvc.GUIAdapter;
 import it.polimi.ingsw.gc_12.mvc.View;
+import javafx.application.Platform;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -42,7 +43,7 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 		if(event.toStringClient() != null) {
             System.out.println(event.toStringClient());
             if(mainBoardController!=null) {
-                mainBoardController.getChat().appendText("[SERVER]: " + event.toStringClientGUI()+"\n");
+                Platform.runLater(() -> mainBoardController.getChat().appendText("[SERVER]: " + event.toStringClientGUI()+"\n"));
             }
         }
 

@@ -108,6 +108,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
 
 
     @FXML private Pane mainPane;
+
     //pane tb that contains tab of the players
     @FXML private TabPane playersBoards;
 
@@ -240,6 +241,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
         greenPlayer.setDisable(true);
         redPlayer.setDisable(true);
         yellowPlayer.setDisable(true);
+
         //saying to the table where to find the values in the representation class for Military points
         nameMilitaryPoints.setCellValueFactory(cellData -> cellData.getValue().getPlayerColorProperty());
         pointsMilitaryPoints.setCellValueFactory(cellData -> cellData.getValue().getMilitaryPointProperty().asString());
@@ -287,7 +289,9 @@ public class MainBoardController extends Observable implements Initializable, Ob
 
     private void disableTab(){
         for(Player player : match.getPlayers().values()) {
-            mapPlayerColorTab.get(player.getColor()).setDisable(false);
+            Tab tabToWorkWith = mapPlayerColorTab.get(player.getColor());
+            tabToWorkWith.setDisable(false);
+            tabToWorkWith.setText(player.getName());
         }
     }
 
@@ -335,7 +339,9 @@ public class MainBoardController extends Observable implements Initializable, Ob
     }
 
     private void setPlayerToPane(){
-        mainPane.setUserData(clientHandler.getColor());
+        PlayerColor actualColor = clientHandler.getColor();
+        playersBoards.getSelectionModel().select(mapPlayerColorTab.get(actualColor));
+        mainPane.setUserData(actualColor);
     }
 
     private Boolean isMyFam(PlayerColor color, ImageView famMemb){

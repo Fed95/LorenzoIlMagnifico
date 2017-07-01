@@ -8,6 +8,7 @@ import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
 import it.polimi.ingsw.gc_12.mvc.View;
 import it.polimi.ingsw.gc_12.mvc.ViewCLI;
+import javafx.application.Platform;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,7 @@ public class EventStartMatch extends Event{
 		client.setMatch(matchInstance);
 
 		if(client.getMainBoardController()!=null) {
-            client.getMainBoardController().getChat().appendText("[SERVER]: Your Color is " + client.getColor() + "\n");
+            Platform.runLater(() ->client.getMainBoardController().getChat().appendText("[SERVER]: Hi "+match.getPlayers().get(client.getColor()).getName()+" welcome to Lorenzo il Magnifico, your color is "+client.getColor() + "\n"));
         }
     }
 
@@ -55,6 +56,7 @@ public class EventStartMatch extends Event{
 	@Override
 	public String toStringClient() {
 		return "The match has started!";
+
 	}
 
     @Override
