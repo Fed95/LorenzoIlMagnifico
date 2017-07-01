@@ -109,11 +109,9 @@ public abstract class ActionPlace extends Action {
 		}
 		catch (RequiredValueNotSatisfiedException | ActionDeniedException | ActionNotAllowedException e) {
 			familyMember.setValue(originalValue);
-			//match.getEffectHandler().discardEffects(executedEffects, event);
 			return false;
 		}
 		familyMember.setValue(originalValue);
-		//match.getEffectHandler().discardEffects(executedEffects, event);
 		return true;
 	}
 

@@ -6666,9 +6666,10 @@
     "id": 98,
     "type": "LeaderCard",
     "name": "Filippo Brunelleschi",
+    "permanent": true,
     "requirements": [],
     "cardRequirements": {
-      "BUILDING": 5
+      //"BUILDING": 5 TODO: REMOVE AFTER TESTING
     },
     "effects": [
       {

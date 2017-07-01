@@ -23,9 +23,12 @@ public class EffectDenyEffect extends Effect {
 
     @Override
     public void execute(Match match, Event event, boolean validation) {
-        this.match = match;
-        for(Effect effect : findEffects(event))
-            effect.discard(match, event);
+        if(!validation) {
+            this.match = match;
+            for (Effect effect : findEffects(event))
+                effect.discard(match, event);
+        }
+        //TODO: CHECK IF THERE SHOULD BE A VALIDATION PROCEDURE
     }
 
     @Override
