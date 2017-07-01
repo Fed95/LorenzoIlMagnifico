@@ -3,12 +3,10 @@ package it.polimi.ingsw.gc_12.java_fx;
 
 import it.polimi.ingsw.gc_12.*;
 import it.polimi.ingsw.gc_12.action.Action;
-import it.polimi.ingsw.gc_12.action.ActionChooseFamilyMember;
 import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.ClientFactory;
-import it.polimi.ingsw.gc_12.client.ClientSender;
-import it.polimi.ingsw.gc_12.mvc.GUIAdapter;
+
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 import javafx.application.Platform;
 import javafx.beans.binding.StringBinding;
@@ -206,14 +204,10 @@ public class MainBoardController extends Observable implements Initializable, Ob
                 System.out.println(action);
 
             highlightFamilyMember(familyMemberClicked);
-
             Image image = new Image("img/Card/card_92.png");
             match.getMapTypeCardFloorRepresentation().get(CardType.TERRITORY).get(0).setPath(image);
 
         }
-
-
-
 
        //match.getFamilyMemberBlueRepresentationObservableList().get(0).setValueProperty(10);
     }
@@ -227,6 +221,10 @@ public class MainBoardController extends Observable implements Initializable, Ob
 
     @FXML void floorClicked(MouseEvent event){
         Circle floorClicked = (Circle) event.getTarget();
+        if(lastFamClicked!=null && isMyTurn()){
+            //so che ho un fam memb cliccato e che è il mio turno
+            chatTextArea.appendText("fam memb selezonato ed è il mio turno");
+        }
 
     }
 
@@ -291,7 +289,11 @@ public class MainBoardController extends Observable implements Initializable, Ob
         for(Player player : match.getPlayers().values()) {
             Tab tabToWorkWith = mapPlayerColorTab.get(player.getColor());
             tabToWorkWith.setDisable(false);
-            tabToWorkWith.setText(player.getName());
+            String name= player.getName();
+            if(name.length()>25){
+                name = player.getName().substring(0,24)+"...";
+            }
+            tabToWorkWith.setText(name);
         }
     }
 
@@ -374,15 +376,14 @@ public class MainBoardController extends Observable implements Initializable, Ob
             double selection = familyMemberClicked.getOpacity();
             if(selection != 1){
                 familyMemberClicked.setOpacity(1);
-            }else{
-                familyMemberClicked.setOpacity(0.5);
+                lastFamClicked = null;
             }
         }else{
             if(lastFamClicked!=null)
                 lastFamClicked.setOpacity(1);
             familyMemberClicked.setOpacity(0.5);
+            lastFamClicked = familyMemberClicked;
         }
-        lastFamClicked = familyMemberClicked;
 
     }
 
