@@ -206,7 +206,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
         ImageView familyMemberClicked = (ImageView) event.getTarget();
         List<Action> actions = clientHandler.getActions();
         PlayerColor color = (PlayerColor)mainPane.getUserData();
-        System.out.println(askMeAValue("servant","inserisci i servitori","0"));
+        //System.out.println(askMeAValue("servant","inserisci i servitori","0"));
 
         if(isMyFam(color, familyMemberClicked) && isMyTurn()){
             for(Action action: actions)
@@ -230,10 +230,8 @@ public class MainBoardController extends Observable implements Initializable, Ob
                     break;
                 }
             }
-
-
-            Image image = new Image("img/Card/card_92.png");
-            match.getMapTypeCardFloorRepresentation().get(CardType.TERRITORY).get(0).setPath(image);
+            //Image image = new Image("img/Card/card_92.png");
+            //match.getMapTypeCardFloorRepresentation().get(CardType.TERRITORY).get(0).setPath(image);
 
         }
 
