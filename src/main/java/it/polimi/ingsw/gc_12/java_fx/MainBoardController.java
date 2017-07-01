@@ -3,6 +3,7 @@ package it.polimi.ingsw.gc_12.java_fx;
 
 import it.polimi.ingsw.gc_12.*;
 import it.polimi.ingsw.gc_12.action.Action;
+import it.polimi.ingsw.gc_12.action.ActionChooseFamilyMember;
 import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.ClientFactory;
@@ -32,7 +33,7 @@ import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
 
-public class MainBoardController implements Initializable, Observer {
+public class MainBoardController extends Observable implements Initializable, Observer {
     //Card on floors
     @FXML private ImageView showCards;
     @FXML private ImageView cardFloor0;
@@ -191,7 +192,6 @@ public class MainBoardController implements Initializable, Observer {
     private ImageView lastFamClicked = null;
 
 
-    private GUIAdapter adapter;
     private MatchInstanceGUI match;
     private ClientHandler clientHandler;
 
@@ -225,8 +225,8 @@ public class MainBoardController implements Initializable, Observer {
     }
 
     @FXML void floorClicked(MouseEvent event){
-        System.out.println("click");
         Circle floorClicked = (Circle) event.getTarget();
+
     }
 
     @Override
@@ -250,14 +250,11 @@ public class MainBoardController implements Initializable, Observer {
 
         showCards.setOpacity(0);
         this.clientHandler = ClientFactory.getClientHandler();
-        this.adapter = new GUIAdapter(ClientFactory.getClientSender());
+        this.addObserver(ClientFactory.getClientSender());
         clientHandler.setMainBoardController(this);
-        try {
-            if(clientHandler.isStarted())
-                adapter.sendAction(0);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        if(clientHandler.isStarted())
+            setChanged();
+            notifyObservers(0);
     }
 
     @Override

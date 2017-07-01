@@ -10,8 +10,5 @@ import java.rmi.NotBoundException;
 public interface View {
 
 	void start() throws IOException, CloneNotSupportedException, NotBoundException, AlreadyBoundException;
-	ClientSender getClientSender();
-	void setClientSender(ClientSender clientSender);
-	void setClientHandler(ClientHandler clientHandler);
 	boolean isReady();
 }

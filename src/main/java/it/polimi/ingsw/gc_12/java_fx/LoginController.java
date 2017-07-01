@@ -44,7 +44,6 @@ public class LoginController implements Initializable {
             playButton.setDisable(true);
             if(connection.equals("RMI")){
                 ClientRMI clientRMI = new ClientRMI();
-                ClientFactory.setClientSender(clientRMI);
                 clientRMI.start(mainBoard, name);
             }else if(connection.equals("SOCKET")) {
                 ClientSocket clientSocket = new ClientSocket();

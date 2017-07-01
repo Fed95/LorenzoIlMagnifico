@@ -37,10 +37,7 @@ public class ClientSocket {
 		executor.submit(clientIn);
 		ClientFactory.setClientHandler(clientIn);
 		System.out.println("Creation of the view..");
-
-		view.setClientSender(clientOut);
-		view.setClientHandler(clientIn);
-		clientIn.setView(view);
+		clientIn.setView(view); // TODO: perché se c'è già?
 		//view.start();
 	}
 }

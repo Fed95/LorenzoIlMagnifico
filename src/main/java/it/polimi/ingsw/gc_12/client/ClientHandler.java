@@ -5,6 +5,7 @@ import it.polimi.ingsw.gc_12.*;
 import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.java_fx.MainBoardController;
+import it.polimi.ingsw.gc_12.mvc.GUIAdapter;
 import it.polimi.ingsw.gc_12.mvc.View;
 
 import java.rmi.RemoteException;
@@ -26,6 +27,7 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 	protected int unauthorizedId;
 	private boolean started;
 	private MainBoardController mainBoardController;
+
 	protected ClientHandler(View view) throws RemoteException {
 		super();
 		this.view = view;
@@ -60,7 +62,6 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 			if(events.size() > 0)
 				handleEvent();
 		}
-
 	}
 
 

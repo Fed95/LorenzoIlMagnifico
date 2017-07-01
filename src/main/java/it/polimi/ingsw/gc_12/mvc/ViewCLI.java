@@ -4,6 +4,7 @@ import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.client.ClientFactory;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.ClientSender;
+import it.polimi.ingsw.gc_12.client.NewName;
 import it.polimi.ingsw.gc_12.client.rmi.ClientRMI;
 import it.polimi.ingsw.gc_12.client.socket.ClientSocket;
 import it.polimi.ingsw.gc_12.event.Event;
@@ -21,7 +22,6 @@ import java.util.Scanner;
 public class ViewCLI extends Observable implements View{
 
 	private Scanner in;
-	private ClientSender clientSender;
 	private ClientHandler clientHandler;
 	private boolean ready;
 
@@ -29,20 +29,14 @@ public class ViewCLI extends Observable implements View{
 		this.in = new Scanner(System.in);
 	}
 
-	public void setClientSender(ClientSender clientSender) {
-		this.clientSender = clientSender;
-	}
-
-	public void setClientHandler(ClientHandler clientHandler) {
-		this.clientHandler = clientHandler;
-	}
-
 	public void start() throws IOException, CloneNotSupportedException, NotBoundException, AlreadyBoundException {
 		setup();
 
 		ready = true;
-		if(clientHandler.isStarted())
-			clientSender.sendAction(0);
+		if(clientHandler.isStarted()) {
+			setChanged();
+			notifyObservers(0);
+		}
 
 		while(in.hasNext()) {
 			//Capture input from user
@@ -68,7 +62,8 @@ public class ViewCLI extends Observable implements View{
 			}
 			else {
 				try {
-					clientSender.sendAction(inputInt);
+					setChanged();
+					notifyObservers(inputInt);
 					clientHandler.setOffset(0);
 					Event event = clientHandler.getEvents().getFirst();
 					if(event instanceof EventCouncilPrivilegeReceived)
@@ -76,12 +71,8 @@ public class ViewCLI extends Observable implements View{
 					else
 						clientHandler.getEvents().removeFirst();
 					clientHandler.handleEvent();
-				} catch (NoSuchElementException ignored){
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				} catch (NoSuchElementException ignored){}
 			}
-
 		}
 	}
 
@@ -113,7 +104,6 @@ public class ViewCLI extends Observable implements View{
 					else {
 						if(inputInt == 0) {
 							ClientRMI clientRMI = new ClientRMI();
-							ClientFactory.setClientSender(clientRMI);
 							clientRMI.start(this, name);
 						}
 						else {
@@ -125,6 +115,9 @@ public class ViewCLI extends Observable implements View{
 				}
 			}
 		}
+
+		this.addObserver(ClientFactory.getClientSender());
+		clientHandler = ClientFactory.getClientHandler();
 	}
 
 	private boolean checkExclusion() {
@@ -138,7 +131,8 @@ public class ViewCLI extends Observable implements View{
 
 	private boolean checkAuthorization(String inputLine) throws IOException {
 		if(!clientHandler.isAuthorized()) {
-			clientSender.sendName(inputLine, clientHandler.getUnauthorizedId());
+			setChanged();
+			notifyObservers(new NewName(clientHandler.getUnauthorizedId(), inputLine));
 			return false;
 		}
 		return true;
@@ -160,11 +154,6 @@ public class ViewCLI extends Observable implements View{
 		}
 		else
 			clientHandler.getEvents().removeFirst();
-	}
-
-	@Override
-	public ClientSender getClientSender() {
-		return clientSender;
 	}
 
 	@Override

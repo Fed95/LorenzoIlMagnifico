@@ -5,6 +5,7 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.action.*;
 import it.polimi.ingsw.gc_12.card.LeaderCard;
+import it.polimi.ingsw.gc_12.client.ClientFactory;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.ClientSender;
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
@@ -44,7 +45,7 @@ public class EventStartTurn extends Event{
 			if(client.isExcluded()) {
 				for (int i = 0; i < actions.size(); i++) {
 					if(actions.get(i) instanceof ActionPassTurn) {
-						new Thread(new PassTurnSender(i, client.getView().getClientSender())).start();
+						new Thread(new PassTurnSender(i, ClientFactory.getClientSender())).start();
 					}
 				}
 			}

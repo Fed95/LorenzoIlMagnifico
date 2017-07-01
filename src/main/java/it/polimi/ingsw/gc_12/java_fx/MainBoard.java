@@ -72,21 +72,6 @@ public class MainBoard extends Application implements View{
 		launch();
 	}
 
-	@Override
-	public ClientSender getClientSender() {
-		return null;
-	}
-
-	@Override
-	public void setClientSender(ClientSender clientSender) {
-
-	}
-
-	@Override
-	public void setClientHandler(ClientHandler clientHandler) {
-
-	}
-
     public LoginController getLoginController() {
         return controller;
     }

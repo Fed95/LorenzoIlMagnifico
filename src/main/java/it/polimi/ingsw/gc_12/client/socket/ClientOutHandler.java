@@ -6,6 +6,7 @@ import it.polimi.ingsw.gc_12.client.NewName;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.util.Observable;
 import java.util.Scanner;
 
 
@@ -21,16 +22,7 @@ public class ClientOutHandler implements Runnable, ClientSender {
 
 	@Override
 	public void run() {
-
-		// Handles output messages, from the client to the server
-		try {
-			socketOut.writeObject(name);
-			socketOut.flush();
-			socketOut.reset();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
+		sendObject(name);
 	}
 
 	public String getName() {
@@ -39,25 +31,22 @@ public class ClientOutHandler implements Runnable, ClientSender {
 
 	@Override
 	public void sendAction(int input){
-
-		try {
-			socketOut.writeObject(input);
-			socketOut.flush();
-			socketOut.reset();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		sendObject(input);
 	}
 
 	@Override
-	public void sendName(String name, int unauthorizedId) throws IOException {
+	public void update(Observable o, Object arg) {
+		if(arg instanceof Integer)
+			sendAction((Integer) arg);
+	}
+
+	private void sendObject(Object object) {
 		try {
-			socketOut.writeObject(new NewName(unauthorizedId, name));
+			socketOut.writeObject(object);
 			socketOut.flush();
 			socketOut.reset();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-
 }
