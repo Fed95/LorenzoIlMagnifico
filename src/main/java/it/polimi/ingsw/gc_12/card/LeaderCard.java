@@ -69,7 +69,7 @@ public class LeaderCard extends Card {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(" " + name + "    (Played: " + played + " | Activated: " + activated + ")").append(System.getProperty("line.separator"));
+        sb.append(" " + name + "    (Played: " + played + " | Permanent: " + permanent + " | Activated: " + activated + ")").append(System.getProperty("line.separator"));
         sb.append("		Resource Requirements: " + requirements).append(System.getProperty("line.separator"));
         sb.append("		Card Requirements: " + cardRequirements).append(System.getProperty("line.separator"));
         sb.append("		Effects: ").append(System.getProperty("line.separator"));

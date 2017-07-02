@@ -314,6 +314,14 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		return cards;
 	}
 
+	public List<LeaderCard> getPlayedLeaderCards(){
+		List<LeaderCard> cards = new ArrayList<>();
+		for(Player player : players.values())
+			for(LeaderCard card : player.getPersonalBoard().getPlayedLeaderCards())
+				cards.add(card);
+		return cards;
+	}
+
 	public Board getBoard() {
 		return board;
 	}

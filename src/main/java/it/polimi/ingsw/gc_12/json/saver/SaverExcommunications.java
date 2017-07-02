@@ -207,7 +207,7 @@ public class SaverExcommunications extends Saver<List<ExcommunicationTile>> {
 
                 case 3:
                     effectProvider = askEffectProvider();
-                    effects.add(new EffectDenyEffect(new EventEndMatch(), effectProvider));
+                   // effects.add(new EffectDenyEffect(new EventEndMatch(), effectProvider));
                     break;
 
                 case 4:

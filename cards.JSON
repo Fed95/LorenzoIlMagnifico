@@ -6592,6 +6592,30 @@
     }
   },
   {
+    "id": 114,
+    "type": "LeaderCard",
+    "name": "Lorenzo de' Medici",
+    "permanent": true,
+    "requirements": [
+      {
+        "resourceType": "VictoryPoint",
+        "type": "VICTORY_POINT",
+        "value": 35
+      }
+    ],
+    "cardRequirements": {},
+    "effects": [
+      {
+        "type": "EffectCopyLeaderCard",
+        "cardId": 114,
+        "event": {
+          "eventType": "EventActivateLeaderCard",
+          "cardId": 114
+        }
+      }
+    ]
+  },
+  {
     "id": 96,
     "type": "LeaderCard",
     "name": "Francesco Sfroza",
@@ -7240,29 +7264,6 @@
         "event": {
           "eventType": "EventPickCard",
           "cardType": "TERRITORY"
-        }
-      }
-    ]
-  },
-  {
-    "id": 114,
-    "type": "LeaderCard",
-    "name": "Lorenzo de' Medici",
-    "permanent": true,
-    "requirements": [
-      {
-        "resourceType": "VictoryPoint",
-        "type": "VICTORY_POINT",
-        "value": 35
-      }
-    ],
-    "cardRequirements": {},
-    "effects": [
-      {
-        "type": "EffectCopyLeaderCard",
-        "event": {
-          "eventType": "EventActivateLeaderCard",
-          "cardId": 114
         }
       }
     ]

@@ -11,14 +11,17 @@ public class EffectDenyEffect extends Effect {
 
     private Match match;
     private EffectProvider effectProvider;
+    private String description;
 
-    public EffectDenyEffect(Event event, EffectProvider effectProvider) {
+    public EffectDenyEffect(Event event, EffectProvider effectProvider, String description) {
         super(event);
         this.effectProvider = effectProvider;
+        this.description = description;
     }
 
-    public EffectDenyEffect(Event event) {
+    public EffectDenyEffect(Event event, String description) {
         super(event);
+        this.description = description;
     }
 
     @Override

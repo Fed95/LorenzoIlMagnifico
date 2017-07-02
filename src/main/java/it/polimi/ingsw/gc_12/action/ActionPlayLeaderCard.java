@@ -3,10 +3,15 @@ package it.polimi.ingsw.gc_12.action;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.card.LeaderCard;
+import it.polimi.ingsw.gc_12.effect.Effect;
+import it.polimi.ingsw.gc_12.effect.EffectCopyLeaderCard;
 import it.polimi.ingsw.gc_12.event.EventActivateLeaderCard;
 import it.polimi.ingsw.gc_12.event.EventDiscardAction;
 import it.polimi.ingsw.gc_12.event.EventStartTurn;
 import it.polimi.ingsw.gc_12.exceptions.ActionDeniedException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ActionPlayLeaderCard extends Action {
 
@@ -25,12 +30,17 @@ public class ActionPlayLeaderCard extends Action {
     @Override
     public void start(Match match) {
         player.getPersonalBoard().getLeaderCards().get(player.getPersonalBoard().getLeaderCards().indexOf(card)).setPlayed(true);
+        List<Effect> executedEffects = new ArrayList<>();
         if(card.isPermanent())
             try {
-                match.getEffectHandler().executeEffects(match, new EventActivateLeaderCard(player, card));
+                executedEffects = match.getEffectHandler().executeEffects(match, new EventActivateLeaderCard(player, card));
             } catch (ActionDeniedException e) {
                 e.printStackTrace();
             }
+
+        for(Effect effect : executedEffects)
+            if(effect instanceof EffectCopyLeaderCard)
+                return;
 
         EventStartTurn event = new EventStartTurn(player);
         match.getActionHandler().update(event, match);

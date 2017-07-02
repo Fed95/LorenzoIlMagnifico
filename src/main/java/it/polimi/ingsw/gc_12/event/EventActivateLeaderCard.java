@@ -23,6 +23,10 @@ public class EventActivateLeaderCard extends Event {
         this.cardId = cardId;
     }
 
+    public void setCardId(int cardId) {
+        this.cardId = cardId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
