@@ -3920,6 +3920,12 @@
       },
       {
         "type": "EffectChangeFamilyMemberValue",
+        "colors": [
+          "WHITE",
+          "BLACK",
+          "ORANGE",
+          "NEUTRAL"
+        ],
         "amount": 2,
         "event": {
           "eventType": "EventPlaceFamilyMember",
@@ -3953,11 +3959,7 @@
               "occupiers": [],
               "requiredValue": 7
             }
-          ],
-          "familyMember": {
-            "value": 0,
-            "busy": false
-          }
+          ]
         }
       }
     ],
@@ -3978,6 +3980,12 @@
     "effects": [
       {
         "type": "EffectChangeFamilyMemberValue",
+        "colors": [
+          "WHITE",
+          "BLACK",
+          "ORANGE",
+          "NEUTRAL"
+        ],
         "amount": 2,
         "event": {
           "eventType": "EventPlaceFamilyMember",
@@ -4007,11 +4015,7 @@
               "cardType": "BUILDING",
               "occupiers": []
             }
-          ],
-          "familyMember": {
-            "value": 0,
-            "busy": false
-          }
+          ]
         }
       },
       {
@@ -4058,6 +4062,12 @@
     "effects": [
       {
         "type": "EffectChangeFamilyMemberValue",
+        "colors": [
+          "WHITE",
+          "BLACK",
+          "ORANGE",
+          "NEUTRAL"
+        ],
         "amount": 2,
         "event": {
           "eventType": "EventPlaceFamilyMember",
@@ -4087,11 +4097,7 @@
               "cardType": "CHARACTER",
               "occupiers": []
             }
-          ],
-          "familyMember": {
-            "value": 0,
-            "busy": false
-          }
+          ]
         }
       },
       {
@@ -4145,6 +4151,12 @@
       },
       {
         "type": "EffectChangeFamilyMemberValue",
+        "colors": [
+          "WHITE",
+          "BLACK",
+          "ORANGE",
+          "NEUTRAL"
+        ],
         "amount": 2,
         "event": {
           "eventType": "EventPlaceFamilyMember",
@@ -4174,11 +4186,7 @@
               "cardType": "VENTURE",
               "occupiers": []
             }
-          ],
-          "familyMember": {
-            "value": 0,
-            "busy": false
-          }
+          ]
         }
       }
     ],
@@ -4199,6 +4207,12 @@
     "effects": [
       {
         "type": "EffectChangeFamilyMemberValue",
+        "colors": [
+          "WHITE",
+          "BLACK",
+          "ORANGE",
+          "NEUTRAL"
+        ],
         "amount": 2,
         "event": {
           "eventType": "EventPlaceFamilyMember",
@@ -4216,11 +4230,7 @@
               "occupiers": [],
               "requiredValue": 1
             }
-          ],
-          "familyMember": {
-            "value": 0,
-            "busy": false
-          }
+          ]
         }
       }
     ],
@@ -4241,6 +4251,12 @@
     "effects": [
       {
         "type": "EffectChangeFamilyMemberValue",
+        "colors": [
+          "WHITE",
+          "BLACK",
+          "ORANGE",
+          "NEUTRAL"
+        ],
         "amount": 2,
         "event": {
           "eventType": "EventPlaceFamilyMember",
@@ -4258,11 +4274,7 @@
               "occupiers": [],
               "requiredValue": 1
             }
-          ],
-          "familyMember": {
-            "value": 0,
-            "busy": false
-          }
+          ]
         }
       }
     ],
@@ -4581,6 +4593,12 @@
     "effects": [
       {
         "type": "EffectChangeFamilyMemberValue",
+        "colors": [
+          "WHITE",
+          "BLACK",
+          "ORANGE",
+          "NEUTRAL"
+        ],
         "amount": 3,
         "event": {
           "eventType": "EventPlaceFamilyMember",
@@ -4598,11 +4616,7 @@
               "occupiers": [],
               "requiredValue": 1
             }
-          ],
-          "familyMember": {
-            "value": 0,
-            "busy": false
-          }
+          ]
         }
       }
     ],
@@ -4623,6 +4637,12 @@
     "effects": [
       {
         "type": "EffectChangeFamilyMemberValue",
+        "colors": [
+          "WHITE",
+          "BLACK",
+          "ORANGE",
+          "NEUTRAL"
+        ],
         "amount": 3,
         "event": {
           "eventType": "EventPlaceFamilyMember",
@@ -4640,11 +4660,7 @@
               "occupiers": [],
               "requiredValue": 1
             }
-          ],
-          "familyMember": {
-            "value": 0,
-            "busy": false
-          }
+          ]
         }
       }
     ],
@@ -7172,36 +7188,12 @@
     "effects": [
       {
         "type": "EffectChangeFamilyMemberValue",
+        "colors": [
+          "WHITE",
+          "BLACK",
+          "ORANGE"
+        ],
         "amount": 2,
-        "familyMember": {
-          "color": "WHITE",
-          "value": 0,
-          "busy": false
-        },
-        "event": {
-          "eventType": "EventStartTurn"
-        }
-      },
-      {
-        "type": "EffectChangeFamilyMemberValue",
-        "amount": 2,
-        "familyMember": {
-          "color": "BLACK",
-          "value": 0,
-          "busy": false
-        },
-        "event": {
-          "eventType": "EventStartTurn"
-        }
-      },
-      {
-        "type": "EffectChangeFamilyMemberValue",
-        "amount": 2,
-        "familyMember": {
-          "color": "ORANGE",
-          "value": 0,
-          "busy": false
-        },
         "event": {
           "eventType": "EventStartTurn"
         }
