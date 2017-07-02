@@ -5,16 +5,18 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.action.*;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
+import it.polimi.ingsw.gc_12.java_fx.MainBoard;
 import it.polimi.ingsw.gc_12.occupiables.Occupiable;
 import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
 import it.polimi.ingsw.gc_12.resource.Servant;
+import javafx.application.Platform;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class EventServantsRequested extends EventPlaceFamilyMember {
+public class EventServantsRequested extends EventPlaceFamilyMember implements EventView{
 
 	private int mult;
 	private List<Resource> discounts = new ArrayList<>();
@@ -94,5 +96,10 @@ public class EventServantsRequested extends EventPlaceFamilyMember {
 	@Override
 	public String toStringClient() {
 		return "";
+	}
+
+	@Override
+	public void executeViewSide(MainBoard view) {
+		Platform.runLater(() -> view.getControllerMainBoard().requestServants());
 	}
 }

@@ -114,17 +114,13 @@ public abstract class ActionPlace extends Action {
 		familyMember.setValue(originalValue);
 		return true;
 	}
-
 	
 	protected FamilyMember getRealFamilyMember(Match match){
     	return match.getBoard().getTrackTurnOrder().getCurrentPlayer().getFamilyMember(familyMember.getColor());
     }
 
-    protected Integer getServants(Match match) {
-		Integer ownedServants =  match.getBoard().getTrackTurnOrder().getCurrentPlayer().getResourceValue(ResourceType.SERVANT);
-		if(servant.getValue() > ownedServants)
-			return ownedServants;
-		return servant.getValue();
+	public void setServants(Servant servant) {
+		this.servant = servant;
 	}
 
 	protected void execute(Match match) {

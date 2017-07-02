@@ -1,11 +1,7 @@
 package it.polimi.ingsw.gc_12.java_fx;
 
 import it.polimi.ingsw.gc_12.*;
-import it.polimi.ingsw.gc_12.action.Action;
-import it.polimi.ingsw.gc_12.action.ActionChooseFamilyMember;
-import it.polimi.ingsw.gc_12.action.ActionChooseTower;
-import it.polimi.ingsw.gc_12.action.ActionPlaceOnTower;
-import it.polimi.ingsw.gc_12.card.CardDevelopment;
+import it.polimi.ingsw.gc_12.action.*;
 import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.ClientFactory;
@@ -13,6 +9,7 @@ import it.polimi.ingsw.gc_12.client.ClientFactory;
 import it.polimi.ingsw.gc_12.occupiables.Tower;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
+import it.polimi.ingsw.gc_12.resource.Servant;
 import javafx.application.Platform;
 import javafx.beans.binding.StringBinding;
 import javafx.collections.FXCollections;
@@ -111,14 +108,10 @@ public class MainBoardController extends Observable implements Initializable, Ob
 
     private Map<PlayerColor,Map<FamilyMemberColor, ImageView>>  mapPlayerColorFamImageView = new HashMap<>();
 
-
-
-
     @FXML private Pane mainPane;
 
     //pane tb that contains tab of the players
     @FXML private TabPane playersBoards;
-
 
     //tab players
     @FXML private Tab bluePlayer;
@@ -206,36 +199,23 @@ public class MainBoardController extends Observable implements Initializable, Ob
 
     @FXML void familyClicked(MouseEvent event) {
         ImageView familyMemberClicked = (ImageView) event.getTarget();
-        List<Action> actions = clientHandler.getActions();
         PlayerColor color = (PlayerColor)mainPane.getUserData();
         //System.out.println(askMeAValue("servant","inserisci i servitori","0"));
-        System.out.println(askMePrivilege());
+        //System.out.println(askMePrivilege());
         if(isMyFam(color, familyMemberClicked) && isMyTurn()){
-            for(Action action: actions)
-                System.out.println(action);
-
             highlightFamilyMember(familyMemberClicked);
 
             for (Map.Entry<FamilyMemberColor, ImageView> entry : mapPlayerColorFamImageView.get(color).entrySet()) {
                 if(entry.getValue().equals(familyMemberClicked)) {
                     FamilyMember familyMember = new FamilyMember(color, entry.getKey());
                     ActionChooseFamilyMember action = new ActionChooseFamilyMember(match.getPlayers().get(color), familyMember);
-                    for (int i = 0; i < actions.size(); i++) {
-                        if(actions.get(i).equals(action)) {
-                            setChanged();
-                            notifyObservers(i);
-                            clientHandler.getEvents().removeFirst();
-                            clientHandler.handleEvent();
-                            break;
-                        }
-                    }
+                    selectAction(action);
                     break;
                 }
             }
-            //Image image = new Image("img/Card/card_92.png");
-            //match.getMapTypeCardFloorRepresentation().get(CardType.TERRITORY).get(0).setPath(image);
-
         }
+        else
+            showTurnDenied();
 
         //match.getFamilyMemberBlueRepresentationObservableList().get(0).setValueProperty(10);
     }
@@ -251,23 +231,44 @@ public class MainBoardController extends Observable implements Initializable, Ob
         PlayerColor color = (PlayerColor)mainPane.getUserData();
         Circle floorClicked = (Circle) event.getTarget();
         if(lastFamClicked!=null && isMyTurn()){
-            //so che ho un fam memb cliccato e che è il mio turno
-            chatTextArea.appendText("fam memb selezonato ed è il mio turno");
-            List<Action> actions = clientHandler.getActions();
-            Action action = new ActionChooseTower(match.getPlayers().get(color), null, new Tower(CardType.TERRITORY));
-            actionPending = new ActionPlaceOnTower(match.getPlayers().get(color), null, new TowerFloor(3, CardType.TERRITORY), true);
-            for (int i = 0; i < actions.size(); i++) {
-                if(actions.get(i).equals(action)) {
-                    setChanged();
-                    notifyObservers(i);
-                    clientHandler.getEvents().removeFirst();
-                    clientHandler.handleEvent();
-                    break;
+            loop: for(Map.Entry<CardType, Map<Integer, Circle>> entryType : mapCardTypeFloorCircle.entrySet()) {
+                for(Map.Entry<Integer, Circle> entryFloor: entryType.getValue().entrySet()) {
+                    if(entryFloor.getValue().equals(floorClicked)) {
+                        Action action = new ActionChooseTower(match.getPlayers().get(color), null, new Tower(entryType.getKey()));
+                        actionPending = new ActionPlaceOnTower(match.getPlayers().get(color), null, new TowerFloor(entryFloor.getKey(), entryType.getKey()));
+                        selectAction(action);
+                        break loop;
+                    }
                 }
             }
-
         }
+        else
+            showTurnDenied();
+    }
 
+    private void selectAction(Action action) {
+        List<Action> actions = clientHandler.getActions();
+        for (int i = 0; i < actions.size(); i++) {
+            if(actions.get(i).equals(action)) {
+                setChanged();
+                notifyObservers(i);
+                clientHandler.getEvents().removeFirst();
+                clientHandler.handleEvent();
+                break;
+            }
+        }
+    }
+
+    public void requestServants() {
+        if(isMyTurn()) {
+            String request = "Insert the number of servants\nmin value: "+clientHandler.getOffset()+" max value: "+clientHandler.getActions().size();
+            int servants = askMeAValue("servant", request, String.valueOf(clientHandler.getOffset()));
+            if(actionPending instanceof ActionPlace) {
+                ((ActionPlace)actionPending).setServants(new Servant(servants));
+                selectAction(actionPending);
+                actionPending = null;
+            }
+        }
     }
 
     @Override
@@ -398,18 +399,16 @@ public class MainBoardController extends Observable implements Initializable, Ob
         return false;
     }
 
-    private Boolean isMyTurn(){
-        Boolean isMyTurn = clientHandler.getMyTurn();
-        if(isMyTurn){
-            return true;
-        }else{
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Not Your Turn");
-            alert.setContentText("Wait your turn bra!");
-            alert.showAndWait();
-            return false;
-        }
+    private boolean isMyTurn(){
+        return clientHandler.getMyTurn();
+    }
+
+    public void showTurnDenied() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText("Not Your Turn");
+        alert.setContentText("Wait your turn bra!");
+        alert.showAndWait();
     }
 
     private void highlightFamilyMember(ImageView familyMemberClicked){
@@ -586,20 +585,13 @@ public class MainBoardController extends Observable implements Initializable, Ob
     }
 
     public void sendAction() {
-        if(isMyTurn() && actionPending != null) {
-            List<Action> actions = clientHandler.getActions();
-            for (int i = 0; i < actions.size(); i++) {
-                if(actions.get(i).equals(actionPending)) {
-                    setChanged();
-                    notifyObservers(i);
-                    clientHandler.getEvents().removeFirst();
-                    clientHandler.handleEvent();
-                    break;
-                }
+        if(isMyTurn()) {
+            if(actionPending != null) {
+                selectAction(actionPending);
             }
-        }
-        else {
-            throw new IllegalStateException("Sending automatically action when it's not possible");
+            else {
+                throw new IllegalStateException("Sending automatically action when it's not possible");
+            }
         }
     }
 
@@ -610,20 +602,19 @@ public class MainBoardController extends Observable implements Initializable, Ob
        dialog.setHeaderText(request);
        dialog.setContentText("Value:");
        Optional<String> result = dialog.showAndWait();
-        int defAult = 0;
+       int value = 0;
        if (result.isPresent()){
-
            String resToString = result.get();
-           if(isInteger(resToString)){
+           if(isInteger(resToString)) {
                int res = Integer.parseInt(resToString);
-               return res;
-           }else{
-               defAult = askMeAValue(title,request+"\nOnly numbers allowed",minValue);
+               if (res >= clientHandler.getOffset() && res < clientHandler.getActions().size())
+                   return res;
            }
-
+           value = askMeAValue(title,request, minValue);
        }
-       return defAult;
+       return value;
    }
+
     private boolean isInteger(String s) {
         try {
             Integer.parseInt(s);
