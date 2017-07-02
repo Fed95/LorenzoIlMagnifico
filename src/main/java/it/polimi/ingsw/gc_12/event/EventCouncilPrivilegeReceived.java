@@ -4,16 +4,18 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.action.ActionChooseExchange;
 import it.polimi.ingsw.gc_12.action.ActionHandler;
+import it.polimi.ingsw.gc_12.java_fx.MainBoard;
 import it.polimi.ingsw.gc_12.json.loader.LoaderConfig;
 import it.polimi.ingsw.gc_12.resource.CouncilPrivilege;
 import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.resource.ResourceExchange;
+import javafx.application.Platform;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class EventCouncilPrivilegeReceived extends Event {
+public class EventCouncilPrivilegeReceived extends Event implements EventView {
 
 	private CouncilPrivilege councilPrivilege;
 	private List<Integer> choices;
@@ -52,5 +54,10 @@ public class EventCouncilPrivilegeReceived extends Event {
 	@Override
 	public String toString() {
 		return null;
+	}
+
+	@Override
+	public void executeViewSide(MainBoard view) {
+		Platform.runLater(() -> view.getControllerMainBoard().handleCouncilPrivilege(councilPrivilege));
 	}
 }

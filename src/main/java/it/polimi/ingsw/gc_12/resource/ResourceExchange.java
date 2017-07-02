@@ -36,4 +36,22 @@ public class ResourceExchange implements Serializable {
 	public String toString() {
 		return "Cost: " + cost + ", Bonus: " + bonus;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof ResourceExchange)) return false;
+
+		ResourceExchange that = (ResourceExchange) o;
+
+		if (cost != null ? !cost.equals(that.cost) : that.cost != null) return false;
+		return bonus != null ? bonus.equals(that.bonus) : that.bonus == null;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = cost != null ? cost.hashCode() : 0;
+		result = 31 * result + (bonus != null ? bonus.hashCode() : 0);
+		return result;
+	}
 }

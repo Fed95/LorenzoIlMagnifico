@@ -59,4 +59,19 @@ public class ActionChooseExchange extends Action {
     public String toString() {
         return exchange.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ActionChooseExchange)) return false;
+
+        ActionChooseExchange that = (ActionChooseExchange) o;
+
+        return exchange != null ? exchange.equals(that.exchange) : that.exchange == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return exchange != null ? exchange.hashCode() : 0;
+    }
 }

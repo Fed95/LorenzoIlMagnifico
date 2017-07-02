@@ -175,4 +175,11 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 	public void setUnauthorizedId(int unauthorizedId) {
 		this.unauthorizedId = unauthorizedId;
 	}
+
+	public boolean removeAction(int index) {
+    	if(index < 0 || index >= actions.size())
+    		return false;
+    	actions.remove(index);
+    	return true;
+	}
 }

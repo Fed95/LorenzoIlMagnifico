@@ -32,4 +32,18 @@ public class ActionPlaceOnCouncil extends ActionPlace {
             throw new RequiredValueNotSatisfiedException();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ActionPlaceOnCouncil)) return false;
+
+        ActionPlaceOnCouncil that = (ActionPlaceOnCouncil) o;
+
+        return councilPalace != null ? councilPalace.equals(that.councilPalace) : that.councilPalace == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return councilPalace != null ? councilPalace.hashCode() : 0;
+    }
 }

@@ -6,10 +6,11 @@ import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.ClientFactory;
 
+import it.polimi.ingsw.gc_12.json.loader.LoaderConfig;
+import it.polimi.ingsw.gc_12.occupiables.CouncilPalace;
 import it.polimi.ingsw.gc_12.occupiables.Tower;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
-import it.polimi.ingsw.gc_12.resource.ResourceType;
-import it.polimi.ingsw.gc_12.resource.Servant;
+import it.polimi.ingsw.gc_12.resource.*;
 import javafx.application.Platform;
 import javafx.beans.binding.StringBinding;
 import javafx.collections.FXCollections;
@@ -24,6 +25,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -196,6 +198,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
     private MatchInstanceGUI match;
     private ClientHandler clientHandler;
     private Action actionPending;
+    private List<List<Resource>> councilPrivilegeResources =  new LoaderConfig().get(null).getCouncilPrivilegeResources();
 
     @FXML void familyClicked(MouseEvent event) {
         ImageView familyMemberClicked = (ImageView) event.getTarget();
@@ -626,32 +629,72 @@ public class MainBoardController extends Observable implements Initializable, Ob
         return true;
     }
 
-    public int askMePrivilege() {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainBoard.class.getResource("/FXML/DialogCouncilPrivilegeFXML.fxml"));
-            Pane page = (Pane) loader.load();
-            int privilege;
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle("Choose Privilege");
-            dialogStage.setResizable(false);
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            Scene scene = new Scene(page);
-            dialogStage.setScene(scene);
-            DialogCouncilPrivilegeController controller = loader.getController();
-            controller.setDialogStage(dialogStage);
-            dialogStage.showAndWait();
+    public void handleCouncilPrivilege(CouncilPrivilege councilPrivilege) {
 
-            if(controller.getSelected()!=-1){
-                privilege = controller.getSelected();
-                return privilege;
-            }else{
-                privilege = askMePrivilege();
-            }
-            return privilege;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return -1;
-        }
+   		if(isMyTurn()) {
+			try {
+				FXMLLoader loader = new FXMLLoader();
+				loader.setLocation(MainBoard.class.getResource("/FXML/DialogCouncilPrivilegeFXML.fxml"));
+				Pane page = loader.load();
+				Stage dialogStage = new Stage();
+				dialogStage.setTitle("Choose Privilege");
+				dialogStage.setResizable(false);
+				dialogStage.initModality(Modality.WINDOW_MODAL);
+				Scene scene = new Scene(page);
+				dialogStage.setScene(scene);
+				DialogCouncilPrivilegeController controller = loader.getController();
+				controller.setDialogStage(dialogStage);
+
+				requestCouncilPrivileges(councilPrivilege, dialogStage, controller);
+
+			} catch (IOException ignored) {}
+			finally {
+				clientHandler.getEvents().removeFirst();
+				clientHandler.handleEvent();
+			}
+		}
     }
+
+    private void requestCouncilPrivileges(CouncilPrivilege councilPrivilege, Stage dialogStage, DialogCouncilPrivilegeController controller) {
+		PlayerColor color = (PlayerColor)mainPane.getUserData();
+		while(councilPrivilege.getValue() > 0) {
+			int choice = askPrivilege(dialogStage, controller);
+			ResourceExchange exchange =	new ResourceExchange(new ArrayList<>(Collections.singletonList(new CouncilPrivilege(1))), councilPrivilegeResources.get(choice));
+			Action action = new ActionChooseExchange(match.getPlayers().get(color), exchange);
+			List<Action> actions = clientHandler.getActions();
+			for (int i = 0; i < actions.size(); i++) {
+				if(actions.get(i).equals(action)) {
+					clientHandler.removeAction(i);
+					councilPrivilege.setValue(councilPrivilege.getValue() - 1);
+					setChanged();
+					notifyObservers(i);
+					break;
+				}
+			}
+		}
+	}
+
+    public int askPrivilege(Stage dialogStage, DialogCouncilPrivilegeController controller) {
+   		int privilege;
+		dialogStage.showAndWait();
+
+		if(controller.getSelected()!=-1){
+			privilege = controller.getSelected();
+			return privilege;
+		}else{
+			privilege = askPrivilege(dialogStage, controller);
+		}
+		return privilege;
+    }
+
+	public void councilPalaceClicked(MouseEvent event) {
+		PlayerColor color = (PlayerColor)mainPane.getUserData();
+		if(lastFamClicked!=null && isMyTurn()){
+			Action action = new ActionPlaceOnCouncil(match.getPlayers().get(color), null, new CouncilPalace(1));
+			actionPending = action;
+			selectAction(action);
+		}
+		else
+			showTurnDenied();
+	}
 }

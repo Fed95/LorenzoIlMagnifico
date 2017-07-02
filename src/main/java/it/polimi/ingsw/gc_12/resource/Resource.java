@@ -29,4 +29,22 @@ public abstract class Resource implements Serializable {
 		sb.append(type + ": " + value);
 		return sb.toString();
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Resource)) return false;
+
+		Resource resource = (Resource) o;
+
+		if (value != resource.value) return false;
+		return type == resource.type;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = type.hashCode();
+		result = 31 * result + value;
+		return result;
+	}
 }

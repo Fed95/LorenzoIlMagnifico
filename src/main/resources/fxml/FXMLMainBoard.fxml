@@ -339,7 +339,7 @@
              <Circle fx:id="secondPlayerTurn" fill="DODGERBLUE" layoutX="560.0" layoutY="604.0" opacity="0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
              <Circle fx:id="thirdPlayerTurn" fill="DODGERBLUE" layoutX="560.0" layoutY="642.0" opacity="0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
              <Circle fx:id="fourthPlayerTurn" fill="DODGERBLUE" layoutX="560.0" layoutY="681.0" opacity="0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
-            <Rectangle fx:id="councilPalace" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="64.0" layoutX="314.0" layoutY="577.0" opacity="0.18" stroke="BLACK" strokeType="INSIDE" width="184.0" />
+            <Rectangle fx:id="councilPalace" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="64.0" layoutX="314.0" onMouseClicked="#councilPalaceClicked"  layoutY="577.0" opacity="0.18" stroke="BLACK" strokeType="INSIDE" width="184.0" />
             <ImageView fx:id="excomTile1" fitHeight="93.0" fitWidth="57.0" layoutX="103.0" layoutY="633.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="excomTile2" fitHeight="89.0" fitWidth="50.0" layoutX="160.0" layoutY="645.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="excomTile3" fitHeight="105.0" fitWidth="49.0" layoutX="217.0" layoutY="632.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
