@@ -1,8 +1,8 @@
 package it.polimi.ingsw.gc_12.java_fx;
 
 import javafx.fxml.FXML;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.Ellipse;
 import javafx.stage.Stage;
 
 import java.util.HashMap;
@@ -12,12 +12,12 @@ import java.util.Map;
  * Created by rugge on 02/07/2017.
  */
 public class DialogCouncilPrivilegeController {
-    @FXML private Ellipse privilege0;
-    @FXML private Ellipse privilege1;
-    @FXML private Ellipse privilege2;
-    @FXML private Ellipse privilege3;
-    @FXML private Ellipse privilege4;
-    Map<Ellipse, Integer> mapEllipseInteger = new HashMap<>();
+    @FXML private ImageView privilege0;
+    @FXML private ImageView privilege1;
+    @FXML private ImageView privilege2;
+    @FXML private ImageView privilege3;
+    @FXML private ImageView privilege4;
+    Map<ImageView, Integer> mapEllipseInteger = new HashMap<>();
     private Stage dialogStage;
     private Boolean clicked = false;
     private int selected = -1;

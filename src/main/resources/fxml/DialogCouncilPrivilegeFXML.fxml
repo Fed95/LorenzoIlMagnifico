@@ -4,22 +4,41 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Ellipse?>
-<?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="271.0" prefWidth="600.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.gc_12.java_fx.DialogCouncilPrivilegeController">
    <children>
       <ImageView fitHeight="127.0" fitWidth="580.0" layoutX="10.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../img/privilege.png" />
+            <Image url="@../img/emptyprivilege.png" />
          </image>
       </ImageView>
-      <Label layoutX="116.0" layoutY="44.0" prefHeight="58.0" prefWidth="378.0"  styleClass="bigTitle" text="Choose one Privilege"/>
+      <Label layoutX="116.0" layoutY="44.0" prefHeight="58.0" prefWidth="378.0" styleClass="bigTitle" text="Choose one Privilege" />
 
-      <Ellipse fx:id="privilege1" fill="DODGERBLUE" layoutX="290.0" layoutY="204.0" onMouseClicked="#privilegeClicked" opacity="0.0" radiusX="30.0" radiusY="42.0" rotate="20.0" stroke="BLACK" strokeType="INSIDE" />
-      <Ellipse fx:id="privilege0" fill="DODGERBLUE" layoutX="216.0" layoutY="199.0" onMouseClicked="#privilegeClicked" opacity="0.0" radiusX="31.0" radiusY="46.0" rotate="20.0" stroke="BLACK" strokeType="INSIDE" />
-      <Ellipse fx:id="privilege2" fill="DODGERBLUE" layoutX="363.0" layoutY="206.0" onMouseClicked="#privilegeClicked" opacity="0.0" radiusX="27.0" radiusY="35.0" rotate="20.0" stroke="BLACK" strokeType="INSIDE" />
-      <Ellipse fx:id="privilege3" fill="DODGERBLUE" layoutX="444.0" layoutY="199.0" onMouseClicked="#privilegeClicked" opacity="0.0" radiusX="32.0" radiusY="47.0" rotate="20.0" stroke="BLACK" strokeType="INSIDE" />
-      <Ellipse fx:id="privilege4" fill="DODGERBLUE" layoutX="523.0" layoutY="200.0" onMouseClicked="#privilegeClicked" opacity="0.0" radiusX="26.0" radiusY="38.0" rotate="20.0" stroke="BLACK" strokeType="INSIDE" />
+    
+      <ImageView fx:id="privilege0" fitHeight="84.0" fitWidth="58.0" layoutX="184.0" layoutY="156.0" onMouseClicked="#privilegeClicked" preserveRatio="true">
+         <image>
+            <Image url="@../img/coucilPrivilege0.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="privilege1" fitHeight="69.0" fitWidth="46.0" layoutX="264.0" layoutY="163.0" onMouseClicked="#privilegeClicked" preserveRatio="true">
+         <image>
+            <Image url="@../img/coucilPrivilege1.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="privilege2" fitHeight="51.0" fitWidth="58.0" layoutX="335.0" layoutY="186.0" onMouseClicked="#privilegeClicked" preserveRatio="true">
+         <image>
+            <Image url="@../img/coucilPrivilege2.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="privilege3" fitHeight="76.0" fitWidth="74.0" layoutX="420.0" layoutY="156.0" onMouseClicked="#privilegeClicked" preserveRatio="true">
+         <image>
+            <Image url="@../img/coucilPrivilege3.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="privilege4" fitHeight="82.0" fitWidth="57.0" layoutX="494.0" layoutY="159.0" onMouseClicked="#privilegeClicked" preserveRatio="true">
+         <image>
+            <Image url="@../img/coucilPrivilege4.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
