@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="271.0" prefWidth="600.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.gc_12.java_fx.DialogCouncilPrivilegeController">
+   <children>
+      <ImageView fitHeight="127.0" fitWidth="580.0" layoutX="10.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/privilege.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="116.0" layoutY="44.0" prefHeight="58.0" prefWidth="378.0"  styleClass="bigTitle" text="Choose one Privilege"/>
+
+      <Ellipse fx:id="privilege1" fill="DODGERBLUE" layoutX="290.0" layoutY="204.0" onMouseClicked="#privilegeClicked" opacity="0.0" radiusX="30.0" radiusY="42.0" rotate="20.0" stroke="BLACK" strokeType="INSIDE" />
+      <Ellipse fx:id="privilege0" fill="DODGERBLUE" layoutX="216.0" layoutY="199.0" onMouseClicked="#privilegeClicked" opacity="0.0" radiusX="31.0" radiusY="46.0" rotate="20.0" stroke="BLACK" strokeType="INSIDE" />
+      <Ellipse fx:id="privilege2" fill="DODGERBLUE" layoutX="363.0" layoutY="206.0" onMouseClicked="#privilegeClicked" opacity="0.0" radiusX="27.0" radiusY="35.0" rotate="20.0" stroke="BLACK" strokeType="INSIDE" />
+      <Ellipse fx:id="privilege3" fill="DODGERBLUE" layoutX="444.0" layoutY="199.0" onMouseClicked="#privilegeClicked" opacity="0.0" radiusX="32.0" radiusY="47.0" rotate="20.0" stroke="BLACK" strokeType="INSIDE" />
+      <Ellipse fx:id="privilege4" fill="DODGERBLUE" layoutX="523.0" layoutY="200.0" onMouseClicked="#privilegeClicked" opacity="0.0" radiusX="26.0" radiusY="38.0" rotate="20.0" stroke="BLACK" strokeType="INSIDE" />
+   </children>
+</Pane>

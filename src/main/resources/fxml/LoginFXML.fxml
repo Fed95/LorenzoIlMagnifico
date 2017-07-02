@@ -8,7 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="688.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.gc_12.java_fx.LoginController">
+<Pane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="688.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.gc_12.java_fx.LoginController">
    <children>
       <ImageView fitHeight="200.0" fitWidth="216.0" layoutX="273.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -17,7 +17,9 @@
       </ImageView>
       <TextField fx:id="nameField" layoutX="229.0" layoutY="231.0" prefHeight="31.0" prefWidth="237.0" promptText="Insert Name" />
       <Label layoutX="120.0" layoutY="236.0" text="Name" />
+
       <Label layoutX="102.0" layoutY="321.0" text="Connection" />
+
       <Button fx:id="playButton" layoutX="308.0" layoutY="386.0" mnemonicParsing="false" onMouseClicked="#startGame" prefHeight="31.0" prefWidth="76.0" text="Play" />
       <ChoiceBox fx:id="connectionChoice" layoutX="268.0" layoutY="316.0" prefWidth="150.0" value="RMI" />
 

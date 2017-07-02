@@ -5,6 +5,7 @@ import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.action.ActionChooseFamilyMember;
 import it.polimi.ingsw.gc_12.action.ActionChooseTower;
 import it.polimi.ingsw.gc_12.action.ActionPlaceOnTower;
+import it.polimi.ingsw.gc_12.card.CardDevelopment;
 import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.ClientFactory;
@@ -17,14 +18,19 @@ import javafx.beans.binding.StringBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import java.util.Observable;
@@ -203,7 +209,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
         List<Action> actions = clientHandler.getActions();
         PlayerColor color = (PlayerColor)mainPane.getUserData();
         //System.out.println(askMeAValue("servant","inserisci i servitori","0"));
-
+        System.out.println(askMePrivilege());
         if(isMyFam(color, familyMemberClicked) && isMyTurn()){
             for(Action action: actions)
                 System.out.println(action);
@@ -627,5 +633,34 @@ public class MainBoardController extends Observable implements Initializable, Ob
             return false;
         }
         return true;
+    }
+
+    public int askMePrivilege() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainBoard.class.getResource("/FXML/DialogCouncilPrivilegeFXML.fxml"));
+            Pane page = (Pane) loader.load();
+            int privilege;
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Choose Privilege");
+            dialogStage.setResizable(false);
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+            DialogCouncilPrivilegeController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            dialogStage.showAndWait();
+
+            if(controller.getSelected()!=-1){
+                privilege = controller.getSelected();
+                return privilege;
+            }else{
+                privilege = askMePrivilege();
+            }
+            return privilege;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
 }
