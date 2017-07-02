@@ -49,6 +49,9 @@ public class EventActivateLeaderCard extends Event {
 
     @Override
     public String toString() {
+        if(player == null)
+            return "Activate LeaderCard";
+
         StringBuilder sb = new StringBuilder();
         sb.append(System.getProperty("line.separator"));
         sb.append(player.getName() + " activated the following LeaderCard: ").append(System.getProperty("line.separator"));

@@ -19,7 +19,6 @@ public class ActionHandler {
 	private LinkedList<Event> events = new LinkedList<>();
 	private Match match;
 	private int offset;
-	private int multiplier;
 	private boolean hasPlaced = false;
 	private int councilPrivileges = 0;
 	private List<List<Resource>> councilPrivilegeResources = new ArrayList<>();
@@ -28,11 +27,10 @@ public class ActionHandler {
 	public ActionHandler(Match match) {
 		this.match = match;
 		this.actions = new ArrayList<>(Collections.singletonList(new ActionReady(null)));
-		this.multiplier = 1;
 	}
 
 	public Action getAvailableAction(int input) {
-		int inputReal = (input - offset * multiplier > 0 ? input - offset*multiplier : 0);
+		int inputReal = (input - offset > 0 ? input - offset : 0);
 		Action action = actions.get(inputReal);
 
 		if(events.size() > 0) {
@@ -47,7 +45,6 @@ public class ActionHandler {
 			}
 		}
 		offset = 0;
-		multiplier = 1;
 		return action;
 	}
 
@@ -82,10 +79,6 @@ public class ActionHandler {
 
 	public void setOffset(int offset) {
 		this.offset = offset;
-	}
-
-	public void setMultiplier(int multiplier) {
-		this.multiplier = multiplier;
 	}
 
 	public void setHasPlaced(boolean hasPlaced) {

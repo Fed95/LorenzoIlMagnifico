@@ -28,4 +28,9 @@ public class EffectServantsMultipier extends Effect {
     public void discard(Match match, Event event) {
 
     }
+
+    @Override
+    public String toString() {
+        return event.getClass().getSimpleName() + ": You need " + value + " servants to increase your FamilyMember's value by 1";
+    }
 }
