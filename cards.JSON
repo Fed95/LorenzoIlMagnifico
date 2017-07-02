@@ -6745,6 +6745,17 @@
           "multiplier": 1,
           "actions": []
         }
+      },
+      {
+        "type": "EffectDenyEffect",
+        "description": "You don't have to spend the 3 extra MONEY resources when placing on a taken tower",
+        "effectProvider": {
+          "effectProvider": "TowerFloor"
+        },
+        "event": {
+          "eventType": "EventActivateLeaderCard",
+          "cardId": 98
+        }
       }
     ]
   },
@@ -6774,38 +6785,6 @@
     ]
   },
   {
-    "id": 99,
-    "type": "LeaderCard",
-    "name": "Sigmondo Malatesta",
-    "permanent": true,
-    "requirements": [
-      {
-        "resourceType": "MilitaryPoint",
-        "type": "MILITARY_POINT",
-        "value": 7
-      },
-      {
-        "resourceType": "FaithPoint",
-        "type": "FAITH_POINT",
-        "value": 3
-      }
-    ],
-    "cardRequirements": {},
-    "effects": [
-      {
-        "type": "EffectChangeFamilyMemberValue",
-        "amount": 3,
-        "setValue": false,
-        "colors": [
-          "NEUTRAL"
-        ],
-        "event": {
-          "eventType": "EventStartTurn"
-        }
-      }
-    ]
-  },
-  {
     "id": 100,
     "type": "LeaderCard",
     "name": "Ludovico il Moro",
@@ -6829,6 +6808,20 @@
         ],
         "event": {
           "eventType": "EventStartTurn"
+        }
+      },
+      {
+        "type": "EffectChangeFamilyMemberValue",
+        "amount": 5,
+        "setValue": true,
+        "colors": [
+          "WHITE",
+          "BLACK",
+          "ORANGE"
+        ],
+        "event": {
+          "eventType": "EventActivateLeaderCard",
+          "cardId": 100
         }
       }
     ]
@@ -7197,6 +7190,18 @@
         "event": {
           "eventType": "EventStartTurn"
         }
+      },
+      {
+        "type": "EffectChangeFamilyMemberValue",
+        "colors": [
+          "WHITE",
+          "BLACK",
+          "ORANGE"
+        ],
+        "event": {
+          "eventType": "EventActivateLeaderCard",
+          "cardId": 110
+        }
       }
     ]
   },
@@ -7271,6 +7276,50 @@
         "event": {
           "eventType": "EventPickCard",
           "cardType": "TERRITORY"
+        }
+      }
+    ]
+  },
+  {
+    "id": 114,
+    "type": "LeaderCard",
+    "name": "Sigmondo Malatesta",
+    "permanent": true,
+    "requirements": [
+      {
+        "resourceType": "MilitaryPoint",
+        "type": "MILITARY_POINT",
+        "value": 7
+      },
+      {
+        "resourceType": "FaithPoint",
+        "type": "FAITH_POINT",
+        "value": 3
+      }
+    ],
+    "cardRequirements": {},
+    "effects": [
+      {
+        "type": "EffectChangeFamilyMemberValue",
+        "amount": 3,
+        "setValue": false,
+        "colors": [
+          "NEUTRAL"
+        ],
+        "event": {
+          "eventType": "EventStartTurn"
+        }
+      },
+      {
+        "type": "EffectChangeFamilyMemberValue",
+        "amount": 3,
+        "setValue": false,
+        "colors": [
+          "NEUTRAL"
+        ],
+        "event": {
+          "eventType": "EventActivateLeaderCard",
+          "cardId": 114
         }
       }
     ]
