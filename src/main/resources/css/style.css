@@ -1,0 +1,10 @@
+.root, .label{
+   -fx-font-family: "Tempus Sans ITC";
+    -fx-font-size:20px;
+ }
+ .bigTitle{
+    -fx-font-size:40px;
+ }
+.famMembValue{
+    -fx-font-size:30;
+}
