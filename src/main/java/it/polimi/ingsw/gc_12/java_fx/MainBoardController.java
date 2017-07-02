@@ -1,8 +1,5 @@
 package it.polimi.ingsw.gc_12.java_fx;
 
-
-
-import com.sun.xml.internal.ws.util.StringUtils;
 import it.polimi.ingsw.gc_12.*;
 import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.action.ActionChooseFamilyMember;
@@ -28,7 +25,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 import java.util.Observable;
