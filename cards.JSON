@@ -3847,6 +3847,64 @@
             "cost": [],
             "bonus": [
               {
+                "resourceType": "FaithPoint",
+                "type": "FAITH_POINT",
+                "value": 4
+              }
+            ]
+          }
+        ],
+        "choice": false,
+        "event": {
+          "eventType": "EventPickCard",
+          "cardID": 54
+        }
+      },
+      {
+        "type": "EffectDenyEffect",
+        "description": "You don't have to spend the 3 extra MONEY resources when placing on a taken tower",
+        "effectProvider": {
+          "effectProvider": "TowerFloor"
+        },
+        "event": {
+          "eventType": "EventPlaceFamilyMember",
+          "occupiables": [
+            {
+              "occupiable": "TowerFloor"
+            }
+          ],
+          "multiplier": 1,
+          "actions": []
+        }
+      }
+    ],
+    "name": "Predicatore",
+    "id": 54,
+    "requirements": [
+      {
+        "resourceType": "Money",
+        "type": "MONEY",
+        "value": 2
+      },
+      {
+        "resourceType": "FaithPoint",
+        "type": "FAITH_POINT",
+        "value": 4
+      }
+    ]
+  },
+  {
+    "type": "CardCharacter",
+    "cardType": "CHARACTER",
+    "period": 1,
+    "effects": [
+      {
+        "type": "EffectChangeResource",
+        "exchanges": [
+          {
+            "cost": [],
+            "bonus": [
+              {
                 "resourceType": "MilitaryPoint",
                 "type": "MILITARY_POINT",
                 "value": 3
@@ -4215,47 +4273,6 @@
         "resourceType": "Money",
         "type": "MONEY",
         "value": 3
-      }
-    ]
-  },
-  {
-    "type": "CardCharacter",
-    "cardType": "CHARACTER",
-    "period": 1,
-    "effects": [
-      {
-        "type": "EffectChangeResource",
-        "exchanges": [
-          {
-            "cost": [],
-            "bonus": [
-              {
-                "resourceType": "FaithPoint",
-                "type": "FAITH_POINT",
-                "value": 4
-              }
-            ]
-          }
-        ],
-        "choice": false,
-        "event": {
-          "eventType": "EventPickCard",
-          "cardID": 54
-        }
-      }
-    ],
-    "name": "Predicatore",
-    "id": 54,
-    "requirements": [
-      {
-        "resourceType": "Money",
-        "type": "MONEY",
-        "value": 2
-      },
-      {
-        "resourceType": "FaithPoint",
-        "type": "FAITH_POINT",
-        "value": 4
       }
     ]
   },
@@ -6700,10 +6717,7 @@
         "type": "EffectDenyEffect",
         "description": "You don't have to spend the 3 extra MONEY resources when placing on a taken tower",
         "effectProvider": {
-          "effectProvider": "TowerFloor",
-          "floorNum": -1,
-          "occupiers": [],
-          "requiredValue": 0
+          "effectProvider": "TowerFloor"
         },
         "event": {
           "eventType": "EventPlaceFamilyMember",

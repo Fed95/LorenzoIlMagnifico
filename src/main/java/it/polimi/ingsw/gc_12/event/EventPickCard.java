@@ -75,7 +75,7 @@ public class EventPickCard extends Event {
             if ((cardID) == that.getCardID())
                 return true;
         }
-        return true;
+        return false;
     }
 
     @Override

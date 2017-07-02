@@ -102,6 +102,7 @@ public class EventPlaceFamilyMember extends Event{
 
         if(this.familyMember == null || that.familyMember == null)
             return true;
+
         if(this.familyMember.getValue() < that.getFamilyMember().getValue()){
             return false;
         }

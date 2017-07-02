@@ -62,4 +62,9 @@ public class EffectDenyEffect extends Effect {
         }
         return effects;
     }
+
+    @Override
+    public String toString() {
+        return description;
+    }
 }
