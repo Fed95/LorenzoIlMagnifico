@@ -25,7 +25,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -150,27 +149,27 @@ public class MainBoardController extends Observable implements Initializable, Ob
     private Map<ResourceType,Label> resourcePlayer4 = new HashMap<>();
     private Map<PlayerColor, Map<ResourceType, Label>> mapPlayerColorResourceLabel= new HashMap<>();
 
-    @FXML private Circle floorToBeClicked0;
-    @FXML private Circle floorToBeClicked1;
-    @FXML private Circle floorToBeClicked2;
-    @FXML private Circle floorToBeClicked3;
-    @FXML private Circle floorToBeClicked4;
-    @FXML private Circle floorToBeClicked5;
-    @FXML private Circle floorToBeClicked6;
-    @FXML private Circle floorToBeClicked7;
-    @FXML private Circle floorToBeClicked8;
-    @FXML private Circle floorToBeClicked9;
-    @FXML private Circle floorToBeClicked10;
-    @FXML private Circle floorToBeClicked11;
-    @FXML private Circle floorToBeClicked12;
-    @FXML private Circle floorToBeClicked13;
-    @FXML private Circle floorToBeClicked14;
-    @FXML private Circle floorToBeClicked15;
-    private Map<Integer, Circle> mapfloorToBeClickedTerritory = new HashMap<>();
-    private Map<Integer, Circle> mapfloorToBeClickedBuildings = new HashMap<>();
-    private Map<Integer, Circle> mapfloorToBeClickedCharacter = new HashMap<>();
-    private Map<Integer, Circle> mapfloorToBeClickedVenture = new HashMap<>();
-    private Map<CardType, Map<Integer, Circle>> mapCardTypeFloorCircle = new HashMap<>();
+    @FXML private ImageView floorToBeClicked0;
+    @FXML private ImageView floorToBeClicked1;
+    @FXML private ImageView floorToBeClicked2;
+    @FXML private ImageView floorToBeClicked3;
+    @FXML private ImageView floorToBeClicked4;
+    @FXML private ImageView floorToBeClicked5;
+    @FXML private ImageView floorToBeClicked6;
+    @FXML private ImageView floorToBeClicked7;
+    @FXML private ImageView floorToBeClicked8;
+    @FXML private ImageView floorToBeClicked9;
+    @FXML private ImageView floorToBeClicked10;
+    @FXML private ImageView floorToBeClicked11;
+    @FXML private ImageView floorToBeClicked12;
+    @FXML private ImageView floorToBeClicked13;
+    @FXML private ImageView floorToBeClicked14;
+    @FXML private ImageView floorToBeClicked15;
+    private Map<Integer, ImageView> mapfloorToBeClickedTerritory = new HashMap<>();
+    private Map<Integer, ImageView> mapfloorToBeClickedBuildings = new HashMap<>();
+    private Map<Integer, ImageView> mapfloorToBeClickedCharacter = new HashMap<>();
+    private Map<Integer, ImageView> mapfloorToBeClickedVenture = new HashMap<>();
+    private Map<CardType, Map<Integer, ImageView>> mapCardTypeFloorImageView = new HashMap<>();
 
     @FXML private Circle firstPlayerTurn;
     @FXML private Circle secondPlayerTurn;
@@ -232,10 +231,10 @@ public class MainBoardController extends Observable implements Initializable, Ob
 
     @FXML synchronized void floorClicked(MouseEvent event){
         PlayerColor color = (PlayerColor)mainPane.getUserData();
-        Circle floorClicked = (Circle) event.getTarget();
+        ImageView floorClicked = (ImageView) event.getTarget();
         if(lastFamClicked!=null && isMyTurn()){
-            loop: for(Map.Entry<CardType, Map<Integer, Circle>> entryType : mapCardTypeFloorCircle.entrySet()) {
-                for(Map.Entry<Integer, Circle> entryFloor: entryType.getValue().entrySet()) {
+            loop: for(Map.Entry<CardType, Map<Integer, ImageView>> entryType : mapCardTypeFloorImageView.entrySet()) {
+                for(Map.Entry<Integer, ImageView> entryFloor: entryType.getValue().entrySet()) {
                     if(entryFloor.getValue().equals(floorClicked)) {
                         Action action = new ActionChooseTower(match.getPlayers().get(color), null, new Tower(entryType.getKey()));
                         actionPending = new ActionPlaceOnTower(match.getPlayers().get(color), null, new TowerFloor(entryFloor.getKey(), entryType.getKey()));
@@ -349,7 +348,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
             for(CardFloorRepresentation cardFloorRepresentation : cardFloorRepresentations){
                 int floor = cardFloorRepresentation.getFloorNumber();
                 mapCardTypeMapIntegerCardFloors.get(cardType).get(floor).imageProperty().bind(match.getMapTypeCardFloorRepresentation().get(cardType).get(floor).getPathProperty());
-                mapCardTypeFloorCircle.get(cardType).get(floor).fillProperty().bind(match.getMapTypeCardFloorRepresentation().get(cardType).get(floor).pathWhenTakenProperty());
+                mapCardTypeFloorImageView.get(cardType).get(floor).imageProperty().bind(match.getMapTypeCardFloorRepresentation().get(cardType).get(floor).pathWhenTakenProperty());
             }
         }
     }
@@ -566,10 +565,10 @@ public class MainBoardController extends Observable implements Initializable, Ob
         mapfloorToBeClickedVenture.put(1, floorToBeClicked14);
         mapfloorToBeClickedVenture.put(0, floorToBeClicked15);
 
-        mapCardTypeFloorCircle.put(CardType.TERRITORY, mapfloorToBeClickedTerritory);
-        mapCardTypeFloorCircle.put(CardType.BUILDING, mapfloorToBeClickedBuildings);
-        mapCardTypeFloorCircle.put(CardType.CHARACTER, mapfloorToBeClickedCharacter);
-        mapCardTypeFloorCircle.put(CardType.VENTURE, mapfloorToBeClickedVenture);
+        mapCardTypeFloorImageView.put(CardType.TERRITORY, mapfloorToBeClickedTerritory);
+        mapCardTypeFloorImageView.put(CardType.BUILDING, mapfloorToBeClickedBuildings);
+        mapCardTypeFloorImageView.put(CardType.CHARACTER, mapfloorToBeClickedCharacter);
+        mapCardTypeFloorImageView.put(CardType.VENTURE, mapfloorToBeClickedVenture);
 
         turnOrderTrack.add(firstPlayerTurn);
         turnOrderTrack.add(secondPlayerTurn);

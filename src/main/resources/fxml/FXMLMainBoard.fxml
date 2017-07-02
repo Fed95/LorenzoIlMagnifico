@@ -18,7 +18,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
 
 <BorderPane minHeight="1080.0" minWidth="1920.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.gc_12.java_fx.MainBoardController">
    <center>
@@ -82,26 +81,26 @@
                                       </image>
                                   </ImageView>
                                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="628.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label fx:id="blackValuePl1" layoutX="49.0" layoutY="45.0" mouseTransparent="true" styleClass="famMembValue" text="0" textFill="WHITE"/>
+                              <Label fx:id="blackValuePl1" layoutX="49.0" layoutY="45.0" mouseTransparent="true" styleClass="famMembValue" text="0" textFill="WHITE" />
 
-                              <Label fx:id="whiteValuePl1" layoutX="106.0" layoutY="45.0" mouseTransparent="true" styleClass="famMembValue" text="0" textFill="WHITE"/>
+                              <Label fx:id="whiteValuePl1" layoutX="106.0" layoutY="45.0" mouseTransparent="true" styleClass="famMembValue" text="0" textFill="WHITE" />
 
-                              <Label fx:id="orangeValuePl1" layoutX="162.0" layoutY="45.0" mouseTransparent="true"  styleClass="famMembValue"  text="0" textFill="WHITE"/>
+                              <Label fx:id="orangeValuePl1" layoutX="162.0" layoutY="45.0" mouseTransparent="true" styleClass="famMembValue" text="0" textFill="WHITE" />
 
-                              <Label fx:id="neutralValuePl1" layoutX="218.0" layoutY="45.0" mouseTransparent="true"  styleClass="famMembValue"  text="0" textFill="WHITE"/>
+                              <Label fx:id="neutralValuePl1" layoutX="218.0" layoutY="45.0" mouseTransparent="true" styleClass="famMembValue" text="0" textFill="WHITE" />
 
                               <ImageView fitHeight="418.0" fitWidth="1098.0" layoutX="79.0" layoutY="111.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../img/boardcomplete1.png" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="moneyValuePl1" layoutX="128.0" layoutY="418.0" text="0"  styleClass="famMembValue"  textFill="WHITE"/>
+                              <Label fx:id="moneyValuePl1" layoutX="128.0" layoutY="418.0" styleClass="famMembValue" text="0" textFill="WHITE" />
 
-                              <Label fx:id="woodValuePl1" layoutX="222.0" layoutY="418.0" text="0"  styleClass="famMembValue"  textFill="WHITE"/>
+                              <Label fx:id="woodValuePl1" layoutX="222.0" layoutY="418.0" styleClass="famMembValue" text="0" textFill="WHITE" />
 
-                                  <Label fx:id="stoneValuePl1" layoutX="316.0" layoutY="418.0" text="0"  styleClass="famMembValue"  textFill="WHITE"/>
+                                  <Label fx:id="stoneValuePl1" layoutX="316.0" layoutY="418.0" styleClass="famMembValue" text="0" textFill="WHITE" />
 
-                              <Label fx:id="servantValuePl1" layoutX="404.0" layoutY="428.0" text="0"  styleClass="famMembValue"  textFill="WHITE"/>
+                              <Label fx:id="servantValuePl1" layoutX="404.0" layoutY="428.0" styleClass="famMembValue" text="0" textFill="WHITE" />
 
                               </children></AnchorPane>                  </content>
                   </Tab>
@@ -139,21 +138,21 @@
                                       <Image url="@../img/boardcomplete1.png" />
                                   </image>
                               </ImageView>
-                              <Label fx:id="blackValuePl2" layoutX="50.0" layoutY="45.0" mouseTransparent="true"  styleClass="famMembValue" text="0" textFill="WHITE"/>
+                              <Label fx:id="blackValuePl2" layoutX="50.0" layoutY="45.0" mouseTransparent="true" styleClass="famMembValue" text="0" textFill="WHITE" />
 
-                              <Label fx:id="whiteValuePl2" layoutX="106.0" layoutY="45.0" mouseTransparent="true"  styleClass="famMembValue"  text="0" textFill="WHITE"/>
+                              <Label fx:id="whiteValuePl2" layoutX="106.0" layoutY="45.0" mouseTransparent="true" styleClass="famMembValue" text="0" textFill="WHITE" />
 
-                              <Label fx:id="orangeValuePl2" layoutX="162.0" layoutY="45.0" mouseTransparent="true"  styleClass="famMembValue"  text="0" textFill="WHITE"/>
+                              <Label fx:id="orangeValuePl2" layoutX="162.0" layoutY="45.0" mouseTransparent="true" styleClass="famMembValue" text="0" textFill="WHITE" />
 
-                              <Label fx:id="neutralValuePl2" layoutX="218.0" layoutY="45.0" mouseTransparent="true"  styleClass="famMembValue"  text="0" textFill="WHITE"/>
+                              <Label fx:id="neutralValuePl2" layoutX="218.0" layoutY="45.0" mouseTransparent="true" styleClass="famMembValue" text="0" textFill="WHITE" />
 
-                              <Label fx:id="moneyValuePl2" layoutX="128.0" layoutY="418.0" text="0"  styleClass="famMembValue"  textFill="WHITE"/>
+                              <Label fx:id="moneyValuePl2" layoutX="128.0" layoutY="418.0" styleClass="famMembValue" text="0" textFill="WHITE" />
 
-                              <Label fx:id="woodValuePl2" layoutX="222.0" layoutY="418.0" text="0"  styleClass="famMembValue"  textFill="WHITE"/>
+                              <Label fx:id="woodValuePl2" layoutX="222.0" layoutY="418.0" styleClass="famMembValue" text="0" textFill="WHITE" />
 
-                              <Label fx:id="stoneValuePl2" layoutX="316.0" layoutY="418.0" text="0"  styleClass="famMembValue"  textFill="WHITE"/>
+                              <Label fx:id="stoneValuePl2" layoutX="316.0" layoutY="418.0" styleClass="famMembValue" text="0" textFill="WHITE" />
 
-                              <Label fx:id="servantValuePl2" layoutX="404.0" layoutY="428.0" text="0"  styleClass="famMembValue"  textFill="WHITE"/>
+                              <Label fx:id="servantValuePl2" layoutX="404.0" layoutY="428.0" styleClass="famMembValue" text="0" textFill="WHITE" />
 
                           </children></AnchorPane>                  </content>
                 </Tab>
@@ -191,21 +190,21 @@
                                           <Image url="@../img/boardcomplete1.png" />
                                       </image>
                                   </ImageView>
-                                  <Label fx:id="blackValuePl3" layoutX="50.0" layoutY="45.0" mouseTransparent="true"  styleClass="famMembValue"  text="0" textFill="WHITE"/>
+                                  <Label fx:id="blackValuePl3" layoutX="50.0" layoutY="45.0" mouseTransparent="true" styleClass="famMembValue" text="0" textFill="WHITE" />
 
-                                  <Label fx:id="whiteValuePl3" layoutX="106.0" layoutY="45.0" mouseTransparent="true"  styleClass="famMembValue"  text="0" textFill="WHITE"/>
+                                  <Label fx:id="whiteValuePl3" layoutX="106.0" layoutY="45.0" mouseTransparent="true" styleClass="famMembValue" text="0" textFill="WHITE" />
 
-                                  <Label fx:id="orangeValuePl3" layoutX="162.0" layoutY="45.0" mouseTransparent="true"  styleClass="famMembValue"  text="0" textFill="WHITE"/>
+                                  <Label fx:id="orangeValuePl3" layoutX="162.0" layoutY="45.0" mouseTransparent="true" styleClass="famMembValue" text="0" textFill="WHITE" />
 
-                                  <Label fx:id="neutralValuePl3" layoutX="218.0" layoutY="45.0" mouseTransparent="true"  styleClass="famMembValue"  text="0" textFill="WHITE"/>
+                                  <Label fx:id="neutralValuePl3" layoutX="218.0" layoutY="45.0" mouseTransparent="true" styleClass="famMembValue" text="0" textFill="WHITE" />
 
-                                  <Label fx:id="moneyValuePl3" layoutX="128.0" layoutY="418.0" text="0"  styleClass="famMembValue"  textFill="WHITE"/>
+                                  <Label fx:id="moneyValuePl3" layoutX="128.0" layoutY="418.0" styleClass="famMembValue" text="0" textFill="WHITE" />
 
-                                  <Label fx:id="woodValuePl3" layoutX="222.0" layoutY="418.0" text="0"  styleClass="famMembValue"  textFill="WHITE"/>
+                                  <Label fx:id="woodValuePl3" layoutX="222.0" layoutY="418.0" styleClass="famMembValue" text="0" textFill="WHITE" />
 
-                                  <Label fx:id="stoneValuePl3" layoutX="316.0" layoutY="418.0" text="0"  styleClass="famMembValue"  textFill="WHITE"/>
+                                  <Label fx:id="stoneValuePl3" layoutX="316.0" layoutY="418.0" styleClass="famMembValue" text="0" textFill="WHITE" />
 
-                                  <Label fx:id="servantValuePl3" layoutX="404.0" layoutY="428.0" text="0"  styleClass="famMembValue"  textFill="WHITE"/>
+                                  <Label fx:id="servantValuePl3" layoutX="404.0" layoutY="428.0" styleClass="famMembValue" text="0" textFill="WHITE" />
 
                               </children></AnchorPane>                  </content>
                   </Tab>
@@ -243,21 +242,21 @@
                                           <Image url="@../img/boardcomplete1.png" />
                                       </image>
                                   </ImageView>
-                                  <Label fx:id="blackValuePl4" layoutX="50.0" layoutY="45.0" mouseTransparent="true"  styleClass="famMembValue"  text="0" textFill="WHITE"/>
+                                  <Label fx:id="blackValuePl4" layoutX="50.0" layoutY="45.0" mouseTransparent="true" styleClass="famMembValue" text="0" textFill="WHITE" />
 
-                                  <Label fx:id="whiteValuePl4" layoutX="106.0" layoutY="45.0" mouseTransparent="true"  styleClass="famMembValue"  text="0" textFill="WHITE"/>
+                                  <Label fx:id="whiteValuePl4" layoutX="106.0" layoutY="45.0" mouseTransparent="true" styleClass="famMembValue" text="0" textFill="WHITE" />
 
-                                  <Label fx:id="orangeValuePl4" layoutX="162.0" layoutY="45.0" mouseTransparent="true"  styleClass="famMembValue"  text="0" textFill="WHITE"/>
+                                  <Label fx:id="orangeValuePl4" layoutX="162.0" layoutY="45.0" mouseTransparent="true" styleClass="famMembValue" text="0" textFill="WHITE" />
 
-                                  <Label fx:id="neutralValuePl4" layoutX="218.0" layoutY="45.0" mouseTransparent="true"  styleClass="famMembValue"  text="0" textFill="WHITE"/>
+                                  <Label fx:id="neutralValuePl4" layoutX="218.0" layoutY="45.0" mouseTransparent="true" styleClass="famMembValue" text="0" textFill="WHITE" />
 
-                                  <Label fx:id="moneyValuePl4" layoutX="128.0" layoutY="418.0" text="0" styleClass="famMembValue"  textFill="WHITE"/>
+                                  <Label fx:id="moneyValuePl4" layoutX="128.0" layoutY="418.0" styleClass="famMembValue" text="0" textFill="WHITE" />
 
-                                  <Label fx:id="woodValuePl4" layoutX="222.0" layoutY="418.0" text="0"  styleClass="famMembValue" textFill="WHITE"/>
+                                  <Label fx:id="woodValuePl4" layoutX="222.0" layoutY="418.0" styleClass="famMembValue" text="0" textFill="WHITE" />
 
-                                  <Label fx:id="stoneValuePl4" layoutX="316.0" layoutY="418.0" text="0"  styleClass="famMembValue"  textFill="WHITE"/>
+                                  <Label fx:id="stoneValuePl4" layoutX="316.0" layoutY="418.0" styleClass="famMembValue" text="0" textFill="WHITE" />
 
-                                  <Label fx:id="servantValuePl4" layoutX="404.0" layoutY="428.0" text="0"  styleClass="famMembValue"  textFill="WHITE"/>
+                                  <Label fx:id="servantValuePl4" layoutX="404.0" layoutY="428.0" styleClass="famMembValue" text="0" textFill="WHITE" />
 
                               </children></AnchorPane>                  </content>
                   </Tab>
@@ -319,27 +318,91 @@
              <ImageView fx:id="cardFloor13" fitHeight="115.0" fitWidth="81.0" layoutX="447.0" layoutY="170.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
              <ImageView fx:id="cardFloor14" fitHeight="114.0" fitWidth="81.0" layoutX="447.0" layoutY="307.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
              <ImageView fx:id="cardFloor15" fitHeight="114.0" fitWidth="80.0" layoutX="448.0" layoutY="443.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
-             <Circle fx:id="floorToBeClicked0" fill="#1f88f8" layoutX="118.0" layoutY="89.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-             <Circle fx:id="floorToBeClicked1" fill="#1f88f8" layoutX="118.0" layoutY="225.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-             <Circle fx:id="floorToBeClicked2" fill="#1f88f8" layoutX="118.0" layoutY="362.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-             <Circle fx:id="floorToBeClicked3" fill="#1f88f8" layoutX="118.0" layoutY="498.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-             <Circle fx:id="floorToBeClicked4" fill="#1f88f8" layoutX="265.0" layoutY="89.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-             <Circle fx:id="floorToBeClicked5" fill="#1f88f8" layoutX="265.0" layoutY="225.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-             <Circle fx:id="floorToBeClicked6" fill="#1f88f8" layoutX="265.0" layoutY="362.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-             <Circle fx:id="floorToBeClicked7" fill="#1f88f8" layoutX="265.0" layoutY="498.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-             <Circle fx:id="floorToBeClicked8" fill="#1f88f8" layoutX="412.0" layoutY="89.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-             <Circle fx:id="floorToBeClicked9" fill="#1f88f8" layoutX="412.0" layoutY="225.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-             <Circle fx:id="floorToBeClicked10" fill="#1f88f8" layoutX="412.0" layoutY="362.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-             <Circle fx:id="floorToBeClicked11" fill="#1f88f8" layoutX="412.0" layoutY="498.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-             <Circle fx:id="floorToBeClicked12" fill="#1f88f8" layoutX="558.0" layoutY="89.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-             <Circle fx:id="floorToBeClicked13" fill="#1f88f8" layoutX="558.0" layoutY="225.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-             <Circle fx:id="floorToBeClicked14" fill="#1f88f8" layoutX="558.0" layoutY="362.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-             <Circle fx:id="floorToBeClicked15" fill="#1f88f8" layoutX="558.0" layoutY="498.0" onMouseClicked="#floorClicked" opacity="0.25" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
+            <ImageView fx:id="floorToBeClicked0" fitHeight="60.0" fitWidth="60.0" layoutX="88.5" layoutY="59.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/floor0.png" />
+               </image>
+            </ImageView>
+             <ImageView fx:id="floorToBeClicked1" fitHeight="60.0" fitWidth="60.0" layoutX="88.5" layoutY="196.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@../img/floor1.png" />
+                 </image>
+             </ImageView>
+             <ImageView fx:id="floorToBeClicked2" fitHeight="60.0" fitWidth="60.0" layoutX="88.3" layoutY="332.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@../img/floo2,3.png" />
+                 </image>
+             </ImageView>
+             <ImageView fx:id="floorToBeClicked3" fitHeight="60.0" fitWidth="60.0" layoutX="88.4" layoutY="468.5" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@../img/floo2,3.png" />
+                 </image>
+             </ImageView>
+             <ImageView fx:id="floorToBeClicked4" fitHeight="60.0" fitWidth="60.0" layoutX="235.1" layoutY="59.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@../img/floor4.png" />
+                 </image>
+             </ImageView>
+             <ImageView fx:id="floorToBeClicked5" fitHeight="60.0" fitWidth="60.0" layoutX="235.1" layoutY="196.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@../img/floor5.png" />
+                 </image>
+             </ImageView>
+             <ImageView fx:id="floorToBeClicked6" fitHeight="60.0" fitWidth="60.0" layoutX="235.1" layoutY="332.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@../img/floo2,3.png" />
+                 </image>
+             </ImageView>
+             <ImageView fx:id="floorToBeClicked7" fitHeight="60.0" fitWidth="60.0" layoutX="235.1" layoutY="468.5" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@../img/floo2,3.png" />
+                 </image>
+             </ImageView>
+             <ImageView fx:id="floorToBeClicked8" fitHeight="60.0" fitWidth="60.0" layoutX="381.8" layoutY="59.2" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@../img/floor8.png" />
+                 </image>
+             </ImageView>
+             <ImageView fx:id="floorToBeClicked9" fitHeight="60.0" fitWidth="60.0" layoutX="381.8" layoutY="196.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@../img/floor9.png" />
+                 </image>
+             </ImageView>
+             <ImageView fx:id="floorToBeClicked10" fitHeight="60.0" fitWidth="60.0" layoutX="381.3" layoutY="332.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@../img/floo2,3.png" />
+                 </image>
+             </ImageView>
+             <ImageView fx:id="floorToBeClicked11" fitHeight="60.0" fitWidth="60.0" layoutX="381.5" layoutY="468.3" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@../img/floo2,3.png" />
+                 </image>
+             </ImageView>
+             <ImageView fx:id="floorToBeClicked12" fitHeight="60.0" fitWidth="60.0" layoutX="528.3" layoutY="59.25" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@../img/floor12.png" />
+                 </image>
+             </ImageView>
+             <ImageView fx:id="floorToBeClicked13" fitHeight="60.0" fitWidth="60.0" layoutX="528.1" layoutY="195.8" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@../img/floor13.png" />
+                 </image>
+             </ImageView>
+             <ImageView fx:id="floorToBeClicked14" fitHeight="60.0" fitWidth="60.0" layoutX="528.1" layoutY="332.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@../img/floo2,3.png" />
+                 </image>
+             </ImageView>
+             <ImageView fx:id="floorToBeClicked15" fitHeight="60.0" fitWidth="60.0" layoutX="528.1" layoutY="468.3" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@../img/floo2,3.png" />
+                 </image>
+             </ImageView>
             <Circle fx:id="firstPlayerTurn" fill="DODGERBLUE" layoutX="560.0" layoutY="564.0" opacity="0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
              <Circle fx:id="secondPlayerTurn" fill="DODGERBLUE" layoutX="560.0" layoutY="604.0" opacity="0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
              <Circle fx:id="thirdPlayerTurn" fill="DODGERBLUE" layoutX="560.0" layoutY="642.0" opacity="0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
              <Circle fx:id="fourthPlayerTurn" fill="DODGERBLUE" layoutX="560.0" layoutY="681.0" opacity="0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
-            <Rectangle fx:id="councilPalace" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="64.0" layoutX="314.0" onMouseClicked="#councilPalaceClicked"  layoutY="577.0" opacity="0.18" stroke="BLACK" strokeType="INSIDE" width="184.0" />
+            <Rectangle fx:id="councilPalace" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="64.0" layoutX="314.0" layoutY="577.0" onMouseClicked="#councilPalaceClicked" opacity="0.18" stroke="BLACK" strokeType="INSIDE" width="184.0" />
             <ImageView fx:id="excomTile1" fitHeight="93.0" fitWidth="57.0" layoutX="103.0" layoutY="633.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="excomTile2" fitHeight="89.0" fitWidth="50.0" layoutX="160.0" layoutY="645.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="excomTile3" fitHeight="105.0" fitWidth="49.0" layoutX="217.0" layoutY="632.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />

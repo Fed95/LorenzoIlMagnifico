@@ -17,7 +17,7 @@ public class CardFloorRepresentation  {
 
     private SimpleIntegerProperty floorNumber;
     private SimpleObjectProperty<Image> path;
-    private SimpleObjectProperty<Paint> pathWhenTaken;//da settare con l'immgine del familymember quando arriva event e il floor e' preso
+    private SimpleObjectProperty<Image> pathWhenTaken;//da settare con l'immgine del familymember quando arriva event e il floor e' preso?
 
 
     private SimpleBooleanProperty taken;
@@ -28,8 +28,7 @@ public class CardFloorRepresentation  {
         this.taken = new SimpleBooleanProperty(taken);
         Image image = new Image(url);
         path.set(image);
-        Paint paint = new Color(0.11,0.11,0.11,0);
-        this.pathWhenTaken = new SimpleObjectProperty<Paint>(this,"try", paint);
+        this.pathWhenTaken = new SimpleObjectProperty<Image>();
 
     }
 
@@ -45,15 +44,15 @@ public class CardFloorRepresentation  {
         this.path.set(path);
     }
 
-    public Paint getPathWhenTaken() {
+    public Image getPathWhenTaken() {
         return pathWhenTaken.get();
     }
 
-    public SimpleObjectProperty<Paint> pathWhenTakenProperty() {
+    public ObjectProperty<Image> pathWhenTakenProperty() {
         return pathWhenTaken;
     }
 
-    public void setPathWhenTaken(ImagePattern pathWhenTaken) {
+    public void setPathWhenTaken(Image pathWhenTaken) {
         this.pathWhenTaken.set(pathWhenTaken);
     }
 }
