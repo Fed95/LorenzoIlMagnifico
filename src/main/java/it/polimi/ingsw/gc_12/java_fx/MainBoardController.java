@@ -260,6 +260,9 @@ public class MainBoardController extends Observable implements Initializable, Ob
         else
             showTurnDenied();
     }
+    @FXML void marketClicked(){
+
+    }
     @FXML void passTurn(){
 
     }

@@ -415,6 +415,26 @@
             <ImageView fx:id="excomTile1" fitHeight="93.0" fitWidth="57.0" layoutX="103.0" layoutY="633.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="excomTile2" fitHeight="89.0" fitWidth="50.0" layoutX="160.0" layoutY="645.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="excomTile3" fitHeight="105.0" fitWidth="49.0" layoutX="217.0" layoutY="632.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="market0" fitHeight="60.0" fitWidth="60.0" layoutX="360.0" layoutY="829.2" onMouseClicked="#marketClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/market/market0.png" />
+               </image>
+            </ImageView>
+             <ImageView fx:id="market1" fitHeight="60.0" fitWidth="60.0" layoutX="428.0" layoutY="830.0" onMouseClicked="#marketClicked" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@../img/market/market1.png" />
+                 </image>
+             </ImageView>
+             <ImageView fx:id="market2" fitHeight="61.0" fitWidth="61.0" layoutX="493.0" layoutY="848.8" onMouseClicked="#marketClicked" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@../img/market/market2.png" />
+                 </image>
+             </ImageView>
+             <ImageView fx:id="market3" fitHeight="61.0" fitWidth="61.0" layoutX="542.0" layoutY="897.8" onMouseClicked="#marketClicked" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@../img/market/market3.png" />
+                 </image>
+             </ImageView>
          </children>
       </Pane>
    </center>
