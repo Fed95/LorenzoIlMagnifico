@@ -7,6 +7,7 @@ import it.polimi.ingsw.gc_12.action.Action;
 import it.polimi.ingsw.gc_12.client.rmi.ClientViewRemote;
 import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.server.Server;
+import it.polimi.ingsw.gc_12.server.model.State;
 
 import java.io.IOException;
 import java.rmi.AlreadyBoundException;
@@ -96,9 +97,8 @@ public class ServerRMIView extends ServerView implements RMIViewRemote {
 	public void receiveColor(PlayerColor color) throws RemoteException {
 		Player player = match.getPlayers().get(color);
 		if(player.isExcluded()) {
-			player.setExcluded(false);
+			match.includePlayer(player);
 		}
-
 	}
 
 	private void checkNewName(String name, ClientViewRemote client) throws IOException, AlreadyBoundException, CloneNotSupportedException {

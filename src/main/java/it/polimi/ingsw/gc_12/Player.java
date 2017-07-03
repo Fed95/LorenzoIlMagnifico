@@ -223,19 +223,19 @@ public class Player implements Serializable{
 		return playerColor;
 	}
 
-	public boolean isDisconnected() {
+	public synchronized boolean isDisconnected() {
 		return disconnected;
 	}
 
-	public void setDisconnected(boolean disconnected) {
+	public synchronized void setDisconnected(boolean disconnected) {
 		this.disconnected = disconnected;
 	}
 
-	public boolean isExcluded() {
+	public synchronized boolean isExcluded() {
 		return excluded;
 	}
 
-	public void setExcluded(boolean excluded) {
+	public synchronized void setExcluded(boolean excluded) {
 		this.excluded = excluded;
 	}
 

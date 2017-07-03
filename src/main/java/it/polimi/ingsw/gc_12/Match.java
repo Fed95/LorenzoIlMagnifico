@@ -41,6 +41,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	private int reportCounter;
 	private transient final int TIMEOUT_ACTION;
 	private transient Timer timer = new Timer();
+	private transient int MIN_PLAYERS;
 	private final int DEFAULT_FAMILY_MEMBERS = 4;
 	private transient EffectHandler effectHandler;
 	private transient ActionHandler actionHandler;
@@ -53,6 +54,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 
 	public Match() {
 		this.TIMEOUT_ACTION = new LoaderConfig().get(this).getTimeoutAction();
+		this.MIN_PLAYERS = new LoaderConfig().get(this).getMinPlayers();
 		this.roundNum = 0;
 		this.turnCounter = 0;
 		this.reportCounter = 0;
@@ -139,6 +141,9 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 				return;
 		}
 
+		if(gameState.equals(State.PAUSED))
+			return;
+
 		System.out.println("Match: Starting new turn");
 		Player player = board.getTrackTurnOrder().newTurn();
 
@@ -151,11 +156,13 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		actionHandler.update(event, this);
 		this.notifyObserver(event);
 		this.turnCounter++;
-		setTimeoutAction();
+
 		if(player.isDisconnected() || player.isExcluded()) {
 			actionHandler.flushEvents();
 			newTurn();
 		}
+		else
+			setTimeoutAction();
 
 	}
 
@@ -187,12 +194,18 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		return vatican;
 	}
 
-	private void excludeCurrentPlayer() {
+	public void excludeCurrentPlayer() {
 		Player player = board.getTrackTurnOrder().getCurrentPlayer();
 		Event event = new EventExcluded(player);
 		actionHandler.update(event, this);
 		player.setExcluded(true);
 		notifyObserver(event);
+		checkEnoughPlayers();
+	}
+
+	public void includePlayer(Player player) {
+		player.setExcluded(false);
+		checkEnoughPlayers();
 	}
 
 	private void resetFamilyMembers() {
@@ -260,12 +273,12 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	}
 
 	public void setDisconnectedPlayer(Player player) {
+		player.setDisconnected(true);
+		checkEnoughPlayers();
 		if(player.equals(board.getTrackTurnOrder().getCurrentPlayer())) {
 			actionHandler.flushEvents();
 			newTurn();
 		}
-
-		player.setDisconnected(true);
 		System.out.println("PLAYER " + player.getName() + " DISCONNECTED");
 	}
 
@@ -275,6 +288,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 				System.out.println("PLAYER " + player.getName() + " RECONNECTED");
 				notifyObserver(new EventPlayerReconnected(player, this, client));
 				player.setDisconnected(false);
+				checkEnoughPlayers();
 				return;
 			}
 		}
@@ -287,6 +301,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 				System.out.println("PLAYER " + player.getName() + " RECONNECTED");
 				notifyObserver(new EventPlayerReconnected(player, this));
 				player.setDisconnected(false);
+				checkEnoughPlayers();
 				return;
 			}
 		}
@@ -304,7 +319,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	}
 
 	public Player getPlayer(String name) {
-		List<Player> playersFiltered = players.values().stream().filter(player -> name.equals(player.getName())).collect(Collectors.toList());
+		List<Player> playersFiltered = players.values().stream().filter(player -> name.toLowerCase().equals(player.getName().toLowerCase())).collect(Collectors.toList());
 		if(playersFiltered.size() > 0)
 			return playersFiltered.get(0);
 		else
@@ -328,6 +343,19 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 			for(LeaderCard card : player.getPersonalBoard().getPlayedLeaderCards())
 				cards.add(card);
 		return cards;
+	}
+
+	private void checkEnoughPlayers() {
+		if(players.values().stream().filter(player -> !player.isDisconnected() && !player.isExcluded()).count() < 2) {
+			System.out.println("Match stopped for lack of players");
+			setGameState(State.PAUSED);
+		}
+		else {
+			if(getGameState() == State.PAUSED) {
+				setGameState(State.RUNNING);
+				newTurn();
+			}
+		}
 	}
 
 	public Board getBoard() {
@@ -367,26 +395,19 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		return null;
 	}
 
-	protected void setTimeoutAction() {
+	public State getGameState() {
+		return gameState;
+	}
+
+	public void setGameState(State gameState) {
+		this.gameState = gameState;
+	}
+
+	private void setTimeoutAction() {
 		timer.cancel();
 		timer.purge();
 		timer = new Timer();
 		System.out.println("setup timer action");
 		timer.schedule(new TimerActionTask(this), TIMEOUT_ACTION);
-	}
-
-	class TimerActionTask extends TimerTask {
-
-		private Match match;
-
-		public TimerActionTask(Match match) {
-			this.match = match;
-		}
-
-		@Override
-		public void run() {
-			match.excludeCurrentPlayer();
-			match.newTurn();
-		}
 	}
 }

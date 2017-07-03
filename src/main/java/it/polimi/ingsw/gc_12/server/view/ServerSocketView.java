@@ -101,7 +101,7 @@ public class ServerSocketView extends ServerView implements Runnable {
 				} else if(object instanceof PlayerColor) {
 					Player player = match.getPlayers().get(object);
 					if(player.isExcluded()) {
-						player.setExcluded(false);
+						match.includePlayer(player);
 					}
 				}
 			}
