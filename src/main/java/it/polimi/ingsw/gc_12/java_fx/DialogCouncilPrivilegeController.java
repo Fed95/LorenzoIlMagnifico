@@ -35,7 +35,8 @@ public class DialogCouncilPrivilegeController {
     private void privilegeClicked(MouseEvent event){
         clicked = true;
         selected = mapEllipseInteger.get(event.getSource());
-
+        ImageView image = (ImageView) event.getSource();
+        image.setVisible(false);
         dialogStage.close();
     }
     public void setDialogStage(Stage dialogStage) {
