@@ -4,10 +4,12 @@ import it.polimi.ingsw.gc_12.FamilyMember;
 import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.action.*;
+import it.polimi.ingsw.gc_12.java_fx.MainBoard;
+import javafx.application.Platform;
 
 import java.util.ArrayList;
 
-public class EventDiscardAction extends Event{
+public class EventDiscardAction extends Event implements EventView{
 
     public EventDiscardAction(Player player) {
         super(player);
@@ -35,5 +37,10 @@ public class EventDiscardAction extends Event{
     @Override
     public String toString() {
         return "Action discarded";
+    }
+
+    @Override
+    public void executeViewSide(MainBoard view) {
+        Platform.runLater(() -> view.getControllerMainBoard().sendAction());
     }
 }

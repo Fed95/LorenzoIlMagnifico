@@ -31,4 +31,14 @@ public class ActionChooseMarket extends Action {
     public String toString() {
         return "Market";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return this == o || o instanceof ActionChooseMarket;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

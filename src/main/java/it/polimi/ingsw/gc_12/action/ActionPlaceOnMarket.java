@@ -35,4 +35,18 @@ public class ActionPlaceOnMarket extends ActionPlace {
             throw new ActionNotAllowedException("Your FamilyMember does not satisfy the required value for this placement!");
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ActionPlaceOnMarket)) return false;
+
+        ActionPlaceOnMarket that = (ActionPlaceOnMarket) o;
+
+        return spaceMarket != null ? spaceMarket.equals(that.spaceMarket) : that.spaceMarket == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return spaceMarket != null ? spaceMarket.hashCode() : 0;
+    }
 }

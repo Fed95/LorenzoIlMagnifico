@@ -38,4 +38,19 @@ public class DiscardAction extends Action {
     public String toString() {
         return "Back to the start";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof DiscardAction)) return false;
+
+        DiscardAction that = (DiscardAction) o;
+
+        return leaderCard != null ? leaderCard.equals(that.leaderCard) : that.leaderCard == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return leaderCard != null ? leaderCard.hashCode() : 0;
+    }
 }

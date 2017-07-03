@@ -7,10 +7,11 @@ import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.ClientFactory;
 
 import it.polimi.ingsw.gc_12.json.loader.LoaderConfig;
-import it.polimi.ingsw.gc_12.occupiables.CouncilPalace;
-import it.polimi.ingsw.gc_12.occupiables.Tower;
-import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
+import it.polimi.ingsw.gc_12.occupiables.*;
 import it.polimi.ingsw.gc_12.resource.*;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.binding.StringBinding;
 import javafx.collections.FXCollections;
@@ -18,15 +19,19 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -208,32 +213,38 @@ public class MainBoardController extends Observable implements Initializable, Ob
     @FXML private ImageView market1;
     @FXML private ImageView market2;
     @FXML private ImageView market3;
+    private List<ImageView> markets = new ArrayList<>();
 
     @FXML private ImageView production;
     @FXML private ImageView productionBig;
     @FXML private ImageView harvest;
     @FXML private ImageView harvestBig;
-
-
+    private Map<WorkType, List<ImageView>> workplaces = new HashMap<>();
 
     private ImageView lastFamClicked = null;
     private MatchInstanceGUI match;
     private ClientHandler clientHandler;
     private Action actionPending;
     private List<List<Resource>> councilPrivilegeResources =  new LoaderConfig().get(null).getCouncilPrivilegeResources();
+    private PlayerColor playerColor;
 
     @FXML void familyClicked(MouseEvent event) {
         ImageView familyMemberClicked = (ImageView) event.getTarget();
-        PlayerColor color = (PlayerColor)mainPane.getUserData();
-        //System.out.println(askMeAValue("servant","inserisci i servitori","0"));
-        //System.out.println(askMePrivilege());
-        if(isMyFam(color, familyMemberClicked) && isMyTurn()){
-            highlightFamilyMember(familyMemberClicked);
 
-            for (Map.Entry<FamilyMemberColor, ImageView> entry : mapPlayerColorFamImageView.get(color).entrySet()) {
+        if(isMyFam(playerColor, familyMemberClicked) && isMyTurn()){
+
+            for (Map.Entry<FamilyMemberColor, ImageView> entry : mapPlayerColorFamImageView.get(playerColor).entrySet()) {
                 if(entry.getValue().equals(familyMemberClicked)) {
-                    FamilyMember familyMember = new FamilyMember(color, entry.getKey());
-                    ActionChooseFamilyMember action = new ActionChooseFamilyMember(match.getPlayers().get(color), familyMember);
+                    FamilyMember familyMember = new FamilyMember(playerColor, entry.getKey());
+                    Action action;
+                    if(actionPending != null) {
+                        action = new DiscardAction(match.getPlayers().get(playerColor));
+                        actionPending = new ActionChooseFamilyMember(match.getPlayers().get(playerColor), familyMember);
+                    }
+                    else {
+                        action = new ActionChooseFamilyMember(match.getPlayers().get(playerColor), familyMember);
+                        actionPending = action;
+                    }
                     selectAction(action);
                     break;
                 }
@@ -253,14 +264,13 @@ public class MainBoardController extends Observable implements Initializable, Ob
     }
 
     @FXML synchronized void floorClicked(MouseEvent event){
-        PlayerColor color = (PlayerColor)mainPane.getUserData();
         ImageView floorClicked = (ImageView) event.getTarget();
         if(lastFamClicked!=null && isMyTurn()){
             loop: for(Map.Entry<CardType, Map<Integer, ImageView>> entryType : mapCardTypeFloorImageView.entrySet()) {
                 for(Map.Entry<Integer, ImageView> entryFloor: entryType.getValue().entrySet()) {
                     if(entryFloor.getValue().equals(floorClicked)) {
-                        Action action = new ActionChooseTower(match.getPlayers().get(color), null, new Tower(entryType.getKey()));
-                        actionPending = new ActionPlaceOnTower(match.getPlayers().get(color), null, new TowerFloor(entryFloor.getKey(), entryType.getKey()));
+                        Action action = new ActionChooseTower(match.getPlayers().get(playerColor), null, new Tower(entryType.getKey()));
+                        actionPending = new ActionPlaceOnTower(match.getPlayers().get(playerColor), null, new TowerFloor(entryFloor.getKey(), entryType.getKey()));
                         selectAction(action);
                         break loop;
                     }
@@ -270,20 +280,55 @@ public class MainBoardController extends Observable implements Initializable, Ob
         else
             showTurnDenied();
     }
-    @FXML void marketClicked(){
+
+    @FXML void marketClicked(MouseEvent event){
+        ImageView market = (ImageView) event.getTarget();
+        if(lastFamClicked!=null && isMyTurn()){
+            for (int i = 0; i < markets.size(); i++) {
+                if(markets.get(i).equals(market)) {
+                    Action action = new ActionChooseMarket(match.getPlayers().get(playerColor), null);
+                    actionPending = new ActionPlaceOnMarket(match.getPlayers().get(playerColor), null, new SpaceMarket(i, 1, new ArrayList<>()));
+                    selectAction(action);
+                    break;
+                }
+
+            }
+        }
+        else
+            showTurnDenied();
+    }
+
+    @FXML void workspaceClicked(MouseEvent event){
+        ImageView workplace = (ImageView) event.getTarget();
+        if(lastFamClicked!=null && isMyTurn()){
+            loop: for(Map.Entry<WorkType, List<ImageView>> entryType : workplaces.entrySet()) {
+                for (int i = 0; i < entryType.getValue().size(); i++) {
+                    if(entryType.getValue().get(i).equals(workplace)) {
+                        Action action = new ActionChooseWorkplace(match.getPlayers().get(playerColor), null);
+                        if(i == 0)
+                            actionPending = new ActionPlaceOnSpaceWork(match.getPlayers().get(playerColor), null, new SpaceWorkSingle(entryType.getKey()));
+                        else
+                            actionPending = new ActionPlaceOnSpaceWork(match.getPlayers().get(playerColor), null, new SpaceWorkMultiple(entryType.getKey()));
+                        selectAction(action);
+                        break loop;
+                    }
+                }
+            }
+        }
+        else
+            showTurnDenied();
 
     }
-    @FXML void workspaceClicked(){
 
-    }
     @FXML void passTurn(){
-        PlayerColor color = (PlayerColor)mainPane.getUserData();
-        Action action = new ActionPassTurn(match.getPlayers().get(color));
+        Action action = new ActionPassTurn(match.getPlayers().get(playerColor));
         selectAction(action);
     }
+
     @FXML void viewStat(){
 
     }
+
     private void selectAction(Action action) {
         List<Action> actions = clientHandler.getActions();
         for (int i = 0; i < actions.size(); i++) {
@@ -335,6 +380,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
         clientHandler.setMainBoardController(this);
         if(clientHandler.isStarted())
             setChanged();
+        playerColor = clientHandler.getColor();
         notifyObservers(0);
     }
 
@@ -423,11 +469,10 @@ public class MainBoardController extends Observable implements Initializable, Ob
     }
 
     private void setPlayerToPane(){
-        PlayerColor actualColor = clientHandler.getColor();
-        playersBoards.getSelectionModel().select(mapPlayerColorTab.get(actualColor));
-        mainPane.setUserData(actualColor);
+        playersBoards.getSelectionModel().select(mapPlayerColorTab.get(playerColor));
+        mainPane.setUserData(playerColor);
         for(Button button : mapPlayerColorButton.values()){
-            if(!button.equals(mapPlayerColorButton.get(actualColor))){
+            if(!button.equals(mapPlayerColorButton.get(playerColor))){
                 button.setDisable(true);
             }
         }
@@ -626,6 +671,20 @@ public class MainBoardController extends Observable implements Initializable, Ob
         mapPlayerColorButton.put(PlayerColor.GREEN, passTurnPl2);
         mapPlayerColorButton.put(PlayerColor.RED, passTurnPl3);
         mapPlayerColorButton.put(PlayerColor.YELLOW, passTurnPl4);
+
+        markets.add(market0);
+        markets.add(market1);
+        markets.add(market2);
+        markets.add(market3);
+
+        List<ImageView> productions = new ArrayList<>();
+        productions.add(production);
+        productions.add(productionBig);
+        List<ImageView> harvests = new ArrayList<>();
+        harvests.add(harvest);
+        harvests.add(harvestBig);
+        workplaces.put(WorkType.PRODUCTION, productions);
+        workplaces.put(WorkType.HARVEST, harvests);
     }
 
     public ClientHandler getClientHandler() {
@@ -637,10 +696,11 @@ public class MainBoardController extends Observable implements Initializable, Ob
             if(actionPending != null) {
                 selectAction(actionPending);
             }
-            else {
-                throw new IllegalStateException("Sending automatically action when it's not possible");
-            }
         }
+    }
+
+    public void resetActionPending() {
+        actionPending = null;
     }
 
 
@@ -659,6 +719,11 @@ public class MainBoardController extends Observable implements Initializable, Ob
                    return res;
            }
            value = askMeAValue(title,request, minValue);
+       }
+       else {
+           Action action = new DiscardAction(match.getPlayers().get(playerColor));
+           selectAction(action);
+           resetActionPending();
        }
        return value;
    }
@@ -701,11 +766,10 @@ public class MainBoardController extends Observable implements Initializable, Ob
     }
 
     private void requestCouncilPrivileges(CouncilPrivilege councilPrivilege, Stage dialogStage, DialogCouncilPrivilegeController controller) {
-		PlayerColor color = (PlayerColor)mainPane.getUserData();
 		while(councilPrivilege.getValue() > 0) {
 			int choice = askPrivilege(dialogStage, controller);
 			ResourceExchange exchange =	new ResourceExchange(new ArrayList<>(Collections.singletonList(new CouncilPrivilege(1))), councilPrivilegeResources.get(choice));
-			Action action = new ActionChooseExchange(match.getPlayers().get(color), exchange);
+			Action action = new ActionChooseExchange(match.getPlayers().get(playerColor), exchange);
 			List<Action> actions = clientHandler.getActions();
 			for (int i = 0; i < actions.size(); i++) {
 				if(actions.get(i).equals(action)) {
@@ -733,13 +797,34 @@ public class MainBoardController extends Observable implements Initializable, Ob
     }
 
 	public void councilPalaceClicked(MouseEvent event) {
-		PlayerColor color = (PlayerColor)mainPane.getUserData();
 		if(lastFamClicked!=null && isMyTurn()){
-			Action action = new ActionPlaceOnCouncil(match.getPlayers().get(color), null, new CouncilPalace(1));
+			Action action = new ActionPlaceOnCouncil(match.getPlayers().get(playerColor), null, new CouncilPalace(1));
 			actionPending = action;
 			selectAction(action);
 		}
 		else
 			showTurnDenied();
 	}
+
+	private void applyPulseEffect(Color color, List<Node> nodes) {
+        DropShadow borderGlow = new DropShadow();
+        borderGlow.setColor(color);
+        borderGlow.setSpread(0.5);
+        for (Node node: nodes)
+            node.setEffect(borderGlow);
+
+        final Timeline timeline = new Timeline();
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.setAutoReverse(true);
+        final KeyValue kv = new KeyValue(borderGlow.colorProperty(), Color.TRANSPARENT);
+        final KeyFrame kf = new KeyFrame(Duration.millis(1000), kv);
+        timeline.getKeyFrames().add(kf);
+        timeline.play();
+    }
+
+    private void removeEffects(List<Node> nodes) {
+       for(Node node: nodes) {
+           node.setEffect(null);
+       }
+    }
 }

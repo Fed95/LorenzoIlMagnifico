@@ -32,4 +32,14 @@ public class ActionChooseWorkplace extends Action {
     public String toString() {
         return "Workplace";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return this == o || o instanceof ActionChooseWorkplace;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

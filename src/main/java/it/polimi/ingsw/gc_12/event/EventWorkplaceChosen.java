@@ -5,13 +5,15 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.action.*;
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
+import it.polimi.ingsw.gc_12.java_fx.MainBoard;
 import it.polimi.ingsw.gc_12.occupiables.SpaceWork;
 import it.polimi.ingsw.gc_12.occupiables.SpaceWorkZone;
+import javafx.application.Platform;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventWorkplaceChosen extends Event {
+public class EventWorkplaceChosen extends Event implements EventView{
 
     private FamilyMember familyMember;
 
@@ -40,5 +42,12 @@ public class EventWorkplaceChosen extends Event {
     @Override
     public String toString() {
         return player.getName() + " is viewing the Workplace";
+    }
+
+    @Override
+    public void executeViewSide(MainBoard view) {
+        Platform.runLater(() -> {
+            view.getControllerMainBoard().sendAction();
+        });
     }
 }

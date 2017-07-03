@@ -42,4 +42,19 @@ public class ActionPlaceOnSpaceWork extends ActionPlace {
         if(!spaceWorkZone.canBeOccupiedBy(familyMember))
             throw new ActionNotAllowedException("There is another member of your family working here already!");
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ActionPlaceOnSpaceWork)) return false;
+
+        ActionPlaceOnSpaceWork that = (ActionPlaceOnSpaceWork) o;
+
+        return spaceWork != null ? spaceWork.equals(that.spaceWork) : that.spaceWork == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return spaceWork != null ? spaceWork.hashCode() : 0;
+    }
 }

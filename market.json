@@ -12,8 +12,8 @@
               ],
               "bonus": [
                 {
-                  "resourceType": "Servant",
-                  "type": "SERVANT",
+                  "resourceType": "Money",
+                  "type": "MONEY",
                   "value": 5
                 }
               ]
@@ -52,14 +52,9 @@
               ],
               "bonus": [
                 {
-                  "resourceType": "MilitaryPoint",
-                  "type": "MILITARY_POINT",
-                  "value": 3
-                },
-                {
-                  "resourceType": "Money",
-                  "type": "MONEY",
-                  "value": 2
+                  "resourceType": "Servant",
+                  "type": "SERVANT",
+                  "value": 5
                 }
               ]
             }
@@ -97,9 +92,14 @@
               ],
               "bonus": [
                 {
-                  "resourceType": "CouncilPrivilege",
-                  "type": "COUNCIL_PRIVILEGE",
-                  "value": 5
+                  "resourceType": "MilitaryPoint",
+                  "type": "MILITARY_POINT",
+                  "value": 3
+                },
+                {
+                  "resourceType": "Money",
+                  "type": "MONEY",
+                  "value": 2
                 }
               ]
             }
@@ -137,9 +137,9 @@
               ],
               "bonus": [
                 {
-                  "resourceType": "Money",
-                  "type": "MONEY",
-                  "value": 5
+                  "resourceType": "CouncilPrivilege",
+                  "type": "COUNCIL_PRIVILEGE",
+                  "value": 2
                 }
               ]
             }
