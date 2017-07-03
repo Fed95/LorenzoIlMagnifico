@@ -24,4 +24,13 @@ public class ActionPassTurn extends Action{
 		return "Pass turn";
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		return this == o || o instanceof ActionPassTurn;
+	}
+
+	@Override
+	public int hashCode() {
+		return player.hashCode();
+	}
 }

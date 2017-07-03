@@ -277,7 +277,9 @@ public class MainBoardController extends Observable implements Initializable, Ob
 
     }
     @FXML void passTurn(){
-
+        PlayerColor color = (PlayerColor)mainPane.getUserData();
+        Action action = new ActionPassTurn(match.getPlayers().get(color));
+        selectAction(action);
     }
     @FXML void viewStat(){
 
@@ -445,7 +447,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
         return clientHandler.getMyTurn();
     }
 
-    public void showTurnDenied() {
+    private void showTurnDenied() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("Not Your Turn");
@@ -717,7 +719,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
 		}
 	}
 
-    public int askPrivilege(Stage dialogStage, DialogCouncilPrivilegeController controller) {
+    private int askPrivilege(Stage dialogStage, DialogCouncilPrivilegeController controller) {
    		int privilege;
 		dialogStage.showAndWait();
 
