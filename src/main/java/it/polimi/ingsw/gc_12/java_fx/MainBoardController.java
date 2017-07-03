@@ -352,6 +352,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
         for(Player player : match.getPlayers().values()) {
             Tab tabToWorkWith = mapPlayerColorTab.get(player.getColor());
             tabToWorkWith.setDisable(false);
+
             String name= player.getName();
             if(name.length()>25){
                 name = player.getName().substring(0,24)+"...";
@@ -409,7 +410,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
         mainPane.setUserData(actualColor);
         for(Button button : mapPlayerColorButton.values()){
             if(!button.equals(mapPlayerColorButton.get(actualColor))){
-                mainPane.getChildren().remove(button);
+                button.setDisable(true);
             }
         }
     }
