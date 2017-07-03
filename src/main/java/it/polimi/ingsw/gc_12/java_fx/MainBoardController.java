@@ -219,7 +219,158 @@ public class MainBoardController extends Observable implements Initializable, Ob
     @FXML private ImageView productionBig;
     @FXML private ImageView harvest;
     @FXML private ImageView harvestBig;
+
     private Map<WorkType, List<ImageView>> workplaces = new HashMap<>();
+
+
+    @FXML private ImageView territory0CardPlayer1;
+    @FXML private ImageView territory1CardPlayer1;
+    @FXML private ImageView territory2CardPlayer1;
+    @FXML private ImageView territory3CardPlayer1;
+    @FXML private ImageView territory4CardPlayer1;
+    @FXML private ImageView territory5CardPlayer1;
+    private List<ImageView> territoryPlayer1 = new ArrayList<>();
+
+    @FXML private ImageView building0CardPlayer1;
+    @FXML private ImageView building1CardPlayer1;
+    @FXML private ImageView building2CardPlayer1;
+    @FXML private ImageView building3CardPlayer1;
+    @FXML private ImageView building4CardPlayer1;
+    @FXML private ImageView building5CardPlayer1;
+    private List<ImageView> buildingPlayer1 = new ArrayList<>();
+
+    @FXML private ImageView character0CardPlayer1;
+    @FXML private ImageView character1CardPlayer1;
+    @FXML private ImageView character2CardPlayer1;
+    @FXML private ImageView character3CardPlayer1;
+    @FXML private ImageView character4CardPlayer1;
+    @FXML private ImageView character5CardPlayer1;
+    private List<ImageView> characterPlayer1 = new ArrayList<>();
+
+
+    @FXML private ImageView venture0CardPlayer1;
+    @FXML private ImageView venture1CardPlayer1;
+    @FXML private ImageView venture2CardPlayer1;
+    @FXML private ImageView venture3CardPlayer1;
+    @FXML private ImageView venture4CardPlayer1;
+    @FXML private ImageView venture5CardPlayer1;
+    private List<ImageView> venturePlayer1 = new ArrayList<>();
+
+    private Map<CardType, List<ImageView> > mapCardTypeImageViewPlayerCardPl1 = new HashMap<>();
+
+
+    @FXML private ImageView territory0CardPlayer2;
+    @FXML private ImageView territory1CardPlayer2;
+    @FXML private ImageView territory2CardPlayer2;
+    @FXML private ImageView territory3CardPlayer2;
+    @FXML private ImageView territory4CardPlayer2;
+    @FXML private ImageView territory5CardPlayer2;
+    private List<ImageView> territoryPlayer2 = new ArrayList<>();
+
+    @FXML private ImageView building0CardPlayer2;
+    @FXML private ImageView building1CardPlayer2;
+    @FXML private ImageView building2CardPlayer2;
+    @FXML private ImageView building3CardPlayer2;
+    @FXML private ImageView building4CardPlayer2;
+    @FXML private ImageView building5CardPlayer2;
+    private List<ImageView> buildingPlayer2 = new ArrayList<>();
+
+    @FXML private ImageView character0CardPlayer2;
+    @FXML private ImageView character1CardPlayer2;
+    @FXML private ImageView character2CardPlayer2;
+    @FXML private ImageView character3CardPlayer2;
+    @FXML private ImageView character4CardPlayer2;
+    @FXML private ImageView character5CardPlayer2;
+    private List<ImageView> characterPlayer2 = new ArrayList<>();
+
+
+    @FXML private ImageView venture0CardPlayer2;
+    @FXML private ImageView venture1CardPlayer2;
+    @FXML private ImageView venture2CardPlayer2;
+    @FXML private ImageView venture3CardPlayer2;
+    @FXML private ImageView venture4CardPlayer2;
+    @FXML private ImageView venture5CardPlayer2;
+    private List<ImageView> venturePlayer2 = new ArrayList<>();
+
+    private Map<CardType, List<ImageView> > mapCardTypeImageViewPlayerCardPl2 = new HashMap<>();
+
+
+    @FXML private ImageView territory0CardPlayer3;
+    @FXML private ImageView territory1CardPlayer3;
+    @FXML private ImageView territory2CardPlayer3;
+    @FXML private ImageView territory3CardPlayer3;
+    @FXML private ImageView territory4CardPlayer3;
+    @FXML private ImageView territory5CardPlayer3;
+    private List<ImageView> territoryPlayer3 = new ArrayList<>();
+
+    @FXML private ImageView building0CardPlayer3;
+    @FXML private ImageView building1CardPlayer3;
+    @FXML private ImageView building2CardPlayer3;
+    @FXML private ImageView building3CardPlayer3;
+    @FXML private ImageView building4CardPlayer3;
+    @FXML private ImageView building5CardPlayer3;
+    private List<ImageView> buildingPlayer3 = new ArrayList<>();
+
+    @FXML private ImageView character0CardPlayer3;
+    @FXML private ImageView character1CardPlayer3;
+    @FXML private ImageView character2CardPlayer3;
+    @FXML private ImageView character3CardPlayer3;
+    @FXML private ImageView character4CardPlayer3;
+    @FXML private ImageView character5CardPlayer3;
+    private List<ImageView> characterPlayer3 = new ArrayList<>();
+
+
+    @FXML private ImageView venture0CardPlayer3;
+    @FXML private ImageView venture1CardPlayer3;
+    @FXML private ImageView venture2CardPlayer3;
+    @FXML private ImageView venture3CardPlayer3;
+    @FXML private ImageView venture4CardPlayer3;
+    @FXML private ImageView venture5CardPlayer3;
+    private List<ImageView> venturePlayer3 = new ArrayList<>();
+
+    private Map<CardType, List<ImageView> > mapCardTypeImageViewPlayerCardPl3 = new HashMap<>();
+
+
+    @FXML private ImageView territory0CardPlayer4;
+    @FXML private ImageView territory1CardPlayer4;
+    @FXML private ImageView territory2CardPlayer4;
+    @FXML private ImageView territory3CardPlayer4;
+    @FXML private ImageView territory4CardPlayer4;
+    @FXML private ImageView territory5CardPlayer4;
+    private List<ImageView> territoryPlayer4 = new ArrayList<>();
+
+    @FXML private ImageView building0CardPlayer4;
+    @FXML private ImageView building1CardPlayer4;
+    @FXML private ImageView building2CardPlayer4;
+    @FXML private ImageView building3CardPlayer4;
+    @FXML private ImageView building4CardPlayer4;
+    @FXML private ImageView building5CardPlayer4;
+    private List<ImageView> buildingPlayer4 = new ArrayList<>();
+
+    @FXML private ImageView character0CardPlayer4;
+    @FXML private ImageView character1CardPlayer4;
+    @FXML private ImageView character2CardPlayer4;
+    @FXML private ImageView character3CardPlayer4;
+    @FXML private ImageView character4CardPlayer4;
+    @FXML private ImageView character5CardPlayer4;
+    private List<ImageView> characterPlayer4 = new ArrayList<>();
+
+
+    @FXML private ImageView venture0CardPlayer4;
+    @FXML private ImageView venture1CardPlayer4;
+    @FXML private ImageView venture2CardPlayer4;
+    @FXML private ImageView venture3CardPlayer4;
+    @FXML private ImageView venture4CardPlayer4;
+    @FXML private ImageView venture5CardPlayer4;
+    private List<ImageView> venturePlayer4 = new ArrayList<>();
+
+    private Map<CardType, List<ImageView> > mapCardTypeImageViewPlayerCardPl4 = new HashMap<>();
+
+
+
+
+    private Map<PlayerColor, Map<CardType, List<ImageView> > > mapPlayerColorCardTypeListImageView = new HashMap<>();
+
 
     private ImageView lastFamClicked = null;
     private MatchInstanceGUI match;
@@ -395,6 +546,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
             bindTrackMilitaryVictory();
             bindExcomunocationTile();
             setPlayerToPane();
+            bindPlayerCard();
         });
     }
 
@@ -467,7 +619,16 @@ public class MainBoardController extends Observable implements Initializable, Ob
             mapPeriodImageViewTile.get(i).imageProperty().bind(excommunicationTileRepresentation.getpathProperty());
         }
     }
-
+    private void bindPlayerCard(){
+        for(Player player : match.getPlayers().values()) {
+            for(CardType cardType : CardType.values()) {
+                for(int i = 0; i < 6; i++) {
+                    CardPlayerRepresentation cardPlayerRepresentation = match.getMapPlayerColorCardTypePlayerCard().get(player.getColor()).get(cardType).get(i);
+                    mapPlayerColorCardTypeListImageView.get(player.getColor()).get(cardType).get(i).imageProperty().bind(cardPlayerRepresentation.getPathProperty());
+                }
+            }
+        }
+    }
     private void setPlayerToPane(){
         playersBoards.getSelectionModel().select(mapPlayerColorTab.get(playerColor));
         mainPane.setUserData(playerColor);
@@ -672,6 +833,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
         mapPlayerColorButton.put(PlayerColor.RED, passTurnPl3);
         mapPlayerColorButton.put(PlayerColor.YELLOW, passTurnPl4);
 
+
         markets.add(market0);
         markets.add(market1);
         markets.add(market2);
@@ -685,6 +847,149 @@ public class MainBoardController extends Observable implements Initializable, Ob
         harvests.add(harvestBig);
         workplaces.put(WorkType.PRODUCTION, productions);
         workplaces.put(WorkType.HARVEST, harvests);
+
+        //all card of player 1
+        territoryPlayer1.add(territory0CardPlayer1);
+        territoryPlayer1.add(territory1CardPlayer1);
+        territoryPlayer1.add(territory2CardPlayer1);
+        territoryPlayer1.add(territory3CardPlayer1);
+        territoryPlayer1.add(territory4CardPlayer1);
+        territoryPlayer1.add(territory5CardPlayer1);
+
+        venturePlayer1.add(venture0CardPlayer1);
+        venturePlayer1.add(venture1CardPlayer1);
+        venturePlayer1.add(venture2CardPlayer1);
+        venturePlayer1.add(venture3CardPlayer1);
+        venturePlayer1.add(venture4CardPlayer1);
+        venturePlayer1.add(venture5CardPlayer1);
+
+        buildingPlayer1.add(building0CardPlayer1);
+        buildingPlayer1.add(building1CardPlayer1);
+        buildingPlayer1.add(building2CardPlayer1);
+        buildingPlayer1.add(building3CardPlayer1);
+        buildingPlayer1.add(building4CardPlayer1);
+        buildingPlayer1.add(building5CardPlayer1);
+
+        characterPlayer1.add(character0CardPlayer1);
+        characterPlayer1.add(character1CardPlayer1);
+        characterPlayer1.add(character2CardPlayer1);
+        characterPlayer1.add(character3CardPlayer1);
+        characterPlayer1.add(character4CardPlayer1);
+        characterPlayer1.add(character5CardPlayer1);
+
+        mapCardTypeImageViewPlayerCardPl1.put(CardType.TERRITORY, territoryPlayer1);
+        mapCardTypeImageViewPlayerCardPl1.put(CardType.BUILDING, buildingPlayer1);
+        mapCardTypeImageViewPlayerCardPl1.put(CardType.VENTURE, venturePlayer1);
+        mapCardTypeImageViewPlayerCardPl1.put(CardType.CHARACTER, characterPlayer1);
+
+        //all card of player 2
+        territoryPlayer2.add(territory0CardPlayer2);
+        territoryPlayer2.add(territory1CardPlayer2);
+        territoryPlayer2.add(territory2CardPlayer2);
+        territoryPlayer2.add(territory3CardPlayer2);
+        territoryPlayer2.add(territory4CardPlayer2);
+        territoryPlayer2.add(territory5CardPlayer2);
+
+        venturePlayer2.add(venture0CardPlayer2);
+        venturePlayer2.add(venture1CardPlayer2);
+        venturePlayer2.add(venture2CardPlayer2);
+        venturePlayer2.add(venture3CardPlayer2);
+        venturePlayer2.add(venture4CardPlayer2);
+        venturePlayer2.add(venture5CardPlayer2);
+
+        buildingPlayer2.add(building0CardPlayer2);
+        buildingPlayer2.add(building1CardPlayer2);
+        buildingPlayer2.add(building2CardPlayer2);
+        buildingPlayer2.add(building3CardPlayer2);
+        buildingPlayer2.add(building4CardPlayer2);
+        buildingPlayer2.add(building5CardPlayer2);
+
+        characterPlayer2.add(character0CardPlayer2);
+        characterPlayer2.add(character1CardPlayer2);
+        characterPlayer2.add(character2CardPlayer2);
+        characterPlayer2.add(character3CardPlayer2);
+        characterPlayer2.add(character4CardPlayer2);
+        characterPlayer2.add(character5CardPlayer2);
+
+        mapCardTypeImageViewPlayerCardPl2.put(CardType.TERRITORY, territoryPlayer2);
+        mapCardTypeImageViewPlayerCardPl2.put(CardType.BUILDING, buildingPlayer2);
+        mapCardTypeImageViewPlayerCardPl2.put(CardType.VENTURE, venturePlayer2);
+        mapCardTypeImageViewPlayerCardPl2.put(CardType.CHARACTER, characterPlayer2);
+
+        //all card of player 3
+        territoryPlayer3.add(territory0CardPlayer3);
+        territoryPlayer3.add(territory1CardPlayer3);
+        territoryPlayer3.add(territory2CardPlayer3);
+        territoryPlayer3.add(territory3CardPlayer3);
+        territoryPlayer3.add(territory4CardPlayer3);
+        territoryPlayer3.add(territory5CardPlayer3);
+
+        venturePlayer3.add(venture0CardPlayer3);
+        venturePlayer3.add(venture1CardPlayer3);
+        venturePlayer3.add(venture2CardPlayer3);
+        venturePlayer3.add(venture3CardPlayer3);
+        venturePlayer3.add(venture4CardPlayer3);
+        venturePlayer3.add(venture5CardPlayer3);
+
+        buildingPlayer3.add(building0CardPlayer3);
+        buildingPlayer3.add(building1CardPlayer3);
+        buildingPlayer3.add(building2CardPlayer3);
+        buildingPlayer3.add(building3CardPlayer3);
+        buildingPlayer3.add(building4CardPlayer3);
+        buildingPlayer3.add(building5CardPlayer3);
+
+        characterPlayer3.add(character0CardPlayer3);
+        characterPlayer3.add(character1CardPlayer3);
+        characterPlayer3.add(character2CardPlayer3);
+        characterPlayer3.add(character3CardPlayer3);
+        characterPlayer3.add(character4CardPlayer3);
+        characterPlayer3.add(character5CardPlayer3);
+
+        mapCardTypeImageViewPlayerCardPl3.put(CardType.TERRITORY, territoryPlayer3);
+        mapCardTypeImageViewPlayerCardPl3.put(CardType.BUILDING, buildingPlayer3);
+        mapCardTypeImageViewPlayerCardPl3.put(CardType.VENTURE, venturePlayer3);
+        mapCardTypeImageViewPlayerCardPl3.put(CardType.CHARACTER, characterPlayer3);
+
+        //all card of player 4
+        territoryPlayer4.add(territory0CardPlayer4);
+        territoryPlayer4.add(territory1CardPlayer4);
+        territoryPlayer4.add(territory2CardPlayer4);
+        territoryPlayer4.add(territory3CardPlayer4);
+        territoryPlayer4.add(territory4CardPlayer4);
+        territoryPlayer4.add(territory5CardPlayer4);
+
+        venturePlayer4.add(venture0CardPlayer4);
+        venturePlayer4.add(venture1CardPlayer4);
+        venturePlayer4.add(venture2CardPlayer4);
+        venturePlayer4.add(venture3CardPlayer4);
+        venturePlayer4.add(venture4CardPlayer4);
+        venturePlayer4.add(venture5CardPlayer4);
+
+        buildingPlayer4.add(building0CardPlayer4);
+        buildingPlayer4.add(building1CardPlayer4);
+        buildingPlayer4.add(building2CardPlayer4);
+        buildingPlayer4.add(building3CardPlayer4);
+        buildingPlayer4.add(building4CardPlayer4);
+        buildingPlayer4.add(building5CardPlayer4);
+
+        characterPlayer4.add(character0CardPlayer4);
+        characterPlayer4.add(character1CardPlayer4);
+        characterPlayer4.add(character2CardPlayer4);
+        characterPlayer4.add(character3CardPlayer4);
+        characterPlayer4.add(character4CardPlayer4);
+        characterPlayer4.add(character5CardPlayer4);
+
+        mapCardTypeImageViewPlayerCardPl4.put(CardType.TERRITORY, territoryPlayer4);
+        mapCardTypeImageViewPlayerCardPl4.put(CardType.BUILDING, buildingPlayer4);
+        mapCardTypeImageViewPlayerCardPl4.put(CardType.VENTURE, venturePlayer4);
+        mapCardTypeImageViewPlayerCardPl4.put(CardType.CHARACTER, characterPlayer4);
+
+        mapPlayerColorCardTypeListImageView.put(PlayerColor.BLUE, mapCardTypeImageViewPlayerCardPl1);
+        mapPlayerColorCardTypeListImageView.put(PlayerColor.GREEN, mapCardTypeImageViewPlayerCardPl2);
+        mapPlayerColorCardTypeListImageView.put(PlayerColor.RED, mapCardTypeImageViewPlayerCardPl3);
+        mapPlayerColorCardTypeListImageView.put(PlayerColor.YELLOW, mapCardTypeImageViewPlayerCardPl4);
+
+
     }
 
     public ClientHandler getClientHandler() {

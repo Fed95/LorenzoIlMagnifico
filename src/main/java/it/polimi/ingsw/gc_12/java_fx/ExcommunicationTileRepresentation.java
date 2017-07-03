@@ -15,9 +15,8 @@ public class ExcommunicationTileRepresentation {
 
     public ExcommunicationTileRepresentation(int period, String path){
         this.period = new SimpleIntegerProperty(period);
-        this.path = new SimpleObjectProperty<Image>();
         Image image = new Image(path);
-        this.path.set(image);
+        this.path = new SimpleObjectProperty<Image>(image);
     }
 
     public int getPeriod() {

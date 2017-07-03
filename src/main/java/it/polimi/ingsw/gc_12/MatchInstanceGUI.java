@@ -5,14 +5,12 @@ import it.polimi.ingsw.gc_12.card.CardDevelopment;
 import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.dice.Die;
 import it.polimi.ingsw.gc_12.dice.DieColor;
-import it.polimi.ingsw.gc_12.dice.SpaceDie;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
 import it.polimi.ingsw.gc_12.java_fx.*;
 import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 import it.polimi.ingsw.gc_12.occupiables.TowerSet;
 import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
-import it.polimi.ingsw.gc_12.server.observer.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
@@ -57,6 +55,32 @@ public class MatchInstanceGUI extends MatchInstance {
 
     //excommmunication tile representation
     private ObservableList<ExcommunicationTileRepresentation> excommunicationTileRepresentationObservableList = FXCollections.observableArrayList();
+    //card player1
+    private ObservableList<CardPlayerRepresentation> territoryCardPlayerRepresentationPl1 = FXCollections.observableArrayList();
+    private ObservableList<CardPlayerRepresentation> buildingCardPlayerRepresentationPl1 = FXCollections.observableArrayList();
+    private ObservableList<CardPlayerRepresentation> characterCardPlayerRepresentationPl1 = FXCollections.observableArrayList();
+    private ObservableList<CardPlayerRepresentation> ventureCardPlayerRepresentationPl1 = FXCollections.observableArrayList();
+    private Map<CardType, ObservableList<CardPlayerRepresentation>> mapCardTypeCardPlayerRepresentationPl1 = new HashMap<>();
+    //card player2
+    private ObservableList<CardPlayerRepresentation> territoryCardPlayerRepresentationPl2 = FXCollections.observableArrayList();
+    private ObservableList<CardPlayerRepresentation> buildingCardPlayerRepresentationPl2 = FXCollections.observableArrayList();
+    private ObservableList<CardPlayerRepresentation> characterCardPlayerRepresentationPl2 = FXCollections.observableArrayList();
+    private ObservableList<CardPlayerRepresentation> ventureCardPlayerRepresentationPl2 = FXCollections.observableArrayList();
+    private Map<CardType, ObservableList<CardPlayerRepresentation>> mapCardTypeCardPlayerRepresentationPl2 = new HashMap<>();
+    //card player3
+    private ObservableList<CardPlayerRepresentation> territoryCardPlayerRepresentationPl3 = FXCollections.observableArrayList();
+    private ObservableList<CardPlayerRepresentation> buildingCardPlayerRepresentationPl3 = FXCollections.observableArrayList();
+    private ObservableList<CardPlayerRepresentation> characterCardPlayerRepresentationPl3 = FXCollections.observableArrayList();
+    private ObservableList<CardPlayerRepresentation> ventureCardPlayerRepresentationPl3 = FXCollections.observableArrayList();
+    private Map<CardType, ObservableList<CardPlayerRepresentation>> mapCardTypeCardPlayerRepresentationPl3 = new HashMap<>();
+    //card player4
+    private ObservableList<CardPlayerRepresentation> territoryCardPlayerRepresentationPl4 = FXCollections.observableArrayList();
+    private ObservableList<CardPlayerRepresentation> buildingCardPlayerRepresentationPl4 = FXCollections.observableArrayList();
+    private ObservableList<CardPlayerRepresentation> characterCardPlayerRepresentationPl4 = FXCollections.observableArrayList();
+    private ObservableList<CardPlayerRepresentation> ventureCardPlayerRepresentationPl4 = FXCollections.observableArrayList();
+    private Map<CardType, ObservableList<CardPlayerRepresentation>> mapCardTypeCardPlayerRepresentationPl4 = new HashMap<>();
+
+    private Map<PlayerColor,Map<CardType, ObservableList<CardPlayerRepresentation> > > mapPlayerColorCardTypePlayerCard = new HashMap<>();
 
 
     private MatchInstanceGUI() {}
@@ -76,6 +100,7 @@ public class MatchInstanceGUI extends MatchInstance {
 		setFamilyMemberObservers();
         createObservableListMilitary(match);
         createExcomTileRepresentation(match);
+        createCardPlayerRepresentation(match);
         setChanged();
 		notifyObservers();
 		initialized = true;
@@ -214,6 +239,42 @@ public class MatchInstanceGUI extends MatchInstance {
             excommunicationTileRepresentationObservableList.add(excomTileR);
         }
     }
+    public void createCardPlayerRepresentation(Match match){
+        mapCardTypeCardPlayerRepresentationPl1.put(CardType.TERRITORY, territoryCardPlayerRepresentationPl1);
+        mapCardTypeCardPlayerRepresentationPl1.put(CardType.BUILDING, buildingCardPlayerRepresentationPl1);
+        mapCardTypeCardPlayerRepresentationPl1.put(CardType.CHARACTER, characterCardPlayerRepresentationPl1);
+        mapCardTypeCardPlayerRepresentationPl1.put(CardType.VENTURE, ventureCardPlayerRepresentationPl1);
+
+        mapCardTypeCardPlayerRepresentationPl2.put(CardType.TERRITORY, territoryCardPlayerRepresentationPl2);
+        mapCardTypeCardPlayerRepresentationPl2.put(CardType.BUILDING, buildingCardPlayerRepresentationPl2);
+        mapCardTypeCardPlayerRepresentationPl2.put(CardType.CHARACTER, characterCardPlayerRepresentationPl2);
+        mapCardTypeCardPlayerRepresentationPl2.put(CardType.VENTURE, ventureCardPlayerRepresentationPl2);
+
+        mapCardTypeCardPlayerRepresentationPl3.put(CardType.TERRITORY, territoryCardPlayerRepresentationPl3);
+        mapCardTypeCardPlayerRepresentationPl3.put(CardType.BUILDING, buildingCardPlayerRepresentationPl3);
+        mapCardTypeCardPlayerRepresentationPl3.put(CardType.CHARACTER, characterCardPlayerRepresentationPl3);
+        mapCardTypeCardPlayerRepresentationPl3.put(CardType.VENTURE, ventureCardPlayerRepresentationPl3);
+
+        mapCardTypeCardPlayerRepresentationPl4.put(CardType.TERRITORY, territoryCardPlayerRepresentationPl4);
+        mapCardTypeCardPlayerRepresentationPl4.put(CardType.BUILDING, buildingCardPlayerRepresentationPl4);
+        mapCardTypeCardPlayerRepresentationPl4.put(CardType.CHARACTER, characterCardPlayerRepresentationPl4);
+        mapCardTypeCardPlayerRepresentationPl4.put(CardType.VENTURE, ventureCardPlayerRepresentationPl4);
+
+        mapPlayerColorCardTypePlayerCard.put(PlayerColor.BLUE, mapCardTypeCardPlayerRepresentationPl1);
+        mapPlayerColorCardTypePlayerCard.put(PlayerColor.GREEN, mapCardTypeCardPlayerRepresentationPl2);
+        mapPlayerColorCardTypePlayerCard.put(PlayerColor.RED, mapCardTypeCardPlayerRepresentationPl3);
+        mapPlayerColorCardTypePlayerCard.put(PlayerColor.YELLOW, mapCardTypeCardPlayerRepresentationPl4);
+        Map<PlayerColor, Player> players = match.getPlayers();
+        for(Player player : players.values()) {
+
+            for (CardType cardType : CardType.values()) {
+                for (int i = 0; i < 6; i++) {
+                    CardPlayerRepresentation cardPlayerRepresentation = new CardPlayerRepresentation("img/Card/transparentCard.png");
+                    mapPlayerColorCardTypePlayerCard.get(player.getColor()).get(cardType).add(cardPlayerRepresentation);
+                }
+            }
+        }
+    }
     public Map<PlayerColor, ObservableList<FamilyMemberRepresentation>> getMapPlayerColorObservableLiseFMRepr() {
 		return mapFamilyMember;
 	}
@@ -239,6 +300,10 @@ public class MatchInstanceGUI extends MatchInstance {
 
     public ObservableList<ExcommunicationTileRepresentation> getExcommunicationTileRepresentationObservableList() {
         return excommunicationTileRepresentationObservableList;
+    }
+
+    public Map<PlayerColor, Map<CardType, ObservableList<CardPlayerRepresentation>>> getMapPlayerColorCardTypePlayerCard() {
+        return mapPlayerColorCardTypePlayerCard;
     }
 
     public void notifyInit() {

@@ -17,19 +17,17 @@ public class CardFloorRepresentation  {
 
     private SimpleIntegerProperty floorNumber;
     private SimpleObjectProperty<Image> path;
-    private SimpleObjectProperty<Image> pathWhenTaken;//da settare con l'immgine del familymember quando arriva event e il floor e' preso?
+    private SimpleObjectProperty<Image> pathWhenTaken;
 
 
     private SimpleBooleanProperty taken;
 
     public CardFloorRepresentation(String url ,int floor, Boolean taken) {
         this.floorNumber = new SimpleIntegerProperty(floor);
-        this.path = new SimpleObjectProperty<Image>();
-        this.taken = new SimpleBooleanProperty(taken);
         Image image = new Image(url);
-        path.set(image);
+        this.path = new SimpleObjectProperty<Image>(image);
+        this.taken = new SimpleBooleanProperty(taken);
         this.pathWhenTaken = new SimpleObjectProperty<Image>();
-
     }
 
     public int getFloorNumber() {
