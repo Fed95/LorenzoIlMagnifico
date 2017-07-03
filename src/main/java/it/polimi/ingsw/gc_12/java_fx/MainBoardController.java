@@ -203,7 +203,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
     @FXML private Button viewStatPl3;
     @FXML private Button viewStatPl4;
 
-
+    @FXML private ImageView councilPalace;
     @FXML private ImageView market0;
     @FXML private ImageView market1;
     @FXML private ImageView market2;

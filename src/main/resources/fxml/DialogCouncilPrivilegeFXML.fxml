@@ -17,27 +17,27 @@
     
       <ImageView fx:id="privilege0" fitHeight="84.0" fitWidth="58.0" layoutX="184.0" layoutY="156.0" onMouseClicked="#privilegeClicked" preserveRatio="true">
          <image>
-            <Image url="@../img/coucilPrivilege0.png" />
+            <Image url="@../img/privilegePopup/coucilPrivilege0.png" />
          </image>
       </ImageView>
       <ImageView fx:id="privilege1" fitHeight="69.0" fitWidth="46.0" layoutX="264.0" layoutY="163.0" onMouseClicked="#privilegeClicked" preserveRatio="true">
          <image>
-            <Image url="@../img/coucilPrivilege1.png" />
+            <Image url="@../img/privilegePopup/coucilPrivilege1.png" />
          </image>
       </ImageView>
       <ImageView fx:id="privilege2" fitHeight="51.0" fitWidth="58.0" layoutX="335.0" layoutY="186.0" onMouseClicked="#privilegeClicked" preserveRatio="true">
          <image>
-            <Image url="@../img/coucilPrivilege2.png" />
+            <Image url="@../img/privilegePopup/coucilPrivilege2.png" />
          </image>
       </ImageView>
       <ImageView fx:id="privilege3" fitHeight="76.0" fitWidth="74.0" layoutX="420.0" layoutY="156.0" onMouseClicked="#privilegeClicked" preserveRatio="true">
          <image>
-            <Image url="@../img/coucilPrivilege3.png" />
+            <Image url="@../img/privilegePopup/coucilPrivilege3.png" />
          </image>
       </ImageView>
       <ImageView fx:id="privilege4" fitHeight="82.0" fitWidth="57.0" layoutX="494.0" layoutY="159.0" onMouseClicked="#privilegeClicked" preserveRatio="true">
          <image>
-            <Image url="@../img/coucilPrivilege4.png" />
+            <Image url="@../img/privilegePopup/coucilPrivilege4.png" />
          </image>
       </ImageView>
    </children>
