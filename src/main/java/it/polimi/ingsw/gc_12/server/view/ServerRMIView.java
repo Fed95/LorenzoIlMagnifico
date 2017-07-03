@@ -40,11 +40,6 @@ public class ServerRMIView extends ServerView implements RMIViewRemote {
 		if(event instanceof EventTowerChosen)
 			recievedAnsewr = false;
 
-		if(event instanceof EventStartTurn && i == 0) {
-			setTimeoutAction();
-			i++;
-		}
-
 		if(event instanceof EventPlayerReconnected) {
 			EventPlayerReconnected eventReconnected = (EventPlayerReconnected) event;
 			if(eventReconnected.getClientViewRemote() != null) {

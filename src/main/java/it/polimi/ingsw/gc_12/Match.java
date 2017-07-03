@@ -39,6 +39,8 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	private int period;
 	private int turnCounter;
 	private int reportCounter;
+	private transient final int TIMEOUT_ACTION;
+	private transient Timer timer = new Timer();
 	private final int DEFAULT_FAMILY_MEMBERS = 4;
 	private transient EffectHandler effectHandler;
 	private transient ActionHandler actionHandler;
@@ -50,6 +52,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	private int numReady;
 
 	public Match() {
+		this.TIMEOUT_ACTION = new LoaderConfig().get(this).getTimeoutAction();
 		this.roundNum = 0;
 		this.turnCounter = 0;
 		this.reportCounter = 0;
@@ -148,6 +151,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		actionHandler.update(event, this);
 		this.notifyObserver(event);
 		this.turnCounter++;
+		setTimeoutAction();
 		if(player.isDisconnected())
 			newTurn();
 	}
@@ -357,5 +361,28 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	@Override
 	public List<Effect> getEffects() {
 		return null;
+	}
+
+	protected void setTimeoutAction() {
+		timer.cancel();
+		timer.purge();
+		timer = new Timer();
+		System.out.println("setup timer action");
+		timer.schedule(new TimerActionTask(this), TIMEOUT_ACTION);
+	}
+
+	class TimerActionTask extends TimerTask {
+
+		private Match match;
+
+		public TimerActionTask(Match match) {
+			this.match = match;
+		}
+
+		@Override
+		public void run() {
+			match.excludeCurrentPlayer();
+			match.newTurn();
+		}
 	}
 }

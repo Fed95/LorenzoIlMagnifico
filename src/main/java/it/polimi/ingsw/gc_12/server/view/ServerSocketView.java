@@ -4,10 +4,7 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.PlayerColor;
 import it.polimi.ingsw.gc_12.action.Action;
-import it.polimi.ingsw.gc_12.event.EventNewName;
-import it.polimi.ingsw.gc_12.event.Event;
-import it.polimi.ingsw.gc_12.event.EventPlayerReconnected;
-import it.polimi.ingsw.gc_12.event.EventStartTurn;
+import it.polimi.ingsw.gc_12.event.*;
 import it.polimi.ingsw.gc_12.server.Server;
 
 import java.io.IOException;
@@ -47,11 +44,6 @@ public class ServerSocketView extends ServerView implements Runnable {
 	public void update(Event event) {
 		System.out.println("Sending to the client " + event.getClass().getSimpleName());
 
-		if(event instanceof EventStartTurn && i == 0) {
-			setTimeoutAction();
-			i++;
-		}
-
 		// If sending an EventPlayerReconnected of a RMI client to a socket client, don't send the ServerRMI
 		if(event instanceof EventPlayerReconnected) {
 			EventPlayerReconnected eventRec = (EventPlayerReconnected) event;
@@ -61,9 +53,7 @@ public class ServerSocketView extends ServerView implements Runnable {
 
 		// sending the info to the client
 		try {
-			this.socketOut.writeObject(event);
-			this.socketOut.flush();
-			this.socketOut.reset();
+			sendObject(event);
 
 		} catch (IOException e) {
 			Player player = match.getPlayer(name);
@@ -129,13 +119,19 @@ public class ServerSocketView extends ServerView implements Runnable {
 			incrementalId++;
 		}
 		unauthorizedClients.put(incrementalId, name);
-		socketOut.writeObject(new EventNewName(incrementalId, name));
+		sendObject(new EventNewName(incrementalId, name));
 	}
 
 	private void acceptName() throws IOException, AlreadyBoundException, CloneNotSupportedException {
 		PlayerColor playerColor = playerColors.poll();
-		socketOut.writeObject(playerColor);
+		sendObject(playerColor);
 		server.addPlayer(new Player(name, playerColor));
+	}
+
+	private synchronized void sendObject(Object object) throws IOException {
+		this.socketOut.writeObject(object);
+		this.socketOut.flush();
+		this.socketOut.reset();
 	}
 
 }
