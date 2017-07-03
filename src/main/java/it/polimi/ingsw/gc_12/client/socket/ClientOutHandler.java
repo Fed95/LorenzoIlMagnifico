@@ -1,5 +1,7 @@
 package it.polimi.ingsw.gc_12.client.socket;
 
+import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.PlayerColor;
 import it.polimi.ingsw.gc_12.client.ClientSender;
 import it.polimi.ingsw.gc_12.event.EventNewName;
 
@@ -32,17 +34,9 @@ public class ClientOutHandler implements Runnable, ClientSender {
 		sendObject(input);
 	}
 
-	private void sendName(EventNewName name) {
-		sendObject(name);
-	}
-
 	@Override
 	public void update(Observable o, Object arg) {
-		if(arg instanceof Integer)
-			sendAction((Integer) arg);
-		else if (arg instanceof EventNewName) {
-			sendName((EventNewName) arg);
-		}
+		sendObject(arg);
 	}
 
 	private void sendObject(Object object) {

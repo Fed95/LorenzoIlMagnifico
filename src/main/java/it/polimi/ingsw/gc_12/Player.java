@@ -27,6 +27,7 @@ public class Player implements Serializable{
 	private Map<FamilyMemberColor, FamilyMember> familymembers = new HashMap<>();
 	private PlayerState state;
 	private boolean disconnected;
+	private boolean excluded;
 	
 	public Player(String name, PlayerColor playerColor){
 		this.name = name;
@@ -228,6 +229,14 @@ public class Player implements Serializable{
 
 	public void setDisconnected(boolean disconnected) {
 		this.disconnected = disconnected;
+	}
+
+	public boolean isExcluded() {
+		return excluded;
+	}
+
+	public void setExcluded(boolean excluded) {
+		this.excluded = excluded;
 	}
 
 	public String printResources(){

@@ -142,7 +142,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		System.out.println("Match: Starting new turn");
 		Player player = board.getTrackTurnOrder().newTurn();
 
-		EventStartTurn event = new EventStartTurn(player, turnCounter);
+		EventStartTurn event = new EventStartTurn(player, board.getTrackTurnOrder().getTurn());
 		try {
 			effectHandler.executeEffects(this, event);
 		} catch (ActionDeniedException e) {
@@ -152,8 +152,11 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		this.notifyObserver(event);
 		this.turnCounter++;
 		setTimeoutAction();
-		if(player.isDisconnected())
+		if(player.isDisconnected() || player.isExcluded()) {
+			actionHandler.flushEvents();
 			newTurn();
+		}
+
 	}
 
 	private void checkConnection() {
@@ -184,10 +187,11 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		return vatican;
 	}
 
-	public void excludeCurrentPlayer() {
+	private void excludeCurrentPlayer() {
 		Player player = board.getTrackTurnOrder().getCurrentPlayer();
 		Event event = new EventExcluded(player);
 		actionHandler.update(event, this);
+		player.setExcluded(true);
 		notifyObserver(event);
 	}
 

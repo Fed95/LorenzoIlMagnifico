@@ -92,6 +92,15 @@ public class ServerRMIView extends ServerView implements RMIViewRemote {
 		}
 	}
 
+	@Override
+	public void receiveColor(PlayerColor color) throws RemoteException {
+		Player player = match.getPlayers().get(color);
+		if(player.isExcluded()) {
+			player.setExcluded(false);
+		}
+
+	}
+
 	private void checkNewName(String name, ClientViewRemote client) throws IOException, AlreadyBoundException, CloneNotSupportedException {
 		if(server.isNameTaken(name)) {
 			Player player = new Player(name, null);

@@ -38,16 +38,7 @@ public class EventStartTurn extends Event{
 		boolean myTurn = client.getColor().equals(player.getColor());
 		client.setMyTurn(myTurn);
 		if(myTurn) {
-			if(client.isExcluded()) {
-				for (int i = 0; i < actions.size(); i++) {
-					if(actions.get(i) instanceof ActionPassTurn) {
-						new Thread(new PassTurnSender(i, ClientFactory.getClientSender())).start();
-					}
-				}
-			}
-			else {
-				super.executeClientSide(client);
-			}
+			super.executeClientSide(client);
 		}
 	}
 
@@ -87,22 +78,4 @@ public class EventStartTurn extends Event{
     public String toStringClientGUI(){
         return "It's " + player.getName() + "'s turn.";
     }
-
-	class PassTurnSender implements Runnable {
-		ClientSender clientSender;
-		int input;
-
-		PassTurnSender(int input, ClientSender clientSender) {
-			this.input = input;
-			this.clientSender = clientSender;
-		}
-
-		public void run() {
-			try {
-				clientSender.sendAction(input);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
 }

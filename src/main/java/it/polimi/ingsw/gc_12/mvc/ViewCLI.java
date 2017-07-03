@@ -123,6 +123,8 @@ public class ViewCLI extends Observable implements ClientView {
 		if(clientHandler.isExcluded()) {
 			clientHandler.setExcluded(false);
 			System.out.println("Welcome back! You can start playing again.");
+			setChanged();
+			notifyObservers(clientHandler.getColor());
 			return false;
 		}
 		return true;

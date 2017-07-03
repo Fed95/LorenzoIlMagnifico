@@ -47,7 +47,7 @@ public class TrackTurnOrder implements Serializable{
 		return turnOrder;
 	}
 
-	public Player newTurn() {
+	public synchronized Player newTurn() {
 		turn++;
 		if (turn == turnOrder.size())
 			turn = 0;
@@ -62,5 +62,9 @@ public class TrackTurnOrder implements Serializable{
 
 	public void setTurn(int turn) {
 		this.turn = turn;
+	}
+
+	public int getTurn() {
+		return turn;
 	}
 }

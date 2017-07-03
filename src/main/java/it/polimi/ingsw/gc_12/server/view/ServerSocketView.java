@@ -98,6 +98,11 @@ public class ServerSocketView extends ServerView implements Runnable {
 						socketOut.writeObject(new EventNewName(eventNewName.getUnauthorizedId(), name));
 					} else
 						acceptName();
+				} else if(object instanceof PlayerColor) {
+					Player player = match.getPlayers().get(object);
+					if(player.isExcluded()) {
+						player.setExcluded(false);
+					}
 				}
 			}
 		}

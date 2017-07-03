@@ -26,7 +26,6 @@ public abstract class Observable<C> {
 	}
 	
 	public void notifyObserver(C c) {
-		System.out.println("I am the " + this.getClass().getSimpleName() + ". I have been notified about " + c.getClass());
 		List<Observer<C>> newObservers = new ArrayList<>();
 		newObservers.addAll(observers);
 		for(Observer<C> o: newObservers) {

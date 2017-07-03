@@ -1,5 +1,7 @@
 package it.polimi.ingsw.gc_12.client.rmi;
 
+import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc_12.PlayerColor;
 import it.polimi.ingsw.gc_12.client.ClientFactory;
 import it.polimi.ingsw.gc_12.client.ClientSender;
 import it.polimi.ingsw.gc_12.event.EventNewName;
@@ -43,13 +45,19 @@ public class ClientRMI implements ClientSender { //Main class of the Clients usi
 		serverStub.receiveAction(input);
 	}
 
-	public void sendName(String name, int unauthorizedId) throws IOException {
+	private void sendName(String name, int unauthorizedId) throws IOException {
 		serverStub.receiveName(name, unauthorizedId);
+	}
+
+	private void sendColor(PlayerColor color) throws RemoteException {
+		serverStub.receiveColor(color);
 	}
 
 	public void setServerStub(RMIViewRemote serverStub) {
 		this.serverStub = serverStub;
 	}
+
+
 
 	@Override
 	public void update(Observable o, Object arg) {
@@ -60,6 +68,9 @@ public class ClientRMI implements ClientSender { //Main class of the Clients usi
 			else if (arg instanceof EventNewName) {
 				EventNewName event = (EventNewName) arg;
 				sendName(event.getName(), event.getUnauthorizedId());
+			}
+			else if(arg instanceof PlayerColor) {
+				sendColor((PlayerColor) arg);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
