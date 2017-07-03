@@ -204,6 +204,16 @@ public class MainBoardController extends Observable implements Initializable, Ob
     @FXML private Button viewStatPl4;
 
 
+    @FXML private ImageView market0;
+    @FXML private ImageView market1;
+    @FXML private ImageView market2;
+    @FXML private ImageView market3;
+
+    @FXML private ImageView production;
+    @FXML private ImageView productionBig;
+    @FXML private ImageView harvest;
+    @FXML private ImageView harvestBig;
+
 
 
     private ImageView lastFamClicked = null;
@@ -261,6 +271,9 @@ public class MainBoardController extends Observable implements Initializable, Ob
             showTurnDenied();
     }
     @FXML void marketClicked(){
+
+    }
+    @FXML void workspaceClicked(){
 
     }
     @FXML void passTurn(){
