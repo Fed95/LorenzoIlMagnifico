@@ -191,9 +191,22 @@ public class MainBoardController extends Observable implements Initializable, Ob
     private Map<Integer, ImageView> mapPeriodImageViewTile = new HashMap<>();
 
     @FXML private TextArea chatTextArea;
+
+    @FXML private Button passTurnPl1;
+    @FXML private Button passTurnPl2;
+    @FXML private Button passTurnPl3;
+    @FXML private Button passTurnPl4;
+    Map<PlayerColor, Button> mapPlayerColorButton = new HashMap<>();
+
+    @FXML private Button viewStatPl1;
+    @FXML private Button viewStatPl2;
+    @FXML private Button viewStatPl3;
+    @FXML private Button viewStatPl4;
+
+
+
+
     private ImageView lastFamClicked = null;
-
-
     private MatchInstanceGUI match;
     private ClientHandler clientHandler;
     private Action actionPending;
@@ -247,7 +260,12 @@ public class MainBoardController extends Observable implements Initializable, Ob
         else
             showTurnDenied();
     }
+    @FXML void passTurn(){
 
+    }
+    @FXML void viewStat(){
+
+    }
     private void selectAction(Action action) {
         List<Action> actions = clientHandler.getActions();
         for (int i = 0; i < actions.size(); i++) {
@@ -389,6 +407,11 @@ public class MainBoardController extends Observable implements Initializable, Ob
         PlayerColor actualColor = clientHandler.getColor();
         playersBoards.getSelectionModel().select(mapPlayerColorTab.get(actualColor));
         mainPane.setUserData(actualColor);
+        for(Button button : mapPlayerColorButton.values()){
+            if(!button.equals(mapPlayerColorButton.get(actualColor))){
+                mainPane.getChildren().remove(button);
+            }
+        }
     }
 
     private Boolean isMyFam(PlayerColor color, ImageView famMemb){
@@ -580,6 +603,10 @@ public class MainBoardController extends Observable implements Initializable, Ob
         mapPeriodImageViewTile.put(1, excomTile2);
         mapPeriodImageViewTile.put(2, excomTile3);
 
+        mapPlayerColorButton.put(PlayerColor.BLUE, passTurnPl1);
+        mapPlayerColorButton.put(PlayerColor.GREEN, passTurnPl2);
+        mapPlayerColorButton.put(PlayerColor.RED, passTurnPl3);
+        mapPlayerColorButton.put(PlayerColor.YELLOW, passTurnPl4);
     }
 
     public ClientHandler getClientHandler() {
