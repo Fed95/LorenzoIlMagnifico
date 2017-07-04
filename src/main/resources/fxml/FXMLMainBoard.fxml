@@ -556,9 +556,7 @@
              <ImageView fx:id="cardFloor14" fitHeight="114.0" fitWidth="81.0" layoutX="447.0" layoutY="307.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
              <ImageView fx:id="cardFloor15" fitHeight="114.0" fitWidth="80.0" layoutX="448.0" layoutY="443.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
             <ImageView fx:id="floorToBeClicked0" fitHeight="60.0" fitWidth="60.0" layoutX="88.5" layoutY="59.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/floor/floor0.png" />
-               </image>
+                <Image url="@../img/floor/floor0.png" />
             </ImageView>
              <ImageView fx:id="floorToBeClicked1" fitHeight="60.0" fitWidth="60.0" layoutX="88.5" layoutY="196.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
                  <image>

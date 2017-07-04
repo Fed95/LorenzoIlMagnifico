@@ -20,7 +20,8 @@ public class ResponsiveListener implements ChangeListener<Number> {
     private final double initWidth;
     private final Pane root;
     private final Stage primaryStage;
-    private double adjust = 1.6;//adjust size for minor screen size
+    private double adjust = 1;//adjust size for minor screen size
+
     public ResponsiveListener(Scene scene, double ratio, double initHeight, double initWidth, Pane root, Stage primaryStage) {
         this.scene = scene;
         this.ratio = ratio;
@@ -29,6 +30,7 @@ public class ResponsiveListener implements ChangeListener<Number> {
         this.root = root;
         this.primaryStage = primaryStage;
     }
+
     @Override
     public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
         final double newWidth  = scene.getWidth();

@@ -10,9 +10,6 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.paint.Paint;
 
 
-/**
- * Created by rugge on 23/06/2017.
- */
 public class CardFloorRepresentation  {
 
     private SimpleIntegerProperty floorNumber;
