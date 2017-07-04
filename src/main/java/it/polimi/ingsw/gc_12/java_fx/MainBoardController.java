@@ -2,6 +2,7 @@ package it.polimi.ingsw.gc_12.java_fx;
 
 import it.polimi.ingsw.gc_12.*;
 import it.polimi.ingsw.gc_12.action.*;
+import it.polimi.ingsw.gc_12.card.CardLeaderGuiState;
 import it.polimi.ingsw.gc_12.card.CardType;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.ClientFactory;
@@ -198,11 +199,6 @@ public class MainBoardController extends Observable implements Initializable, Ob
     @FXML private TextArea chatTextArea;
 
     @FXML private Button passTurnPl1;
-    @FXML private Button passTurnPl2;
-    @FXML private Button passTurnPl3;
-    @FXML private Button passTurnPl4;
-    Map<PlayerColor, Button> mapPlayerColorButton = new HashMap<>();
-
 
     @FXML private ImageView councilPalace;
     @FXML private ImageView market0;
@@ -362,10 +358,60 @@ public class MainBoardController extends Observable implements Initializable, Ob
 
     private Map<CardType, List<ImageView> > mapCardTypeImageViewPlayerCardPl4 = new HashMap<>();
 
-
-
-
     private Map<PlayerColor, Map<CardType, List<ImageView> > > mapPlayerColorCardTypeListImageView = new HashMap<>();
+
+
+    @FXML ImageView cardLeader0Pl1;
+    @FXML ImageView cardLeader1Pl1;
+    @FXML ImageView cardLeader2Pl1;
+    @FXML ImageView cardLeader3Pl1;
+    @FXML ImageView cardLeaderPlayed0Pl1;
+    @FXML ImageView cardLeaderPlayed1Pl1;
+    @FXML ImageView cardLeaderPlayed2Pl1;
+    @FXML ImageView cardLeaderPlayed3Pl1;
+    List<ImageView> cardLeaderPl1 = new ArrayList<>();
+    List<ImageView> cardLeaderPlayedPl1 = new ArrayList<>();
+    Map<CardLeaderGuiState, List<ImageView>>  mapCardPlayerPl1 = new HashMap<>();
+
+
+
+    @FXML ImageView cardLeader0Pl2;
+    @FXML ImageView cardLeader1Pl2;
+    @FXML ImageView cardLeader2Pl2;
+    @FXML ImageView cardLeader3Pl2;
+    @FXML ImageView cardLeaderPlayed0Pl2;
+    @FXML ImageView cardLeaderPlayed1Pl2;
+    @FXML ImageView cardLeaderPlayed2Pl2;
+    @FXML ImageView cardLeaderPlayed3Pl2;
+    List<ImageView> cardLeaderPl2 = new ArrayList<>();
+    List<ImageView> cardLeaderPlayedPl2 = new ArrayList<>();
+    Map<CardLeaderGuiState, List<ImageView>>  mapCardPlayerPl2 = new HashMap<>();
+
+    @FXML ImageView cardLeader0Pl3;
+    @FXML ImageView cardLeader1Pl3;
+    @FXML ImageView cardLeader2Pl3;
+    @FXML ImageView cardLeader3Pl3;
+    @FXML ImageView cardLeaderPlayed0Pl3;
+    @FXML ImageView cardLeaderPlayed1Pl3;
+    @FXML ImageView cardLeaderPlayed2Pl3;
+    @FXML ImageView cardLeaderPlayed3Pl3;
+    List<ImageView> cardLeaderPl3 = new ArrayList<>();
+    List<ImageView> cardLeaderPlayedPl3 = new ArrayList<>();
+    Map<CardLeaderGuiState, List<ImageView>>  mapCardPlayerPl3 = new HashMap<>();
+
+    @FXML ImageView cardLeader0Pl4;
+    @FXML ImageView cardLeader1Pl4;
+    @FXML ImageView cardLeader2Pl4;
+    @FXML ImageView cardLeader3Pl4;
+    @FXML ImageView cardLeaderPlayed0Pl4;
+    @FXML ImageView cardLeaderPlayed1Pl4;
+    @FXML ImageView cardLeaderPlayed2Pl4;
+    @FXML ImageView cardLeaderPlayed3Pl4;
+    List<ImageView> cardLeaderPl4 = new ArrayList<>();
+    List<ImageView> cardLeaderPlayedPl4 = new ArrayList<>();
+    Map<CardLeaderGuiState, List<ImageView>>  mapCardPlayerPl4 = new HashMap<>();
+
+    Map<PlayerColor, Map<CardLeaderGuiState, List<ImageView>>> mapPlayerColorCardLeader = new HashMap<>();
 
 
     private ImageView lastFamClicked = null;
@@ -408,6 +454,16 @@ public class MainBoardController extends Observable implements Initializable, Ob
         Image card = imageView.getImage();
         showCards.setImage(card);
         showCards.setOpacity(1);
+    }
+    @FXML void showCardLeader(MouseEvent event){
+        ImageView imageView = (ImageView) event.getSource();
+        Image card = imageView.getImage();
+        showCards.setImage(card);
+        showCards.setOpacity(1);
+        if(event.getClickCount()==2){
+            //double click, do actions and turn controls here
+
+        }
     }
 
     @FXML synchronized void floorClicked(MouseEvent event){
@@ -468,8 +524,11 @@ public class MainBoardController extends Observable implements Initializable, Ob
     }
 
     @FXML void passTurn(){
-        Action action = new ActionPassTurn(match.getPlayers().get(playerColor));
-        selectAction(action);
+        if(isMyTurn()) {
+            Action action = new ActionPassTurn(match.getPlayers().get(playerColor));
+            selectAction(action);
+        }else
+            showTurnDenied();
     }
 
     private void selectAction(Action action) {
@@ -539,6 +598,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
             bindExcomunocationTile();
             setPlayerToPane();
             bindPlayerCard();
+            bindPlayerLeaderCard();
         });
     }
 
@@ -621,14 +681,29 @@ public class MainBoardController extends Observable implements Initializable, Ob
             }
         }
     }
+    private void bindPlayerLeaderCard(){
+        Map<PlayerColor, ObservableList<CardLeaderRepresentation>> mapPlayerColorCardLeaders = match.getMapPlayerColorCardLeaders();
+        for(Player player : match.getPlayers().values()){
+            List<ImageView> listPlayed = mapPlayerColorCardLeader.get(player.getColor()).get(CardLeaderGuiState.PLAYED);
+            for (int i = 0; i < listPlayed.size(); i++){
+               listPlayed.get(i).imageProperty().bind(mapPlayerColorCardLeaders.get(player.getColor()).get(i).getPathWhenPlayedProperty());
+                if(playerColor.equals(player.getColor())) {
+                    listPlayed.get(i).setVisible(false);
+                }
+
+
+            }
+            if(mainPane.getUserData().equals(player.getColor())) {
+                List<ImageView> listNotPlayed = mapPlayerColorCardLeader.get(player.getColor()).get(CardLeaderGuiState.NOTPLAYED);
+                for (int i = 0; i < listNotPlayed.size(); i++) {
+                    listNotPlayed.get(i).imageProperty().bind(mapPlayerColorCardLeaders.get(player.getColor()).get(i).getPathProperty());
+                }
+            }
+        }
+    }
     private void setPlayerToPane(){
         playersBoards.getSelectionModel().select(mapPlayerColorTab.get(playerColor));
         mainPane.setUserData(playerColor);
-        for(Button button : mapPlayerColorButton.values()){
-            if(!button.equals(mapPlayerColorButton.get(playerColor))){
-                button.setDisable(true);
-            }
-        }
     }
 
     private Boolean isMyFam(PlayerColor color, ImageView famMemb){
@@ -820,12 +895,6 @@ public class MainBoardController extends Observable implements Initializable, Ob
         mapPeriodImageViewTile.put(1, excomTile2);
         mapPeriodImageViewTile.put(2, excomTile3);
 
-        mapPlayerColorButton.put(PlayerColor.BLUE, passTurnPl1);
-        mapPlayerColorButton.put(PlayerColor.GREEN, passTurnPl2);
-        mapPlayerColorButton.put(PlayerColor.RED, passTurnPl3);
-        mapPlayerColorButton.put(PlayerColor.YELLOW, passTurnPl4);
-
-
         markets.add(market0);
         markets.add(market1);
         markets.add(market2);
@@ -981,6 +1050,58 @@ public class MainBoardController extends Observable implements Initializable, Ob
         mapPlayerColorCardTypeListImageView.put(PlayerColor.RED, mapCardTypeImageViewPlayerCardPl3);
         mapPlayerColorCardTypeListImageView.put(PlayerColor.YELLOW, mapCardTypeImageViewPlayerCardPl4);
 
+        cardLeaderPl1.add(cardLeader0Pl1);
+        cardLeaderPl1.add(cardLeader1Pl1);
+        cardLeaderPl1.add(cardLeader2Pl1);
+        cardLeaderPl1.add(cardLeader3Pl1);
+        cardLeaderPlayedPl1.add(cardLeaderPlayed0Pl1);
+        cardLeaderPlayedPl1.add(cardLeaderPlayed1Pl1);
+        cardLeaderPlayedPl1.add(cardLeaderPlayed2Pl1);
+        cardLeaderPlayedPl1.add(cardLeaderPlayed3Pl1);
+
+        cardLeaderPl2.add(cardLeader0Pl2);
+        cardLeaderPl2.add(cardLeader1Pl2);
+        cardLeaderPl2.add(cardLeader2Pl2);
+        cardLeaderPl2.add(cardLeader3Pl2);
+        cardLeaderPlayedPl2.add(cardLeaderPlayed0Pl2);
+        cardLeaderPlayedPl2.add(cardLeaderPlayed1Pl2);
+        cardLeaderPlayedPl2.add(cardLeaderPlayed2Pl2);
+        cardLeaderPlayedPl2.add(cardLeaderPlayed3Pl2);
+
+        cardLeaderPl3.add(cardLeader0Pl3);
+        cardLeaderPl3.add(cardLeader1Pl3);
+        cardLeaderPl3.add(cardLeader2Pl3);
+        cardLeaderPl3.add(cardLeader3Pl3);
+        cardLeaderPlayedPl3.add(cardLeaderPlayed0Pl3);
+        cardLeaderPlayedPl3.add(cardLeaderPlayed1Pl3);
+        cardLeaderPlayedPl3.add(cardLeaderPlayed2Pl3);
+        cardLeaderPlayedPl3.add(cardLeaderPlayed3Pl3);
+
+        cardLeaderPl4.add(cardLeader0Pl4);
+        cardLeaderPl4.add(cardLeader1Pl4);
+        cardLeaderPl4.add(cardLeader2Pl4);
+        cardLeaderPl4.add(cardLeader3Pl4);
+        cardLeaderPlayedPl4.add(cardLeaderPlayed0Pl4);
+        cardLeaderPlayedPl4.add(cardLeaderPlayed1Pl4);
+        cardLeaderPlayedPl4.add(cardLeaderPlayed2Pl4);
+        cardLeaderPlayedPl4.add(cardLeaderPlayed3Pl4);
+
+        mapCardPlayerPl1.put(CardLeaderGuiState.NOTPLAYED,cardLeaderPl1);
+        mapCardPlayerPl1.put(CardLeaderGuiState.PLAYED,cardLeaderPlayedPl1);
+
+        mapCardPlayerPl2.put(CardLeaderGuiState.NOTPLAYED,cardLeaderPl2);
+        mapCardPlayerPl2.put(CardLeaderGuiState.PLAYED,cardLeaderPlayedPl2);
+
+        mapCardPlayerPl3.put(CardLeaderGuiState.NOTPLAYED,cardLeaderPl3);
+        mapCardPlayerPl3.put(CardLeaderGuiState.PLAYED,cardLeaderPlayedPl3);
+
+        mapCardPlayerPl4.put(CardLeaderGuiState.NOTPLAYED,cardLeaderPl4);
+        mapCardPlayerPl4.put(CardLeaderGuiState.PLAYED,cardLeaderPlayedPl4);
+
+        mapPlayerColorCardLeader.put(PlayerColor.BLUE, mapCardPlayerPl1);
+        mapPlayerColorCardLeader.put(PlayerColor.GREEN, mapCardPlayerPl2);
+        mapPlayerColorCardLeader.put(PlayerColor.RED, mapCardPlayerPl3);
+        mapPlayerColorCardLeader.put(PlayerColor.YELLOW, mapCardPlayerPl4);
 
     }
 
@@ -1140,7 +1261,6 @@ public class MainBoardController extends Observable implements Initializable, Ob
         if(choosen==-1){
             choosen = askWhich(type, resources);
         }
-
         return choosen;
     }
 

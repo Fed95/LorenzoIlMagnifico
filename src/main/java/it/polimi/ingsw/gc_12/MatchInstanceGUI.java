@@ -3,6 +3,7 @@ package it.polimi.ingsw.gc_12;
 
 import it.polimi.ingsw.gc_12.card.CardDevelopment;
 import it.polimi.ingsw.gc_12.card.CardType;
+import it.polimi.ingsw.gc_12.card.LeaderCard;
 import it.polimi.ingsw.gc_12.dice.Die;
 import it.polimi.ingsw.gc_12.dice.DieColor;
 import it.polimi.ingsw.gc_12.excommunication.ExcommunicationTile;
@@ -11,6 +12,7 @@ import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 import it.polimi.ingsw.gc_12.occupiables.TowerSet;
 import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
+import it.polimi.ingsw.gc_12.server.observer.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
@@ -82,6 +84,12 @@ public class MatchInstanceGUI extends MatchInstance {
 
     private Map<PlayerColor,Map<CardType, ObservableList<CardPlayerRepresentation> > > mapPlayerColorCardTypePlayerCard = new HashMap<>();
 
+    //card Leader Player
+    private ObservableList<CardLeaderRepresentation> cardLeaderRepresentationPl1 = FXCollections.observableArrayList();
+    private ObservableList<CardLeaderRepresentation> cardLeaderRepresentationPl2 = FXCollections.observableArrayList();
+    private ObservableList<CardLeaderRepresentation> cardLeaderRepresentationPl3 = FXCollections.observableArrayList();
+    private ObservableList<CardLeaderRepresentation> cardLeaderRepresentationPl4 = FXCollections.observableArrayList();
+    private Map<PlayerColor, ObservableList<CardLeaderRepresentation>> mapPlayerColorCardLeaders = new HashMap<>();
 
     private MatchInstanceGUI() {}
 
@@ -101,6 +109,7 @@ public class MatchInstanceGUI extends MatchInstance {
         createObservableListMilitary(match);
         createExcomTileRepresentation(match);
         createCardPlayerRepresentation(match);
+        createCardLeaderRepresentation(match);
         setChanged();
 		notifyObservers();
 		initialized = true;
@@ -264,7 +273,6 @@ public class MatchInstanceGUI extends MatchInstance {
         mapPlayerColorCardTypePlayerCard.put(PlayerColor.GREEN, mapCardTypeCardPlayerRepresentationPl2);
         mapPlayerColorCardTypePlayerCard.put(PlayerColor.RED, mapCardTypeCardPlayerRepresentationPl3);
         mapPlayerColorCardTypePlayerCard.put(PlayerColor.YELLOW, mapCardTypeCardPlayerRepresentationPl4);
-        Map<PlayerColor, Player> players = match.getPlayers();
         for(Player player : players.values()) {
 
             for (CardType cardType : CardType.values()) {
@@ -274,6 +282,21 @@ public class MatchInstanceGUI extends MatchInstance {
                 }
             }
         }
+    }
+    public void createCardLeaderRepresentation(Match match){
+        mapPlayerColorCardLeaders.put(PlayerColor.BLUE, cardLeaderRepresentationPl1);
+        mapPlayerColorCardLeaders.put(PlayerColor.GREEN, cardLeaderRepresentationPl2);
+        mapPlayerColorCardLeaders.put(PlayerColor.RED, cardLeaderRepresentationPl3);
+        mapPlayerColorCardLeaders.put(PlayerColor.YELLOW, cardLeaderRepresentationPl4);
+
+        for(Player player : match.getPlayers().values()){
+            for(LeaderCard leaderCard : player.getPersonalBoard().getLeaderCards()){
+                String url = "img/CardLeader/leader_"+leaderCard.getId()+".jpg";
+                CardLeaderRepresentation cardLeaderRepresentation = new CardLeaderRepresentation(url, "img/CardLeader/baseLeader.jpg");
+                mapPlayerColorCardLeaders.get(player.getColor()).add(cardLeaderRepresentation);
+            }
+        }
+
     }
     public Map<PlayerColor, ObservableList<FamilyMemberRepresentation>> getMapPlayerColorObservableLiseFMRepr() {
 		return mapFamilyMember;
@@ -304,6 +327,10 @@ public class MatchInstanceGUI extends MatchInstance {
 
     public Map<PlayerColor, Map<CardType, ObservableList<CardPlayerRepresentation>>> getMapPlayerColorCardTypePlayerCard() {
         return mapPlayerColorCardTypePlayerCard;
+    }
+
+    public Map<PlayerColor, ObservableList<CardLeaderRepresentation>> getMapPlayerColorCardLeaders() {
+        return mapPlayerColorCardLeaders;
     }
 
     public void notifyInit() {

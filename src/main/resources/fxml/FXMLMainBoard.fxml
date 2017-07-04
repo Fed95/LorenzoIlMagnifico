@@ -50,7 +50,7 @@
            
             <TabPane fx:id="playersBoards" layoutX="610.0" layoutY="445.0" prefHeight="568.0" prefWidth="1310.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                  <Tab fx:id="bluePlayer" text="Giocatore 1">
+                  <Tab fx:id="bluePlayer" text="Player 1">
                       <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="416.0" prefWidth="1125.0">
                               <children>
@@ -101,69 +101,85 @@
                                   <Label fx:id="stoneValuePl1" layoutX="316.0" layoutY="418.0" styleClass="famMembValue" text="0" textFill="WHITE" />
 
                               <Label fx:id="servantValuePl1" layoutX="404.0" layoutY="428.0" styleClass="famMembValue" text="0" textFill="WHITE" />
-                              <Button fx:id="passTurnPl1" layoutX="690.0" layoutY="443.0" mnemonicParsing="false" onMouseClicked="#passTurn" prefHeight="60.0" prefWidth="147.0" text="Pass Turn" />
 
-                                  <ImageView fx:id="building0CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="95.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="building0CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="95.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
                                      
-                                  <ImageView fx:id="building1CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="188.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="building1CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="188.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
                                       
-                                  <ImageView fx:id="building2CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="281.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="building2CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="281.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
                                      
-                                  <ImageView fx:id="building3CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="373.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="building3CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="373.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
                                       
-                                  <ImageView fx:id="building4CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="465.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="building4CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="465.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
                                      
-                                  <ImageView fx:id="building5CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="558.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="building5CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="558.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
                                      
                                   
 
-                                  <ImageView fx:id="venture0CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="648.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="venture0CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="648.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
                                     
-                                  <ImageView fx:id="venture1CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="737.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="venture1CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="737.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
                                       
-                                  <ImageView fx:id="venture2CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="828.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="venture2CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="828.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
                                     
-                                  <ImageView fx:id="venture3CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="916.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="venture3CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="916.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
                                      
-                                  <ImageView fx:id="venture4CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="1005.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="venture4CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="1005.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
                                      
-                                  <ImageView fx:id="venture5CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="1093.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="venture5CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="1093.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
                                      
 
 
 
 
-                                  <ImageView fx:id="territory0CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="95.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="territory0CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="95.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                              <ImageView fx:id="territory1CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="188.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="territory1CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="188.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                              <ImageView fx:id="territory2CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="281.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="territory2CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="281.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                              <ImageView fx:id="territory3CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="373.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="territory3CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="373.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                              <ImageView fx:id="territory4CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="465.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="territory4CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="465.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                              <ImageView fx:id="territory5CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="558.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
-
-
+                              <ImageView fx:id="territory5CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="558.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
 
-                              <ImageView fx:id="character0CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="647.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
 
-                              <ImageView fx:id="character1CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="735.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
 
-                              <ImageView fx:id="character2CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="823.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="character0CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="647.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                              <ImageView fx:id="character3CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="912.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="character1CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="735.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                              <ImageView fx:id="character4CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="1000.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="character2CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="823.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                              <ImageView fx:id="character5CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="1088.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="character3CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="912.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
+                              <ImageView fx:id="character4CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="1000.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
+
+                              <ImageView fx:id="character5CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="1088.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
+
+                              <Label fx:id="leaderCardLabelPl1" layoutX="276.0" layoutY="45.0" text="Cards Leader to play:" />
+                              <ImageView fx:id="cardLeader0Pl1" fitHeight="107.0" fitWidth="67.0" layoutX="446.0" layoutY="2.0" onMouseClicked="#showCardLeader" pickOnBounds="true" preserveRatio="true" />
+
+                              <ImageView fx:id="cardLeader1Pl1" fitHeight="107.0" fitWidth="67.0" layoutX="524.0" layoutY="2.0" onMouseClicked="#showCardLeader" pickOnBounds="true" preserveRatio="true" />
+
+                              <ImageView fx:id="cardLeader2Pl1" fitHeight="107.0" fitWidth="67.0" layoutX="598.0" layoutY="2.0" onMouseClicked="#showCardLeader" pickOnBounds="true" preserveRatio="true" />
+
+                              <ImageView fx:id="cardLeader3Pl1" fitHeight="107.0" fitWidth="67.0" layoutX="678.0" layoutY="2.0" onMouseClicked="#showCardLeader" pickOnBounds="true" preserveRatio="true" />
+
+                              <Label fx:id="leaderCardLabelPlayedPl1" layoutX="778.0" layoutY="49.0" text="Cards Leader played:" />
+                              <ImageView fx:id="cardLeaderPlayed0Pl1" fitHeight="107.0" fitWidth="67.0" layoutX="946.0" layoutY="2.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
+
+                              <ImageView fx:id="cardLeaderPlayed1Pl1" fitHeight="107.0" fitWidth="67.0" layoutX="1022.0" layoutY="2.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
+
+                              <ImageView fx:id="cardLeaderPlayed2Pl1" fitHeight="107.0" fitWidth="67.0" layoutX="1098.0" layoutY="2.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
+
+                              <ImageView fx:id="cardLeaderPlayed3Pl1" fitHeight="107.0" fitWidth="67.0" layoutX="1177.0" layoutY="2.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
                               </children></AnchorPane>                  </content>
                   </Tab>
-                <Tab fx:id="greenPlayer" text="Giocatore 2">
+                <Tab fx:id="greenPlayer" text="Player 2">
                   <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="416.0" prefWidth="1125.0">
                           <children>
@@ -212,70 +228,86 @@
                               <Label fx:id="stoneValuePl2" layoutX="316.0" layoutY="418.0" styleClass="famMembValue" text="0" textFill="WHITE" />
 
                               <Label fx:id="servantValuePl2" layoutX="404.0" layoutY="428.0" styleClass="famMembValue" text="0" textFill="WHITE" />
-                              <Button fx:id="passTurnPl2" layoutX="690.0" layoutY="443.0" mnemonicParsing="false" onMouseClicked="#passTurn" prefHeight="60.0" prefWidth="147.0" text="Pass Turn" />
 
-                              <ImageView fx:id="building0CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="95.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="building0CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="95.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                              <ImageView fx:id="building1CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="188.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="building1CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="188.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                              <ImageView fx:id="building2CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="281.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="building2CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="281.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                              <ImageView fx:id="building3CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="373.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="building3CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="373.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                              <ImageView fx:id="building4CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="465.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="building4CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="465.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                              <ImageView fx:id="building5CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="558.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
-
+                              <ImageView fx:id="building5CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="558.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
 
-                              <ImageView fx:id="venture0CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="648.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
 
-                              <ImageView fx:id="venture1CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="737.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="venture0CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="648.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                              <ImageView fx:id="venture2CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="828.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="venture1CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="737.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                              <ImageView fx:id="venture3CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="916.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="venture2CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="828.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                              <ImageView fx:id="venture4CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="1005.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="venture3CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="916.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                              <ImageView fx:id="venture5CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="1093.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="venture4CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="1005.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
+                              <ImageView fx:id="venture5CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="1093.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
 
 
 
-                              <ImageView fx:id="territory0CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="95.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
 
-                              <ImageView fx:id="territory1CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="188.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="territory0CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="95.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                              <ImageView fx:id="territory2CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="281.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="territory1CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="188.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                              <ImageView fx:id="territory3CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="373.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="territory2CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="281.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                              <ImageView fx:id="territory4CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="465.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="territory3CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="373.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                              <ImageView fx:id="territory5CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="558.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="territory4CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="465.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
+
+                              <ImageView fx:id="territory5CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="558.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
 
 
 
-                              <ImageView fx:id="character0CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="647.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="character0CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="647.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                              <ImageView fx:id="character1CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="735.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="character1CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="735.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                              <ImageView fx:id="character2CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="823.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="character2CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="823.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                              <ImageView fx:id="character3CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="912.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="character3CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="912.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                              <ImageView fx:id="character4CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="1000.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="character4CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="1000.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                              <ImageView fx:id="character5CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="1088.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                              <ImageView fx:id="character5CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="1088.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
+                              <Label fx:id="leaderCardLabelPl2" layoutX="276.0" layoutY="45.0" text="Cards Leader to play:" />
+                              <ImageView fx:id="cardLeader0Pl2" fitHeight="107.0" fitWidth="67.0" layoutX="446.0" layoutY="2.0" onMouseClicked="#showCardLeader" pickOnBounds="true" preserveRatio="true" />
+
+                              <ImageView fx:id="cardLeader1Pl2" fitHeight="107.0" fitWidth="67.0" layoutX="524.0" layoutY="2.0" onMouseClicked="#showCardLeader" pickOnBounds="true" preserveRatio="true" />
+
+                              <ImageView fx:id="cardLeader2Pl2" fitHeight="107.0" fitWidth="67.0" layoutX="598.0" layoutY="2.0" onMouseClicked="#showCardLeader" pickOnBounds="true" preserveRatio="true" />
+
+                              <ImageView fx:id="cardLeader3Pl2" fitHeight="107.0" fitWidth="67.0" layoutX="678.0" layoutY="2.0" onMouseClicked="#showCardLeader" pickOnBounds="true" preserveRatio="true" />
+
+                              <Label fx:id="leaderCardLabelPlayedPl2" layoutX="778.0" layoutY="49.0" text="Cards Leader played:" />
+                              <ImageView fx:id="cardLeaderPlayed0Pl2" fitHeight="107.0" fitWidth="67.0" layoutX="946.0" layoutY="2.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
+
+                              <ImageView fx:id="cardLeaderPlayed1Pl2" fitHeight="107.0" fitWidth="67.0" layoutX="1022.0" layoutY="2.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
+
+                              <ImageView fx:id="cardLeaderPlayed2Pl2" fitHeight="107.0" fitWidth="67.0" layoutX="1098.0" layoutY="2.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
+
+                              <ImageView fx:id="cardLeaderPlayed3Pl2" fitHeight="107.0" fitWidth="67.0" layoutX="1177.0" layoutY="2.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
 
                           </children></AnchorPane>                  </content>
                 </Tab>
-                  <Tab fx:id="redPlayer" text="Giocatore 3">
+                  <Tab fx:id="redPlayer" text="Player 3">
                       <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="416.0" prefWidth="1125.0">
                               <children>
@@ -324,69 +356,86 @@
                                   <Label fx:id="stoneValuePl3" layoutX="316.0" layoutY="418.0" styleClass="famMembValue" text="0" textFill="WHITE" />
 
                                   <Label fx:id="servantValuePl3" layoutX="404.0" layoutY="428.0" styleClass="famMembValue" text="0" textFill="WHITE" />
-                                  <Button fx:id="passTurnPl3" layoutX="690.0" layoutY="443.0" mnemonicParsing="false" onMouseClicked="#passTurn" prefHeight="60.0" prefWidth="147.0" text="Pass Turn" />
 
-                                  <ImageView fx:id="building0CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="95.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="building0CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="95.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="building1CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="188.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="building1CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="188.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="building2CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="281.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="building2CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="281.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="building3CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="373.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="building3CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="373.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="building4CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="465.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="building4CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="465.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="building5CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="558.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
-
+                                  <ImageView fx:id="building5CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="558.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
 
-                                  <ImageView fx:id="venture0CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="648.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
 
-                                  <ImageView fx:id="venture1CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="737.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="venture0CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="648.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="venture2CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="828.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="venture1CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="737.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="venture3CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="916.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="venture2CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="828.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="venture4CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="1005.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="venture3CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="916.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="venture5CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="1093.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="venture4CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="1005.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
+                                  <ImageView fx:id="venture5CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="1093.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
 
 
 
-                                  <ImageView fx:id="territory0CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="95.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
 
-                                  <ImageView fx:id="territory1CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="188.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="territory0CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="95.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="territory2CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="281.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="territory1CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="188.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="territory3CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="373.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="territory2CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="281.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="territory4CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="465.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="territory3CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="373.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="territory5CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="558.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="territory4CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="465.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
+
+                                  <ImageView fx:id="territory5CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="558.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
 
 
 
-                                  <ImageView fx:id="character0CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="647.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="character0CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="647.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="character1CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="735.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="character1CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="735.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="character2CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="823.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="character2CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="823.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="character3CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="912.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="character3CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="912.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="character4CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="1000.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="character4CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="1000.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="character5CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="1088.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="character5CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="1088.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
+
+                                  <Label fx:id="leaderCardLabelPl3" layoutX="276.0" layoutY="45.0" text="Cards Leader to play:" />
+                                  <ImageView fx:id="cardLeader0Pl3" fitHeight="107.0" fitWidth="67.0" layoutX="446.0" layoutY="2.0" onMouseClicked="#showCardLeader" pickOnBounds="true" preserveRatio="true" />
+
+                                  <ImageView fx:id="cardLeader1Pl3" fitHeight="107.0" fitWidth="67.0" layoutX="524.0" layoutY="2.0" onMouseClicked="#showCardLeader" pickOnBounds="true" preserveRatio="true" />
+
+                                  <ImageView fx:id="cardLeader2Pl3" fitHeight="107.0" fitWidth="67.0" layoutX="598.0" layoutY="2.0" onMouseClicked="#showCardLeader" pickOnBounds="true" preserveRatio="true" />
+
+                                  <ImageView fx:id="cardLeader3Pl3" fitHeight="107.0" fitWidth="67.0" layoutX="678.0" layoutY="2.0" onMouseClicked="#showCardLeader" pickOnBounds="true" preserveRatio="true" />
+
+                                  <Label fx:id="leaderCardLabelPlayedPl3" layoutX="778.0" layoutY="49.0" text="Cards Leader played:" />
+                                  <ImageView fx:id="cardLeaderPlayed0Pl3" fitHeight="107.0" fitWidth="67.0" layoutX="946.0" layoutY="2.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
+
+                                  <ImageView fx:id="cardLeaderPlayed1Pl3" fitHeight="107.0" fitWidth="67.0" layoutX="1022.0" layoutY="2.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
+
+                                  <ImageView fx:id="cardLeaderPlayed2Pl3" fitHeight="107.0" fitWidth="67.0" layoutX="1098.0" layoutY="2.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
+
+                                  <ImageView fx:id="cardLeaderPlayed3Pl3" fitHeight="107.0" fitWidth="67.0" layoutX="1177.0" layoutY="2.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
 
                               </children></AnchorPane>                  </content>
                   </Tab>
-                  <Tab fx:id="yellowPlayer" text="Giocatore 4">
+                  <Tab fx:id="yellowPlayer" text="Player 4">
                       <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="416.0" prefWidth="1125.0">
                               <children>
@@ -435,77 +484,93 @@
                                   <Label fx:id="stoneValuePl4" layoutX="316.0" layoutY="418.0" styleClass="famMembValue" text="0" textFill="WHITE" />
 
                                   <Label fx:id="servantValuePl4" layoutX="404.0" layoutY="428.0" styleClass="famMembValue" text="0" textFill="WHITE" />
-                                  <Button fx:id="passTurnPl4" layoutX="690.0" layoutY="443.0" mnemonicParsing="false" onMouseClicked="#passTurn" prefHeight="60.0" prefWidth="147.0" text="Pass Turn" />
 
-                                  <ImageView fx:id="building0CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="95.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="building0CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="95.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="building1CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="188.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="building1CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="188.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="building2CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="281.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="building2CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="281.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="building3CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="373.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="building3CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="373.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="building4CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="465.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="building4CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="465.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="building5CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="558.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
-
+                                  <ImageView fx:id="building5CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="558.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
 
-                                  <ImageView fx:id="venture0CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="648.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
 
-                                  <ImageView fx:id="venture1CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="737.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="venture0CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="648.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="venture2CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="828.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="venture1CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="737.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="venture3CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="916.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="venture2CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="828.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="venture4CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="1005.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="venture3CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="916.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="venture5CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="1093.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="venture4CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="1005.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
+                                  <ImageView fx:id="venture5CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="1093.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
 
 
 
-                                  <ImageView fx:id="territory0CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="95.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
 
-                                  <ImageView fx:id="territory1CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="188.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="territory0CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="95.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="territory2CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="281.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="territory1CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="188.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="territory3CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="373.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="territory2CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="281.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="territory4CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="465.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="territory3CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="373.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="territory5CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="558.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="territory4CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="465.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
+
+                                  <ImageView fx:id="territory5CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="558.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
 
 
 
-                                  <ImageView fx:id="character0CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="647.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="character0CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="647.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="character1CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="735.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="character1CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="735.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="character2CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="823.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="character2CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="823.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="character3CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="912.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="character3CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="912.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="character4CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="1000.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="character4CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="1000.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-                                  <ImageView fx:id="character5CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="1088.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+                                  <ImageView fx:id="character5CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="1088.0" layoutY="301.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
+                                  <Label fx:id="leaderCardLabelPl4" layoutX="276.0" layoutY="45.0" text="Cards Leader to play:" />
+                                  <ImageView fx:id="cardLeader0Pl4" fitHeight="107.0" fitWidth="67.0" layoutX="446.0" layoutY="2.0" onMouseClicked="#showCardLeader" pickOnBounds="true" preserveRatio="true" />
+
+                                  <ImageView fx:id="cardLeader1Pl4" fitHeight="107.0" fitWidth="67.0" layoutX="524.0" layoutY="2.0" onMouseClicked="#showCardLeader" pickOnBounds="true" preserveRatio="true" />
+
+                                  <ImageView fx:id="cardLeader2Pl4" fitHeight="107.0" fitWidth="67.0" layoutX="598.0" layoutY="2.0" onMouseClicked="#showCardLeader" pickOnBounds="true" preserveRatio="true" />
+
+                                  <ImageView fx:id="cardLeader3Pl4" fitHeight="107.0" fitWidth="67.0" layoutX="678.0" layoutY="2.0" onMouseClicked="#showCardLeader" pickOnBounds="true" preserveRatio="true" />
+
+                                  <Label fx:id="leaderCardLabelPlayedPl4" layoutX="778.0" layoutY="49.0" text="Cards Leader played:" />
+                                  <ImageView fx:id="cardLeaderPlayed0Pl4" fitHeight="107.0" fitWidth="67.0" layoutX="946.0" layoutY="2.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
+
+                                  <ImageView fx:id="cardLeaderPlayed1Pl4" fitHeight="107.0" fitWidth="67.0" layoutX="1022.0" layoutY="2.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
+
+                                  <ImageView fx:id="cardLeaderPlayed2Pl4" fitHeight="107.0" fitWidth="67.0" layoutX="1098.0" layoutY="2.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
+
+                                  <ImageView fx:id="cardLeaderPlayed3Pl4" fitHeight="107.0" fitWidth="67.0" layoutX="1177.0" layoutY="2.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
 
                               </children></AnchorPane>                  </content>
                   </Tab>
               </tabs>
             </TabPane>
-            <TabPane fx:id="pointsTab" layoutX="988.0" layoutY="-7.0" prefHeight="451.0" prefWidth="461.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="pointsTab" layoutX="988.0" layoutY="-7.0" prefHeight="287.0" prefWidth="461.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab fx:id="militaryPointsTab" text="Military Points">
                   <content>
-                    <AnchorPane fx:id="paneMilitaryPointsTab" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <AnchorPane fx:id="paneMilitaryPointsTab" minHeight="0.0" minWidth="0.0" prefHeight="270.0" prefWidth="461.0">
                            <children>
-                              <TableView fx:id="tableMilitaryPoints" layoutY="-3.0" prefHeight="405.0" prefWidth="461.0">
+                              <TableView fx:id="tableMilitaryPoints" layoutY="-3.0" prefHeight="270.0" prefWidth="461.0">
                                 <columns>
                                   <TableColumn fx:id="nameMilitaryPoints" prefWidth="204.0" text="Player Name" />
                                   <TableColumn fx:id="pointsMilitaryPoints" minWidth="0.0" prefWidth="106.0" text="Points" />
@@ -523,7 +588,7 @@
                   <content>
                     <AnchorPane fx:id="paneVictoryPointsTab" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="tableVictoryPoints" layoutY="-3.0" prefHeight="416.0" prefWidth="461.0">
+                              <TableView fx:id="tableVictoryPoints" layoutY="-3.0" prefHeight="240.0" prefWidth="461.0">
                                 <columns>
                                   <TableColumn fx:id="nameVictoryPoints" prefWidth="204.0" text="Player Name" />
                                   <TableColumn fx:id="pointsVictoryPoints" prefWidth="106.0" text="Points" />
@@ -685,6 +750,14 @@
                      <Image url="@../img/workspace/workspace1big.png" />
                  </image>
              </ImageView>
+            <TitledPane animated="false" collapsible="false" layoutX="988.0" layoutY="282.0" prefHeight="162.0" prefWidth="461.0" text="Controls">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="104.0" prefWidth="459.0">
+                     <children>
+                        <Button fx:id="passTurnPl1" layoutX="27.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#passTurn" prefHeight="60.0" prefWidth="147.0" text="Pass Turn" />
+                     </children></AnchorPane>
+              </content>
+            </TitledPane>
          </children>
       </Pane>
    </center>

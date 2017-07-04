@@ -9,9 +9,12 @@ import javafx.scene.image.Image;
  */
 public class CardLeaderRepresentation {
     private SimpleObjectProperty<Image> path;
-    public CardLeaderRepresentation(String url){
+    private SimpleObjectProperty<Image> pathWhenPlayed;
+    public CardLeaderRepresentation(String url, String urlWhenPlayed){
         Image image = new Image(url);
+        Image imagePlayed = new Image(urlWhenPlayed);
         this.path = new SimpleObjectProperty<Image>(image);
+        this.pathWhenPlayed = new SimpleObjectProperty<Image>(imagePlayed);
     }
     public Image getPath() {
         return path.get();
@@ -22,5 +25,17 @@ public class CardLeaderRepresentation {
 
     public void setPath(Image path) {
         this.path.set(path);
+    }
+
+    public Image getPathWhenPlayed() {
+        return pathWhenPlayed.get();
+    }
+
+    public ObjectProperty<Image> getPathWhenPlayedProperty() {
+        return pathWhenPlayed;
+    }
+
+    public void setPathWhenPlayed(Image pathWhenPlayed) {
+        this.pathWhenPlayed.set(pathWhenPlayed);
     }
 }
