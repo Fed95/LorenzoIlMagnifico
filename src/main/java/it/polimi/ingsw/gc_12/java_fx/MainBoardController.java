@@ -369,9 +369,9 @@ public class MainBoardController extends Observable implements Initializable, Ob
     @FXML ImageView cardLeaderPlayed1Pl1;
     @FXML ImageView cardLeaderPlayed2Pl1;
     @FXML ImageView cardLeaderPlayed3Pl1;
-    List<ImageView> cardLeaderPl1 = new ArrayList<>();
-    List<ImageView> cardLeaderPlayedPl1 = new ArrayList<>();
-    Map<CardLeaderGuiState, List<ImageView>>  mapCardPlayerPl1 = new HashMap<>();
+    private List<ImageView> cardLeaderPl1 = new ArrayList<>();
+    private List<ImageView> cardLeaderPlayedPl1 = new ArrayList<>();
+    private Map<CardLeaderGuiState, List<ImageView>>  mapCardPlayerPl1 = new HashMap<>();
 
 
 
@@ -383,9 +383,9 @@ public class MainBoardController extends Observable implements Initializable, Ob
     @FXML ImageView cardLeaderPlayed1Pl2;
     @FXML ImageView cardLeaderPlayed2Pl2;
     @FXML ImageView cardLeaderPlayed3Pl2;
-    List<ImageView> cardLeaderPl2 = new ArrayList<>();
-    List<ImageView> cardLeaderPlayedPl2 = new ArrayList<>();
-    Map<CardLeaderGuiState, List<ImageView>>  mapCardPlayerPl2 = new HashMap<>();
+    private List<ImageView> cardLeaderPl2 = new ArrayList<>();
+    private List<ImageView> cardLeaderPlayedPl2 = new ArrayList<>();
+    private Map<CardLeaderGuiState, List<ImageView>>  mapCardPlayerPl2 = new HashMap<>();
 
     @FXML ImageView cardLeader0Pl3;
     @FXML ImageView cardLeader1Pl3;
@@ -395,9 +395,9 @@ public class MainBoardController extends Observable implements Initializable, Ob
     @FXML ImageView cardLeaderPlayed1Pl3;
     @FXML ImageView cardLeaderPlayed2Pl3;
     @FXML ImageView cardLeaderPlayed3Pl3;
-    List<ImageView> cardLeaderPl3 = new ArrayList<>();
-    List<ImageView> cardLeaderPlayedPl3 = new ArrayList<>();
-    Map<CardLeaderGuiState, List<ImageView>>  mapCardPlayerPl3 = new HashMap<>();
+    private List<ImageView> cardLeaderPl3 = new ArrayList<>();
+    private List<ImageView> cardLeaderPlayedPl3 = new ArrayList<>();
+    private Map<CardLeaderGuiState, List<ImageView>>  mapCardPlayerPl3 = new HashMap<>();
 
     @FXML ImageView cardLeader0Pl4;
     @FXML ImageView cardLeader1Pl4;
@@ -407,11 +407,11 @@ public class MainBoardController extends Observable implements Initializable, Ob
     @FXML ImageView cardLeaderPlayed1Pl4;
     @FXML ImageView cardLeaderPlayed2Pl4;
     @FXML ImageView cardLeaderPlayed3Pl4;
-    List<ImageView> cardLeaderPl4 = new ArrayList<>();
-    List<ImageView> cardLeaderPlayedPl4 = new ArrayList<>();
-    Map<CardLeaderGuiState, List<ImageView>>  mapCardPlayerPl4 = new HashMap<>();
+    private List<ImageView> cardLeaderPl4 = new ArrayList<>();
+    private List<ImageView> cardLeaderPlayedPl4 = new ArrayList<>();
+    private Map<CardLeaderGuiState, List<ImageView>>  mapCardPlayerPl4 = new HashMap<>();
 
-    Map<PlayerColor, Map<CardLeaderGuiState, List<ImageView>>> mapPlayerColorCardLeader = new HashMap<>();
+    private Map<PlayerColor, Map<CardLeaderGuiState, List<ImageView>>> mapPlayerColorCardLeader = new HashMap<>();
 
 
     private ImageView lastFamClicked = null;
