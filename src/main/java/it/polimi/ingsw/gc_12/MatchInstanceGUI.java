@@ -243,7 +243,6 @@ public class MatchInstanceGUI extends MatchInstance {
         for(ExcommunicationTile excommunicationTile : tiles.values()){
             int period = excommunicationTile.getPeriod();
             String path = "img/excomunicationTile/excomm_"+excommunicationTile.getId()+".png";
-            System.out.println(path);
             ExcommunicationTileRepresentation excomTileR = new ExcommunicationTileRepresentation(period, path);
             excommunicationTileRepresentationObservableList.add(excomTileR);
         }
