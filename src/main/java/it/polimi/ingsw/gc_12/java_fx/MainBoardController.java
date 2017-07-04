@@ -1103,6 +1103,47 @@ public class MainBoardController extends Observable implements Initializable, Ob
 			showTurnDenied();
 	}
 
+    public int askWhich(String type, List<ResourceExchange> resources){
+        int alternatives = resources.size();
+        List<String> choices = new ArrayList<>();
+        String str = "";
+        int choosen = -1;
+        for(ResourceExchange resourceExchange : resources){
+            if(resourceExchange.getCost()!=null){
+                for (int i = 0; i < resourceExchange.getCost().size(); i++){
+                    int value = resourceExchange.getCost().get(i).getValue();
+                    String abbreviation = resourceExchange.getCost().get(i).getType().toString().substring(0,1);
+                    str = str+" "+value+abbreviation;
+                }
+            }
+            if(resourceExchange.getBonus()!=null){
+                str = str+"-->";
+                for (int i = 0; i < resourceExchange.getBonus().size(); i++){
+                    int value = resourceExchange.getBonus().get(i).getValue();
+                    String abbreviation = resourceExchange.getBonus().get(i).getType().toString().substring(0,1);
+                    str = str+" "+value+abbreviation;
+                }
+            }
+            choices.add(str);
+            str = "";
+        }
+
+        ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
+        dialog.setTitle("Choose " +type);
+        dialog.setHeaderText("You can choose between "+alternatives+" "+type);
+        dialog.setContentText("Choose :");
+
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()){
+            choosen = choices.indexOf(result.get());
+        }
+        if(choosen==-1){
+            choosen = askWhich(type, resources);
+        }
+
+        return choosen;
+    }
+
 	private void applyPulseEffect(Color color, List<Node> nodes) {
         DropShadow borderGlow = new DropShadow();
         borderGlow.setColor(color);
