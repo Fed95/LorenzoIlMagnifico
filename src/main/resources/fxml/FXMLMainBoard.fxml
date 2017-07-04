@@ -102,7 +102,6 @@
 
                               <Label fx:id="servantValuePl1" layoutX="404.0" layoutY="428.0" styleClass="famMembValue" text="0" textFill="WHITE" />
                               <Button fx:id="passTurnPl1" layoutX="690.0" layoutY="443.0" mnemonicParsing="false" onMouseClicked="#passTurn" prefHeight="60.0" prefWidth="147.0" text="Pass Turn" />
-                              <Button fx:id="viewStatPl1" layoutX="867.0" layoutY="445.0" mnemonicParsing="false" onMouseClicked="#viewStat" prefHeight="57.0" prefWidth="164.0" text="View Statistics" />
 
                                   <ImageView fx:id="building0CardPlayer1" fitHeight="130.0" fitWidth="82.0" layoutX="95.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
                                      
@@ -214,8 +213,7 @@
 
                               <Label fx:id="servantValuePl2" layoutX="404.0" layoutY="428.0" styleClass="famMembValue" text="0" textFill="WHITE" />
                               <Button fx:id="passTurnPl2" layoutX="690.0" layoutY="443.0" mnemonicParsing="false" onMouseClicked="#passTurn" prefHeight="60.0" prefWidth="147.0" text="Pass Turn" />
-                              <Button fx:id="viewStatPl2" layoutX="867.0" layoutY="445.0" mnemonicParsing="false" onMouseClicked="#viewStat" prefHeight="57.0" prefWidth="164.0" text="View Statistics" />
-                              
+
                               <ImageView fx:id="building0CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="95.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
 
                               <ImageView fx:id="building1CardPlayer2" fitHeight="130.0" fitWidth="82.0" layoutX="188.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
@@ -327,8 +325,6 @@
 
                                   <Label fx:id="servantValuePl3" layoutX="404.0" layoutY="428.0" styleClass="famMembValue" text="0" textFill="WHITE" />
                                   <Button fx:id="passTurnPl3" layoutX="690.0" layoutY="443.0" mnemonicParsing="false" onMouseClicked="#passTurn" prefHeight="60.0" prefWidth="147.0" text="Pass Turn" />
-                                  <Button fx:id="viewStatPl3" layoutX="867.0" layoutY="445.0" mnemonicParsing="false" onMouseClicked="#viewStat" prefHeight="57.0" prefWidth="164.0" text="View Statistics" />
-
 
                                   <ImageView fx:id="building0CardPlayer3" fitHeight="130.0" fitWidth="82.0" layoutX="95.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
 
@@ -440,9 +436,6 @@
 
                                   <Label fx:id="servantValuePl4" layoutX="404.0" layoutY="428.0" styleClass="famMembValue" text="0" textFill="WHITE" />
                                   <Button fx:id="passTurnPl4" layoutX="690.0" layoutY="443.0" mnemonicParsing="false" onMouseClicked="#passTurn" prefHeight="60.0" prefWidth="147.0" text="Pass Turn" />
-                                  <Button fx:id="viewStatPl4" layoutX="867.0" layoutY="445.0" mnemonicParsing="false" onMouseClicked="#viewStat" prefHeight="57.0" prefWidth="164.0" text="View Statistics" />
-
-
 
                                   <ImageView fx:id="building0CardPlayer4" fitHeight="130.0" fitWidth="82.0" layoutX="95.0" layoutY="135.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
 

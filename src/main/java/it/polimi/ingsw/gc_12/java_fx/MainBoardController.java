@@ -203,10 +203,6 @@ public class MainBoardController extends Observable implements Initializable, Ob
     @FXML private Button passTurnPl4;
     Map<PlayerColor, Button> mapPlayerColorButton = new HashMap<>();
 
-    @FXML private Button viewStatPl1;
-    @FXML private Button viewStatPl2;
-    @FXML private Button viewStatPl3;
-    @FXML private Button viewStatPl4;
 
     @FXML private ImageView councilPalace;
     @FXML private ImageView market0;
@@ -474,10 +470,6 @@ public class MainBoardController extends Observable implements Initializable, Ob
     @FXML void passTurn(){
         Action action = new ActionPassTurn(match.getPlayers().get(playerColor));
         selectAction(action);
-    }
-
-    @FXML void viewStat(){
-
     }
 
     private void selectAction(Action action) {
