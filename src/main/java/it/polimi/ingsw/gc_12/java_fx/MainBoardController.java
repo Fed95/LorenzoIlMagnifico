@@ -428,6 +428,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
 
             for (Map.Entry<FamilyMemberColor, ImageView> entry : mapPlayerColorFamImageView.get(playerColor).entrySet()) {
                 if(entry.getValue().equals(familyMemberClicked)) {
+                    highlightFamilyMember(familyMemberClicked);
                     FamilyMember familyMember = new FamilyMember(playerColor, entry.getKey());
                     Action action;
                     if(actionPending != null) {
