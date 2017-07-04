@@ -485,7 +485,8 @@ public class MainBoardController extends Observable implements Initializable, Ob
 
     public void requestServants() {
         if(isMyTurn()) {
-            String request = "Insert the number of servants\nmin value: "+clientHandler.getOffset()+" max value: "+clientHandler.getActions().size();
+            int maxValue = match.getPlayers().get(playerColor).getResourceValue(ResourceType.SERVANT);
+            String request = "Insert the number of servants\nmin value: "+clientHandler.getOffset()+" max value: " + maxValue;
             int servants = askMeAValue("servant", request, String.valueOf(clientHandler.getOffset()));
             if(actionPending instanceof ActionPlace) {
                 ((ActionPlace)actionPending).setServants(new Servant(servants));
