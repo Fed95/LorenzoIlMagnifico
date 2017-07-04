@@ -363,9 +363,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
 
     @FXML void familyClicked(MouseEvent event) {
         ImageView familyMemberClicked = (ImageView) event.getTarget();
-
         if(isMyFam(playerColor, familyMemberClicked) && isMyTurn()){
-
             for (Map.Entry<FamilyMemberColor, ImageView> entry : familyMembers.get(playerColor).entrySet()) {
                 if(entry.getValue().equals(familyMemberClicked)) {
                     highlightFamilyMember(familyMemberClicked);
@@ -1268,16 +1266,16 @@ public class MainBoardController extends Observable implements Initializable, Ob
         firstPlayerCardLeaders.put(CardLeaderGuiState.PLAYED, new ArrayList<>(Arrays.asList(cardLeaderPlayed0Pl1, cardLeaderPlayed1Pl1, cardLeaderPlayed2Pl1, cardLeaderPlayed3Pl1)));
 
         Map<CardLeaderGuiState, List<ImageView>> secondPlayerCardLeaders = new HashMap<>();
-        firstPlayerCardLeaders.put(CardLeaderGuiState.NOTPLAYED, new ArrayList<>(Arrays.asList(cardLeader0Pl2, cardLeader1Pl2, cardLeader2Pl2, cardLeader3Pl2)));
-        firstPlayerCardLeaders.put(CardLeaderGuiState.PLAYED, new ArrayList<>(Arrays.asList(cardLeaderPlayed0Pl2, cardLeaderPlayed1Pl2, cardLeaderPlayed2Pl2, cardLeaderPlayed3Pl2)));
+        secondPlayerCardLeaders.put(CardLeaderGuiState.NOTPLAYED, new ArrayList<>(Arrays.asList(cardLeader0Pl2, cardLeader1Pl2, cardLeader2Pl2, cardLeader3Pl2)));
+        secondPlayerCardLeaders.put(CardLeaderGuiState.PLAYED, new ArrayList<>(Arrays.asList(cardLeaderPlayed0Pl2, cardLeaderPlayed1Pl2, cardLeaderPlayed2Pl2, cardLeaderPlayed3Pl2)));
 
         Map<CardLeaderGuiState, List<ImageView>> thirdPlayerCardLeaders = new HashMap<>();
-        firstPlayerCardLeaders.put(CardLeaderGuiState.NOTPLAYED, new ArrayList<>(Arrays.asList(cardLeader0Pl3, cardLeader1Pl3, cardLeader2Pl3, cardLeader3Pl3)));
-        firstPlayerCardLeaders.put(CardLeaderGuiState.PLAYED, new ArrayList<>(Arrays.asList(cardLeaderPlayed0Pl3, cardLeaderPlayed1Pl3, cardLeaderPlayed2Pl3, cardLeaderPlayed3Pl3)));
+        thirdPlayerCardLeaders.put(CardLeaderGuiState.NOTPLAYED, new ArrayList<>(Arrays.asList(cardLeader0Pl3, cardLeader1Pl3, cardLeader2Pl3, cardLeader3Pl3)));
+        thirdPlayerCardLeaders.put(CardLeaderGuiState.PLAYED, new ArrayList<>(Arrays.asList(cardLeaderPlayed0Pl3, cardLeaderPlayed1Pl3, cardLeaderPlayed2Pl3, cardLeaderPlayed3Pl3)));
 
         Map<CardLeaderGuiState, List<ImageView>> fourthPlayerCardLeaders = new HashMap<>();
-        firstPlayerCardLeaders.put(CardLeaderGuiState.NOTPLAYED, new ArrayList<>(Arrays.asList(cardLeader0Pl4, cardLeader1Pl4, cardLeader2Pl4, cardLeader3Pl4)));
-        firstPlayerCardLeaders.put(CardLeaderGuiState.PLAYED, new ArrayList<>(Arrays.asList(cardLeaderPlayed0Pl4, cardLeaderPlayed1Pl4, cardLeaderPlayed2Pl4, cardLeaderPlayed3Pl4)));
+        fourthPlayerCardLeaders.put(CardLeaderGuiState.NOTPLAYED, new ArrayList<>(Arrays.asList(cardLeader0Pl4, cardLeader1Pl4, cardLeader2Pl4, cardLeader3Pl4)));
+        fourthPlayerCardLeaders.put(CardLeaderGuiState.PLAYED, new ArrayList<>(Arrays.asList(cardLeaderPlayed0Pl4, cardLeaderPlayed1Pl4, cardLeaderPlayed2Pl4, cardLeaderPlayed3Pl4)));
 
         cardLeaders.put(PlayerColor.BLUE, firstPlayerCardLeaders);
         cardLeaders.put(PlayerColor.GREEN, secondPlayerCardLeaders);
