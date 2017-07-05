@@ -35,6 +35,7 @@ public class LoginController implements Initializable {
 
     @FXML void startGame(MouseEvent event) throws NotBoundException, AlreadyBoundException, CloneNotSupportedException, IOException {
         String name = nameField.getText();
+        name = name.replaceAll("\\s+",""); // Remove whitespaces and invisible characters
         String connection = connectionChoice.getValue().toString();
         if(isNameValid(name)) {
             playButton.setDisable(true);
@@ -59,7 +60,8 @@ public class LoginController implements Initializable {
     }
 
     private Boolean isNameValid(String name){
-        if(name.equals("") || name.equals(" ")){
+
+        if(name.equals("")){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Empty Name");

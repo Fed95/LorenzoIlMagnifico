@@ -80,6 +80,7 @@ public class ViewCLI extends Observable implements ClientView {
 		String name = "";
 		loop: while (true) {
 			name = in.nextLine();
+			name = name.replaceAll("\\s+",""); // Remove whitespaces and invisible characters
 			if (!"\n".equals(name) && !"".equals(name)) {
 				System.out.println("Choose the technology");
 				System.out.println("0 - RMI");
