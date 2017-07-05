@@ -52,4 +52,19 @@ public class ActionPlayLeaderCard extends Action {
     public String toString() {
         return card.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ActionPlayLeaderCard)) return false;
+
+        ActionPlayLeaderCard that = (ActionPlayLeaderCard) o;
+
+        return card.equals(that.card);
+    }
+
+    @Override
+    public int hashCode() {
+        return card.hashCode();
+    }
 }

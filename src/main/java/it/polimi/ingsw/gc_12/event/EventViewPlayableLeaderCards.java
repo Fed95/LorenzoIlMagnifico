@@ -7,11 +7,13 @@ import it.polimi.ingsw.gc_12.action.ActionHandler;
 import it.polimi.ingsw.gc_12.action.DiscardAction;
 import it.polimi.ingsw.gc_12.card.LeaderCard;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
+import it.polimi.ingsw.gc_12.java_fx.MainBoard;
+import javafx.application.Platform;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventViewPlayableLeaderCards extends Event {
+public class EventViewPlayableLeaderCards extends Event implements EventView{
 
     public EventViewPlayableLeaderCards(Player player) {
         super(player);
@@ -43,4 +45,8 @@ public class EventViewPlayableLeaderCards extends Event {
     }
 
 
+    @Override
+    public void executeViewSide(MainBoard view) {
+        Platform.runLater(() -> view.getControllerMainBoard().sendAction());
+    }
 }

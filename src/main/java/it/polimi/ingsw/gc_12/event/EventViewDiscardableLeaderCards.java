@@ -8,12 +8,14 @@ import it.polimi.ingsw.gc_12.action.ActionHandler;
 import it.polimi.ingsw.gc_12.action.DiscardAction;
 import it.polimi.ingsw.gc_12.card.LeaderCard;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
+import it.polimi.ingsw.gc_12.java_fx.MainBoard;
+import javafx.application.Platform;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class EventViewDiscardableLeaderCards extends Event {
+public class EventViewDiscardableLeaderCards extends Event implements EventView{
 
     public EventViewDiscardableLeaderCards(Player player) {
         super(player);
@@ -42,5 +44,10 @@ public class EventViewDiscardableLeaderCards extends Event {
     @Override
     public String toString() {
         return null;
+    }
+
+    @Override
+    public void executeViewSide(MainBoard view) {
+        Platform.runLater(() -> view.getControllerMainBoard().sendAction());
     }
 }

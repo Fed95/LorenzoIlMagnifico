@@ -26,4 +26,14 @@ public class ActionViewDiscardableLeaderCards extends Action {
     public String toString() {
         return "Discard a LeaderCard in exchange for a CouncilPrivilege";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return this == o || o instanceof ActionViewDiscardableLeaderCards;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

@@ -4,6 +4,7 @@ import it.polimi.ingsw.gc_12.*;
 import it.polimi.ingsw.gc_12.action.*;
 import it.polimi.ingsw.gc_12.card.CardLeaderGuiState;
 import it.polimi.ingsw.gc_12.card.CardType;
+import it.polimi.ingsw.gc_12.card.LeaderCard;
 import it.polimi.ingsw.gc_12.client.ClientHandler;
 import it.polimi.ingsw.gc_12.client.ClientFactory;
 
@@ -362,6 +363,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
     private Action actionPending;
     private List<List<Resource>> councilPrivilegeResources =  new LoaderConfig().get(null).getCouncilPrivilegeResources();
     private PlayerColor playerColor;
+    private Player player;
 
     @FXML void familyClicked(MouseEvent event) {
         ImageView familyMemberClicked = (ImageView) event.getTarget();
@@ -398,9 +400,28 @@ public class MainBoardController extends Observable implements Initializable, Ob
         showCards.setOpacity(1);
     }
     @FXML void showCardLeader(MouseEvent event){
+        ImageView leaderCard = (ImageView) event.getSource();
         showCard(event);
         if(event.getClickCount()==2){
-            //double click, do actions and turn controls here
+            int choice = askDiscardOrPlay();
+            List<ImageView> cardsNotPlayed = cardLeaders.get(playerColor).get(CardLeaderGuiState.NOTPLAYED);
+            for (int i = 0; i < cardsNotPlayed.size(); i++) {
+                if(leaderCard.equals(cardsNotPlayed.get(i))) {
+                    Action action;
+                    if(choice == 0) {
+                        action = new ActionViewPlayableLeaderCards(match.getPlayers().get(playerColor));
+                        actionPending = new ActionPlayLeaderCard(player, player.getNotPlayedLeaderCards().get(i));
+                    }
+                    else {
+                        action = new ActionViewDiscardableLeaderCards(match.getPlayers().get(playerColor));
+                        actionPending = new ActionDiscardLeaderCard(player, player.getNotPlayedLeaderCards().get(i));
+                    }
+
+                    System.out.println(player.getNotPlayedLeaderCards().get(i));
+                    selectAction(action);
+                }
+            }
+
 
         }
     }
@@ -476,8 +497,10 @@ public class MainBoardController extends Observable implements Initializable, Ob
             if(actions.get(i).equals(action)) {
                 setChanged();
                 notifyObservers(i);
-                clientHandler.getEvents().removeFirst();
-                clientHandler.handleEvent();
+                if(clientHandler.getEvents().size() > 0) {
+                    clientHandler.getEvents().removeFirst();
+                    clientHandler.handleEvent();
+                }
                 break;
             }
         }
@@ -550,6 +573,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
             setPlayerToPane();
             bindPlayerCard();
             bindPlayerLeaderCard();
+            player = match.getPlayers().get(playerColor);
         });
     }
 

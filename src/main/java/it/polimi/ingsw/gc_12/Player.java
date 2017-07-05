@@ -169,6 +169,14 @@ public class Player implements Serializable{
 				cards.add(card);
 		return cards;
 	}
+
+	public List<LeaderCard> getNotPlayedLeaderCards() {
+		List<LeaderCard> cards = new ArrayList<>();
+		for(LeaderCard card : personalBoard.getLeaderCards())
+			if(!card.isPlayed())
+				cards.add(card);
+		return cards;
+	}
 	
 	public Map<ResourceType, Resource> getResources() {
 		return resources;

@@ -28,4 +28,14 @@ public class ActionViewPlayableLeaderCards extends Action{
     public String toString() {
         return "Play a LeaderCard";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return this == o || o instanceof ActionViewPlayableLeaderCards;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }
