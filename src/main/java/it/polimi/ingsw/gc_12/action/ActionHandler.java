@@ -30,8 +30,8 @@ public class ActionHandler {
 	}
 
 	public Action getAvailableAction(int input) {
-		int inputReal = (input - offset > 0 ? input - offset : 0);
-		Action action = actions.get(inputReal);
+		//int inputReal = (input - offset > 0 ? input - offset : 0);
+		Action action = actions.get(input);
 
 		if(events.size() > 0) {
 			if(councilPrivileges <= 1) {
@@ -41,7 +41,7 @@ public class ActionHandler {
 			}
 			else{
 				councilPrivileges--;
-				actions.remove(inputReal);
+				actions.remove(input);
 			}
 		}
 		offset = 0;

@@ -62,7 +62,7 @@ public class ViewCLI extends Observable implements ClientView {
 			else {
 				try {
 					setChanged();
-					notifyObservers(inputInt);
+					notifyObservers(inputInt-offset);
 					clientHandler.setOffset(0);
 					Event event = clientHandler.getEvents().getFirst();
 					if(event instanceof EventCouncilPrivilegeReceived)

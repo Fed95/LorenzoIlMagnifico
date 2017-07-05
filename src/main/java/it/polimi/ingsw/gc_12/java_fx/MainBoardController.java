@@ -353,8 +353,6 @@ public class MainBoardController extends Observable implements Initializable, Ob
 
     private Map<PlayerColor, Map<CardLeaderGuiState, List<ImageView>>> cardLeaders = new HashMap<>();
 
-
-    private ImageView lastFamClicked = null;
     private MatchInstanceGUI match;
     private ClientHandler clientHandler;
     private Action actionPending;
@@ -366,17 +364,20 @@ public class MainBoardController extends Observable implements Initializable, Ob
         if(isMyFam(playerColor, familyMemberClicked) && isMyTurn()){
             for (Map.Entry<FamilyMemberColor, ImageView> entry : familyMembers.get(playerColor).entrySet()) {
                 if(entry.getValue().equals(familyMemberClicked)) {
-                    highlightFamilyMember(familyMemberClicked);
                     FamilyMember familyMember = new FamilyMember(playerColor, entry.getKey());
                     Action action;
-                    if(actionPending != null) {
+                    if(isFMSelected(familyMemberClicked) || actionPending != null) {
                         action = new DiscardAction(match.getPlayers().get(playerColor));
-                        actionPending = new ActionChooseFamilyMember(match.getPlayers().get(playerColor), familyMember);
+                        if(!isFMSelected(familyMemberClicked))
+                            actionPending = new ActionChooseFamilyMember(match.getPlayers().get(playerColor), familyMember);
+                        else
+                            resetActionPending();
                     }
                     else {
                         action = new ActionChooseFamilyMember(match.getPlayers().get(playerColor), familyMember);
                         actionPending = action;
                     }
+                    toggleFMHighlight(familyMemberClicked);
                     selectAction(action);
                     break;
                 }
@@ -384,8 +385,6 @@ public class MainBoardController extends Observable implements Initializable, Ob
         }
         else
             showTurnDenied();
-
-        //match.getFamilyMemberBlueRepresentationObservableList().get(0).setValueProperty(10);
     }
 
     @FXML void showCard(MouseEvent event){
@@ -404,7 +403,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
 
     @FXML synchronized void floorClicked(MouseEvent event){
         ImageView floorClicked = (ImageView) event.getTarget();
-        if(lastFamClicked!=null && isMyTurn()){
+        if(isMyTurn()){
             loop: for(Map.Entry<CardType, List<ImageView>> entryType : towerFloors.entrySet()) {
                 for (int i = 0; i < entryType.getValue().size(); i++) {
                     if(entryType.getValue().get(i).equals(floorClicked)) {
@@ -422,7 +421,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
 
     @FXML void marketClicked(MouseEvent event){
         ImageView market = (ImageView) event.getTarget();
-        if(lastFamClicked!=null && isMyTurn()){
+        if(isMyTurn()){
             for (int i = 0; i < markets.size(); i++) {
                 if(markets.get(i).equals(market)) {
                     Action action = new ActionChooseMarket(match.getPlayers().get(playerColor), null);
@@ -439,7 +438,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
 
     @FXML void workspaceClicked(MouseEvent event){
         ImageView workplace = (ImageView) event.getTarget();
-        if(lastFamClicked!=null && isMyTurn()){
+        if(isMyTurn()){
             loop: for(Map.Entry<WorkType, List<ImageView>> entryType : workplaces.entrySet()) {
                 for (int i = 0; i < entryType.getValue().size(); i++) {
                     if(entryType.getValue().get(i).equals(workplace)) {
@@ -484,61 +483,13 @@ public class MainBoardController extends Observable implements Initializable, Ob
         if(isMyTurn()) {
             int maxValue = match.getPlayers().get(playerColor).getResourceValue(ResourceType.SERVANT);
             String request = "Insert the number of servants\nmin value: "+clientHandler.getOffset()+" max value: " + maxValue;
-            int servants = askMeAValue("servant", request, String.valueOf(clientHandler.getOffset()));
-            if(actionPending instanceof ActionPlace) {
+            int servants = askValue("servant", request, String.valueOf(clientHandler.getOffset()));
+            if(servants != -1 && actionPending instanceof ActionPlace) {
                 ((ActionPlace)actionPending).setServants(new Servant(servants));
                 selectAction(actionPending);
-                actionPending = null;
+                resetActionPending();
             }
         }
-    }
-
-    public void setCardFloors(Map<CardType, List<ImageView>> cardFloors) {
-        this.cardFloors = cardFloors;
-    }
-
-    public void setFamilyMemberLabels(Map<PlayerColor, Map<FamilyMemberColor, Label>> familyMemberLabels) {
-        this.familyMemberLabels = familyMemberLabels;
-    }
-
-    public void setFamilyMembers(Map<PlayerColor, Map<FamilyMemberColor, ImageView>> familyMembers) {
-        this.familyMembers = familyMembers;
-    }
-
-    public void setPlayerTabs(Map<PlayerColor, Tab> playerTabs) {
-        this.playerTabs = playerTabs;
-    }
-
-    public void setResourceLabels(Map<PlayerColor, Map<ResourceType, Label>> resourceLabels) {
-        this.resourceLabels = resourceLabels;
-    }
-
-    public void setTowerFloors(Map<CardType, List<ImageView>> towerFloors) {
-        this.towerFloors = towerFloors;
-    }
-
-    public void setTurnOrderTrack(List<Circle> turnOrderTrack) {
-        this.turnOrderTrack = turnOrderTrack;
-    }
-
-    public void setExcomTiles(List<ImageView> excomTiles) {
-        this.excomTiles = excomTiles;
-    }
-
-    public void setMarkets(List<ImageView> markets) {
-        this.markets = markets;
-    }
-
-    public void setWorkplaces(Map<WorkType, List<ImageView>> workplaces) {
-        this.workplaces = workplaces;
-    }
-
-    public void setPlayerCards(Map<PlayerColor, Map<CardType, List<ImageView>>> playerCards) {
-        this.playerCards = playerCards;
-    }
-
-    public void setCardLeaders(Map<PlayerColor, Map<CardLeaderGuiState, List<ImageView>>> cardLeaders) {
-        this.cardLeaders = cardLeaders;
     }
 
     @Override
@@ -714,20 +665,21 @@ public class MainBoardController extends Observable implements Initializable, Ob
         alert.showAndWait();
     }
 
-    private void highlightFamilyMember(ImageView familyMemberClicked){
-
-        if(familyMemberClicked.equals(lastFamClicked)){
-            double selection = familyMemberClicked.getOpacity();
-            if(selection != 1){
-                familyMemberClicked.setOpacity(1);
-                lastFamClicked = null;
-            }
-        }else{
-            if(lastFamClicked!=null)
-                lastFamClicked.setOpacity(1);
-            familyMemberClicked.setOpacity(0.5);
-            lastFamClicked = familyMemberClicked;
+    private void toggleFMHighlight(ImageView familyMemberClicked){
+        double selection = familyMemberClicked.getOpacity();
+        if(selection != 1){
+            familyMemberClicked.setOpacity(1);
         }
+        else
+            familyMemberClicked.setOpacity(0.5);
+        for(ImageView familyMember: familyMembers.get(playerColor).values()) {
+            if(!familyMember.equals(familyMemberClicked))
+                familyMember.setOpacity(1);
+        }
+    }
+
+    private boolean isFMSelected(ImageView familyMember) {
+        return familyMember.getOpacity() != 1;
 
     }
 
@@ -752,7 +704,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
     }
 
 
-   public int askMeAValue(String title, String request, String minValue){
+   public int askValue(String title, String request, String minValue){
        TextInputDialog dialog = new TextInputDialog(minValue);
        dialog.setTitle(title);
        dialog.setHeaderText(request);
@@ -766,12 +718,13 @@ public class MainBoardController extends Observable implements Initializable, Ob
                if (res >= clientHandler.getOffset() && res < clientHandler.getActions().size())
                    return res;
            }
-           value = askMeAValue(title,request, minValue);
+           value = askValue(title,request, minValue);
        }
        else {
            Action action = new DiscardAction(match.getPlayers().get(playerColor));
-           selectAction(action);
            resetActionPending();
+           selectAction(action);
+           return -1;
        }
        return value;
    }
@@ -805,7 +758,9 @@ public class MainBoardController extends Observable implements Initializable, Ob
 
 				requestCouncilPrivileges(councilPrivilege, dialogStage, controller);
 
-			} catch (IOException ignored) {}
+			} catch (IOException e) {
+			    e.printStackTrace();
+            }
 			finally {
 				clientHandler.getEvents().removeFirst();
 				clientHandler.handleEvent();
@@ -845,7 +800,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
     }
 
 	public void councilPalaceClicked(MouseEvent event) {
-		if(lastFamClicked!=null && isMyTurn()){
+		if(isMyTurn()){
 			Action action = new ActionPlaceOnCouncil(match.getPlayers().get(playerColor), null, new CouncilPalace(1));
 			actionPending = action;
 			selectAction(action);
