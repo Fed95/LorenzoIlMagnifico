@@ -578,7 +578,7 @@
                               </TableView>
                               <ImageView fitHeight="96.0" fitWidth="90.0" layoutX="355.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../img/militarbritannic.png" />
+                                    <Image url="@../img/pointsTab/militarbritannic.png" />
                                  </image>
                               </ImageView>
                            </children></AnchorPane>
@@ -588,7 +588,7 @@
                   <content>
                     <AnchorPane fx:id="paneVictoryPointsTab" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TableView fx:id="tableVictoryPoints" layoutY="-3.0" prefHeight="240.0" prefWidth="461.0">
+                              <TableView fx:id="tableVictoryPoints" layoutY="-3.0" prefHeight="251.0" prefWidth="461.0">
                                 <columns>
                                   <TableColumn fx:id="nameVictoryPoints" prefWidth="204.0" text="Player Name" />
                                   <TableColumn fx:id="pointsVictoryPoints" prefWidth="106.0" text="Points" />
@@ -596,12 +596,31 @@
                               </TableView>
                               <ImageView fitHeight="92.0" fitWidth="71.0" layoutX="355.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../img/provavictory2.png" />
+                                    <Image url="@../img/pointsTab/provavictory2.png" />
                                  </image>
                               </ImageView>
                            </children></AnchorPane>
                   </content>
                 </Tab>
+                  <Tab text="Faith Points">
+                    <content>
+                      <AnchorPane fx:id="paneFaithPointsTab" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TableView fx:id="tableFaithPoints" layoutY="-3.0" prefHeight="251.0" prefWidth="461.0">
+                                <columns>
+                                  <TableColumn fx:id="nameFaithPoints" prefWidth="204.0" text="Player Name" />
+                                  <TableColumn fx:id="pointsFaithPoints" prefWidth="106.0" text="Points" />
+                                </columns>
+                              </TableView>
+                               <ImageView fitHeight="75.0" fitWidth="60.0" layoutX="366.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+                                   <image>
+                                       <Image url="@../img/pointsTab/FAITH_POINT.png" />
+                                   </image>
+                               </ImageView>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
               </tabs>
             </TabPane>
              <ImageView fx:id="cardFloor0" fitHeight="117.0" fitWidth="80.0" layoutX="8.0" layoutY="32.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />

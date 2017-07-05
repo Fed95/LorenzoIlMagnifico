@@ -12,7 +12,6 @@ import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
 import it.polimi.ingsw.gc_12.occupiables.TowerSet;
 import it.polimi.ingsw.gc_12.resource.Resource;
 import it.polimi.ingsw.gc_12.resource.ResourceType;
-import it.polimi.ingsw.gc_12.server.observer.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
@@ -50,8 +49,10 @@ public class MatchInstanceGUI extends MatchInstance {
     private ObservableList<ResourceRepresentation> resourceRedRepresentationObservableList = FXCollections.observableArrayList();
     private ObservableList<ResourceRepresentation> resourceYellowRepresentationObservableList = FXCollections.observableArrayList();
     private Map<PlayerColor, ObservableList<ResourceRepresentation>> mapPlayerColorResourceRepresentation = new HashMap<>();
-    private ObservableList<ResourceRepresentation> allResourcerepresentationMilitary = FXCollections.observableArrayList();
-    private ObservableList<ResourceRepresentation> allResourcerepresentationVictory = FXCollections.observableArrayList();
+    //the table view must have all the representation in a single observable list not in 4 different for each player
+    private ObservableList<ResourceRepresentation> allResourceRepresentationMilitary = FXCollections.observableArrayList();
+    private ObservableList<ResourceRepresentation> allResourceRepresentationVictory = FXCollections.observableArrayList();
+    private ObservableList<ResourceRepresentation> allResourceRepresentationFaith = FXCollections.observableArrayList();
 
     private ObservableList<TurnOrderTrackPositionRepresentation> turnOrderTrackFirstPositionRepresentationObservableList = FXCollections.observableArrayList();
 
@@ -106,7 +107,7 @@ public class MatchInstanceGUI extends MatchInstance {
 		createOrderedTruckRepresentation(match);
         createCardTowerFloorRepresentation(match);
 		setFamilyMemberObservers();
-        createObservableListMilitary(match);
+        createObservableListMilitaryVictoryFaith(match);
         createExcomTileRepresentation(match);
         createCardPlayerRepresentation(match);
         createCardLeaderRepresentation(match);
@@ -227,15 +228,19 @@ public class MatchInstanceGUI extends MatchInstance {
         }
 
     }
-    private void createObservableListMilitary(Match match){
+    private void createObservableListMilitaryVictoryFaith(Match match){
         List<Player> players = new ArrayList<>(match.getPlayers().values());
         List<Player> orderedByMilitary = match.getBoard().getTrackMilitaryPoints().getPlayersOrder(players);
         List<Player> orderedByVictory = match.getBoard().getVictroyPointsTrack().getPlayerOrdered(players);
+        match.getBoard().getTrackFaithPoints();
         for(Player player : orderedByMilitary){
-            allResourcerepresentationMilitary.add(mapPlayerColorResourceRepresentation.get(player.getColor()).get(0));
+            allResourceRepresentationMilitary.add(mapPlayerColorResourceRepresentation.get(player.getColor()).get(0));
         }
         for(Player player : orderedByVictory){
-            allResourcerepresentationVictory.add(mapPlayerColorResourceRepresentation.get(player.getColor()).get(0));
+            allResourceRepresentationVictory.add(mapPlayerColorResourceRepresentation.get(player.getColor()).get(0));
+        }
+        for(Player player : match.getPlayers().values()){
+            allResourceRepresentationFaith.add(mapPlayerColorResourceRepresentation.get(player.getColor()).get(0));
         }
     }
     private void createExcomTileRepresentation(Match match){
@@ -312,12 +317,12 @@ public class MatchInstanceGUI extends MatchInstance {
         return turnOrderTrackFirstPositionRepresentationObservableList;
     }
 
-    public ObservableList<ResourceRepresentation> getAllResourcerepresentationMilitary() {
-        return allResourcerepresentationMilitary;
+    public ObservableList<ResourceRepresentation> getAllResourceRepresentationMilitary() {
+        return allResourceRepresentationMilitary;
     }
 
-    public ObservableList<ResourceRepresentation> getAllResourcerepresentationVictory() {
-        return allResourcerepresentationVictory;
+    public ObservableList<ResourceRepresentation> getAllResourceRepresentationVictory() {
+        return allResourceRepresentationVictory;
     }
 
     public ObservableList<ExcommunicationTileRepresentation> getExcommunicationTileRepresentationObservableList() {
@@ -330,6 +335,10 @@ public class MatchInstanceGUI extends MatchInstance {
 
     public Map<PlayerColor, ObservableList<CardLeaderRepresentation>> getMapPlayerColorCardLeaders() {
         return mapPlayerColorCardLeaders;
+    }
+
+    public ObservableList<ResourceRepresentation> getAllResourceRepresentationFaith() {
+        return allResourceRepresentationFaith;
     }
 
     public void notifyInit() {

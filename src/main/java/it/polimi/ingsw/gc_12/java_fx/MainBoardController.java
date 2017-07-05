@@ -169,6 +169,10 @@ public class MainBoardController extends Observable implements Initializable, Ob
     @FXML private TableColumn<ResourceRepresentation, String> nameMilitaryPoints;
     @FXML private TableColumn<ResourceRepresentation, String> pointsMilitaryPoints;
 
+    @FXML private TableView<ResourceRepresentation> tableFaithPoints;
+    @FXML private TableColumn<ResourceRepresentation, String> nameFaithPoints;
+    @FXML private TableColumn<ResourceRepresentation, String> pointsFaithPoints;
+
     @FXML private ImageView excomTile1;
     @FXML private ImageView excomTile2;
     @FXML private ImageView excomTile3;
@@ -511,7 +515,9 @@ public class MainBoardController extends Observable implements Initializable, Ob
         //saying to the table where to find the values in the representation class for Victory points
         nameVictoryPoints.setCellValueFactory(cellData -> cellData.getValue().getPlayerColorProperty());
         pointsVictoryPoints.setCellValueFactory(cellData -> cellData.getValue().getVictoryPointProperty().asString());
-
+        //saying to the table where to find the values in the representation class for Faith points
+        nameFaithPoints.setCellValueFactory(cellData -> cellData.getValue().getPlayerColorProperty());
+        pointsFaithPoints.setCellValueFactory(cellData -> cellData.getValue().getFaithPointProperty().asString());
 
         showCards.setOpacity(0);
         this.clientHandler = ClientFactory.getClientHandler();
@@ -596,9 +602,9 @@ public class MainBoardController extends Observable implements Initializable, Ob
     }
 
     private void bindTrackMilitaryVictory(){
-        tableMilitaryPoints.setItems(match.getAllResourcerepresentationMilitary());
-        tableVictoryPoints.setItems(match.getAllResourcerepresentationVictory());
-
+        tableMilitaryPoints.setItems(match.getAllResourceRepresentationMilitary());
+        tableVictoryPoints.setItems(match.getAllResourceRepresentationVictory());
+        tableFaithPoints.setItems(match.getAllResourceRepresentationFaith());
     }
 
     private void bindExcomunocationTile(){
@@ -847,6 +853,26 @@ public class MainBoardController extends Observable implements Initializable, Ob
             choosen = askWhich(type, resources);
         }
         return choosen;
+    }
+
+    public Boolean askSupportChurch(){
+        Dialog dialog = new Dialog<>();
+        dialog.setTitle("Support Church");
+        dialog.setHeaderText("You have enough faith point \nfor this period for avoid the excommunication. \n\n Do you want to support the church?");
+        Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(this.getClass().getResource("/img/pointsTab/FAITH_POINT.png").toString()));
+        ButtonType yesButtonType = new ButtonType("Yes", ButtonBar.ButtonData.YES);
+        ButtonType noButtonType = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        dialog.getDialogPane().getButtonTypes().addAll(yesButtonType, noButtonType);
+
+        Optional<ButtonType> result = dialog.showAndWait();
+        if (result.get() == yesButtonType){
+            return true;
+        } else if(result.get() == noButtonType) {
+            return false;
+        }
+        return askSupportChurch();
     }
 
 	private void applyPulseEffect(Color color, List<Node> nodes) {
