@@ -496,6 +496,14 @@ public class MainBoardController extends Observable implements Initializable, Ob
         }
     }
 
+    public void chooseExchange(List<ResourceExchange> resources) {
+        if(isMyTurn()) {
+            int choice = askWhich("resources", resources);
+            ActionChooseExchange action = new ActionChooseExchange(match.getPlayers().get(playerColor), resources.get(choice));
+            selectAction(action);
+        }
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         match = MatchInstanceGUI.instance();
@@ -818,31 +826,37 @@ public class MainBoardController extends Observable implements Initializable, Ob
     public int askWhich(String type, List<ResourceExchange> resources){
         int alternatives = resources.size();
         List<String> choices = new ArrayList<>();
-        String str = "";
+        StringBuilder str = new StringBuilder();
         int choosen = -1;
         for(ResourceExchange resourceExchange : resources){
-            if(resourceExchange.getCost()!=null){
+
+            if(resourceExchange.getCost() != null && resourceExchange.getCost().size() > 0){
+                str.append("Receive ");
                 for (int i = 0; i < resourceExchange.getCost().size(); i++){
                     int value = resourceExchange.getCost().get(i).getValue();
                     String abbreviation = resourceExchange.getCost().get(i).getType().toString().substring(0,1);
-                    str = str+" "+value+abbreviation;
+                    str.append(" ").append(value).append(abbreviation);
+                }
+                if(resourceExchange.getBonus()!=null && resourceExchange.getBonus().size() > 0) {
+                    str.append(" - ");
                 }
             }
-            if(resourceExchange.getBonus()!=null){
-                str = str+"-->";
+
+            if(resourceExchange.getBonus()!=null && resourceExchange.getBonus().size() > 0){
+                str.append(" Spend: ");
                 for (int i = 0; i < resourceExchange.getBonus().size(); i++){
                     int value = resourceExchange.getBonus().get(i).getValue();
                     String abbreviation = resourceExchange.getBonus().get(i).getType().toString().substring(0,1);
-                    str = str+" "+value+abbreviation;
+                    str.append(" ").append(value).append(abbreviation);
                 }
             }
-            choices.add(str);
-            str = "";
+            choices.add(str.toString());
+            str = new StringBuilder();
         }
 
         ChoiceDialog<String> dialog = new ChoiceDialog<>(choices.get(0), choices);
-        dialog.setTitle("Choose " +type);
-        dialog.setHeaderText("You can choose between "+alternatives+" "+type);
+        dialog.setTitle("Choose " + type);
+        dialog.setHeaderText("You can choose between "+alternatives + " " + type);
         dialog.setContentText("Choose :");
 
         Optional<String> result = dialog.showAndWait();
