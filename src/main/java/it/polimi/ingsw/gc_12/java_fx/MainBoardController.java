@@ -888,6 +888,23 @@ public class MainBoardController extends Observable implements Initializable, Ob
         }
         return askSupportChurch();
     }
+    public int askDiscardOrPlay(){
+        Dialog dialog = new Dialog<>();
+        dialog.setTitle("Leader Card");
+        dialog.setHeaderText("You have choose a Leader Card. \nDo you want to discard or play it?");
+        ButtonType playButtonType = new ButtonType("Play", ButtonBar.ButtonData.YES);
+        ButtonType discardButtonType = new ButtonType("Discard", ButtonBar.ButtonData.YES);
+
+        dialog.getDialogPane().getButtonTypes().addAll(playButtonType, discardButtonType);
+
+        Optional<ButtonType> result = dialog.showAndWait();
+        if (result.get() == playButtonType){
+            return 0;
+        } else if(result.get() == discardButtonType) {
+            return 1;
+        }
+        return askDiscardOrPlay();
+    }
 
 	private void applyPulseEffect(Color color, List<Node> nodes) {
         DropShadow borderGlow = new DropShadow();
