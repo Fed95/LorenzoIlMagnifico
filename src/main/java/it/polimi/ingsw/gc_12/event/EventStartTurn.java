@@ -5,14 +5,17 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.action.*;
 import it.polimi.ingsw.gc_12.client.*;
+import it.polimi.ingsw.gc_12.java_fx.MainBoard;
+import javafx.application.Platform;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventStartTurn extends Event{
+public class EventStartTurn extends Event implements EventView {
 
 	private int turn;
+	private boolean hasPlaced;
 
 	public EventStartTurn(Player player, List<Action> actions, int turn) {
 		super(player);
@@ -44,9 +47,9 @@ public class EventStartTurn extends Event{
 
 	@Override
 	public void setActions(ActionHandler actionHandler, Match match) {
+		hasPlaced = actionHandler.hasPlaced();
 		actions = new ArrayList<>();
-		//actionHandler.setHasPlaced(false);
-		if(!actionHandler.hasPlaced()) {
+		if(!hasPlaced) {
 			for (FamilyMember familyMember : player.getAvailableFamilyMembers()) {
 				actions.add(new ActionChooseFamilyMember(player, familyMember));
 			}
@@ -58,7 +61,7 @@ public class EventStartTurn extends Event{
 			actions.add(new ActionViewAvailableLeaderCards(player));
 		if(player.getPersonalBoard().getLeaderCards().size() > 0)
 			actions.add(new ActionViewDiscardableLeaderCards(player));
-		if(actionHandler.hasPlaced())
+		if(hasPlaced)
 			actions.add(new ActionPassTurn(player));
 		actions.add(new ActionRequestStatistics(player));
 	}
@@ -82,4 +85,9 @@ public class EventStartTurn extends Event{
     public String toStringClientGUI(){
         return "It's " + player.getName() + "'s turn.";
     }
+
+	@Override
+	public void executeViewSide(MainBoard view) {
+		Platform.runLater(() -> view.getControllerMainBoard().disablePassTurn(!hasPlaced, player));
+	}
 }

@@ -5,12 +5,14 @@ import it.polimi.ingsw.gc_12.Match;
 import it.polimi.ingsw.gc_12.Player;
 import it.polimi.ingsw.gc_12.action.*;
 import it.polimi.ingsw.gc_12.effect.EffectProvider;
+import it.polimi.ingsw.gc_12.java_fx.MainBoard;
+import javafx.application.Platform;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class EventPlacementEnded extends Event{
+public class EventPlacementEnded extends Event implements EventView{
 
 	public EventPlacementEnded(Player player) {
 		super(player);
@@ -33,5 +35,10 @@ public class EventPlacementEnded extends Event{
 	@Override
 	public String toString() {
 		return null;
+	}
+
+	@Override
+	public void executeViewSide(MainBoard view) {
+		Platform.runLater(() -> view.getControllerMainBoard().disablePassTurn(false, player));
 	}
 }
