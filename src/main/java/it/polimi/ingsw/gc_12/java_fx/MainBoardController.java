@@ -395,10 +395,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
         showCards.setOpacity(1);
     }
     @FXML void showCardLeader(MouseEvent event){
-        ImageView imageView = (ImageView) event.getSource();
-        Image card = imageView.getImage();
-        showCards.setImage(card);
-        showCards.setOpacity(1);
+        showCard(event);
         if(event.getClickCount()==2){
             //double click, do actions and turn controls here
 
