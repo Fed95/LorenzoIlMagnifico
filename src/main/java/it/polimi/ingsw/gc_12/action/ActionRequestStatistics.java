@@ -25,6 +25,6 @@ public class ActionRequestStatistics extends  Action {
 
     @Override
     public String toString() {
-        return "ServerView Players' statistics";
+        return "View Players' statistics";
     }
 }

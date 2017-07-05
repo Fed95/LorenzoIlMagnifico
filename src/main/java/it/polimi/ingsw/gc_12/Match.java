@@ -147,6 +147,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		System.out.println("Match: Starting new turn");
 		Player player = board.getTrackTurnOrder().newTurn();
 
+		actionHandler.setHasPlaced(false);
 		EventStartTurn event = new EventStartTurn(player, board.getTrackTurnOrder().getTurn());
 		try {
 			effectHandler.executeEffects(this, event);
