@@ -38,19 +38,21 @@ public class EffectFreeAction extends Effect {
 
     @Override
     public void execute(Match match, Event event, boolean validation) {
-        this.familyMember = new FamilyMember(match.getBoard().getTrackTurnOrder().getCurrentPlayer(), value);
-        List<Occupiable> realOccupiables = new ArrayList<>();
-        for(Occupiable occupiable : this.occupiables){
-            for(Occupiable matchOccupiable : match.getBoard().getOccupiables()){
-                if(matchOccupiable.equals(occupiable))
-                    realOccupiables.add(matchOccupiable);
+        if(!validation) {
+            this.familyMember = new FamilyMember(match.getBoard().getTrackTurnOrder().getCurrentPlayer(), value);
+            List<Occupiable> realOccupiables = new ArrayList<>();
+            for (Occupiable occupiable : this.occupiables) {
+                for (Occupiable matchOccupiable : match.getBoard().getOccupiables()) {
+                    if (matchOccupiable.equals(occupiable))
+                        realOccupiables.add(matchOccupiable);
+                }
             }
+            Event eventFreeAction = new EventFreeAction(match.getBoard().getTrackTurnOrder().getCurrentPlayer(), familyMember, realOccupiables);
+            if (discounts != null && discounts.size() > 0)
+                ((EventFreeAction) eventFreeAction).setDiscounts(discounts);
+            match.getActionHandler().update(eventFreeAction, match);
+            match.notifyObserver(eventFreeAction);
         }
-        Event eventFreeAction = new EventFreeAction(match.getBoard().getTrackTurnOrder().getCurrentPlayer(), familyMember, realOccupiables);
-        if(discounts != null && discounts.size() > 0)
-            ((EventFreeAction) eventFreeAction).setDiscounts(discounts);
-        match.getActionHandler().update(eventFreeAction, match);
-        match.notifyObserver(eventFreeAction);
     }
 
     @Override

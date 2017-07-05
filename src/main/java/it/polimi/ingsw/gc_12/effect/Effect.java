@@ -32,6 +32,11 @@ public abstract class Effect implements Serializable {
 	
 	public abstract void discard(Match match, Event event);
 
+
+	/*
+	An EffectReceiveResource is created and all effects regarding this event are executed, modifying the resource of the event
+	the new modified resource is then applied to the exchange bonus
+	*/
 	protected List<Resource> applyResourceBonus(ResourceExchange exchange, Match match, Player player) {
 		List<Resource> newBonus  = new ArrayList<>();
 		for(Resource resource : exchange.getBonus()) {

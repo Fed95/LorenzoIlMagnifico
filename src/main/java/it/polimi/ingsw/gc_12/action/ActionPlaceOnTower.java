@@ -52,10 +52,6 @@ public class ActionPlaceOnTower extends ActionPlace {
         tower = match.getBoard().getTowerSet().getTower(towerFloor.getType());
     }
 
-    public void setDiscounts(List<Resource> discounts) {
-        this.discounts = discounts;
-    }
-
     @Override
     public void canBeExecuted(Match match) throws RequiredValueNotSatisfiedException, ActionNotAllowedException{
         if(towerFloor.isOccupied() && !familyMember.isFriendly())
@@ -100,12 +96,10 @@ public class ActionPlaceOnTower extends ActionPlace {
     }
 
     private void handleRequirementChoice(Match match, List<Resource> requirements, CardVenture card) {
-        List<ResourceExchange> possibleExchanges = new ArrayList<>();
-        for(Resource requirement : requirements){
-            possibleExchanges.add(new ResourceExchange(requirement, null));
-        }
-        possibleExchanges.add(card.getMilitaryExchange());
-        EventChooseExchange eventExchange = new EventChooseExchange(player, possibleExchanges);
+        List<ResourceExchange> exchanges = new ArrayList<>();
+        exchanges.add(new ResourceExchange(requirements, null));
+        exchanges.add(card.getMilitaryExchange());
+        EventChooseExchange eventExchange = new EventChooseExchange(player, exchanges);
         match.getActionHandler().update(eventExchange, match);
         match.notifyObserver(eventExchange);
     }

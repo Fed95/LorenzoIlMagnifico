@@ -27,18 +27,22 @@ public class EffectMultiplyCardResourceBonus extends Effect{
 
     @Override
     public void execute(Match match, Event event, boolean validation) throws ActionDeniedException {
-        if(!(event instanceof EventPickCard))
-            throw new IllegalStateException();
-        CardDevelopment card = ((EventPickCard)event).getCard();
-        List<Resource> resources = new ArrayList<>();
-        Player player = event.getPlayer();
 
-        for(Effect effect : card.getImmediateEffects())
-            if(effect instanceof EffectChangeResource)
-                handleEffect(resources, (EffectChangeResource) effect);
-        //Starts from 1 because the first has been executed by the card effect
-        for(int i = 1; i < multiplier; i++)
-            player.addResources(resources);
+        if (!(event instanceof EventPickCard))
+            throw new IllegalStateException();
+
+        if(!validation) {
+            CardDevelopment card = ((EventPickCard) event).getCard();
+            List<Resource> resources = new ArrayList<>();
+            Player player = event.getPlayer();
+
+            for (Effect effect : card.getImmediateEffects())
+                if (effect instanceof EffectChangeResource)
+                    handleEffect(resources, (EffectChangeResource) effect);
+            //Starts from 1 because the first has been executed by the card effect
+            for (int i = 1; i < multiplier; i++)
+                player.addResources(resources);
+        }
     }
 
     private void handleEffect(List<Resource> resources, EffectChangeResource effect){

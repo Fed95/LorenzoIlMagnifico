@@ -69,6 +69,10 @@ public class ActionHandler {
 		this.players = players;
 	}
 
+	public LinkedList<Event> getEvents() {
+		return events;
+	}
+
 	public void removeLastEvent() {
 		events.removeLast();
 	}
@@ -79,6 +83,10 @@ public class ActionHandler {
 
 	public void setOffset(int offset) {
 		this.offset = offset;
+	}
+
+	public int getOffset() {
+		return offset;
 	}
 
 	public void setHasPlaced(boolean hasPlaced) {

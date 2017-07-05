@@ -29,7 +29,8 @@ public class EffectChangeFamilyMemberValue extends Effect{
 	}
 
 	public void execute(Match match, Event event, boolean validation) {
-		applyChange(event, amount);
+		if(!validation)
+			applyChange(event, amount);
 	}
 
 	public void discard(Match match, Event event) {

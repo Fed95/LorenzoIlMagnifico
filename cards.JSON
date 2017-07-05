@@ -7154,6 +7154,7 @@
     "permanent": true,
     "requirements": [],
     "numOfRequiredCards": 6,
+    "anyCard": true,
     "effects": [
       {
         "type": "EffectChangeFamilyMemberValue",

@@ -35,4 +35,8 @@ public class ResourcesContainer implements EffectProvider {
         effects.add(new EffectChangeResource(new EventEndMatch(), exchange, false));
         return effects;
     }
+
+    public Map<ResourceType, Resource> getResources() {
+        return resources;
+    }
 }

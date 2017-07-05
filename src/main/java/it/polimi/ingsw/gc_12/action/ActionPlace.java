@@ -104,7 +104,6 @@ public abstract class ActionPlace extends Action {
 			familyMember.setValue(originalValue + player.getResourceValue(ResourceType.SERVANT));
 			//Can throw exceptions (in which case effects are discarded directly in EffectHandler)
 			executedEffects = match.getEffectHandler().executeEffects(match, event, true);
-
 			this.canBeExecuted(match);
 		}
 		catch (RequiredValueNotSatisfiedException | ActionDeniedException | ActionNotAllowedException e) {
@@ -138,9 +137,32 @@ public abstract class ActionPlace extends Action {
 	protected abstract void setup(Match match);
 	protected abstract void canBeExecuted(Match match) throws RequiredValueNotSatisfiedException, ActionNotAllowedException;
 
+	public List<Resource> getDiscounts() {
+		return discounts;
+	}
+
+	public Servant getServant() {
+		return servant;
+	}
+
+	public Occupiable getOccupiable() {
+		return occupiable;
+	}
+
+	public boolean isComplete() {
+		return complete;
+	}
+
+	public int getMultiplier() {
+		return multiplier;
+	}
+
+	public void setDiscounts(List<Resource> discounts) {
+		this.discounts = discounts;
+	}
+
 	@Override
 	public String toString() {
 		return occupiable.toString();
 	}
-
 }

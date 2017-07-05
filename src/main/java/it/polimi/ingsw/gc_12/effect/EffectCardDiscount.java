@@ -27,24 +27,26 @@ public class EffectCardDiscount extends Effect {
 
     @Override
     public void execute(Match match, Event event, boolean validation) throws ActionDeniedException {
-        
-        if(!(event instanceof EventPickCard))
-            throw new IllegalArgumentException("Expecting EventPickCard, received: " + event.getClass().getSimpleName());
 
-        Player player = event.getPlayer();
-        Card card = ((EventPickCard) event).getCard();
-        ResourceType type = this.resource.getType();
+        if(!validation) {
+            if (!(event instanceof EventPickCard))
+                throw new IllegalArgumentException("Expecting EventPickCard, received: " + event.getClass().getSimpleName());
 
-        Map<ResourceType, Resource> cardRequirements = new HashMap<>();
-        for(Resource resource : card.getRequirements())
-            cardRequirements.put(resource.getType(), resource);
+            Player player = event.getPlayer();
+            Card card = ((EventPickCard) event).getCard();
+            ResourceType type = this.resource.getType();
 
-        if(cardRequirements.containsKey(type)){
-            int newValue = cardRequirements.get(type).getValue() - this.resource.getValue();
-            newValue = (newValue < 0 ? cardRequirements.get(type).getValue() : this.resource.getValue());
+            Map<ResourceType, Resource> cardRequirements = new HashMap<>();
+            for (Resource resource : card.getRequirements())
+                cardRequirements.put(resource.getType(), resource);
 
-            int ownedResourceValue = player.getResources().get(type).getValue();
-            player.getResources().get(type).setValue(ownedResourceValue + newValue);
+            if (cardRequirements.containsKey(type)) {
+                int newValue = cardRequirements.get(type).getValue() - this.resource.getValue();
+                newValue = (newValue < 0 ? cardRequirements.get(type).getValue() : this.resource.getValue());
+
+                int ownedResourceValue = player.getResources().get(type).getValue();
+                player.getResources().get(type).setValue(ownedResourceValue + newValue);
+            }
         }
     }
 

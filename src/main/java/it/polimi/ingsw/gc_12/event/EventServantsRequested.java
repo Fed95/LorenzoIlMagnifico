@@ -81,7 +81,7 @@ public class EventServantsRequested extends EventPlaceFamilyMember implements Ev
 		for (; i <= player.getResourceValue(ResourceType.SERVANT); i++) {
 			ActionPlace action = ActionFactory.createActionPlace(player, familyMember, getOccupiable(), new Servant(i), true, null);
 			if(discounts.size() > 0 && action instanceof ActionPlaceOnTower)
-				((ActionPlaceOnTower) action).setDiscounts(discounts);
+				action.setDiscounts(discounts);
 			if(action.isValid(match))
 				actions.add(action);
 			if(mult > 1)

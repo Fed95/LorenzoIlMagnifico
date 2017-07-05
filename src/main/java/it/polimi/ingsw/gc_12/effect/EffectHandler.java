@@ -25,7 +25,8 @@ public class EffectHandler {
 				}
 			}
 		}catch(ActionDeniedException e){
-			discardEffects(match, executedEffects, event);
+			if(!validation)
+				discardEffects(match, executedEffects, event);
 			throw e;
 		}
 		return executedEffects;

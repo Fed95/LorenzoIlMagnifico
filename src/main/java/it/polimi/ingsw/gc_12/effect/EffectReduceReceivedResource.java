@@ -22,17 +22,19 @@ public class EffectReduceReceivedResource extends Effect {
 
     @Override
     public void execute(Match match, Event event, boolean validation) {
-       if(!(event instanceof EventReceiveResource))
-           throw new IllegalStateException("EffectReduceReceivedResource: received an unexpected event!");
+        if(!validation) {
+            if (!(event instanceof EventReceiveResource))
+                throw new IllegalStateException("EffectReduceReceivedResource: received an unexpected event!");
 
-       EventReceiveResource eventReceiveResource = (EventReceiveResource) event;
-       ResourceType type = eventReceiveResource.getResource().getType();
+            EventReceiveResource eventReceiveResource = (EventReceiveResource) event;
+            ResourceType type = eventReceiveResource.getResource().getType();
 
-       //TODO: this is a redundant check
-       if(this.resourceType.equals(type)) {
-           int newValue = eventReceiveResource.getResource().getValue() + value;
-           eventReceiveResource.getResource().setValue(newValue);
-       }
+            //TODO: this is a redundant check
+            if (this.resourceType.equals(type)) {
+                int newValue = eventReceiveResource.getResource().getValue() + value;
+                eventReceiveResource.getResource().setValue(newValue);
+            }
+        }
     }
 
     @Override

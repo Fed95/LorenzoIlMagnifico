@@ -16,12 +16,14 @@ public class EffectServantsMultipier extends Effect {
 
     @Override
     public void execute(Match match, Event event, boolean validation) {
-        if(event instanceof EventServantsRequested)
-            ((EventServantsRequested) event).setMultiplier(value);
-        else if(event instanceof EventPlaceFamilyMember)
-            ((EventPlaceFamilyMember) event).setMultiplier(value);
-        else
-            throw new IllegalStateException("EffectServantsMultiplier: did not expect received event. Received: " + event.getClass().getSimpleName());
+        if(!validation) {
+            if (event instanceof EventServantsRequested)
+                ((EventServantsRequested) event).setMultiplier(value);
+            else if (event instanceof EventPlaceFamilyMember)
+                ((EventPlaceFamilyMember) event).setMultiplier(value);
+            else
+                throw new IllegalStateException("EffectServantsMultiplier: did not expect received event. Received: " + event.getClass().getSimpleName());
+        }
     }
 
     @Override

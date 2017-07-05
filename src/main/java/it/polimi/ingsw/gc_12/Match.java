@@ -98,7 +98,6 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	}
 
 	private void createBoard() {
-		System.out.println("Match: Creating the board");
 		board = new Board(new ArrayList<>(players.values()));
 		board.setTowerSet(new LoaderTowerSet().get(this));
 		board.getTowerSet().setCards(cardDeckSet);
@@ -129,7 +128,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		newPeriod();
 		newRound();
 		newTurn();
-		System.out.println("Match: notifying EventStartMatch");
+		//System.out.println("Match: notifying EventStartMatch");
 		checkConnection();
 	}
 
@@ -144,7 +143,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		if(gameState.equals(State.PAUSED))
 			return;
 
-		System.out.println("Match: Starting new turn");
+		//System.out.println("Match: Starting new turn");
 		Player player = board.getTrackTurnOrder().newTurn();
 
 		actionHandler.setHasPlaced(false);
@@ -408,7 +407,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		timer.cancel();
 		timer.purge();
 		timer = new Timer();
-		System.out.println("setup timer action");
+		//System.out.println("setup timer action");
 		timer.schedule(new TimerActionTask(this), TIMEOUT_ACTION);
 	}
 }

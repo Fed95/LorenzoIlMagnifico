@@ -21,9 +21,6 @@ public class EventFamilyMemberChosen extends Event {
 	public EventFamilyMemberChosen(Player player, FamilyMember familyMember) {
 		super(player);
 		this.familyMember = familyMember;
-
-		effectProviders.addAll(player.getCards());
-		effectProviders.addAll(player.getExcommunications());
 	}
 	
 	public EventFamilyMemberChosen(FamilyMember familyMember) {
@@ -38,7 +35,6 @@ public class EventFamilyMemberChosen extends Event {
 	@Override
 	public void setActions(ActionHandler actionHandler, Match match) {
 		actions = new ArrayList<>();
-		//Adds the towers with at least one valid floor TODO: ADD CHECK FOR MARKET AND WORK (or remove for tower)
 		for(Tower tower : match.getBoard().getTowerSet().getTowers().values()){
 			for(TowerFloor towerFloor : tower.getFloors()){
 				ActionPlace action = ActionFactory.createActionPlace(player, familyMember, towerFloor);

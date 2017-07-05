@@ -20,11 +20,13 @@ public class EffectSetFamilyMemberValue extends Effect {
 
     @Override
     public void execute(Match match, Event e, boolean validation) throws ActionDeniedException {
-        if(!(e instanceof EventActivateLeaderCard))
-            throw new IllegalStateException();
-        EventSetFamilyMemberValue event = new EventSetFamilyMemberValue(e.getPlayer(), value);
-        match.getActionHandler().update(event, match);
-        match.notifyObserver(event);
+        if(!validation) {
+            if (!(e instanceof EventActivateLeaderCard))
+                throw new IllegalStateException();
+            EventSetFamilyMemberValue event = new EventSetFamilyMemberValue(e.getPlayer(), value);
+            match.getActionHandler().update(event, match);
+            match.notifyObserver(event);
+        }
     }
 
     @Override
