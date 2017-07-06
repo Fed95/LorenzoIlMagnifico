@@ -159,7 +159,7 @@ public class Server {
 		System.out.println("Adding player " + player.getName());
 		waitingPlayers.add(player);
 		if (waitingPlayers.size() == MIN_PLAYERS)  {
-			timer.schedule(new TimerMatchTask(match), TIMEOUT_START);  // TODO: set a proper number in config file before the deadline
+			timer.schedule(new TimerMatchTask(), TIMEOUT_START);  // TODO: set a proper number in config file before the deadline
 		}
 		else if (waitingPlayers.size() == MAX_PLAYERS) {
 			startMatch();
@@ -214,12 +214,6 @@ public class Server {
 	}
 
 	class TimerMatchTask extends TimerTask {
-
-		private Match match;
-
-		public TimerMatchTask(Match match) {
-			this.match = match;
-		}
 
 		@Override
 		public void run() {

@@ -7,10 +7,11 @@ import it.polimi.ingsw.gc12.controller.ActionHandler;
 import it.polimi.ingsw.gc12.view.client.ClientHandler;
 import it.polimi.ingsw.gc12.model.effect.EffectProvider;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Event{
+public abstract class Event implements Serializable{
 
 	protected Player player;
 	protected List<EffectProvider> effectProviders = new ArrayList<>();

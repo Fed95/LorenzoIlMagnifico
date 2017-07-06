@@ -13,6 +13,7 @@ import it.polimi.ingsw.gc12.Server;
 
 import java.io.IOException;
 import java.rmi.AlreadyBoundException;
+import java.rmi.ConnectException;
 import java.rmi.RemoteException;
 import java.util.*;
 
@@ -57,7 +58,11 @@ public class ServerRMIView extends ServerView implements RMIViewRemote {
 			ClientViewRemote clientStub = itr.next();
 			try {
 				clientStub.updateClient(event);
-			} catch (RemoteException ignored) {}
+			}
+			catch (ConnectException ignored) {}
+			catch (RemoteException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
@@ -70,10 +75,13 @@ public class ServerRMIView extends ServerView implements RMIViewRemote {
 			Player player = clientPlayers.get(clientStub);
 			try {
 				clientStub.checkConnection();
-			} catch (RemoteException e) {
+			} catch (ConnectException e) {
 				if(!player.isDisconnected())
 					match.setDisconnectedPlayer(player);
 				itr.remove();
+			}
+			catch (RemoteException e) {
+				e.printStackTrace();
 			}
 		}
 	}

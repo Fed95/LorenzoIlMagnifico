@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.SocketException;
 import java.rmi.AlreadyBoundException;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -57,12 +58,15 @@ public class ServerSocketView extends ServerView implements Runnable {
 		try {
 			sendObject(event);
 
-		} catch (IOException e) {
+		} catch (SocketException e) {
 			Player player = match.getPlayer(name);
 			if(!player.isDisconnected()) {
 				match.unregisterObserver(this);
 				match.setDisconnectedPlayer(player);
 			}
+		}
+		catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -108,7 +112,7 @@ public class ServerSocketView extends ServerView implements Runnable {
 				}
 			}
 		}
-		catch (IOException e) {
+		catch (SocketException e) {
 			Player player = match.getPlayer(name);
 			if(!player.isDisconnected()) {
 
@@ -116,7 +120,7 @@ public class ServerSocketView extends ServerView implements Runnable {
 				match.setDisconnectedPlayer(player);
 			}
 		}
-		catch (ClassNotFoundException | CloneNotSupportedException | AlreadyBoundException e) {
+		catch (IOException | ClassNotFoundException | CloneNotSupportedException | AlreadyBoundException e) {
 			e.printStackTrace();
 		}
 	}
