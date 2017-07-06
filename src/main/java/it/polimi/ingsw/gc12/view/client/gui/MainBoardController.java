@@ -567,6 +567,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
     @Override
     public void update(Observable o, Object arg) {
         Platform.runLater(() -> {
+            blockOccupiable();
             bindAllFamilyMember();
             disableTab();
             bindCardsToFloor();
@@ -580,7 +581,44 @@ public class MainBoardController extends Observable implements Initializable, Ob
             player = match.getPlayers().get(playerColor);
         });
     }
+    private void blockOccupiable(){
+        int block = match.getPlayers().size();
+        if(block == 2){
+           blockMarkets();
+           blockSpaceWork();
+        } else if(block == 3 ){
+            blockMarkets();
+        }
+    }
+    private void blockMarkets() {
+        Image blockMarket0 = new Image("img/block/market0Block.png");
+        Image blockMarket1 = new Image("img/block/market1Block.png");
+        market2.setImage(blockMarket0);
+        market3.setImage(blockMarket1);
+        market2.setLayoutY(843);
+        market2.setLayoutX(489);
+        market2.setFitWidth(70);
+        market2.setFitHeight(77);
 
+        market3.setLayoutY(892);
+        market3.setLayoutX(539);
+        market3.setFitWidth(70);
+        market3.setFitHeight(77);
+    }
+    private void blockSpaceWork(){
+        Image blockProduction = new Image("img/block/productionBlock.png");
+        Image blockHarvest = new Image("img/block/harvestBlock.png");
+        productionBig.setImage(blockProduction);
+        harvestBig.setImage(blockHarvest);
+        productionBig.setLayoutX(79);
+        productionBig.setLayoutY(843);
+        productionBig.setFitWidth(162);
+        productionBig.setFitHeight(80);
+        harvestBig.setFitHeight(79);
+        harvestBig.setFitWidth(160);
+        harvestBig.setLayoutY(931);
+        harvestBig.setLayoutX(80);
+    }
     private void bindAllFamilyMember(){
         Map<PlayerColor, ObservableList<FamilyMemberRepresentation>> mapColorFamilyRepresentation = match.getMapPlayerColorObservableLiseFMRepr();
         for(Player player : match.getPlayers().values()){
