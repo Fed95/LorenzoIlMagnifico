@@ -11,6 +11,8 @@ public class ConfigPlayers {
 
 	public ConfigPlayers(int playersNum) {
 		this.playersNum = playersNum;
+		if(playersNum == 4)
+			setSpaceWorkMultiple(true);
 	}
 
 	public void setSpaceMarketNum(int spaceMarketNum) {

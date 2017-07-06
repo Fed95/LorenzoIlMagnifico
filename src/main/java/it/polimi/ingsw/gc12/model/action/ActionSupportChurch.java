@@ -33,9 +33,8 @@ public class ActionSupportChurch extends Action {
         }
         match.notifyObserver(event);
 
-        player.setResourceValue(ResourceType.FAITH_POINT, 0);
-
         Resource victoryPoints = match.getBoard().getTrackFaithPoints().getFaithSlot(player.getResourceValue(ResourceType.FAITH_POINT)).getVictoryPoints();
+        player.setResourceValue(ResourceType.FAITH_POINT, 0);
         player.addResources(Collections.singletonList(victoryPoints));
 
         List<Player> players = match.getActionHandler().getPlayers();

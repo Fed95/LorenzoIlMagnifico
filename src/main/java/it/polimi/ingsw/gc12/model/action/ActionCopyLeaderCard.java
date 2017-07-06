@@ -14,6 +14,8 @@ public class ActionCopyLeaderCard extends Action {
 
     public ActionCopyLeaderCard(Player player, LeaderCard myCard, LeaderCard otherCard) {
         super(player);
+        if(myCard.equals(otherCard))
+            throw new IllegalStateException("A card cannot copy itself");
         this.myCard = myCard;
         this.otherCard = otherCard;
     }

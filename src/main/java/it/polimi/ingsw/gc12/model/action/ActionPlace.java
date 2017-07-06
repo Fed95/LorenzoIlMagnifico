@@ -96,11 +96,10 @@ public abstract class ActionPlace extends Action {
 		Event event = new EventPlaceFamilyMember(player, occupiable, familyMember);
 		int originalValue = familyMember.getValue();
 
-		List<Effect> executedEffects = new ArrayList<>();
 		try{
 			familyMember.setValue(originalValue + player.getResourceValue(ResourceType.SERVANT));
 			//Can throw exceptions (in which case effects are discarded directly in EffectHandler)
-			executedEffects = match.getEffectHandler().executeEffects(match, event, true);
+			match.getEffectHandler().executeEffects(match, event, true);
 			this.canBeExecuted(match);
 		}
 		catch (RequiredValueNotSatisfiedException | ActionDeniedException | ActionNotAllowedException e) {

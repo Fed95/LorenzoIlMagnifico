@@ -1,9 +1,16 @@
 package it.polimi.ingsw.gc_12;
 
+
 import it.polimi.ingsw.gc12.model.board.dice.SpaceDie;
+import it.polimi.ingsw.gc12.model.card.Card;
 import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.player.PlayerColor;
+import it.polimi.ingsw.gc12.model.player.resource.Money;
+import it.polimi.ingsw.gc12.model.player.resource.Resource;
+import it.polimi.ingsw.gc12.model.player.resource.Stone;
+import it.polimi.ingsw.gc12.model.player.resource.Wood;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,5 +47,22 @@ public class InstanceCreator {
     public static Match createMatch(int numOfPlayers){
         List<Player> players = cratePlayers(numOfPlayers);
         return createMatch(players);
+    }
+
+    public static List<Resource> getResourceList(){
+        List<Resource> requirements = new ArrayList<>();
+        requirements.add(new Money(1));
+        requirements.add(new Wood(1));
+        requirements.add(new Stone(1));
+        return requirements;
+    }
+
+    public static Card getCard(String name){
+        Match match = createMatch(0);
+        List<Card> cards = match.getCards();
+        for(Card card : cards)
+            if(card.getName().equals(name))
+                return card;
+        throw new IllegalStateException();
     }
 }

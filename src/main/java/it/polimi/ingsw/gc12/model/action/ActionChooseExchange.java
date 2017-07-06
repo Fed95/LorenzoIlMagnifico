@@ -14,18 +14,9 @@ public class ActionChooseExchange extends Action {
 
     private ResourceExchange exchange;
 
-    private int remainingCouncilPrivileges;
-    private List<Integer> choices;
-
     public ActionChooseExchange(Player player, ResourceExchange exchange) {
         super(player);
         this.exchange = exchange;
-    }
-
-    public ActionChooseExchange(Player player, ResourceExchange exchange, int remainingCouncilPrivileges, List<Integer> choices) {
-        this(player, exchange);
-        this.remainingCouncilPrivileges = remainingCouncilPrivileges;
-        this.choices = choices;
     }
 
     @Override
@@ -48,8 +39,6 @@ public class ActionChooseExchange extends Action {
             newBonus.add(e.getResource());
         }
         match.addResources(player, newBonus);
-        /*if(remainingCouncilPrivileges != 0)
-            new EventCouncilPrivilegeReceived(player, new CouncilPrivilege(remainingCouncilPrivileges))*/
     }
 
     @Override

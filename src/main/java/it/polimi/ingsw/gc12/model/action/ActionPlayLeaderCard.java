@@ -15,6 +15,7 @@ import java.util.List;
 public class ActionPlayLeaderCard extends Action {
 
     private LeaderCard card;
+    List<Effect> executedEffects = new ArrayList<>();
 
     public ActionPlayLeaderCard(Player player, LeaderCard card) {
         super(player);
@@ -28,8 +29,8 @@ public class ActionPlayLeaderCard extends Action {
 
     @Override
     public void start(Match match) {
-        player.getPersonalBoard().getLeaderCards().get(player.getPersonalBoard().getLeaderCards().indexOf(card)).setPlayed(true);
-        List<Effect> executedEffects = new ArrayList<>();
+        player.getPersonalBoard().getLeaderCardsSpace().getLeaderCard(card.getId()).setPlayed(true);
+        executedEffects = new ArrayList<>();
         if(card.isPermanent())
             try {
                 executedEffects = match.getEffectHandler().executeEffects(match, new EventActivateLeaderCard(player, card));
@@ -45,6 +46,11 @@ public class ActionPlayLeaderCard extends Action {
         match.getActionHandler().update(event, match);
         //Notifies the ServerRMIView
         match.notifyObserver(event);
+    }
+
+    //Used for testing
+    public List<Effect> getExecutedEffects() {
+        return executedEffects;
     }
 
     @Override

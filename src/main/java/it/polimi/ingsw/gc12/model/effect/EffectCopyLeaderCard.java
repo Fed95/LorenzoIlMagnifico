@@ -23,7 +23,7 @@ public class EffectCopyLeaderCard extends Effect {
     public void execute(Match match, Event event, boolean validation) throws ActionDeniedException {
         if(!validation) {
             //Retrieves th original LeaderCard containing the CopyLeaderCard effect
-            LeaderCard myCard = event.getPlayer().getPersonalBoard().getLeaderCard(cardId);
+            LeaderCard myCard = event.getPlayer().getPersonalBoard().getLeaderCardsSpace().getLeaderCard(cardId);
 
             EventCopyLeaderCard e = new EventCopyLeaderCard(event.getPlayer(), myCard);
             match.getActionHandler().update(e, match);

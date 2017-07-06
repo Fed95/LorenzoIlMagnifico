@@ -191,6 +191,8 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		turnCounter = 0;
 		resetFamilyMembers();
 		board.refresh(roundNum, getPeriodNum());
+		for(Player player : players.values())
+			player.getPersonalBoard().getLeaderCardsSpace().newTurn();
 		this.notifyObserver(new EventStartRound(roundNum, board.getTowerSet(), board.getSpaceDie()));
 		return vatican;
 	}
@@ -341,7 +343,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	public List<LeaderCard> getPlayedLeaderCards(){
 		List<LeaderCard> cards = new ArrayList<>();
 		for(Player player : players.values())
-			for(LeaderCard card : player.getPersonalBoard().getPlayedLeaderCards())
+			for(LeaderCard card : player.getPersonalBoard().getLeaderCardsSpace().getPlayedLeaderCards())
 				cards.add(card);
 		return cards;
 	}
@@ -402,6 +404,13 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 
 	public void setGameState(MatchState gameState) {
 		this.gameState = gameState;
+	}
+
+	public List<Card> getCards(){
+		List<Card> cards = new ArrayList<>();
+		cards.addAll(developmentCards);
+		cards.addAll(leaderCards);
+		return cards;
 	}
 
 	private void setTimeoutAction() {

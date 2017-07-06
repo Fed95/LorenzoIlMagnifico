@@ -21,7 +21,7 @@ public abstract class Event{
 		if(player != null) {
 			this.player = player;
 			effectProviders.add(player.getPersonalBoard().getBonusTile());
-			effectProviders.addAll(player.getPersonalBoard().getUsefulLeaderCards());
+			effectProviders.addAll(player.getPersonalBoard().getLeaderCardsSpace().getUsefulLeaderCards());
 			effectProviders.addAll(player.getCards());
 			effectProviders.addAll(player.getExcommunications());
 		}else{

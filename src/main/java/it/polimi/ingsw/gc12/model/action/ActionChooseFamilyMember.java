@@ -38,7 +38,7 @@ public class ActionChooseFamilyMember extends Action{
 
 	@Override
 	public String toString() {
-		return "Place "+familyMember;
+		return "Place " + familyMember;
 	}
 
 	@Override
