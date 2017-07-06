@@ -1,15 +1,18 @@
 package it.polimi.ingsw.gc_12;
 
-import it.polimi.ingsw.gc_12.action.Action;
-import it.polimi.ingsw.gc_12.action.ActionPlaceOnTower;
-import it.polimi.ingsw.gc_12.card.CardType;
-import it.polimi.ingsw.gc_12.event.Event;
-import it.polimi.ingsw.gc_12.occupiables.TowerFloor;
-import it.polimi.ingsw.gc_12.resource.Money;
-import it.polimi.ingsw.gc_12.resource.Resource;
-import it.polimi.ingsw.gc_12.resource.ResourceType;
-import it.polimi.ingsw.gc_12.server.Server;
-import it.polimi.ingsw.gc_12.server.view.ServerRMIView;
+import it.polimi.ingsw.gc12.model.action.Action;
+import it.polimi.ingsw.gc12.model.action.ActionPlaceOnTower;
+import it.polimi.ingsw.gc12.model.card.CardType;
+import it.polimi.ingsw.gc12.model.event.Event;
+import it.polimi.ingsw.gc12.model.board.occupiable.TowerFloor;
+import it.polimi.ingsw.gc12.model.match.Match;
+import it.polimi.ingsw.gc12.model.player.Player;
+import it.polimi.ingsw.gc12.model.player.familymember.FamilyMemberColor;
+import it.polimi.ingsw.gc12.model.player.resource.Money;
+import it.polimi.ingsw.gc12.model.player.resource.Resource;
+import it.polimi.ingsw.gc12.model.player.resource.ResourceType;
+import it.polimi.ingsw.gc12.Server;
+import it.polimi.ingsw.gc12.view.server.ServerRMIView;
 import org.junit.Test;
 import org.mockito.Mockito;
 

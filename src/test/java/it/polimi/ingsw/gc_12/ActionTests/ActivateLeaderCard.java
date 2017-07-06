@@ -1,8 +1,8 @@
 package it.polimi.ingsw.gc_12.ActionTests;
 
 import it.polimi.ingsw.gc_12.InstanceCreator;
-import it.polimi.ingsw.gc_12.Match;
-import it.polimi.ingsw.gc_12.Player;
+import it.polimi.ingsw.gc12.model.match.Match;
+import it.polimi.ingsw.gc12.model.player.Player;
 
 public class ActivateLeaderCard {
 

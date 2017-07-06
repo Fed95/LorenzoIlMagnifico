@@ -1,6 +1,9 @@
 package it.polimi.ingsw.gc_12;
 
-import it.polimi.ingsw.gc_12.dice.SpaceDie;
+import it.polimi.ingsw.gc12.model.board.dice.SpaceDie;
+import it.polimi.ingsw.gc12.model.match.Match;
+import it.polimi.ingsw.gc12.model.player.Player;
+import it.polimi.ingsw.gc12.model.player.PlayerColor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
