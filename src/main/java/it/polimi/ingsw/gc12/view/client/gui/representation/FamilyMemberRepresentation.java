@@ -2,22 +2,26 @@ package it.polimi.ingsw.gc12.view.client.gui.representation;
 
 import javafx.application.Platform;
 import javafx.beans.property.*;
+import javafx.scene.image.Image;
 
 import java.util.Observable;
 import java.util.Observer;
 
 
 public class FamilyMemberRepresentation implements Observer {
-      private SimpleIntegerProperty valueProperty;
+    private SimpleIntegerProperty valueProperty;
     private SimpleStringProperty colorsFamilyMemberProperty;
     private SimpleStringProperty colorsPlayerProperty;
     private SimpleBooleanProperty takenProperty;
+    private SimpleObjectProperty<Image> pathFamilyMemberImage;
 
-    public FamilyMemberRepresentation(int value, String colorFamilyMember, String colorPlayer, Boolean taken){
+    public FamilyMemberRepresentation(String pathFamily, int value, String colorFamilyMember, String colorPlayer, Boolean taken){
         this.valueProperty = new SimpleIntegerProperty(value);
-        this.colorsFamilyMemberProperty = new SimpleStringProperty(this, "colorsFamilyMemberPropertyInside",colorFamilyMember);
-        this.colorsPlayerProperty =  new SimpleStringProperty(this, "colorePlayerPropertyInside",colorPlayer);
+        this.colorsFamilyMemberProperty = new SimpleStringProperty(colorFamilyMember);
+        this.colorsPlayerProperty =  new SimpleStringProperty(colorPlayer);
         this.takenProperty =  new SimpleBooleanProperty(taken);
+        Image pathFam = new Image(pathFamily);
+        this.pathFamilyMemberImage = new SimpleObjectProperty<Image>(pathFam);
     }
     public void setColorsPlayerProperty(String colorsPlayerProperty) {
         this.colorsPlayerProperty.set(colorsPlayerProperty);
@@ -51,6 +55,18 @@ public class FamilyMemberRepresentation implements Observer {
     public StringProperty getColorsPlayerProperty() {
         return colorsPlayerProperty;
     }
+
+    public Image getPathFamilyMemberImage() {
+        return pathFamilyMemberImage.get();
+    }
+    public void setPathFamilyMemberImage(Image pathFamilyMemberImage) {
+        this.pathFamilyMemberImage.set(pathFamilyMemberImage);
+    }
+
+    public SimpleObjectProperty<Image> getpathFamilyMemberImageProperty() {
+        return pathFamilyMemberImage;
+    }
+
 
     @Override
     public void update(Observable o, Object value) {

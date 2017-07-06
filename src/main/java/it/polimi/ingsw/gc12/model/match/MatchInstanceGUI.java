@@ -170,7 +170,8 @@ public class MatchInstanceGUI extends MatchInstance {
 		for(Player player : players.values()) {
 			List<FamilyMember> familyMembers = player.getAvailableFamilyMembers();
 			for (FamilyMember familyMember : familyMembers) {
-				familyMemberRepresentation = new FamilyMemberRepresentation(familyMember.getValue(), familyMember.getColor().toString(), familyMember.getOwner().getColor().toString(), familyMember.isBusy());
+			    String pathFamily = "img/players/"+familyMember.getOwner().getColor().toString()+"/"+familyMember.getOwner().getColor().toString()+"_"+familyMember.getColor().toString()+".png";
+				familyMemberRepresentation = new FamilyMemberRepresentation(pathFamily,familyMember.getValue(), familyMember.getColor().toString(), familyMember.getOwner().getColor().toString(), familyMember.isBusy());
 				mapFamilyMember.get( familyMember.getOwner().getColor()).add(familyMemberRepresentation);
 			}
 		}

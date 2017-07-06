@@ -590,6 +590,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
                 ObservableList<FamilyMemberRepresentation> famMembtakingvalue = mapColorFamilyRepresentation.get(playerColor).stream().filter(FM -> (FM.getColorsFamilyMemberPropertyString()).equals(familyMemberColor.toString())).collect(collectingAndThen(toList(), l -> FXCollections.observableArrayList(l)));
                 StringBinding value = famMembtakingvalue.get(0).getValueProperty().asString();//valore da assegnare alla label
                 familyMemberLabels.get(playerColor).get(familyMemberColor).textProperty().bind((value));//bindo la property alla label
+                familyMembers.get(playerColor).get(familyMemberColor).imageProperty().bind(famMembtakingvalue.get(0).getpathFamilyMemberImageProperty());
             }
         }
 

@@ -46,3 +46,27 @@ then, you can safely remove the 'template' remote by typing `git remote rm templ
   git commit -am "customize project"
   git push origin master
   ```
+# GAME
+##How to run it
+In oreder to play the game you have to start the server class that manage the client request for a game.
+After that for each player you can start clientGUI or clientCLI depending if you want to play with the graphic interface(clientGUI) or the command line(clientCLI).
+The type of the connection is asked from CLI or GUI and you can choose between RMI or SOCKET.<br>
+So now you are ready to play the game!
+  ```
+  Server          --> run it.polimi.ingsw.gc12.Server
+  client with GUI --> run it.polimi.ingsw.gc12.view.client.gui.ClientGUI
+  client with CLI --> run it.polimi.ingsw.gc12.view.client.cli.ClientCLI
+  ```
+##Details
+###The Server
+- must be run once.
+- can handle more game at the same time.
+- since both RMI and SOCKET are implemented the server can handle different games with different type of connections.
+
+###The Client
+- Instantiate it for each plyer.
+- clientGUI it use javaFX as graphical interface
+
+
+ 
+ 
