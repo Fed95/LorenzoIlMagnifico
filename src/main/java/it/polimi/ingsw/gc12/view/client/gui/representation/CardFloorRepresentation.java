@@ -5,26 +5,24 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.paint.Paint;
 
 
 public class CardFloorRepresentation  {
 
     private SimpleIntegerProperty floorNumber;
-    private SimpleObjectProperty<Image> path;
-    private SimpleObjectProperty<Image> pathWhenTaken;
+    private SimpleObjectProperty<Image> pathCard;
+    private SimpleObjectProperty<Image> pathFloor;
 
 
     private SimpleBooleanProperty taken;
 
-    public CardFloorRepresentation(String url ,int floor, Boolean taken) {
+    public CardFloorRepresentation(String urlCard ,String urlFloor, int floor, Boolean taken) {
         this.floorNumber = new SimpleIntegerProperty(floor);
-        Image image = new Image(url);
-        this.path = new SimpleObjectProperty<Image>(image);
+        Image imageCard = new Image(urlCard);
+        this.pathCard = new SimpleObjectProperty<Image>(imageCard);
         this.taken = new SimpleBooleanProperty(taken);
-        this.pathWhenTaken = new SimpleObjectProperty<Image>();
+        Image imageFloor = new Image(urlFloor);
+        this.pathFloor = new SimpleObjectProperty<Image>(imageFloor);
     }
 
     public int getFloorNumber() {
@@ -32,22 +30,22 @@ public class CardFloorRepresentation  {
     }
 
     public ObjectProperty<Image> getPathProperty() {
-        return path;
+        return pathCard;
     }
 
-    public void setPath(Image path) {
-        this.path.set(path);
+    public void setPathCard(Image pathCard) {
+        this.pathCard.set(pathCard);
     }
 
-    public Image getPathWhenTaken() {
-        return pathWhenTaken.get();
+    public Image getPathFloor() {
+        return pathFloor.get();
     }
 
-    public ObjectProperty<Image> pathWhenTakenProperty() {
-        return pathWhenTaken;
+    public SimpleObjectProperty<Image> getPathFloorProperty() {
+        return pathFloor;
     }
 
-    public void setPathWhenTaken(Image pathWhenTaken) {
-        this.pathWhenTaken.set(pathWhenTaken);
+    public void setPathFloor(Image pathFloor) {
+        this.pathFloor.set(pathFloor);
     }
 }

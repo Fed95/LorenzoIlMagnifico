@@ -615,7 +615,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
             for(CardFloorRepresentation cardFloorRepresentation : cardFloorRepresentations){
                 int floor = cardFloorRepresentation.getFloorNumber();
                 cardFloors.get(cardType).get(floor).imageProperty().bind(match.getMapTypeCardFloorRepresentation().get(cardType).get(floor).getPathProperty());
-                towerFloors.get(cardType).get(floor).imageProperty().bind(match.getMapTypeCardFloorRepresentation().get(cardType).get(floor).pathWhenTakenProperty());
+                towerFloors.get(cardType).get(floor).imageProperty().bind(match.getMapTypeCardFloorRepresentation().get(cardType).get(floor).getPathFloorProperty());
             }
         }
     }

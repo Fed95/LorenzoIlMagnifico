@@ -588,84 +588,38 @@
              <ImageView fx:id="cardFloor13" fitHeight="115.0" fitWidth="81.0" layoutX="447.0" layoutY="170.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
              <ImageView fx:id="cardFloor14" fitHeight="114.0" fitWidth="81.0" layoutX="447.0" layoutY="307.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
              <ImageView fx:id="cardFloor15" fitHeight="114.0" fitWidth="80.0" layoutX="448.0" layoutY="443.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="floorToBeClicked0" fitHeight="60.0" fitWidth="60.0" layoutX="88.5" layoutY="59.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../img/floor/floor0.png" />
-            </ImageView>
-             <ImageView fx:id="floorToBeClicked1" fitHeight="60.0" fitWidth="60.0" layoutX="88.5" layoutY="196.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
-                 <image>
-                     <Image url="@../img/floor/floor1.png" />
-                 </image>
-             </ImageView>
-             <ImageView fx:id="floorToBeClicked2" fitHeight="60.0" fitWidth="60.0" layoutX="88.3" layoutY="332.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
-                 <image>
-                     <Image url="@../img/floor/floo2,3.png" />
-                 </image>
-             </ImageView>
-             <ImageView fx:id="floorToBeClicked3" fitHeight="60.0" fitWidth="60.0" layoutX="88.4" layoutY="468.5" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
-                 <image>
-                     <Image url="@../img/floor/floo2,3.png" />
-                 </image>
-             </ImageView>
-             <ImageView fx:id="floorToBeClicked4" fitHeight="60.0" fitWidth="60.0" layoutX="235.1" layoutY="59.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
-                 <image>
-                     <Image url="@../img/floor/floor4.png" />
-                 </image>
-             </ImageView>
-             <ImageView fx:id="floorToBeClicked5" fitHeight="60.0" fitWidth="60.0" layoutX="235.1" layoutY="196.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
-                 <image>
-                     <Image url="@../img/floor/floor5.png" />
-                 </image>
-             </ImageView>
-             <ImageView fx:id="floorToBeClicked6" fitHeight="60.0" fitWidth="60.0" layoutX="235.1" layoutY="332.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
-                 <image>
-                     <Image url="@../img/floor/floo2,3.png" />
-                 </image>
-             </ImageView>
-             <ImageView fx:id="floorToBeClicked7" fitHeight="60.0" fitWidth="60.0" layoutX="235.1" layoutY="468.5" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
-                 <image>
-                     <Image url="@../img/floor/floo2,3.png" />
-                 </image>
-             </ImageView>
-             <ImageView fx:id="floorToBeClicked8" fitHeight="60.0" fitWidth="60.0" layoutX="381.8" layoutY="59.2" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
-                 <image>
-                     <Image url="@../img/floor/floor8.png" />
-                 </image>
-             </ImageView>
-             <ImageView fx:id="floorToBeClicked9" fitHeight="60.0" fitWidth="60.0" layoutX="381.8" layoutY="196.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
-                 <image>
-                     <Image url="@../img/floor/floor9.png" />
-                 </image>
-             </ImageView>
-             <ImageView fx:id="floorToBeClicked10" fitHeight="60.0" fitWidth="60.0" layoutX="381.3" layoutY="332.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
-                 <image>
-                     <Image url="@../img/floor/floo2,3.png" />
-                 </image>
-             </ImageView>
-             <ImageView fx:id="floorToBeClicked11" fitHeight="60.0" fitWidth="60.0" layoutX="381.5" layoutY="468.3" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
-                 <image>
-                     <Image url="@../img/floor/floo2,3.png" />
-                 </image>
-             </ImageView>
-             <ImageView fx:id="floorToBeClicked12" fitHeight="60.0" fitWidth="60.0" layoutX="528.3" layoutY="59.25" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
-                 <image>
-                     <Image url="@../img/floor/floor12.png" />
-                 </image>
-             </ImageView>
-             <ImageView fx:id="floorToBeClicked13" fitHeight="60.0" fitWidth="60.0" layoutX="528.1" layoutY="195.8" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
-                 <image>
-                     <Image url="@../img/floor/floor13.png" />
-                 </image>
-             </ImageView>
-             <ImageView fx:id="floorToBeClicked14" fitHeight="60.0" fitWidth="60.0" layoutX="528.1" layoutY="332.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
-                 <image>
-                     <Image url="@../img/floor/floo2,3.png" />
-                 </image>
-             </ImageView>
-             <ImageView fx:id="floorToBeClicked15" fitHeight="60.0" fitWidth="60.0" layoutX="528.1" layoutY="468.3" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true">
-                 <image>
-                     <Image url="@../img/floor/floo2,3.png" />
-                 </image>
-             </ImageView>
+            <ImageView fx:id="floorToBeClicked0" fitHeight="60.0" fitWidth="60.0" layoutX="88.5" layoutY="59.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true"/>
+
+             <ImageView fx:id="floorToBeClicked1" fitHeight="60.0" fitWidth="60.0" layoutX="88.5" layoutY="196.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true"/>
+
+             <ImageView fx:id="floorToBeClicked2" fitHeight="60.0" fitWidth="60.0" layoutX="88.3" layoutY="332.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true"/>
+
+             <ImageView fx:id="floorToBeClicked3" fitHeight="60.0" fitWidth="60.0" layoutX="88.4" layoutY="468.5" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true"/>
+
+             <ImageView fx:id="floorToBeClicked4" fitHeight="60.0" fitWidth="60.0" layoutX="235.1" layoutY="59.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true"/>
+
+             <ImageView fx:id="floorToBeClicked5" fitHeight="60.0" fitWidth="60.0" layoutX="235.1" layoutY="196.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true"/>
+
+             <ImageView fx:id="floorToBeClicked6" fitHeight="60.0" fitWidth="60.0" layoutX="235.1" layoutY="332.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true"/>
+
+             <ImageView fx:id="floorToBeClicked7" fitHeight="60.0" fitWidth="60.0" layoutX="235.1" layoutY="468.5" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true"/>
+
+             <ImageView fx:id="floorToBeClicked8" fitHeight="60.0" fitWidth="60.0" layoutX="381.8" layoutY="59.2" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true"/>
+
+             <ImageView fx:id="floorToBeClicked9" fitHeight="60.0" fitWidth="60.0" layoutX="381.8" layoutY="196.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true"/>
+
+             <ImageView fx:id="floorToBeClicked10" fitHeight="60.0" fitWidth="60.0" layoutX="381.3" layoutY="332.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true"/>
+
+             <ImageView fx:id="floorToBeClicked11" fitHeight="60.0" fitWidth="60.0" layoutX="381.5" layoutY="468.3" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true"/>
+
+             <ImageView fx:id="floorToBeClicked12" fitHeight="60.0" fitWidth="60.0" layoutX="528.3" layoutY="59.25" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true"/>
+
+             <ImageView fx:id="floorToBeClicked13" fitHeight="60.0" fitWidth="60.0" layoutX="528.1" layoutY="195.8" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true"/>
+
+             <ImageView fx:id="floorToBeClicked14" fitHeight="60.0" fitWidth="60.0" layoutX="528.1" layoutY="332.0" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true"/>
+
+             <ImageView fx:id="floorToBeClicked15" fitHeight="60.0" fitWidth="60.0" layoutX="528.1" layoutY="468.3" onMouseClicked="#floorClicked" pickOnBounds="true" preserveRatio="true"/>
+
             <Circle fx:id="firstPlayerTurn" fill="DODGERBLUE" layoutX="560.0" layoutY="564.0" opacity="0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
              <Circle fx:id="secondPlayerTurn" fill="DODGERBLUE" layoutX="560.0" layoutY="604.0" opacity="0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
              <Circle fx:id="thirdPlayerTurn" fill="DODGERBLUE" layoutX="560.0" layoutY="642.0" opacity="0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />

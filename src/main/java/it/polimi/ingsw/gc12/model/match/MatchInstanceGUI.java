@@ -129,7 +129,7 @@ public class MatchInstanceGUI extends MatchInstance {
                 int floor = towerFloor.getFloorNum();
                 String path = "img/Card/card_"+cardId+".png";//setting trasparent card because the cards arrive with eventStarTurn
                 Image image = new Image(path);
-                mapTypeCardFloorRepresentation.get(cardType).get(floor).setPath(image);
+                mapTypeCardFloorRepresentation.get(cardType).get(floor).setPathCard(image);
             }
         }
     }
@@ -182,6 +182,7 @@ public class MatchInstanceGUI extends MatchInstance {
 		mapTypeCardFloorRepresentation.put(CardType.BUILDING, cardFloorBuildingRepresentation);
 		mapTypeCardFloorRepresentation.put(CardType.CHARACTER, cardFloorCharactherRepresentation);
 		mapTypeCardFloorRepresentation.put(CardType.VENTURE, cardFloorVentureRepresentation);
+		int realFloor = 0;
 		for(CardType cardType : CardType.values()){
 			List<TowerFloor> towerFloors = match.getBoard().getTowerSet().getTower(cardType).getFloors();
 			for (TowerFloor towerFloor : towerFloors){
@@ -191,9 +192,11 @@ public class MatchInstanceGUI extends MatchInstance {
                 if(occupiers == null){
                     taken = false;
                 }
-				String path = "img/Card/transparentCard.png";//setting trasparent card because the cards arrive with eventStarTurn
-				CardFloorRepresentation cardFloorRepresentation = new CardFloorRepresentation(path, floor, taken);
+				String pathCard = "img/Card/transparentCard.png";//setting trasparent card because the cards arrive with eventStarTurn
+                String pathFloor = "img/Floor/floor"+realFloor+".png";
+				CardFloorRepresentation cardFloorRepresentation = new CardFloorRepresentation(pathCard,pathFloor, floor, taken);
 				mapTypeCardFloorRepresentation.get(cardType).add(cardFloorRepresentation);
+				realFloor= realFloor+1;
 			}
 		}
 	}
