@@ -36,8 +36,8 @@ public class ResponsiveListener implements ChangeListener<Number> {
         final double newWidth  = scene.getWidth();
         final double newHeight = scene.getHeight();
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-        double realWidth = primaryScreenBounds.getWidth();
-        double realHeight = primaryScreenBounds.getHeight();
+        int realWidth = (int)primaryScreenBounds.getWidth();
+        int realHeight = (int)primaryScreenBounds.getHeight();
         if(realWidth == 1920 && realHeight == 1080){
             adjust = 1;
         }

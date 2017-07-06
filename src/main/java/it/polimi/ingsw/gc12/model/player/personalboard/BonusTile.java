@@ -8,7 +8,7 @@ import java.util.List;
 
 public class BonusTile implements EffectProvider, Serializable {
 
-	List<Effect> effects;
+	private List<Effect> effects;
 	
 	public BonusTile(List<Effect> effects){
 		this.effects = effects;

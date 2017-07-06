@@ -371,30 +371,30 @@ public class MainBoardController extends Observable implements Initializable, Ob
 
     @FXML void familyClicked(MouseEvent event) {
         ImageView familyMemberClicked = (ImageView) event.getTarget();
-        if(isMyFam(playerColor, familyMemberClicked) && isMyTurn()){
-            for (Map.Entry<FamilyMemberColor, ImageView> entry : familyMembers.get(playerColor).entrySet()) {
-                if(entry.getValue().equals(familyMemberClicked)) {
-                    FamilyMember familyMember = new FamilyMember(playerColor, entry.getKey());
-                    Action action;
-                    if(isFMSelected(familyMemberClicked) || actionPending != null) {
-                        action = new DiscardAction(match.getPlayers().get(playerColor));
-                        if(!isFMSelected(familyMemberClicked))
-                            actionPending = new ActionChooseFamilyMember(match.getPlayers().get(playerColor), familyMember);
-                        else
-                            resetActionPending();
+        if(isMyFam(playerColor, familyMemberClicked)) {
+            if (isMyTurn()) {
+                for (Map.Entry<FamilyMemberColor, ImageView> entry : familyMembers.get(playerColor).entrySet()) {
+                    if (entry.getValue().equals(familyMemberClicked)) {
+                        FamilyMember familyMember = new FamilyMember(playerColor, entry.getKey());
+                        Action action;
+                        if (isFMSelected(familyMemberClicked) || actionPending != null) {
+                            action = new DiscardAction(match.getPlayers().get(playerColor));
+                            if (!isFMSelected(familyMemberClicked))
+                                actionPending = new ActionChooseFamilyMember(match.getPlayers().get(playerColor), familyMember);
+                            else
+                                resetActionPending();
+                        } else {
+                            action = new ActionChooseFamilyMember(match.getPlayers().get(playerColor), familyMember);
+                            actionPending = action;
+                        }
+                        toggleFMHighlight(familyMemberClicked);
+                        selectAction(action);
+                        break;
                     }
-                    else {
-                        action = new ActionChooseFamilyMember(match.getPlayers().get(playerColor), familyMember);
-                        actionPending = action;
-                    }
-                    toggleFMHighlight(familyMemberClicked);
-                    selectAction(action);
-                    break;
                 }
-            }
+            } else
+                showTurnDenied();
         }
-        else
-            showTurnDenied();
     }
 
     @FXML void showCard(MouseEvent event){
@@ -708,7 +708,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
     }
 
     private void toggleFMHighlight(ImageView familyMemberClicked){
-        double selection = familyMemberClicked.getOpacity();
+        Integer selection = (int)familyMemberClicked.getOpacity();
         if(selection != 1){
             familyMemberClicked.setOpacity(1);
         }
