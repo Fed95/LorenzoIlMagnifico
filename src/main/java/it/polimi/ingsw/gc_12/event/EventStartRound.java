@@ -31,7 +31,7 @@ public class EventStartRound extends Event {
 
 	@Override
 	public String toString() {
-		return null;
+		return "";
 	}
 
 	@Override

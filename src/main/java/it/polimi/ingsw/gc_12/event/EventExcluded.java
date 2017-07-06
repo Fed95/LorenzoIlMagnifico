@@ -27,6 +27,6 @@ public class EventExcluded extends Event {
 
 	@Override
 	public String toString() {
-		return null;
+		return "";
 	}
 }

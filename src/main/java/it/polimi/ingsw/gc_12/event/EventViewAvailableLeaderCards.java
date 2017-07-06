@@ -42,7 +42,7 @@ public class EventViewAvailableLeaderCards extends Event {
 
     @Override
     public String toString() {
-        return null;
+        return "";
     }
 
 }

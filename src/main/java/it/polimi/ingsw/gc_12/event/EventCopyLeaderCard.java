@@ -29,6 +29,6 @@ public class EventCopyLeaderCard extends Event {
 
     @Override
     public String toString() {
-        return null;
+        return "";
     }
 }

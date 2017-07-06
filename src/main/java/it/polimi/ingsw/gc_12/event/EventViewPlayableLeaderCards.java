@@ -41,7 +41,7 @@ public class EventViewPlayableLeaderCards extends Event implements EventView{
 
     @Override
     public String toString() {
-        return null;
+        return "";
     }
 
 

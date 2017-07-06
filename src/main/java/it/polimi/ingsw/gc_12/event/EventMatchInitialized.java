@@ -17,7 +17,7 @@ public class EventMatchInitialized extends Event implements EventView{
 
 	@Override
 	public String toString() {
-		return null;
+		return "";
 	}
 
 	@Override
