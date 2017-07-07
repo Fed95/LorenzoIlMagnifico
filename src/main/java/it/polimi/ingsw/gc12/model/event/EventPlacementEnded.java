@@ -2,8 +2,11 @@ package it.polimi.ingsw.gc12.model.event;
 
 import it.polimi.ingsw.gc12.controller.ActionHandler;
 import it.polimi.ingsw.gc12.model.action.*;
+import it.polimi.ingsw.gc12.model.board.occupiable.Occupiable;
 import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.player.Player;
+import it.polimi.ingsw.gc12.model.player.familymember.FamilyMember;
+import it.polimi.ingsw.gc12.view.client.ClientHandler;
 import it.polimi.ingsw.gc12.view.client.gui.MainBoard;
 import javafx.application.Platform;
 
@@ -12,8 +15,13 @@ import java.util.ArrayList;
 
 public class EventPlacementEnded extends Event implements EventView{
 
-	public EventPlacementEnded(Player player) {
+	private FamilyMember familyMember;
+	private Occupiable occupiable;
+
+	public EventPlacementEnded(Player player, FamilyMember familyMember, Occupiable occupiable) {
 		super(player);
+		this.familyMember = familyMember;
+		this.occupiable = occupiable;
 	}
 
 	@Override
@@ -31,12 +39,20 @@ public class EventPlacementEnded extends Event implements EventView{
 	}
 
 	@Override
+	public void executeClientSide(ClientHandler client) {
+		client.getMatch().placeFamilyMember(familyMember, occupiable, player.getColor());
+	}
+
+	@Override
 	public String toString() {
 		return "";
 	}
 
 	@Override
 	public void executeViewSide(MainBoard view) {
-		Platform.runLater(() -> view.getControllerMainBoard().disablePassTurn(false));
+		Platform.runLater(() -> {
+			view.getControllerMainBoard().disablePassTurn(false);
+			view.getControllerMainBoard().moveOccupiableImage(occupiable);
+		});
 	}
 }

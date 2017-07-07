@@ -138,11 +138,16 @@ public class MatchInstanceGUI extends MatchInstance {
 
 	@Override
 	public void placeFamilyMember(FamilyMember familyMember, Occupiable occupiable, PlayerColor playerColor) {
-		/*for(FamilyMemberRepresentation FMRepr: familyMembers.get(playerColor)) {
+		for(FamilyMemberRepresentation FMRepr: familyMembers.get(playerColor)) {
 			if(FMRepr.getColor().equals(familyMember.getColor())) {
-				for()
+				FMRepr.setVisible(false);
+				if(occupiable instanceof TowerFloor) {
+					TowerFloor floor = (TowerFloor) occupiable;
+					cardsFloors.get(floor.getType()).get(floor.getFloorNum()).setFamilyMember(familyMember, playerColor);
+					break;
+				}
 			}
-		}*/
+		}
 	}
 
 	@Override
@@ -195,7 +200,7 @@ public class MatchInstanceGUI extends MatchInstance {
 			List<FamilyMember> familyMembers = player.getAvailableFamilyMembers();
 			for (FamilyMember familyMember : familyMembers) {
 			    String pathFamily = "img/players/"+familyMember.getOwner().getColor().toString()+"/"+familyMember.getOwner().getColor().toString()+"_"+familyMember.getColor().toString()+".png";
-				FamilyMemberRepresentation familyMemberRepresentation = new FamilyMemberRepresentation(pathFamily,familyMember.getValue(), familyMember.getColor(), familyMember.getOwner().getColor(), familyMember.isBusy());
+				FamilyMemberRepresentation familyMemberRepresentation = new FamilyMemberRepresentation(pathFamily,familyMember.getValue(), familyMember.getColor(), familyMember.getOwner().getColor());
 				this.familyMembers.get( familyMember.getOwner().getColor()).add(familyMemberRepresentation);
 			}
 		}

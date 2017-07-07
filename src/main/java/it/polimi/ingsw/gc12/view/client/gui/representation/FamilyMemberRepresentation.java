@@ -1,7 +1,6 @@
 package it.polimi.ingsw.gc12.view.client.gui.representation;
 
 import it.polimi.ingsw.gc12.model.player.PlayerColor;
-import it.polimi.ingsw.gc12.model.player.familymember.FamilyMember;
 import it.polimi.ingsw.gc12.model.player.familymember.FamilyMemberColor;
 import javafx.application.Platform;
 import javafx.beans.property.*;
@@ -12,76 +11,72 @@ import java.util.Observer;
 
 
 public class FamilyMemberRepresentation implements Observer {
-    private SimpleIntegerProperty valueProperty;
-    private SimpleObjectProperty<FamilyMemberColor> colorsFamilyMemberProperty;
-    private SimpleObjectProperty<PlayerColor> colorsPlayerProperty;
-    private SimpleObjectProperty<Image> pathFamilyMemberImage;
-    private SimpleBooleanProperty visibleProperty;
-    private SimpleBooleanProperty takenProperty;
+    private SimpleIntegerProperty value;
+    private SimpleObjectProperty<FamilyMemberColor> familyMemberColor;
+    private SimpleObjectProperty<PlayerColor> playerColor;
+    private SimpleObjectProperty<Image> image;
+    private SimpleBooleanProperty visible;
 
-
-    public FamilyMemberRepresentation(String pathFamily, int value, FamilyMemberColor colorFamilyMember, PlayerColor colorPlayer, Boolean taken){
-        this.valueProperty = new SimpleIntegerProperty(value);
-        this.colorsFamilyMemberProperty = new SimpleObjectProperty<>(colorFamilyMember);
-        this.colorsPlayerProperty = new SimpleObjectProperty<>(colorPlayer);
+    public FamilyMemberRepresentation(String pathFamily, int value, FamilyMemberColor colorFamilyMember, PlayerColor colorPlayer){
+        this.value = new SimpleIntegerProperty(value);
+        this.familyMemberColor = new SimpleObjectProperty<>(colorFamilyMember);
+        this.playerColor = new SimpleObjectProperty<>(colorPlayer);
         Image pathFam = new Image(pathFamily);
-        this.pathFamilyMemberImage = new SimpleObjectProperty<>(pathFam);
-        this.visibleProperty =  new SimpleBooleanProperty(true);
-        this.takenProperty = new SimpleBooleanProperty(taken);
-    }
-    public void setColorsPlayerProperty(PlayerColor colorPlayer) {
-        this.colorsPlayerProperty.set(colorPlayer);
+        this.image = new SimpleObjectProperty<>(pathFam);
+        this.visible =  new SimpleBooleanProperty(true);
     }
 
-    public void setColorsFamilyMemberProperty(FamilyMemberColor colorFamilyMember) {
-        this.colorsFamilyMemberProperty.set(colorFamilyMember);
+    public void setPlayerColor(PlayerColor colorPlayer) {
+        this.playerColor.set(colorPlayer);
     }
 
-    public void setValueProperty(int valueProperty) {
-        this.valueProperty.set(valueProperty);
+    public void setFamilyMemberColor(FamilyMemberColor colorFamilyMember) {
+        this.familyMemberColor.set(colorFamilyMember);
     }
 
-    public int getValuePropertyInt() {
-        return valueProperty.get();
+    public void setValue(int value) {
+        this.value.set(value);
+    }
+
+    public int getValue() {
+        return value.get();
     }
 
     public FamilyMemberColor getColor() {
-        return colorsFamilyMemberProperty.get();
+        return familyMemberColor.get();
     }
 
     public PlayerColor getPlayerColor() {
-        return colorsPlayerProperty.get();
+        return playerColor.get();
     }
-    
+
     public IntegerProperty getValueProperty() {
-        return valueProperty;
+        return value;
     }
 
-    public ObjectProperty<FamilyMemberColor> getColorsFamilyMemberProperty() {
-        return colorsFamilyMemberProperty;
+    public Image getImage() {
+        return image.get();
     }
-    public ObjectProperty<PlayerColor> getColorsPlayerProperty() {
-        return colorsPlayerProperty;
-    }
-
-    public Image getPathFamilyMemberImage() {
-        return pathFamilyMemberImage.get();
-    }
-    public void setPathFamilyMemberImage(Image pathFamilyMemberImage) {
-        this.pathFamilyMemberImage.set(pathFamilyMemberImage);
+    public void setImage(Image image) {
+        this.image.set(image);
     }
 
     public SimpleObjectProperty<Image> getpathFamilyMemberImageProperty() {
-        return pathFamilyMemberImage;
+        return image;
     }
 
     public BooleanProperty getVisibility(){
-        return visibleProperty;
+        return visible;
     }
+
+    public void setVisible(boolean visible) {
+        this.visible.set(visible);
+    }
+
     @Override
     public void update(Observable o, Object value) {
         if(value instanceof Integer) {
-            Platform.runLater(() -> setValueProperty((int) value));
+            Platform.runLater(() -> setValue((int) value));
         }
 
     }

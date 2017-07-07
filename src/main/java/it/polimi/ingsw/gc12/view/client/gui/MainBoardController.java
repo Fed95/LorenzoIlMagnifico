@@ -1045,9 +1045,12 @@ public class MainBoardController extends Observable implements Initializable, Ob
         passTurnPl1.setDisable(disable);
     }
 
-    public void disableFamilyMember(FamilyMember familyMember, PlayerColor playerColor) {
-        familyMembers.get(playerColor).get(familyMember.getColor()).setVisible(false);
-        familyMemberLabels.get(playerColor).get(familyMember.getColor()).setVisible(false);
+    public void moveOccupiableImage(Occupiable occupiable) {
+        if(occupiable instanceof TowerFloor) {
+            TowerFloor floor = (TowerFloor) occupiable;
+            towerFloors.get(floor.getType()).get(floor.getFloorNum()).setX(18);
+            towerFloors.get(floor.getType()).get(floor.getFloorNum()).setY(-20);
+        }
     }
 
     private void initializeAllMapsAndLists(){

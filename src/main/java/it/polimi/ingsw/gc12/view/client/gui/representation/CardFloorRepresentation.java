@@ -1,5 +1,7 @@
 package it.polimi.ingsw.gc12.view.client.gui.representation;
 
+import it.polimi.ingsw.gc12.model.player.PlayerColor;
+import it.polimi.ingsw.gc12.model.player.familymember.FamilyMember;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -42,6 +44,10 @@ public class CardFloorRepresentation  {
 
     public Image getPathFloor() {
         return pathFloor.get();
+    }
+
+    public void setFamilyMember(FamilyMember familyMember, PlayerColor playerColor) {
+        setPathFloor(new Image("img/players/"+playerColor.toString()+"/"+playerColor.toString()+"_"+familyMember.getColor().toString()+".png"));
     }
 
     public SimpleObjectProperty<Image> getPathFloorProperty() {

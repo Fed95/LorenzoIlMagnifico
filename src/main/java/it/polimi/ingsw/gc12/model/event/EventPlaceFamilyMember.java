@@ -8,6 +8,7 @@ import it.polimi.ingsw.gc12.view.client.gui.MainBoard;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class EventPlaceFamilyMember extends Event {
@@ -48,7 +49,7 @@ public class EventPlaceFamilyMember extends Event {
     }
 
     public EventPlaceFamilyMember(Player player, Occupiable occupiable, FamilyMember familyMember) {
-        this(player, new ArrayList<>(Arrays.asList(occupiable)), familyMember);
+        this(player, new ArrayList<>(Collections.singletonList(occupiable)), familyMember);
     }
 
     public EventPlaceFamilyMember(){super();}
@@ -65,7 +66,6 @@ public class EventPlaceFamilyMember extends Event {
     @Override
     public void executeClientSide(ClientHandler client) {
         if(client.isMyTurn()) {
-            client.getMatch().placeFamilyMember(familyMember, getOccupiable(), player.getColor());
             super.executeClientSide(client);
         }
     }
