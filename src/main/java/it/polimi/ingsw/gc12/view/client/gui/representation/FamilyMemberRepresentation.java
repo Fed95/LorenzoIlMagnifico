@@ -16,15 +16,15 @@ public class FamilyMemberRepresentation implements Observer {
     private SimpleObjectProperty<FamilyMemberColor> colorsFamilyMemberProperty;
     private SimpleObjectProperty<PlayerColor> colorsPlayerProperty;
     private SimpleObjectProperty<Image> pathFamilyMemberImage;
-    private boolean used;
+    private SimpleBooleanProperty takenProperty;
 
-    public FamilyMemberRepresentation(String pathFamily, int value, FamilyMemberColor colorFamilyMember, PlayerColor colorPlayer, boolean used){
+    public FamilyMemberRepresentation(String pathFamily, int value, FamilyMemberColor colorFamilyMember, PlayerColor colorPlayer, Boolean taken){
         this.valueProperty = new SimpleIntegerProperty(value);
         this.colorsFamilyMemberProperty = new SimpleObjectProperty<>(colorFamilyMember);
         this.colorsPlayerProperty = new SimpleObjectProperty<>(colorPlayer);
         Image pathFam = new Image(pathFamily);
         this.pathFamilyMemberImage = new SimpleObjectProperty<>(pathFam);
-        this.used = used;
+        this.takenProperty =  new SimpleBooleanProperty(taken);
     }
     public void setColorsPlayerProperty(PlayerColor colorPlayer) {
         this.colorsPlayerProperty.set(colorPlayer);
