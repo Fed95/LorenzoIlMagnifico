@@ -16,7 +16,9 @@ public class FamilyMemberRepresentation implements Observer {
     private SimpleObjectProperty<FamilyMemberColor> colorsFamilyMemberProperty;
     private SimpleObjectProperty<PlayerColor> colorsPlayerProperty;
     private SimpleObjectProperty<Image> pathFamilyMemberImage;
+    private SimpleBooleanProperty visibleProperty;
     private SimpleBooleanProperty takenProperty;
+
 
     public FamilyMemberRepresentation(String pathFamily, int value, FamilyMemberColor colorFamilyMember, PlayerColor colorPlayer, Boolean taken){
         this.valueProperty = new SimpleIntegerProperty(value);
@@ -24,7 +26,8 @@ public class FamilyMemberRepresentation implements Observer {
         this.colorsPlayerProperty = new SimpleObjectProperty<>(colorPlayer);
         Image pathFam = new Image(pathFamily);
         this.pathFamilyMemberImage = new SimpleObjectProperty<>(pathFam);
-        this.takenProperty =  new SimpleBooleanProperty(taken);
+        this.visibleProperty =  new SimpleBooleanProperty(true);
+        this.takenProperty = new SimpleBooleanProperty(taken);
     }
     public void setColorsPlayerProperty(PlayerColor colorPlayer) {
         this.colorsPlayerProperty.set(colorPlayer);
@@ -72,10 +75,9 @@ public class FamilyMemberRepresentation implements Observer {
         return pathFamilyMemberImage;
     }
 
-    public boolean isUsed() {
-        return used;
+    public BooleanProperty getVisibility(){
+        return visibleProperty;
     }
-
     @Override
     public void update(Observable o, Object value) {
         if(value instanceof Integer) {
