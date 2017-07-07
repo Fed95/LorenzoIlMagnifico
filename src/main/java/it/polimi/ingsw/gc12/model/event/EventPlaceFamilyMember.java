@@ -4,12 +4,13 @@ import it.polimi.ingsw.gc12.model.player.familymember.FamilyMember;
 import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.view.client.ClientHandler;
 import it.polimi.ingsw.gc12.model.board.occupiable.Occupiable;
+import it.polimi.ingsw.gc12.view.client.gui.MainBoard;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class EventPlaceFamilyMember extends Event{
+public class EventPlaceFamilyMember extends Event {
 
     protected List<Occupiable> occupiables = new ArrayList<>();
     protected FamilyMember familyMember;
@@ -64,7 +65,7 @@ public class EventPlaceFamilyMember extends Event{
     @Override
     public void executeClientSide(ClientHandler client) {
         if(client.isMyTurn()) {
-            client.getMatch().placeFamilyMember(getOccupiable(), familyMember);
+            client.getMatch().placeFamilyMember(familyMember, getOccupiable(), player.getColor());
             super.executeClientSide(client);
         }
     }

@@ -55,17 +55,6 @@ public abstract class MatchInstance extends Observable {
 		board.getTrackTurnOrder().newTurn();
 	}
 
-	public void placeFamilyMember(Occupiable occupiable, FamilyMember familyMember) {
-		getOccupiable(occupiable).placeFamilyMember(familyMember);
-		if(getFamilyMembers(familyMember).size() > 0) {
-			getFamilyMembers(familyMember).get(0).setBusy(true);
-		}
-	}
-
-	public void pickCard(CardDevelopment card, PlayerColor playerColor) {
-
-	}
-
 	private Occupiable getOccupiable(Occupiable occupiable) {
 		//System.out.println("MatchInstance: retrieving the occupiable");
 		List<Occupiable> occupiables =  board.getOccupiables().stream().filter(myOccupiable -> myOccupiable.equals(occupiable)).collect(Collectors.toList());
@@ -88,6 +77,7 @@ public abstract class MatchInstance extends Observable {
 
 	public abstract void setCards(TowerSet towers);
 	protected abstract void setFamilyMemberObservers();
-
+	public abstract void pickCard(CardDevelopment card, PlayerColor playerColor);
+	public abstract void placeFamilyMember(FamilyMember familyMember, Occupiable occupiable, PlayerColor playerColor);
 
 }

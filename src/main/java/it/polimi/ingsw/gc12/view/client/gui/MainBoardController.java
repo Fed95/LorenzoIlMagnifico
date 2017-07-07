@@ -603,6 +603,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
             player = match.getPlayers().get(playerColor);
         });
     }
+
     private void blockOccupiable(){
         int block = match.getPlayers().size();
         if(block == 2){
@@ -612,6 +613,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
             blockMarkets();
         }
     }
+
     private void blockMarkets() {
         Image blockMarket0 = new Image("img/block/market0Block.png");
         Image blockMarket1 = new Image("img/block/market1Block.png");
@@ -629,6 +631,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
         market2.setUserData("block");
         market3.setUserData("block");
     }
+
     private void blockSpaceWork(){
         Image blockProduction = new Image("img/block/productionBlock.png");
         Image blockHarvest = new Image("img/block/harvestBlock.png");
@@ -645,16 +648,22 @@ public class MainBoardController extends Observable implements Initializable, Ob
         productionBig.setUserData("block");
         harvestBig.setUserData("block");
     }
+
     private void bindAllFamilyMember(){
         Map<PlayerColor, ObservableList<FamilyMemberRepresentation>> mapColorFamilyRepresentation = match.getMapPlayerColorObservableLiseFMRepr();
         for(Player player : match.getPlayers().values()){
             PlayerColor playerColor = player.getColor();
             for(FamilyMemberColor familyMemberColor: FamilyMemberColor.values()){
                 //prendo la rappresentazione giusta tramite il famili member e ne prendo la property valore, lo setto poi alla label
-                ObservableList<FamilyMemberRepresentation> famMembtakingvalue = mapColorFamilyRepresentation.get(playerColor).stream().filter(FM -> (FM.getColorsFamilyMemberPropertyString()).equals(familyMemberColor.toString())).collect(collectingAndThen(toList(), l -> FXCollections.observableArrayList(l)));
-                StringBinding value = famMembtakingvalue.get(0).getValueProperty().asString();//valore da assegnare alla label
+                FamilyMemberRepresentation FMRepresentation = mapColorFamilyRepresentation.get(playerColor).stream()
+                        .filter(FM -> (FM.getColor()).equals(familyMemberColor)).collect(collectingAndThen(toList(), FXCollections::observableArrayList)).get(0);
+                StringBinding value = FMRepresentation.getValueProperty().asString();//valore da assegnare alla label
                 familyMemberLabels.get(playerColor).get(familyMemberColor).textProperty().bind((value));//bindo la property alla label
-                familyMembers.get(playerColor).get(familyMemberColor).imageProperty().bind(famMembtakingvalue.get(0).getpathFamilyMemberImageProperty());
+                familyMembers.get(playerColor).get(familyMemberColor).imageProperty().bind(FMRepresentation.getpathFamilyMemberImageProperty());
+                if(FMRepresentation.isUsed()) {
+                    familyMemberLabels.get(playerColor).get(familyMemberColor).setVisible(false);
+                    familyMembers.get(playerColor).get(familyMemberColor).setVisible(false);
+                }
             }
         }
 
@@ -1024,11 +1033,16 @@ public class MainBoardController extends Observable implements Initializable, Ob
        }
     }
 
-    public void disablePassTurn(boolean disable, Player player) {
+    public void disablePassTurn(boolean disable) {
         if(!disable && !isMyTurn())
             return;
 
         passTurnPl1.setDisable(disable);
+    }
+
+    public void disableFamilyMember(FamilyMember familyMember, PlayerColor playerColor) {
+        familyMembers.get(playerColor).get(familyMember.getColor()).setVisible(false);
+        familyMemberLabels.get(playerColor).get(familyMember.getColor()).setVisible(false);
     }
 
     private void initializeAllMapsAndLists(){

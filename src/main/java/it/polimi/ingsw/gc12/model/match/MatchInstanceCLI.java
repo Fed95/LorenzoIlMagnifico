@@ -1,7 +1,12 @@
 package it.polimi.ingsw.gc12.model.match;
 
 
+import it.polimi.ingsw.gc12.model.board.occupiable.Occupiable;
 import it.polimi.ingsw.gc12.model.board.occupiable.TowerSet;
+import it.polimi.ingsw.gc12.model.card.CardDevelopment;
+import it.polimi.ingsw.gc12.model.player.Player;
+import it.polimi.ingsw.gc12.model.player.PlayerColor;
+import it.polimi.ingsw.gc12.model.player.familymember.FamilyMember;
 
 public class MatchInstanceCLI extends MatchInstance {
 
@@ -30,4 +35,10 @@ public class MatchInstanceCLI extends MatchInstance {
 	protected void setFamilyMemberObservers() {
 
 	}
+
+	@Override
+	public void pickCard(CardDevelopment card, PlayerColor playerColor) {}
+
+	@Override
+	public void placeFamilyMember(FamilyMember familyMember, Occupiable occupiable, PlayerColor playerColor) {}
 }

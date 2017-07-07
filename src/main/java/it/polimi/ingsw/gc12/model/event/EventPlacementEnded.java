@@ -37,6 +37,6 @@ public class EventPlacementEnded extends Event implements EventView{
 
 	@Override
 	public void executeViewSide(MainBoard view) {
-		Platform.runLater(() -> view.getControllerMainBoard().disablePassTurn(false, player));
+		Platform.runLater(() -> view.getControllerMainBoard().disablePassTurn(false));
 	}
 }

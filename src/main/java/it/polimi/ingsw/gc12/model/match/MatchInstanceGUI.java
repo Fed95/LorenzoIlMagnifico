@@ -1,6 +1,7 @@
 package it.polimi.ingsw.gc12.model.match;
 
 
+import it.polimi.ingsw.gc12.model.board.occupiable.Occupiable;
 import it.polimi.ingsw.gc12.model.board.occupiable.Tower;
 import it.polimi.ingsw.gc12.model.card.CardDevelopment;
 import it.polimi.ingsw.gc12.model.card.CardType;
@@ -136,6 +137,15 @@ public class MatchInstanceGUI extends MatchInstance {
 	}
 
 	@Override
+	public void placeFamilyMember(FamilyMember familyMember, Occupiable occupiable, PlayerColor playerColor) {
+		/*for(FamilyMemberRepresentation FMRepr: familyMembers.get(playerColor)) {
+			if(FMRepr.getColor().equals(familyMember.getColor())) {
+				for()
+			}
+		}*/
+	}
+
+	@Override
     public void setCards(TowerSet towers) {
         for(CardType cardType : CardType.values()){
             List<TowerFloor> towerFloors = towers.getTower(cardType).getFloors();
@@ -155,14 +165,12 @@ public class MatchInstanceGUI extends MatchInstance {
 		for(Player player: players.values()) {
 			for(FamilyMemberRepresentation familyMember: familyMembers.get(player.getColor())) {
 				try{
-					DieColor dieColor = DieColor.valueOf(familyMember.getColorsFamilyMemberPropertyString());
+					DieColor dieColor = DieColor.valueOf(familyMember.getColor().toString());
 					Die die = board.getSpaceDie().getDie(dieColor);
 					die.addObserver(familyMember);
 				}
 				catch (IllegalArgumentException ignored) {}
 			}
-
-
 		}
 	}
 
@@ -187,7 +195,7 @@ public class MatchInstanceGUI extends MatchInstance {
 			List<FamilyMember> familyMembers = player.getAvailableFamilyMembers();
 			for (FamilyMember familyMember : familyMembers) {
 			    String pathFamily = "img/players/"+familyMember.getOwner().getColor().toString()+"/"+familyMember.getOwner().getColor().toString()+"_"+familyMember.getColor().toString()+".png";
-				FamilyMemberRepresentation familyMemberRepresentation = new FamilyMemberRepresentation(pathFamily,familyMember.getValue(), familyMember.getColor().toString(), familyMember.getOwner().getColor().toString(), familyMember.isBusy());
+				FamilyMemberRepresentation familyMemberRepresentation = new FamilyMemberRepresentation(pathFamily,familyMember.getValue(), familyMember.getColor(), familyMember.getOwner().getColor(), familyMember.isBusy());
 				this.familyMembers.get( familyMember.getOwner().getColor()).add(familyMemberRepresentation);
 			}
 		}
@@ -216,6 +224,7 @@ public class MatchInstanceGUI extends MatchInstance {
 			}
 		}
 	}
+
     private void createResourceRepresentation(Match match){
         resourcesPlayers.put(PlayerColor.BLUE, bluePlayerResources);
         resourcesPlayers.put(PlayerColor.GREEN, greenPlayerResources);
@@ -229,6 +238,7 @@ public class MatchInstanceGUI extends MatchInstance {
             resourcesPlayers.get(playerColor).add(resourceRepresentation);
         }
     }
+
     private void createOrderedTruckRepresentation(Match match){
         List<Player> orderedPlayer = match.getBoard().getTrackTurnOrder().getOrderedPlayers();
         PlayerColorReal playerColorReal = new PlayerColorReal(1);
@@ -248,6 +258,7 @@ public class MatchInstanceGUI extends MatchInstance {
         }
 
     }
+
     private void createObservableListMilitaryVictoryFaith(Match match){
         List<Player> players = new ArrayList<>(match.getPlayers().values());
         List<Player> orderedByMilitary = match.getBoard().getTrackMilitaryPoints().getPlayersOrder(players);
@@ -263,6 +274,7 @@ public class MatchInstanceGUI extends MatchInstance {
             faithResources.add(resourcesPlayers.get(player.getColor()).get(0));
         }
     }
+
     private void createExcomTileRepresentation(Match match){
         Map<Integer, ExcommunicationTile> tiles = match.getBoard().getExcommunicationSpace().getTiles();
         for(ExcommunicationTile excommunicationTile : tiles.values()){
@@ -272,6 +284,7 @@ public class MatchInstanceGUI extends MatchInstance {
             excommunicationTiles.add(excomTileR);
         }
     }
+
     public void createCardPlayerRepresentation(Match match){
         cardsPlayer1.put(CardType.TERRITORY, territoryCardsPlayer1);
         cardsPlayer1.put(CardType.BUILDING, buildingCardsPlayer1);
@@ -307,6 +320,7 @@ public class MatchInstanceGUI extends MatchInstance {
             }
         }
     }
+
     public void createCardLeaderRepresentation(Match match){
         cardsLeaderPlayers.put(PlayerColor.BLUE, cardsLeaderPl1);
         cardsLeaderPlayers.put(PlayerColor.GREEN, cardsLeaderPl2);
@@ -322,9 +336,11 @@ public class MatchInstanceGUI extends MatchInstance {
         }
 
     }
+
     public Map<PlayerColor, ObservableList<FamilyMemberRepresentation>> getMapPlayerColorObservableLiseFMRepr() {
 		return familyMembers;
 	}
+
 	public Map<CardType, ObservableList<CardFloorRepresentation>> getCardsFloors() {
 		return cardsFloors;
 	}
