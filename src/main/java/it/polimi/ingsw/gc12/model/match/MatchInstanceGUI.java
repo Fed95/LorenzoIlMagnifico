@@ -19,8 +19,6 @@ import it.polimi.ingsw.gc12.model.player.resource.ResourceType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,69 +30,67 @@ public class MatchInstanceGUI extends MatchInstance {
 	private static MatchInstanceGUI instance;
 
 	//Observable and Map for family member
-	private ObservableList<FamilyMemberRepresentation> familyMemberBlueRepresentationObservableList = FXCollections.observableArrayList();
-	private ObservableList<FamilyMemberRepresentation> familyMemberGreenRepresentationObservableList = FXCollections.observableArrayList();
-	private ObservableList<FamilyMemberRepresentation> familyMemberRedRepresentationObservableList = FXCollections.observableArrayList();
-	private ObservableList<FamilyMemberRepresentation> familyMemberYellowRepresentationObservableList = FXCollections.observableArrayList();
-	private Map<PlayerColor, ObservableList<FamilyMemberRepresentation>> mapFamilyMember = new HashMap<>();
+	private ObservableList<FamilyMemberRepresentation> familyMembersBluePlayer = FXCollections.observableArrayList();
+	private ObservableList<FamilyMemberRepresentation> familyMembersGreenPlayer = FXCollections.observableArrayList();
+	private ObservableList<FamilyMemberRepresentation> familyMembersPlayerRed = FXCollections.observableArrayList();
+	private ObservableList<FamilyMemberRepresentation> familyMembersPlayerYellow = FXCollections.observableArrayList();
+	private Map<PlayerColor, ObservableList<FamilyMemberRepresentation>> familyMembers = new HashMap<>();
 
 	//Observable and Map cardFloor
-	private ObservableList<CardFloorRepresentation> cardFloorTerritoryRepresentation = FXCollections.observableArrayList();
-	private ObservableList<CardFloorRepresentation> cardFloorCharactherRepresentation = FXCollections.observableArrayList();
-	private ObservableList<CardFloorRepresentation> cardFloorVentureRepresentation = FXCollections.observableArrayList();
-	private ObservableList<CardFloorRepresentation> cardFloorBuildingRepresentation = FXCollections.observableArrayList();
-	private Map<CardType,ObservableList<CardFloorRepresentation>> mapTypeCardFloorRepresentation = new HashMap<>();
-
-	private FamilyMemberRepresentation familyMemberRepresentation;
-
+	private ObservableList<CardFloorRepresentation> cardsFloorsTerritory = FXCollections.observableArrayList();
+	private ObservableList<CardFloorRepresentation> cardsFloorsCharacther = FXCollections.observableArrayList();
+	private ObservableList<CardFloorRepresentation> cardsFloorsVenture = FXCollections.observableArrayList();
+	private ObservableList<CardFloorRepresentation> cardsFloorsBuilding = FXCollections.observableArrayList();
+	private Map<CardType,ObservableList<CardFloorRepresentation>> cardsFloors = new HashMap<>();
+    
     //Observable and map for resources
-    private ObservableList<ResourceRepresentation> resourceBlueRepresentationObservableList = FXCollections.observableArrayList();
-    private ObservableList<ResourceRepresentation> resourceGreenRepresentationObservableList = FXCollections.observableArrayList();
-    private ObservableList<ResourceRepresentation> resourceRedRepresentationObservableList = FXCollections.observableArrayList();
-    private ObservableList<ResourceRepresentation> resourceYellowRepresentationObservableList = FXCollections.observableArrayList();
-    private Map<PlayerColor, ObservableList<ResourceRepresentation>> mapPlayerColorResourceRepresentation = new HashMap<>();
+    private ObservableList<ResourceRepresentation> bluePlayerResources = FXCollections.observableArrayList();
+    private ObservableList<ResourceRepresentation> greenPlayerResources = FXCollections.observableArrayList();
+    private ObservableList<ResourceRepresentation> redPlayerResources = FXCollections.observableArrayList();
+    private ObservableList<ResourceRepresentation> yellowPlayerResources = FXCollections.observableArrayList();
+    private Map<PlayerColor, ObservableList<ResourceRepresentation>> resourcesPlayers = new HashMap<>();
     //the table view must have all the representation in a single observable list not in 4 different for each player
-    private ObservableList<ResourceRepresentation> allResourceRepresentationMilitary = FXCollections.observableArrayList();
-    private ObservableList<ResourceRepresentation> allResourceRepresentationVictory = FXCollections.observableArrayList();
-    private ObservableList<ResourceRepresentation> allResourceRepresentationFaith = FXCollections.observableArrayList();
+    private ObservableList<ResourceRepresentation> militaryResources = FXCollections.observableArrayList();
+    private ObservableList<ResourceRepresentation> victoryResources = FXCollections.observableArrayList();
+    private ObservableList<ResourceRepresentation> faithResources = FXCollections.observableArrayList();
 
-    private ObservableList<TurnOrderTrackPositionRepresentation> turnOrderTrackFirstPositionRepresentationObservableList = FXCollections.observableArrayList();
+    private ObservableList<TurnOrderTrackPositionRepresentation> turnOrderTracks = FXCollections.observableArrayList();
 
     //excommmunication tile representation
-    private ObservableList<ExcommunicationTileRepresentation> excommunicationTileRepresentationObservableList = FXCollections.observableArrayList();
+    private ObservableList<ExcommunicationTileRepresentation> excommunicationTiles = FXCollections.observableArrayList();
     //card player1
-    private ObservableList<CardPlayerRepresentation> territoryCardPlayerRepresentationPl1 = FXCollections.observableArrayList();
-    private ObservableList<CardPlayerRepresentation> buildingCardPlayerRepresentationPl1 = FXCollections.observableArrayList();
-    private ObservableList<CardPlayerRepresentation> characterCardPlayerRepresentationPl1 = FXCollections.observableArrayList();
-    private ObservableList<CardPlayerRepresentation> ventureCardPlayerRepresentationPl1 = FXCollections.observableArrayList();
-    private Map<CardType, ObservableList<CardPlayerRepresentation>> mapCardTypeCardPlayerRepresentationPl1 = new HashMap<>();
+    private ObservableList<CardPlayerRepresentation> territoryCardsPlayer1 = FXCollections.observableArrayList();
+    private ObservableList<CardPlayerRepresentation> buildingCardsPlayer1 = FXCollections.observableArrayList();
+    private ObservableList<CardPlayerRepresentation> characterCardsPlayer1 = FXCollections.observableArrayList();
+    private ObservableList<CardPlayerRepresentation> ventureCardsPlayer1 = FXCollections.observableArrayList();
+    private Map<CardType, ObservableList<CardPlayerRepresentation>> cardsPlayer1 = new HashMap<>();
     //card player2
-    private ObservableList<CardPlayerRepresentation> territoryCardPlayerRepresentationPl2 = FXCollections.observableArrayList();
-    private ObservableList<CardPlayerRepresentation> buildingCardPlayerRepresentationPl2 = FXCollections.observableArrayList();
-    private ObservableList<CardPlayerRepresentation> characterCardPlayerRepresentationPl2 = FXCollections.observableArrayList();
-    private ObservableList<CardPlayerRepresentation> ventureCardPlayerRepresentationPl2 = FXCollections.observableArrayList();
-    private Map<CardType, ObservableList<CardPlayerRepresentation>> mapCardTypeCardPlayerRepresentationPl2 = new HashMap<>();
+    private ObservableList<CardPlayerRepresentation> territoryCardsPlayer2 = FXCollections.observableArrayList();
+    private ObservableList<CardPlayerRepresentation> buildingCardsPlayer2 = FXCollections.observableArrayList();
+    private ObservableList<CardPlayerRepresentation> characterCardsPlayer2 = FXCollections.observableArrayList();
+    private ObservableList<CardPlayerRepresentation> ventureCardsPlayer2 = FXCollections.observableArrayList();
+    private Map<CardType, ObservableList<CardPlayerRepresentation>> cardsPlayer2 = new HashMap<>();
     //card player3
-    private ObservableList<CardPlayerRepresentation> territoryCardPlayerRepresentationPl3 = FXCollections.observableArrayList();
-    private ObservableList<CardPlayerRepresentation> buildingCardPlayerRepresentationPl3 = FXCollections.observableArrayList();
-    private ObservableList<CardPlayerRepresentation> characterCardPlayerRepresentationPl3 = FXCollections.observableArrayList();
-    private ObservableList<CardPlayerRepresentation> ventureCardPlayerRepresentationPl3 = FXCollections.observableArrayList();
-    private Map<CardType, ObservableList<CardPlayerRepresentation>> mapCardTypeCardPlayerRepresentationPl3 = new HashMap<>();
+    private ObservableList<CardPlayerRepresentation> territoryCardsPlayer3 = FXCollections.observableArrayList();
+    private ObservableList<CardPlayerRepresentation> buildingCardsPlayer3 = FXCollections.observableArrayList();
+    private ObservableList<CardPlayerRepresentation> characterCardsPlayer3 = FXCollections.observableArrayList();
+    private ObservableList<CardPlayerRepresentation> ventureCardsPlayer3 = FXCollections.observableArrayList();
+    private Map<CardType, ObservableList<CardPlayerRepresentation>> cardsPlayer3 = new HashMap<>();
     //card player4
-    private ObservableList<CardPlayerRepresentation> territoryCardPlayerRepresentationPl4 = FXCollections.observableArrayList();
-    private ObservableList<CardPlayerRepresentation> buildingCardPlayerRepresentationPl4 = FXCollections.observableArrayList();
-    private ObservableList<CardPlayerRepresentation> characterCardPlayerRepresentationPl4 = FXCollections.observableArrayList();
-    private ObservableList<CardPlayerRepresentation> ventureCardPlayerRepresentationPl4 = FXCollections.observableArrayList();
-    private Map<CardType, ObservableList<CardPlayerRepresentation>> mapCardTypeCardPlayerRepresentationPl4 = new HashMap<>();
+    private ObservableList<CardPlayerRepresentation> territoryCardsPlayer4 = FXCollections.observableArrayList();
+    private ObservableList<CardPlayerRepresentation> buildingCardsPlayer4 = FXCollections.observableArrayList();
+    private ObservableList<CardPlayerRepresentation> characterCardsPlayer4 = FXCollections.observableArrayList();
+    private ObservableList<CardPlayerRepresentation> ventureCardsPlayer4 = FXCollections.observableArrayList();
+    private Map<CardType, ObservableList<CardPlayerRepresentation>> cardsPlayer4 = new HashMap<>();
 
-    private Map<PlayerColor,Map<CardType, ObservableList<CardPlayerRepresentation> > > mapPlayerColorCardTypePlayerCard = new HashMap<>();
+    private Map<PlayerColor,Map<CardType, ObservableList<CardPlayerRepresentation> > > cardsPlayers = new HashMap<>();
 
     //card Leader Player
-    private ObservableList<CardLeaderRepresentation> cardLeaderRepresentationPl1 = FXCollections.observableArrayList();
-    private ObservableList<CardLeaderRepresentation> cardLeaderRepresentationPl2 = FXCollections.observableArrayList();
-    private ObservableList<CardLeaderRepresentation> cardLeaderRepresentationPl3 = FXCollections.observableArrayList();
-    private ObservableList<CardLeaderRepresentation> cardLeaderRepresentationPl4 = FXCollections.observableArrayList();
-    private Map<PlayerColor, ObservableList<CardLeaderRepresentation>> mapPlayerColorCardLeaders = new HashMap<>();
+    private ObservableList<CardLeaderRepresentation> cardsLeaderPl1 = FXCollections.observableArrayList();
+    private ObservableList<CardLeaderRepresentation> cardsLeaderPl2 = FXCollections.observableArrayList();
+    private ObservableList<CardLeaderRepresentation> cardsLeaderPl3 = FXCollections.observableArrayList();
+    private ObservableList<CardLeaderRepresentation> cardsLeaderPl4 = FXCollections.observableArrayList();
+    private Map<PlayerColor, ObservableList<CardLeaderRepresentation>> cardsLeaderPlayers = new HashMap<>();
 
     private MatchInstanceGUI() {}
 
@@ -126,11 +122,11 @@ public class MatchInstanceGUI extends MatchInstance {
 			List<TowerFloor> floors = tower.getFloors();
 			for (int i = 0; i < floors.size(); i++) {
 				if(floors.get(i).getCard().equals(card)) {
-					mapTypeCardFloorRepresentation.get(card.getType()).get(i).removeCard();
+					cardsFloors.get(card.getType()).get(i).removeCard();
 				}
 			}
 		}
-		for(CardPlayerRepresentation cardRepr: mapPlayerColorCardTypePlayerCard.get(playerColor).get(card.getType())) {
+		for(CardPlayerRepresentation cardRepr: cardsPlayers.get(playerColor).get(card.getType())) {
 			if(!cardRepr.isOccupied()) {
 				cardRepr.placeCard(card);
 				break;
@@ -149,7 +145,7 @@ public class MatchInstanceGUI extends MatchInstance {
                 int floor = towerFloor.getFloorNum();
                 String path = "img/Card/card_"+cardId+".png";//setting trasparent card because the cards arrive with eventStarTurn
                 Image image = new Image(path);
-                mapTypeCardFloorRepresentation.get(cardType).get(floor).setPathCard(image);
+                cardsFloors.get(cardType).get(floor).setPathCard(image);
             }
         }
     }
@@ -157,7 +153,7 @@ public class MatchInstanceGUI extends MatchInstance {
 	@Override
 	protected void setFamilyMemberObservers() {
 		for(Player player: players.values()) {
-			for(FamilyMemberRepresentation familyMember: mapFamilyMember.get(player.getColor())) {
+			for(FamilyMemberRepresentation familyMember: familyMembers.get(player.getColor())) {
 				try{
 					DieColor dieColor = DieColor.valueOf(familyMember.getColorsFamilyMemberPropertyString());
 					Die die = board.getSpaceDie().getDie(dieColor);
@@ -174,16 +170,16 @@ public class MatchInstanceGUI extends MatchInstance {
 		Map<PlayerColor, Player> players = match.getPlayers();
 		for(Player player : players.values()){
 			if(player.getColor().equals(PlayerColor.BLUE)){
-				mapFamilyMember.put(PlayerColor.BLUE, familyMemberBlueRepresentationObservableList);
+				familyMembers.put(PlayerColor.BLUE, familyMembersBluePlayer);
 			}
 			if(player.getColor().equals(PlayerColor.GREEN)){
-				mapFamilyMember.put(PlayerColor.GREEN, familyMemberGreenRepresentationObservableList);
+				familyMembers.put(PlayerColor.GREEN, familyMembersGreenPlayer);
 			}
 			if(player.getColor().equals(PlayerColor.RED)){
-				mapFamilyMember.put(PlayerColor.RED, familyMemberRedRepresentationObservableList);
+				familyMembers.put(PlayerColor.RED, familyMembersPlayerRed);
 			}
 			if(player.getColor().equals(PlayerColor.YELLOW)){
-				mapFamilyMember.put(PlayerColor.YELLOW, familyMemberYellowRepresentationObservableList);
+				familyMembers.put(PlayerColor.YELLOW, familyMembersPlayerYellow);
 			}
 		}
 
@@ -191,17 +187,17 @@ public class MatchInstanceGUI extends MatchInstance {
 			List<FamilyMember> familyMembers = player.getAvailableFamilyMembers();
 			for (FamilyMember familyMember : familyMembers) {
 			    String pathFamily = "img/players/"+familyMember.getOwner().getColor().toString()+"/"+familyMember.getOwner().getColor().toString()+"_"+familyMember.getColor().toString()+".png";
-				familyMemberRepresentation = new FamilyMemberRepresentation(pathFamily,familyMember.getValue(), familyMember.getColor().toString(), familyMember.getOwner().getColor().toString(), familyMember.isBusy());
-				mapFamilyMember.get( familyMember.getOwner().getColor()).add(familyMemberRepresentation);
+				FamilyMemberRepresentation familyMemberRepresentation = new FamilyMemberRepresentation(pathFamily,familyMember.getValue(), familyMember.getColor().toString(), familyMember.getOwner().getColor().toString(), familyMember.isBusy());
+				this.familyMembers.get( familyMember.getOwner().getColor()).add(familyMemberRepresentation);
 			}
 		}
 	}
 
 	private void createCardTowerFloorRepresentation(Match match) {
-		mapTypeCardFloorRepresentation.put(CardType.TERRITORY, cardFloorTerritoryRepresentation);
-		mapTypeCardFloorRepresentation.put(CardType.BUILDING, cardFloorBuildingRepresentation);
-		mapTypeCardFloorRepresentation.put(CardType.CHARACTER, cardFloorCharactherRepresentation);
-		mapTypeCardFloorRepresentation.put(CardType.VENTURE, cardFloorVentureRepresentation);
+		cardsFloors.put(CardType.TERRITORY, cardsFloorsTerritory);
+		cardsFloors.put(CardType.BUILDING, cardsFloorsBuilding);
+		cardsFloors.put(CardType.CHARACTER, cardsFloorsCharacther);
+		cardsFloors.put(CardType.VENTURE, cardsFloorsVenture);
 		int realFloor = 0;
 		for(CardType cardType : CardType.values()){
 			List<TowerFloor> towerFloors = match.getBoard().getTowerSet().getTower(cardType).getFloors();
@@ -215,22 +211,22 @@ public class MatchInstanceGUI extends MatchInstance {
 				String pathCard = "img/Card/transparentCard.png";//setting trasparent card because the cards arrive with eventStarTurn
                 String pathFloor = "img/Floor/floor"+realFloor+".png";
 				CardFloorRepresentation cardFloorRepresentation = new CardFloorRepresentation(pathCard,pathFloor, floor, taken);
-				mapTypeCardFloorRepresentation.get(cardType).add(cardFloorRepresentation);
+				cardsFloors.get(cardType).add(cardFloorRepresentation);
 				realFloor= realFloor+1;
 			}
 		}
 	}
     private void createResourceRepresentation(Match match){
-        mapPlayerColorResourceRepresentation.put(PlayerColor.BLUE, resourceBlueRepresentationObservableList);
-        mapPlayerColorResourceRepresentation.put(PlayerColor.GREEN, resourceGreenRepresentationObservableList);
-        mapPlayerColorResourceRepresentation.put(PlayerColor.RED, resourceRedRepresentationObservableList);
-        mapPlayerColorResourceRepresentation.put(PlayerColor.YELLOW, resourceYellowRepresentationObservableList);
+        resourcesPlayers.put(PlayerColor.BLUE, bluePlayerResources);
+        resourcesPlayers.put(PlayerColor.GREEN, greenPlayerResources);
+        resourcesPlayers.put(PlayerColor.RED, redPlayerResources);
+        resourcesPlayers.put(PlayerColor.YELLOW, yellowPlayerResources);
         Map<PlayerColor, Player> players = match.getPlayers();
 	    for(Player player : players.values()){
             PlayerColor playerColor = player.getColor();
             Map<ResourceType, Resource> resources = player.getResources();
             ResourceRepresentation resourceRepresentation = new ResourceRepresentation(playerColor.toString(), resources.get(ResourceType.STONE).getValue(), resources.get(ResourceType.MONEY).getValue(), resources.get(ResourceType.SERVANT).getValue(), resources.get(ResourceType.WOOD).getValue(), resources.get(ResourceType.VICTORY_POINT).getValue(), resources.get(ResourceType.MILITARY_POINT).getValue(), resources.get(ResourceType.FAITH_POINT).getValue(), resources.get(ResourceType.COUNCIL_PRIVILEGE).getValue());
-            mapPlayerColorResourceRepresentation.get(playerColor).add(resourceRepresentation);
+            resourcesPlayers.get(playerColor).add(resourceRepresentation);
         }
     }
     private void createOrderedTruckRepresentation(Match match){
@@ -248,7 +244,7 @@ public class MatchInstanceGUI extends MatchInstance {
             }else if(playerColor == PlayerColor.YELLOW){
                  turnOrderTrackPositionRepresentation = new TurnOrderTrackPositionRepresentation(playerColorReal.getYellow());
             }
-            turnOrderTrackFirstPositionRepresentationObservableList.add(turnOrderTrackPositionRepresentation);
+            turnOrderTracks.add(turnOrderTrackPositionRepresentation);
         }
 
     }
@@ -258,13 +254,13 @@ public class MatchInstanceGUI extends MatchInstance {
         List<Player> orderedByVictory = match.getBoard().getVictroyPointsTrack().getPlayerOrdered(players);
         match.getBoard().getTrackFaithPoints();
         for(Player player : orderedByMilitary){
-            allResourceRepresentationMilitary.add(mapPlayerColorResourceRepresentation.get(player.getColor()).get(0));
+            militaryResources.add(resourcesPlayers.get(player.getColor()).get(0));
         }
         for(Player player : orderedByVictory){
-            allResourceRepresentationVictory.add(mapPlayerColorResourceRepresentation.get(player.getColor()).get(0));
+            victoryResources.add(resourcesPlayers.get(player.getColor()).get(0));
         }
         for(Player player : match.getPlayers().values()){
-            allResourceRepresentationFaith.add(mapPlayerColorResourceRepresentation.get(player.getColor()).get(0));
+            faithResources.add(resourcesPlayers.get(player.getColor()).get(0));
         }
     }
     private void createExcomTileRepresentation(Match match){
@@ -273,96 +269,96 @@ public class MatchInstanceGUI extends MatchInstance {
             int period = excommunicationTile.getPeriod();
             String path = "img/excomunicationTile/excomm_"+excommunicationTile.getId()+".png";
             ExcommunicationTileRepresentation excomTileR = new ExcommunicationTileRepresentation(period, path);
-            excommunicationTileRepresentationObservableList.add(excomTileR);
+            excommunicationTiles.add(excomTileR);
         }
     }
     public void createCardPlayerRepresentation(Match match){
-        mapCardTypeCardPlayerRepresentationPl1.put(CardType.TERRITORY, territoryCardPlayerRepresentationPl1);
-        mapCardTypeCardPlayerRepresentationPl1.put(CardType.BUILDING, buildingCardPlayerRepresentationPl1);
-        mapCardTypeCardPlayerRepresentationPl1.put(CardType.CHARACTER, characterCardPlayerRepresentationPl1);
-        mapCardTypeCardPlayerRepresentationPl1.put(CardType.VENTURE, ventureCardPlayerRepresentationPl1);
+        cardsPlayer1.put(CardType.TERRITORY, territoryCardsPlayer1);
+        cardsPlayer1.put(CardType.BUILDING, buildingCardsPlayer1);
+        cardsPlayer1.put(CardType.CHARACTER, characterCardsPlayer1);
+        cardsPlayer1.put(CardType.VENTURE, ventureCardsPlayer1);
 
-        mapCardTypeCardPlayerRepresentationPl2.put(CardType.TERRITORY, territoryCardPlayerRepresentationPl2);
-        mapCardTypeCardPlayerRepresentationPl2.put(CardType.BUILDING, buildingCardPlayerRepresentationPl2);
-        mapCardTypeCardPlayerRepresentationPl2.put(CardType.CHARACTER, characterCardPlayerRepresentationPl2);
-        mapCardTypeCardPlayerRepresentationPl2.put(CardType.VENTURE, ventureCardPlayerRepresentationPl2);
+        cardsPlayer2.put(CardType.TERRITORY, territoryCardsPlayer2);
+        cardsPlayer2.put(CardType.BUILDING, buildingCardsPlayer2);
+        cardsPlayer2.put(CardType.CHARACTER, characterCardsPlayer2);
+        cardsPlayer2.put(CardType.VENTURE, ventureCardsPlayer2);
 
-        mapCardTypeCardPlayerRepresentationPl3.put(CardType.TERRITORY, territoryCardPlayerRepresentationPl3);
-        mapCardTypeCardPlayerRepresentationPl3.put(CardType.BUILDING, buildingCardPlayerRepresentationPl3);
-        mapCardTypeCardPlayerRepresentationPl3.put(CardType.CHARACTER, characterCardPlayerRepresentationPl3);
-        mapCardTypeCardPlayerRepresentationPl3.put(CardType.VENTURE, ventureCardPlayerRepresentationPl3);
+        cardsPlayer3.put(CardType.TERRITORY, territoryCardsPlayer3);
+        cardsPlayer3.put(CardType.BUILDING, buildingCardsPlayer3);
+        cardsPlayer3.put(CardType.CHARACTER, characterCardsPlayer3);
+        cardsPlayer3.put(CardType.VENTURE, ventureCardsPlayer3);
 
-        mapCardTypeCardPlayerRepresentationPl4.put(CardType.TERRITORY, territoryCardPlayerRepresentationPl4);
-        mapCardTypeCardPlayerRepresentationPl4.put(CardType.BUILDING, buildingCardPlayerRepresentationPl4);
-        mapCardTypeCardPlayerRepresentationPl4.put(CardType.CHARACTER, characterCardPlayerRepresentationPl4);
-        mapCardTypeCardPlayerRepresentationPl4.put(CardType.VENTURE, ventureCardPlayerRepresentationPl4);
+        cardsPlayer4.put(CardType.TERRITORY, territoryCardsPlayer4);
+        cardsPlayer4.put(CardType.BUILDING, buildingCardsPlayer4);
+        cardsPlayer4.put(CardType.CHARACTER, characterCardsPlayer4);
+        cardsPlayer4.put(CardType.VENTURE, ventureCardsPlayer4);
 
-        mapPlayerColorCardTypePlayerCard.put(PlayerColor.BLUE, mapCardTypeCardPlayerRepresentationPl1);
-        mapPlayerColorCardTypePlayerCard.put(PlayerColor.GREEN, mapCardTypeCardPlayerRepresentationPl2);
-        mapPlayerColorCardTypePlayerCard.put(PlayerColor.RED, mapCardTypeCardPlayerRepresentationPl3);
-        mapPlayerColorCardTypePlayerCard.put(PlayerColor.YELLOW, mapCardTypeCardPlayerRepresentationPl4);
+        cardsPlayers.put(PlayerColor.BLUE, cardsPlayer1);
+        cardsPlayers.put(PlayerColor.GREEN, cardsPlayer2);
+        cardsPlayers.put(PlayerColor.RED, cardsPlayer3);
+        cardsPlayers.put(PlayerColor.YELLOW, cardsPlayer4);
         for(Player player : players.values()) {
 
             for (CardType cardType : CardType.values()) {
                 for (int i = 0; i < 6; i++) {
                     CardPlayerRepresentation cardPlayerRepresentation = new CardPlayerRepresentation("img/Card/transparentCard.png");
-                    mapPlayerColorCardTypePlayerCard.get(player.getColor()).get(cardType).add(cardPlayerRepresentation);
+                    cardsPlayers.get(player.getColor()).get(cardType).add(cardPlayerRepresentation);
                 }
             }
         }
     }
     public void createCardLeaderRepresentation(Match match){
-        mapPlayerColorCardLeaders.put(PlayerColor.BLUE, cardLeaderRepresentationPl1);
-        mapPlayerColorCardLeaders.put(PlayerColor.GREEN, cardLeaderRepresentationPl2);
-        mapPlayerColorCardLeaders.put(PlayerColor.RED, cardLeaderRepresentationPl3);
-        mapPlayerColorCardLeaders.put(PlayerColor.YELLOW, cardLeaderRepresentationPl4);
+        cardsLeaderPlayers.put(PlayerColor.BLUE, cardsLeaderPl1);
+        cardsLeaderPlayers.put(PlayerColor.GREEN, cardsLeaderPl2);
+        cardsLeaderPlayers.put(PlayerColor.RED, cardsLeaderPl3);
+        cardsLeaderPlayers.put(PlayerColor.YELLOW, cardsLeaderPl4);
 
         for(Player player : match.getPlayers().values()){
             for(LeaderCard leaderCard : player.getPersonalBoard().getLeaderCardsSpace().getCards()){
                 String url = "img/CardLeader/leader_"+leaderCard.getId()+".jpg";
                 CardLeaderRepresentation cardLeaderRepresentation = new CardLeaderRepresentation(url, "img/CardLeader/baseLeader.jpg");
-                mapPlayerColorCardLeaders.get(player.getColor()).add(cardLeaderRepresentation);
+                cardsLeaderPlayers.get(player.getColor()).add(cardLeaderRepresentation);
             }
         }
 
     }
     public Map<PlayerColor, ObservableList<FamilyMemberRepresentation>> getMapPlayerColorObservableLiseFMRepr() {
-		return mapFamilyMember;
+		return familyMembers;
 	}
-	public Map<CardType, ObservableList<CardFloorRepresentation>> getMapTypeCardFloorRepresentation() {
-		return mapTypeCardFloorRepresentation;
+	public Map<CardType, ObservableList<CardFloorRepresentation>> getCardsFloors() {
+		return cardsFloors;
 	}
 
-    public Map<PlayerColor, ObservableList<ResourceRepresentation>> getMapPlayerColorResourceRepresentation() {
-        return mapPlayerColorResourceRepresentation;
+    public Map<PlayerColor, ObservableList<ResourceRepresentation>> getResourcesPlayers() {
+        return resourcesPlayers;
     }
 
-    public ObservableList<TurnOrderTrackPositionRepresentation> getTurnOrderTrackFirstPositionRepresentationObservableList() {
-        return turnOrderTrackFirstPositionRepresentationObservableList;
+    public ObservableList<TurnOrderTrackPositionRepresentation> getTurnOrderTracks() {
+        return turnOrderTracks;
     }
 
-    public ObservableList<ResourceRepresentation> getAllResourceRepresentationMilitary() {
-        return allResourceRepresentationMilitary;
+    public ObservableList<ResourceRepresentation> getMilitaryResources() {
+        return militaryResources;
     }
 
-    public ObservableList<ResourceRepresentation> getAllResourceRepresentationVictory() {
-        return allResourceRepresentationVictory;
+    public ObservableList<ResourceRepresentation> getVictoryResources() {
+        return victoryResources;
     }
 
-    public ObservableList<ExcommunicationTileRepresentation> getExcommunicationTileRepresentationObservableList() {
-        return excommunicationTileRepresentationObservableList;
+    public ObservableList<ExcommunicationTileRepresentation> getExcommunicationTiles() {
+        return excommunicationTiles;
     }
 
-    public Map<PlayerColor, Map<CardType, ObservableList<CardPlayerRepresentation>>> getMapPlayerColorCardTypePlayerCard() {
-        return mapPlayerColorCardTypePlayerCard;
+    public Map<PlayerColor, Map<CardType, ObservableList<CardPlayerRepresentation>>> getCardsPlayers() {
+        return cardsPlayers;
     }
 
-    public Map<PlayerColor, ObservableList<CardLeaderRepresentation>> getMapPlayerColorCardLeaders() {
-        return mapPlayerColorCardLeaders;
+    public Map<PlayerColor, ObservableList<CardLeaderRepresentation>> getCardsLeaderPlayers() {
+        return cardsLeaderPlayers;
     }
 
-    public ObservableList<ResourceRepresentation> getAllResourceRepresentationFaith() {
-        return allResourceRepresentationFaith;
+    public ObservableList<ResourceRepresentation> getFaithResources() {
+        return faithResources;
     }
 
     public void notifyInit() {

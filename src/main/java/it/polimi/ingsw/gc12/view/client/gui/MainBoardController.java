@@ -675,18 +675,18 @@ public class MainBoardController extends Observable implements Initializable, Ob
 
     private void bindCardsToFloor(){
         for(CardType cardType : CardType.values()){
-            ObservableList<CardFloorRepresentation> cardFloorRepresentations = match.getMapTypeCardFloorRepresentation().get(cardType);
+            ObservableList<CardFloorRepresentation> cardFloorRepresentations = match.getCardsFloors().get(cardType);
             for(CardFloorRepresentation cardFloorRepresentation : cardFloorRepresentations){
                 int floor = cardFloorRepresentation.getFloorNumber();
-                cardFloors.get(cardType).get(floor).imageProperty().bind(match.getMapTypeCardFloorRepresentation().get(cardType).get(floor).getPathProperty());
-                towerFloors.get(cardType).get(floor).imageProperty().bind(match.getMapTypeCardFloorRepresentation().get(cardType).get(floor).getPathFloorProperty());
+                cardFloors.get(cardType).get(floor).imageProperty().bind(match.getCardsFloors().get(cardType).get(floor).getPathProperty());
+                towerFloors.get(cardType).get(floor).imageProperty().bind(match.getCardsFloors().get(cardType).get(floor).getPathFloorProperty());
             }
         }
     }
 
     private void bindResources(){
         for(Player player : match.getPlayers().values()) {
-            ObservableList<ResourceRepresentation> resourceRepresentation = match.getMapPlayerColorResourceRepresentation().get(player.getColor());
+            ObservableList<ResourceRepresentation> resourceRepresentation = match.getResourcesPlayers().get(player.getColor());
             resourceLabels.get(player.getColor()).get(ResourceType.MONEY).textProperty().bind(resourceRepresentation.get(0).getMoneyProperty().asString());
             resourceLabels.get(player.getColor()).get(ResourceType.WOOD).textProperty().bind(resourceRepresentation.get(0).getWoodProperty().asString());
             resourceLabels.get(player.getColor()).get(ResourceType.STONE).textProperty().bind(resourceRepresentation.get(0).getStoneProperty().asString());
@@ -697,21 +697,21 @@ public class MainBoardController extends Observable implements Initializable, Ob
     private void bindTrackOrder(){
         List<Player> players = match.getBoard().getTrackTurnOrder().getOrderedPlayers();
         for(int i = 0; i < players.size(); i++){
-            turnOrderTrack.get(i).fillProperty().bind(match.getTurnOrderTrackFirstPositionRepresentationObservableList().get(i).getPlayerProperty());
+            turnOrderTrack.get(i).fillProperty().bind(match.getTurnOrderTracks().get(i).getPlayerProperty());
             turnOrderTrack.get(i).setOpacity(1);
         }
     }
 
     private void bindTrackMilitaryVictory(){
-        tableMilitaryPoints.setItems(match.getAllResourceRepresentationMilitary());
-        tableVictoryPoints.setItems(match.getAllResourceRepresentationVictory());
-        tableFaithPoints.setItems(match.getAllResourceRepresentationFaith());
+        tableMilitaryPoints.setItems(match.getMilitaryResources());
+        tableVictoryPoints.setItems(match.getVictoryResources());
+        tableFaithPoints.setItems(match.getFaithResources());
     }
 
     private void bindExcomunocationTile(){
         for(int i = 0; i < excomTiles.size(); i++){
             int j = i+1;
-            ExcommunicationTileRepresentation excommunicationTileRepresentation = match.getExcommunicationTileRepresentationObservableList().stream().filter(period -> period.getPeriod() == j).collect(collectingAndThen(toList(), l -> FXCollections.observableArrayList(l))).get(0);
+            ExcommunicationTileRepresentation excommunicationTileRepresentation = match.getExcommunicationTiles().stream().filter(period -> period.getPeriod() == j).collect(collectingAndThen(toList(), l -> FXCollections.observableArrayList(l))).get(0);
             excomTiles.get(i).imageProperty().bind(excommunicationTileRepresentation.getpathProperty());
             for(PlayerColor playerColor : PlayerColor.values()) {
                 exomunicationOccupiableColors.get(i).get(playerColor).fillProperty().bind(excommunicationTileRepresentation.getRetriveColorProperty().get(playerColor));
@@ -722,14 +722,14 @@ public class MainBoardController extends Observable implements Initializable, Ob
         for(Player player : match.getPlayers().values()) {
             for(CardType cardType : CardType.values()) {
                 for(int i = 0; i < 6; i++) {
-                    CardPlayerRepresentation cardPlayerRepresentation = match.getMapPlayerColorCardTypePlayerCard().get(player.getColor()).get(cardType).get(i);
+                    CardPlayerRepresentation cardPlayerRepresentation = match.getCardsPlayers().get(player.getColor()).get(cardType).get(i);
                     playerCards.get(player.getColor()).get(cardType).get(i).imageProperty().bind(cardPlayerRepresentation.getPathProperty());
                 }
             }
         }
     }
     private void bindPlayerLeaderCard(){
-        Map<PlayerColor, ObservableList<CardLeaderRepresentation>> mapPlayerColorCardLeaders = match.getMapPlayerColorCardLeaders();
+        Map<PlayerColor, ObservableList<CardLeaderRepresentation>> mapPlayerColorCardLeaders = match.getCardsLeaderPlayers();
         for(Player player : match.getPlayers().values()){
             List<ImageView> listPlayed = cardLeaders.get(player.getColor()).get(CardLeaderGuiState.PLAYED);
             for (int i = 0; i < listPlayed.size(); i++){
