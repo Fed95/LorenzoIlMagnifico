@@ -19,8 +19,8 @@ public class EventExcluded extends Event {
 	}
 
 	@Override
-	public void setActions(ActionHandler actionHandler, Match match) {
-		actionHandler.flushEvents();
+	public void setActions(Match match) {
+		match.getActionHandler().flushEvents();
 	}
 
 	@Override

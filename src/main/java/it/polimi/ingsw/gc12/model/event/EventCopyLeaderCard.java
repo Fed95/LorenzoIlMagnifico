@@ -19,7 +19,7 @@ public class EventCopyLeaderCard extends Event {
     }
 
     @Override
-    public void setActions(ActionHandler actionHandler, Match match) {
+    public void setActions(Match match) {
         actions = new ArrayList<>();
             for(LeaderCard otherCard : match.getPlayedLeaderCards())
                 if(otherCard.getId() != myCard.getId())

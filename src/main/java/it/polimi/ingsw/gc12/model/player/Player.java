@@ -158,7 +158,7 @@ public class Player implements Serializable{
 
 	public List<LeaderCard> getPlayableLeaderCards(){
 		List<LeaderCard> cards = new ArrayList<>();
-		for(LeaderCard card : personalBoard.getLeaderCards())
+		for(LeaderCard card : personalBoard.getLeaderCardsSpace().getCards())
 			if(!card.isPlayed() && canPlayLeaderCard(card))
 				cards.add(card);
 		return cards;
@@ -166,7 +166,7 @@ public class Player implements Serializable{
 
 	public List<LeaderCard> getAvailableLeaderCards(){
 		List<LeaderCard> cards = new ArrayList<>();
-		for(LeaderCard card : personalBoard.getLeaderCards())
+		for(LeaderCard card : personalBoard.getLeaderCardsSpace().getCards())
 			if(card.isPlayed() && !card.isPermanent() && !card.isActivated())
 				cards.add(card);
 		return cards;
@@ -174,7 +174,7 @@ public class Player implements Serializable{
 
 	public List<LeaderCard> getNotPlayedLeaderCards() {
 		List<LeaderCard> cards = new ArrayList<>();
-		for(LeaderCard card : personalBoard.getLeaderCards())
+		for(LeaderCard card : personalBoard.getLeaderCardsSpace().getCards())
 			if(!card.isPlayed())
 				cards.add(card);
 		return cards;
@@ -265,7 +265,7 @@ public class Player implements Serializable{
 
 	public String printLeaderCards() {
 		StringBuilder sb = new StringBuilder();
-		for(LeaderCard card : personalBoard.getLeaderCards())
+		for(LeaderCard card : personalBoard.getLeaderCardsSpace().getCards())
 			sb.append(" - " + card).append(System.getProperty("line.separator"));
 		return sb.toString();
 	}

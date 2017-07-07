@@ -46,21 +46,21 @@ public class EventStartTurn extends Event implements EventView {
 	}
 
 	@Override
-	public void setActions(ActionHandler actionHandler, Match match) {
-		hasPlaced = actionHandler.hasPlaced();
+	public void setActions(Match match) {
+		hasPlaced = match.getActionHandler().hasPlaced();
 		actions = new ArrayList<>();
 		if(!hasPlaced) {
 			for (FamilyMember familyMember : player.getAvailableFamilyMembers()) {
 				actions.add(new ActionChooseFamilyMember(player, familyMember));
 			}
 		}
-
-		if(player.getPlayableLeaderCards().size() > 0)
-			actions.add(new ActionViewPlayableLeaderCards(player));
-		if(player.getAvailableLeaderCards().size() > 0)
-			actions.add(new ActionViewAvailableLeaderCards(player));
-		if(player.getPersonalBoard().getLeaderCards().size() > 0)
+		if(player.getPersonalBoard().getLeaderCardsSpace().getCards().size() > 0) {
+			if (player.getPlayableLeaderCards().size() > 0)
+				actions.add(new ActionViewPlayableLeaderCards(player));
+			if (player.getAvailableLeaderCards().size() > 0)
+				actions.add(new ActionViewAvailableLeaderCards(player));
 			actions.add(new ActionViewDiscardableLeaderCards(player));
+		}
 		if(hasPlaced)
 			actions.add(new ActionPassTurn(player));
 		actions.add(new ActionRequestStatistics(player));

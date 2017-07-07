@@ -1,7 +1,5 @@
 package it.polimi.ingsw.gc_12.EventTests;
 
-
-
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -10,7 +8,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-public class EventFamilyMemberChoosenTest {
+public class FamilyMemberChoosenTest {
     @Test
     public void test(){
         /*
@@ -23,7 +21,7 @@ public class EventFamilyMemberChoosenTest {
         player.getExcommunications().add(excommunicationTile);
         FamilyMember familyMember = mock(FamilyMember.class);
 
-        EventFamilyMemberChosen event = new EventFamilyMemberChosen(player, familyMember);
+        EventFamilyMemberChosen viewAvailableLeaderCards = new EventFamilyMemberChosen(player, familyMember);
         */
 
 

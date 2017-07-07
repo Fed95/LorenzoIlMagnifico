@@ -31,13 +31,13 @@ public class EventCouncilPrivilegeReceived extends Event implements EventView {
 	}
 
 	@Override
-	public void setActions(ActionHandler actionHandler, Match match) {
+	public void setActions(Match match) {
 		actions = new ArrayList<>();
-		if(actionHandler.getCouncilPrivilegeResources().size() == 0)
-			actionHandler.setCouncilPrivilegeResources(new LoaderConfig().get(match).getCouncilPrivilegeResources());
-		actionHandler.setCouncilPrivileges(councilPrivilege.getValue());
+		if(match.getActionHandler().getCouncilPrivilegeResources().size() == 0)
+			match.getActionHandler().setCouncilPrivilegeResources(new LoaderConfig().get(match).getCouncilPrivilegeResources());
+		match.getActionHandler().setCouncilPrivileges(councilPrivilege.getValue());
 
-		for(List<Resource> resources: actionHandler.getCouncilPrivilegeResources()) {
+		for(List<Resource> resources: match.getActionHandler().getCouncilPrivilegeResources()) {
 			ResourceExchange resourceExchange = new ResourceExchange(new ArrayList<>(Collections.singletonList(new CouncilPrivilege(1))), resources);
 			actions.add(new ActionChooseExchange(player, resourceExchange));
 		}

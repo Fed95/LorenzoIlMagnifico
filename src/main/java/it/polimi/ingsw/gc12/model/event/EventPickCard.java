@@ -64,7 +64,7 @@ public class EventPickCard extends Event {
             if(that.isAnyCard())
                 return true;
 
-            if(that.getCardType() != null && ((CardDevelopment) card).getType().equals(that.getCardType()))
+            if(that.getCardType() != null && card.getType().equals(that.getCardType()))
                 return true;
 
             if ((cardID) == that.getCardID())

@@ -10,9 +10,6 @@ import it.polimi.ingsw.gc12.view.client.ClientHandler;
 
 import java.util.ArrayList;
 
-/**
- * Created by feder on 2017-07-01.
- */
 public class EventViewAvailableLeaderCards extends Event {
 
     public EventViewAvailableLeaderCards(Player player) {
@@ -32,7 +29,7 @@ public class EventViewAvailableLeaderCards extends Event {
     }
 
     @Override
-    public void setActions(ActionHandler actionHandler, Match match) {
+    public void setActions(Match match) {
         actions = new ArrayList<>();
         for(LeaderCard card : player.getAvailableLeaderCards())
             actions.add(new ActionActivateLeaderCard(player, card));

@@ -298,7 +298,7 @@ public class MatchInstanceGUI extends MatchInstance {
         mapPlayerColorCardLeaders.put(PlayerColor.YELLOW, cardLeaderRepresentationPl4);
 
         for(Player player : match.getPlayers().values()){
-            for(LeaderCard leaderCard : player.getPersonalBoard().getLeaderCards()){
+            for(LeaderCard leaderCard : player.getPersonalBoard().getLeaderCardsSpace().getCards()){
                 String url = "img/CardLeader/leader_"+leaderCard.getId()+".jpg";
                 CardLeaderRepresentation cardLeaderRepresentation = new CardLeaderRepresentation(url, "img/CardLeader/baseLeader.jpg");
                 mapPlayerColorCardLeaders.get(player.getColor()).add(cardLeaderRepresentation);

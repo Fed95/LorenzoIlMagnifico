@@ -22,6 +22,7 @@ public class ChooseFamilyMemberTest {
     ServerSocketView socketView = mock(ServerSocketView.class);
     Player player = match.getPlayer("p0");
     FamilyMember familyMember = player.getFamilyMember(FamilyMemberColor.BLACK);
+    FamilyMember familyMember1 = player.getFamilyMember(FamilyMemberColor.WHITE);
 
     @Test
     public void testStart(){
@@ -35,13 +36,16 @@ public class ChooseFamilyMemberTest {
         verify(socketView, times(1)).update(match.getActionHandler().getEvents().getFirst());
 
         familyMember.setBusy(true);
-        action = new ActionChooseFamilyMember(player, familyMember);
+        ActionChooseFamilyMember action1 = new ActionChooseFamilyMember(player, familyMember);
         action.start(match);
         verify(rmiView, times(2)).update(match.getActionHandler().getEvents().getFirst());
         verify(socketView, times(2)).update(match.getActionHandler().getEvents().getFirst());
 
         assertTrue(action.equals(action));
 
+        action1 = new ActionChooseFamilyMember(player, familyMember1);
+
+        assertFalse(action.equals(action1));
     }
 
 }

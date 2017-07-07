@@ -63,8 +63,8 @@ public abstract class Event implements Serializable{
 		return actions;
 	}
 
-	public void setActions(ActionHandler actionHandler, Match match) {
-		actionHandler.removeLastEvent();
+	public void setActions(Match match) {
+		match.getActionHandler().removeLastEvent();
 	}
 
 	public List<EffectProvider> getEffectProviders() {

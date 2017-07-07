@@ -73,11 +73,11 @@ public class EventServantsRequested extends EventPlaceFamilyMember implements Ev
 	}
 
 	@Override
-	public void setActions(ActionHandler actionHandler, Match match) {
+	public void setActions(Match match) {
 		actions = new ArrayList<>();
 		int i = getOccupiable().getRequiredValue() - familyMember.getValue();
 		i = (i < 0 ? 0 : i);
-		actionHandler.setOffset(i);
+		match.getActionHandler().setOffset(i);
 		//actionHandler.setMultiplier(mult);
 		for (; i <= player.getResourceValue(ResourceType.SERVANT); i++) {
 			ActionPlace action = ActionFactory.createActionPlace(player, familyMember, getOccupiable(), new Servant(i), true, null);

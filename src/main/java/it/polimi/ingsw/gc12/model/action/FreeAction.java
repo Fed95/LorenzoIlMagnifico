@@ -18,7 +18,6 @@ public class FreeAction extends ActionPlace {
         execute(match);
     }
 
-
     @Override
     protected void setup(Match match) {
         familyMember = getRealFamilyMember(match);

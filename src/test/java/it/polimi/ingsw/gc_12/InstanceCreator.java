@@ -2,10 +2,13 @@ package it.polimi.ingsw.gc_12;
 
 
 import it.polimi.ingsw.gc12.model.board.dice.SpaceDie;
-import it.polimi.ingsw.gc12.model.card.Card;
+import it.polimi.ingsw.gc12.model.card.*;
+import it.polimi.ingsw.gc12.model.effect.Effect;
 import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.player.PlayerColor;
+import it.polimi.ingsw.gc12.model.player.personalboard.LeaderCardsSpace;
+import it.polimi.ingsw.gc12.model.player.personalboard.PersonalBoard;
 import it.polimi.ingsw.gc12.model.player.resource.Money;
 import it.polimi.ingsw.gc12.model.player.resource.Resource;
 import it.polimi.ingsw.gc12.model.player.resource.Stone;
@@ -16,6 +19,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class InstanceCreator {
 
@@ -64,5 +70,24 @@ public class InstanceCreator {
             if(card.getName().equals(name))
                 return card;
         throw new IllegalStateException();
+    }
+
+    public static Player createMockPlayer(){
+        Player player = mock(Player.class);
+        PersonalBoard personalBoard = mock(PersonalBoard.class);
+        LeaderCardsSpace leaderCardsSpace = mock(LeaderCardsSpace.class);
+        when(player.getPersonalBoard()).thenReturn(personalBoard);
+        when(personalBoard.getLeaderCardsSpace()).thenReturn(leaderCardsSpace);
+        return player;
+    }
+
+    public static LeaderCard createEmptyLeaderCard(boolean permanent){
+        LeaderCard card = new LeaderCard(0, "testCard", new ArrayList<Resource>(), new HashMap<CardType, Integer>(), new ArrayList<Effect>(), permanent);
+        return card;
+    }
+
+    public static CardDevelopment createEmptyDevelopmentCard(){
+        CardDevelopment card = new CardBuilding(0, "test", 0, new ArrayList<Resource>(), new ArrayList<Effect>());
+        return card;
     }
 }

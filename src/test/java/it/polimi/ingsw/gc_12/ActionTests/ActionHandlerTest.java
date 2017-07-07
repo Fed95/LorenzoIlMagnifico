@@ -25,7 +25,7 @@ public class ActionHandlerTest {
 
     @Before
     public void init(){
-        actionHandler = new ActionHandler(match);
+        actionHandler = new ActionHandler();
         when(event.getActions()).thenReturn(Collections.singletonList(action));
     }
 

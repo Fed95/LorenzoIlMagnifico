@@ -26,7 +26,7 @@ public class EventTowerChosen extends Event implements EventView{
     }
 
     @Override
-    public void setActions(ActionHandler actionHandler, Match match) {
+    public void setActions(Match match) {
         actions = new ArrayList<>();
         for(TowerFloor towerFloor : tower.getFloors()){
             ActionPlace action = ActionFactory.createActionPlace(player, familyMember, towerFloor);

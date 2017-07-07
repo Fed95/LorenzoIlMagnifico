@@ -21,7 +21,7 @@ public class EventMarketChosen extends Event implements EventView{
     }
 
     @Override
-    public void setActions(ActionHandler actionHandler, Match match) {
+    public void setActions(Match match) {
         actions = new ArrayList<>();
         for(SpaceMarket spaceMarket : match.getBoard().getMarket().getSpaceMarkets()){
             ActionPlace action = ActionFactory.createActionPlace(player, familyMember, spaceMarket);

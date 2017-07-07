@@ -15,15 +15,13 @@ import java.util.List;
 public class ActionHandler {
 	private List<Action> actions = new ArrayList<>();
 	private LinkedList<Event> events = new LinkedList<>();
-	private Match match;
 	private int offset;
 	private boolean hasPlaced = false;
 	private int councilPrivileges = 0;
 	private List<List<Resource>> councilPrivilegeResources = new ArrayList<>();
 	private List<Player> players;
 
-	public ActionHandler(Match match) {
-		this.match = match;
+	public ActionHandler() {
 		this.actions = new ArrayList<>(Collections.singletonList(new ActionReady(null)));
 	}
 
@@ -49,7 +47,7 @@ public class ActionHandler {
 
 	public void update(Event event, Match match) {
 		events.addLast(event);
-		event.setActions(this, match);
+		event.setActions(match);
 		saveActions(event);
 	}
 

@@ -17,10 +17,10 @@ public class EventDiscardAction extends Event implements EventView{
     }
 
     @Override
-    public void setActions(ActionHandler actionHandler, Match match) {
+    public void setActions(Match match) {
         actions = new ArrayList<>();
 
-        if(!actionHandler.hasPlaced()) {
+        if(!match.getActionHandler().hasPlaced()) {
             for (FamilyMember familyMember : player.getAvailableFamilyMembers()) {
                 actions.add(new ActionChooseFamilyMember(player, familyMember));
             }
@@ -29,9 +29,9 @@ public class EventDiscardAction extends Event implements EventView{
             actions.add(new ActionViewPlayableLeaderCards(player));
         if(player.getAvailableLeaderCards().size() > 0)
             actions.add(new ActionViewAvailableLeaderCards(player));
-        if(player.getPersonalBoard().getLeaderCards().size() > 0)
+        if(player.getPersonalBoard().getLeaderCardsSpace().getCards().size() > 0)
             actions.add(new ActionViewDiscardableLeaderCards(player));
-        if(actionHandler.hasPlaced())
+        if(match.getActionHandler().hasPlaced())
             actions.add(new ActionPassTurn(player));
         actions.add(new ActionRequestStatistics(player));
     }

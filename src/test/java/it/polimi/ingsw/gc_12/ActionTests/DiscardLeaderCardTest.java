@@ -11,6 +11,7 @@ import it.polimi.ingsw.gc12.view.server.ServerSocketView;
 import it.polimi.ingsw.gc_12.*;
 import org.junit.Test;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -23,12 +24,14 @@ public class DiscardLeaderCardTest {
     ServerSocketView socketView = mock(ServerSocketView.class);
     Player player = match.getPlayer("p0");
     LeaderCard card = (LeaderCard) InstanceCreator.getCard("Santa Rita");
+    LeaderCard card1 = (LeaderCard) InstanceCreator.getCard("Sisto IV");
 
     @Test
     public void testStart(){
         match.registerObserver(rmiView);
         match.registerObserver(socketView);
         ActionDiscardLeaderCard action = new ActionDiscardLeaderCard(player, card);
+        ActionDiscardLeaderCard action1 = new ActionDiscardLeaderCard(player, card1);
         action.start(match);
 
         assertTrue(match.getActionHandler().getEvents().getFirst() instanceof EventCouncilPrivilegeReceived);
@@ -42,5 +45,6 @@ public class DiscardLeaderCardTest {
 
         assertTrue(match.getActionHandler().getEvents().getFirst() instanceof EventStartTurn);
         assertTrue(action.equals(action));
+        assertFalse(action.equals(action1));
     }
 }

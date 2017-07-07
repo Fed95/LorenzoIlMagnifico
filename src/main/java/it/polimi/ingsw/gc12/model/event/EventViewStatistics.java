@@ -47,7 +47,7 @@ public class EventViewStatistics extends Event {
     }
 
     @Override
-    public void setActions(ActionHandler actionHandler, Match match) {
+    public void setActions(Match match) {
         actions = new ArrayList<>();
         actions.add(new DiscardAction(player));
     }
@@ -58,6 +58,6 @@ public class EventViewStatistics extends Event {
 
     @Override
     public String toString() {
-        return player.getName() + " is viewing " + chosenPlayer.getName() + "'s stats.";
+        return player.getName() + " is viewing " + chosenPlayer.getName() + "'s stats";
     }
 }

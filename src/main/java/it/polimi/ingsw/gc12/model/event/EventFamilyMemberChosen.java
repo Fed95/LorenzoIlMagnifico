@@ -31,7 +31,7 @@ public class EventFamilyMemberChosen extends Event {
 	}
 
 	@Override
-	public void setActions(ActionHandler actionHandler, Match match) {
+	public void setActions(Match match) {
 		actions = new ArrayList<>();
 		for(Tower tower : match.getBoard().getTowerSet().getTowers().values()){
 			for(TowerFloor towerFloor : tower.getFloors()){

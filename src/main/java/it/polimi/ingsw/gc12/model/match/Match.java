@@ -65,7 +65,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		this.trackFaithPointValues = new LoaderTrackFaithPointsValues().get(this);
 		this.cardDeckSet = new CardDeckSet(developmentCards, DEFAULT_ROUND_NUM / DEFAULT_PERIODS_LEN);
 		this.effectHandler = new EffectHandler();
-		this.actionHandler = new ActionHandler(this);
+		this.actionHandler = new ActionHandler();
 
 		this.gameState = MatchState.PENDING;
 	}

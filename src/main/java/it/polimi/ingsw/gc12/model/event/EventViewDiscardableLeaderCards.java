@@ -32,9 +32,9 @@ public class EventViewDiscardableLeaderCards extends Event implements EventView{
     }
 
     @Override
-    public void setActions(ActionHandler actionHandler, Match match) {
+    public void setActions(Match match) {
         actions = new ArrayList<>();
-        for(LeaderCard card : player.getPersonalBoard().getLeaderCards())
+        for(LeaderCard card : player.getPersonalBoard().getLeaderCardsSpace().getCards())
             actions.add(new ActionDiscardLeaderCard(player, card));
         actions.add(new DiscardAction(player));
     }

@@ -39,7 +39,7 @@ public class EventFreeAction extends Event {
     }
 
     @Override
-    public void setActions(ActionHandler actionHandler, Match match) {
+    public void setActions(Match match) {
         actions = new ArrayList<>();
         for(Occupiable occupiable: occupiables) {
             ActionPlace action = ActionFactory.createActionPlace(player, familyMember, occupiable, discounts);

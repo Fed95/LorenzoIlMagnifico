@@ -23,7 +23,7 @@ public class ActionDiscardLeaderCard extends Action {
 
     @Override
     public void start(Match match) {
-        player.getPersonalBoard().getLeaderCards().remove(card);
+        player.getPersonalBoard().getLeaderCardsSpace().getCards().remove(card);
 
         EventCouncilPrivilegeReceived event = new EventCouncilPrivilegeReceived(player, new CouncilPrivilege(1));
         //TODO: are there any effects that could be executed?

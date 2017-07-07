@@ -18,7 +18,7 @@ public class EventSetFamilyMemberValue extends Event {
     }
 
     @Override
-    public void setActions(ActionHandler actionHandler, Match match) {
+    public void setActions(Match match) {
         actions = new ArrayList<>();
         for (FamilyMember familyMember : player.getFamilyMembers().values())
             actions.add(new ActionSetFamilyMemberValue(player, familyMember, value));

@@ -22,7 +22,7 @@ public class EventWorkplaceChosen extends Event implements EventView{
     }
 
     @Override
-    public void setActions(ActionHandler actionHandler, Match match) {
+    public void setActions(Match match) {
         actions = new ArrayList<>();
         for(SpaceWorkZone spaceWorkZone : match.getBoard().getSpaceWorkZones().values()){
             for(SpaceWork spaceWork : spaceWorkZone.getSpaceWorks()){

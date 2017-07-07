@@ -31,7 +31,7 @@ public class EventViewPlayableLeaderCards extends Event implements EventView{
     }
 
     @Override
-    public void setActions(ActionHandler actionHandler, Match match) {
+    public void setActions(Match match) {
         actions = new ArrayList<>();
         for(LeaderCard card : player.getPlayableLeaderCards())
             actions.add(new ActionPlayLeaderCard(player, card));

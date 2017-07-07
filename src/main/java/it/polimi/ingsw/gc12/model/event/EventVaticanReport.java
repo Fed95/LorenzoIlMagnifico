@@ -23,12 +23,12 @@ public class EventVaticanReport extends Event {
     }
 
     @Override
-    public void setActions(ActionHandler actionHandler, Match match) {
+    public void setActions(Match match) {
         actions = new ArrayList<>();
         actions.add(new ActionSupportChurch(player));
         actions.add(new ActionReceiveExcommunication(player, tile));
         players = new ArrayList<>(players.subList(1, players.size()));
-        actionHandler.setPlayers(players);
+        match.getActionHandler().setPlayers(players);
     }
 
     public ExcommunicationTile getTile() {

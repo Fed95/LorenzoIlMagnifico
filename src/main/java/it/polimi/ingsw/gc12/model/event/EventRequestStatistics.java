@@ -15,7 +15,7 @@ public class EventRequestStatistics extends Event {
     }
 
     @Override
-    public void setActions(ActionHandler actionHandler, Match match) {
+    public void setActions(Match match) {
         actions = new ArrayList<>();
         for(Player p : match.getPlayers().values())
             actions.add(new ActionViewStatistics(player, p));
