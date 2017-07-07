@@ -9,6 +9,7 @@ import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.player.PlayerColor;
 import it.polimi.ingsw.gc12.model.player.personalboard.LeaderCardsSpace;
 import it.polimi.ingsw.gc12.model.player.personalboard.PersonalBoard;
+import it.polimi.ingsw.gc12.model.player.personalboard.ResourcesContainer;
 import it.polimi.ingsw.gc12.model.player.resource.Money;
 import it.polimi.ingsw.gc12.model.player.resource.Resource;
 import it.polimi.ingsw.gc12.model.player.resource.Stone;
@@ -76,8 +77,10 @@ public class InstanceCreator {
         Player player = mock(Player.class);
         PersonalBoard personalBoard = mock(PersonalBoard.class);
         LeaderCardsSpace leaderCardsSpace = mock(LeaderCardsSpace.class);
+        ResourcesContainer resourcesContainer = mock(ResourcesContainer.class);
         when(player.getPersonalBoard()).thenReturn(personalBoard);
         when(personalBoard.getLeaderCardsSpace()).thenReturn(leaderCardsSpace);
+        when(personalBoard.getResourcesContainer()).thenReturn(resourcesContainer);
         return player;
     }
 

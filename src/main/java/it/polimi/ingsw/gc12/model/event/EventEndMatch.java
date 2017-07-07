@@ -11,7 +11,7 @@ public class EventEndMatch extends Event {
 
     public EventEndMatch(Player player) {
         super(player);
-        effectProviders.add(player.getPersonalBoard().getResourceContainer());
+        effectProviders.add(player.getPersonalBoard().getResourcesContainer());
     }
 
     public EventEndMatch(List<Player> players) {

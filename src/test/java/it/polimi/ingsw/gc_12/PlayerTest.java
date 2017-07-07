@@ -44,7 +44,7 @@ public class PlayerTest {
         assertEquals(PlayerColor.BLUE, p1.getColor());
         assertEquals(PlayerColor.RED, p2.getColor());
 
-        assertEquals(p1.getPersonalBoard().getResourceContainer().getResources(), p1.getResources());
+        assertEquals(p1.getPersonalBoard().getResourcesContainer().getResources(), p1.getResources());
 
         assertTrue(p1.getFamilyMembers().size() == 4);
 

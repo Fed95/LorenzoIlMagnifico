@@ -178,13 +178,11 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	}
 
 	private boolean newRound(){
-		if(roundNum != 0 && roundNum%1 == 0){
-			endMatch();
-			return true;
-		}
 		boolean vatican = roundNum != 0 && roundNum%2 == 0;
 		if(vatican) {
-			endPeriod();
+			boolean endMatch = endPeriod();
+			if(endMatch)
+				return vatican;
 			newPeriod();
 		}
 		roundNum++;
@@ -217,8 +215,13 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		}
 	}
 
-	private void endPeriod() {
+	private boolean endPeriod() {
+		if(roundNum != 0 && roundNum%(DEFAULT_ROUND_NUM) == 0){
+			endMatch();
+			return true;
+		}
 		vaticanReport(board.getTrackTurnOrder().getOrderedPlayers());
+		return false;
 	}
 
 	private void newPeriod() {

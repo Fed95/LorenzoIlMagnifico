@@ -4,7 +4,6 @@ import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.card.Card;
 import it.polimi.ingsw.gc12.model.card.CardDevelopment;
 import it.polimi.ingsw.gc12.model.card.CardType;
-import it.polimi.ingsw.gc12.model.card.LeaderCard;
 import it.polimi.ingsw.gc12.misc.exception.ActionNotAllowedException;
 
 import java.io.Serializable;
@@ -16,7 +15,7 @@ import java.util.Map;
 public class PersonalBoard implements Serializable{
     private Map<CardType, CardsSpace> cardsSpaces;
     private LeaderCardsSpace leaderCardsSpace = new LeaderCardsSpace();
-    private transient ResourcesContainer resourceContainer = new ResourcesContainer();
+    private transient ResourcesContainer resourcesContainer = new ResourcesContainer();
     private transient BonusTile bonusTile;
 
     public PersonalBoard(){ }
@@ -62,8 +61,8 @@ public class PersonalBoard implements Serializable{
         return cardsSpaces.get(type).getCards();
     }
 
-    public ResourcesContainer getResourceContainer() {
-        return resourceContainer;
+    public ResourcesContainer getResourcesContainer() {
+        return resourcesContainer;
     }
 
     public BonusTile getBonusTile() {

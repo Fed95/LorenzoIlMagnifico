@@ -41,7 +41,7 @@ public class Player implements Serializable{
 			resources.put(resourceType, ResourceBuilder.create(resourceType, 100));
 		}
 		this.resources = resources;
-		personalBoard.getResourceContainer().syncronize(this.resources);
+		personalBoard.getResourcesContainer().syncronize(this.resources);
 		this.state = PlayerState.ACTION;
 	}
 
@@ -90,7 +90,7 @@ public class Player implements Serializable{
 		for(Resource resource: resources) {
 			this.addResource(resource);
 		}
-		personalBoard.getResourceContainer().syncronize(this.resources);
+		personalBoard.getResourcesContainer().syncronize(this.resources);
 	}
 
 	public Integer getResourceValue(ResourceType type){
@@ -99,7 +99,7 @@ public class Player implements Serializable{
 
 	public void setResourceValue(ResourceType type, int value){
 		this.resources.get(type).setValue(value);
-		personalBoard.getResourceContainer().syncronize(resources);
+		personalBoard.getResourcesContainer().syncronize(resources);
 	}
 
 	private void removeResource(Resource resourceToRemove) {
@@ -115,7 +115,7 @@ public class Player implements Serializable{
 		//fills the array with the affected resources updating their values
 		for(Resource resource: resourcesToRemove)
 			this.removeResource(resource);
-		personalBoard.getResourceContainer().syncronize(this.resources);
+		personalBoard.getResourcesContainer().syncronize(this.resources);
 	}
 
 	public boolean hasResources(List<Resource> resources) {

@@ -10,9 +10,6 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 
-/**
- * Created by rugge on 17/06/2017.
- */
 public class ResponsiveListener implements ChangeListener<Number> {
     private final Scene scene;
     private final double ratio;
@@ -20,7 +17,7 @@ public class ResponsiveListener implements ChangeListener<Number> {
     private final double initWidth;
     private final Pane root;
     private final Stage primaryStage;
-    private double adjust = 1.6;//adjust size for minor screen size
+    private double adjust = 1;//adjust size for minor screen size
 
     public ResponsiveListener(Scene scene, double ratio, double initHeight, double initWidth, Pane root, Stage primaryStage) {
         this.scene = scene;
