@@ -362,6 +362,26 @@ public class MainBoardController extends Observable implements Initializable, Ob
 
     private Map<PlayerColor, Map<CardLeaderGuiState, List<ImageView>>> cardLeaders = new HashMap<>();
 
+    @FXML private Circle excomm1Pl1;
+    @FXML private Circle excomm1Pl2;
+    @FXML private Circle excomm1Pl3;
+    @FXML private Circle excomm1Pl4;
+    private Map<PlayerColor, Circle> excommunication1PlayersColor = new HashMap<>();
+
+    @FXML private Circle excomm2Pl1;
+    @FXML private Circle excomm2Pl2;
+    @FXML private Circle excomm2Pl3;
+    @FXML private Circle excomm2Pl4;
+    private Map<PlayerColor, Circle> excommunication2PlayersColor = new HashMap<>();
+
+    @FXML private Circle excomm3Pl1;
+    @FXML private Circle excomm3Pl2;
+    @FXML private Circle excomm3Pl3;
+    @FXML private Circle excomm3Pl4;
+    private Map<PlayerColor, Circle> excommunication3PlayersColor = new HashMap<>();
+
+    private List<Map<PlayerColor, Circle> > exomunicationOccupiableColors = new ArrayList<>();
+
     private MatchInstanceGUI match;
     private ClientHandler clientHandler;
     private Action actionPending;
@@ -687,6 +707,9 @@ public class MainBoardController extends Observable implements Initializable, Ob
             int j = i+1;
             ExcommunicationTileRepresentation excommunicationTileRepresentation = match.getExcommunicationTileRepresentationObservableList().stream().filter(period -> period.getPeriod() == j).collect(collectingAndThen(toList(), l -> FXCollections.observableArrayList(l))).get(0);
             excomTiles.get(i).imageProperty().bind(excommunicationTileRepresentation.getpathProperty());
+            for(PlayerColor playerColor : PlayerColor.values()) {
+                exomunicationOccupiableColors.get(i).get(playerColor).fillProperty().bind(excommunicationTileRepresentation.getRetriveColorProperty().get(playerColor));
+            }
         }
     }
     private void bindPlayerCard(){
@@ -1011,6 +1034,7 @@ public class MainBoardController extends Observable implements Initializable, Ob
         setTowerFloors();
         setTrackTurnOrder();
         setExcommunicationTiles();
+        setExcommunicationOccupiableColors();
         setMarkets();
         setWorkplaces();
         setPlayerCards();
@@ -1146,7 +1170,26 @@ public class MainBoardController extends Observable implements Initializable, Ob
         excomTiles.add(excomTile2);
         excomTiles.add(excomTile3);
     }
+    private void setExcommunicationOccupiableColors() {
+       excommunication1PlayersColor.put(PlayerColor.BLUE, excomm1Pl1);
+       excommunication1PlayersColor.put(PlayerColor.GREEN, excomm1Pl2);
+       excommunication1PlayersColor.put(PlayerColor.RED, excomm1Pl3);
+       excommunication1PlayersColor.put(PlayerColor.YELLOW, excomm1Pl4);
 
+        excommunication2PlayersColor.put(PlayerColor.BLUE, excomm2Pl1);
+        excommunication2PlayersColor.put(PlayerColor.GREEN, excomm2Pl2);
+        excommunication2PlayersColor.put(PlayerColor.RED, excomm2Pl3);
+        excommunication2PlayersColor.put(PlayerColor.YELLOW, excomm2Pl4);
+
+        excommunication3PlayersColor.put(PlayerColor.BLUE, excomm3Pl1);
+        excommunication3PlayersColor.put(PlayerColor.GREEN, excomm3Pl2);
+        excommunication3PlayersColor.put(PlayerColor.RED, excomm3Pl3);
+        excommunication3PlayersColor.put(PlayerColor.YELLOW, excomm3Pl4);
+
+        exomunicationOccupiableColors.add(excommunication1PlayersColor);
+        exomunicationOccupiableColors.add(excommunication2PlayersColor);
+        exomunicationOccupiableColors.add(excommunication3PlayersColor);
+    }
     private void setMarkets() {
         markets.add(market0);
         markets.add(market1);

@@ -215,21 +215,18 @@ public class MatchInstanceGUI extends MatchInstance {
     }
     private void createOrderedTruckRepresentation(Match match){
         List<Player> orderedPlayer = match.getBoard().getTrackTurnOrder().getOrderedPlayers();
-        Paint red = new Color(1, 0.2353, 0.1608, 1);
-        Paint blue = new Color(0.0314, 0.2627, 0.9255, 1);
-        Paint green = new Color(0.0706, 0.6039, 0.2706, 1);
-        Paint yellow = new Color(1, 1, 0.0471, 1);
+        PlayerColorReal playerColorReal = new PlayerColorReal(1);
         TurnOrderTrackPositionRepresentation turnOrderTrackPositionRepresentation = null;
         for(Player player : orderedPlayer){
             PlayerColor playerColor = player.getColor();
             if(playerColor == PlayerColor.BLUE){
-                 turnOrderTrackPositionRepresentation = new TurnOrderTrackPositionRepresentation(blue);
+                 turnOrderTrackPositionRepresentation = new TurnOrderTrackPositionRepresentation(playerColorReal.getBlue());
             }else if(playerColor == PlayerColor.GREEN){
-                 turnOrderTrackPositionRepresentation = new TurnOrderTrackPositionRepresentation(green);
+                 turnOrderTrackPositionRepresentation = new TurnOrderTrackPositionRepresentation(playerColorReal.getGreen());
             }else if(playerColor == PlayerColor.RED){
-                 turnOrderTrackPositionRepresentation = new TurnOrderTrackPositionRepresentation(red);
+                 turnOrderTrackPositionRepresentation = new TurnOrderTrackPositionRepresentation(playerColorReal.getRed());
             }else if(playerColor == PlayerColor.YELLOW){
-                 turnOrderTrackPositionRepresentation = new TurnOrderTrackPositionRepresentation(yellow);
+                 turnOrderTrackPositionRepresentation = new TurnOrderTrackPositionRepresentation(playerColorReal.getYellow());
             }
             turnOrderTrackFirstPositionRepresentationObservableList.add(turnOrderTrackPositionRepresentation);
         }
