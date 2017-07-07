@@ -516,7 +516,14 @@ public class MainBoardController extends Observable implements Initializable, Ob
         }else
             showTurnDenied();
     }
+    @FXML void whoWeAre(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Politecnico di Milano");
+        alert.setHeaderText("Ingegneria del Software gruppo gc_12");
+        alert.setContentText("Hi we are Ruggero, Marco and Federico the developers of Lorenzo il Magnifico pc game. Thanks for playing our game, hope you like it :) \n \n Cheers!!");
 
+        alert.showAndWait();
+    }
     private void selectAction(Action action) {
         List<Action> actions = clientHandler.getActions();
         for (int i = 0; i < actions.size(); i++) {

@@ -629,11 +629,11 @@
                      <Image url="@../img/councilPrivilege.png" />
                  </image>
              </ImageView>
-            <ImageView fx:id="excomTile1" fitHeight="93.0" fitWidth="57.0" layoutX="103.0" layoutY="633.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+            <ImageView fx:id="excomTile1" fitHeight="93.0" fitWidth="57.0" layoutX="103.0" layoutY="633.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-            <ImageView fx:id="excomTile2" fitHeight="89.0" fitWidth="50.0" layoutX="160.0" layoutY="645.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+            <ImageView fx:id="excomTile2" fitHeight="89.0" fitWidth="50.0" layoutX="160.0" layoutY="645.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
-            <ImageView fx:id="excomTile3" fitHeight="105.0" fitWidth="49.0" layoutX="217.0" layoutY="632.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true"/>
+            <ImageView fx:id="excomTile3" fitHeight="105.0" fitWidth="49.0" layoutX="217.0" layoutY="632.0" onMouseClicked="#showCard" pickOnBounds="true" preserveRatio="true" />
 
             <ImageView fx:id="market0" fitHeight="60.0" fitWidth="60.0" layoutX="360.0" layoutY="829.2" onMouseClicked="#marketClicked" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -684,19 +684,19 @@
               </content>
             </TitledPane>
             <Circle fx:id="excomm1Pl1" fill="DODGERBLUE" layoutX="117.0" layoutY="652.0" radius="8.5" />
-             <Circle fx:id="excomm1Pl2" fill="DODGERBLUE" layoutX="136.0" layoutY="652.0" radius="8.5"/>
-             <Circle fx:id="excomm1Pl3" fill="DODGERBLUE" layoutX="117.0" layoutY="671.0" radius="8.5"/>
-             <Circle fx:id="excomm1Pl4" fill="DODGERBLUE" layoutX="136.0" layoutY="671.0" radius="8.5"/>
+             <Circle fx:id="excomm1Pl2" fill="DODGERBLUE" layoutX="136.0" layoutY="652.0" radius="8.5" />
+             <Circle fx:id="excomm1Pl3" fill="DODGERBLUE" layoutX="117.0" layoutY="671.0" radius="8.5" />
+             <Circle fx:id="excomm1Pl4" fill="DODGERBLUE" layoutX="136.0" layoutY="671.0" radius="8.5" />
 
-             <Circle fx:id="excomm2Pl1" fill="DODGERBLUE" layoutX="174.0" layoutY="660.0" radius="8.5"/>
-             <Circle fx:id="excomm2Pl2" fill="DODGERBLUE" layoutX="194.0" layoutY="660.0" radius="8.5"/>
-             <Circle fx:id="excomm2Pl3" fill="DODGERBLUE" layoutX="174.0" layoutY="679.0" radius="8.5"/>
-             <Circle fx:id="excomm2Pl4" fill="DODGERBLUE" layoutX="194.0" layoutY="679.0" radius="8.5"/>
+             <Circle fx:id="excomm2Pl1" fill="DODGERBLUE" layoutX="174.0" layoutY="660.0" radius="8.5" />
+             <Circle fx:id="excomm2Pl2" fill="DODGERBLUE" layoutX="194.0" layoutY="660.0" radius="8.5" />
+             <Circle fx:id="excomm2Pl3" fill="DODGERBLUE" layoutX="174.0" layoutY="679.0" radius="8.5" />
+             <Circle fx:id="excomm2Pl4" fill="DODGERBLUE" layoutX="194.0" layoutY="679.0" radius="8.5" />
 
-             <Circle fx:id="excomm3Pl1" fill="DODGERBLUE" layoutX="233.0" layoutY="652.0" radius="8.5"/>
-             <Circle fx:id="excomm3Pl2" fill="DODGERBLUE" layoutX="251.0" layoutY="652.0" radius="8.5"/>
-             <Circle fx:id="excomm3Pl3" fill="DODGERBLUE" layoutX="232.0" layoutY="671.0" radius="8.5"/>
-             <Circle fx:id="excomm3Pl4" fill="DODGERBLUE" layoutX="251.0" layoutY="671.0" radius="8.5"/>
+             <Circle fx:id="excomm3Pl1" fill="DODGERBLUE" layoutX="233.0" layoutY="652.0" radius="8.5" />
+             <Circle fx:id="excomm3Pl2" fill="DODGERBLUE" layoutX="251.0" layoutY="652.0" radius="8.5" />
+             <Circle fx:id="excomm3Pl3" fill="DODGERBLUE" layoutX="232.0" layoutY="671.0" radius="8.5" />
+             <Circle fx:id="excomm3Pl4" fill="DODGERBLUE" layoutX="251.0" layoutY="671.0" radius="8.5" />
          </children>
       </Pane>
    </center>
@@ -715,7 +715,7 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem fx:id="about" mnemonicParsing="false" onAction="#whoWeAre" text="About" />
             </items>
           </Menu>
         </menus>
