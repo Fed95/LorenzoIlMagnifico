@@ -1,6 +1,7 @@
 package it.polimi.ingsw.gc12.model.match;
 
 
+import it.polimi.ingsw.gc12.model.board.occupiable.Tower;
 import it.polimi.ingsw.gc12.model.card.CardDevelopment;
 import it.polimi.ingsw.gc12.model.card.CardType;
 import it.polimi.ingsw.gc12.model.card.LeaderCard;
@@ -119,7 +120,26 @@ public class MatchInstanceGUI extends MatchInstance {
 		initialized = true;
 	}
 
-    @Override
+	@Override
+	public void pickCard(CardDevelopment card, PlayerColor playerColor) {
+		for(Tower tower: board.getTowerSet().getTowers().values()) {
+			List<TowerFloor> floors = tower.getFloors();
+			for (int i = 0; i < floors.size(); i++) {
+				if(floors.get(i).getCard().equals(card)) {
+					mapTypeCardFloorRepresentation.get(card.getType()).get(i).removeCard();
+				}
+			}
+		}
+		for(CardPlayerRepresentation cardRepr: mapPlayerColorCardTypePlayerCard.get(playerColor).get(card.getType())) {
+			if(!cardRepr.isOccupied()) {
+				cardRepr.placeCard(card);
+				break;
+			}
+		}
+
+	}
+
+	@Override
     public void setCards(TowerSet towers) {
         for(CardType cardType : CardType.values()){
             List<TowerFloor> towerFloors = towers.getTower(cardType).getFloors();

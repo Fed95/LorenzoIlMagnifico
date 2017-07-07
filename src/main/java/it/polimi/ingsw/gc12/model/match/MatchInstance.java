@@ -4,7 +4,10 @@ import it.polimi.ingsw.gc12.model.board.Board;
 import it.polimi.ingsw.gc12.model.board.dice.Die;
 import it.polimi.ingsw.gc12.model.board.dice.SpaceDie;
 import it.polimi.ingsw.gc12.model.board.occupiable.Occupiable;
+import it.polimi.ingsw.gc12.model.board.occupiable.Tower;
+import it.polimi.ingsw.gc12.model.board.occupiable.TowerFloor;
 import it.polimi.ingsw.gc12.model.board.occupiable.TowerSet;
+import it.polimi.ingsw.gc12.model.card.CardDevelopment;
 import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.player.PlayerColor;
 import it.polimi.ingsw.gc12.model.player.familymember.FamilyMember;
@@ -57,6 +60,9 @@ public abstract class MatchInstance extends Observable {
 		if(getFamilyMembers(familyMember).size() > 0) {
 			getFamilyMembers(familyMember).get(0).setBusy(true);
 		}
+	}
+
+	public void pickCard(CardDevelopment card, PlayerColor playerColor) {
 
 	}
 

@@ -3,6 +3,7 @@ package it.polimi.ingsw.gc12.model.event;
 import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.card.CardDevelopment;
 import it.polimi.ingsw.gc12.model.card.CardType;
+import it.polimi.ingsw.gc12.view.client.ClientHandler;
 
 
 /* this event is saved in the card with the card ID.
@@ -36,6 +37,11 @@ public class EventPickCard extends Event {
 
     public EventPickCard(){
         anyCard = true;
+    }
+
+    @Override
+    public void executeClientSide(ClientHandler client) {
+        client.getMatch().pickCard(card, player.getColor());
     }
 
     public boolean isAnyCard() {

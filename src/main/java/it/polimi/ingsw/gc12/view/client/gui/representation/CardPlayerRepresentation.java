@@ -1,14 +1,13 @@
 package it.polimi.ingsw.gc12.view.client.gui.representation;
 
+import it.polimi.ingsw.gc12.model.card.CardDevelopment;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.image.Image;
 
-/**
- * Created by rugge on 03/07/2017.
- */
 public class CardPlayerRepresentation {
     private SimpleObjectProperty<Image> path;
+    private boolean occupied;
     public CardPlayerRepresentation(String url){
         Image image = new Image(url);
         this.path = new SimpleObjectProperty<Image>(image);
@@ -24,5 +23,16 @@ public class CardPlayerRepresentation {
 
     public void setPath(Image path) {
         this.path.set(path);
+    }
+
+    public void placeCard(CardDevelopment card) {
+        if(occupied)
+            return;
+        setPath(new Image("img/Card/card_"+card.getId()+".png"));
+        occupied = true;
+    }
+
+    public boolean isOccupied() {
+        return occupied;
     }
 }

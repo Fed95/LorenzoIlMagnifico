@@ -13,7 +13,6 @@ public class CardFloorRepresentation  {
     private SimpleObjectProperty<Image> pathCard;
     private SimpleObjectProperty<Image> pathFloor;
 
-
     private SimpleBooleanProperty taken;
 
     public CardFloorRepresentation(String urlCard ,String urlFloor, int floor, Boolean taken) {
@@ -31,6 +30,10 @@ public class CardFloorRepresentation  {
 
     public ObjectProperty<Image> getPathProperty() {
         return pathCard;
+    }
+
+    public void removeCard() {
+        setPathCard(new Image("img/Card/transparentCard.png"));
     }
 
     public void setPathCard(Image pathCard) {
