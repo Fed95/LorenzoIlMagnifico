@@ -96,7 +96,8 @@ public class ActionPlaceOnTower extends ActionPlace {
 
     private void handleRequirementChoice(Match match, List<Resource> requirements, CardVenture card) {
         List<ResourceExchange> exchanges = new ArrayList<>();
-        exchanges.add(new ResourceExchange(requirements, null));
+        if(requirements.size() > 0)
+            exchanges.add(new ResourceExchange(requirements, null));
         exchanges.add(card.getMilitaryExchange());
         EventChooseExchange eventExchange = new EventChooseExchange(player, exchanges);
         match.getActionHandler().update(eventExchange, match);
