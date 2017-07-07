@@ -32,7 +32,7 @@ public class ExcommunicationTileRepresentation {
         setRetrive();
     }
     private void setColor(){
-        PlayerColorReal playerColorReal = new PlayerColorReal(1);
+        PlayerColorReal playerColorReal = new PlayerColorReal(0);
         playerBlue.set(playerColorReal.getBlue());
         playerGreen.set(playerColorReal.getGreen());
         playerRed.set(playerColorReal.getRed());

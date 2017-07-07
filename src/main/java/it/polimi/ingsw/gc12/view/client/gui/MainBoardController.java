@@ -470,41 +470,43 @@ public class MainBoardController extends Observable implements Initializable, Ob
 
     @FXML void marketClicked(MouseEvent event){
         ImageView market = (ImageView) event.getTarget();
-        if(isMyTurn()){
-            for (int i = 0; i < markets.size(); i++) {
-                if(markets.get(i).equals(market)) {
-                    Action action = new ActionChooseMarket(match.getPlayers().get(playerColor), null);
-                    actionPending = new ActionPlaceOnMarket(match.getPlayers().get(playerColor), null, new SpaceMarket(i, 1, new ArrayList<>()));
-                    selectAction(action);
-                    break;
-                }
+        if(market.getUserData() != "block") {
+            if (isMyTurn()) {
+                for (int i = 0; i < markets.size(); i++) {
+                    if (markets.get(i).equals(market)) {
+                        Action action = new ActionChooseMarket(match.getPlayers().get(playerColor), null);
+                        actionPending = new ActionPlaceOnMarket(match.getPlayers().get(playerColor), null, new SpaceMarket(i, 1, new ArrayList<>()));
+                        selectAction(action);
+                        break;
+                    }
 
-            }
+                }
+            } else
+                showTurnDenied();
         }
-        else
-            showTurnDenied();
     }
 
     @FXML void workspaceClicked(MouseEvent event){
         ImageView workplace = (ImageView) event.getTarget();
-        if(isMyTurn()){
-            loop: for(Map.Entry<WorkType, List<ImageView>> entryType : workplaces.entrySet()) {
-                for (int i = 0; i < entryType.getValue().size(); i++) {
-                    if(entryType.getValue().get(i).equals(workplace)) {
-                        Action action = new ActionChooseWorkplace(match.getPlayers().get(playerColor), null);
-                        if(i == 0)
-                            actionPending = new ActionPlaceOnSpaceWork(match.getPlayers().get(playerColor), null, new SpaceWorkSingle(entryType.getKey()));
-                        else
-                            actionPending = new ActionPlaceOnSpaceWork(match.getPlayers().get(playerColor), null, new SpaceWorkMultiple(entryType.getKey()));
-                        selectAction(action);
-                        break loop;
+        if(workplace.getUserData() != "block") {
+            if (isMyTurn()) {
+                loop:
+                for (Map.Entry<WorkType, List<ImageView>> entryType : workplaces.entrySet()) {
+                    for (int i = 0; i < entryType.getValue().size(); i++) {
+                        if (entryType.getValue().get(i).equals(workplace)) {
+                            Action action = new ActionChooseWorkplace(match.getPlayers().get(playerColor), null);
+                            if (i == 0)
+                                actionPending = new ActionPlaceOnSpaceWork(match.getPlayers().get(playerColor), null, new SpaceWorkSingle(entryType.getKey()));
+                            else
+                                actionPending = new ActionPlaceOnSpaceWork(match.getPlayers().get(playerColor), null, new SpaceWorkMultiple(entryType.getKey()));
+                            selectAction(action);
+                            break loop;
+                        }
                     }
                 }
-            }
+            } else
+                showTurnDenied();
         }
-        else
-            showTurnDenied();
-
     }
 
     @FXML void passTurn(){
@@ -624,6 +626,8 @@ public class MainBoardController extends Observable implements Initializable, Ob
         market3.setLayoutX(539);
         market3.setFitWidth(70);
         market3.setFitHeight(77);
+        market2.setUserData("block");
+        market3.setUserData("block");
     }
     private void blockSpaceWork(){
         Image blockProduction = new Image("img/block/productionBlock.png");
@@ -638,6 +642,8 @@ public class MainBoardController extends Observable implements Initializable, Ob
         harvestBig.setFitWidth(160);
         harvestBig.setLayoutY(931);
         harvestBig.setLayoutX(80);
+        productionBig.setUserData("block");
+        harvestBig.setUserData("block");
     }
     private void bindAllFamilyMember(){
         Map<PlayerColor, ObservableList<FamilyMemberRepresentation>> mapColorFamilyRepresentation = match.getMapPlayerColorObservableLiseFMRepr();
@@ -1409,5 +1415,4 @@ public class MainBoardController extends Observable implements Initializable, Ob
         cardLeaders.put(PlayerColor.RED, thirdPlayerCardLeaders);
         cardLeaders.put(PlayerColor.YELLOW, fourthPlayerCardLeaders);
     }
-
 }
