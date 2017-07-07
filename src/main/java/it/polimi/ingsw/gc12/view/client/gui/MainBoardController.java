@@ -2,6 +2,7 @@ package it.polimi.ingsw.gc12.view.client.gui;
 
 import it.polimi.ingsw.gc12.model.action.*;
 import it.polimi.ingsw.gc12.model.board.occupiable.*;
+import it.polimi.ingsw.gc12.model.card.Card;
 import it.polimi.ingsw.gc12.model.match.MatchInstanceGUI;
 import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.player.PlayerColor;
@@ -440,8 +441,6 @@ public class MainBoardController extends Observable implements Initializable, Ob
                         action = new ActionViewDiscardableLeaderCards(match.getPlayers().get(playerColor));
                         actionPending = new ActionDiscardLeaderCard(player, player.getNotPlayedLeaderCards().get(i));
                     }
-
-                    System.out.println(player.getNotPlayedLeaderCards().get(i));
                     selectAction(action);
                 }
             }
@@ -1048,8 +1047,25 @@ public class MainBoardController extends Observable implements Initializable, Ob
     public void moveOccupiableImage(Occupiable occupiable) {
         if(occupiable instanceof TowerFloor) {
             TowerFloor floor = (TowerFloor) occupiable;
-            towerFloors.get(floor.getType()).get(floor.getFloorNum()).setX(18);
+            towerFloors.get(floor.getType()).get(floor.getFloorNum()).setX(17);
             towerFloors.get(floor.getType()).get(floor.getFloorNum()).setY(-20);
+        }
+    }
+
+    public void resetOccupiableImages() {
+        for(CardType cardType: CardType.values()) {
+            for(ImageView floor: towerFloors.get(cardType)) {
+                floor.setX(0);
+                floor.setY(0);
+            }
+        }
+    }
+
+    public void resetFamilyMembers() {
+        for(PlayerColor color: PlayerColor.values()) {
+            for(ImageView familyMember: familyMembers.get(color).values()) {
+                familyMember.setOpacity(1);
+            }
         }
     }
 

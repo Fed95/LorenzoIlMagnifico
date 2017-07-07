@@ -151,6 +151,33 @@ public class MatchInstanceGUI extends MatchInstance {
 	}
 
 	@Override
+	public void resetFamilyMembers() {
+		for(ObservableList<FamilyMemberRepresentation> FMRepresentations: familyMembers.values()) {
+			for(FamilyMemberRepresentation familyMember: FMRepresentations) {
+				familyMember.setVisible(true);
+			}
+		}
+	}
+
+	@Override
+	public void resetFloors() {
+		for(ObservableList<CardFloorRepresentation> floors: cardsFloors.values()) {
+			for(CardFloorRepresentation floor: floors) {
+				floor.setPathFloor(new Image("img/Floor/floor"+floor.getFloorCount()+".png"));
+			}
+		}
+	}
+
+	@Override
+	public void updateResources(List<Player> players) {
+    	/*for(Player player: players) {
+    		for(ResourceRepresentation resourceRepresentation: resourcesPlayers.get(player.getColor())) {
+    			resourceRepresentation.getT
+			}
+		}*/
+	}
+
+	@Override
     public void setCards(TowerSet towers) {
         for(CardType cardType : CardType.values()){
             List<TowerFloor> towerFloors = towers.getTower(cardType).getFloors();
@@ -223,7 +250,7 @@ public class MatchInstanceGUI extends MatchInstance {
                 }
 				String pathCard = "img/Card/transparentCard.png";//setting trasparent card because the cards arrive with eventStarTurn
                 String pathFloor = "img/Floor/floor"+realFloor+".png";
-				CardFloorRepresentation cardFloorRepresentation = new CardFloorRepresentation(pathCard,pathFloor, floor, taken);
+				CardFloorRepresentation cardFloorRepresentation = new CardFloorRepresentation(pathCard,pathFloor, floor, taken, realFloor);
 				cardsFloors.get(cardType).add(cardFloorRepresentation);
 				realFloor= realFloor+1;
 			}

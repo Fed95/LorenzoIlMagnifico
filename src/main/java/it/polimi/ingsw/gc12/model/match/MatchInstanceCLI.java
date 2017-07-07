@@ -8,6 +8,8 @@ import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.player.PlayerColor;
 import it.polimi.ingsw.gc12.model.player.familymember.FamilyMember;
 
+import java.util.List;
+
 public class MatchInstanceCLI extends MatchInstance {
 
 	private static MatchInstanceCLI instance;
@@ -41,4 +43,13 @@ public class MatchInstanceCLI extends MatchInstance {
 
 	@Override
 	public void placeFamilyMember(FamilyMember familyMember, Occupiable occupiable, PlayerColor playerColor) {}
+
+	@Override
+	public void resetFamilyMembers() {}
+
+	@Override
+	public void resetFloors() {}
+
+	@Override
+	public void updateResources(List<Player> players) {}
 }

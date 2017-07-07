@@ -2,6 +2,7 @@ package it.polimi.ingsw.gc12.model.event;
 
 import it.polimi.ingsw.gc12.controller.ActionHandler;
 import it.polimi.ingsw.gc12.model.action.*;
+import it.polimi.ingsw.gc12.model.player.PlayerColor;
 import it.polimi.ingsw.gc12.model.player.familymember.FamilyMember;
 import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.player.Player;
@@ -11,11 +12,13 @@ import javafx.application.Platform;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class EventStartTurn extends Event implements EventView {
 
 	private int turn;
 	private boolean hasPlaced;
+	private Map<PlayerColor, Player> players;
 
 	public EventStartTurn(Player player, List<Action> actions, int turn) {
 		super(player);
@@ -35,9 +38,15 @@ public class EventStartTurn extends Event implements EventView {
 	public EventStartTurn() {
 	}
 
+	public void setPlayers(Map<PlayerColor, Player> players) {
+		this.players = players;
+	}
+
 	@Override
 	public void executeClientSide(ClientHandler client) {
 		client.getMatch().setTurn(turn);
+		if(players != null)
+			client.getMatch().updateResources(new ArrayList<>(players.values()));
 		boolean myTurn = client.getColor().equals(player.getColor());
 		client.setMyTurn(myTurn);
 		if(myTurn) {

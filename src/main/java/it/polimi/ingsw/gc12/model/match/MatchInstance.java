@@ -79,5 +79,7 @@ public abstract class MatchInstance extends Observable {
 	protected abstract void setFamilyMemberObservers();
 	public abstract void pickCard(CardDevelopment card, PlayerColor playerColor);
 	public abstract void placeFamilyMember(FamilyMember familyMember, Occupiable occupiable, PlayerColor playerColor);
-
+	public abstract void resetFamilyMembers();
+	public abstract void resetFloors();
+	public abstract void updateResources(List<Player> players);
 }

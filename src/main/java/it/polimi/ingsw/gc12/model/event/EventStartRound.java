@@ -1,10 +1,13 @@
 package it.polimi.ingsw.gc12.model.event;
 
+import it.polimi.ingsw.gc12.model.match.MatchInstance;
 import it.polimi.ingsw.gc12.view.client.ClientHandler;
 import it.polimi.ingsw.gc12.model.board.dice.SpaceDie;
 import it.polimi.ingsw.gc12.model.board.occupiable.TowerSet;
+import it.polimi.ingsw.gc12.view.client.gui.MainBoard;
+import javafx.application.Platform;
 
-public class EventStartRound extends Event {
+public class EventStartRound extends Event implements EventView{
 
 	private int round;
 	private TowerSet towers;
@@ -22,9 +25,12 @@ public class EventStartRound extends Event {
 
 	@Override
 	public void executeClientSide(ClientHandler client) {
-	    client.getMatch().getBoard().setTowerSet(towers);
-	    client.getMatch().setCards(towers);
-	    client.getMatch().setDice(spaceDie);
+		MatchInstance matchInstance = client.getMatch();
+	    matchInstance.resetFamilyMembers();
+	    matchInstance.resetFloors();
+	    matchInstance.getBoard().setTowerSet(towers);
+	    matchInstance.setCards(towers);
+	    matchInstance.setDice(spaceDie);
 	}
 
 	@Override
@@ -44,4 +50,13 @@ public class EventStartRound extends Event {
     public String toStringClientGUI(){
 	    return "ROUND "+round;
     }
+
+	@Override
+	public void executeViewSide(MainBoard view) {
+		Platform.runLater(() -> {
+			view.getControllerMainBoard().disablePassTurn(true);
+			view.getControllerMainBoard().resetOccupiableImages();
+			view.getControllerMainBoard().resetFamilyMembers();
+		});
+	}
 }

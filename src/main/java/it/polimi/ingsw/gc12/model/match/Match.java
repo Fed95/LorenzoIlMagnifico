@@ -135,7 +135,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 
 	//Increments turn counter in TrackTurnOrder
 	public void newTurn() {
-		if(turnCounter == (players.size() * FamilyMemberColor.values().length)) {
+		if(turnCounter == (players.size() * 2)) {
 			boolean stop = newRound();
 			if(stop)
 				return;
@@ -225,6 +225,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	}
 
 	private void newPeriod() {
+		period++;
 		this.notifyObserver(new EventStartPeriod());
 	}
 

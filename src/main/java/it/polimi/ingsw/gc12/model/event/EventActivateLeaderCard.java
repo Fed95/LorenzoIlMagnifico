@@ -2,6 +2,10 @@ package it.polimi.ingsw.gc12.model.event;
 
 import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.card.LeaderCard;
+import it.polimi.ingsw.gc12.view.client.ClientHandler;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class EventActivateLeaderCard extends Event {
 
@@ -22,6 +26,11 @@ public class EventActivateLeaderCard extends Event {
 
     public void setCardId(int cardId) {
         this.cardId = cardId;
+    }
+
+    @Override
+    public void executeClientSide(ClientHandler client) {
+        client.getMatch().updateResources(new ArrayList<>(Collections.singletonList(player)));
     }
 
     @Override

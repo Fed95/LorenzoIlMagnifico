@@ -14,16 +14,17 @@ public class CardFloorRepresentation  {
     private SimpleIntegerProperty floorNumber;
     private SimpleObjectProperty<Image> pathCard;
     private SimpleObjectProperty<Image> pathFloor;
-
+    private final int floorCount;
     private SimpleBooleanProperty taken;
 
-    public CardFloorRepresentation(String urlCard ,String urlFloor, int floor, Boolean taken) {
+    public CardFloorRepresentation(String urlCard ,String urlFloor, int floor, Boolean taken, int floorCount) {
         this.floorNumber = new SimpleIntegerProperty(floor);
         Image imageCard = new Image(urlCard);
         this.pathCard = new SimpleObjectProperty<Image>(imageCard);
         this.taken = new SimpleBooleanProperty(taken);
         Image imageFloor = new Image(urlFloor);
         this.pathFloor = new SimpleObjectProperty<Image>(imageFloor);
+        this.floorCount = floorCount;
     }
 
     public int getFloorNumber() {
@@ -56,5 +57,9 @@ public class CardFloorRepresentation  {
 
     public void setPathFloor(Image pathFloor) {
         this.pathFloor.set(pathFloor);
+    }
+
+    public int getFloorCount() {
+        return floorCount;
     }
 }

@@ -11,6 +11,7 @@ import it.polimi.ingsw.gc12.view.client.gui.MainBoard;
 import javafx.application.Platform;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class EventPlacementEnded extends Event implements EventView{
@@ -41,6 +42,7 @@ public class EventPlacementEnded extends Event implements EventView{
 	@Override
 	public void executeClientSide(ClientHandler client) {
 		client.getMatch().placeFamilyMember(familyMember, occupiable, player.getColor());
+		client.getMatch().updateResources(new ArrayList<>(Collections.singletonList(player)));
 	}
 
 	@Override
