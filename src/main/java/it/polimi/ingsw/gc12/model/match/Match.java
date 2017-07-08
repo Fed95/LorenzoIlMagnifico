@@ -139,7 +139,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 
 	//Increments turn counter in TrackTurnOrder
 	public void newTurn() {
-		if(turnCounter == (players.size() * 2)) {
+		if(turnCounter == (players.size())) {
 			boolean stop = newRound();
 			if(stop)
 				return;
@@ -153,6 +153,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 
 		actionHandler.setHasPlaced(false);
 		EventStartTurn event = new EventStartTurn(player, board.getTrackTurnOrder().getTurn());
+		event.setPlayers(players);
 		try {
 			effectHandler.executeEffects(this, event);
 		} catch (ActionDeniedException e) {
@@ -182,7 +183,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	}
 
 	private boolean newRound(){
-		boolean vatican = roundNum != 0 && roundNum%2 == 0;
+		boolean vatican = roundNum != 0 && roundNum%2 == 0 ;
 		if(vatican) {
 			boolean endMatch = endPeriod();
 			if(endMatch)

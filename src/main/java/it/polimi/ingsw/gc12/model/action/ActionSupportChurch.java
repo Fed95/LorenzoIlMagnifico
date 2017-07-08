@@ -33,7 +33,8 @@ public class ActionSupportChurch extends Action {
         }
         match.notifyObserver(event);
 
-        Resource victoryPoints = match.getBoard().getTrackFaithPoints().getFaithSlot(player.getResourceValue(ResourceType.FAITH_POINT)).getVictoryPoints();
+        int faithPoints = player.getResourceValue(ResourceType.FAITH_POINT) > 15 ? 15 : player.getResourceValue(ResourceType.FAITH_POINT);
+        Resource victoryPoints = match.getBoard().getTrackFaithPoints().getFaithSlot(faithPoints).getVictoryPoints();
         player.setResourceValue(ResourceType.FAITH_POINT, 0);
         player.addResources(Collections.singletonList(victoryPoints));
 
@@ -45,11 +46,23 @@ public class ActionSupportChurch extends Action {
             match.newTurn();
     }
 
+
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Show your support to the church").append(System.getProperty("line.separator"));
         sb.append("    You will loose all of your FaithPoints (" + player.getResourceValue(ResourceType.FAITH_POINT) + ")").append(System.getProperty("line.separator"));
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return this == o || o instanceof ActionSupportChurch;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 }

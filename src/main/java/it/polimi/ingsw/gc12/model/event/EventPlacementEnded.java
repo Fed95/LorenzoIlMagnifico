@@ -42,11 +42,8 @@ public class EventPlacementEnded extends Event implements EventView{
 	@Override
 	public void executeClientSide(ClientHandler client) {
 		super.executeClientSide(client);
-		Platform.runLater(() -> {
-			client.getMatch().placeFamilyMember(familyMember, occupiable, player.getColor());
-			client.getMatch().updateResources(new ArrayList<>(Collections.singletonList(player)));
-		});
-
+		client.getMatch().placeFamilyMember(familyMember, occupiable, player.getColor());
+		client.getMatch().updateResources(new ArrayList<>(Collections.singletonList(player)));
 	}
 
 	@Override

@@ -7,11 +7,13 @@ import it.polimi.ingsw.gc12.model.action.ActionReceiveExcommunication;
 import it.polimi.ingsw.gc12.model.action.ActionSupportChurch;
 import it.polimi.ingsw.gc12.view.client.ClientHandler;
 import it.polimi.ingsw.gc12.model.board.excommunication.ExcommunicationTile;
+import it.polimi.ingsw.gc12.view.client.gui.MainBoard;
+import javafx.application.Platform;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventVaticanReport extends Event {
+public class EventVaticanReport extends Event implements EventView{
 
     private ExcommunicationTile tile;
     private List<Player> players;
@@ -68,5 +70,10 @@ public class EventVaticanReport extends Event {
     @Override
     public String toStringClientGUI() {
         return "VATICAN REPORT";
+    }
+
+    @Override
+    public void executeViewSide(MainBoard view) {
+        Platform.runLater(() -> view.getControllerMainBoard().vaticanReport(player.getColor(), tile));
     }
 }

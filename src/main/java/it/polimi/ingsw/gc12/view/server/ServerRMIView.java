@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.ConnectException;
 import java.rmi.RemoteException;
+import java.rmi.UnmarshalException;
 import java.util.*;
 
 public class ServerRMIView extends ServerView implements RMIViewRemote {
@@ -75,7 +76,7 @@ public class ServerRMIView extends ServerView implements RMIViewRemote {
 			Player player = clientPlayers.get(clientStub);
 			try {
 				clientStub.checkConnection();
-			} catch (ConnectException e) {
+			} catch (ConnectException | UnmarshalException e) {
 				if(!player.isDisconnected())
 					match.setDisconnectedPlayer(player);
 				itr.remove();

@@ -20,6 +20,7 @@ import it.polimi.ingsw.gc12.view.client.MatchInstance;
 import it.polimi.ingsw.gc12.view.client.gui.representation.*;
 import it.polimi.ingsw.gc12.model.player.resource.Resource;
 import it.polimi.ingsw.gc12.model.player.resource.ResourceType;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
@@ -193,11 +194,13 @@ public class MatchInstanceGUI extends MatchInstance {
 
 	@Override
 	public void updateResources(List<Player> players) {
-    	for(Player player: players) {
-    		for(Resource resource: player.getResources().values()) {
-    			resourcesPlayers.get(player.getColor()).get(resource.getType()).setResourceValue(resource.getValue());
+		Platform.runLater(() -> {
+			for(Player player: players) {
+				for(Resource resource: player.getResources().values()) {
+					resourcesPlayers.get(player.getColor()).get(resource.getType()).setResourceValue(resource.getValue());
+				}
 			}
-		}
+		});
 	}
 
 	@Override

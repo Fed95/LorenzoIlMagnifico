@@ -2,6 +2,7 @@ package it.polimi.ingsw.gc12.view.client.gui;
 
 import it.polimi.ingsw.gc12.misc.json.loader.LoaderConfigPlayers;
 import it.polimi.ingsw.gc12.model.action.*;
+import it.polimi.ingsw.gc12.model.board.excommunication.ExcommunicationTile;
 import it.polimi.ingsw.gc12.model.board.occupiable.*;
 import it.polimi.ingsw.gc12.model.match.ConfigPlayers;
 import it.polimi.ingsw.gc12.model.match.Match;
@@ -416,9 +417,12 @@ public class MainBoardController extends GUIController implements Initializable,
     }
 
     private void bindWorkSpaces(){
-        for(WorkType workType : WorkType.values()){
-            for (int i = 0; i < 4; i++){
-                workSpacesPawns.get(workType).get(i).imageProperty().bind(match.getWorkSpacesPawn().get(workType).get(i).getFamilyTemporaryImage());
+        ConfigPlayers config = new LoaderConfigPlayers().get(null).get(match.getPlayers().size());
+        if(config.isSpaceWorkMultiple()) {
+            for(WorkType workType : WorkType.values()){
+                for (int i = 0; i < 4; i++){
+                    workSpacesPawns.get(workType).get(i).imageProperty().bind(match.getWorkSpacesPawn().get(workType).get(i).getFamilyTemporaryImage());
+                }
             }
         }
     }
@@ -590,6 +594,19 @@ public class MainBoardController extends GUIController implements Initializable,
             choosen = askWhich(type, resources);
         }
         return choosen;
+    }
+
+    public void vaticanReport(PlayerColor playerColor, ExcommunicationTile tile) {
+        if(this.playerColor.equals(playerColor)) {
+            boolean support = askSupportChurch();
+            Action action;
+            if(support) {
+                action = new ActionSupportChurch(player);
+            }
+            else
+                action = new ActionReceiveExcommunication(player, tile);
+            selectAction(action);
+        }
     }
 
     private Boolean askSupportChurch(){

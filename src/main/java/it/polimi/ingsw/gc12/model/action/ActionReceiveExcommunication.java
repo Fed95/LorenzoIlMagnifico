@@ -39,4 +39,14 @@ public class ActionReceiveExcommunication extends Action {
         sb.append(tile).append(System.getProperty("line.separator")).append(System.getProperty("line.separator"));
         return sb.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return this == o || o instanceof ActionReceiveExcommunication;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

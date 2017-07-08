@@ -22,4 +22,8 @@ public class TrackFaithPoints {
 	public FaithSlot getFaithSlot(int index){
 		return faithSlots.get(index);
 	}
+
+	public List<FaithSlot> getFaithSlots() {
+		return faithSlots;
+	}
 }

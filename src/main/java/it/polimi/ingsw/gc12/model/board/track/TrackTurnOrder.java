@@ -40,6 +40,8 @@ public class TrackTurnOrder implements Serializable{
 	}
 
 	public Player getCurrentPlayer() {
+		if(turn == -1)
+			return turnOrder.get(turn+1);
 		return turnOrder.get(turn);
 	}
 
