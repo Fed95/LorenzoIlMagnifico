@@ -27,8 +27,6 @@ public class Tower implements Zone, Serializable{
 
 	public Tower(CardType type){
 		this.type = type;
-		initializeFloors();
-
 	}
 
 	public CardType getType() {
@@ -48,14 +46,6 @@ public class Tower implements Zone, Serializable{
 		for(TowerFloor floor : floors)
 			cards.add(floor.getCard());
 		return cards;
-	}
-	
-	public void initializeFloors() {
-		List<Integer> requiredValues = new LoaderConfig().get(null).getRequiredValues();
-		for (int i = 0; i < CardType.values().length; i++) {
-			TowerFloor floor = new TowerFloor(i, requiredValues.get(i), type);
-			floors.add(floor);
-		}
 	}
 
 	@Override
