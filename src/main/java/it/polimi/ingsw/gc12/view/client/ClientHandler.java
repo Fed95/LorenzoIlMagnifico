@@ -3,9 +3,9 @@ package it.polimi.ingsw.gc12.view.client;
 
 import it.polimi.ingsw.gc12.model.event.Event;
 import it.polimi.ingsw.gc12.model.event.EventView;
-import it.polimi.ingsw.gc12.model.match.MatchInstance;
-import it.polimi.ingsw.gc12.model.match.MatchInstanceCLI;
-import it.polimi.ingsw.gc12.model.match.MatchInstanceGUI;
+import it.polimi.ingsw.gc12.model.match.Match;
+import it.polimi.ingsw.gc12.view.client.cli.MatchInstanceCLI;
+import it.polimi.ingsw.gc12.view.client.gui.MatchInstanceGUI;
 import it.polimi.ingsw.gc12.model.player.PlayerColor;
 import it.polimi.ingsw.gc12.model.action.Action;
 import it.polimi.ingsw.gc12.view.client.gui.MainBoardController;
@@ -31,6 +31,7 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 	private MainBoardController mainBoardController;
 	private ClientObservable clientObservable;
 	private ClientViewType viewType;
+	private Action actionPending;
 
 	protected ClientHandler(ClientView view) throws RemoteException {
 		super();
@@ -38,6 +39,7 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 		this.clientObservable = new ClientObservable();
 		clientObservable.registerObserver(view);
 		this.multiplier = 1;
+		this.match = createMatchInstance();
 	}
 
 	public void handleEvent() {
@@ -103,8 +105,8 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 		return match;
 	}
 
-	public void setMatch(MatchInstance match) {
-		this.match = match;
+	public void initMatch(Match match) {
+		this.match.init(match);
 	}
 
 	public int getMultiplier() {
@@ -180,5 +182,13 @@ public abstract class ClientHandler extends UnicastRemoteObject {
     		return false;
     	actions.remove(index);
     	return true;
+	}
+
+	public synchronized Action getActionPending() {
+		return actionPending;
+	}
+
+	public synchronized void setActionPending(Action actionPending) {
+		this.actionPending = actionPending;
 	}
 }

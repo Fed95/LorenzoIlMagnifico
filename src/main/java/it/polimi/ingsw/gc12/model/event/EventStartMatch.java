@@ -1,7 +1,7 @@
 package it.polimi.ingsw.gc12.model.event;
 
 import it.polimi.ingsw.gc12.model.match.Match;
-import it.polimi.ingsw.gc12.model.match.MatchInstance;
+import it.polimi.ingsw.gc12.view.client.MatchInstance;
 import it.polimi.ingsw.gc12.view.client.ClientHandler;
 import javafx.application.Platform;
 
@@ -19,9 +19,7 @@ public class EventStartMatch extends Event{
 
 	@Override
 	public void executeClientSide(ClientHandler client) {
-		MatchInstance matchInstance = client.createMatchInstance();
-		matchInstance.init(match);
-		client.setMatch(matchInstance);
+		client.initMatch(match);
 
 		if(client.getMainBoardController()!= null) {
             Platform.runLater(() ->client.getMainBoardController().getChat().appendText("[SERVER]: Hi "+match.getPlayers().get(client.getColor()).getName()+" welcome to Lorenzo il Magnifico, your color is "+client.getColor() + "\n"));

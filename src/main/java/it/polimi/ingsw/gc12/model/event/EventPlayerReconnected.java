@@ -1,9 +1,9 @@
 package it.polimi.ingsw.gc12.model.event;
 
 import it.polimi.ingsw.gc12.model.match.Match;
-import it.polimi.ingsw.gc12.model.match.MatchInstance;
-import it.polimi.ingsw.gc12.model.match.MatchInstanceCLI;
-import it.polimi.ingsw.gc12.model.match.MatchInstanceGUI;
+import it.polimi.ingsw.gc12.view.client.MatchInstance;
+import it.polimi.ingsw.gc12.view.client.cli.MatchInstanceCLI;
+import it.polimi.ingsw.gc12.view.client.gui.MatchInstanceGUI;
 import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.view.client.ClientFactory;
 import it.polimi.ingsw.gc12.view.client.ClientHandler;
@@ -46,9 +46,7 @@ public class EventPlayerReconnected extends Event implements EventView{
 				}
 			}
 
-			MatchInstance matchInstance = client.createMatchInstance();
-			matchInstance.init(match);
-			client.setMatch(matchInstance);
+			client.initMatch(match);
 			client.setColor(player.getColor());
 			client.getMatch().getBoard().setTowerSet(match.getBoard().getTowerSet());
 			client.getMatch().setCards(match.getBoard().getTowerSet());

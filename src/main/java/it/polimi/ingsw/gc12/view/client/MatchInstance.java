@@ -1,4 +1,4 @@
-package it.polimi.ingsw.gc12.model.match;
+package it.polimi.ingsw.gc12.view.client;
 
 import it.polimi.ingsw.gc12.model.board.Board;
 import it.polimi.ingsw.gc12.model.board.dice.Die;
@@ -8,6 +8,7 @@ import it.polimi.ingsw.gc12.model.board.occupiable.Tower;
 import it.polimi.ingsw.gc12.model.board.occupiable.TowerFloor;
 import it.polimi.ingsw.gc12.model.board.occupiable.TowerSet;
 import it.polimi.ingsw.gc12.model.card.CardDevelopment;
+import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.player.PlayerColor;
 import it.polimi.ingsw.gc12.model.player.familymember.FamilyMember;

@@ -1,4 +1,4 @@
-package it.polimi.ingsw.gc12.model.match;
+package it.polimi.ingsw.gc12.view.client.gui;
 
 
 import it.polimi.ingsw.gc12.misc.observer.Observable;
@@ -9,10 +9,12 @@ import it.polimi.ingsw.gc12.model.card.LeaderCard;
 import it.polimi.ingsw.gc12.model.board.dice.Die;
 import it.polimi.ingsw.gc12.model.board.dice.DieColor;
 import it.polimi.ingsw.gc12.model.board.excommunication.ExcommunicationTile;
+import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.player.PlayerColor;
 import it.polimi.ingsw.gc12.model.player.familymember.FamilyMember;
 import it.polimi.ingsw.gc12.model.player.familymember.FamilyMemberColor;
+import it.polimi.ingsw.gc12.view.client.MatchInstance;
 import it.polimi.ingsw.gc12.view.client.gui.representation.*;
 import it.polimi.ingsw.gc12.model.player.resource.Resource;
 import it.polimi.ingsw.gc12.model.player.resource.ResourceType;

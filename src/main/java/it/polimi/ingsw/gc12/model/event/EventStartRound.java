@@ -1,6 +1,6 @@
 package it.polimi.ingsw.gc12.model.event;
 
-import it.polimi.ingsw.gc12.model.match.MatchInstance;
+import it.polimi.ingsw.gc12.view.client.MatchInstance;
 import it.polimi.ingsw.gc12.view.client.ClientHandler;
 import it.polimi.ingsw.gc12.model.board.dice.SpaceDie;
 import it.polimi.ingsw.gc12.model.board.occupiable.TowerSet;

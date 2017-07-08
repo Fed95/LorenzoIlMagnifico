@@ -1,7 +1,6 @@
 package it.polimi.ingsw.gc12.view.client.gui;
 
 import it.polimi.ingsw.gc12.model.event.EventView;
-import it.polimi.ingsw.gc12.model.match.MatchInstanceGUI;
 import it.polimi.ingsw.gc12.view.client.ClientViewType;
 import it.polimi.ingsw.gc12.view.client.ClientView;
 import javafx.application.Application;
