@@ -369,6 +369,8 @@ public class MainBoardController extends GUIController implements Initializable,
         harvestBig.setLayoutX(80);
         productionBig.setUserData("block");
         harvestBig.setUserData("block");
+        harvestPawns = new ArrayList<>();
+        productionPawns = new ArrayList<>();
     }
 
     private void bindCardsToFloor(){
@@ -427,8 +429,15 @@ public class MainBoardController extends GUIController implements Initializable,
 
     public void sendAction() {
         if(isMyTurn()) {
-            if(clientHandler.getActionPending() != null) {
-                selectAction(clientHandler.getActionPending());
+            Action actionPending = clientHandler.getActionPending();
+            if(actionPending != null) {
+                if(clientHandler.getActions().contains(actionPending))
+                    selectAction(actionPending);
+                else {
+                    clientHandler.setActionPending(clientHandler.getActionFM());
+                    selectAction(new DiscardAction(player));
+                }
+
             }
         }
     }

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.gc12.view.client.gui;
 
 
+import it.polimi.ingsw.gc12.misc.json.loader.LoaderConfigPlayers;
 import it.polimi.ingsw.gc12.misc.observer.Observable;
 import it.polimi.ingsw.gc12.model.board.occupiable.*;
 import it.polimi.ingsw.gc12.model.card.CardDevelopment;
@@ -9,6 +10,7 @@ import it.polimi.ingsw.gc12.model.card.LeaderCard;
 import it.polimi.ingsw.gc12.model.board.dice.Die;
 import it.polimi.ingsw.gc12.model.board.dice.DieColor;
 import it.polimi.ingsw.gc12.model.board.excommunication.ExcommunicationTile;
+import it.polimi.ingsw.gc12.model.match.ConfigPlayers;
 import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.player.PlayerColor;
@@ -158,6 +160,14 @@ public class MatchInstanceGUI extends MatchInstance {
 					TowerFloor floor = (TowerFloor) occupiable;
 					cardsFloors.get(floor.getType()).get(floor.getFloorNum()).setFamilyMember(familyMember, playerColor);
 					break;
+				}
+				else if(occupiable instanceof CouncilPalace) {
+					for(CouncilPawnFamily councilPawn: councilPawns) {
+						if(!councilPawn.isOccupied()) {
+							councilPawn.setFamilyMember(familyMember, playerColor);
+							break;
+						}
+					}
 				}
 			}
 		}
@@ -390,14 +400,17 @@ public class MatchInstanceGUI extends MatchInstance {
         }
     }
     public void createWorkSpacesPawn(){
+		ConfigPlayers config = new LoaderConfigPlayers().get(null).get(players.size());
         workSpacesPawn.put(WorkType.PRODUCTION, productionPawn);
         workSpacesPawn.put(WorkType.HARVEST, harvestPawn);
-        for (WorkType workType : WorkType.values()){
-            for(int i = 0; i < 4; i++) {
-                WorkSpacePawn workSpacePawn = new WorkSpacePawn(workType,null,null,"img/players/transparentPlayer.png");
-                workSpacesPawn.get(workType).add(workSpacePawn);
-            }
-        }
+        if(config.isSpaceWorkMultiple()) {
+			for (WorkType workType : WorkType.values()){
+				for(int i = 0; i < 4; i++) {
+					WorkSpacePawn workSpacePawn = new WorkSpacePawn(workType,null,null,"img/players/transparentPlayer.png");
+					workSpacesPawn.get(workType).add(workSpacePawn);
+				}
+			}
+		}
     }
     public Map<PlayerColor, ObservableList<FamilyMemberRepresentation>> getMapPlayerColorObservableLiseFMRepr() {
 		return familyMembers;

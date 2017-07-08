@@ -1,6 +1,7 @@
 package it.polimi.ingsw.gc12.view.client.gui.representation;
 
 import it.polimi.ingsw.gc12.model.player.PlayerColor;
+import it.polimi.ingsw.gc12.model.player.familymember.FamilyMember;
 import it.polimi.ingsw.gc12.model.player.familymember.FamilyMemberColor;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -13,6 +14,7 @@ public class CouncilPawnFamily {
     private SimpleObjectProperty<PlayerColor> playerColor;
     private SimpleObjectProperty<FamilyMemberColor> colorFamilyMember;
     private SimpleObjectProperty<Image> familyTemporaryImage;
+    private boolean occupied;
 
     public CouncilPawnFamily(PlayerColor playerColor, FamilyMemberColor familyMemberColor, String path){
         Image temporaryImage = new Image(path);
@@ -24,8 +26,18 @@ public class CouncilPawnFamily {
     public ObjectProperty<Image> getFamilyTemporaryImage() {
         return familyTemporaryImage;
     }
+
     public void removePawn(){
         Image removing = new Image("img/players/transparentPlayer.png");
         familyTemporaryImage.set(removing);
+    }
+
+    public boolean isOccupied() {
+        return occupied;
+    }
+
+    public void setFamilyMember(FamilyMember familyMember, PlayerColor playerColor) {
+        familyTemporaryImage.set(new Image("img/players/"+playerColor.toString()+"/"+playerColor.toString()+"_"+familyMember.getColor().toString()+".png"));
+        occupied = true;
     }
 }

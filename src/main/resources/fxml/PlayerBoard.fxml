@@ -8,7 +8,7 @@
 
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<TabPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="it.polimi.ingsw.gc12.view.client.gui.representation.PlayerBoardController" fx:id="playersBoard" layoutX="610.0" layoutY="445.0" prefHeight="568.0" prefWidth="1310.0" tabClosingPolicy="UNAVAILABLE">
+<TabPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="it.polimi.ingsw.gc12.view.client.gui.PlayerBoardController" fx:id="playersBoard" layoutX="610.0" layoutY="445.0" prefHeight="568.0" prefWidth="1310.0" tabClosingPolicy="UNAVAILABLE">
     <tabs>
         <Tab fx:id="bluePlayer" text="Player 1">
             <content>

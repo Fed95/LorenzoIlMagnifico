@@ -31,6 +31,7 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 	private MainBoardController mainBoardController;
 	private ClientObservable clientObservable;
 	private ClientViewType viewType;
+	private Action actionFM;
 	private Action actionPending;
 
 	protected ClientHandler(ClientView view) throws RemoteException {
@@ -190,5 +191,13 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 
 	public synchronized void setActionPending(Action actionPending) {
 		this.actionPending = actionPending;
+	}
+
+	public Action getActionFM() {
+		return actionFM;
+	}
+
+	public void setActionFM(Action actionFM) {
+		this.actionFM = actionFM;
 	}
 }

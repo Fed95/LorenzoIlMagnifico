@@ -1,4 +1,4 @@
-package it.polimi.ingsw.gc12.view.client.gui.representation;
+package it.polimi.ingsw.gc12.view.client.gui;
 
 import it.polimi.ingsw.gc12.model.action.*;
 import it.polimi.ingsw.gc12.model.card.CardLeaderGuiState;
@@ -11,6 +11,10 @@ import it.polimi.ingsw.gc12.model.player.resource.ResourceType;
 import it.polimi.ingsw.gc12.view.client.ClientFactory;
 import it.polimi.ingsw.gc12.view.client.gui.GUIController;
 import it.polimi.ingsw.gc12.view.client.gui.MatchInstanceGUI;
+import it.polimi.ingsw.gc12.view.client.gui.representation.CardLeaderRepresentation;
+import it.polimi.ingsw.gc12.view.client.gui.representation.CardPlayerRepresentation;
+import it.polimi.ingsw.gc12.view.client.gui.representation.FamilyMemberRepresentation;
+import it.polimi.ingsw.gc12.view.client.gui.representation.ResourceRepresentation;
 import javafx.beans.binding.StringBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -294,8 +298,6 @@ public class PlayerBoardController extends GUIController implements Initializabl
 					selectAction(action);
 				}
 			}
-
-
 		}
 	}
 
@@ -306,15 +308,17 @@ public class PlayerBoardController extends GUIController implements Initializabl
 				for (Map.Entry<FamilyMemberColor, ImageView> entry : familyMembers.get(playerColor).entrySet()) {
 					if (entry.getValue().equals(familyMemberClicked)) {
 						FamilyMember familyMember = new FamilyMember(playerColor, entry.getKey());
-						Action action;
+						Action action = new ActionChooseFamilyMember(match.getPlayers().get(playerColor), familyMember);
 						if (isFMSelected(familyMemberClicked) || clientHandler.getActionPending() != null) {
-							action = new DiscardAction(match.getPlayers().get(playerColor));
-							if (!isFMSelected(familyMemberClicked))
-								clientHandler.setActionPending(new ActionChooseFamilyMember(match.getPlayers().get(playerColor), familyMember));
+							if (!isFMSelected(familyMemberClicked)) {
+								clientHandler.setActionPending(action);
+								clientHandler.setActionFM(action);
+							}
 							else
 								clientHandler.setActionPending(null);
+							action = new DiscardAction(match.getPlayers().get(playerColor));
 						} else {
-							action = new ActionChooseFamilyMember(match.getPlayers().get(playerColor), familyMember);
+
 							clientHandler.setActionPending(action);
 						}
 						toggleFMHighlight(familyMemberClicked);
