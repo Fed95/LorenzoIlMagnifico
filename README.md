@@ -57,6 +57,40 @@ So now you are ready to play the game!
   client with GUI --> run it.polimi.ingsw.gc12.view.client.gui.ClientGUI
   client with CLI --> run it.polimi.ingsw.gc12.view.client.cli.ClientCLI
   ```
+  
+##How To Play
+###CLI
+When you run clientCLI the CLI ask you to perform an action through integers input, so just follow the instruction on the command line. 
+###GUI
+####Components
+- MainBoard Area
+- PersonalBoardArea for each player
+    + where you can find the cards, family member, cards leader and the resources for each player.
+- Details Area
+    + where you can se cards zoomed in
+- Points Area
+    + Where you can find the ranking of the players for the victory, military and faith points.
+- ChatArea
+    + In this area you get response from the server a real chat is not implemented.
+- Controls Area
+    +Here you can find some button to perform actions
+####Perform Actions
++ Zoom cards in
+   * For see the card (Excommunication, Leader, Development) in the details area you can click once on the card
++ Choose family member:<br>
+   * just click once on it<br><br>
++ Choose a place (Towers Floor, Council palace, WorkSpaces, Markets...):<br>
+   * after click on  a family member, click once where you want to put it, like on te real game.<br><br>
++ Play/Discard Leader Card:<br>
+   * For play or discard leader card  do a double click on it, it will ask you if you want to play or discard it.
++ Pass Turn
+   * Click on the button Pass Turn on the Controls Area
++ See Other player Statistics
+   * Just click on the other player tab
+    
+
+
+
 ##Details
 ###The Server
 - must be run once.
