@@ -3,19 +3,21 @@ package it.polimi.ingsw.gc12.model.effect;
 import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.event.Event;
 import it.polimi.ingsw.gc12.misc.exception.ActionDeniedException;
+import it.polimi.ingsw.gc12.model.player.resource.Resource;
+import it.polimi.ingsw.gc12.model.player.resource.ResourceExchange;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EffectDenyExchange extends Effect {
+public class EffectDenyEffect extends Effect {
 
     private Match match;
     private EffectProvider effectProvider;
     private String description;
-    List<Effect> executedEffects = new ArrayList<>();
+    List<Resource> changedResources = new ArrayList<>();
     private boolean bonus; // If true, the bonus is reverted, if false the cost is reverted
 
-    public EffectDenyExchange(Event event, EffectProvider effectProvider, String description, boolean bonus){
+    public EffectDenyEffect(Event event, EffectProvider effectProvider, String description, boolean bonus){
         super(event);
         if(effectProvider != null)
             this.effectProvider = effectProvider;
@@ -23,32 +25,37 @@ public class EffectDenyExchange extends Effect {
         this.bonus = bonus;
     }
 
-    public EffectDenyExchange(Event event, String description, boolean bonus) {
+    public EffectDenyEffect(Event event, String description, boolean bonus) {
         this(event, null, description, bonus);
     }
 
     @Override
     public void execute(Match match, Event event, boolean validation) {
         this.match = match;
-        for (Effect effect : findEffects(event))
-            effect.discard(match, event);
+        for (Effect effect : findEffects(event)) {
+            if (!(effect instanceof EffectChangeResource))
+                throw new IllegalStateException("Can only deny ResourceExchange effects");
+            EffectChangeResource e = (EffectChangeResource) effect;
+            if (bonus) {
+                for (ResourceExchange exchange : e.getExchanges()) {
+                    event.getPlayer().removeResources(exchange.getBonus());
+                    changedResources.addAll(exchange.getBonus());
+                }
+            }else{
+                for (ResourceExchange exchange : e.getExchanges()) {
+                    event.getPlayer().addResources(exchange.getCost());
+                    changedResources.addAll(exchange.getCost());
+                }
+            }
+        }
     }
 
     @Override
     public void discard(Match match, Event event) {
-        if(match == null)
-            throw new IllegalStateException("EffectDenyExchange: trying to discard (execute) the effect when not executed (discarded)! confused? lol");
-        for(Effect effect : findEffects(event)) {
-            if(effect instanceof EffectChangeResource && ((EffectChangeResource) effect).hasChoice())
-                throw new IllegalStateException("Trying to apply EffectDenyExchange to a ChangeResource effect with choice!");
-
-            List<Effect> executedEffects = new ArrayList<>();
-            try {
-                executedEffects =  match.getEffectHandler().executeEffects(match, event);
-            } catch (ActionDeniedException e) {
-                match.getEffectHandler().discardEffects(match, executedEffects, event);
-            }
-        }
+        if(bonus)
+            event.getPlayer().addResources(changedResources);
+        else
+            event.getPlayer().removeResources(changedResources);
     }
 
     private List<Effect> findEffects(Event event){
