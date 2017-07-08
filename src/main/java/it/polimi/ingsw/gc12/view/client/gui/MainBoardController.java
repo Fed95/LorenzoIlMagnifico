@@ -1,7 +1,10 @@
 package it.polimi.ingsw.gc12.view.client.gui;
 
+import it.polimi.ingsw.gc12.misc.json.loader.LoaderConfigPlayers;
 import it.polimi.ingsw.gc12.model.action.*;
 import it.polimi.ingsw.gc12.model.board.occupiable.*;
+import it.polimi.ingsw.gc12.model.match.ConfigPlayers;
+import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.player.PlayerColor;
 import it.polimi.ingsw.gc12.model.player.resource.*;
@@ -320,13 +323,17 @@ public class MainBoardController extends GUIController implements Initializable,
     }
 
     private void blockOccupiable(){
-        int block = match.getPlayers().size();
-        if(block == 2){
-           blockMarkets();
-           blockSpaceWork();
-        } else if(block == 3 ){
+        int playersNum = match.getPlayers().size();
+        Match match = new Match();
+        match.setPlayers(clientHandler.getMatch().getPlayers());
+        ConfigPlayers config = new LoaderConfigPlayers().get(null).get(playersNum);
+        if(config.getSpaceMarketNum() == 2) {
             blockMarkets();
         }
+
+        if(!config.isSpaceWorkMultiple())
+           blockSpaceWork();
+
     }
 
     private void blockMarkets() {
