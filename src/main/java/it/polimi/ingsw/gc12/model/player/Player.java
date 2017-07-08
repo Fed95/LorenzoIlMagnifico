@@ -119,7 +119,7 @@ public class Player implements Serializable{
 	}
 
 	public boolean hasResources(List<Resource> resources) {
-		return resources.stream().allMatch(resource -> resource == null || (resource.getValue() < this.resources.get(resource.getType()).getValue()));
+		return resources.stream().allMatch(resource -> resource == null || (resource.getValue() <= this.resources.get(resource.getType()).getValue()));
 	}
 
 	public boolean satisfiesCardRequirements(Card c, List<Resource> discountedRequirements){
