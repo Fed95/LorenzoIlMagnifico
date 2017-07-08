@@ -19,6 +19,7 @@ public abstract class GUIController extends Observable {
 
 	@FXML
 	protected ImageView showCards;
+
 	@FXML
 	protected Pane mainPane;
 
@@ -66,5 +67,9 @@ public abstract class GUIController extends Observable {
 		Image card = imageView.getImage();
 		showCards.setImage(card);
 		showCards.setOpacity(1);
+	}
+
+	public void setShowCards(ImageView showCards) {
+		this.showCards = showCards;
 	}
 }

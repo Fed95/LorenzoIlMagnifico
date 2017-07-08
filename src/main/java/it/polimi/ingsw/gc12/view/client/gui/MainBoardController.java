@@ -178,8 +178,12 @@ public class MainBoardController extends GUIController implements Initializable,
             loop: for(Map.Entry<CardType, List<ImageView>> entryType : towerFloors.entrySet()) {
                 for (int i = 0; i < entryType.getValue().size(); i++) {
                     if(entryType.getValue().get(i).equals(floorClicked)) {
+                        if(clientHandler.getActionPending() instanceof ActionPlace) {
+                            selectAction(new DiscardAction(player));
+                        }
                         Action action = new ActionChooseTower(match.getPlayers().get(playerColor), null, new Tower(entryType.getKey()));
-                        clientHandler.setActionPending(new ActionPlaceOnTower(match.getPlayers().get(playerColor), null, new TowerFloor(i, entryType.getKey())));
+                        if(clientHandler.getActions().contains(action))
+                            clientHandler.setActionPending(new ActionPlaceOnTower(match.getPlayers().get(playerColor), null, new TowerFloor(i, entryType.getKey())));
                         selectAction(action);
                         break loop;
                     }
@@ -274,6 +278,7 @@ public class MainBoardController extends GUIController implements Initializable,
     public void initialize(URL location, ResourceBundle resources) {
 
         initializeAllMapsAndLists();
+        playerBoardController.setShowCards(showCards);
         showCards.setOpacity(0);
         //this.addObserver(ClientFactory.getClientSender());
         clientHandler.setMainBoardController(this);
