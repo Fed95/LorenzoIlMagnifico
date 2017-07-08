@@ -21,8 +21,12 @@ public class ResourceRepresentation {
     public ObjectProperty<PlayerColor> getPlayerColor(){
         return playerColor;
     }
+
     public IntegerProperty getValue() {
         return resourceValue;
     }
 
+    public void setResourceValue(int resourceValue) {
+        this.resourceValue.set(resourceValue);
+    }
 }

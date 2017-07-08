@@ -183,11 +183,11 @@ public class MatchInstanceGUI extends MatchInstance {
 
 	@Override
 	public void updateResources(List<Player> players) {
-    	/*for(Player player: players) {
-    		for(ResourceRepresentation resourceRepresentation: resourcesPlayers.get(player.getColor())) {
-    			resourceRepresentation.getT
+    	for(Player player: players) {
+    		for(Resource resource: player.getResources().values()) {
+    			resourcesPlayers.get(player.getColor()).get(resource.getType()).setResourceValue(resource.getValue());
 			}
-		}*/
+		}
 	}
 
 	@Override

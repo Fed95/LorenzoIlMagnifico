@@ -119,8 +119,7 @@ public class ActionPlaceOnTower extends ActionPlace {
         if (!(o instanceof ActionPlaceOnTower)) return false;
 
         ActionPlaceOnTower that = (ActionPlaceOnTower) o;
-
-        return towerFloor.equals(that.towerFloor);
+        return towerFloor.equals(that.towerFloor) && servant.getValue() == that.getServant().getValue();
     }
 
     @Override
