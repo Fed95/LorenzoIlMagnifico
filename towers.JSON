@@ -5,14 +5,16 @@
       "floors": [
         {
           "floorNum": 0,
+          "anyFloor": false,
           "card": null,
           "cardType": "VENTURE",
           "effects": [],
           "occupiers": [],
-          "requiredValue": 1
+          "requiredValue": 1,
         },
         {
           "floorNum": 1,
+          "anyFloor": false,
           "card": null,
           "cardType": "VENTURE",
           "effects": [],
@@ -21,6 +23,7 @@
         },
         {
           "floorNum": 2,
+          "anyFloor": false,
           "card": null,
           "cardType": "VENTURE",
           "effects": [
@@ -67,6 +70,7 @@
         },
         {
           "floorNum": 3,
+          "anyFloor": false,
           "card": null,
           "cardType": "VENTURE",
           "effects": [
@@ -135,6 +139,7 @@
       "floors": [
         {
           "floorNum": 0,
+          "anyFloor": false,
           "card": null,
           "cardType": "CHARACTER",
           "effects": [],
@@ -143,6 +148,7 @@
         },
         {
           "floorNum": 1,
+          "anyFloor": false,
           "card": null,
           "cardType": "CHARACTER",
           "effects": [],
@@ -151,6 +157,7 @@
         },
         {
           "floorNum": 2,
+          "anyFloor": false,
           "card": null,
           "cardType": "CHARACTER",
           "effects": [
@@ -197,6 +204,7 @@
         },
         {
           "floorNum": 3,
+          "anyFloor": false,
           "card": null,
           "cardType": "CHARACTER",
           "effects": [
@@ -265,6 +273,7 @@
       "floors": [
         {
           "floorNum": 0,
+          "anyFloor": false,
           "card": null,
           "cardType": "BUILDING",
           "effects": [],
@@ -273,6 +282,7 @@
         },
         {
           "floorNum": 1,
+          "anyFloor": false,
           "card": null,
           "cardType": "BUILDING",
           "effects": [],
@@ -281,6 +291,7 @@
         },
         {
           "floorNum": 2,
+          "anyFloor": false,
           "card": null,
           "cardType": "BUILDING",
           "effects": [
@@ -327,6 +338,7 @@
         },
         {
           "floorNum": 3,
+          "anyFloor": false,
           "card": null,
           "cardType": "BUILDING",
           "effects": [
@@ -395,6 +407,7 @@
       "floors": [
         {
           "floorNum": 0,
+          "anyFloor": false,
           "card": null,
           "cardType": "TERRITORY",
           "effects": [],
@@ -403,6 +416,7 @@
         },
         {
           "floorNum": 1,
+          "anyFloor": false,
           "card": null,
           "cardType": "TERRITORY",
           "effects": [],
@@ -411,6 +425,7 @@
         },
         {
           "floorNum": 2,
+          "anyFloor": false,
           "card": null,
           "cardType": "TERRITORY",
           "effects": [
@@ -457,6 +472,7 @@
         },
         {
           "floorNum": 3,
+          "anyFloor": false,
           "card": null,
           "cardType": "TERRITORY",
           "effects": [
