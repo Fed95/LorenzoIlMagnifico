@@ -19,6 +19,7 @@ import it.polimi.ingsw.gc12.model.player.resource.Resource;
 import it.polimi.ingsw.gc12.model.player.resource.ResourceType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
@@ -43,17 +44,20 @@ public class MatchInstanceGUI extends MatchInstance {
 	private ObservableList<CardFloorRepresentation> cardsFloorsVenture = FXCollections.observableArrayList();
 	private ObservableList<CardFloorRepresentation> cardsFloorsBuilding = FXCollections.observableArrayList();
 	private Map<CardType,ObservableList<CardFloorRepresentation>> cardsFloors = new HashMap<>();
-    
+
     //Observable and map for resources
-    private ObservableList<ResourceRepresentation> bluePlayerResources = FXCollections.observableArrayList();
-    private ObservableList<ResourceRepresentation> greenPlayerResources = FXCollections.observableArrayList();
-    private ObservableList<ResourceRepresentation> redPlayerResources = FXCollections.observableArrayList();
-    private ObservableList<ResourceRepresentation> yellowPlayerResources = FXCollections.observableArrayList();
-    private Map<PlayerColor, ObservableList<ResourceRepresentation>> resourcesPlayers = new HashMap<>();
-    //the table view must have all the representation in a single observable list not in 4 different for each player
+
+    private ObservableMap<ResourceType, ResourceRepresentation> resourcesPlayer1 = FXCollections.observableHashMap();
+    private ObservableMap<ResourceType, ResourceRepresentation> resourcesPlayer2 = FXCollections.observableHashMap();
+    private ObservableMap<ResourceType, ResourceRepresentation> resourcesPlayer3 = FXCollections.observableHashMap();
+    private ObservableMap<ResourceType, ResourceRepresentation> resourcesPlayer4 = FXCollections.observableHashMap();
+    private Map<PlayerColor, ObservableMap<ResourceType, ResourceRepresentation>> resourcesPlayers = new HashMap<>();
+    //necessary for listView java fx
     private ObservableList<ResourceRepresentation> militaryResources = FXCollections.observableArrayList();
     private ObservableList<ResourceRepresentation> victoryResources = FXCollections.observableArrayList();
     private ObservableList<ResourceRepresentation> faithResources = FXCollections.observableArrayList();
+
+
 
     private ObservableList<TurnOrderTrackPositionRepresentation> turnOrderTracks = FXCollections.observableArrayList();
 
@@ -103,6 +107,7 @@ public class MatchInstanceGUI extends MatchInstance {
 	@Override
 	public void init(Match match) {
 		super.init(match);
+
 		createFamilyMemberRepresentation(match);
 		createResourceRepresentation(match);
 		createOrderedTruckRepresentation(match);
@@ -258,16 +263,18 @@ public class MatchInstanceGUI extends MatchInstance {
 	}
 
     private void createResourceRepresentation(Match match){
-        resourcesPlayers.put(PlayerColor.BLUE, bluePlayerResources);
-        resourcesPlayers.put(PlayerColor.GREEN, greenPlayerResources);
-        resourcesPlayers.put(PlayerColor.RED, redPlayerResources);
-        resourcesPlayers.put(PlayerColor.YELLOW, yellowPlayerResources);
+        resourcesPlayers.put(PlayerColor.BLUE, resourcesPlayer1);
+        resourcesPlayers.put(PlayerColor.GREEN, resourcesPlayer2);
+        resourcesPlayers.put(PlayerColor.RED, resourcesPlayer3);
+        resourcesPlayers.put(PlayerColor.YELLOW, resourcesPlayer4);
         Map<PlayerColor, Player> players = match.getPlayers();
 	    for(Player player : players.values()){
             PlayerColor playerColor = player.getColor();
             Map<ResourceType, Resource> resources = player.getResources();
-            ResourceRepresentation resourceRepresentation = new ResourceRepresentation(playerColor.toString(), resources.get(ResourceType.STONE).getValue(), resources.get(ResourceType.MONEY).getValue(), resources.get(ResourceType.SERVANT).getValue(), resources.get(ResourceType.WOOD).getValue(), resources.get(ResourceType.VICTORY_POINT).getValue(), resources.get(ResourceType.MILITARY_POINT).getValue(), resources.get(ResourceType.FAITH_POINT).getValue(), resources.get(ResourceType.COUNCIL_PRIVILEGE).getValue());
-            resourcesPlayers.get(playerColor).add(resourceRepresentation);
+            for(ResourceType resourceType : ResourceType.values()){
+                ResourceRepresentation resourceRepresentation = new ResourceRepresentation(playerColor, resources.get(resourceType).getValue(), resourceType);
+                resourcesPlayers.get(playerColor).put(resourceType, resourceRepresentation);
+            }
         }
     }
 
@@ -297,13 +304,13 @@ public class MatchInstanceGUI extends MatchInstance {
         List<Player> orderedByVictory = match.getBoard().getVictroyPointsTrack().getPlayerOrdered(players);
         match.getBoard().getTrackFaithPoints();
         for(Player player : orderedByMilitary){
-            militaryResources.add(resourcesPlayers.get(player.getColor()).get(0));
+            militaryResources.add(resourcesPlayers.get(player.getColor()).get(ResourceType.MILITARY_POINT));
         }
         for(Player player : orderedByVictory){
-            victoryResources.add(resourcesPlayers.get(player.getColor()).get(0));
+            victoryResources.add(resourcesPlayers.get(player.getColor()).get(ResourceType.VICTORY_POINT));
         }
         for(Player player : match.getPlayers().values()){
-            faithResources.add(resourcesPlayers.get(player.getColor()).get(0));
+            faithResources.add(resourcesPlayers.get(player.getColor()).get(ResourceType.FAITH_POINT));
         }
     }
 
@@ -377,7 +384,7 @@ public class MatchInstanceGUI extends MatchInstance {
 		return cardsFloors;
 	}
 
-    public Map<PlayerColor, ObservableList<ResourceRepresentation>> getResourcesPlayers() {
+    public Map<PlayerColor, ObservableMap<ResourceType, ResourceRepresentation>> getResourcesPlayers() {
         return resourcesPlayers;
     }
 

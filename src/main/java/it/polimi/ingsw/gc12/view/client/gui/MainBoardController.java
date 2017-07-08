@@ -23,6 +23,7 @@ import javafx.application.Platform;
 import javafx.beans.binding.StringBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -573,14 +574,14 @@ public class MainBoardController extends Observable implements Initializable, Ob
         yellowPlayer.setDisable(true);
 
         //saying to the table where to find the values in the representation class for Military points
-        nameMilitaryPoints.setCellValueFactory(cellData -> cellData.getValue().getPlayerColorProperty());
-        pointsMilitaryPoints.setCellValueFactory(cellData -> cellData.getValue().getMilitaryPointProperty().asString());
+        nameMilitaryPoints.setCellValueFactory(cellData -> cellData.getValue().getPlayerColor().asString());
+        pointsMilitaryPoints.setCellValueFactory(cellData -> cellData.getValue().getValue().asString());
         //saying to the table where to find the values in the representation class for Victory points
-        nameVictoryPoints.setCellValueFactory(cellData -> cellData.getValue().getPlayerColorProperty());
-        pointsVictoryPoints.setCellValueFactory(cellData -> cellData.getValue().getVictoryPointProperty().asString());
+        nameVictoryPoints.setCellValueFactory(cellData -> cellData.getValue().getPlayerColor().asString());
+        pointsVictoryPoints.setCellValueFactory(cellData -> cellData.getValue().getValue().asString());
         //saying to the table where to find the values in the representation class for Faith points
-        nameFaithPoints.setCellValueFactory(cellData -> cellData.getValue().getPlayerColorProperty());
-        pointsFaithPoints.setCellValueFactory(cellData -> cellData.getValue().getFaithPointProperty().asString());
+        nameFaithPoints.setCellValueFactory(cellData -> cellData.getValue().getPlayerColor().asString());
+        pointsFaithPoints.setCellValueFactory(cellData -> cellData.getValue().getValue().asString());
 
         showCards.setOpacity(0);
         this.clientHandler = ClientFactory.getClientHandler();
@@ -699,11 +700,11 @@ public class MainBoardController extends Observable implements Initializable, Ob
 
     private void bindResources(){
         for(Player player : match.getPlayers().values()) {
-            ObservableList<ResourceRepresentation> resourceRepresentation = match.getResourcesPlayers().get(player.getColor());
-            resourceLabels.get(player.getColor()).get(ResourceType.MONEY).textProperty().bind(resourceRepresentation.get(0).getMoneyProperty().asString());
-            resourceLabels.get(player.getColor()).get(ResourceType.WOOD).textProperty().bind(resourceRepresentation.get(0).getWoodProperty().asString());
-            resourceLabels.get(player.getColor()).get(ResourceType.STONE).textProperty().bind(resourceRepresentation.get(0).getStoneProperty().asString());
-            resourceLabels.get(player.getColor()).get(ResourceType.SERVANT).textProperty().bind(resourceRepresentation.get(0).getServantProperty().asString());
+            ObservableMap<ResourceType, ResourceRepresentation> resourcesRepresentation = match.getResourcesPlayers().get(player.getColor());
+            resourceLabels.get(player.getColor()).get(ResourceType.MONEY).textProperty().bind(resourcesRepresentation.get(ResourceType.MONEY).getValue().asString());
+            resourceLabels.get(player.getColor()).get(ResourceType.WOOD).textProperty().bind(resourcesRepresentation.get(ResourceType.WOOD).getValue().asString());
+            resourceLabels.get(player.getColor()).get(ResourceType.STONE).textProperty().bind(resourcesRepresentation.get(ResourceType.STONE).getValue().asString());
+            resourceLabels.get(player.getColor()).get(ResourceType.SERVANT).textProperty().bind(resourcesRepresentation.get(ResourceType.SERVANT).getValue().asString());
         }
     }
 
