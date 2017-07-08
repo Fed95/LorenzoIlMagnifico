@@ -10,10 +10,7 @@ import it.polimi.ingsw.gc12.model.player.PlayerColor;
 import it.polimi.ingsw.gc12.model.player.personalboard.LeaderCardsSpace;
 import it.polimi.ingsw.gc12.model.player.personalboard.PersonalBoard;
 import it.polimi.ingsw.gc12.model.player.personalboard.ResourcesContainer;
-import it.polimi.ingsw.gc12.model.player.resource.Money;
-import it.polimi.ingsw.gc12.model.player.resource.Resource;
-import it.polimi.ingsw.gc12.model.player.resource.Stone;
-import it.polimi.ingsw.gc12.model.player.resource.Wood;
+import it.polimi.ingsw.gc12.model.player.resource.*;
 
 
 import java.util.ArrayList;
@@ -58,9 +55,9 @@ public class InstanceCreator {
 
     public static List<Resource> getResourceList(){
         List<Resource> requirements = new ArrayList<>();
-        requirements.add(new Money(1));
-        requirements.add(new Wood(1));
-        requirements.add(new Stone(1));
+        for(ResourceType type : ResourceType.values()){
+            requirements.add(ResourceBuilder.create(type, 1));
+        }
         return requirements;
     }
 

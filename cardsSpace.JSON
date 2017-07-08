@@ -1,1 +1,298 @@
-{"TERRITORY":{"type":"TERRITORY","slots":[{},{},{"requisites":[{"resourceType":"MilitaryPoint","type":"MILITARY_POINT","value":3}]},{"requisites":[{"resourceType":"MilitaryPoint","type":"MILITARY_POINT","value":7}]},{"requisites":[{"resourceType":"MilitaryPoint","type":"MILITARY_POINT","value":12}]},{"requisites":[{"resourceType":"MilitaryPoint","type":"MILITARY_POINT","value":18}]}],"spacesAvailable":6},"CHARACTER":{"type":"CHARACTER","slots":[{},{},{},{},{},{}],"spacesAvailable":6},"VENTURE":{"type":"VENTURE","slots":[{},{},{},{},{},{}],"spacesAvailable":6},"BUILDING":{"type":"BUILDING","slots":[{},{},{},{},{},{}],"spacesAvailable":6}}
+{
+  "TERRITORY": {
+    "type": "TERRITORY",
+    "slots": [
+      {},
+      {},
+      {
+        "requisites": [
+          {
+            "resourceType": "MilitaryPoint",
+            "type": "MILITARY_POINT",
+            "value": 3
+          }
+        ],
+        "effects":[
+          {
+            "type": "EffectChangeResource",
+            "exchanges": [
+              {
+                "cost": [],
+                "bonus": [
+                  {
+                    "resourceType": "VictoryPoint",
+                    "type": "VICTORY_POINT",
+                    "value": 1
+                  }
+                ]
+              }
+            ],
+            "choice": false,
+            "event": {
+              "eventType": "EventEndMatch"
+            }
+          }
+        ]
+      },
+      {
+        "requisites": [
+          {
+            "resourceType": "MilitaryPoint",
+            "type": "MILITARY_POINT",
+            "value": 7
+          }
+        ],
+        "effects":[
+          {
+            "type": "EffectChangeResource",
+            "exchanges": [
+              {
+                "cost": [],
+                "bonus": [
+                  {
+                    "resourceType": "VictoryPoint",
+                    "type": "VICTORY_POINT",
+                    "value": 3
+                  }
+                ]
+              }
+            ],
+            "choice": false,
+            "event": {
+              "eventType": "EventEndMatch"
+            }
+          }
+        ]
+      },
+      {
+        "requisites": [
+          {
+            "resourceType": "MilitaryPoint",
+            "type": "MILITARY_POINT",
+            "value": 12
+          }
+        ],
+        "effects":[
+          {
+            "type": "EffectChangeResource",
+            "exchanges": [
+              {
+                "cost": [],
+                "bonus": [
+                  {
+                    "resourceType": "VictoryPoint",
+                    "type": "VICTORY_POINT",
+                    "value": 6
+                  }
+                ]
+              }
+            ],
+            "choice": false,
+            "event": {
+              "eventType": "EventEndMatch"
+            }
+          }
+        ]
+      },
+      {
+        "requisites": [
+          {
+            "resourceType": "MilitaryPoint",
+            "type": "MILITARY_POINT",
+            "value": 18
+          }
+        ],
+        "effects":[
+          {
+            "type": "EffectChangeResource",
+            "exchanges": [
+              {
+                "cost": [],
+                "bonus": [
+                  {
+                    "resourceType": "VictoryPoint",
+                    "type": "VICTORY_POINT",
+                    "value": 10
+                  }
+                ]
+              }
+            ],
+            "choice": false,
+            "event": {
+              "eventType": "EventEndMatch"
+            }
+          }
+        ]
+      }
+    ],
+    "spacesAvailable": 6
+  },
+  "CHARACTER": {
+    "type": "CHARACTER",
+    "slots": [
+      {
+        "effects":[
+          {
+            "type": "EffectChangeResource",
+            "exchanges": [
+              {
+                "cost": [],
+                "bonus": [
+                  {
+                    "resourceType": "VictoryPoint",
+                    "type": "VICTORY_POINT",
+                    "value": 1
+                  }
+                ]
+              }
+            ],
+            "choice": false,
+            "event": {
+              "eventType": "EventEndMatch"
+            }
+          }
+        ]
+      },
+      {
+        "effects":[
+          {
+            "type": "EffectChangeResource",
+            "exchanges": [
+              {
+                "cost": [],
+                "bonus": [
+                  {
+                    "resourceType": "VictoryPoint",
+                    "type": "VICTORY_POINT",
+                    "value": 2
+                  }
+                ]
+              }
+            ],
+            "choice": false,
+            "event": {
+              "eventType": "EventEndMatch"
+            }
+          }
+        ]
+      },
+      {
+        "effects":[
+          {
+            "type": "EffectChangeResource",
+            "exchanges": [
+              {
+                "cost": [],
+                "bonus": [
+                  {
+                    "resourceType": "VictoryPoint",
+                    "type": "VICTORY_POINT",
+                    "value": 3
+                  }
+                ]
+              }
+            ],
+            "choice": false,
+            "event": {
+              "eventType": "EventEndMatch"
+            }
+          }
+        ]
+      },
+      {
+        "effects":[
+          {
+            "type": "EffectChangeResource",
+            "exchanges": [
+              {
+                "cost": [],
+                "bonus": [
+                  {
+                    "resourceType": "VictoryPoint",
+                    "type": "VICTORY_POINT",
+                    "value": 4
+                  }
+                ]
+              }
+            ],
+            "choice": false,
+            "event": {
+              "eventType": "EventEndMatch"
+            }
+          }
+        ]
+      },
+      {
+        "effects":[
+          {
+            "type": "EffectChangeResource",
+            "exchanges": [
+              {
+                "cost": [],
+                "bonus": [
+                  {
+                    "resourceType": "VictoryPoint",
+                    "type": "VICTORY_POINT",
+                    "value": 5
+                  }
+                ]
+              }
+            ],
+            "choice": false,
+            "event": {
+              "eventType": "EventEndMatch"
+            }
+          }
+        ]
+      },
+      {
+        "effects":[
+          {
+            "type": "EffectChangeResource",
+            "exchanges": [
+              {
+                "cost": [],
+                "bonus": [
+                  {
+                    "resourceType": "VictoryPoint",
+                    "type": "VICTORY_POINT",
+                    "value": 6
+                  }
+                ]
+              }
+            ],
+            "choice": false,
+            "event": {
+              "eventType": "EventEndMatch"
+            }
+          }
+        ]
+      }
+    ],
+    "spacesAvailable": 6
+  },
+  "VENTURE": {
+    "type": "VENTURE",
+    "slots": [
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
+    ],
+    "spacesAvailable": 6
+  },
+  "BUILDING": {
+    "type": "BUILDING",
+    "slots": [
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
+    ],
+    "spacesAvailable": 6
+  }
+}

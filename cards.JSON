@@ -3862,7 +3862,7 @@
       },
       {
         "type": "EffectDenyEffect",
-        "description": "You don't have to spend the 3 extra MONEY resources when placing on a taken tower",
+        "description": "You won't receive bonuses from TowerFloors",
         "effectProvider": {
           "effectProvider": "TowerFloor"
         },

@@ -14,6 +14,8 @@ public class EffectChangeFamilyMemberValue extends Effect{
 	private int amount;
 	private List<FamilyMemberColor> colors;
 	private boolean setValue = false;
+	private int originalValue;
+	private Map<FamilyMemberColor, FamilyMember> familyMembers;
 	
 	public EffectChangeFamilyMemberValue(Event event, int amount) {
 		super(event);
@@ -34,7 +36,10 @@ public class EffectChangeFamilyMemberValue extends Effect{
 	}
 
 	public void discard(Match match, Event event) {
-		applyChange(event, -amount);
+		if(setValue)
+			applyChange(event, originalValue);
+		else
+			applyChange(event, -amount);
 	}
 
 	private void applyChange(Event event, int amount) {
@@ -44,11 +49,13 @@ public class EffectChangeFamilyMemberValue extends Effect{
 			changeFamilyMemberValue(familyMember, amount);
 		}
 		else {
-			Map<FamilyMemberColor, FamilyMember> familyMembers = event.getPlayer().getFamilyMembers();
+			familyMembers = event.getPlayer().getFamilyMembers();
 			for(FamilyMemberColor color : familyMembers.keySet()){
 				if (colors.contains(color))
-					if(setValue)
+					if(setValue) {
+						originalValue = familyMembers.get(color).getValue();
 						familyMembers.get(color).setValue(amount);
+					}
 					else
 						changeFamilyMemberValue(familyMembers.get(color), amount);
 			}

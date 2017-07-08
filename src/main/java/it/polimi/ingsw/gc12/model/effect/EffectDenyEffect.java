@@ -12,16 +12,18 @@ public class EffectDenyEffect extends Effect {
     private Match match;
     private EffectProvider effectProvider;
     private String description;
+    private boolean bonus; // If true, the bonus is reverted, if false the cost is reverted
 
-    public EffectDenyEffect(Event event, EffectProvider effectProvider, String description) {
+    public EffectDenyEffect(Event event, EffectProvider effectProvider, String description){//, boolean bonus) {
         super(event);
-        this.effectProvider = effectProvider;
+        if(effectProvider != null)
+            this.effectProvider = effectProvider;
         this.description = description;
+        this.bonus = bonus;
     }
 
-    public EffectDenyEffect(Event event, String description) {
-        super(event);
-        this.description = description;
+    public EffectDenyEffect(Event event, String description){//}), boolean bonus) {
+        this(event, null, description);//, bonus);
     }
 
     @Override
@@ -61,6 +63,14 @@ public class EffectDenyEffect extends Effect {
             }
         }
         return effects;
+    }
+
+    public EffectProvider getEffectProvider() {
+        return effectProvider;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     @Override

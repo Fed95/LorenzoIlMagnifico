@@ -20,7 +20,6 @@ public class CardSlot implements EffectProvider, Serializable{
     }
 
     public CardSlot(){
-        this(null, null);
     }
 
     public void placeCard(CardDevelopment card){

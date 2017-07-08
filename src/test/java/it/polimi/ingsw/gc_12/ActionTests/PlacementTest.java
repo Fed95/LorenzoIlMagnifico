@@ -63,6 +63,8 @@ public class PlacementTest {
         for(int i = 0; i < numOfOccupiables; i++){
             init();
             Player player = match.getPlayer("p0");
+            for(ResourceType type : ResourceType.values())
+                player.setResourceValue(type, 100);
 
             EventStartTurn eventStartTurn = (EventStartTurn) match.getActionHandler().getEvents().getFirst();
 
@@ -79,14 +81,14 @@ public class PlacementTest {
             ActionPlace action = createActionPlace(player, familyMember, occupiable);
 
             assertTrue(action.isValid(match));
-            /*
+
             assertEquals(occupiable, action.getOccupiable());
             assertEquals(familyMember, action.getFamilyMember());
             assertEquals(0, action.getServant().getValue());
             assertEquals(false, action.isComplete());
-            assertEquals(0, action.getMultiplier());
+            assertEquals(2, action.getMultiplier());
             assertEquals(discounts, action.getDiscounts());
-            */
+
 
             System.out.println("starting action");
             action.start(match);

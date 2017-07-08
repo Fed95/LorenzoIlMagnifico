@@ -52,4 +52,8 @@ public class CardsSpace implements Serializable{
     public void setSpacesAvailable(int spacesAvailable) {
         this.spacesAvailable = spacesAvailable;
     }
+
+    public CardType getType() {
+        return type;
+    }
 }
