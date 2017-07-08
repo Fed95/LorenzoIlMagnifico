@@ -1,8 +1,8 @@
 package it.polimi.ingsw.gc12.model.match;
 
 
-import it.polimi.ingsw.gc12.model.board.occupiable.Occupiable;
-import it.polimi.ingsw.gc12.model.board.occupiable.Tower;
+import it.polimi.ingsw.gc12.misc.observer.Observable;
+import it.polimi.ingsw.gc12.model.board.occupiable.*;
 import it.polimi.ingsw.gc12.model.card.CardDevelopment;
 import it.polimi.ingsw.gc12.model.card.CardType;
 import it.polimi.ingsw.gc12.model.card.LeaderCard;
@@ -12,9 +12,8 @@ import it.polimi.ingsw.gc12.model.board.excommunication.ExcommunicationTile;
 import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.player.PlayerColor;
 import it.polimi.ingsw.gc12.model.player.familymember.FamilyMember;
+import it.polimi.ingsw.gc12.model.player.familymember.FamilyMemberColor;
 import it.polimi.ingsw.gc12.view.client.gui.representation.*;
-import it.polimi.ingsw.gc12.model.board.occupiable.TowerFloor;
-import it.polimi.ingsw.gc12.model.board.occupiable.TowerSet;
 import it.polimi.ingsw.gc12.model.player.resource.Resource;
 import it.polimi.ingsw.gc12.model.player.resource.ResourceType;
 import javafx.collections.FXCollections;
@@ -57,8 +56,6 @@ public class MatchInstanceGUI extends MatchInstance {
     private ObservableList<ResourceRepresentation> victoryResources = FXCollections.observableArrayList();
     private ObservableList<ResourceRepresentation> faithResources = FXCollections.observableArrayList();
 
-
-
     private ObservableList<TurnOrderTrackPositionRepresentation> turnOrderTracks = FXCollections.observableArrayList();
 
     //excommmunication tile representation
@@ -96,7 +93,14 @@ public class MatchInstanceGUI extends MatchInstance {
     private ObservableList<CardLeaderRepresentation> cardsLeaderPl3 = FXCollections.observableArrayList();
     private ObservableList<CardLeaderRepresentation> cardsLeaderPl4 = FXCollections.observableArrayList();
     private Map<PlayerColor, ObservableList<CardLeaderRepresentation>> cardsLeaderPlayers = new HashMap<>();
+    //council pawn family
+    private ObservableList<CouncilPawnFamily> councilPawns = FXCollections.observableArrayList();
 
+    //workspaces
+    private ObservableList<WorkSpacePawn> productionPawn = FXCollections.observableArrayList();
+    private ObservableList<WorkSpacePawn> harvestPawn = FXCollections.observableArrayList();
+
+    private Map<WorkType, ObservableList<WorkSpacePawn>> workSpacesPawn = new HashMap<>();
     private MatchInstanceGUI() {}
 
 	public static MatchInstanceGUI instance() {
@@ -117,6 +121,8 @@ public class MatchInstanceGUI extends MatchInstance {
         createExcomTileRepresentation(match);
         createCardPlayerRepresentation(match);
         createCardLeaderRepresentation(match);
+        createPawnCouncil();
+        createWorkSpacesPawn();
         setChanged();
 		notifyObservers();
 		initialized = true;
@@ -375,7 +381,22 @@ public class MatchInstanceGUI extends MatchInstance {
         }
 
     }
-
+    public void createPawnCouncil(){
+        for(FamilyMemberColor familyMemberColor : FamilyMemberColor.values()){
+            CouncilPawnFamily councilPawnFamily = new CouncilPawnFamily(null, null, "img/players/transparentPlayer.png");
+            councilPawns.add(councilPawnFamily);
+        }
+    }
+    public void createWorkSpacesPawn(){
+        workSpacesPawn.put(WorkType.PRODUCTION, productionPawn);
+        workSpacesPawn.put(WorkType.HARVEST, harvestPawn);
+        for (WorkType workType : WorkType.values()){
+            for(int i = 0; i < 4; i++) {
+                WorkSpacePawn workSpacePawn = new WorkSpacePawn(workType,null,null,"img/players/transparentPlayer.png");
+                workSpacesPawn.get(workType).add(workSpacePawn);
+            }
+        }
+    }
     public Map<PlayerColor, ObservableList<FamilyMemberRepresentation>> getMapPlayerColorObservableLiseFMRepr() {
 		return familyMembers;
 	}
@@ -414,6 +435,14 @@ public class MatchInstanceGUI extends MatchInstance {
 
     public ObservableList<ResourceRepresentation> getFaithResources() {
         return faithResources;
+    }
+
+    public ObservableList<CouncilPawnFamily> getCouncilPawns() {
+        return councilPawns;
+    }
+
+    public Map<WorkType, ObservableList<WorkSpacePawn>> getWorkSpacesPawn() {
+        return workSpacesPawn;
     }
 
     public void notifyInit() {

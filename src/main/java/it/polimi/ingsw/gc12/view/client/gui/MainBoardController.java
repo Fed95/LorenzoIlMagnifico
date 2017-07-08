@@ -384,6 +384,26 @@ public class MainBoardController extends Observable implements Initializable, Ob
 
     private List<Map<PlayerColor, Circle> > exomunicationOccupiableColors = new ArrayList<>();
 
+    @FXML private ImageView councilPawn0;
+    @FXML private ImageView councilPawn1;
+    @FXML private ImageView councilPawn2;
+    @FXML private ImageView councilPawn3;
+    private List<ImageView>  councilPawns= new ArrayList<>();
+
+    @FXML private ImageView harvestPawn0;
+    @FXML private ImageView harvestPawn1;
+    @FXML private ImageView harvestPawn2;
+    @FXML private ImageView harvestPawn3;
+    private List<ImageView>  harvestPawns = new ArrayList<>();
+
+    @FXML private ImageView productionPawn0;
+    @FXML private ImageView productionPawn1;
+    @FXML private ImageView productionPawn2;
+    @FXML private ImageView productionPawn3;
+    private List<ImageView>  productionPawns = new ArrayList<>();
+
+    private Map<WorkType, List<ImageView>> workSpacesPawns = new HashMap<>();
+
     private MatchInstanceGUI match;
     private ClientHandler clientHandler;
     private Action actionPending;
@@ -607,6 +627,8 @@ public class MainBoardController extends Observable implements Initializable, Ob
             setPlayerToPane();
             bindPlayerCard();
             bindPlayerLeaderCard();
+            bindCouncilPawns();
+            bindWorkSpaces();
             player = match.getPlayers().get(playerColor);
         });
     }
@@ -759,6 +781,18 @@ public class MainBoardController extends Observable implements Initializable, Ob
                 for (int i = 0; i < listNotPlayed.size(); i++) {
                     listNotPlayed.get(i).imageProperty().bind(mapPlayerColorCardLeaders.get(player.getColor()).get(i).getPathProperty());
                 }
+            }
+        }
+    }
+    private void bindCouncilPawns(){
+        for (int i = 0; i < 4; i++){
+            councilPawns.get(i).imageProperty().bind(match.getCouncilPawns().get(i).getFamilyTemporaryImage());
+        }
+    }
+    private void bindWorkSpaces(){
+        for(WorkType workType : WorkType.values()){
+            for (int i = 0; i < 4; i++){
+                workSpacesPawns.get(workType).get(i).imageProperty().bind(match.getWorkSpacesPawn().get(workType).get(i).getFamilyTemporaryImage());
             }
         }
     }
@@ -1084,6 +1118,8 @@ public class MainBoardController extends Observable implements Initializable, Ob
         setWorkplaces();
         setPlayerCards();
         setCardLeaders();
+        setCouncilPawns();
+        setWorkSpaces();
     }
 
     private void setFamilyMembers() {
@@ -1453,5 +1489,23 @@ public class MainBoardController extends Observable implements Initializable, Ob
         cardLeaders.put(PlayerColor.GREEN, secondPlayerCardLeaders);
         cardLeaders.put(PlayerColor.RED, thirdPlayerCardLeaders);
         cardLeaders.put(PlayerColor.YELLOW, fourthPlayerCardLeaders);
+    }
+    private void setCouncilPawns(){
+        councilPawns.add(councilPawn0);
+        councilPawns.add(councilPawn1);
+        councilPawns.add(councilPawn2);
+        councilPawns.add(councilPawn3);
+    }
+    private void setWorkSpaces(){
+        harvestPawns.add(harvestPawn0);
+        harvestPawns.add(harvestPawn1);
+        harvestPawns.add(harvestPawn2);
+        harvestPawns.add(harvestPawn3);
+        productionPawns.add(productionPawn0);
+        productionPawns.add(productionPawn1);
+        productionPawns.add(productionPawn2);
+        productionPawns.add(productionPawn3);
+        workSpacesPawns.put(WorkType.PRODUCTION, productionPawns);
+        workSpacesPawns.put(WorkType.HARVEST, harvestPawns);
     }
 }
