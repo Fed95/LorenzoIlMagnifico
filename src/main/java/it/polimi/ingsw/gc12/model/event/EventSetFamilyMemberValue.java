@@ -14,6 +14,8 @@ public class EventSetFamilyMemberValue extends Event {
 
     public EventSetFamilyMemberValue(Player player, int value) {
         super(player);
+        if(value < 0)
+            throw new IllegalStateException("A FamilyMember's value cannot be negative");
         this.value = value;
     }
 
@@ -22,6 +24,10 @@ public class EventSetFamilyMemberValue extends Event {
         actions = new ArrayList<>();
         for (FamilyMember familyMember : player.getFamilyMembers().values())
             actions.add(new ActionSetFamilyMemberValue(player, familyMember, value));
+    }
+
+    public int getValue() {
+        return value;
     }
 
     @Override

@@ -9,6 +9,7 @@ import it.polimi.ingsw.gc12.model.player.PlayerColor;
 import it.polimi.ingsw.gc12.model.player.familymember.FamilyMember;
 import it.polimi.ingsw.gc12.model.player.familymember.FamilyMemberColor;
 import it.polimi.ingsw.gc12.misc.json.loader.*;
+import it.polimi.ingsw.gc12.model.player.resource.ResourceType;
 import it.polimi.ingsw.gc12.view.client.rmi.ClientViewRemote;
 import it.polimi.ingsw.gc12.model.effect.Effect;
 import it.polimi.ingsw.gc12.controller.EffectHandler;
@@ -115,6 +116,9 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 			// TODO: remove the comment before the deadline
 			// It has been commented to have a lot of resources for testing
 			// player.setInitialResources(config.getInitialResources().get(i));
+
+			player.setResourceValue(ResourceType.MONEY, 3); //TODO: REMOVE AFTER TESTING
+
 			player.init(board.getSpaceDie());
 			player.getPersonalBoard().setCardsSpaces(new LoaderCardsSpace().get(this));
 			for(int j = 0; j < 4; j++)

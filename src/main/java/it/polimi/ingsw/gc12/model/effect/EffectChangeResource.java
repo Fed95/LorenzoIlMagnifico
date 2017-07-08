@@ -14,13 +14,13 @@ import java.util.List;
 
 public class EffectChangeResource extends Effect {
 
-	private List<ResourceExchange> exchanges;
+	private List<ResourceExchange> exchanges = new ArrayList<>();
 	private boolean choice;
-	private ResourceExchange exchangeChosen;
-	
+
 	public EffectChangeResource(Event event, List<ResourceExchange> exchanges, boolean choice) {
 		super(event);
-		this.exchanges = exchanges;
+		if(exchanges != null)
+			this.exchanges = exchanges;
 		this.choice = choice;
 	}
 	
@@ -62,20 +62,16 @@ public class EffectChangeResource extends Effect {
 
 
 	}
-	
+
 	public void discard(Match match, Event event) {
 		Player player = event.getPlayer();
 
-		if(exchangeChosen == null) {
+		if(!hasChoice()) {
 			for(ResourceExchange exchange : exchanges) {
 				match.addResources(player, exchange.getCost());
 				List<Resource> newBonus = applyResourceBonus(exchange, match, player);
 				player.removeResources(newBonus);
 			}
-		}
-		else {
-			match.addResources(player, exchangeChosen.getCost());
-			player.removeResources(exchangeChosen.getBonus());
 		}
 	}
 

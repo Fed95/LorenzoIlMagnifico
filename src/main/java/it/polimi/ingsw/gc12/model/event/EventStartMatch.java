@@ -23,7 +23,7 @@ public class EventStartMatch extends Event{
 		matchInstance.init(match);
 		client.setMatch(matchInstance);
 
-		if(client.getMainBoardController()!=null) {
+		if(client.getMainBoardController()!= null) {
             Platform.runLater(() ->client.getMainBoardController().getChat().appendText("[SERVER]: Hi "+match.getPlayers().get(client.getColor()).getName()+" welcome to Lorenzo il Magnifico, your color is "+client.getColor() + "\n"));
         }
     }

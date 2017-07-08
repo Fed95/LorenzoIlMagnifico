@@ -6,9 +6,6 @@ import it.polimi.ingsw.gc12.model.event.EventActivateLeaderCard;
 import it.polimi.ingsw.gc12.model.event.EventSetFamilyMemberValue;
 import it.polimi.ingsw.gc12.misc.exception.ActionDeniedException;
 
-/**
- * Created by feder on 2017-06-30.
- */
 public class EffectSetFamilyMemberValue extends Effect {
 
     private int value;

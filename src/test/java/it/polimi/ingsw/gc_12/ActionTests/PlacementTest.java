@@ -1,4 +1,4 @@
-package it.polimi.ingsw.gc_12;
+package it.polimi.ingsw.gc_12.ActionTests;
 
 import it.polimi.ingsw.gc12.model.action.Action;
 import it.polimi.ingsw.gc12.model.action.ActionChooseFamilyMember;
@@ -15,6 +15,7 @@ import it.polimi.ingsw.gc12.model.player.resource.Resource;
 import it.polimi.ingsw.gc12.model.player.resource.ResourceType;
 import it.polimi.ingsw.gc12.model.player.resource.Servant;
 import it.polimi.ingsw.gc12.view.server.ServerRMIView;
+import it.polimi.ingsw.gc_12.InstanceCreator;
 import org.junit.Test;
 import org.mockito.Mockito;
 

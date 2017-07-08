@@ -32,10 +32,17 @@ public class EventSpendResource extends Event {
             return false;
         EventSpendResource other = (EventSpendResource) obj;
 
-        // Check if they have the same resource
         if(this.resourceType.equals(other.resourceType))
             return true;
         return false;
+    }
+
+    public ResourceType getResourceType() {
+        return resourceType;
+    }
+
+    public int getValue() {
+        return value;
     }
 
     @Override

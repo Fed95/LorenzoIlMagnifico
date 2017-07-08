@@ -38,6 +38,6 @@ public class NewNameTest {
         ClientHandler clientHandler = mock(ClientHandler.class);
         event = new EventNewName(unauthorisedId);
         event.executeClientSide(clientHandler);
-        verify(clientHandler.createMatchInstance(), times(1));
+        verify(clientHandler, times(1)).setUnauthorizedId(unauthorisedId);
     }
 }

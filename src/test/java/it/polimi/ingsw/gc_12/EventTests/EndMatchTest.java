@@ -38,8 +38,9 @@ public class EndMatchTest {
         }
     }
 
+
     @Test
-    public void testToStringClient(){
+    public void testToString(){
         try{
             event = new EventEndMatch(player);
             event.toString();

@@ -26,7 +26,6 @@ public class ActionHandler {
 	}
 
 	public Action getAvailableAction(int input) {
-		//int inputReal = (input - offset > 0 ? input - offset : 0);
 		Action action = actions.get(input);
 
 		if(events.size() > 0) {
