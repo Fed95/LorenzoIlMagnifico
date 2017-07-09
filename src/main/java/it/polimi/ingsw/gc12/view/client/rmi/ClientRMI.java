@@ -9,6 +9,7 @@ import it.polimi.ingsw.gc12.view.server.RMIViewRemote;
 
 import java.io.IOException;
 import java.rmi.AlreadyBoundException;
+import java.rmi.ConnectException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -71,7 +72,12 @@ public class ClientRMI implements ClientSender { //Main class of the Clients usi
 			else if(arg instanceof PlayerColor) {
 				sendColor((PlayerColor) arg);
 			}
-		} catch (IOException e) {
+		}
+		catch (ConnectException e) {
+			System.out.println("The server closed!");
+			System.exit(1);
+		}
+		catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

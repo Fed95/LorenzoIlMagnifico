@@ -8,6 +8,7 @@ import it.polimi.ingsw.gc12.view.client.ClientView;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.net.SocketException;
 import java.rmi.RemoteException;
 import java.util.LinkedList;
 
@@ -43,8 +44,12 @@ public class ClientInHandler extends ClientHandler implements Runnable {
 					color = (PlayerColor) object;
 					System.out.println("Your color is "+color);
 				}
-			} catch (ClassNotFoundException | IOException e) {
-				// TODO Auto-generated catch block
+			}
+			catch (SocketException e) {
+				System.out.println("The server closed!");
+				System.exit(1);
+			}
+			catch (ClassNotFoundException | IOException e) {
 				e.printStackTrace();
 			}
 		}
