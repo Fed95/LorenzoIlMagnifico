@@ -3,6 +3,7 @@ package it.polimi.ingsw.gc12.view.client;
 import it.polimi.ingsw.gc12.model.board.Board;
 import it.polimi.ingsw.gc12.model.board.dice.Die;
 import it.polimi.ingsw.gc12.model.board.dice.SpaceDie;
+import it.polimi.ingsw.gc12.model.board.excommunication.ExcommunicationTile;
 import it.polimi.ingsw.gc12.model.board.occupiable.Occupiable;
 import it.polimi.ingsw.gc12.model.board.occupiable.Tower;
 import it.polimi.ingsw.gc12.model.board.occupiable.TowerFloor;
@@ -83,4 +84,5 @@ public abstract class MatchInstance extends Observable {
 	public abstract void resetFamilyMembers();
 	public abstract void resetFloors();
 	public abstract void updateResources(List<Player> players);
+	public abstract void playerExcommunication(Player player, ExcommunicationTile tile);
 }

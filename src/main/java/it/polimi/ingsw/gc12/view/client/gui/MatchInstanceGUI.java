@@ -204,6 +204,14 @@ public class MatchInstanceGUI extends MatchInstance {
 	}
 
 	@Override
+	public void playerExcommunication(Player player, ExcommunicationTile tile) {
+		for(ExcommunicationTileRepresentation excomTile: excommunicationTiles) {
+			if(excomTile.getPeriod() == tile.getPeriod())
+				excomTile.showExcommunication(player.getColor());
+		}
+	}
+
+	@Override
     public void setCards(TowerSet towers) {
         for(CardType cardType : CardType.values()){
             List<TowerFloor> towerFloors = towers.getTower(cardType).getFloors();

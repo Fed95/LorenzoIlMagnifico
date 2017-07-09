@@ -43,7 +43,7 @@ public class ActionSupportChurch extends Action {
             match.vaticanReport(players);
         }
         else
-            match.newTurn();
+            match.newTurn(true);
     }
 
 

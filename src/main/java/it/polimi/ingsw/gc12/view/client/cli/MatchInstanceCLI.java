@@ -1,6 +1,7 @@
 package it.polimi.ingsw.gc12.view.client.cli;
 
 
+import it.polimi.ingsw.gc12.model.board.excommunication.ExcommunicationTile;
 import it.polimi.ingsw.gc12.model.board.occupiable.Occupiable;
 import it.polimi.ingsw.gc12.model.board.occupiable.TowerSet;
 import it.polimi.ingsw.gc12.model.card.CardDevelopment;
@@ -54,4 +55,7 @@ public class MatchInstanceCLI extends MatchInstance {
 
 	@Override
 	public void updateResources(List<Player> players) {}
+
+	@Override
+	public void playerExcommunication(Player player, ExcommunicationTile tile) {}
 }

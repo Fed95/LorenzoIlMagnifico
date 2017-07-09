@@ -15,6 +15,6 @@ public class TimerActionTask extends TimerTask {
 	@Override
 	public void run() {
 		match.excludeCurrentPlayer();
-		match.newTurn();
+		match.newTurn(false);
 	}
 }

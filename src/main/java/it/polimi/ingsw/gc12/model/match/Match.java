@@ -125,17 +125,17 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 
 		this.notifyObserver(new EventStartMatch(this));
 		newPeriod();
-		newRound();
-		newTurn();
+		newRound(false);
+		newTurn(false);
 		//System.out.println("Match: notifying EventStartMatch");
 		checkConnection();
 	}
 
 	//Increments turn counter in TrackTurnOrder
-	public void newTurn() {
-		if(turnCounter == (players.size())) {
-			boolean stop = newRound();
-			if(stop)
+	public void newTurn(boolean vaticanDone) {
+		if(turnCounter == (players.size())/* * FamilyMemberColor.values().length*/) {
+			boolean stop = newRound(vaticanDone);
+			if(stop )
 				return;
 		}
 
@@ -159,7 +159,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 
 		if(player.isDisconnected() || player.isExcluded()) {
 			actionHandler.flushEvents();
-			newTurn();
+			newTurn(false);
 		}
 		else
 			setTimeoutAction();
@@ -176,14 +176,15 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		}, 2000, 2000);
 	}
 
-	private boolean newRound(){
+	private boolean newRound(boolean vaticanDone){
 		boolean vatican = roundNum != 0 && roundNum%2 == 0 ;
-		if(vatican) {
+		if(vatican && !vaticanDone) {
 			boolean endMatch = endPeriod();
-			if(endMatch)
-				return true;
-			newPeriod();
+			//if(endMatch)
+			return true;
+
 		}
+		newPeriod();
 		roundNum++;
 		turnCounter = 0;
 		resetFamilyMembers();
@@ -191,7 +192,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		for(Player player : players.values())
 			player.getPersonalBoard().getLeaderCardsSpace().newTurn();
 		this.notifyObserver(new EventStartRound(roundNum, board.getTowerSet(), board.getSpaceDie()));
-		return vatican;
+		return vatican && !vaticanDone;
 	}
 
 	public void excludeCurrentPlayer() {
@@ -229,7 +230,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	}
 
 	public void vaticanReport(List<Player> playerList){
-		Event event = new EventVaticanReport(playerList.get(0), excommunicationTiles.get(getPeriodNum()), playerList);
+		Event event = new EventVaticanReport(playerList.get(0), board.getExcommunicationSpace().getTiles().get(getPeriodNum()), playerList);
 		actionHandler.update(event, this);
 		notifyObserver(event);
 	}
@@ -283,7 +284,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		checkEnoughPlayers();
 		if(player.equals(board.getTrackTurnOrder().getCurrentPlayer())) {
 			actionHandler.flushEvents();
-			newTurn();
+			newTurn(false);
 		}
 		System.out.println("PLAYER " + player.getName() + " DISCONNECTED");
 	}
@@ -359,7 +360,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		else {
 			if(getGameState() == MatchState.PAUSED) {
 				setGameState(MatchState.RUNNING);
-				newTurn();
+				newTurn(false);
 			}
 		}
 	}

@@ -1,5 +1,7 @@
 package it.polimi.ingsw.gc12.model.action;
 
+import it.polimi.ingsw.gc12.model.event.Event;
+import it.polimi.ingsw.gc12.model.event.EventSupportDenied;
 import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.board.excommunication.ExcommunicationTile;
@@ -23,12 +25,15 @@ public class ActionReceiveExcommunication extends Action {
     @Override
     public void start(Match match) {
         player.getExcommunications().add(tile);
+        Event event = new EventSupportDenied(player, tile);
+        match.notifyObserver(event);
+
         List<Player> players = match.getActionHandler().getPlayers();
         if(players.size() > 0) {
             match.vaticanReport(players);
         }
         else
-            match.newTurn();
+            match.newTurn(true);
     }
 
     @Override

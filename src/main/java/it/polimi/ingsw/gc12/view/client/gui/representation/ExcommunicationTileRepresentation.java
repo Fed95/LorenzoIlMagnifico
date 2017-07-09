@@ -11,9 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-/**
- * Created by rugge on 29/06/2017.
- */
 public class ExcommunicationTileRepresentation {
     private SimpleIntegerProperty period;
     private SimpleObjectProperty<Image> path;
@@ -24,13 +21,15 @@ public class ExcommunicationTileRepresentation {
     private SimpleObjectProperty<Paint> playerYellow = new SimpleObjectProperty<Paint>();
 
     private Map<PlayerColor, SimpleObjectProperty<Paint>> retriveColorProperty = new HashMap<>();
+
     public ExcommunicationTileRepresentation(int period, String path){
         this.period = new SimpleIntegerProperty(period);
         Image image = new Image(path);
-        this.path = new SimpleObjectProperty<Image>(image);
+        this.path = new SimpleObjectProperty<>(image);
         setColor();
         setRetrive();
     }
+
     private void setColor(){
         PlayerColorReal playerColorReal = new PlayerColorReal(0);
         playerBlue.set(playerColorReal.getBlue());
@@ -38,12 +37,14 @@ public class ExcommunicationTileRepresentation {
         playerRed.set(playerColorReal.getRed());
         playerYellow.set(playerColorReal.getYellow());
     }
+
     private void setRetrive(){
         retriveColorProperty.put(PlayerColor.BLUE, playerBlue);
         retriveColorProperty.put(PlayerColor.GREEN, playerGreen);
         retriveColorProperty.put(PlayerColor.RED, playerRed);
         retriveColorProperty.put(PlayerColor.YELLOW, playerYellow);
     }
+
     public int getPeriod() {
         return period.get();
     }
@@ -72,19 +73,15 @@ public class ExcommunicationTileRepresentation {
         return retriveColorProperty;
     }
 
-    public void setPlayerBlue(Paint playerBlue) {
-        this.playerBlue.set(playerBlue);
-    }
-
-    public void setPlayerGreen(Paint playerGreen) {
-        this.playerGreen.set(playerGreen);
-    }
-
-    public void setPlayerRed(Paint playerRed) {
-        this.playerRed.set(playerRed);
-    }
-
-    public void setPlayerYellow(Paint playerYellow) {
-        this.playerYellow.set(playerYellow);
+    public void showExcommunication(PlayerColor playerColor) {
+        PlayerColorReal playerColorReal = new PlayerColorReal(1);
+        if(playerColor.equals(PlayerColor.BLUE))
+            this.playerBlue.set(playerColorReal.getBlue());
+        else if(playerColor.equals(PlayerColor.GREEN))
+            this.playerGreen.set(playerColorReal.getGreen());
+        else if(playerColor.equals(PlayerColor.RED))
+            this.playerRed.set(playerColorReal.getRed());
+        else if(playerColor.equals(PlayerColor.YELLOW))
+            this.playerYellow.set(playerColorReal.getYellow());
     }
 }
