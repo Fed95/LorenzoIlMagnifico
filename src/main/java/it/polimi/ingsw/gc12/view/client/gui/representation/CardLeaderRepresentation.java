@@ -15,22 +15,27 @@ public class CardLeaderRepresentation {
     private SimpleObjectProperty<Image> path;
     private SimpleObjectProperty<Image> pathWhenPlayed;
     private SimpleBooleanProperty visible;
+    private int id;
 
     /**
      * constructor
      * @param url image of the card when is not played
-     * @param urlWhenPlayed image oof the card when is played
+     * @param urlWhenPlayed image of the card when is played
+     * @param id id of the leader card
      */
-    public CardLeaderRepresentation(String url, String urlWhenPlayed){
+    public CardLeaderRepresentation(String url, String urlWhenPlayed, int id){
         Image image = new Image(url);
         Image imagePlayed = new Image(urlWhenPlayed);
         this.path = new SimpleObjectProperty<Image>(image);
         this.pathWhenPlayed = new SimpleObjectProperty<Image>(imagePlayed);
         this.visible = new SimpleBooleanProperty(false);
+        this.id = id;
     }
+
     public Image getPath() {
         return path.get();
     }
+
     public ObjectProperty<Image> getPathProperty() {
         return path;
     }
@@ -51,9 +56,11 @@ public class CardLeaderRepresentation {
     public void setVisible(boolean visible) {
         this.visible.set(visible);
     }
+    
     public BooleanProperty getVisibility(){
         return visible;
     }
+    
     public ObjectProperty<Image> getPathWhenPlayedProperty() {
         return pathWhenPlayed;
     }
@@ -64,5 +71,19 @@ public class CardLeaderRepresentation {
      */
     public void setPathWhenPlayed(Image pathWhenPlayed) {
         this.pathWhenPlayed.set(pathWhenPlayed);
+    }
+
+    public void activate() {
+        setPathWhenPlayed(new Image("img/CardLeader/leader_"+id+".jpg"));
+        setPath(new Image("img/Card/transparentCard.png"));
+        setVisible(true);
+    }
+
+    public void discard() {
+        setPath(new Image("img/Card/transparentCard.png"));
+    }
+
+    public int getId() {
+        return id;
     }
 }

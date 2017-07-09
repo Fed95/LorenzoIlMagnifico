@@ -229,6 +229,24 @@ public class MatchInstanceGUI extends MatchInstance {
 	}
 
 	@Override
+	public void activateLeaderCard(PlayerColor playerColor, int id) {
+		for(CardLeaderRepresentation card: cardsLeaderPlayers.get(playerColor)) {
+			if(card.getId() == id) {
+				card.activate();
+			}
+		}
+	}
+
+	@Override
+	public void discardLeaderCard(PlayerColor playerColor, int id) {
+		for(CardLeaderRepresentation card: cardsLeaderPlayers.get(playerColor)) {
+			if(card.getId() == id) {
+				card.discard();
+			}
+		}
+	}
+
+	@Override
     public void setCards(TowerSet towers) {
         for(CardType cardType : CardType.values()){
             List<TowerFloor> towerFloors = towers.getTower(cardType).getFloors();
@@ -415,7 +433,7 @@ public class MatchInstanceGUI extends MatchInstance {
         for(Player player : match.getPlayers().values()){
             for(LeaderCard leaderCard : player.getPersonalBoard().getLeaderCardsSpace().getCards()){
                 String url = "img/CardLeader/leader_"+leaderCard.getId()+".jpg";
-                CardLeaderRepresentation cardLeaderRepresentation = new CardLeaderRepresentation(url, "img/CardLeader/baseLeader.jpg");
+                CardLeaderRepresentation cardLeaderRepresentation = new CardLeaderRepresentation(url, "img/CardLeader/baseLeader.jpg", leaderCard.getId());
                 cardsLeaderPlayers.get(player.getColor()).add(cardLeaderRepresentation);
             }
         }

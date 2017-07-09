@@ -58,4 +58,10 @@ public class MatchInstanceCLI extends MatchInstance {
 
 	@Override
 	public void playerExcommunication(Player player, ExcommunicationTile tile) {}
+
+	@Override
+	public void activateLeaderCard(PlayerColor playerColor, int id) {}
+
+	@Override
+	public void discardLeaderCard(PlayerColor playerColor, int id) {}
 }

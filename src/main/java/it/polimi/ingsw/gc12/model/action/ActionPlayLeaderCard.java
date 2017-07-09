@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc12.model.action;
 
+import it.polimi.ingsw.gc12.model.event.EventPlayLeaderCard;
 import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.card.LeaderCard;
@@ -42,10 +43,13 @@ public class ActionPlayLeaderCard extends Action {
             if(effect instanceof EffectCopyLeaderCard)
                 return;
 
-        EventStartTurn event = new EventStartTurn(player);
+        EventPlayLeaderCard event = new EventPlayLeaderCard(player, card.getId());
         match.getActionHandler().update(event, match);
-        //Notifies the ServerRMIView
         match.notifyObserver(event);
+        /*EventStartTurn event = new EventStartTurn(player);
+
+        //Notifies the ServerRMIView
+        match.notifyObserver(event);*/
     }
 
     //Used for testing

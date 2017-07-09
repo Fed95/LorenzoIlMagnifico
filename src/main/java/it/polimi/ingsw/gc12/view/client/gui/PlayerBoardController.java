@@ -293,6 +293,7 @@ public class PlayerBoardController extends GUIController implements Initializabl
 			for (int i = 0; i < cardsNotPlayed.size(); i++) {
 				if(leaderCard.equals(cardsNotPlayed.get(i))) {
 					Action action;
+					clientHandler.setActionFM(null);
 					if(choice == 0) {
 						action = new ActionViewPlayableLeaderCards(match.getPlayers().get(playerColor));
 						clientHandler.setActionPending(new ActionPlayLeaderCard(player, player.getNotPlayedLeaderCards().get(i)));

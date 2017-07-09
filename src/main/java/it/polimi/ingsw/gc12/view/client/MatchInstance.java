@@ -85,4 +85,6 @@ public abstract class MatchInstance extends Observable {
 	public abstract void resetFloors();
 	public abstract void updateResources(List<Player> players);
 	public abstract void playerExcommunication(Player player, ExcommunicationTile tile);
+	public abstract void activateLeaderCard(PlayerColor playerColor, int id);
+	public abstract void discardLeaderCard(PlayerColor playerColor, int id);
 }

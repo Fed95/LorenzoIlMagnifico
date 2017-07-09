@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc12.model.action;
 
+import it.polimi.ingsw.gc12.model.event.EventDiscardLeaderCard;
 import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.card.LeaderCard;
@@ -30,9 +31,12 @@ public class ActionDiscardLeaderCard extends Action {
         match.getActionHandler().update(event, match);
         match.notifyObserver(event);
 
-        EventStartTurn eventStartTurn = new EventStartTurn(player);
+        EventDiscardLeaderCard eventCard = new EventDiscardLeaderCard(player, card.getId());
+        match.getActionHandler().update(eventCard, match);
+        match.notifyObserver(eventCard);
+        /*EventStartTurn eventStartTurn = new EventStartTurn(player);
         match.getActionHandler().update(eventStartTurn, match);
-        match.notifyObserver(eventStartTurn);
+        match.notifyObserver(eventStartTurn);*/
     }
 
     @Override
