@@ -651,6 +651,10 @@ public class MainBoardController extends GUIController implements Initializable,
         else
             showTurnDenied();
     }
+
+    /**
+     * Notify with an alert the free action
+     */
     public void notifyFreeAction(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Free Action");
