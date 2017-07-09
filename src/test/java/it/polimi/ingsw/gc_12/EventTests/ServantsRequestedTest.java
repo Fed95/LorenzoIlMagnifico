@@ -8,6 +8,7 @@ import it.polimi.ingsw.gc12.model.player.familymember.FamilyMember;
 import it.polimi.ingsw.gc12.model.player.familymember.FamilyMemberColor;
 import it.polimi.ingsw.gc12.model.player.resource.Resource;
 import it.polimi.ingsw.gc12.model.player.resource.ResourceType;
+import it.polimi.ingsw.gc12.view.client.ClientHandler;
 import it.polimi.ingsw.gc_12.InstanceCreator;
 import org.junit.Test;
 
@@ -15,6 +16,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+import static org.mockito.Mockito.mock;
 
 public class ServantsRequestedTest {
 
@@ -44,5 +46,24 @@ public class ServantsRequestedTest {
 
         int numOfActions = player.getResourceValue(ResourceType.SERVANT); //-1 for familyMemberValue, +1 for discardAction
         assertEquals(numOfActions + 1, event.getActions().size());
+    }
+
+    @Test
+    public void testMisc(){
+        try {
+            event = new EventServantsRequested(player, occupiable, familyMember, discounts);
+            event.setMultiplier(3);
+            assertEquals(3, event.getMultiplier());
+
+            ClientHandler clientHandler = mock(ClientHandler.class);
+            event.executeClientSide(clientHandler);
+
+            event.toString();
+            event.toStringClient();
+            event.toStringClientGUI();
+
+        }catch(Exception e){
+            fail(e.getMessage());
+        }
     }
 }

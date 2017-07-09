@@ -33,7 +33,10 @@ public class EffectCopyLeaderCard extends Effect {
 
     @Override
     public void discard(Match match, Event event) {
+    }
 
+    public int getCardId() {
+        return cardId;
     }
 
     @Override

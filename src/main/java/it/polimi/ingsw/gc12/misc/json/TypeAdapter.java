@@ -59,7 +59,7 @@ public class TypeAdapter {
 				.registerSubtype(EffectResourceForCards.class, EffectResourceForCards.class.getSimpleName())
 				.registerSubtype(EffectResourceForResource.class, EffectResourceForResource.class.getSimpleName())
 				.registerSubtype(EffectReduceReceivedResource.class, EffectReduceReceivedResource.class.getSimpleName())
-				.registerSubtype(EffectServantsMultipier.class, EffectServantsMultipier.class.getSimpleName())
+				.registerSubtype(EffectServantsMultiplier.class, EffectServantsMultiplier.class.getSimpleName())
 				.registerSubtype(EffectDenyExchange.class, EffectDenyExchange.class.getSimpleName())
 				.registerSubtype(EffectCardDiscount.class, EffectCardDiscount.class.getSimpleName())
 				.registerSubtype(EffectMultiplyCardResourceBonus.class, EffectMultiplyCardResourceBonus.class.getSimpleName())

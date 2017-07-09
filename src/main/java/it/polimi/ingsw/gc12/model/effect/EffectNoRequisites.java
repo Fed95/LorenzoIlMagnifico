@@ -5,7 +5,6 @@ import it.polimi.ingsw.gc12.model.event.Event;
 import it.polimi.ingsw.gc12.model.event.EventPickCard;
 import it.polimi.ingsw.gc12.misc.exception.ActionDeniedException;
 
-//TODO: NEEDS TESTING
 //The player does not have to satisfy the requisites set by the personal board to take the card
 public class EffectNoRequisites extends Effect{
 

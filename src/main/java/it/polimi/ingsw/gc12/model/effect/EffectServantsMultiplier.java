@@ -5,11 +5,13 @@ import it.polimi.ingsw.gc12.model.event.Event;
 import it.polimi.ingsw.gc12.model.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc12.model.event.EventServantsRequested;
 
-public class EffectServantsMultipier extends Effect {
+//Sets the multiplier inside the specified event.
+//The Servants amount that will then be selected by the user will be divided by the multiplier.
+public class EffectServantsMultiplier extends Effect {
 
     private int value;
 
-    public EffectServantsMultipier(Event event, int value) {
+    public EffectServantsMultiplier(Event event, int value) {
         super(event);
         this.value = value;
     }
@@ -29,6 +31,10 @@ public class EffectServantsMultipier extends Effect {
     @Override
     public void discard(Match match, Event event) {
 
+    }
+
+    public int getValue() {
+        return value;
     }
 
     @Override

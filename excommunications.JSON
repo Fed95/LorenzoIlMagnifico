@@ -516,7 +516,7 @@
     "period": 2,
     "effects": [
       {
-        "type": "EffectServantsMultipier",
+        "type": "EffectServantsMultiplier",
         "value": 2,
         "event": {
           "eventType": "EventPlaceFamilyMember",
@@ -525,7 +525,7 @@
         }
       },
       {
-        "type": "EffectServantsMultipier",
+        "type": "EffectServantsMultiplier",
         "value": 2,
         "event": {
           "eventType": "EventServantsRequested",

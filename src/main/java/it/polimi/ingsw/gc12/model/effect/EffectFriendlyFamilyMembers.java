@@ -5,6 +5,10 @@ import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.event.Event;
 import it.polimi.ingsw.gc12.misc.exception.ActionDeniedException;
 
+
+//This effect allows the specified family member to be placed on occupied Occupiables
+//by setting its "friendly" boolean to true.
+//When performing a placement the boolean is checked
 public class EffectFriendlyFamilyMembers extends Effect {
 
     public EffectFriendlyFamilyMembers(Event event) {
