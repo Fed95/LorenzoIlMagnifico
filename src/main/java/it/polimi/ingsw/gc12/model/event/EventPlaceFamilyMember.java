@@ -5,13 +5,14 @@ import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.view.client.ClientHandler;
 import it.polimi.ingsw.gc12.model.board.occupiable.Occupiable;
 import it.polimi.ingsw.gc12.view.client.gui.MainBoard;
+import javafx.application.Platform;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class EventPlaceFamilyMember extends Event {
+public class EventPlaceFamilyMember extends Event implements EventView{
 
     protected List<Occupiable> occupiables = new ArrayList<>();
     protected FamilyMember familyMember;
@@ -68,6 +69,8 @@ public class EventPlaceFamilyMember extends Event {
         if(client.isMyTurn()) {
             super.executeClientSide(client);
         }
+        client.getMatch().placeFamilyMember(familyMember, getOccupiable(), player.getColor());
+        client.getMatch().updateResources(new ArrayList<>(Collections.singletonList(player)));
     }
 
     public FamilyMember getFamilyMember() {
@@ -133,5 +136,13 @@ public class EventPlaceFamilyMember extends Event {
         sb.append(player.getName() + " has placed the " + familyMember.getColor() + " Family Member (of value " + familyMember.getValue() + ") on:").append(System.getProperty("line.separator"));
         sb.append(occupiables.get(0).toString());
         return sb.toString();
+    }
+
+    @Override
+    public void executeViewSide(MainBoard view) {
+        Platform.runLater(() -> {
+            view.getControllerMainBoard().disablePassTurn(false);
+            view.getControllerMainBoard().moveOccupiableImage(getOccupiable());
+        });
     }
 }

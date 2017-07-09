@@ -14,15 +14,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-public class EventPlacementEnded extends Event implements EventView{
+public class EventPlacementEnded extends Event{
 
-	private FamilyMember familyMember;
-	private Occupiable occupiable;
-
-	public EventPlacementEnded(Player player, FamilyMember familyMember, Occupiable occupiable) {
+	public EventPlacementEnded(Player player) {
 		super(player);
-		this.familyMember = familyMember;
-		this.occupiable = occupiable;
 	}
 
 	@Override
@@ -40,22 +35,7 @@ public class EventPlacementEnded extends Event implements EventView{
 	}
 
 	@Override
-	public void executeClientSide(ClientHandler client) {
-		super.executeClientSide(client);
-		client.getMatch().placeFamilyMember(familyMember, occupiable, player.getColor());
-		client.getMatch().updateResources(new ArrayList<>(Collections.singletonList(player)));
-	}
-
-	@Override
 	public String toString() {
 		return "";
-	}
-
-	@Override
-	public void executeViewSide(MainBoard view) {
-		Platform.runLater(() -> {
-			view.getControllerMainBoard().disablePassTurn(false);
-			view.getControllerMainBoard().moveOccupiableImage(occupiable);
-		});
 	}
 }

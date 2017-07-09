@@ -121,7 +121,7 @@ public abstract class ActionPlace extends Action {
 	protected void execute(Match match) {
 		player.removeResources(Collections.singletonList(servant));
 		match.placeFamilyMember(occupiable, familyMember);
-		EventPlacementEnded event = new EventPlacementEnded(player, familyMember, occupiable);
+		EventPlacementEnded event = new EventPlacementEnded(player);
 		match.getActionHandler().update(event, match);
 		match.notifyObserver(event);
 	}

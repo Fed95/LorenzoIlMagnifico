@@ -89,7 +89,7 @@ public class ActionPlaceOnTower extends ActionPlace {
             if(effect instanceof EffectFreeAction)
                 return;
         }
-        EventPlacementEnded event = new EventPlacementEnded(player, familyMember, occupiable);
+        EventPlacementEnded event = new EventPlacementEnded(player);
         match.getActionHandler().update(event, match);
         match.notifyObserver(event);
     }
