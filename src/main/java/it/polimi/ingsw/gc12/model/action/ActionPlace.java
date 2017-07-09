@@ -74,11 +74,10 @@ public abstract class ActionPlace extends Action {
 
 			try{
 				familyMember.setValue(familyMember.getValue() + increment);
-				canBeExecuted(match);
 				match.getEffectHandler().executeEffects(match, event);
 				execute(match);
 			}
-			catch (RequiredValueNotSatisfiedException | ActionDeniedException | ActionNotAllowedException e) {
+			catch (ActionDeniedException e) {
 				throw new IllegalStateException("ActionPlace the action cannot be performed even if it has been considered valid");
 			} finally {
 				familyMember.setValue(familyMember.getValue() - increment);
