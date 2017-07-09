@@ -531,13 +531,7 @@ public class MainBoardController extends GUIController implements Initializable,
         if(isMyTurn()) {
             Action actionPending = clientHandler.getActionPending();
             if(actionPending != null) {
-                if(clientHandler.getActions().contains(actionPending)) {
-                    if(!selectAction(actionPending)) {
-                        actionDenied();
-                        resetFamilyMembers();
-                    }
-                }
-                else {
+                if(!selectAction(actionPending)) {
                     clientHandler.setActionPending(null);
                     selectAction(new DiscardAction(player));
                     actionDenied();
