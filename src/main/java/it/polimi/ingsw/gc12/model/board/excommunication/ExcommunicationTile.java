@@ -7,12 +7,22 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class implements the excomunication tile with an id , peridd and effects.
+ * All the classes that have some effect to provide implement the class EffectProvider
+ */
 public class ExcommunicationTile implements EffectProvider, Serializable {
 
 	private final int id;
 	private int period;
 	private List<Effect> effects = new ArrayList<>();
 
+    /**
+     * Constructor
+     * @param id id of the excommunication tile
+     * @param period period of the excommunication tile
+     * @param effects effects of the excommunication tile
+     */
 	public ExcommunicationTile(int id, int period, List<Effect> effects){
 		this.id = id;
 		this.period = period;
