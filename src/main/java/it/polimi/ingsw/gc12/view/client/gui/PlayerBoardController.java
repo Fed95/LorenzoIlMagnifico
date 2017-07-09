@@ -320,8 +320,8 @@ public class PlayerBoardController extends GUIController implements Initializabl
 								clientHandler.setActionPending(null);
 							action = new DiscardAction(match.getPlayers().get(playerColor));
 						} else {
-
 							clientHandler.setActionPending(action);
+							clientHandler.setActionFM(action);
 						}
 						toggleFMHighlight(familyMemberClicked);
 						selectAction(action);

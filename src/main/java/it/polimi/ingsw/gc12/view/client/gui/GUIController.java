@@ -38,7 +38,7 @@ public abstract class GUIController extends Observable {
 		this.addObserver(ClientFactory.getClientSender());
 	}
 
-	protected void selectAction(Action action) {
+	protected boolean selectAction(Action action) {
 		List<Action> actions = clientHandler.getActions();
 		for (int i = 0; i < actions.size(); i++) {
 			if(actions.get(i).equals(action)) {
@@ -48,9 +48,10 @@ public abstract class GUIController extends Observable {
 					clientHandler.getEvents().removeFirst();
 					clientHandler.handleEvent();
 				}
-				break;
+				return true;
 			}
 		}
+		return false;
 	}
 
 	protected boolean isMyTurn(){

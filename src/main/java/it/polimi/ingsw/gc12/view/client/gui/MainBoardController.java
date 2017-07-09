@@ -184,12 +184,18 @@ public class MainBoardController extends GUIController implements Initializable,
             loop: for(Map.Entry<CardType, List<ImageView>> entryType : towerFloors.entrySet()) {
                 for (int i = 0; i < entryType.getValue().size(); i++) {
                     if(entryType.getValue().get(i).equals(floorClicked)) {
+                        Action actionPending = new ActionPlaceOnTower(match.getPlayers().get(playerColor), null, new TowerFloor(i, entryType.getKey()));
+                        if(clientHandler.getActions().contains(actionPending))
+                            clientHandler.setActionPending(actionPending);
+                        if(selectAction(actionPending))
+                            break loop;
+
                         if(clientHandler.getActionPending() instanceof ActionPlace) {
                             selectAction(new DiscardAction(player));
                         }
                         Action action = new ActionChooseTower(match.getPlayers().get(playerColor), null, new Tower(entryType.getKey()));
                         if(clientHandler.getActions().contains(action))
-                            clientHandler.setActionPending(new ActionPlaceOnTower(match.getPlayers().get(playerColor), null, new TowerFloor(i, entryType.getKey())));
+                            clientHandler.setActionPending(actionPending);
                         selectAction(action);
                         break loop;
                     }

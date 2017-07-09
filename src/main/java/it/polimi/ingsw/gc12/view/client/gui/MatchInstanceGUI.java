@@ -185,7 +185,7 @@ public class MatchInstanceGUI extends MatchInstance {
 				}
 				else if(occupiable instanceof SpaceMarket) {
 					SpaceMarket spaceMarket = (SpaceMarket) occupiable;
-					// TODO: wait for spaceMarketRepresentation
+					markets.get(spaceMarket.getMarketNum()).setFamilyMember(familyMember, playerColor);
 				}
 			}
 		}
