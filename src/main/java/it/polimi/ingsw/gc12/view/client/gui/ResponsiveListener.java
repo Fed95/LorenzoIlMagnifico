@@ -9,7 +9,9 @@ import javafx.scene.transform.Scale;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-
+/**
+ * This class is implements the responsiveness of the GUI application, it scale down with the window
+ */
 public class ResponsiveListener implements ChangeListener<Number> {
     private final Scene scene;
     private final double ratio;
@@ -19,6 +21,15 @@ public class ResponsiveListener implements ChangeListener<Number> {
     private final Stage primaryStage;
     private double adjust = 1;//adjust size for minor screen size
 
+    /**
+     *
+     * @param scene scene to scale down
+     * @param ratio required parameter to understand if we are horizontally or vertically scaling down
+     * @param initHeight height
+     * @param initWidth width
+     * @param root root element to scale down
+     * @param primaryStage primary stage to scale down
+     */
     public ResponsiveListener(Scene scene, double ratio, double initHeight, double initWidth, Pane root, Stage primaryStage) {
         this.scene = scene;
         this.ratio = ratio;
@@ -28,6 +39,12 @@ public class ResponsiveListener implements ChangeListener<Number> {
         this.primaryStage = primaryStage;
     }
 
+    /**
+     * Set the scale down to the scene
+     * @param observableValue
+     * @param oldValue
+     * @param newValue
+     */
     @Override
     public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
         final double newWidth  = scene.getWidth();

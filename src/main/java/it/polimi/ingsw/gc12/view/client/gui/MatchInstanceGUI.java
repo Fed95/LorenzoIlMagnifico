@@ -32,6 +32,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This class creates all the representation of the GUI and add it to ObservableList(java fx)
+ * Conains also all the methods for updating the representation when an event is received
+ */
 public class MatchInstanceGUI extends MatchInstance {
 
 	private static MatchInstanceGUI instance;
@@ -139,6 +143,11 @@ public class MatchInstanceGUI extends MatchInstance {
 		initialized = true;
 	}
 
+    /**
+     * The card is removed from the tower
+     * @param card card to remove
+     * @param playerColor player that remove it
+     */
 	@Override
 	public void pickCard(CardDevelopment card, PlayerColor playerColor) {
 		for(Tower tower: board.getTowerSet().getTowers().values()) {
@@ -158,6 +167,12 @@ public class MatchInstanceGUI extends MatchInstance {
 
 	}
 
+    /**
+     * A family member is placed so the image of it is set on the right occupiable
+     * @param familyMember family member to place
+     * @param occupiable occupiable where is placed
+     * @param playerColor player color placing the family
+     */
 	@Override
 	public void placeFamilyMember(FamilyMember familyMember, Occupiable occupiable, PlayerColor playerColor) {
 		for(FamilyMemberRepresentation FMRepr: familyMembers.get(playerColor)) {
@@ -192,6 +207,9 @@ public class MatchInstanceGUI extends MatchInstance {
 		}
 	}
 
+    /**
+     * Reset the player family member, make them visible again in the player board
+     */
 	@Override
 	public void resetFamilyMembers() {
 		for(ObservableList<FamilyMemberRepresentation> FMRepresentations: familyMembers.values()) {
@@ -201,6 +219,9 @@ public class MatchInstanceGUI extends MatchInstance {
 		}
 	}
 
+    /**
+     * Reset the occupiable images , removing the family members on it
+     */
 	@Override
 	public void resetBoard() {
 		for(ObservableList<CardFloorRepresentation> floors: cardsFloors.values()) {
@@ -222,6 +243,10 @@ public class MatchInstanceGUI extends MatchInstance {
 
 	}
 
+    /**
+     * This method update a resource when the right event is received
+     * @param players
+     */
 	@Override
 	public void updateResources(List<Player> players) {
 		Platform.runLater(() -> {
@@ -233,6 +258,11 @@ public class MatchInstanceGUI extends MatchInstance {
 		});
 	}
 
+    /**
+     * This method activate the pawn of the player that has taken the excommunication
+     * @param player player to set
+     * @param tile tile to set the pawn
+     */
 	@Override
 	public void playerExcommunication(Player player, ExcommunicationTile tile) {
 		for(ExcommunicationTileRepresentation excomTile: excommunicationTiles) {
@@ -241,6 +271,11 @@ public class MatchInstanceGUI extends MatchInstance {
 		}
 	}
 
+    /**
+     * Activate the card leader , so set the image in the right place when the event is received
+     * @param playerColor player color activating the card
+     * @param id id of the card leader
+     */
 	@Override
 	public void activateLeaderCard(PlayerColor playerColor, int id) {
 		for(CardLeaderRepresentation card: cardsLeaderPlayers.get(playerColor)) {
@@ -250,6 +285,11 @@ public class MatchInstanceGUI extends MatchInstance {
 		}
 	}
 
+    /**
+     * Remove the leader card from the personal board, so it will update the path of the image when the even is received
+     * @param playerColor player color discarding the leader card
+     * @param id id of the leader card to discard
+     */
 	@Override
 	public void discardLeaderCard(PlayerColor playerColor, int id) {
 		for(CardLeaderRepresentation card: cardsLeaderPlayers.get(playerColor)) {
@@ -259,6 +299,10 @@ public class MatchInstanceGUI extends MatchInstance {
 		}
 	}
 
+    /**
+     * Set the pawns of the turn order track, so it will fill the circle with different paint
+     * @param turnOrder
+     */
 	@Override
 	public void setTurnOrder(TrackTurnOrder turnOrder) {
     	PlayerColorReal playerColorReal = new PlayerColorReal(1);
@@ -268,6 +312,10 @@ public class MatchInstanceGUI extends MatchInstance {
 		}
 	}
 
+    /**
+     * Set the cards on the tower, update the path of the image view on the tower when the event is received
+     * @param towers tower to set the cards
+     */
 	@Override
     public void setCards(TowerSet towers) {
         for(CardType cardType : CardType.values()){
@@ -283,6 +331,9 @@ public class MatchInstanceGUI extends MatchInstance {
         }
     }
 
+    /**
+     * Set the observer between the dice and the family member values, so when the dice get the value the family member is update
+     */
 	@Override
 	protected void setFamilyMemberObservers() {
 		for(Player player: players.values()) {
@@ -297,6 +348,10 @@ public class MatchInstanceGUI extends MatchInstance {
 		}
 	}
 
+    /**
+     * Create the family members representation
+     * @param match where the data i retrieved
+     */
 	private void createFamilyMemberRepresentation(Match match){
 		Map<PlayerColor, Player> players = match.getPlayers();
 		for(Player player : players.values()){
@@ -324,6 +379,9 @@ public class MatchInstanceGUI extends MatchInstance {
 		}
 	}
 
+    /** create the card tower representations
+     * @param match where the data is retrieved
+     */
 	private void createCardTowerFloorRepresentation(Match match) {
 		cardsFloors.put(CardType.TERRITORY, cardsFloorsTerritory);
 		cardsFloors.put(CardType.BUILDING, cardsFloorsBuilding);
@@ -348,6 +406,10 @@ public class MatchInstanceGUI extends MatchInstance {
 		}
 	}
 
+    /**
+     *Create the resource representations
+     * @param match where the data is retrieved
+     */
     private void createResourceRepresentation(Match match){
         resourcesPlayers.put(PlayerColor.BLUE, resourcesPlayer1);
         resourcesPlayers.put(PlayerColor.GREEN, resourcesPlayer2);
@@ -363,7 +425,10 @@ public class MatchInstanceGUI extends MatchInstance {
             }
         }
     }
-
+    /**
+     *Create the turn order track representations
+     * @param match where the data is retrieved
+     */
     private void createOrderedTruckRepresentation(Match match){
         List<Player> orderedPlayer = match.getBoard().getTrackTurnOrder().getOrderedPlayers();
         PlayerColorReal playerColorReal = new PlayerColorReal(1);
@@ -375,7 +440,10 @@ public class MatchInstanceGUI extends MatchInstance {
         }
 
     }
-
+    /**
+     *Add the military ,victory faith points to other three lists for the table view
+     * @param match where the data is retrieved
+     */
     private void createObservableListMilitaryVictoryFaith(Match match){
         List<Player> players = new ArrayList<>(match.getPlayers().values());
         List<Player> orderedByMilitary = match.getBoard().getTrackMilitaryPoints().getPlayersOrder(players);
@@ -391,7 +459,10 @@ public class MatchInstanceGUI extends MatchInstance {
             faithResources.add(resourcesPlayers.get(player.getColor()).get(ResourceType.FAITH_POINT));
         }
     }
-
+    /**
+     *Create the excommunications representations
+     * @param match where the data is retrieved
+     */
     private void createExcomTileRepresentation(Match match){
         Map<Integer, ExcommunicationTile> tiles = match.getBoard().getExcommunicationSpace().getTiles();
         for(ExcommunicationTile excommunicationTile : tiles.values()){
@@ -401,7 +472,10 @@ public class MatchInstanceGUI extends MatchInstance {
             excommunicationTiles.add(excomTileR);
         }
     }
-
+    /**
+     *Create the cards players representations
+     * @param match where the data is retrieved
+     */
     public void createCardPlayerRepresentation(Match match){
         cardsPlayer1.put(CardType.TERRITORY, territoryCardsPlayer1);
         cardsPlayer1.put(CardType.BUILDING, buildingCardsPlayer1);
@@ -437,7 +511,10 @@ public class MatchInstanceGUI extends MatchInstance {
             }
         }
     }
-
+    /**
+     *Create the cards leader representations
+     * @param match where the data is retrieved
+     */
     public void createCardLeaderRepresentation(Match match){
         cardsLeaderPlayers.put(PlayerColor.BLUE, cardsLeaderPl1);
         cardsLeaderPlayers.put(PlayerColor.GREEN, cardsLeaderPl2);
@@ -453,12 +530,18 @@ public class MatchInstanceGUI extends MatchInstance {
         }
 
     }
+    /**
+     *Create the council pawn representation
+     */
     public void createPawnCouncil(){
         for(FamilyMemberColor familyMemberColor : FamilyMemberColor.values()){
             CouncilPawnFamily councilPawnFamily = new CouncilPawnFamily(null, null, "img/players/transparentPlayer.png");
             councilPawns.add(councilPawnFamily);
         }
     }
+    /**
+     *Create the work spaces representations
+     */
     public void createWorkSpacesPawn(){
 		ConfigPlayers config = new LoaderConfigPlayers().get(null).get(players.size());
         workSpacesPawn.put(WorkType.PRODUCTION, productionPawn);
@@ -479,6 +562,9 @@ public class MatchInstanceGUI extends MatchInstance {
 			}
 		}
     }
+    /**
+     *Create the markets representations
+     */
     public void createMarketRepresentation(){
         ConfigPlayers config = new LoaderConfigPlayers().get(null).get(players.size());
 
