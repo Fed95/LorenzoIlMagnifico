@@ -8,7 +8,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.image.Image;
 
 /**
- * Created by rugge on 08/07/2017.
+ * It represent the family member that occupy the council Palace
  */
 public class CouncilPawnFamily {
     private SimpleObjectProperty<PlayerColor> playerColor;
@@ -16,6 +16,12 @@ public class CouncilPawnFamily {
     private SimpleObjectProperty<Image> familyTemporaryImage;
     private boolean occupied;
 
+    /**
+     * Constructor
+     * @param playerColor player color owning the family memeber
+     * @param familyMemberColor family memeber color present on the council Palace
+     * @param path path of the image of the correct family member
+     */
     public CouncilPawnFamily(PlayerColor playerColor, FamilyMemberColor familyMemberColor, String path){
         Image temporaryImage = new Image(path);
         this.familyTemporaryImage = new SimpleObjectProperty<Image>(temporaryImage);
@@ -27,6 +33,9 @@ public class CouncilPawnFamily {
         return familyTemporaryImage;
     }
 
+    /**
+     * remove the family member from the councilPalace
+     */
     public void removePawn(){
         Image removing = new Image("img/players/transparentPlayer.png");
         familyTemporaryImage.set(removing);

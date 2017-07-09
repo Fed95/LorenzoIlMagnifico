@@ -4,7 +4,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 
 /**
- * Created by rugge on 07/07/2017.
+ * Represent the color of the player in java fx format for use t in the other classes
  */
 public class PlayerColorReal {
     private int opacity;
@@ -13,6 +13,10 @@ public class PlayerColorReal {
     private Paint green;
     private Paint yellow;
 
+    /**
+     * Constructor
+     * @param opacity set the opacity of the color, 0 for not showing the color, 1 for showing it
+     */
     public PlayerColorReal(int opacity){
         this.opacity = opacity;
         this.red = new Color(1, 0.2353, 0.1608, opacity);

@@ -5,11 +5,19 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.image.Image;
 
 /**
- * Created by rugge on 03/07/2017.
+ * Represent the card leader owned by the player both when is not played and when is played.
+ * So this element it ill be binded with two imageView in the GUI, the imageView for the card when is
+ * not played visible only to the player and not to the others and the imageView when is not played
  */
 public class CardLeaderRepresentation {
     private SimpleObjectProperty<Image> path;
     private SimpleObjectProperty<Image> pathWhenPlayed;
+
+    /**
+     * constructor
+     * @param url image of the card when is not played
+     * @param urlWhenPlayed image oof the card when is played
+     */
     public CardLeaderRepresentation(String url, String urlWhenPlayed){
         Image image = new Image(url);
         Image imagePlayed = new Image(urlWhenPlayed);
@@ -23,6 +31,11 @@ public class CardLeaderRepresentation {
         return path;
     }
 
+    /**
+     * set the path of the image card leader is not played, so it will be the card player until
+     * is not played , than when played, it will be a transparent card
+     * @param path
+     */
     public void setPath(Image path) {
         this.path.set(path);
     }
@@ -35,6 +48,10 @@ public class CardLeaderRepresentation {
         return pathWhenPlayed;
     }
 
+    /**
+     * set the path of the card when is not played
+     * @param pathWhenPlayed
+     */
     public void setPathWhenPlayed(Image pathWhenPlayed) {
         this.pathWhenPlayed.set(pathWhenPlayed);
     }

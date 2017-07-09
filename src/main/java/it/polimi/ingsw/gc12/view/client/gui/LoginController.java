@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 
 
 /**
- * Created by rugge on 28/06/2017.
+ * Controller for the login popup asking for the name and the type of the connection
  */
 public class LoginController implements Initializable {
     @FXML private TextField nameField;
@@ -33,6 +33,14 @@ public class LoginController implements Initializable {
     private ObservableList<String> connectionList = FXCollections.observableArrayList("RMI","SOCKET");
     private ClientView mainBoard;
 
+    /**
+     * It start the right classes depending on the parameters choosed in the dialog
+     * @param event click event
+     * @throws NotBoundException
+     * @throws AlreadyBoundException
+     * @throws CloneNotSupportedException
+     * @throws IOException
+     */
     @FXML void startGame(MouseEvent event) throws NotBoundException, AlreadyBoundException, CloneNotSupportedException, IOException {
         String name = nameField.getText();
         name = name.replaceAll("\\s+",""); // Remove whitespaces and invisible characters
@@ -59,6 +67,11 @@ public class LoginController implements Initializable {
         this.mainBoard = mainBoard;
     }
 
+    /**
+     * popup that check if the name of the player is valid
+     * @param name
+     * @return
+     */
     private Boolean isNameValid(String name){
 
         if(name.equals("")){

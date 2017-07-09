@@ -9,7 +9,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by rugge on 02/07/2017.
+ * Controller for the FXML of the Council Privilege.
+ * It's a popup representing the choice of te privilege when you choose council
+ * Palace with your family Member
  */
 public class DialogCouncilPrivilegeController {
     @FXML private ImageView privilege0;
@@ -31,6 +33,10 @@ public class DialogCouncilPrivilegeController {
         mapEllipseInteger.put(privilege4, 4);
     }
 
+    /**
+     * Method for the click on a privilege in the popup
+     * @param event
+     */
     @FXML
     private void privilegeClicked(MouseEvent event){
         clicked = true;

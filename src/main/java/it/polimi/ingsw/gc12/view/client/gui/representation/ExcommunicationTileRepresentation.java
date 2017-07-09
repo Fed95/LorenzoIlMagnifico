@@ -11,6 +11,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 
+
+/**
+ * It represent the excomunication tiles both for excommunication image and for
+ * excommunication pawns relative to the excommunication
+ */
 public class ExcommunicationTileRepresentation {
     private SimpleIntegerProperty period;
     private SimpleObjectProperty<Image> path;
@@ -19,9 +24,13 @@ public class ExcommunicationTileRepresentation {
     private SimpleObjectProperty<Paint> playerGreen = new SimpleObjectProperty<Paint>();
     private SimpleObjectProperty<Paint> playerRed = new SimpleObjectProperty<Paint>();
     private SimpleObjectProperty<Paint> playerYellow = new SimpleObjectProperty<Paint>();
-
     private Map<PlayerColor, SimpleObjectProperty<Paint>> retriveColorProperty = new HashMap<>();
 
+    /**
+     * Constructor
+     * @param period period of the excomuniction tile
+     * @param path path of the excomunication tile to show
+     */
     public ExcommunicationTileRepresentation(int period, String path){
         this.period = new SimpleIntegerProperty(period);
         Image image = new Image(path);
@@ -30,6 +39,9 @@ public class ExcommunicationTileRepresentation {
         setRetrive();
     }
 
+    /**
+     * Set the color to the pawns
+     */
     private void setColor(){
         PlayerColorReal playerColorReal = new PlayerColorReal(0);
         playerBlue.set(playerColorReal.getBlue());
@@ -38,6 +50,9 @@ public class ExcommunicationTileRepresentation {
         playerYellow.set(playerColorReal.getYellow());
     }
 
+    /**
+     * create the list with the colors
+     */
     private void setRetrive(){
         retriveColorProperty.put(PlayerColor.BLUE, playerBlue);
         retriveColorProperty.put(PlayerColor.GREEN, playerGreen);
@@ -73,6 +88,10 @@ public class ExcommunicationTileRepresentation {
         return retriveColorProperty;
     }
 
+    /**
+     * show the right pawn activated
+     * @param playerColor color for activate the pawn
+     */
     public void showExcommunication(PlayerColor playerColor) {
         PlayerColorReal playerColorReal = new PlayerColorReal(1);
         if(playerColor.equals(PlayerColor.BLUE))

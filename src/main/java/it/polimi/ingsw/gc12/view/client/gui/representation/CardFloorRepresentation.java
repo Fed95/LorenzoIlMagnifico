@@ -8,7 +8,11 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.image.Image;
 
-
+/**
+ * It represent the floor of the tower in all is function both for showing card on the tower and for handling the click on a tower floor
+ * showing the floor busy.
+ * So this elements is binded with two elements on the GUI, the imageView for showing card and the imageView of the floor
+ */
 public class CardFloorRepresentation  {
 
     private SimpleIntegerProperty floorNumber;
@@ -17,6 +21,14 @@ public class CardFloorRepresentation  {
     private final int floorCount;
     private SimpleBooleanProperty taken;
 
+    /**
+     * constructor
+     * @param urlCard path of the card on the tower
+     * @param urlFloor path for showing the floor busy
+     * @param floor number of the floor considering the single tower represented (0-3)
+     * @param taken boolean for know if the floor is busy
+     * @param floorCount number of the floor considering all the floor tower (0-15)
+     */
     public CardFloorRepresentation(String urlCard ,String urlFloor, int floor, Boolean taken, int floorCount) {
         this.floorNumber = new SimpleIntegerProperty(floor);
         Image imageCard = new Image(urlCard);
@@ -47,6 +59,11 @@ public class CardFloorRepresentation  {
         return pathFloor.get();
     }
 
+    /**
+     * It set the object family member on the floor and call the method for set the image of the  family member ont he floor
+     * @param familyMember family memner to set
+     * @param playerColor color of the player
+     */
     public void setFamilyMember(FamilyMember familyMember, PlayerColor playerColor) {
         setPathFloor(new Image("img/players/"+playerColor.toString()+"/"+playerColor.toString()+"_"+familyMember.getColor().toString()+".png"));
     }
@@ -55,6 +72,10 @@ public class CardFloorRepresentation  {
         return pathFloor;
     }
 
+    /**
+     * It set the image of the family member on the floor showing it occupied
+     * @param pathFloor
+     */
     public void setPathFloor(Image pathFloor) {
         this.pathFloor.set(pathFloor);
     }

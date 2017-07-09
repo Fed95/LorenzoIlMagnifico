@@ -9,7 +9,10 @@ import javafx.scene.image.Image;
 import java.util.Observable;
 import java.util.Observer;
 
-
+/**
+ * Represent the family members of the player with all the characteristics like
+ * value, color, player owner, image of the relative family
+ */
 public class FamilyMemberRepresentation implements Observer {
     private SimpleIntegerProperty value;
     private SimpleObjectProperty<FamilyMemberColor> familyMemberColor;
@@ -17,6 +20,13 @@ public class FamilyMemberRepresentation implements Observer {
     private SimpleObjectProperty<Image> image;
     private SimpleBooleanProperty visible;
 
+    /**
+     * Constructor
+     * @param pathFamily path of the Image of the familyMember
+     * @param value value of the family member
+     * @param colorFamilyMember color of the family member
+     * @param colorPlayer color of the player owning the family
+     */
     public FamilyMemberRepresentation(String pathFamily, int value, FamilyMemberColor colorFamilyMember, PlayerColor colorPlayer){
         this.value = new SimpleIntegerProperty(value);
         this.familyMemberColor = new SimpleObjectProperty<>(colorFamilyMember);
@@ -73,6 +83,11 @@ public class FamilyMemberRepresentation implements Observer {
         this.visible.set(visible);
     }
 
+    /**
+     * when the value of the dice is updated it will notify this observer that update the valu eof the family
+     * @param o
+     * @param value value to update
+     */
     @Override
     public void update(Observable o, Object value) {
         if(value instanceof Integer) {

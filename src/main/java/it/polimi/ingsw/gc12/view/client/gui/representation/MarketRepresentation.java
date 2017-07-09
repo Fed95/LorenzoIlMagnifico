@@ -7,9 +7,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.image.Image;
 
-/**
- * Created by rugge on 09/07/2017.
- */
+
 public class MarketRepresentation {
     private SimpleObjectProperty<Image> path;//path to refresh with fam
     private SimpleStringProperty pathMarket;//saving the image of the market because are 4 different use this for reset
