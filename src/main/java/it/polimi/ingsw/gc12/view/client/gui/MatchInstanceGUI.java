@@ -406,6 +406,11 @@ public class MatchInstanceGUI extends MatchInstance {
 		ConfigPlayers config = new LoaderConfigPlayers().get(null).get(players.size());
         workSpacesPawn.put(WorkType.PRODUCTION, productionPawn);
         workSpacesPawn.put(WorkType.HARVEST, harvestPawn);
+        for (WorkType workType : WorkType.values()){
+            String path = "img/workspace/"+workType+"_SMALL.png";
+            WorkSpacePawn workSpacePawnSmall = new WorkSpacePawn(workType,null, null, path);
+            workSpacesPawn.get(workType).add(workSpacePawnSmall);
+        }
         if(config.isSpaceWorkMultiple()) {
 			for (WorkType workType : WorkType.values()){
 				for(int i = 0; i < 4; i++) {

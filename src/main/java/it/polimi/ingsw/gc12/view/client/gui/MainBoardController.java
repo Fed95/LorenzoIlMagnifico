@@ -18,6 +18,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.beans.property.ObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -255,7 +256,13 @@ public class MainBoardController extends GUIController implements Initializable,
         alert.showAndWait();
     }
 
-
+    public void actionDenied(){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Action denied");
+        alert.setHeaderText("You can't do this action");
+        alert.setContentText("The action selected is not valid, sorry");
+        alert.showAndWait();
+    }
     public void requestServants() {
         if(isMyTurn()) {
             int maxValue = match.getPlayers().get(playerColor).getResourceValue(ResourceType.SERVANT);
@@ -418,10 +425,14 @@ public class MainBoardController extends GUIController implements Initializable,
 
     private void bindWorkSpaces(){
         ConfigPlayers config = new LoaderConfigPlayers().get(null).get(match.getPlayers().size());
+        for(WorkType workType : WorkType.values()){
+            ObjectProperty<Image> imageObjectProperty = match.getWorkSpacesPawn().get(workType).get(0).getFamilyTemporaryImage();
+            workplaces.get(workType).get(0).imageProperty().bind(imageObjectProperty);
+        }
         if(config.isSpaceWorkMultiple()) {
             for(WorkType workType : WorkType.values()){
                 for (int i = 0; i < 4; i++){
-                    workSpacesPawns.get(workType).get(i).imageProperty().bind(match.getWorkSpacesPawn().get(workType).get(i).getFamilyTemporaryImage());
+                    workSpacesPawns.get(workType).get(i).imageProperty().bind(match.getWorkSpacesPawn().get(workType).get(i+1).getFamilyTemporaryImage());
                 }
             }
         }
