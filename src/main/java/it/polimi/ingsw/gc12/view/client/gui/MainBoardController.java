@@ -327,6 +327,7 @@ public class MainBoardController extends GUIController implements Initializable,
             bindExcomunocationTile();
             bindCouncilPawns();
             bindWorkSpaces();
+            bindMarkets();
             playerBoardController.setPlayerToPane();
             playerBoardController.bindPlayerCard();
             playerBoardController.bindPlayerLeaderCard();
@@ -441,7 +442,12 @@ public class MainBoardController extends GUIController implements Initializable,
             }
         }
     }
-
+    private void bindMarkets(){
+        ConfigPlayers config = new LoaderConfigPlayers().get(null).get(match.getPlayers().size());
+        for (int i = 0; i < config.getSpaceMarketNum();i++){
+            markets.get(i).imageProperty().bind(match.getMarkets().get(i).getPath());
+        }
+    }
     public TextArea getChat(){
         return chatTextArea;
     }

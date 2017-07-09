@@ -106,6 +106,10 @@ public class MatchInstanceGUI extends MatchInstance {
     private ObservableList<WorkSpacePawn> harvestPawn = FXCollections.observableArrayList();
 
     private Map<WorkType, ObservableList<WorkSpacePawn>> workSpacesPawn = new HashMap<>();
+
+    //markets
+    private  ObservableList<MarketRepresentation> markets = FXCollections.observableArrayList();
+
     private MatchInstanceGUI() {}
 
 	public static MatchInstanceGUI instance() {
@@ -128,6 +132,7 @@ public class MatchInstanceGUI extends MatchInstance {
         createCardLeaderRepresentation(match);
         createPawnCouncil();
         createWorkSpacesPawn();
+        createMarketRepresentation();
         setChanged();
 		notifyObservers();
 		initialized = true;
@@ -426,12 +431,14 @@ public class MatchInstanceGUI extends MatchInstance {
 		ConfigPlayers config = new LoaderConfigPlayers().get(null).get(players.size());
         workSpacesPawn.put(WorkType.PRODUCTION, productionPawn);
         workSpacesPawn.put(WorkType.HARVEST, harvestPawn);
+
         for (WorkType workType : WorkType.values()){
             String path = "img/workspace/"+workType+"_SMALL.png";
             WorkSpacePawn workSpacePawnSmall = new WorkSpacePawn(workType,null, null, path);
             workSpacesPawn.get(workType).add(workSpacePawnSmall);
         }
         if(config.isSpaceWorkMultiple()) {
+
 			for (WorkType workType : WorkType.values()){
 				for(int i = 0; i < 4; i++) {
 					WorkSpacePawn workSpacePawn = new WorkSpacePawn(workType,null,null,"img/players/transparentPlayer.png");
@@ -439,6 +446,14 @@ public class MatchInstanceGUI extends MatchInstance {
 				}
 			}
 		}
+    }
+    public void createMarketRepresentation(){
+        ConfigPlayers config = new LoaderConfigPlayers().get(null).get(players.size());
+
+        for(int i = 0; i < config.getSpaceMarketNum(); i++){
+            MarketRepresentation marketRepresentation = new MarketRepresentation("img/markets/market"+i+".png");
+            markets.add(marketRepresentation);
+        }
     }
     public Map<PlayerColor, ObservableList<FamilyMemberRepresentation>> getMapPlayerColorObservableLiseFMRepr() {
 		return familyMembers;
@@ -486,6 +501,10 @@ public class MatchInstanceGUI extends MatchInstance {
 
     public Map<WorkType, ObservableList<WorkSpacePawn>> getWorkSpacesPawn() {
         return workSpacesPawn;
+    }
+
+    public ObservableList<MarketRepresentation> getMarkets() {
+        return markets;
     }
 
     public void notifyInit() {
