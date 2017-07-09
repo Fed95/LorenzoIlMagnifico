@@ -3933,11 +3933,6 @@
         "resourceType": "Money",
         "type": "MONEY",
         "value": 2
-      },
-      {
-        "resourceType": "FaithPoint",
-        "type": "FAITH_POINT",
-        "value": 4
       }
     ]
   },
