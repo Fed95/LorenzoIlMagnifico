@@ -37,11 +37,6 @@ public class EffectResourceForCards extends Effect{
 
     @Override
     public void discard(Match match, Event event) {
-        /*
-        player = event.getPlayer();
-        List<Resource> resources = applyResourceBonus(new ResourceExchange(null, resource), match, player);
-        player.removeResources(resources);
-        */
     }
 
     @Override

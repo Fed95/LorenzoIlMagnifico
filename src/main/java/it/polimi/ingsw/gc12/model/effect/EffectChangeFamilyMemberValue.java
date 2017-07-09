@@ -31,12 +31,11 @@ public class EffectChangeFamilyMemberValue extends Effect{
 	}
 
 	public void execute(Match match, Event event, boolean validation) {
-		if(!validation)
-			applyChange(event, amount);
+		applyChange(event, amount);
 	}
 
 	public void discard(Match match, Event event) {
-		//Never used
+		applyChange(event, -amount);
 	}
 
 	private void applyChange(Event event, int amount) {

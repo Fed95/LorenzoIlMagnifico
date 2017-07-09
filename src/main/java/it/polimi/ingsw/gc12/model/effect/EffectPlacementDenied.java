@@ -12,8 +12,7 @@ public class EffectPlacementDenied extends Effect {
 
     @Override
     public void execute(Match match, Event event, boolean validation) throws ActionDeniedException {
-        if(!validation)
-            throw new ActionDeniedException("EffectPlacementDenied");
+        throw new ActionDeniedException("EffectPlacementDenied");
     }
 
     @Override

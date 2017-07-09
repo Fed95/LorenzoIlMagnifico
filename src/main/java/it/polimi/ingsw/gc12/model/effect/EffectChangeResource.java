@@ -59,20 +59,9 @@ public class EffectChangeResource extends Effect {
 			if(possibleExchanges.size() <= 0)
 				throw new ActionDeniedException("You don't have enough resources to perform an exchange.");
 		}
-
-
 	}
 
 	public void discard(Match match, Event event) {
-		Player player = event.getPlayer();
-
-		if(!hasChoice()) {
-			for(ResourceExchange exchange : exchanges) {
-				match.addResources(player, exchange.getCost());
-				List<Resource> newBonus = applyResourceBonus(exchange, match, player);
-				player.removeResources(newBonus);
-			}
-		}
 	}
 
 	public List<ResourceExchange> getExchanges() {

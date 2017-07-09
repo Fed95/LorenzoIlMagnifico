@@ -17,8 +17,7 @@ public class EffectFriendlyFamilyMembers extends Effect {
 
     @Override
     public void execute(Match match, Event event, boolean validation) throws ActionDeniedException {
-        if(!validation)
-            applyChange(event, true);
+        applyChange(event, true);
     }
 
     @Override

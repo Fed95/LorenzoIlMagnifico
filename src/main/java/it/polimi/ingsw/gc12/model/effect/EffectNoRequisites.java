@@ -1,5 +1,7 @@
 package it.polimi.ingsw.gc12.model.effect;
 
+import it.polimi.ingsw.gc12.model.board.occupiable.TowerFloor;
+import it.polimi.ingsw.gc12.model.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.event.Event;
 import it.polimi.ingsw.gc12.model.event.EventPickCard;
@@ -8,14 +10,16 @@ import it.polimi.ingsw.gc12.misc.exception.ActionDeniedException;
 //The player does not have to satisfy the requisites set by the personal board to take the card
 public class EffectNoRequisites extends Effect{
 
-    public EffectNoRequisites(Event event) {
+    private String description;
+
+    public EffectNoRequisites(Event event, String description) {
         super(event);
+        this.description = description;
     }
 
     @Override
     public void execute(Match match, Event event, boolean validation) throws ActionDeniedException {
-        if(!validation)
-            applyChange(event, true);
+        applyChange(event, true);
     }
 
     @Override
@@ -24,8 +28,15 @@ public class EffectNoRequisites extends Effect{
      }
 
     private void applyChange(Event event, boolean bool){
-        if(!(event instanceof EventPickCard))
+        if(!(event instanceof EventPlaceFamilyMember))
             throw new IllegalStateException();
-        ((EventPickCard) event).getCard().setNoRequisites(bool);
+        if(!(((EventPlaceFamilyMember) event).getOccupiable() instanceof TowerFloor))
+            throw new IllegalStateException();
+        ((TowerFloor) ((EventPlaceFamilyMember) event).getOccupiable()).getCard().setNoRequisites(bool);
+    }
+
+    @Override
+    public String toString() {
+        return description;
     }
 }

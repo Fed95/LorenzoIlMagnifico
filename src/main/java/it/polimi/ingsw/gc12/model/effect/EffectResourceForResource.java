@@ -38,12 +38,6 @@ public class EffectResourceForResource extends Effect {
 
     @Override
     public void discard(Match match, Event event) {
-        /*
-        player = event.getPlayer();
-        List<Resource> resources = new ArrayList<>();
-        resources.add(resource);
-        player.removeResources(resources);
-        */
     }
 
     @Override

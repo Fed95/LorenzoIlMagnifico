@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc12.model.action;
 
+import it.polimi.ingsw.gc12.model.card.LeaderCard;
 import it.polimi.ingsw.gc12.model.player.familymember.FamilyMember;
 import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.player.Player;
@@ -73,8 +74,8 @@ public abstract class ActionPlace extends Action {
 
 			try{
 				familyMember.setValue(familyMember.getValue() + increment);
-				match.getEffectHandler().executeEffects(match, event);
 				canBeExecuted(match);
+				match.getEffectHandler().executeEffects(match, event);
 				execute(match);
 			}
 			catch (RequiredValueNotSatisfiedException | ActionDeniedException | ActionNotAllowedException e) {
@@ -98,7 +99,8 @@ public abstract class ActionPlace extends Action {
 
 		try{
 			familyMember.setValue(originalValue + player.getResourceValue(ResourceType.SERVANT));
-			//Can throw exceptions (in which case effects are discarded directly in EffectHandler)
+
+			//Can throw exceptions (in which case all effects are discarded directly in EffectHandler)
 			match.getEffectHandler().executeEffects(match, event, true);
 			this.canBeExecuted(match);
 		}
@@ -106,6 +108,7 @@ public abstract class ActionPlace extends Action {
 			familyMember.setValue(originalValue);
 			return false;
 		}
+		match.getEffectHandler().discardLeaderCardEffects(match, event);
 		familyMember.setValue(originalValue);
 		return true;
 	}

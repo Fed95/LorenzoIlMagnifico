@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc12.controller;
 
+import it.polimi.ingsw.gc12.model.card.LeaderCard;
 import it.polimi.ingsw.gc12.model.effect.Effect;
 import it.polimi.ingsw.gc12.model.effect.EffectProvider;
 import it.polimi.ingsw.gc12.model.match.Match;
@@ -18,17 +19,16 @@ public class EffectHandler {
 		List<Effect> effects = getPossibleEffects(event);
 		List<Effect> executedEffects = new ArrayList<>();
 		// If there is an effect (from the players' cards or the place where the family member has been placed):
-		try {// then execute the effect
+		// then execute the effect
+		try {
 			for (Effect effect : effects) {
-				//System.out.println("effect handler: events found: " + effect + ": "+ effect.event);
 				if (event.equals(effect.getEvent())) {
 					effect.execute(match, event, validation);
 					executedEffects.add(effect);
 				}
 			}
 		}catch(ActionDeniedException e){
-			if(!validation)
-				discardEffects(match, executedEffects, event);
+			discardEffects(match, executedEffects, event);
 			throw e;
 		}
 		return executedEffects;

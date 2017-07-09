@@ -7321,7 +7321,7 @@
   {
     "id": 113,
     "type": "LeaderCard",
-    "name": "Cesare Borgia",//TODO: NEEDS TESTING
+    "name": "Cesare Borgia",
     "permanent": true,
     "requirements": [
       {
@@ -7341,10 +7341,40 @@
     "effects": [
       {
         "type": "EffectNoRequisites",
+        "description": "You don't need to satisfy the VictoryPoint requirements on your PersonalBoard for TERRITORY cards",
         "event": {
-          "eventType": "EventPickCard",
-          "cardType": "TERRITORY",
-          "anyCard": false
+          "eventType": "EventPlaceFamilyMember",
+          "description": "Placement on any TowerFloor of the TERRITORY Tower",
+          "occupiables": [
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 0,
+              "cardType": "TERRITORY",
+              "occupiers": [],
+              "requiredValue": 1
+            },
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 1,
+              "cardType": "TERRITORY",
+              "occupiers": [],
+              "requiredValue": 3
+            },
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 2,
+              "cardType": "TERRITORY",
+              "occupiers": [],
+              "requiredValue": 5
+            },
+            {
+              "occupiable": "TowerFloor",
+              "floorNum": 3,
+              "cardType": "TERRITORY",
+              "occupiers": [],
+              "requiredValue": 7
+            }
+          ]
         }
       }
     ]
