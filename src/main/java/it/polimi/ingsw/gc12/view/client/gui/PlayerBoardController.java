@@ -294,24 +294,28 @@ public class PlayerBoardController extends GUIController implements Initializabl
 		checkExclusion();
 		ImageView leaderCard = (ImageView) mouseEvent.getSource();
 		showCard(mouseEvent);
+
 		if(mouseEvent.getClickCount()==2){
-			int choice = askDiscardOrPlay();
-			List<ImageView> cardsNotPlayed = cardLeaders.get(playerColor).get(CardLeaderGuiState.NOTPLAYED);
-			for (int i = 0; i < cardsNotPlayed.size(); i++) {
-				if(leaderCard.equals(cardsNotPlayed.get(i))) {
-					Action action;
-					if(choice == 0) {
-						action = new ActionViewPlayableLeaderCards(match.getPlayers().get(playerColor));
-						clientHandler.setActionPending(new ActionPlayLeaderCard(player, player.getNotPlayedLeaderCards().get(i)));
-					}
-					else {
-						action = new ActionViewDiscardableLeaderCards(match.getPlayers().get(playerColor));
-						clientHandler.setActionPending(new ActionDiscardLeaderCard(player, player.getNotPlayedLeaderCards().get(i)));
-					}
-					if(!selectAction(action))
-						actionDenied();
-				}
-			}
+		    if(isMyTurn()) {
+                int choice = askDiscardOrPlay();
+                List<ImageView> cardsNotPlayed = cardLeaders.get(playerColor).get(CardLeaderGuiState.NOTPLAYED);
+                for (int i = 0; i < cardsNotPlayed.size(); i++) {
+                    if (leaderCard.equals(cardsNotPlayed.get(i))) {
+                        Action action;
+                        if (choice == 0) {
+                            action = new ActionViewPlayableLeaderCards(match.getPlayers().get(playerColor));
+                            clientHandler.setActionPending(new ActionPlayLeaderCard(player, player.getNotPlayedLeaderCards().get(i)));
+                        } else {
+                            action = new ActionViewDiscardableLeaderCards(match.getPlayers().get(playerColor));
+                            clientHandler.setActionPending(new ActionDiscardLeaderCard(player, player.getNotPlayedLeaderCards().get(i)));
+                        }
+                        if (!selectAction(action))
+                            actionDenied();
+                    }
+                }
+            }else{
+		        showTurnDenied();
+            }
 		}
 	}
 
@@ -408,7 +412,11 @@ public class PlayerBoardController extends GUIController implements Initializabl
 		return false;
 	}
 
-
+    /**
+     * Check if the family memeber is selected
+     * @param familyMember
+     * @return boolean
+     */
 	private boolean isFMSelected(ImageView familyMember) {
 		return familyMember.getOpacity() != 1;
 
@@ -444,6 +452,9 @@ public class PlayerBoardController extends GUIController implements Initializabl
 		}
 	}
 
+    /**
+     * Bind the label on the GUI with the representation
+     */
 	public void bindResources(){
 		for(Player player : match.getPlayers().values()) {
 			ObservableMap<ResourceType, ResourceRepresentation> resourcesRepresentation = match.getResourcesPlayers().get(player.getColor());
@@ -454,6 +465,9 @@ public class PlayerBoardController extends GUIController implements Initializabl
 		}
 	}
 
+    /**
+     * Bind all the ImageView on the player board representing the owned cards with the relatives representation
+     */
 	public void bindPlayerCard(){
 		for(Player player : match.getPlayers().values()) {
 			for(CardType cardType : CardType.values()) {
@@ -465,6 +479,9 @@ public class PlayerBoardController extends GUIController implements Initializabl
 		}
 	}
 
+    /**
+     * Bind the imageView of the played and not played leader cards with the relative representation
+     */
 	public void bindPlayerLeaderCard(){
 		Map<PlayerColor, ObservableList<CardLeaderRepresentation>> mapPlayerColorCardLeaders = match.getCardsLeaderPlayers();
 		for(Player player : match.getPlayers().values()){
@@ -484,11 +501,17 @@ public class PlayerBoardController extends GUIController implements Initializabl
 		}
 	}
 
+    /**
+     * Activate the right player board tab and set the player color to the window.
+     */
 	public void setPlayerToPane(){
 		playersBoard.getSelectionModel().select(playerTabs.get(playerColor));
 		playersBoard.setUserData(playerColor);
 	}
 
+    /**
+     * Reset the highlighted family Members
+     */
 	public void resetFamilyMembers() {
 		for(PlayerColor color: PlayerColor.values()) {
 			for(ImageView familyMember: familyMembers.get(color).values()) {

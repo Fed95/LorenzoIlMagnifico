@@ -48,6 +48,11 @@ public class DialogCouncilPrivilegeController {
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
     }
+
+    /**
+     * Method that return the index of the selected element
+     * @return integer
+     */
     public int getSelected(){
         if(clicked) {
             return selected;

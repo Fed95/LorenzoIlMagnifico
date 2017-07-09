@@ -19,7 +19,6 @@ public class ResourceRepresentation {
      * @param value value of the resource
      * @param resourceType the resource has this type
      */
-
     public ResourceRepresentation(PlayerColor playerColor, int value, ResourceType resourceType){
         this.playerColor = new SimpleObjectProperty<PlayerColor>(playerColor);
         this.resourceValue = new SimpleIntegerProperty(value);

@@ -73,12 +73,18 @@ public class CardLeaderRepresentation {
         this.pathWhenPlayed.set(pathWhenPlayed);
     }
 
+    /**
+     * Method for show a leader card played in the GUI
+     */
     public void activate() {
         setPathWhenPlayed(new Image("img/CardLeader/leader_"+id+".jpg"));
         setPath(new Image("img/Card/transparentCard.png"));
         setVisible(true);
     }
 
+    /**
+     * Method for removing definitively a leader card from the GUI
+     */
     public void discard() {
         setPath(new Image("img/Card/transparentCard.png"));
     }

@@ -45,6 +45,11 @@ public class CouncilPawnFamily {
         return occupied;
     }
 
+    /**
+     *
+     * @param familyMember
+     * @param playerColor
+     */
     public void setFamilyMember(FamilyMember familyMember, PlayerColor playerColor) {
         familyTemporaryImage.set(new Image("img/players/"+playerColor.toString()+"/"+playerColor.toString()+"_"+familyMember.getColor().toString()+".png"));
         occupied = true;
