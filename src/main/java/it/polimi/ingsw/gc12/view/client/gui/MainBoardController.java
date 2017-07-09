@@ -651,7 +651,13 @@ public class MainBoardController extends GUIController implements Initializable,
         else
             showTurnDenied();
     }
-
+    public void notifyFreeAction(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Free Action");
+        alert.setHeaderText(null);
+        alert.setContentText("I have a great message for you!\n You earn a free action for the effect of the leader card!\n\n After Perform it the leader card it will disappear");
+        alert.showAndWait();
+    }
     /**
      * ask for some requirements or permanent effects to choose between resources
      * @param type type of the choosing
