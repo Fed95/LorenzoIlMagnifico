@@ -27,4 +27,14 @@ public class EventExcluded extends Event {
 	public String toString() {
 		return "";
 	}
+
+	@Override
+	public String toStringClient() {
+		return "Player " + player.getName() + " has been excluded for timeout's expiration!";
+	}
+
+	@Override
+	public String toStringClientGUI() {
+		return "Player " + player.getName() + " has been excluded for timeout's expiration!";
+	}
 }

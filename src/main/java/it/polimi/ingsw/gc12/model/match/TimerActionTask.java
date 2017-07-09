@@ -14,7 +14,9 @@ public class TimerActionTask extends TimerTask {
 
 	@Override
 	public void run() {
-		match.excludeCurrentPlayer();
-		match.newTurn(false);
+		if(match.getGameState() != MatchState.PAUSED) {
+			match.excludeCurrentPlayer();
+			match.newTurn(false);
+		}
 	}
 }

@@ -52,16 +52,6 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 		if(event instanceof EventView)
 			notifyView((EventView) event);
 
-		if(event.toStringClient() != null) {
-            System.out.println(event.toStringClient());
-            if(mainBoardController!=null) {
-                Platform.runLater(() -> {
-                	if(event.toStringClientGUI() != null)
-                		mainBoardController.getChat().appendText("[SERVER]: " + event.toStringClientGUI()+"\n");
-				});
-            }
-        }
-
 		actions = event.getActions();
 
 		event.executeClientSide(this);
@@ -203,5 +193,17 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 
 	public void setActionFM(Action actionFM) {
 		this.actionFM = actionFM;
+	}
+
+	protected void showMessage(Event event) {
+		if(event.toStringClient() != null) {
+			System.out.println(event.toStringClient());
+			if(mainBoardController!=null) {
+				Platform.runLater(() -> {
+					if(event.toStringClientGUI() != null)
+						mainBoardController.getChat().appendText("[SERVER]: " + event.toStringClientGUI()+"\n");
+				});
+			}
+		}
 	}
 }

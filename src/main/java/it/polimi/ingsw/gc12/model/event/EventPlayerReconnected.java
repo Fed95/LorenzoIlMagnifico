@@ -89,4 +89,14 @@ public class EventPlayerReconnected extends Event implements EventView{
 			}
 		});
 	}
+
+	@Override
+	public String toStringClient() {
+		return "Player " + player.getName() + " reconnected.";
+	}
+
+	@Override
+	public String toStringClientGUI() {
+		return "Player " + player.getName() + " reconnected.";
+	}
 }

@@ -140,8 +140,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 				return;
 		}
 
-		if(gameState.equals(MatchState.PAUSED))
-			return;
+
 
 		//System.out.println("Match: Starting new turn");
 		Player player = board.getTrackTurnOrder().newTurn();
@@ -154,8 +153,12 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		} catch (ActionDeniedException e) {
 			e.printStackTrace();
 		}
-		actionHandler.update(event, this);
-		this.notifyObserver(event);
+
+		if(!gameState.equals(MatchState.PAUSED)) {
+			actionHandler.update(event, this);
+			this.notifyObserver(event);
+		}
+
 		this.turnCounter++;
 
 		if(player.isDisconnected() || player.isExcluded()) {
@@ -282,11 +285,14 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 
 	public void setDisconnectedPlayer(Player player) {
 		player.setDisconnected(true);
+		Event event = new EventMessage("Player "+ player.getName() + " disconnected.");
+		notifyObserver(event);
 		checkEnoughPlayers();
 		if(player.equals(board.getTrackTurnOrder().getCurrentPlayer())) {
 			actionHandler.flushEvents();
 			newTurn(false);
 		}
+
 		System.out.println("PLAYER " + player.getName() + " DISCONNECTED");
 	}
 
@@ -349,16 +355,26 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		return cards;
 	}
 
-	private void checkEnoughPlayers() {
+	private boolean checkEnoughPlayers() {
 		if(players.values().stream().filter(player -> !player.isDisconnected() && !player.isExcluded()).count() < 2) {
 			System.out.println("Match stopped for lack of players");
 			setGameState(MatchState.PAUSED);
+			Event event = new EventMatchSuspended();
+			notifyObserver(event);
+			actionHandler.flushEvents();
+			return false;
 		}
 		else {
 			if(getGameState() == MatchState.PAUSED) {
 				setGameState(MatchState.RUNNING);
-				newTurn(false);
+				//newTurn(false);
+				Event event = new EventStartTurn(board.getTrackTurnOrder().getCurrentPlayer(), board.getTrackTurnOrder().getTurn());
+				actionHandler.update(event, this);
+				notifyObserver(event);
+				setTimeoutAction();
+
 			}
+			return true;
 		}
 	}
 

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc12.view.client.socket;
 
+import it.polimi.ingsw.gc12.model.event.EventMatchSuspended;
 import it.polimi.ingsw.gc12.model.player.PlayerColor;
 import it.polimi.ingsw.gc12.view.client.ClientHandler;
 import it.polimi.ingsw.gc12.model.event.Event;
@@ -32,8 +33,8 @@ public class ClientInHandler extends ClientHandler implements Runnable {
 				Object object = socketIn.readObject();
 				if(object instanceof Event) {
 					Event event = (Event) object;
-					System.out.println("RECEIVED "+event.getClass().getSimpleName());
-					if(event instanceof EventExcluded && color.equals(event.getPlayer().getColor()))
+					showMessage(event);
+					if((event instanceof EventExcluded && color.equals(event.getPlayer().getColor())) || event instanceof EventMatchSuspended)
 						events = new LinkedList<>();
 					events.addLast(event);
 					if(events.size() <= 1) {
