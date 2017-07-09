@@ -108,7 +108,6 @@ public abstract class ActionPlace extends Action {
 			familyMember.setValue(originalValue);
 			return false;
 		}
-		match.getEffectHandler().discardLeaderCardEffects(match, event);
 		familyMember.setValue(originalValue);
 		return true;
 	}
