@@ -29,12 +29,15 @@ public class EventStartRound extends Event implements EventView{
 	@Override
 	public void executeClientSide(ClientHandler client) {
 		MatchInstance matchInstance = client.getMatch();
-	    matchInstance.resetFamilyMembers();
-	    matchInstance.resetFloors();
 	    matchInstance.getBoard().setTowerSet(towers);
 	    matchInstance.setCards(towers);
 	    matchInstance.setDice(spaceDie);
-	    matchInstance.setTurnOrder(turnOrder);
+
+		if(round != 1) {
+			matchInstance.resetFamilyMembers();
+			matchInstance.resetBoard();
+			matchInstance.setTurnOrder(turnOrder);
+		}
 	}
 
 	@Override

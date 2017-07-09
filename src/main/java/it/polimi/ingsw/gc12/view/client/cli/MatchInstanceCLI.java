@@ -52,7 +52,7 @@ public class MatchInstanceCLI extends MatchInstance {
 	public void resetFamilyMembers() {}
 
 	@Override
-	public void resetFloors() {}
+	public void resetBoard() {}
 
 	@Override
 	public void updateResources(List<Player> players) {}

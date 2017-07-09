@@ -752,7 +752,7 @@ public class MainBoardController extends GUIController implements Initializable,
     }
 
     /**
-     * Moving the family memeber on the graphis for senter it
+     * Moving the family memeber on the graphis for center it
      * @param occupiable
      */
     public void moveOccupiableImage(Occupiable occupiable) {
@@ -780,9 +780,15 @@ public class MainBoardController extends GUIController implements Initializable,
                 floor.setY(0);
             }
         }
+        for(WorkType workType: WorkType.values()){
+            workplaces.get(workType).get(0).setX(0);
+            workplaces.get(workType).get(0).setY(0);
+        }
+        for(ImageView market: markets){
+            market.setX(0);
+            market.setY(0);
+        }
     }
-
-
 
     private void initializeAllMapsAndLists(){
         playerBoardController.setFamilyMembers();

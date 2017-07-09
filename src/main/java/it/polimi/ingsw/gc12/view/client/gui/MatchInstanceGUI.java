@@ -202,12 +202,24 @@ public class MatchInstanceGUI extends MatchInstance {
 	}
 
 	@Override
-	public void resetFloors() {
+	public void resetBoard() {
 		for(ObservableList<CardFloorRepresentation> floors: cardsFloors.values()) {
 			for(CardFloorRepresentation floor: floors) {
 				floor.setPathFloor(new Image("img/Floor/floor"+floor.getFloorCount()+".png"));
 			}
 		}
+		for(WorkType workType: WorkType.values()) {
+			for(WorkSpacePawn workSpacePawn: workSpacesPawn.get(workType)) {
+				workSpacePawn.removePawn();
+			}
+		}
+		for(CouncilPawnFamily councilPawn: councilPawns) {
+			councilPawn.removePawn();
+		}
+		for (int i = 0; i < markets.size(); i++) {
+			markets.get(i).setPath(new Image("img/markets/market"+i+".png"));
+		}
+
 	}
 
 	@Override

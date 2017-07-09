@@ -64,7 +64,6 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 
 		actions = event.getActions();
 
-		System.out.println("HANDLING "+event.getClass().getSimpleName());
 		event.executeClientSide(this);
 
 		if(event.getPlayer() != null && myTurn && !excluded) {
