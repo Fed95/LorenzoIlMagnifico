@@ -40,14 +40,10 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	private int roundNum;
 	private int period;
 	private int turnCounter;
-	private int reportCounter;
 	private transient final int TIMEOUT_ACTION;
 	private transient Timer timer = new Timer();
-	private transient int MIN_PLAYERS;
-	private final int DEFAULT_FAMILY_MEMBERS = 4;
 	private transient EffectHandler effectHandler;
 	private transient ActionHandler actionHandler;
-	public transient final static GameMode DEFAULT_GAME_MODE = GameMode.NORMAL;
 	public transient final static int DEFAULT_ROUND_NUM = 6;
 	public transient final static int DEFAULT_PERIODS_LEN = 2;
 	public transient final static int DEFAULT_TOTAL_PERIODS_NUM = DEFAULT_ROUND_NUM / DEFAULT_PERIODS_LEN;
@@ -56,10 +52,8 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 
 	public Match() {
 		this.TIMEOUT_ACTION = new LoaderConfig().get(this).getTimeoutAction();
-		this.MIN_PLAYERS = new LoaderConfig().get(this).getMinPlayers();
 		this.roundNum = 0;
 		this.turnCounter = 0;
-		this.reportCounter = 0;
 		this.period = 0;
 		handleCards();
 		this.excommunicationTiles = new LoaderExcommmunications().get(this);
