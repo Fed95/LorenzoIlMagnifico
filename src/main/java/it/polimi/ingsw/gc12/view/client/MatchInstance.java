@@ -8,6 +8,7 @@ import it.polimi.ingsw.gc12.model.board.occupiable.Occupiable;
 import it.polimi.ingsw.gc12.model.board.occupiable.Tower;
 import it.polimi.ingsw.gc12.model.board.occupiable.TowerFloor;
 import it.polimi.ingsw.gc12.model.board.occupiable.TowerSet;
+import it.polimi.ingsw.gc12.model.board.track.TrackTurnOrder;
 import it.polimi.ingsw.gc12.model.card.CardDevelopment;
 import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.player.Player;
@@ -87,4 +88,5 @@ public abstract class MatchInstance extends Observable {
 	public abstract void playerExcommunication(Player player, ExcommunicationTile tile);
 	public abstract void activateLeaderCard(PlayerColor playerColor, int id);
 	public abstract void discardLeaderCard(PlayerColor playerColor, int id);
+	public abstract void setTurnOrder(TrackTurnOrder turnOrder);
 }

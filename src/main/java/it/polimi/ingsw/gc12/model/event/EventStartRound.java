@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc12.model.event;
 
+import it.polimi.ingsw.gc12.model.board.track.TrackTurnOrder;
 import it.polimi.ingsw.gc12.view.client.MatchInstance;
 import it.polimi.ingsw.gc12.view.client.ClientHandler;
 import it.polimi.ingsw.gc12.model.board.dice.SpaceDie;
@@ -12,11 +13,13 @@ public class EventStartRound extends Event implements EventView{
 	private int round;
 	private TowerSet towers;
 	private SpaceDie spaceDie;
+	private TrackTurnOrder turnOrder;
 
-	public EventStartRound(int round, TowerSet towers, SpaceDie spaceDie) {
+	public EventStartRound(int round, TowerSet towers, SpaceDie spaceDie, TrackTurnOrder turnOrder) {
 		this.round = round;
 		this.towers = towers;
 		this.spaceDie = spaceDie;
+		this.turnOrder = turnOrder;
 	}
 
 	public int getRound() {
@@ -31,6 +34,7 @@ public class EventStartRound extends Event implements EventView{
 	    matchInstance.getBoard().setTowerSet(towers);
 	    matchInstance.setCards(towers);
 	    matchInstance.setDice(spaceDie);
+	    matchInstance.setTurnOrder(turnOrder);
 	}
 
 	@Override

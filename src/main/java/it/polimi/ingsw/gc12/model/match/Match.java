@@ -191,7 +191,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		board.refresh(roundNum, getPeriodNum());
 		for(Player player : players.values())
 			player.getPersonalBoard().getLeaderCardsSpace().newTurn();
-		this.notifyObserver(new EventStartRound(roundNum, board.getTowerSet(), board.getSpaceDie()));
+		this.notifyObserver(new EventStartRound(roundNum, board.getTowerSet(), board.getSpaceDie(), board.getTrackTurnOrder()));
 		return vatican && !vaticanDone;
 	}
 

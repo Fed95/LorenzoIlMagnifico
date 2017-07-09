@@ -4,6 +4,7 @@ package it.polimi.ingsw.gc12.view.client.cli;
 import it.polimi.ingsw.gc12.model.board.excommunication.ExcommunicationTile;
 import it.polimi.ingsw.gc12.model.board.occupiable.Occupiable;
 import it.polimi.ingsw.gc12.model.board.occupiable.TowerSet;
+import it.polimi.ingsw.gc12.model.board.track.TrackTurnOrder;
 import it.polimi.ingsw.gc12.model.card.CardDevelopment;
 import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.player.Player;
@@ -64,4 +65,7 @@ public class MatchInstanceCLI extends MatchInstance {
 
 	@Override
 	public void discardLeaderCard(PlayerColor playerColor, int id) {}
+
+	@Override
+	public void setTurnOrder(TrackTurnOrder turnOrder) {}
 }

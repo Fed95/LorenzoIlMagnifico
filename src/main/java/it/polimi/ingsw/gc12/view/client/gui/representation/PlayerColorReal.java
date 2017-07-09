@@ -27,6 +27,7 @@ public class PlayerColorReal {
     public Paint getRed(){
         return red;
     }
+
     public Paint getBlue(){
         return blue;
     }

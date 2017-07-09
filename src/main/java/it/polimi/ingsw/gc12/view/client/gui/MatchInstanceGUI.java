@@ -4,6 +4,7 @@ package it.polimi.ingsw.gc12.view.client.gui;
 import it.polimi.ingsw.gc12.misc.json.loader.LoaderConfigPlayers;
 import it.polimi.ingsw.gc12.misc.observer.Observable;
 import it.polimi.ingsw.gc12.model.board.occupiable.*;
+import it.polimi.ingsw.gc12.model.board.track.TrackTurnOrder;
 import it.polimi.ingsw.gc12.model.card.CardDevelopment;
 import it.polimi.ingsw.gc12.model.card.CardType;
 import it.polimi.ingsw.gc12.model.card.LeaderCard;
@@ -247,6 +248,15 @@ public class MatchInstanceGUI extends MatchInstance {
 	}
 
 	@Override
+	public void setTurnOrder(TrackTurnOrder turnOrder) {
+    	PlayerColorReal playerColorReal = new PlayerColorReal(1);
+    	List<Player> orderedPlayers = turnOrder.getOrderedPlayers();
+		for (int i = 0; i < orderedPlayers.size(); i++) {
+			turnOrderTracks.get(i).setPlayerProperty(orderedPlayers.get(i).getColor(), playerColorReal);
+		}
+	}
+
+	@Override
     public void setCards(TowerSet towers) {
         for(CardType cardType : CardType.values()){
             List<TowerFloor> towerFloors = towers.getTower(cardType).getFloors();
@@ -348,15 +358,7 @@ public class MatchInstanceGUI extends MatchInstance {
         TurnOrderTrackPositionRepresentation turnOrderTrackPositionRepresentation = null;
         for(Player player : orderedPlayer){
             PlayerColor playerColor = player.getColor();
-            if(playerColor == PlayerColor.BLUE){
-                 turnOrderTrackPositionRepresentation = new TurnOrderTrackPositionRepresentation(playerColorReal.getBlue());
-            }else if(playerColor == PlayerColor.GREEN){
-                 turnOrderTrackPositionRepresentation = new TurnOrderTrackPositionRepresentation(playerColorReal.getGreen());
-            }else if(playerColor == PlayerColor.RED){
-                 turnOrderTrackPositionRepresentation = new TurnOrderTrackPositionRepresentation(playerColorReal.getRed());
-            }else if(playerColor == PlayerColor.YELLOW){
-                 turnOrderTrackPositionRepresentation = new TurnOrderTrackPositionRepresentation(playerColorReal.getYellow());
-            }
+            turnOrderTrackPositionRepresentation = new TurnOrderTrackPositionRepresentation(playerColor, playerColorReal);
             turnOrderTracks.add(turnOrderTrackPositionRepresentation);
         }
 
