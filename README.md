@@ -59,20 +59,24 @@ When you run clientCLI the CLI asks you to perform an action through integer inp
 
 ### Configurations
 - Main Board configurations
-    + The bonus on the game board associated to the floor can be configurated from the json file `towers.json` 
-    + The bonus associated to the personal board can be configurated from the json file `configPlayers.json`
-    + The bonus on the Faith points track can be configurated from the json file `faithPointValues.json`, but you can only change the value of the victory points associated to the track.
+    + The bonus on the game board associated to the floor can be configured from the json file `towers.json` 
+    + The bonus associated to the personal board can be configured from the json file `cardsSpace.json`
+    + The bonus on the Faith points track can be configured from the json file `faithPointValues.json`, but you can only change the value of the victory points associated to the track.
+    + The number of market spaces and the presence of multiple work spaces (harvest and production) based on the number of players ca be configure from the file `configPlayers.json`.
+    The change of these parameters are reflected in the GUI too. 
 - Cards
-    + The cards can be configurated from the file json `cards.json`
-    + The excommunication cards can be configurated from the json file `excommunication.json`
-    + The leader cards can be configurated in the json file `cards.json` (last 20 cards of the file).
+    + The cards can be configured from the file json `cards.json`
+    + The excommunication cards can be configured from the json file `excommunication.json`
+    + The leader cards can be configured in the json file `cards.json` (last 20 cards of the file).
 - Timeout
     + The timeout before the start of the match after reaching the minimum amount of player is present and can be configurated from the json file `config` (now 1s).
-    + The timeout for a player move is present and can be configurated from the json file `config.json` (now 20 minutes).
+    + The timeout for a player move is present and can be configured from the json file `config.json` (now 20 minutes).
 
 ### Start of the Match
 - If there are no startup games, a new game is created, otherwise the user automatically enters the game at startup.
 - The match starts after reaching 4 players. When two players connect to a game a timeout starts, if other two player do not connect before the end of timeout the match starts with the current players.
+- As will be described later, the possibility to reconnect after a disconnection of a player is based on the player's name.
+For this reason there cannot be active players with the same name. Hence, for both CLI and GUI if you try to connect with an already taken name, you will receive an error and you will have to choose another name.
 
 ### During the Match
 - Each player has a timeout to make a move and the server waits that period. After that the player will be suspended. 
@@ -86,5 +90,10 @@ skipping the turn of the suspended/disconnected players.
 - The suspended player can rejoin the match and continue the game writing something on the cli or clicking any element on the GUI.
 
 
+## UML
+The uml is inside the folder resources/uml.
+They are divided into multiple files because a unique UML would have been too big. 
+The division is based on the packages.   
+There is a file called model.png that shows at a higher level the dependencies between among the packages and the main classes.
 
  
