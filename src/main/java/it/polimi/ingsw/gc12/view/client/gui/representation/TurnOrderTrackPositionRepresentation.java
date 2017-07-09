@@ -11,7 +11,7 @@ public class TurnOrderTrackPositionRepresentation {
     private ObjectProperty<Paint> playerProperty;
 
     public TurnOrderTrackPositionRepresentation(PlayerColor playerColor, PlayerColorReal playerColorReal){
-        setPlayerProperty(playerColor, playerColorReal);
+        this.playerProperty = new SimpleObjectProperty<>(getPlayerPaint(playerColor, playerColorReal));
     }
 
     public ObjectProperty<Paint> getPlayerProperty() {
@@ -19,7 +19,7 @@ public class TurnOrderTrackPositionRepresentation {
     }
 
     public void setPlayerProperty(PlayerColor playerColor, PlayerColorReal playerColorReal) {
-        this.playerProperty = new SimpleObjectProperty<>(getPlayerPaint(playerColor, playerColorReal));
+        playerProperty.set(getPlayerPaint(playerColor, playerColorReal));
     }
 
     private Paint getPlayerPaint(PlayerColor playerColor,PlayerColorReal playerColorReal) {
