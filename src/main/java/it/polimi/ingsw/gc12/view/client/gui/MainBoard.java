@@ -111,6 +111,10 @@ public class MainBoard extends Application implements ClientView {
 		return type;
 	}
 
+	public void errorNameTaken() {
+		controller.showErrorNameTaken();
+	}
+
 	@Override
 	public void update(EventView event) {
 		event.executeViewSide(this);

@@ -43,6 +43,6 @@ public class EventNewName extends Event implements EventView{
 
 	@Override
 	public void executeViewSide(MainBoard view) {
-		view.getControllerMainBoard().notifyObservers(0);
+		view.errorNameTaken();
 	}
 }
