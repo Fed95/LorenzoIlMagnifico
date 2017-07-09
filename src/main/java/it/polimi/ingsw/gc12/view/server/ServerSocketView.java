@@ -1,6 +1,7 @@
 package it.polimi.ingsw.gc12.view.server;
 
 import it.polimi.ingsw.gc12.model.event.Event;
+import it.polimi.ingsw.gc12.model.event.EventEndMatch;
 import it.polimi.ingsw.gc12.model.event.EventNewName;
 import it.polimi.ingsw.gc12.model.event.EventPlayerReconnected;
 import it.polimi.ingsw.gc12.model.match.Match;
@@ -67,6 +68,10 @@ public class ServerSocketView extends ServerView implements Runnable {
 		}
 		catch (IOException e) {
 			e.printStackTrace();
+		}
+
+		if(event instanceof EventEndMatch) {
+			server.endMatch(match);
 		}
 	}
 

@@ -1,9 +1,6 @@
 package it.polimi.ingsw.gc12.view.server;
 
-import it.polimi.ingsw.gc12.model.event.Event;
-import it.polimi.ingsw.gc12.model.event.EventNewName;
-import it.polimi.ingsw.gc12.model.event.EventPlayerReconnected;
-import it.polimi.ingsw.gc12.model.event.EventTowerChosen;
+import it.polimi.ingsw.gc12.model.event.*;
 import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.player.PlayerColor;
@@ -12,10 +9,7 @@ import it.polimi.ingsw.gc12.view.client.rmi.ClientViewRemote;
 import it.polimi.ingsw.gc12.Server;
 
 import java.io.IOException;
-import java.rmi.AlreadyBoundException;
-import java.rmi.ConnectException;
-import java.rmi.RemoteException;
-import java.rmi.UnmarshalException;
+import java.rmi.*;
 import java.util.*;
 
 public class ServerRMIView extends ServerView implements RMIViewRemote {
@@ -60,10 +54,14 @@ public class ServerRMIView extends ServerView implements RMIViewRemote {
 			try {
 				clientStub.updateClient(event);
 			}
-			catch (ConnectException ignored) {}
+			catch (ConnectException | UnmarshalException | ConnectIOException ignored) {}
 			catch (RemoteException e) {
 				e.printStackTrace();
 			}
+		}
+
+		if(event instanceof EventEndMatch) {
+			server.endMatch(match);
 		}
 
 	}
@@ -76,7 +74,7 @@ public class ServerRMIView extends ServerView implements RMIViewRemote {
 			Player player = clientPlayers.get(clientStub);
 			try {
 				clientStub.checkConnection();
-			} catch (ConnectException | UnmarshalException e) {
+			} catch (ConnectException | UnmarshalException | ConnectIOException e) {
 				if(!player.isDisconnected())
 					match.setDisconnectedPlayer(player);
 				itr.remove();

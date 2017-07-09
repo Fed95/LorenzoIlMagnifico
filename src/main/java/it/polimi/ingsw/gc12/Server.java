@@ -159,6 +159,7 @@ public class Server {
 		System.out.println("Adding player " + player.getName());
 		waitingPlayers.add(player);
 		if (waitingPlayers.size() == MIN_PLAYERS)  {
+			timer = new Timer();
 			timer.schedule(new TimerMatchTask(), TIMEOUT_START);  // TODO: set a proper number in config file before the deadline
 		}
 		else if (waitingPlayers.size() == MAX_PLAYERS) {
@@ -204,6 +205,11 @@ public class Server {
 		return false;
 	}
 
+	public void endMatch(Match match) {
+		if(controllers.containsKey(match))
+			controllers.remove(match);
+		playingPlayers.entrySet().removeIf(entry -> entry.getValue().equals(match));
+	}
 
 	public static void main(String[] args) throws IOException, AlreadyBoundException, CloneNotSupportedException {
 		Server server = new Server();

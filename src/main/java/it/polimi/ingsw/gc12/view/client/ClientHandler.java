@@ -2,6 +2,7 @@ package it.polimi.ingsw.gc12.view.client;
 
 
 import it.polimi.ingsw.gc12.model.event.Event;
+import it.polimi.ingsw.gc12.model.event.EventEndMatch;
 import it.polimi.ingsw.gc12.model.event.EventView;
 import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.view.client.cli.MatchInstanceCLI;
@@ -76,6 +77,10 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 			events.removeFirst();
 			if(events.size() > 0)
 				handleEvent();
+		}
+
+		if(event instanceof EventEndMatch) {
+			System.exit(0);
 		}
 	}
 
