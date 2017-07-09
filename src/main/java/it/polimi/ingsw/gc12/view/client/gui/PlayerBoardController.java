@@ -279,6 +279,7 @@ public class PlayerBoardController extends GUIController implements Initializabl
 	}
 
 	public void showCardLeader(MouseEvent mouseEvent) {
+		checkExclusion();
 		ImageView leaderCard = (ImageView) mouseEvent.getSource();
 		showCard(mouseEvent);
 		if(mouseEvent.getClickCount()==2){
@@ -302,6 +303,7 @@ public class PlayerBoardController extends GUIController implements Initializabl
 	}
 
 	public void familyClicked(MouseEvent mouseEvent) {
+		checkExclusion();
 		ImageView familyMemberClicked = (ImageView) mouseEvent.getTarget();
 		if(isMyFam(playerColor, familyMemberClicked)) {
 			if (isMyTurn()) {

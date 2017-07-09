@@ -181,7 +181,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		if(vatican) {
 			boolean endMatch = endPeriod();
 			if(endMatch)
-				return vatican;
+				return true;
 			newPeriod();
 		}
 		roundNum++;

@@ -7,11 +7,13 @@ import it.polimi.ingsw.gc12.view.client.ClientFactory;
 import it.polimi.ingsw.gc12.view.client.ClientHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
+import javax.xml.soap.Text;
 import java.util.List;
 import java.util.Observable;
 
@@ -27,6 +29,7 @@ public abstract class GUIController extends Observable {
 	protected PlayerColor playerColor;
 	protected MatchInstanceGUI match;
 	protected Player player;
+	protected TextArea chat;
 
 	public GUIController(ClientHandler clientHandler) {
 		this.clientHandler = clientHandler;
@@ -63,6 +66,7 @@ public abstract class GUIController extends Observable {
 	}
 
 	@FXML protected void showCard(MouseEvent mouseEvent) {
+		checkExclusion();
 		ImageView imageView = (ImageView) mouseEvent.getSource();
 		Image card = imageView.getImage();
 		showCards.setImage(card);
@@ -71,5 +75,20 @@ public abstract class GUIController extends Observable {
 
 	public void setShowCards(ImageView showCards) {
 		this.showCards = showCards;
+	}
+
+	public void setChat(TextArea chat) {
+		this.chat = chat;
+	}
+
+	protected boolean checkExclusion() {
+		if(clientHandler.isExcluded()) {
+			clientHandler.setExcluded(false);
+			chat.appendText("[SERVER]: Welcome back! You can start playing again.\n");
+			setChanged();
+			notifyObservers(clientHandler.getColor());
+			return false;
+		}
+		return true;
 	}
 }

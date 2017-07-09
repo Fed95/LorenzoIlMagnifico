@@ -178,6 +178,7 @@ public class MainBoardController extends GUIController implements Initializable,
     }
 
     @FXML synchronized void floorClicked(MouseEvent event){
+        checkExclusion();
         ImageView floorClicked = (ImageView) event.getTarget();
         if(isMyTurn()){
             loop: for(Map.Entry<CardType, List<ImageView>> entryType : towerFloors.entrySet()) {
@@ -200,6 +201,7 @@ public class MainBoardController extends GUIController implements Initializable,
     }
 
     @FXML void marketClicked(MouseEvent event){
+        checkExclusion();
         ImageView market = (ImageView) event.getTarget();
         if(market.getUserData() != "block") {
             if (isMyTurn()) {
@@ -218,6 +220,7 @@ public class MainBoardController extends GUIController implements Initializable,
     }
 
     @FXML void workspaceClicked(MouseEvent event){
+        checkExclusion();
         ImageView workplace = (ImageView) event.getTarget();
         if(workplace.getUserData() != "block") {
             if (isMyTurn()) {
@@ -290,6 +293,7 @@ public class MainBoardController extends GUIController implements Initializable,
 
         initializeAllMapsAndLists();
         playerBoardController.setShowCards(showCards);
+        playerBoardController.setChat(chatTextArea);
         showCards.setOpacity(0);
         //this.addObserver(ClientFactory.getClientSender());
         clientHandler.setMainBoardController(this);
