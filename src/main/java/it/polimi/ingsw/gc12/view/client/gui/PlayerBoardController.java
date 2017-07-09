@@ -269,6 +269,11 @@ public class PlayerBoardController extends GUIController implements Initializabl
 		match.addObserver(this);
 	}
 
+    /**
+     * Some initializations, disable all the tabs
+     * @param location
+     * @param resources
+     */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		//disabling all tab player
@@ -438,10 +443,8 @@ public class PlayerBoardController extends GUIController implements Initializabl
 			for (int i = 0; i < listPlayed.size(); i++){
 				listPlayed.get(i).imageProperty().bind(mapPlayerColorCardLeaders.get(player.getColor()).get(i).getPathWhenPlayedProperty());
 				if(playerColor.equals(player.getColor())) {
-					listPlayed.get(i).setVisible(false);
-				}
-
-
+                    listPlayed.get(i).visibleProperty().bind(mapPlayerColorCardLeaders.get(player.getColor()).get(i).getVisibility());
+                }
 			}
 			if(playersBoard.getUserData().equals(player.getColor())) {
 				List<ImageView> listNotPlayed = cardLeaders.get(player.getColor()).get(CardLeaderGuiState.NOTPLAYED);
