@@ -32,6 +32,9 @@ import java.util.*;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
+/**
+ * Controller for the player board.
+ */
 public class PlayerBoardController extends GUIController implements Initializable, Observer {
 	//players family member value
 	@FXML
@@ -283,6 +286,10 @@ public class PlayerBoardController extends GUIController implements Initializabl
 		yellowPlayer.setDisable(true);
 	}
 
+    /**
+     * Method for showing or playng the card leader depending on the mouse click count
+     * @param mouseEvent mouse click
+     */
 	public void showCardLeader(MouseEvent mouseEvent) {
 		checkExclusion();
 		ImageView leaderCard = (ImageView) mouseEvent.getSource();
@@ -308,6 +315,10 @@ public class PlayerBoardController extends GUIController implements Initializabl
 		}
 	}
 
+    /**
+     * handling the click on the family member and creating the action
+     * @param mouseEvent mouse click
+     */
 	public void familyClicked(MouseEvent mouseEvent) {
 		checkExclusion();
 		ImageView familyMemberClicked = (ImageView) mouseEvent.getTarget();
@@ -339,6 +350,10 @@ public class PlayerBoardController extends GUIController implements Initializabl
 		}
 	}
 
+    /**
+     * Higlight the clicked familyMember on the GUI
+     * @param familyMemberClicked family member to higlight
+     */
 	private void toggleFMHighlight(ImageView familyMemberClicked){
 		Integer selection = (int)familyMemberClicked.getOpacity();
 		if(selection != 1){
@@ -352,6 +367,10 @@ public class PlayerBoardController extends GUIController implements Initializabl
 		}
 	}
 
+    /**
+     * Ask with a dialog if you want to play or discard leader cards
+     * @return integer
+     */
 	private int askDiscardOrPlay(){
 		Dialog dialog = new Dialog<>();
 		dialog.setTitle("Leader Card");
@@ -370,6 +389,12 @@ public class PlayerBoardController extends GUIController implements Initializabl
 		return askDiscardOrPlay();
 	}
 
+    /**
+     * check if i click on my family memeber or
+     * @param color
+     * @param famMemb
+     * @return
+     */
 	private Boolean isMyFam(PlayerColor color, ImageView famMemb){
 		Map<FamilyMemberColor,ImageView> allMyFamily = familyMembers.get(color);
 		for(ImageView imageViewFam: allMyFamily.values()){

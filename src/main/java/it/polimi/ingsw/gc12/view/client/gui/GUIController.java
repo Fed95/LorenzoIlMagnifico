@@ -38,6 +38,12 @@ public abstract class GUIController extends Observable {
 		this.addObserver(ClientFactory.getClientSender());
 	}
 
+    /**
+     * Method for checking if the action is avaliable.
+     * If is avaliable it will be sended to  the server throw clientHandler
+     * @param action action choosed
+     * @return
+     */
 	protected boolean selectAction(Action action) {
 		List<Action> actions = clientHandler.getActions();
 		for (int i = 0; i < actions.size(); i++) {
@@ -58,6 +64,9 @@ public abstract class GUIController extends Observable {
 		return clientHandler.getMyTurn();
 	}
 
+    /**
+     * Not your turn alert
+     */
 	protected void showTurnDenied() {
 		Alert alert = new Alert(Alert.AlertType.ERROR);
 		alert.setTitle("Error");
@@ -66,6 +75,10 @@ public abstract class GUIController extends Observable {
 		alert.showAndWait();
 	}
 
+    /**
+     * Method for showing cards in the detail
+     * @param mouseEvent
+     */
 	@FXML protected void showCard(MouseEvent mouseEvent) {
 		checkExclusion();
 		ImageView imageView = (ImageView) mouseEvent.getSource();
@@ -82,6 +95,10 @@ public abstract class GUIController extends Observable {
 		this.chat = chat;
 	}
 
+    /**
+     * Notify the reconnection to the layer
+     * @return boolean
+     */
 	protected boolean checkExclusion() {
 		if(clientHandler.isExcluded()) {
 			clientHandler.setExcluded(false);

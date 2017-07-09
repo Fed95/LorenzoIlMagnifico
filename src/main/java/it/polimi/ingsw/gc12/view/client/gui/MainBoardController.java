@@ -47,7 +47,9 @@ import java.util.Observer;
 import static java.util.stream.Collectors.collectingAndThen;
 import static java.util.stream.Collectors.toList;
 
-
+/**
+ * Controller for the mainBoard FXML
+ */
 public class MainBoardController extends GUIController implements Initializable, Observer {
     //Card on floors
 
@@ -177,6 +179,10 @@ public class MainBoardController extends GUIController implements Initializable,
         match.addObserver(this);
     }
 
+    /**
+     * Handle the click on a floor and create the action to send
+     * @param event mouse event click
+     */
     @FXML synchronized void floorClicked(MouseEvent event){
         checkExclusion();
         ImageView floorClicked = (ImageView) event.getTarget();
@@ -206,6 +212,10 @@ public class MainBoardController extends GUIController implements Initializable,
             showTurnDenied();
     }
 
+    /**
+     * Handle the click on the markets and create the action to send
+     * @param event
+     */
     @FXML void marketClicked(MouseEvent event){
         checkExclusion();
         ImageView market = (ImageView) event.getTarget();
@@ -225,6 +235,10 @@ public class MainBoardController extends GUIController implements Initializable,
         }
     }
 
+    /**
+     * Handle the click on the workSpace and create the action
+     * @param event
+     */
     @FXML void workspaceClicked(MouseEvent event){
         checkExclusion();
         ImageView workplace = (ImageView) event.getTarget();
@@ -249,6 +263,9 @@ public class MainBoardController extends GUIController implements Initializable,
         }
     }
 
+    /**
+     * Handle the click on the pass turn and create the action
+     */
     @FXML void passTurn(){
         if(isMyTurn()) {
             Action action = new ActionPassTurn(match.getPlayers().get(playerColor));
@@ -256,6 +273,10 @@ public class MainBoardController extends GUIController implements Initializable,
         }else
             showTurnDenied();
     }
+
+    /**
+     * Alert for the about int he program
+     */
     @FXML void whoWeAre(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Politecnico di Milano");
@@ -265,6 +286,9 @@ public class MainBoardController extends GUIController implements Initializable,
         alert.showAndWait();
     }
 
+    /**
+     * Alert for tell to the user that an action is not valid
+     */
     public void actionDenied(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Action denied");
@@ -272,6 +296,10 @@ public class MainBoardController extends GUIController implements Initializable,
         alert.setContentText("The action selected is not valid, sorry");
         alert.showAndWait();
     }
+
+    /**
+     * ask for servant to use with a dialog
+     */
     public void requestServants() {
         if(isMyTurn()) {
             int maxValue = match.getPlayers().get(playerColor).getResourceValue(ResourceType.SERVANT);
@@ -294,6 +322,11 @@ public class MainBoardController extends GUIController implements Initializable,
         }
     }
 
+    /**
+     * Initialize some GUI elements
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -320,6 +353,11 @@ public class MainBoardController extends GUIController implements Initializable,
         notifyObservers(0);
     }
 
+    /**
+     * When the semplificated match is created it will notify it throw an observable. And all the methods for binding starts
+     * @param o
+     * @param arg
+     */
     @Override
     public void update(Observable o, Object arg) {
         Platform.runLater(() -> {
@@ -341,6 +379,9 @@ public class MainBoardController extends GUIController implements Initializable,
         });
     }
 
+    /**
+     * block the markets and workspace depending on the number of players
+     */
     private void blockOccupiable(){
         int playersNum = match.getPlayers().size();
         Match match = new Match();
@@ -392,6 +433,9 @@ public class MainBoardController extends GUIController implements Initializable,
         productionPawns = new ArrayList<>();
     }
 
+    /**
+     * Binds the ImageView of the view with the representation
+     */
     private void bindCardsToFloor(){
         for(CardType cardType : CardType.values()){
             ObservableList<CardFloorRepresentation> cardFloorRepresentations = match.getCardsFloors().get(cardType);
@@ -403,6 +447,9 @@ public class MainBoardController extends GUIController implements Initializable,
         }
     }
 
+    /**
+     * Binds the turn order track pawns with the representation
+     */
     private void bindTrackOrder(){
         List<Player> players = match.getBoard().getTrackTurnOrder().getOrderedPlayers();
         for(int i = 0; i < players.size(); i++){
@@ -411,12 +458,18 @@ public class MainBoardController extends GUIController implements Initializable,
         }
     }
 
+    /**
+     * Bind the military,Victroy,Faith list view in the GUI with the representation
+     */
     private void bindTrackMilitaryVictory(){
         tableMilitaryPoints.setItems(match.getMilitaryResources());
         tableVictoryPoints.setItems(match.getVictoryResources());
         tableFaithPoints.setItems(match.getFaithResources());
     }
 
+    /**
+     * Bind the excomunication tiles and panws
+     */
     private void bindExcomunocationTile(){
         for(int i = 0; i < excomTiles.size(); i++){
             int j = i+1;
@@ -428,12 +481,18 @@ public class MainBoardController extends GUIController implements Initializable,
         }
     }
 
+    /**
+     * Bind council pawns
+     */
     private void bindCouncilPawns(){
         for (int i = 0; i < 4; i++){
             councilPawns.get(i).imageProperty().bind(match.getCouncilPawns().get(i).getFamilyTemporaryImage());
         }
     }
 
+    /**
+     * Bind work spaces
+     */
     private void bindWorkSpaces(){
         ConfigPlayers config = new LoaderConfigPlayers().get(null).get(match.getPlayers().size());
         for(WorkType workType : WorkType.values()){
@@ -448,6 +507,10 @@ public class MainBoardController extends GUIController implements Initializable,
             }
         }
     }
+
+    /**
+     * Bind Markets
+     */
     private void bindMarkets(){
         ConfigPlayers config = new LoaderConfigPlayers().get(null).get(match.getPlayers().size());
         for (int i = 0; i < config.getSpaceMarketNum();i++){
@@ -458,6 +521,10 @@ public class MainBoardController extends GUIController implements Initializable,
         return chatTextArea;
     }
 
+    /**
+     * Make an equals between the avaliable action and the action selected on the GUI.
+     * If the action exist il will be send to the clientHandler event handler throw selectAction
+     */
     public void sendAction() {
         if(isMyTurn()) {
             Action actionPending = clientHandler.getActionPending();
@@ -473,7 +540,13 @@ public class MainBoardController extends GUIController implements Initializable,
         }
     }
 
-
+    /**
+     * ask some request value
+     * @param title title of the dialog
+     * @param request description of the dialog
+     * @param minValue min value acepted
+     * @return
+     */
    private int askValue(String title, String request, String minValue){
        TextInputDialog dialog = new TextInputDialog(minValue);
        dialog.setTitle(title);
@@ -577,6 +650,12 @@ public class MainBoardController extends GUIController implements Initializable,
 			showTurnDenied();
 	}
 
+    /**
+     * ask for some requirements or permanent effects to choose between resources
+     * @param type type of the choosing
+     * @param resources resources to choose with
+     * @return
+     */
     private int askWhich(String type, List<ResourceExchange> resources){
         int alternatives = resources.size();
         List<String> choices = new ArrayList<>();
@@ -623,6 +702,11 @@ public class MainBoardController extends GUIController implements Initializable,
         return choosen;
     }
 
+    /**
+     * Method for vatican report GUI
+     * @param playerColor
+     * @param tile
+     */
     public void vaticanReport(PlayerColor playerColor, ExcommunicationTile tile) {
         if(this.playerColor.equals(playerColor)) {
             boolean support = askSupportChurch();
@@ -656,29 +740,10 @@ public class MainBoardController extends GUIController implements Initializable,
         return askSupportChurch();
     }
 
-
-	private void applyPulseEffect(Color color, List<Node> nodes) {
-        DropShadow borderGlow = new DropShadow();
-        borderGlow.setColor(color);
-        borderGlow.setSpread(0.5);
-        for (Node node: nodes)
-            node.setEffect(borderGlow);
-
-        final Timeline timeline = new Timeline();
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.setAutoReverse(true);
-        final KeyValue kv = new KeyValue(borderGlow.colorProperty(), Color.TRANSPARENT);
-        final KeyFrame kf = new KeyFrame(Duration.millis(1000), kv);
-        timeline.getKeyFrames().add(kf);
-        timeline.play();
-    }
-
-    private void removeEffects(List<Node> nodes) {
-       for(Node node: nodes) {
-           node.setEffect(null);
-       }
-    }
-
+    /**
+     * Disable the pass turn after click on it
+     * @param disable actual state of the button
+     */
     public void disablePassTurn(boolean disable) {
         if(!disable && !isMyTurn())
             return;
@@ -686,6 +751,10 @@ public class MainBoardController extends GUIController implements Initializable,
         passTurnPl1.setDisable(disable);
     }
 
+    /**
+     * Moving the family memeber on the graphis for senter it
+     * @param occupiable
+     */
     public void moveOccupiableImage(Occupiable occupiable) {
         if(occupiable instanceof TowerFloor) {
             TowerFloor floor = (TowerFloor) occupiable;

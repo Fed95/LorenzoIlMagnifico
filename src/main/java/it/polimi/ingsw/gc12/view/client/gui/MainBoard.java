@@ -73,6 +73,12 @@ public class MainBoard extends Application implements ClientView {
 
     }
 
+    /**
+     * Method that scale down the graphics whem the screen is resized
+     * @param scene
+     * @param root
+     * @param primaryStage
+     */
 	private void responsive(Scene scene, Pane root, Stage primaryStage){
 		final double initWidth  = scene.getWidth();
 		final double initHeight = scene.getHeight();
@@ -108,7 +114,6 @@ public class MainBoard extends Application implements ClientView {
 	@Override
 	public void update(EventView event) {
 		event.executeViewSide(this);
-
 	}
 
 	@Override
