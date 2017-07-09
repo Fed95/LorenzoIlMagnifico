@@ -7,11 +7,13 @@ import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.board.occupiable.Occupiable;
 import it.polimi.ingsw.gc12.model.player.resource.Resource;
+import it.polimi.ingsw.gc12.view.client.gui.MainBoard;
+import javafx.application.Platform;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventFreeAction extends Event {
+public class EventFreeAction extends Event implements EventView{
 
     private FamilyMember familyMember;
     private List<Occupiable> occupiables;
@@ -69,5 +71,11 @@ public class EventFreeAction extends Event {
         if(discounts.size() > 0)
             sb.append("(This free action comes with a discount: " + discounts + " )");
         return sb.toString();
+    }
+
+    @Override
+    public void executeViewSide(MainBoard view) {
+        Platform.runLater(() -> view.getControllerMainBoard().notifyFreeAction());
+
     }
 }

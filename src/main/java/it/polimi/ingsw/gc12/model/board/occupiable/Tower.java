@@ -50,7 +50,7 @@ public class Tower implements Zone, Serializable{
 
 	@Override
 	public boolean canBeOccupiedBy(FamilyMember familyMember) {
-		if (familyMember.getColor().equals(FamilyMemberColor.NEUTRAL))
+		if (familyMember.equals(new FamilyMember(FamilyMemberColor.NEUTRAL)))
 			return true;
 
 		for (TowerFloor floor : floors)

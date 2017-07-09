@@ -191,10 +191,10 @@ public class MainBoardController extends GUIController implements Initializable,
                 for (int i = 0; i < entryType.getValue().size(); i++) {
                     if(entryType.getValue().get(i).equals(floorClicked)) {
                         Action actionPending = new ActionPlaceOnTower(match.getPlayers().get(playerColor), null, new TowerFloor(i, entryType.getKey()));
-                        /*if(clientHandler.getActions().contains(actionPending))
+                        if(clientHandler.getActions().contains(actionPending))
                             clientHandler.setActionPending(actionPending);
                         if(selectAction(actionPending))
-                            return;*/
+                            return;
 
                         /*if(clientHandler.getActionPending() instanceof ActionPlace) {
                             selectAction(new DiscardAction(player));
@@ -656,11 +656,13 @@ public class MainBoardController extends GUIController implements Initializable,
      * Notify with an alert the free action
      */
     public void notifyFreeAction(){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Free Action");
-        alert.setHeaderText(null);
-        alert.setContentText("I have a great message for you!\n You earn a free action for the effect of the leader card!\n\n After Perform it the leader card it will disappear");
-        alert.showAndWait();
+        if(isMyTurn()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Free Action");
+            alert.setHeaderText(null);
+            alert.setContentText("I have a great message for you!\n You earned a free action for the effect of the card you just picked!\n\n Be careful, if the action is not valid, you will lose the chance to use the free action");
+            alert.showAndWait();
+        }
     }
     /**
      * ask for some requirements or permanent effects to choose between resources

@@ -90,11 +90,7 @@ public class FamilyMember implements Observer, Serializable {
 	}
 
 	public Player getOwner() {
-		if(owner == null) {
-			throw new IllegalArgumentException("Trying to get the owner of a Family member without a owner");
-		}
-		else
-			return owner;
+		return owner;
 	}
 
 	@Override

@@ -24,6 +24,8 @@ public class ClientRMIView extends ClientHandler implements ClientViewRemote, Se
 	public void updateClient(Event event) {
 		showMessage(event);
 
+		System.out.println("RECEIVED "+event.getClass().getSimpleName());
+
 		if(event instanceof EventExcluded || event instanceof EventMatchSuspended)
 			events = new LinkedList<>();
 		events.addLast(event);

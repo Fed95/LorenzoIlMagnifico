@@ -86,8 +86,8 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 			playersList.get(i).getPersonalBoard().setBonusTile(bonusTiles.get(i));
 		}
 		//TODO: remove comment before deadline (disabled shuffle for testing)
-		//cardDeckSet.shuffle();
-		//Collections.shuffle(leaderCards);
+		cardDeckSet.shuffle();
+		Collections.shuffle(leaderCards);
 
 		createBoard();
 		initPlayers();
@@ -110,9 +110,6 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 			// TODO: remove the comment before the deadline
 			// It has been commented to have a lot of resources for testing
 			player.setInitialResources(config.getInitialResources().get(i));
-
-			player.setResourceValue(ResourceType.MONEY, 3);//TODO: REMOVE AFTER TESTING
-
 
 			player.init(board.getSpaceDie());
 			player.getPersonalBoard().setCardsSpaces(new LoaderCardsSpace().get(this));

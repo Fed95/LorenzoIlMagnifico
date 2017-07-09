@@ -13,7 +13,11 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Observable;
 
-public class ClientRMI implements ClientSender { //Main class of the Clients using RMI
+/**
+ * Class of the client used to send information to the Server through RMI.
+ * It shares the superclass ClientSender with ClientInHandler.
+ */
+public class ClientRMI implements ClientSender {
 
 	private final static int RMI_PORT = 52365;
 	public final static String HOST = "127.0.0.1";
@@ -54,7 +58,13 @@ public class ClientRMI implements ClientSender { //Main class of the Clients usi
 		this.serverStub = serverStub;
 	}
 
-
+	/**
+	 * Receives from the client's view the object to send to the server.
+	 * If it's an Integer, it means that is the index of the list of action the player can currently do.
+	 * If it's an EventNewName, it's the new name chosen because there was already another player with that name.
+	 * If it's a PlayerColor, it's the color of the player's client. It's used to send a message to the server to notify
+	 * that a player is back from the exclusion for the action timer's expiration.
+	 */
 
 	@Override
 	public void update(Observable o, Object arg) {
