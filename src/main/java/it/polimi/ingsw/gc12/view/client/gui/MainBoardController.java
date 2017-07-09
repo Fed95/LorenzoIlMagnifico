@@ -573,7 +573,7 @@ public class MainBoardController extends GUIController implements Initializable,
         for(ResourceExchange resourceExchange : resources){
 
             if(resourceExchange.getCost() != null && resourceExchange.getCost().size() > 0){
-                str.append("Receive ");
+                str.append("Spend ");
                 for (int i = 0; i < resourceExchange.getCost().size(); i++){
                     int value = resourceExchange.getCost().get(i).getValue();
                     String abbreviation = resourceExchange.getCost().get(i).getType().toString().substring(0,1);
@@ -585,7 +585,7 @@ public class MainBoardController extends GUIController implements Initializable,
             }
 
             if(resourceExchange.getBonus()!=null && resourceExchange.getBonus().size() > 0){
-                str.append(" Spend: ");
+                str.append(" Receive: ");
                 for (int i = 0; i < resourceExchange.getBonus().size(); i++){
                     int value = resourceExchange.getBonus().get(i).getValue();
                     String abbreviation = resourceExchange.getBonus().get(i).getType().toString().substring(0,1);
