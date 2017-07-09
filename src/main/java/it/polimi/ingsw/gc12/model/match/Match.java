@@ -133,7 +133,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 
 	//Increments turn counter in TrackTurnOrder
 	public void newTurn(boolean vaticanDone) {
-		if(turnCounter == (players.size())/* * FamilyMemberColor.values().length*/) {
+		if(turnCounter == (players.size()) * FamilyMemberColor.values().length) {
 			boolean stop = newRound(vaticanDone);
 			if(stop )
 				return;

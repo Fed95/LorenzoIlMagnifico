@@ -1,4 +1,4 @@
-package it.polimi.ingsw.gc_12;
+package it.polimi.ingsw.gc_12.ActionTests;
 
 import it.polimi.ingsw.gc12.model.action.Action;
 import it.polimi.ingsw.gc12.model.action.ActionPlaceOnTower;
@@ -13,6 +13,7 @@ import it.polimi.ingsw.gc12.model.player.resource.Resource;
 import it.polimi.ingsw.gc12.model.player.resource.ResourceType;
 import it.polimi.ingsw.gc12.Server;
 import it.polimi.ingsw.gc12.view.server.ServerRMIView;
+import it.polimi.ingsw.gc_12.InstanceCreator;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -52,6 +53,8 @@ public class PlaceOnTowerTest {
         TowerFloor floor =  match.getBoard().getTowerSet().getTower(CardType.BUILDING).getFloor(0);
 
         Player player = match.getPlayer("p0");
+        for(ResourceType type : ResourceType.values())
+            player.setResourceValue(type, 100);
 
         ActionPlaceOnTower action = new ActionPlaceOnTower(player, player.getFamilyMember(FamilyMemberColor.BLACK), floor);
         List<Resource> discounts = new ArrayList<>();
@@ -68,6 +71,7 @@ public class PlaceOnTowerTest {
 
         assertTrue((floor.getRequiredValue() - action.getFamilyMember().getValue()) <= match.getActionHandler().getOffset());
         assertEquals(discounts, action.getDiscounts());
+
         for(ResourceType resourceType : ResourceType.values()){
             assertEquals(Optional.of(100), Optional.ofNullable(player.getResourceValue(resourceType)));
         }

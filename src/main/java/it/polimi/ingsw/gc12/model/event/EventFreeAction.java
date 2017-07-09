@@ -57,6 +57,10 @@ public class EventFreeAction extends Event {
         return familyMember;
     }
 
+    public List<Resource> getDiscounts() {
+        return discounts;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

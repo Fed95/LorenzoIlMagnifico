@@ -22,24 +22,28 @@ public class EffectResourceForResource extends Effect {
 
     @Override
     public void execute(Match match, Event event, boolean validation) {
-        player = event.getPlayer();
-        int value = player.getResourceValue(ownedResource.getType()) / ownedResource.getValue();
-        resource.setValue(resource.getValue() * value);
+        if(!validation) {
+            player = event.getPlayer();
+            int value = player.getResourceValue(ownedResource.getType()) / ownedResource.getValue();
+            resource.setValue(resource.getValue() * value);
 
-        int newValue = player.getResources().get(resource.getType()).getValue() + value;
+            int newValue = player.getResources().get(resource.getType()).getValue() + resource.getValue();
 
-        if(newValue < 0)
-            player.setResourceValue(resource.getType(), 0);
-        else
-            player.setResourceValue(resource.getType(), newValue);
+            if (newValue < 0)
+                player.setResourceValue(resource.getType(), 0);
+            else
+                player.setResourceValue(resource.getType(), newValue);
+        }
     }
 
     @Override
     public void discard(Match match, Event event) {
+        /*
         player = event.getPlayer();
         List<Resource> resources = new ArrayList<>();
         resources.add(resource);
         player.removeResources(resources);
+        */
     }
 
     @Override

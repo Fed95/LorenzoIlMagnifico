@@ -34,12 +34,12 @@ public abstract class CardDevelopment extends Card{
 	}
 
 	public List<Effect> getImmediateEffects() {
-		List<Effect> immediateeffects = new ArrayList<>();
+		List<Effect> immediateEffects = new ArrayList<>();
 		for(Effect effect : effects){
 			if (effect.getEvent() instanceof EventPickCard)
-				effects.add(effect);
+				immediateEffects.add(effect);
 		}
-		return immediateeffects;
+		return immediateEffects;
 	}
 
 

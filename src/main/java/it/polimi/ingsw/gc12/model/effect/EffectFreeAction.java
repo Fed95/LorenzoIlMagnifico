@@ -57,13 +57,32 @@ public class EffectFreeAction extends Effect {
 
     @Override
     public void discard(Match match, Event event) {
-        //TODO: CHECK THIS
+    }
+
+    public List<Occupiable> getOccupiables() {
+        return occupiables;
+    }
+
+    public List<Resource> getDiscounts() {
+        return discounts;
+    }
+
+    public FamilyMember getFamilyMember() {
+        return familyMember;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getValue() {
+        return value;
     }
 
     @Override
     public String toString() {
         if(description == null)
             return event.getClass().getSimpleName() + ": " + this.getClass().getSimpleName() + " of value " + value;
-        return description;
+        return getDescription();
     }
 }

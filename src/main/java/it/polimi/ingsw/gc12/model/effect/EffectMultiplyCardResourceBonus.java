@@ -52,6 +52,14 @@ public class EffectMultiplyCardResourceBonus extends Effect{
                     resources.add(resource);
     }
 
+    public List<ResourceType> getTypes() {
+        return types;
+    }
+
+    public int getMultiplier() {
+        return multiplier;
+    }
+
     @Override
     public void discard(Match match, Event event) {
 

@@ -2,14 +2,13 @@ package it.polimi.ingsw.gc12.model.effect;
 
 import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.event.Event;
-import it.polimi.ingsw.gc12.misc.exception.ActionDeniedException;
 import it.polimi.ingsw.gc12.model.player.resource.Resource;
 import it.polimi.ingsw.gc12.model.player.resource.ResourceExchange;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EffectDenyEffect extends Effect {
+public class EffectDenyExchange extends Effect {
 
     private Match match;
     private EffectProvider effectProvider;
@@ -17,7 +16,7 @@ public class EffectDenyEffect extends Effect {
     List<Resource> changedResources = new ArrayList<>();
     private boolean bonus; // If true, the bonus is reverted, if false the cost is reverted
 
-    public EffectDenyEffect(Event event, EffectProvider effectProvider, String description, boolean bonus){
+    public EffectDenyExchange(Event event, EffectProvider effectProvider, String description, boolean bonus){
         super(event);
         if(effectProvider != null)
             this.effectProvider = effectProvider;
@@ -25,7 +24,7 @@ public class EffectDenyEffect extends Effect {
         this.bonus = bonus;
     }
 
-    public EffectDenyEffect(Event event, String description, boolean bonus) {
+    public EffectDenyExchange(Event event, String description, boolean bonus) {
         this(event, null, description, bonus);
     }
 

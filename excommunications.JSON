@@ -540,7 +540,9 @@
     "period": 3,
     "effects": [
       {
-        "type": "EffectDenyEffect",
+        "type": "EffectDenyExchange",
+        "bonus": true,
+        "description": "At the end of the game, you won't receive MilitaryPoints for owning Territory cards",
         "effectProvider": {
           "effectProvider": "CardTerritory",
           "cardType": "TERRITORY",
@@ -560,10 +562,12 @@
     "period": 3,
     "effects": [
       {
-        "type": "EffectDenyEffect",
+        "type": "EffectDenyExchange",
+        "bonus": true,
+        "description": "At the end of the game, you won't receive MilitaryPoints for owning Character cards",
         "effectProvider": {
-          "effectProvider": "CardBuilder",
-          "cardType": "BUILDING",
+          "effectProvider": "CardCharacter",
+          "cardType": "CHARACTER",
           "period": 0,
           "name": "generic",
           "id": 0
@@ -580,27 +584,9 @@
     "period": 3,
     "effects": [
       {
-        "type": "EffectDenyEffect",
-        "effectProvider": {
-          "effectProvider": "CardCharacter",
-          "cardType": "CHARACTER",
-          "period": 0,
-          "name": "generic",
-          "id": 0
-        },
-        "event": {
-          "eventType": "EventEndMatch",
-          "actions": []
-        }
-      }
-    ]
-  },
-  {
-    "id": 16,
-    "period": 3,
-    "effects": [
-      {
-        "type": "EffectDenyEffect",
+        "type": "EffectDenyExchange",
+        "bonus": true,
+        "description": "At the end of the game, you won't receive MilitaryPoints for owning Venture cards",
         "effectProvider": {
           "effectProvider": "CardVenture",
           "cardType": "VENTURE",
@@ -616,7 +602,7 @@
     ]
   },
   {
-    "id": 17,
+    "id": 16,
     "period": 3,
     "effects": [
       {
@@ -639,7 +625,7 @@
     ]
   },
   {
-    "id": 18,
+    "id": 17,
     "period": 3,
     "effects": [
       {
@@ -662,7 +648,7 @@
     ]
   },
   {
-    "id": 19,
+    "id": 18,
     "period": 3,
     "effects": [
       {
@@ -702,7 +688,7 @@
     ]
   },
   {
-    "id": 20,
+    "id": 19,
     "period": 3,
     "effects": [
       {

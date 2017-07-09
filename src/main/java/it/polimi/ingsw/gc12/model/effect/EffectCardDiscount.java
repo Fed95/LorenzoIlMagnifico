@@ -53,6 +53,10 @@ public class EffectCardDiscount extends Effect {
 
     }
 
+    public Resource getResource() {
+        return resource;
+    }
+
     @Override
     public String toString() {
         return description;

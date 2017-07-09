@@ -69,6 +69,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 1
         }
       },
@@ -190,6 +191,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 3
         }
       },
@@ -258,6 +260,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 4
         }
       },
@@ -331,6 +334,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 5
         }
       },
@@ -457,6 +461,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 7
         }
       },
@@ -525,6 +530,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 8
         }
       },
@@ -593,6 +599,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 9
         }
       },
@@ -671,6 +678,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 10
         }
       },
@@ -744,6 +752,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 11
         }
       },
@@ -817,6 +826,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 12
         }
       },
@@ -890,6 +900,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 13
         }
       },
@@ -1011,6 +1022,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 15
         }
       },
@@ -1094,6 +1106,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 16
         }
       },
@@ -1167,6 +1180,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 17
         }
       },
@@ -1240,6 +1254,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 18
         }
       },
@@ -1313,6 +1328,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 19
         }
       },
@@ -1391,6 +1407,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 20
         }
       },
@@ -1464,6 +1481,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 21
         }
       },
@@ -1542,6 +1560,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 22
         }
       },
@@ -1620,6 +1639,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 23
         }
       },
@@ -1693,6 +1713,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 24
         }
       },
@@ -1765,6 +1786,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 25
         }
       },
@@ -1837,6 +1859,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 26
         }
       },
@@ -1909,6 +1932,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 27
         }
       },
@@ -1981,6 +2005,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 28
         }
       },
@@ -2082,6 +2107,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 29
         }
       },
@@ -2183,6 +2209,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 30
         }
       },
@@ -2263,6 +2290,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 31
         }
       },
@@ -2343,6 +2371,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 32
         }
       },
@@ -2433,6 +2462,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 33
         }
       },
@@ -2529,6 +2559,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 34
         }
       },
@@ -2625,6 +2656,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 35
         }
       },
@@ -2721,6 +2753,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 36
         }
       },
@@ -2821,6 +2854,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 37
         }
       },
@@ -2906,6 +2940,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 38
         }
       },
@@ -2991,6 +3026,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 39
         }
       },
@@ -3080,6 +3116,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 40
         }
       },
@@ -3164,6 +3201,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 41
         }
       },
@@ -3254,6 +3292,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 42
         }
       },
@@ -3338,6 +3377,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 43
         }
       },
@@ -3427,6 +3467,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 44
         }
       },
@@ -3527,6 +3568,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 45
         }
       },
@@ -3628,6 +3670,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 46
         }
       },
@@ -3728,6 +3771,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 47
         }
       },
@@ -3807,6 +3851,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 55
         }
       },
@@ -3814,6 +3859,7 @@
         "type": "EffectFreeAction",
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 55
         },
         "description": "Free action of value 4 on any TowerFloor",
@@ -3857,12 +3903,14 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 54
         }
       },
       {
-        "type": "EffectDenyEffect",
-        "description": "You won't receive bonuses from TowerFloors",
+        "type": "EffectDenyExchange",
+        "bonus": true,
+        "description": "You won't receive Resource bonuses from TowerFloors",
         "effectProvider": {
           "effectProvider": "TowerFloor"
         },
@@ -3915,6 +3963,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 48
         }
       },
@@ -4028,6 +4077,7 @@
         },
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardType": "BUILDING"
         }
       },
@@ -4041,6 +4091,7 @@
         },
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardType": "BUILDING"
         }
       }
@@ -4110,6 +4161,7 @@
         },
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardType": "CHARACTER"
         }
       }
@@ -4146,6 +4198,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 51
         }
       },
@@ -4310,6 +4363,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 56
         }
       },
@@ -4317,6 +4371,7 @@
         "type": "EffectFreeAction",
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 56
         },
         "description": "Free action of value 6 on any TowerFloor of the TERRITORY Tower",
@@ -4390,6 +4445,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 57
         }
       },
@@ -4410,6 +4466,7 @@
         ],
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 57
         },
         "occupiables": [
@@ -4452,6 +4509,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 58
         }
       },
@@ -4467,6 +4525,7 @@
         ],
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 58
         },
         "occupiables": [
@@ -4534,6 +4593,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 59
         }
       },
@@ -4541,6 +4601,7 @@
         "type": "EffectFreeAction",
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 59
         },
         "occupiables": [
@@ -4696,6 +4757,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 62
         }
       }
@@ -4732,6 +4794,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 63
         }
       }
@@ -4761,6 +4824,7 @@
         },
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 64
         }
       }
@@ -4790,6 +4854,7 @@
         },
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 65
         }
       }
@@ -4819,6 +4884,7 @@
         },
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 66
         }
       }
@@ -4848,6 +4914,7 @@
         },
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 67
         }
       }
@@ -4884,6 +4951,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 68
         }
       },
@@ -4891,6 +4959,7 @@
         "type": "EffectFreeAction",
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 68
         },
         "description": "Free action of value 4 on a HARVEST WorkSpace",
@@ -4943,6 +5012,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 69
         }
       },
@@ -4950,6 +5020,7 @@
         "type": "EffectFreeAction",
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 69
         },
         "description": "Free action of value 4 on a PRODUCTION WorkSpace",
@@ -4999,6 +5070,7 @@
         },
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 70
         }
       }
@@ -5035,6 +5107,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 71
         }
       },
@@ -5042,6 +5115,7 @@
         "type": "EffectFreeAction",
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 71
         },
         "description": "Free action of value 7 on any TowerFloor",
@@ -5085,6 +5159,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 79
         }
       },
@@ -5166,6 +5241,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 72
         }
       },
@@ -5221,6 +5297,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 73
         }
       },
@@ -5291,6 +5368,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 74
         }
       },
@@ -5346,6 +5424,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 75
         }
       },
@@ -5406,6 +5485,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 76
         }
       },
@@ -5471,6 +5551,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 77
         }
       },
@@ -5526,6 +5607,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 78
         }
       },
@@ -5591,6 +5673,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 80
         }
       },
@@ -5646,6 +5729,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 81
         }
       },
@@ -5716,6 +5800,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 82
         }
       },
@@ -5776,6 +5861,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 83
         }
       },
@@ -5802,6 +5888,7 @@
         "type": "EffectFreeAction",
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 83
         },
         "description": "Free action of value 4 on a HARVEST WorkSpace",
@@ -5851,6 +5938,7 @@
         "type": "EffectFreeAction",
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 93
         },
         "description": "Free action of value 3 on a PRODUCTION WorkSpace",
@@ -5927,6 +6015,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 85
         }
       },
@@ -5987,6 +6076,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 86
         }
       },
@@ -6052,6 +6142,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 87
         }
       },
@@ -6133,6 +6224,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 88
         }
       },
@@ -6188,6 +6280,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 89
         }
       },
@@ -6214,6 +6307,7 @@
         "type": "EffectFreeAction",
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 89
         },
         "description": "Free action of value 7 on any TowerFloor",
@@ -6272,6 +6366,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 90
         }
       },
@@ -6372,6 +6467,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 92
         }
       },
@@ -6443,6 +6539,7 @@
         "type": "EffectFreeAction",
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 93
         },
         "description": "Free action of value 3 on a PRODUCTION WorkSpace",
@@ -6500,6 +6597,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 94
         }
       },
@@ -6565,6 +6663,7 @@
         "choice": false,
         "event": {
           "eventType": "EventPickCard",
+          "anyCard": false,
           "cardID": 95
         }
       },
@@ -6706,7 +6805,8 @@
     },
     "effects": [
       {
-        "type": "EffectDenyEffect",
+        "type": "EffectDenyExchange",
+        "bonus": false,
         "description": "You don't have to spend the 3 extra MONEY resources when placing on a taken tower",
         "effectProvider": {
           "effectProvider": "TowerFloor"
@@ -6720,17 +6820,6 @@
           ],
           "multiplier": 1,
           "actions": []
-        }
-      },
-      {
-        "type": "EffectDenyEffect",
-        "description": "You don't have to spend the 3 extra MONEY resources when placing on a taken tower",
-        "effectProvider": {
-          "effectProvider": "TowerFloor"
-        },
-        "event": {
-          "eventType": "EventActivateLeaderCard",
-          "cardId": 98
         }
       }
     ]
@@ -6755,7 +6844,8 @@
           "value": 3
         },
         "event": {
-          "eventType": "EventPickCard"
+          "eventType": "EventPickCard",
+          "anyCard": true
         }
       }
     ]
@@ -7142,7 +7232,8 @@
           "SERVANT"
         ],
         "event": {
-          "eventType": "EventPickCard"
+          "eventType": "EventPickCard",
+          "anyCard": true
         }
       }
     ]
@@ -7252,7 +7343,8 @@
         "type": "EffectNoRequisites",
         "event": {
           "eventType": "EventPickCard",
-          "cardType": "TERRITORY"
+          "cardType": "TERRITORY",
+          "anyCard": false
         }
       }
     ]

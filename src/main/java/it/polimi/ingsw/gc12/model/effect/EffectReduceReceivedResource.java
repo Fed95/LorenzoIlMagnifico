@@ -13,6 +13,8 @@ public class EffectReduceReceivedResource extends Effect {
     public EffectReduceReceivedResource(Event event, int value) {
         super(event);
         this.value = value;
+        if(!(event instanceof EventReceiveResource))
+            throw new IllegalStateException("Expecting EventReceiveResource, received: " + event);
         this. resourceType = ((EventReceiveResource) event).getResource().getType();
     }
 
@@ -25,12 +27,15 @@ public class EffectReduceReceivedResource extends Effect {
             EventReceiveResource eventReceiveResource = (EventReceiveResource) event;
             ResourceType type = eventReceiveResource.getResource().getType();
 
-            //TODO: this is a redundant check
             if (this.resourceType.equals(type)) {
                 int newValue = eventReceiveResource.getResource().getValue() + value;
                 eventReceiveResource.getResource().setValue(newValue);
             }
         }
+    }
+
+    public ResourceType getResourceType() {
+        return resourceType;
     }
 
     @Override
