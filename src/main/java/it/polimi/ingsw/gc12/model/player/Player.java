@@ -1,15 +1,19 @@
 package it.polimi.ingsw.gc12.model.player;
 
+import it.polimi.ingsw.gc12.model.board.occupiable.TowerFloor;
 import it.polimi.ingsw.gc12.model.card.*;
 import it.polimi.ingsw.gc12.model.board.dice.Die;
 import it.polimi.ingsw.gc12.model.board.dice.DieColor;
 import it.polimi.ingsw.gc12.model.board.dice.SpaceDie;
 import it.polimi.ingsw.gc12.model.board.excommunication.ExcommunicationTile;
+import it.polimi.ingsw.gc12.model.effect.Effect;
+import it.polimi.ingsw.gc12.model.effect.EffectChangeResource;
 import it.polimi.ingsw.gc12.model.player.familymember.FamilyMember;
 import it.polimi.ingsw.gc12.model.player.familymember.FamilyMemberColor;
 import it.polimi.ingsw.gc12.model.player.personalboard.PersonalBoard;
 import it.polimi.ingsw.gc12.model.player.resource.Resource;
 import it.polimi.ingsw.gc12.model.player.resource.ResourceBuilder;
+import it.polimi.ingsw.gc12.model.player.resource.ResourceExchange;
 import it.polimi.ingsw.gc12.model.player.resource.ResourceType;
 
 import java.io.Serializable;
@@ -122,13 +126,38 @@ public class Player implements Serializable{
 		return resources.stream().allMatch(resource -> resource == null || (resource.getValue() <= this.resources.get(resource.getType()).getValue()));
 	}
 
-	public boolean satisfiesCardRequirements(Card c, List<Resource> discountedRequirements){
-		if(c instanceof CardDevelopment){
-			CardDevelopment card = (CardDevelopment) c;
-			if(card instanceof CardVenture && ((CardVenture) card).hasChoice() && hasResources(((CardVenture)card).getMilitaryExchange().getCost()))
-				return true;
+	/**
+	 * ActionPlaye has already checked if the player satisfies the TowerFloor cost.
+	 * Here we check if the player satisfies the cost of the floor and the cost of the card combined
+	 * @param towerFloor
+	 * @param discountedCardRequirements
+	 * @return
+	 */
+	public boolean satisfiesPlacementOnTowerFloorRequirements(TowerFloor towerFloor, List<Resource> discountedCardRequirements){
+		List<Resource> floorCost = new ArrayList<>();
+		CardDevelopment card = towerFloor.getCard();
+		for(Effect effect : towerFloor.getEffects()){
+			if(effect instanceof EffectChangeResource)
+				for(ResourceExchange exchange : ((EffectChangeResource) effect).getExchanges())
+					floorCost.addAll(exchange.getCost());
 		}
-		return hasResources(discountedRequirements);
+		if(card instanceof CardVenture && ((CardVenture) card).hasChoice() && hasResources(((CardVenture)card).getMilitaryExchange().getCost()))
+			return true;
+
+		return hasResources(mergeResources(floorCost, discountedCardRequirements));
+	}
+
+	private List<Resource> mergeResources(List<Resource> list1, List<Resource> list2){
+		List<Resource> mergedList = new ArrayList<>(list2);
+		for(Resource resource1 : list1){
+			for(Resource mergedResource : mergedList){
+				if(resource1.getType().equals(mergedResource.getType()))
+					mergedResource.setValue(mergedResource.getValue() + resource1.getValue());
+				else
+					mergedList.add(resource1);
+			}
+		}
+		return mergedList;
 	}
 
 

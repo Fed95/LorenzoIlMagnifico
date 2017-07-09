@@ -53,13 +53,15 @@ public class ActionPlaceOnTower extends ActionPlace {
 
     @Override
     public void canBeExecuted(Match match) throws RequiredValueNotSatisfiedException, ActionNotAllowedException{
+        if(!tower.canBeOccupiedBy(familyMember))
+            throw new ActionNotAllowedException("You already have another coloured FamilyMember on this tower");
         if(towerFloor.isOccupied() && !familyMember.isFriendly())
             throw new ActionNotAllowedException("This TowerFloor is already taken!");
         if(towerFloor.getCard() == null)
             throw new ActionNotAllowedException("There is no card on this floor!");
         if(!towerFloor.isRequiredValueSatisfied(familyMember))
             throw new RequiredValueNotSatisfiedException();
-        if(!player.satisfiesCardRequirements(towerFloor.getCard(), towerFloor.getCard().getDiscountedRequirements(discounts)))
+        if(!player.satisfiesPlacementOnTowerFloorRequirements(towerFloor, towerFloor.getCard().getDiscountedRequirements(discounts)))
             throw new ActionNotAllowedException("You don't have enough resources to take this card!");
         if(!player.getPersonalBoard().canPlaceCard(player, towerFloor.getCard()))
             throw new ActionNotAllowedException("You can't place this card on your board!");

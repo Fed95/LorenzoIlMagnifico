@@ -111,6 +111,9 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 			// It has been commented to have a lot of resources for testing
 			// player.setInitialResources(config.getInitialResources().get(i));
 
+			player.setResourceValue(ResourceType.MONEY, 3);//TODO: REMOVE AFTER TESTING
+
+
 			player.init(board.getSpaceDie());
 			player.getPersonalBoard().setCardsSpaces(new LoaderCardsSpace().get(this));
 			for(int j = 0; j < 4; j++)
