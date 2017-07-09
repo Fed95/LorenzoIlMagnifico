@@ -267,7 +267,14 @@ public class PlayerBoardController extends GUIController implements Initializabl
 	private Map<PlayerColor, Map<FamilyMemberColor, ImageView>> familyMembers = new HashMap<>();
 	private Map<PlayerColor, Map<FamilyMemberColor, Label>> familyMemberLabels = new HashMap<>();
 
-	public PlayerBoardController(){
+	@FXML private ImageView tile0;
+    @FXML private ImageView tile1;
+    @FXML private ImageView tile2;
+    @FXML private ImageView tile3;
+    private Map<PlayerColor, ImageView> tiles = new HashMap<>();
+
+
+    public PlayerBoardController(){
 		super(ClientFactory.getClientHandler());
 		match.addObserver(this);
 	}
@@ -501,6 +508,15 @@ public class PlayerBoardController extends GUIController implements Initializabl
 		}
 	}
 
+    /**
+     * Bind the imageView of the tile to the path into the representation
+     */
+    public void bindTiles(){
+        for(Player player : match.getPlayers().values()){
+           tiles.get(player.getColor()).imageProperty().bind(match.getBonusTiles().get(player.getColor()).getPathTile());
+        }
+
+    }
     /**
      * Activate the right player board tab and set the player color to the window.
      */
@@ -822,7 +838,13 @@ public class PlayerBoardController extends GUIController implements Initializabl
 		cardLeaders.put(PlayerColor.RED, thirdPlayerCardLeaders);
 		cardLeaders.put(PlayerColor.YELLOW, fourthPlayerCardLeaders);
 	}
+    public void setTiles(){
+	    tiles.put(PlayerColor.BLUE, tile0);
+	    tiles.put(PlayerColor.GREEN, tile1);
+	    tiles.put(PlayerColor.RED, tile2);
+	    tiles.put(PlayerColor.YELLOW, tile3);
 
+    }
 	@Override
 	public void update(Observable o, Object arg) {
 		player = match.getPlayers().get(playerColor);

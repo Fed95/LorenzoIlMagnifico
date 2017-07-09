@@ -2,7 +2,6 @@ package it.polimi.ingsw.gc12.view.client.gui;
 
 
 import it.polimi.ingsw.gc12.misc.json.loader.LoaderConfigPlayers;
-import it.polimi.ingsw.gc12.misc.observer.Observable;
 import it.polimi.ingsw.gc12.model.board.occupiable.*;
 import it.polimi.ingsw.gc12.model.board.track.TrackTurnOrder;
 import it.polimi.ingsw.gc12.model.card.CardDevelopment;
@@ -114,7 +113,8 @@ public class MatchInstanceGUI extends MatchInstance {
 
     //markets
     private  ObservableList<MarketRepresentation> markets = FXCollections.observableArrayList();
-
+    //bonusTiles
+    private ObservableMap<PlayerColor, BonusTilesRepresentation> bonusTiles = FXCollections.observableHashMap();
     private MatchInstanceGUI() {}
 
 	public static MatchInstanceGUI instance() {
@@ -138,6 +138,7 @@ public class MatchInstanceGUI extends MatchInstance {
         createPawnCouncil();
         createWorkSpacesPawn();
         createMarketRepresentation();
+        createBonusTileRepresentation(match);
         setChanged();
 		notifyObservers();
 		initialized = true;
@@ -573,6 +574,18 @@ public class MatchInstanceGUI extends MatchInstance {
             markets.add(marketRepresentation);
         }
     }
+
+    /**
+     * Create the Bonus tile representation
+     * @param match
+     */
+    public void createBonusTileRepresentation(Match match){
+        for(Player player : match.getPlayers().values()){
+            String path = "img/tiles/tile"+player.getPersonalBoard().getBonusTile().getId()+".png";
+            BonusTilesRepresentation bonusTile = new BonusTilesRepresentation(path, player.getColor());
+            bonusTiles.put(player.getColor(), bonusTile);
+        }
+    }
     public Map<PlayerColor, ObservableList<FamilyMemberRepresentation>> getMapPlayerColorObservableLiseFMRepr() {
 		return familyMembers;
 	}
@@ -623,6 +636,10 @@ public class MatchInstanceGUI extends MatchInstance {
 
     public ObservableList<MarketRepresentation> getMarkets() {
         return markets;
+    }
+
+    public ObservableMap<PlayerColor, BonusTilesRepresentation> getBonusTiles() {
+        return bonusTiles;
     }
 
     public void notifyInit() {

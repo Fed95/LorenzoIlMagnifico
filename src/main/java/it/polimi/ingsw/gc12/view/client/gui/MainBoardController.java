@@ -376,6 +376,7 @@ public class MainBoardController extends GUIController implements Initializable,
             playerBoardController.setPlayerToPane();
             playerBoardController.bindPlayerCard();
             playerBoardController.bindPlayerLeaderCard();
+            playerBoardController.bindTiles();
             player = match.getPlayers().get(playerColor);
         });
     }
@@ -660,7 +661,7 @@ public class MainBoardController extends GUIController implements Initializable,
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Free Action");
             alert.setHeaderText(null);
-            alert.setContentText("I have a great message for you!\n You earned a free action for the effect of the card you just picked!\n\n");
+            alert.setContentText("I have a great message for you!\n You earned a free action for the effect of the card you just picked!\n\n Be careful, if the action is not valid, you will lose the chance to use the free action");
             alert.showAndWait();
         }
     }
@@ -820,6 +821,7 @@ public class MainBoardController extends GUIController implements Initializable,
         playerBoardController.setCardLeaders();
         setCouncilPawns();
         setWorkSpaces();
+        playerBoardController.setTiles();
     }
 
     private void setCardFloors() {
