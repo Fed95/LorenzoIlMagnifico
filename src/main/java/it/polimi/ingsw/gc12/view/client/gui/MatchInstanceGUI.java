@@ -170,6 +170,18 @@ public class MatchInstanceGUI extends MatchInstance {
 						}
 					}
 				}
+				else if(occupiable instanceof SpaceWork) {
+					for(WorkSpacePawn workSpacePawn: workSpacesPawn.get(((SpaceWork) occupiable).getWorkType())) {
+						if(!workSpacePawn.isOccupied()) {
+							workSpacePawn.setFamilyMember(familyMember, playerColor);
+							break;
+						}
+					}
+				}
+				else if(occupiable instanceof SpaceMarket) {
+					SpaceMarket spaceMarket = (SpaceMarket) occupiable;
+					// TODO: wait for spaceMarketRepresentation
+				}
 			}
 		}
 	}

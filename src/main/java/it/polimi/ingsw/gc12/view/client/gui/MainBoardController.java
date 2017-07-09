@@ -680,6 +680,16 @@ public class MainBoardController extends GUIController implements Initializable,
             towerFloors.get(floor.getType()).get(floor.getFloorNum()).setX(17);
             towerFloors.get(floor.getType()).get(floor.getFloorNum()).setY(-20);
         }
+        else if(occupiable instanceof SpaceWorkSingle) {
+            SpaceWorkSingle spaceWork = (SpaceWorkSingle) occupiable;
+            workplaces.get(spaceWork.getWorkType()).get(0).setX(17);
+            workplaces.get(spaceWork.getWorkType()).get(0).setY(-20);
+        }
+        else if(occupiable instanceof SpaceMarket) {
+            SpaceMarket spaceMarket = (SpaceMarket) occupiable;
+            markets.get(spaceMarket.getMarketNum()).setX(17);
+            markets.get(spaceMarket.getMarketNum()).setY(-20);
+        }
     }
 
     public void resetOccupiableImages() {

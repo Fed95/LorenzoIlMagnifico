@@ -1,5 +1,6 @@
 package it.polimi.ingsw.gc12.model.board;
 
+import it.polimi.ingsw.gc12.misc.json.loader.LoaderConfigPlayers;
 import it.polimi.ingsw.gc12.model.board.dice.SpaceDie;
 import it.polimi.ingsw.gc12.model.board.excommunication.ExcommunicationSpace;
 import it.polimi.ingsw.gc12.model.board.excommunication.ExcommunicationTile;
@@ -54,7 +55,7 @@ public class Board implements Serializable{
 	}
 
 	public void createSpaceWork(int playersNum) {
-		ConfigPlayers configPlayers = new ConfigPlayers(playersNum);
+		ConfigPlayers configPlayers = new LoaderConfigPlayers().get(null).get(playersNum);
 		for(WorkType workType : WorkType.values()){
 			SpaceWorkZone spaceWorkZone = new SpaceWorkZone();
 			spaceWorkZone.addSpaceWork(new SpaceWorkSingle(workType));
