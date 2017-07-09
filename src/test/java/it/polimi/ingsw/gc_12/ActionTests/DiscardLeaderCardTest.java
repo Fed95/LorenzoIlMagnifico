@@ -3,6 +3,7 @@ package it.polimi.ingsw.gc_12.ActionTests;
 import it.polimi.ingsw.gc12.model.action.ActionDiscardLeaderCard;
 import it.polimi.ingsw.gc12.model.card.LeaderCard;
 import it.polimi.ingsw.gc12.model.event.EventCouncilPrivilegeReceived;
+import it.polimi.ingsw.gc12.model.event.EventDiscardLeaderCard;
 import it.polimi.ingsw.gc12.model.event.EventStartTurn;
 import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.player.Player;
@@ -43,7 +44,7 @@ public class DiscardLeaderCardTest {
 
         match.getActionHandler().getAvailableAction(0);
 
-        assertTrue(match.getActionHandler().getEvents().getFirst() instanceof EventStartTurn);
+        assertTrue(match.getActionHandler().getEvents().getFirst() instanceof EventDiscardLeaderCard);
         assertTrue(action.equals(action));
         assertFalse(action.equals(action1));
     }
