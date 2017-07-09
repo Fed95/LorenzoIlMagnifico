@@ -5,8 +5,14 @@ import it.polimi.ingsw.gc12.model.player.resource.ResourceType;
 import javafx.beans.property.*;
 
 /**
- * Created by rugge on 24/06/2017.
+ * It represent a resource in the player Board, is a semplification of the real Resource on the server.
+ * The elements contains property that are binded with the java fx with Observable lists or maps.
+ * @param playerColor the resource belongs to this player
+ * @param value value of the resource
+ * @param resourceType the resource has this type
  */
+
+
 public class ResourceRepresentation {
     private ObjectProperty<PlayerColor> playerColor;
     private ObjectProperty<ResourceType> resourceType;
