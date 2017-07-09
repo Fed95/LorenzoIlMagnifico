@@ -6,6 +6,11 @@ import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.event.EventTowerChosen;
 import it.polimi.ingsw.gc12.model.board.occupiable.Tower;
 
+/**
+ * This action has been implemented to improve the CLI experience.
+ * When a player selects this action he is presented with a new set of actions
+ * regarding the placements he can perform on the specified tower
+ */
 public class ActionChooseTower extends Action {
 
     private Tower tower;

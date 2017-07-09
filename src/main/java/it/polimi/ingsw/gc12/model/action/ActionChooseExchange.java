@@ -10,6 +10,14 @@ import it.polimi.ingsw.gc12.model.player.resource.ResourceExchange;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The action is related to a specific ResourceExchange.
+ * When the player selects this action the exchange is executed
+ * which means the cost of the exchange will be removed from the player's resources and the bonus will be added.
+ * During the process an EventReceiveResource is generated for every bonus.
+ * This allows EffectProviders with effects related to this event to alter the bonus
+ */
+
 public class ActionChooseExchange extends Action {
 
     private ResourceExchange exchange;

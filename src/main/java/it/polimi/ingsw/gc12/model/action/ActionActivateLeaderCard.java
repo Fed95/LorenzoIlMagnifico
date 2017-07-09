@@ -10,6 +10,11 @@ import it.polimi.ingsw.gc12.model.event.EventActivateLeaderCard;
 import it.polimi.ingsw.gc12.model.event.EventStartTurn;
 import it.polimi.ingsw.gc12.misc.exception.ActionDeniedException;
 
+/**
+ * This action activates the LeaderCard (sets activated boolean int he card to true)
+ * and generates an "EventActivateLeaderCard", passing it to the EffectHandler.
+ * This will allow the effects on the card to be executed.
+ */
 public class ActionActivateLeaderCard extends Action {
 
     private LeaderCard card;

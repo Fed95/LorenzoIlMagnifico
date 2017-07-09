@@ -7,6 +7,12 @@ import it.polimi.ingsw.gc12.model.effect.Effect;
 import it.polimi.ingsw.gc12.model.event.EventActivateLeaderCard;
 import it.polimi.ingsw.gc12.model.event.EventStartTurn;
 
+/**
+ * When the player activates a LeaderCard with EffectCopyLeaderCard, he is presented with a set of ActionCopyLeaderCard.
+ * Each action refers to a LeaderCard the player chan choose to copy.
+ * When executed the action replaces all effects of the owned LeaderCard with the ones of the chosen card.
+ * Furthermore it sets the boolean "permanent" of the owned card to the one of the selected card.
+ */
 public class ActionCopyLeaderCard extends Action {
 
     private LeaderCard myCard;

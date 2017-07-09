@@ -5,6 +5,11 @@ import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.event.EventMarketChosen;
 
+/**
+ * This action has been implemented to improve the CLI experience.
+ * When a player selects this action he is presented with a new set of actions
+ * regarding the placements he can perform on the market
+ */
 public class ActionChooseMarket extends Action {
 
     private FamilyMember familyMember;

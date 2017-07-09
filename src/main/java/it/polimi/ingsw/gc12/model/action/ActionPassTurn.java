@@ -3,6 +3,9 @@ package it.polimi.ingsw.gc12.model.action;
 import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.player.Player;
 
+/**
+ * Allows the player to pass the turn by invoking Match.newTurn
+ */
 public class ActionPassTurn extends Action{
 
 	public ActionPassTurn(Player player) {

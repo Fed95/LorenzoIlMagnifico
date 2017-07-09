@@ -8,6 +8,9 @@ import it.polimi.ingsw.gc12.model.player.resource.Servant;
 
 import java.util.List;
 
+/**
+ * This class generates the correct ActionPlace based on the instance of the Occupiable it receives
+ */
 public class ActionFactory {
 
 	public static ActionPlace createActionPlace(Player player, FamilyMember familyMember, Occupiable occupiable, Servant servant, boolean complete, List<Resource> discounts) {

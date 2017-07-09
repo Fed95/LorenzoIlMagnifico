@@ -8,6 +8,12 @@ import it.polimi.ingsw.gc12.model.event.EventCouncilPrivilegeReceived;
 import it.polimi.ingsw.gc12.model.event.EventStartTurn;
 import it.polimi.ingsw.gc12.model.player.resource.CouncilPrivilege;
 
+/**
+ * This Action allows the player to discard a LeaderCard in exchange for a CouncilPrivilege
+ * When executed, an EventCouncilPrivilegeReceived is generated, allowing the player to choose from the relative bonuses
+ * that the privilege offers.
+ * An EventDiscardLeaderCard is then sent to the ActionHandler
+ */
 public class ActionDiscardLeaderCard extends Action {
 
     private LeaderCard card;
@@ -27,16 +33,12 @@ public class ActionDiscardLeaderCard extends Action {
         player.getPersonalBoard().getLeaderCardsSpace().getCards().remove(card);
 
         EventCouncilPrivilegeReceived event = new EventCouncilPrivilegeReceived(player, new CouncilPrivilege(1));
-        //TODO: are there any effects that could be executed?
         match.getActionHandler().update(event, match);
         match.notifyObserver(event);
 
         EventDiscardLeaderCard eventCard = new EventDiscardLeaderCard(player, card.getId());
         match.getActionHandler().update(eventCard, match);
         match.notifyObserver(eventCard);
-        /*EventStartTurn eventStartTurn = new EventStartTurn(player);
-        match.getActionHandler().update(eventStartTurn, match);
-        match.notifyObserver(eventStartTurn);*/
     }
 
     @Override
