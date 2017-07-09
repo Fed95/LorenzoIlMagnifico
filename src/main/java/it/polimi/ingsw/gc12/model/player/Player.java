@@ -42,7 +42,7 @@ public class Player implements Serializable{
 		Map<ResourceType, Resource> resources = new HashMap<>();
 		for(ResourceType resourceType: ResourceType.values()) {
 			// TODO: set to 0 before the deadline
-			resources.put(resourceType, ResourceBuilder.create(resourceType, 100));
+			resources.put(resourceType, ResourceBuilder.create(resourceType, 0));
 		}
 		this.resources = resources;
 		personalBoard.getResourcesContainer().syncronize(this.resources);
@@ -148,18 +148,27 @@ public class Player implements Serializable{
 	}
 
 	private List<Resource> mergeResources(List<Resource> list1, List<Resource> list2){
-		List<Resource> mergedList = new ArrayList<>(list2);
-		for(Resource resource1 : list1){
-			for(Resource mergedResource : mergedList){
-				if(resource1.getType().equals(mergedResource.getType()))
-					mergedResource.setValue(mergedResource.getValue() + resource1.getValue());
-				else
-					mergedList.add(resource1);
-			}
+		HashMap<ResourceType, Resource> merge = new HashMap<>();
+		for(ResourceType resourceType: ResourceType.values()) {
+			merge.put(resourceType, ResourceBuilder.create(resourceType, 0));
 		}
-		return mergedList;
+		merge = sumResourceValues(merge, list1);
+		merge = sumResourceValues(merge, list2);
+
+		return new ArrayList<>(merge.values());
 	}
 
+	private HashMap<ResourceType, Resource> sumResourceValues(HashMap<ResourceType, Resource> merge, List<Resource> list) {
+		for(Resource resource: list) {
+			Resource resourceMerge = merge.get(resource.getType());
+			if(resourceMerge != null) {
+				resourceMerge.setValue(resourceMerge.getValue()+resource.getValue());
+			}
+			else
+				merge.put(resource.getType(), resource);
+		}
+		return merge;
+	}
 
 	private boolean hasEnoughCards(CardType type, int quantity){
 		return personalBoard.getCards(type).size() >= quantity;

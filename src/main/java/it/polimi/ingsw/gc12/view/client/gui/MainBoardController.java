@@ -187,26 +187,36 @@ public class MainBoardController extends GUIController implements Initializable,
         checkExclusion();
         ImageView floorClicked = (ImageView) event.getTarget();
         if(isMyTurn()){
-            loop: for(Map.Entry<CardType, List<ImageView>> entryType : towerFloors.entrySet()) {
+            for(Map.Entry<CardType, List<ImageView>> entryType : towerFloors.entrySet()) {
                 for (int i = 0; i < entryType.getValue().size(); i++) {
                     if(entryType.getValue().get(i).equals(floorClicked)) {
                         Action actionPending = new ActionPlaceOnTower(match.getPlayers().get(playerColor), null, new TowerFloor(i, entryType.getKey()));
-                        if(clientHandler.getActions().contains(actionPending))
+                        /*if(clientHandler.getActions().contains(actionPending))
                             clientHandler.setActionPending(actionPending);
                         if(selectAction(actionPending))
-                            break loop;
+                            return;*/
 
-                        if(clientHandler.getActionPending() instanceof ActionPlace) {
+                        /*if(clientHandler.getActionPending() instanceof ActionPlace) {
                             selectAction(new DiscardAction(player));
-                        }
+                        }*/
                         Action action = new ActionChooseTower(match.getPlayers().get(playerColor), null, new Tower(entryType.getKey()));
                         if(clientHandler.getActions().contains(action))
                             clientHandler.setActionPending(actionPending);
-                        selectAction(action);
-                        break loop;
+                        if(!selectAction(action)) {
+                            actionDenied();
+                            resetFamilyMembers();
+                            clientHandler.setActionPending(null);
+                            action = new DiscardAction(player);
+                            selectAction(action);
+
+                        }
+
+                        return;
                     }
                 }
             }
+            actionDenied();
+            resetFamilyMembers();
         }
         else
             showTurnDenied();
@@ -226,10 +236,11 @@ public class MainBoardController extends GUIController implements Initializable,
                         Action action = new ActionChooseMarket(match.getPlayers().get(playerColor), null);
                         clientHandler.setActionPending(new ActionPlaceOnMarket(match.getPlayers().get(playerColor), null, new SpaceMarket(i, 1, new ArrayList<>())));
                         selectAction(action);
-                        break;
+                        return;
                     }
-
                 }
+                actionDenied();
+                resetFamilyMembers();
             } else
                 showTurnDenied();
         }
@@ -244,7 +255,6 @@ public class MainBoardController extends GUIController implements Initializable,
         ImageView workplace = (ImageView) event.getTarget();
         if(workplace.getUserData() != "block") {
             if (isMyTurn()) {
-                loop:
                 for (Map.Entry<WorkType, List<ImageView>> entryType : workplaces.entrySet()) {
                     for (int i = 0; i < entryType.getValue().size(); i++) {
                         if (entryType.getValue().get(i).equals(workplace)) {
@@ -254,10 +264,12 @@ public class MainBoardController extends GUIController implements Initializable,
                             else
                                 clientHandler.setActionPending(new ActionPlaceOnSpaceWork(match.getPlayers().get(playerColor), null, new SpaceWorkMultiple(entryType.getKey())));
                             selectAction(action);
-                            break loop;
+                            return;
                         }
                     }
                 }
+                actionDenied();
+                resetFamilyMembers();
             } else
                 showTurnDenied();
         }
@@ -283,17 +295,6 @@ public class MainBoardController extends GUIController implements Initializable,
         alert.setHeaderText("Ingegneria del Software gruppo gc_12");
         alert.setContentText("Hi we are Ruggero, Marco and Federico the developers of Lorenzo il Magnifico pc game. Thanks for playing our game, hope you like it :) \n \n Cheers!!");
 
-        alert.showAndWait();
-    }
-
-    /**
-     * Alert for tell to the user that an action is not valid
-     */
-    public void actionDenied(){
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Action denied");
-        alert.setHeaderText("You can't do this action");
-        alert.setContentText("The action selected is not valid, sorry");
         alert.showAndWait();
     }
 
@@ -392,7 +393,7 @@ public class MainBoardController extends GUIController implements Initializable,
         }
 
         if(!config.isSpaceWorkMultiple())
-           blockSpaceWork();
+            blockSpaceWork();
 
     }
 
@@ -517,25 +518,31 @@ public class MainBoardController extends GUIController implements Initializable,
             markets.get(i).imageProperty().bind(match.getMarkets().get(i).getPath());
         }
     }
+
     public TextArea getChat(){
         return chatTextArea;
     }
 
     /**
-     * Make an equals between the avaliable action and the action selected on the GUI.
-     * If the action exist il will be send to the clientHandler event handler throw selectAction
+     * Sends an action that has been saved in the attribute actionPending of the ClientHandler
+     * This is used to send automatically actions when a specific event is received
      */
     public void sendAction() {
         if(isMyTurn()) {
             Action actionPending = clientHandler.getActionPending();
             if(actionPending != null) {
-                if(clientHandler.getActions().contains(actionPending))
-                    selectAction(actionPending);
-                else {
-                    clientHandler.setActionPending(clientHandler.getActionFM());
-                    selectAction(new DiscardAction(player));
+                if(clientHandler.getActions().contains(actionPending)) {
+                    if(!selectAction(actionPending)) {
+                        actionDenied();
+                        resetFamilyMembers();
+                    }
                 }
-
+                else {
+                    clientHandler.setActionPending(null);
+                    selectAction(new DiscardAction(player));
+                    actionDenied();
+                    resetFamilyMembers();
+                }
             }
         }
     }
@@ -547,30 +554,31 @@ public class MainBoardController extends GUIController implements Initializable,
      * @param minValue min value acepted
      * @return
      */
-   private int askValue(String title, String request, String minValue){
-       TextInputDialog dialog = new TextInputDialog(minValue);
-       dialog.setTitle(title);
-       dialog.setHeaderText(request);
-       dialog.setContentText("Value:");
-       Optional<String> result = dialog.showAndWait();
-       int value = 0;
-       if (result.isPresent()){
-           String resToString = result.get();
-           if(isInteger(resToString)) {
-               int res = Integer.parseInt(resToString);
-               if (res >= clientHandler.getOffset() && res < clientHandler.getActions().size())
-                   return res;
-           }
-           value = askValue(title,request, minValue);
-       }
-       else {
-           Action action = new DiscardAction(match.getPlayers().get(playerColor));
-           clientHandler.setActionPending(null);
-           selectAction(action);
-           return -1;
-       }
-       return value;
-   }
+    private int askValue(String title, String request, String minValue){
+        TextInputDialog dialog = new TextInputDialog(minValue);
+        dialog.setTitle(title);
+        dialog.setHeaderText(request);
+        dialog.setContentText("Value:");
+        Optional<String> result = dialog.showAndWait();
+        int value = 0;
+        if (result.isPresent()){
+            String resToString = result.get();
+            if(isInteger(resToString)) {
+                int res = Integer.parseInt(resToString);
+
+                if (res >= clientHandler.getOffset() && res <= match.getPlayers().get(playerColor).getResourceValue(ResourceType.SERVANT))
+                    return res;
+            }
+            value = askValue(title,request, minValue);
+        }
+        else {
+            Action action = new DiscardAction(match.getPlayers().get(playerColor));
+            clientHandler.setActionPending(null);
+            selectAction(action);
+            return -1;
+        }
+        return value;
+    }
 
     private boolean isInteger(String s) {
         try {
@@ -583,72 +591,72 @@ public class MainBoardController extends GUIController implements Initializable,
 
     public void handleCouncilPrivilege(CouncilPrivilege councilPrivilege) {
 
-   		if(isMyTurn()) {
-			try {
-				FXMLLoader loader = new FXMLLoader();
-				loader.setLocation(MainBoard.class.getResource("/FXML/DialogCouncilPrivilegeFXML.fxml"));
-				Pane page = loader.load();
-				Stage dialogStage = new Stage();
-				dialogStage.setTitle("Choose Privilege");
-				dialogStage.setResizable(false);
-				dialogStage.initModality(Modality.WINDOW_MODAL);
-				Scene scene = new Scene(page);
-				dialogStage.setScene(scene);
-				DialogCouncilPrivilegeController controller = loader.getController();
-				controller.setDialogStage(dialogStage);
+        if(isMyTurn()) {
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(MainBoard.class.getResource("/FXML/DialogCouncilPrivilegeFXML.fxml"));
+                Pane page = loader.load();
+                Stage dialogStage = new Stage();
+                dialogStage.setTitle("Choose Privilege");
+                dialogStage.setResizable(false);
+                dialogStage.initModality(Modality.WINDOW_MODAL);
+                Scene scene = new Scene(page);
+                dialogStage.setScene(scene);
+                DialogCouncilPrivilegeController controller = loader.getController();
+                controller.setDialogStage(dialogStage);
 
-				requestCouncilPrivileges(councilPrivilege, dialogStage, controller);
+                requestCouncilPrivileges(councilPrivilege, dialogStage, controller);
 
-			} catch (IOException e) {
-			    e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-			finally {
-				clientHandler.getEvents().removeFirst();
-				clientHandler.handleEvent();
-			}
-		}
+            finally {
+                clientHandler.getEvents().removeFirst();
+                clientHandler.handleEvent();
+            }
+        }
     }
 
     private void requestCouncilPrivileges(CouncilPrivilege councilPrivilege, Stage dialogStage, DialogCouncilPrivilegeController controller) {
-		while(councilPrivilege.getValue() > 0) {
-			int choice = askPrivilege(dialogStage, controller);
-			ResourceExchange exchange =	new ResourceExchange(new ArrayList<>(Collections.singletonList(new CouncilPrivilege(1))), councilPrivilegeResources.get(choice));
-			Action action = new ActionChooseExchange(match.getPlayers().get(playerColor), exchange);
-			List<Action> actions = clientHandler.getActions();
-			for (int i = 0; i < actions.size(); i++) {
-				if(actions.get(i).equals(action)) {
-					clientHandler.removeAction(i);
-					councilPrivilege.setValue(councilPrivilege.getValue() - 1);
-					setChanged();
-					notifyObservers(i);
-					break;
-				}
-			}
-		}
-	}
-
-    private int askPrivilege(Stage dialogStage, DialogCouncilPrivilegeController controller) {
-   		int privilege;
-		dialogStage.showAndWait();
-
-		if(controller.getSelected()!=-1){
-			privilege = controller.getSelected();
-			return privilege;
-		}else{
-			privilege = askPrivilege(dialogStage, controller);
-		}
-		return privilege;
+        while(councilPrivilege.getValue() > 0) {
+            int choice = askPrivilege(dialogStage, controller);
+            ResourceExchange exchange =	new ResourceExchange(new ArrayList<>(Collections.singletonList(new CouncilPrivilege(1))), councilPrivilegeResources.get(choice));
+            Action action = new ActionChooseExchange(match.getPlayers().get(playerColor), exchange);
+            List<Action> actions = clientHandler.getActions();
+            for (int i = 0; i < actions.size(); i++) {
+                if(actions.get(i).equals(action)) {
+                    clientHandler.removeAction(i);
+                    councilPrivilege.setValue(councilPrivilege.getValue() - 1);
+                    setChanged();
+                    notifyObservers(i);
+                    break;
+                }
+            }
+        }
     }
 
-	public void councilPalaceClicked() {
-		if(isMyTurn()){
-			Action action = new ActionPlaceOnCouncil(match.getPlayers().get(playerColor), null, new CouncilPalace(1));
-			clientHandler.setActionPending(action);
-			selectAction(action);
-		}
-		else
-			showTurnDenied();
-	}
+    private int askPrivilege(Stage dialogStage, DialogCouncilPrivilegeController controller) {
+        int privilege;
+        dialogStage.showAndWait();
+
+        if(controller.getSelected()!=-1){
+            privilege = controller.getSelected();
+            return privilege;
+        }else{
+            privilege = askPrivilege(dialogStage, controller);
+        }
+        return privilege;
+    }
+
+    public void councilPalaceClicked() {
+        if(isMyTurn()){
+            Action action = new ActionPlaceOnCouncil(match.getPlayers().get(playerColor), null, new CouncilPalace(1));
+            clientHandler.setActionPending(action);
+            selectAction(action);
+        }
+        else
+            showTurnDenied();
+    }
 
     /**
      * ask for some requirements or permanent effects to choose between resources
@@ -837,10 +845,10 @@ public class MainBoardController extends GUIController implements Initializable,
         excomTiles.add(excomTile3);
     }
     private void setExcommunicationOccupiableColors() {
-       excommunication1PlayersColor.put(PlayerColor.BLUE, excomm1Pl1);
-       excommunication1PlayersColor.put(PlayerColor.GREEN, excomm1Pl2);
-       excommunication1PlayersColor.put(PlayerColor.RED, excomm1Pl3);
-       excommunication1PlayersColor.put(PlayerColor.YELLOW, excomm1Pl4);
+        excommunication1PlayersColor.put(PlayerColor.BLUE, excomm1Pl1);
+        excommunication1PlayersColor.put(PlayerColor.GREEN, excomm1Pl2);
+        excommunication1PlayersColor.put(PlayerColor.RED, excomm1Pl3);
+        excommunication1PlayersColor.put(PlayerColor.YELLOW, excomm1Pl4);
 
         excommunication2PlayersColor.put(PlayerColor.BLUE, excomm2Pl1);
         excommunication2PlayersColor.put(PlayerColor.GREEN, excomm2Pl2);

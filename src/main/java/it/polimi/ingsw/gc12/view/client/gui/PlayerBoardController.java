@@ -272,11 +272,11 @@ public class PlayerBoardController extends GUIController implements Initializabl
 		match.addObserver(this);
 	}
 
-    /**
-     * Some initializations, disable all the tabs
-     * @param location
-     * @param resources
-     */
+	/**
+	 * Some initializations, disable all the tabs
+	 * @param location
+	 * @param resources
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		//disabling all tab player
@@ -286,10 +286,10 @@ public class PlayerBoardController extends GUIController implements Initializabl
 		yellowPlayer.setDisable(true);
 	}
 
-    /**
-     * Method for showing or playng the card leader depending on the mouse click count
-     * @param mouseEvent mouse click
-     */
+	/**
+	 * Method for showing or playng the card leader depending on the mouse click count
+	 * @param mouseEvent mouse click
+	 */
 	public void showCardLeader(MouseEvent mouseEvent) {
 		checkExclusion();
 		ImageView leaderCard = (ImageView) mouseEvent.getSource();
@@ -315,10 +315,10 @@ public class PlayerBoardController extends GUIController implements Initializabl
 		}
 	}
 
-    /**
-     * handling the click on the family member and creating the action
-     * @param mouseEvent mouse click
-     */
+	/**
+	 * handling the click on the family member and creating the action
+	 * @param mouseEvent mouse click
+	 */
 	public void familyClicked(MouseEvent mouseEvent) {
 		checkExclusion();
 		ImageView familyMemberClicked = (ImageView) mouseEvent.getTarget();
@@ -327,19 +327,22 @@ public class PlayerBoardController extends GUIController implements Initializabl
 				for (Map.Entry<FamilyMemberColor, ImageView> entry : familyMembers.get(playerColor).entrySet()) {
 					if (entry.getValue().equals(familyMemberClicked)) {
 						FamilyMember familyMember = new FamilyMember(playerColor, entry.getKey());
-						Action action = new ActionChooseFamilyMember(match.getPlayers().get(playerColor), familyMember);
-						if (isFMSelected(familyMemberClicked) || clientHandler.getActionPending() != null) {
-							if (!isFMSelected(familyMemberClicked)) {
-								clientHandler.setActionPending(action);
-								clientHandler.setActionFM(action);
-							}
-							else
-								clientHandler.setActionPending(null);
+						Action action;
+
+						if(isFMSelected(familyMemberClicked)) {
 							action = new DiscardAction(match.getPlayers().get(playerColor));
-						} else {
-							clientHandler.setActionPending(action);
-							clientHandler.setActionFM(action);
+							clientHandler.setActionPending(null);
 						}
+						else if(clientHandler.getActionPending() != null) {
+							action = new DiscardAction(match.getPlayers().get(playerColor));
+							clientHandler.setActionPending(new ActionChooseFamilyMember(match.getPlayers().get(playerColor), familyMember));
+						}
+						else {
+							action = new ActionChooseFamilyMember(match.getPlayers().get(playerColor), familyMember);
+							clientHandler.setActionPending(new ActionChooseFamilyMember(match.getPlayers().get(playerColor), familyMember));
+						}
+
+
 						toggleFMHighlight(familyMemberClicked);
 						selectAction(action);
 						break;
@@ -350,10 +353,10 @@ public class PlayerBoardController extends GUIController implements Initializabl
 		}
 	}
 
-    /**
-     * Higlight the clicked familyMember on the GUI
-     * @param familyMemberClicked family member to higlight
-     */
+	/**
+	 * Higlight the clicked familyMember on the GUI
+	 * @param familyMemberClicked family member to higlight
+	 */
 	private void toggleFMHighlight(ImageView familyMemberClicked){
 		Integer selection = (int)familyMemberClicked.getOpacity();
 		if(selection != 1){
@@ -367,10 +370,10 @@ public class PlayerBoardController extends GUIController implements Initializabl
 		}
 	}
 
-    /**
-     * Ask with a dialog if you want to play or discard leader cards
-     * @return integer
-     */
+	/**
+	 * Ask with a dialog if you want to play or discard leader cards
+	 * @return integer
+	 */
 	private int askDiscardOrPlay(){
 		Dialog dialog = new Dialog<>();
 		dialog.setTitle("Leader Card");
@@ -389,12 +392,12 @@ public class PlayerBoardController extends GUIController implements Initializabl
 		return askDiscardOrPlay();
 	}
 
-    /**
-     * check if i click on my family memeber or
-     * @param color
-     * @param famMemb
-     * @return
-     */
+	/**
+	 * check if i click on my family memeber or
+	 * @param color
+	 * @param famMemb
+	 * @return
+	 */
 	private Boolean isMyFam(PlayerColor color, ImageView famMemb){
 		Map<FamilyMemberColor,ImageView> allMyFamily = familyMembers.get(color);
 		for(ImageView imageViewFam: allMyFamily.values()){
@@ -469,8 +472,8 @@ public class PlayerBoardController extends GUIController implements Initializabl
 			for (int i = 0; i < listPlayed.size(); i++){
 				listPlayed.get(i).imageProperty().bind(mapPlayerColorCardLeaders.get(player.getColor()).get(i).getPathWhenPlayedProperty());
 				if(playerColor.equals(player.getColor())) {
-                    listPlayed.get(i).visibleProperty().bind(mapPlayerColorCardLeaders.get(player.getColor()).get(i).getVisibility());
-                }
+					listPlayed.get(i).visibleProperty().bind(mapPlayerColorCardLeaders.get(player.getColor()).get(i).getVisibility());
+				}
 			}
 			if(playersBoard.getUserData().equals(player.getColor())) {
 				List<ImageView> listNotPlayed = cardLeaders.get(player.getColor()).get(CardLeaderGuiState.NOTPLAYED);

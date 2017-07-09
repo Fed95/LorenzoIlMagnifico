@@ -109,7 +109,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 			Player player = playerList.get(i);
 			// TODO: remove the comment before the deadline
 			// It has been commented to have a lot of resources for testing
-			// player.setInitialResources(config.getInitialResources().get(i));
+			player.setInitialResources(config.getInitialResources().get(i));
 
 			player.setResourceValue(ResourceType.MONEY, 3);//TODO: REMOVE AFTER TESTING
 

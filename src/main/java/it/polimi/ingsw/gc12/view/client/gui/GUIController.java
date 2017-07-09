@@ -109,4 +109,15 @@ public abstract class GUIController extends Observable {
 		}
 		return true;
 	}
+
+	/**
+	 * Alert for tell to the user that an action is not valid
+	 */
+	protected void actionDenied(){
+		Alert alert = new Alert(Alert.AlertType.ERROR);
+		alert.setTitle("Action denied");
+		alert.setHeaderText("You can't do this action");
+		alert.setContentText("The action selected is not valid, sorry");
+		alert.showAndWait();
+	}
 }
