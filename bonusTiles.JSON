@@ -1,5 +1,6 @@
 [
   {
+    "id": 0,
     "effects": [
       {
         "type": "EffectChangeResource",
@@ -93,6 +94,7 @@
     ]
   },
   {
+    "id": 1,
     "effects": [
       {
         "type": "EffectChangeResource",
@@ -186,6 +188,7 @@
     ]
   },
   {
+    "id": 2,
     "effects": [
       {
         "type": "EffectChangeResource",
@@ -279,6 +282,7 @@
     ]
   },
   {
+    "id": 3,
     "effects": [
       {
         "type": "EffectChangeResource",

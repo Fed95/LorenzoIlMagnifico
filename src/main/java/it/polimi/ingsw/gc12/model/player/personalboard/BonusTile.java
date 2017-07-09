@@ -9,9 +9,15 @@ import java.util.List;
 public class BonusTile implements EffectProvider, Serializable {
 
 	private List<Effect> effects;
+	private int id;
 	
-	public BonusTile(List<Effect> effects){
+	public BonusTile(List<Effect> effects, int id){
 		this.effects = effects;
+		this.id = id;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	@Override
