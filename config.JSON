@@ -101,8 +101,8 @@
     }]
   ],
   "requiredValues": [1, 3, 5, 7],
-  "timeoutAction": 600000,
-  "timeoutStart": 1000,
+  "timeoutAction": 120000,
+  "timeoutStart": 20000,
   "minPlayers": 2,
   "maxPlayers": 4
 }
