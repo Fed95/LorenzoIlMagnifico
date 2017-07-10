@@ -103,10 +103,8 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		List<Player> playerList = new ArrayList<>(players.values());
 		for (int i = 0; i < playerList.size(); i++) {
 			Player player = playerList.get(i);
-			// TODO: remove the comment before the deadline
-			// It has been commented to have a lot of resources for testing
-			player.setInitialResources(config.getInitialResources().get(i));
 
+			player.setInitialResources(config.getInitialResources().get(i));
 			player.init(board.getSpaceDie());
 			player.getPersonalBoard().setCardsSpaces(new LoaderCardsSpace().get(this));
 			for(int j = 0; j < 4; j++)
@@ -132,12 +130,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 			if(stop )
 				return;
 		}
-
-
-
-		//System.out.println("Match: Starting new turn");
 		Player player = board.getTrackTurnOrder().newTurn();
-
 		actionHandler.setHasPlaced(false);
 		EventStartTurn event = new EventStartTurn(player, board.getTrackTurnOrder().getTurn());
 		event.setPlayers(players);
@@ -146,12 +139,10 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		} catch (ActionDeniedException e) {
 			e.printStackTrace();
 		}
-
 		if(!gameState.equals(MatchState.PAUSED)) {
 			actionHandler.update(event, this);
 			this.notifyObserver(event);
 		}
-
 		this.turnCounter++;
 
 		if(player.isDisconnected() || player.isExcluded()) {
@@ -160,7 +151,6 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		}
 		else
 			setTimeoutAction();
-
 	}
 
 	private void checkConnection() {
@@ -174,14 +164,14 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	}
 
 	private boolean newRound(boolean vaticanDone){
-		boolean vatican = roundNum != 0 && roundNum%2 == 0 ;
+		boolean vatican = roundNum != 0 && roundNum%1 == 0 ;//TODO: SET TO 2 AFTER TESTING
 		if(vatican && !vaticanDone) {
 			boolean endMatch = endPeriod();
 			//if(endMatch)
 			return true;
-
 		}
-		newPeriod();
+		if(newPeriod())//EndMatch
+			return true;
 		roundNum++;
 		turnCounter = 0;
 		resetFamilyMembers();
@@ -213,17 +203,18 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	}
 
 	private boolean endPeriod() {
-		if(roundNum != 0 && roundNum%(DEFAULT_ROUND_NUM) == 0){
-			endMatch();
-			return true;
-		}
 		vaticanReport(board.getTrackTurnOrder().getOrderedPlayers());
 		return false;
 	}
 
-	private void newPeriod() {
+	private boolean newPeriod() {
+		if(roundNum != 0 && roundNum%(1) == 0){//TODO: SET TO DEFAULT_ROUND_NUM AFTER TESTING
+			endMatch();
+			return true;
+		}
 		period++;
 		this.notifyObserver(new EventStartPeriod());
+		return false;
 	}
 
 	public void vaticanReport(List<Player> playerList){
