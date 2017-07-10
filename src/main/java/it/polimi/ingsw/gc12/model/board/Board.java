@@ -20,6 +20,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This class represent the board of the game as some common object to the players
+ */
 public class Board implements Serializable{
 
 	private SpaceDie spaceDie;
@@ -35,6 +38,10 @@ public class Board implements Serializable{
 	private ExcommunicationSpace excommunicationSpace;
 	private transient List<ExcommunicationTile> excommunicationTiles;
 
+    /**
+     * Constructor creates all the pieces of the board
+     * @param players players of the match
+     */
 	public Board(List<Player> players) {
 		this.spaceDie = new SpaceDie();
 		this.councilPalace = new CouncilPalace(1);
@@ -54,6 +61,10 @@ public class Board implements Serializable{
 		this.trackFaithPoints = new TrackFaithPoints(values);
 	}
 
+    /**
+     * Create the space work loading from json the number of players for unlock the workspaces multiple
+     * @param playersNum
+     */
 	public void createSpaceWork(int playersNum) {
 		ConfigPlayers configPlayers = new LoaderConfigPlayers().get(null).get(playersNum);
 		for(WorkType workType : WorkType.values()){
@@ -65,8 +76,12 @@ public class Board implements Serializable{
 		}
 	}
 
+    /**
+     * Sets the players' order for the ner rond and prepare the board
+     * @param round
+     * @param period
+     */
 	public void refresh(int round, int period){
-		//Sets the players' order for the new round and prepares the board
 		trackTurnOrder.newRound();
 		spaceDie.rollDice();
 		for(Occupiable occupiable : getOccupiables()){

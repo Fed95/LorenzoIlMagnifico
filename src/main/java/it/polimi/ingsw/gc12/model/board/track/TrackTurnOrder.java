@@ -9,23 +9,38 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * This class implements the turn order track, so has the turn of the player and a conucil palace
+ * that is responsible of changing turn
+ */
 public class TrackTurnOrder implements Serializable{
 
 	private List<Player> turnOrder = new ArrayList<>();
 	private int turn;
 	private CouncilPalace councilPalace;
 
+    /**
+     * Constructor choose a random player order at first
+     * @param players players of the match
+     * @param councilPalace council palace reference
+     */
 	public TrackTurnOrder(List<Player> players, CouncilPalace councilPalace) {
 		this.turnOrder = players;
 		this.councilPalace =  councilPalace;
 		chooseRandomOrder();
 	}
 
+    /**
+     * Choose random player order
+     */
 	public void chooseRandomOrder() {
 		this.turn = -1;
 		Collections.shuffle(turnOrder);
 	}
 
+    /**
+     * Method for new round, refresh the list of the ordered players
+     */
 	public void newRound() {
 		this.turn = -1;
 		List<Player> newTurnOrder = new ArrayList<>();
@@ -49,6 +64,10 @@ public class TrackTurnOrder implements Serializable{
 		return turnOrder;
 	}
 
+    /**
+     * Return the player of the turn
+     * @return player of the turn
+     */
 	public synchronized Player newTurn() {
 		turn++;
 		if (turn == turnOrder.size())

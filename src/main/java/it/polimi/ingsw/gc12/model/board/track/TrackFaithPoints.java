@@ -6,10 +6,17 @@ import it.polimi.ingsw.gc12.model.player.resource.ResourceType;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class contains all the faith point slots and is responsible of creating it
+ */
 public class TrackFaithPoints {
 
 	private List<FaithSlot> faithSlots = new ArrayList<>();
 
+    /**
+     * Constructor create the faith points slot
+     * @param values value of the victory points that the slot gave to you
+     */
 	public TrackFaithPoints(List<Integer> values){
 		for(int value : values)
 			faithSlots.add(new FaithSlot(value));
