@@ -77,18 +77,14 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 
 	public void init(Map<PlayerColor, Player> players) {
 		this.players = players;
-
 		this.bonusTiles = new LoaderBonusTile().get(this);
 		Collections.shuffle(bonusTiles);
-
 		List<Player> playersList = new ArrayList<>(players.values());
 		for (int i = 0; i < playersList.size(); i++) {
 			playersList.get(i).getPersonalBoard().setBonusTile(bonusTiles.get(i));
 		}
-		//TODO: remove comment before deadline (disabled shuffle for testing)
 		cardDeckSet.shuffle();
 		Collections.shuffle(leaderCards);
-
 		createBoard();
 		initPlayers();
 	}

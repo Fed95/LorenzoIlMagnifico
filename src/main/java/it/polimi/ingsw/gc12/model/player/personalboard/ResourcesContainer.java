@@ -6,12 +6,13 @@ import it.polimi.ingsw.gc12.model.effect.EffectProvider;
 import it.polimi.ingsw.gc12.model.event.EventEndMatch;
 import it.polimi.ingsw.gc12.model.player.resource.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ResourcesContainer implements EffectProvider {
+public class ResourcesContainer implements EffectProvider, Serializable{
 
     private Map<ResourceType, Resource> resources = new HashMap<>();
     List<Effect> effects = new ArrayList<>();

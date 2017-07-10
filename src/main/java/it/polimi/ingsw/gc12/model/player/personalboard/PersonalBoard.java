@@ -15,8 +15,8 @@ import java.util.Map;
 public class PersonalBoard implements Serializable{
     private Map<CardType, CardsSpace> cardsSpaces;
     private LeaderCardsSpace leaderCardsSpace = new LeaderCardsSpace();
-    private transient ResourcesContainer resourcesContainer = new ResourcesContainer();
-    private transient BonusTile bonusTile;
+    private ResourcesContainer resourcesContainer = new ResourcesContainer();
+    private BonusTile bonusTile;
 
     public PersonalBoard(){ }
 
