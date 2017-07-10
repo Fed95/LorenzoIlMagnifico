@@ -18,8 +18,12 @@ public class EventSupportDenied extends Event{
 		client.getMatch().playerExcommunication(player, tile);
 	}
 
+	public ExcommunicationTile getTile() {
+		return tile;
+	}
+
 	@Override
 	public String toString() {
-		return null;
+		return "";
 	}
 }

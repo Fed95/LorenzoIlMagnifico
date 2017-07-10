@@ -6,7 +6,8 @@ import it.polimi.ingsw.gc12.model.card.LeaderCard;
 /**
  * When stored in a card effect, this event contains a cardId,
  * when generated durong the game it stores a leader card.
- * The equals compares the id of the leader card (game-generated event) with the stored id (event stored in the effect of a leader card)
+ * The equals compares the id of the leader card (game-generated event) with the stored id
+ * (event stored in the effect of a leader card)
  */
 public class EventActivateLeaderCard extends Event {
 
@@ -39,7 +40,11 @@ public class EventActivateLeaderCard extends Event {
         //"that" is the event found in the card (has cardId)
         EventActivateLeaderCard that = (EventActivateLeaderCard) o;
 
-        return(card.getId() == that.cardId);
+        return(card.getId() == that.getCardId());
+    }
+
+    public int getCardId() {
+        return cardId;
     }
 
     @Override

@@ -43,6 +43,8 @@ public class EventReceiveResource extends Event {
 
     @Override
     public String toString() {
-        return "EventReceiveResource: " + player.getName() + " received: " + resource;
+        if(player != null)
+            return "EventReceiveResource: " + player.getName() + " received: " + resource;
+        return "EventReceiveResource";
     }
 }

@@ -28,6 +28,6 @@ public class FreeAction extends ActionPlace {
 
     @Override
     protected void execute(Match match) {
-        ActionFactory.createActionPlace(player, familyMember,occupiable).start(match);
+        ActionFactory.createActionPlace(player, familyMember, occupiable).start(match);
     }
 }

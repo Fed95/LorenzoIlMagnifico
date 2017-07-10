@@ -1,6 +1,5 @@
 package it.polimi.ingsw.gc12.controller;
 
-import it.polimi.ingsw.gc12.model.card.LeaderCard;
 import it.polimi.ingsw.gc12.model.effect.Effect;
 import it.polimi.ingsw.gc12.model.effect.EffectProvider;
 import it.polimi.ingsw.gc12.model.match.Match;
