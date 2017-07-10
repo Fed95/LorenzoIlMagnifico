@@ -164,7 +164,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	}
 
 	private boolean newRound(boolean vaticanDone){
-		boolean vatican = roundNum != 0 && roundNum%1 == 0 ;//TODO: SET TO 2 AFTER TESTING
+		boolean vatican = roundNum != 0 && roundNum%2 == 0 ;
 		if(vatican && !vaticanDone) {
 			boolean endMatch = endPeriod();
 			//if(endMatch)
@@ -208,7 +208,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	}
 
 	private boolean newPeriod() {
-		if(roundNum != 0 && roundNum%(1) == 0){//TODO: SET TO DEFAULT_ROUND_NUM AFTER TESTING
+		if(roundNum != 0 && roundNum%(DEFAULT_ROUND_NUM) == 0){
 			endMatch();
 			return true;
 		}
