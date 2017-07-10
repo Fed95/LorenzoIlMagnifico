@@ -53,7 +53,7 @@ public class CouncilPalace extends Occupiable implements Zone, Serializable {
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append("Council Palace            ");//.append(System.getProperty("line.separator"));
+        sb.append("Council Palace            ");
         sb.append(super.toString());
         return sb.toString();
     }

@@ -20,7 +20,7 @@ public class SpaceWorkMultiple extends SpaceWork {
      * @param requiredValue required value for placing the family member
      * @param effects effects of the space work
      */
-	public SpaceWorkMultiple(WorkType workType, int requiredValue,List<Effect> effects) {
+	public SpaceWorkMultiple(WorkType workType, int requiredValue, List<Effect> effects) {
 		super(workType, requiredValue, effects);
 	}
 

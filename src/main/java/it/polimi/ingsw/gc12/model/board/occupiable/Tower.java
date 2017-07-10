@@ -25,7 +25,6 @@ public class Tower implements Zone, Serializable{
 	private final CardType type;
 	private final List<TowerFloor> floors = new ArrayList<>();
 	private Map<Integer, CardDeck> decks;
-	// It will be loaded from JSON file
 	private final static Resource towerTakenMalus = new Money(3);
 
     /**

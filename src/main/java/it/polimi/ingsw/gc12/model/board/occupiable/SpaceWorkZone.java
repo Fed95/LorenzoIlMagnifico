@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class contains reference to the space works in a list and
- * check if the occupiables can be occupied
+ * This class contains reference to a SpaceWorkSingle and a SpaceWorMultiple
+ * by storing them in a list
  */
 public class SpaceWorkZone implements Zone, Serializable {
 
@@ -19,7 +19,7 @@ public class SpaceWorkZone implements Zone, Serializable {
     }
 
     /**
-     * Checks whether the workspace is already taken by a member of the same family
+     * Checks whether there already is a member of the same family in the WorkZone
      */
     @Override
     public boolean canBeOccupiedBy(FamilyMember familyMember) {
