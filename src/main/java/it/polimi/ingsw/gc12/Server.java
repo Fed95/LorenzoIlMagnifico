@@ -80,6 +80,13 @@ public class Server {
 		registry.bind(NAME, viewRemote);
 	}
 
+	/**
+	 * Takes the MAX_PLAYERS players waiting for the match to start, and initializes the match with those players.
+	 *
+	 * @throws AlreadyBoundException
+	 * @throws CloneNotSupportedException
+	 * @throws RemoteException
+	 */
 	private synchronized void startMatch() throws AlreadyBoundException, CloneNotSupportedException, RemoteException {
 		Map<PlayerColor, Player> players = new HashMap<>();
 		Iterator<Player> itr = waitingPlayers.iterator();
@@ -92,7 +99,7 @@ public class Server {
 			itr.remove();
 
 			//Make sure that it doesn't create matches with more than the allowed players
-			if (i == 4) //TODO put it in a variable
+			if (i == MAX_PLAYERS)
 				break;
 			i++;
 		}
@@ -102,6 +109,12 @@ public class Server {
 		timer.cancel();
 	}
 
+	/**
+	 * Creates a new match with the related controller and ServerRMIView.
+	 * The registry will have this new ServerRMIView binded, so, every new player using RMI,
+	 * will connect to the view of the new match.
+	 * @throws RemoteException
+	 */
 	private void newMatch() throws RemoteException {
 		// publish the view in the registry as a remote object
 		/*RMIViewRemote viewRemote=(RMIViewRemote) UnicastRemoteObject.
@@ -155,6 +168,16 @@ public class Server {
 		}
 	}
 
+	/**
+	 * Called by the ServerSocketView and ServerRMIView to register a new connected player.
+	 * If the number of players is equivalent to MIN_PLAYERS, it starts a timer for the match to start.
+	 * The match can start before the timer if the number of player reaches MAX_PLAYERS.
+	 * @param player
+	 * @throws CloneNotSupportedException
+	 * @throws AlreadyBoundException
+	 * @throws RemoteException
+	 */
+
 	public void addPlayer(Player player) throws CloneNotSupportedException, AlreadyBoundException, RemoteException {
 		System.out.println("Adding player " + player.getName());
 		waitingPlayers.add(player);
@@ -168,6 +191,14 @@ public class Server {
 		}
 	}
 
+	/**
+	 * Checks among the players in a match o among the ones that are waiting for the match to start,
+	 * if there is already a player with that name.
+	 * It's used to keep the names of the current players unique, so that in case of disconnection,
+	 * they can reconnect login in with the same name.
+	 * @param name
+	 * @return
+	 */
 	public boolean isNameTaken(String name) {
 		for (Player player : playingPlayers.keySet()) {
 			if (name.toLowerCase().equals(player.getName().toLowerCase()))
@@ -180,6 +211,12 @@ public class Server {
 		return false;
 	}
 
+	/**
+	 * Reconnects the player if there is a started match containing that player.
+	 * @param player Player using RMI to reconnect
+	 * @param client clientRMI to reconnect
+	 * @return
+	 */
 	public boolean tryReconnection(Player player, ClientViewRemote client) {
 		Match match = playingPlayers.get(player);
 		if(match != null && match.getPlayer(player.getName()).isDisconnected()) {
@@ -189,6 +226,14 @@ public class Server {
 		return false;
 	}
 
+	/**
+	 * Reconnects the player if there is a started match containing that player.
+	 * The view is already observed by the controller of a not started match.
+	 * Hence, it has to unregister this controller to register the controller of the match to reconnect.
+	 * @param player Player using socket to reconnect
+	 * @param view SocketView to reconnect
+	 * @return
+	 */
 	public boolean tryReconnection(Player player, ServerSocketView view) {
 		if(!playingPlayers.containsKey(player))
 			return false;
@@ -205,6 +250,10 @@ public class Server {
 		return false;
 	}
 
+	/**
+	 * Removes the match from the controllers Map and removes the match players from the list of playing players.
+	 * @param match Match to end
+	 */
 	public void endMatch(Match match) {
 		if(controllers.containsKey(match))
 			controllers.remove(match);

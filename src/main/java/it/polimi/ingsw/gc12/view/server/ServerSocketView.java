@@ -20,6 +20,13 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
+/**
+ * Socket part of the server view. There is one instance of ServerSocketView for each player using sockets.
+ * It receives events from the match (it observes it through the superclass ServerView) and it forwards them to the client.
+ * It receives objects from the client and it's responsible to catch if the player disconnected
+ * and to handle the first exchange of data to be sure that the name chosen by the player is not already taken.
+ */
+
 public class ServerSocketView extends ServerView implements Runnable {
 
 	private Socket socket;
@@ -41,9 +48,12 @@ public class ServerSocketView extends ServerView implements Runnable {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
 	}
 
+	/**
+	 * Receives events from the match and sends them to the client connected to this view through socket
+	 * @param event
+	 */
 	@Override
 	public void update(Event event) {
 		System.out.println("Sending to the client " + event.getClass().getSimpleName());
@@ -60,6 +70,7 @@ public class ServerSocketView extends ServerView implements Runnable {
 			sendObject(event);
 
 		} catch (SocketException e) {
+			// Catch if the player disconnected and notify to the match which player disconnected.
 			Player player = match.getPlayer(name);
 			if(!player.isDisconnected()) {
 				match.unregisterObserver(this);
@@ -86,30 +97,44 @@ public class ServerSocketView extends ServerView implements Runnable {
 				// await for incoming data from the client
 				//try {
 				Object object = socketIn.readObject();
-				System.out.println(object);
+
+				// Get the first name chosen by the player before it connects completely
 				if (object instanceof String) {
 					name = (String) object;
 					System.out.println("Player " + name + " received");
+
+					// Check if there is already a player with that name
 					if (server.isNameTaken(name)) {
+						// If the player with that name is disconnected, maybe he is trying to reconnect
 						if(!server.tryReconnection(new Player(name, null), this))
 							askNewName();
 					} else
 						acceptName();
-
 				} else if (object instanceof Integer) {
+					// Receives the index among the possible actions previously sent to the client and saved in the ActionHandler
 					int input = (Integer) object;
+
+					// Get the action corresponding to the index "input"
 					Action action = match.getActionHandler().getAvailableAction(input);
 					System.out.println("ServerRMIView: " + action.getClass().getSimpleName() + " received from ClientRMI. Notifying observers (Server Controller).");
 					this.notifyObserver(action);
 				} else if (object instanceof EventNewName) {
+					// New name received from the client because the one previously chosen was already taken
 					EventNewName eventNewName = (EventNewName) object;
 					name = eventNewName.getName();
+
+					// Check again if this name is taken
 					if (server.isNameTaken(name)) {
+						// The unauthorizedId is used to identify which one of the client is trying to choose a name
+						// because it's not possible to identify it by the name because it has not been chosen
+						// and not by the color because the match didn't started yet
 						unauthorizedClients.put(eventNewName.getUnauthorizedId(), name);
 						socketOut.writeObject(new EventNewName(eventNewName.getUnauthorizedId(), name));
 					} else
 						acceptName();
 				} else if(object instanceof PlayerColor) {
+					// The player identified with this color is rejoining the match after being excluded
+					// for the action timeout's expiration
 					Player player = match.getPlayers().get(object);
 					if(player.isExcluded()) {
 						match.includePlayer(player);
@@ -118,6 +143,7 @@ public class ServerSocketView extends ServerView implements Runnable {
 			}
 		}
 		catch (SocketException e) {
+			// Catches if the player disconnected
 			Player player = match.getPlayer(name);
 			if(!player.isDisconnected()) {
 

@@ -12,13 +12,19 @@ import java.io.IOException;
 import java.rmi.*;
 import java.util.*;
 
+/**
+ * RMI part of the server view. There is only one instance of ServerRMIView for each match,
+ * because it saves all the clients using RMI in the list clients.
+ * When it receives an event from the match of which it is observer, the ServerRMIVIew sends it to the clients.
+ * It also receives messages from the clients for multiple purposes.
+ */
+
 public class ServerRMIView extends ServerView implements RMIViewRemote {
 
 	private Set<ClientViewRemote> clients;
 	private Map<ClientViewRemote, Player> clientPlayers = new HashMap<>();
 	private Server server;
 	private LinkedList<PlayerColor> playerColors;
-	private boolean recievedAnsewr = false; // TODO: remove it?
 	private Map<Integer, ClientViewRemote> unauthorizedClients = new HashMap<>();
 
 	public ServerRMIView(Server server, Match match, LinkedList<PlayerColor> playerColors) {
@@ -36,9 +42,10 @@ public class ServerRMIView extends ServerView implements RMIViewRemote {
 
 	@Override
 	public void update(Event event) {
-		if(event instanceof EventTowerChosen)
-			recievedAnsewr = false;
 
+		// If a player reconnected, to be able to communicate with the server it already has exported a ServerRMIView
+		// from the registry. For that reason when a player reconnects it has to receive the right ServerRMIView
+		// of the match he/she was previously playing.
 		if(event instanceof EventPlayerReconnected) {
 			EventPlayerReconnected eventReconnected = (EventPlayerReconnected) event;
 			if(eventReconnected.getClientViewRemote() != null) {
@@ -47,13 +54,15 @@ public class ServerRMIView extends ServerView implements RMIViewRemote {
 				eventReconnected.setServerRMI(this);
 			}
 		}
-		System.out.println("RMIVIEW: SENDING " + event.getClass() + " CHANGE TO THE CLIENT");
+		System.out.println("RMIView: sending " + event.getClass().getSimpleName() + " to the client");
 		Iterator<ClientViewRemote> itr = clients.iterator();
 		while(itr.hasNext()) {
 			ClientViewRemote clientStub = itr.next();
 			try {
 				clientStub.updateClient(event);
 			}
+			// The player disconnected, but the ServerRMIView doesn't handle the disconnection because
+			// the update() method stated later is responsible for that.
 			catch (ConnectException | UnmarshalException | ConnectIOException ignored) {}
 			catch (RemoteException e) {
 				e.printStackTrace();
@@ -66,6 +75,8 @@ public class ServerRMIView extends ServerView implements RMIViewRemote {
 
 	}
 
+	// Every short period of time (about 1 sec) the ServerRMI sends an update to the client to check if it connected.
+	// If the player is disconnected, the exception is catched and the notification is sent to the match.
 	@Override
 	public void update() {
 		Iterator<ClientViewRemote> itr = clients.iterator();
@@ -85,13 +96,27 @@ public class ServerRMIView extends ServerView implements RMIViewRemote {
 		}
 	}
 
+	/**
+	 * Receives the index among the possible actions previously sent to the client and saved in the ActionHandler.
+	 * It sends the extracted action to the controller that executes it.
+	 * @param input The index of the action chosen by the player
+	 */
 	@Override
 	public void receiveAction(int input){
-		recievedAnsewr = true;
 		Action action = match.getActionHandler().getAvailableAction(input);
 		System.out.println("ServerRMIView: " + action.getClass().getSimpleName() + " received from ClientRMI. Notifying observers (Server Controller).");
 		this.notifyObserver(action);
 	}
+
+	/**
+	 * New name received from the client because the one previously chosen was already taken.
+	 * The unauthorizedId is used to identify which one of the client is trying to choose a name
+	 * because it's not possible to identify it by the name because it has not been chosen
+	 * and not by the color because the match didn't started yet
+	 * @param name
+	 * @param unauthorizedId
+	 * @throws IOException
+	 */
 
 	@Override
 	public void receiveName(String name, int unauthorizedId) throws IOException {
@@ -101,6 +126,13 @@ public class ServerRMIView extends ServerView implements RMIViewRemote {
 			askNewName(unauthorizedClients.get(unauthorizedId));
 		}
 	}
+
+	/**
+	 * The player identified with this color is rejoining the match after being excluded
+	 * for the action timeout's expiration
+	 * @param color
+	 * @throws RemoteException
+	 */
 
 	@Override
 	public void receiveColor(PlayerColor color) throws RemoteException {
