@@ -27,7 +27,9 @@ import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
-
+/**
+ * This class represent the match with all his objects
+ */
 public class Match extends Observable<Event> implements Serializable, EffectProvider{
 	private Map<PlayerColor, Player> players = new HashMap<>();
 	private List<BonusTile> bonusTiles;
@@ -50,6 +52,9 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	private MatchState gameState;
 	private int numReady;
 
+    /**
+     * Constructor, creates the match
+     */
 	public Match() {
 		this.TIMEOUT_ACTION = new LoaderConfig().get(this).getTimeoutAction();
 		this.roundNum = 0;
@@ -127,6 +132,9 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		}
 	}
 
+    /**
+     * Methods that start the match and make new turn, period, round
+     */
 	public void start() {
 		this.gameState = MatchState.RUNNING;
 
@@ -185,6 +193,14 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		}, 2000, 2000);
 	}
 
+    /**
+     * Method that create a new round, if is time to execute vatican report the method
+     * start an end periods and return.
+     * If the vatican is already done and we are in a new period it return true
+     * otherwise continue and make a newRound resetting the family memeber and the board
+     * @param vaticanDone boolean if a vatican report is executed or not
+     * @return boolean
+     */
 	private boolean newRound(boolean vaticanDone){
 		boolean vatican = roundNum != 0 && roundNum%2 == 0 ;
 		if(vatican && !vaticanDone) {
@@ -203,6 +219,10 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		return vatican && !vaticanDone;
 	}
 
+    /**
+     * Exclude the player froma the game and check if there are enough player for continuing the game.
+     * If there aren't the match is suspended (but can be restarted if the player reconnect)
+     */
 	public void excludeCurrentPlayer() {
 		Player player = board.getTrackTurnOrder().getCurrentPlayer();
 		Event event = new EventExcluded(player);
@@ -212,21 +232,35 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		checkEnoughPlayers();
 	}
 
+    /**
+     * Reincluding a player in the match
+     * @param player
+     */
 	public void includePlayer(Player player) {
 		player.setExcluded(false);
 		checkEnoughPlayers();
 	}
 
+    /**
+     * Reset player family members
+     */
 	private void resetFamilyMembers() {
 		for(Player player: players.values()) {
 			player.resetFamilyMembers();
 		}
 	}
 
+    /**
+     * Start the vatican report
+     */
 	private void endPeriod() {
 		vaticanReport(board.getTrackTurnOrder().getOrderedPlayers());
 	}
 
+    /**
+     * if is time to a new period return true and set the period number
+     * @return
+     */
 	private boolean newPeriod() {
 		if(roundNum != 0 && roundNum%(DEFAULT_ROUND_NUM) == 0){
 			endMatch();
@@ -237,12 +271,19 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		return false;
 	}
 
+    /**
+     * Execute the vatican report sending the event to the actionHandler
+     * @param playerList list of player
+     */
 	public void vaticanReport(List<Player> playerList){
 		Event event = new EventVaticanReport(playerList.get(0), board.getExcommunicationSpace().getTiles().get(getPeriodNum()), playerList);
 		actionHandler.update(event, this);
 		notifyObserver(event);
 	}
 
+    /**
+     * Send the end match event for each player to the actionHandler
+     */
 	private void endMatch(){
 		for (Player player : players.values()) {
 			Event event = new EventEndMatch(player);
@@ -256,6 +297,12 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		players.addAll(this.players.values());
 		notifyObserver(new EventEndMatch(getBoard().getVictroyPointsTrack().getPlayerOrdered(players)));
 	}
+
+    /**
+     * place a family member, creating the event and sending it to the actionHandler
+     * @param occupiable where to put the family
+     * @param familyMember family member to place
+     */
 
 	public void placeFamilyMember(Occupiable occupiable, FamilyMember familyMember) {
 
@@ -359,6 +406,12 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		return cards;
 	}
 
+    /**
+     * Check if there are enough player to continuing the game,
+     * if there isn't the right amount of player the match is suspended, if the game was already suspended
+     * and the number of players is correct the match restart with a new turn
+     * @return
+     */
 	private boolean checkEnoughPlayers() {
 		if(players.values().stream().filter(player -> !player.isDisconnected() && !player.isExcluded()).count() < 2) {
 			System.out.println("Match stopped for lack of players");
@@ -430,6 +483,9 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		return cards;
 	}
 
+    /**
+     * Set the maximum time for an action
+     */
 	private void setTimeoutAction() {
 		timer.cancel();
 		timer.purge();
