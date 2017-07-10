@@ -90,6 +90,17 @@ skipping the turn of the suspended/disconnected players.
 - The suspended player can rejoin the match and continue the game writing something on the cli or clicking any element on the GUI.
 
 
+#### Graphical User Interface
+- If using the GUI, it's still possible to see the actions that can be currently performed from the command line, 
+in a way similar to what happens when you are using the CLI.
+- Every time the action you rae trying to perform is notified as invalid, 
+you have to make a new action entirely, starting by clicking on the family member or the leader card. 
+This fact is also visible from the fact that the family member previously selected is not highlighted anymore.
+- If you receive multiple council privileges (e.g placing a family member on the market space) a popup is shown 
+and after selecting the first exchange to do, the second popup will appear without the exchange already performed. 
+As specified in the game rules.
+
+
 ## UML
 The uml is inside the folder resources/uml.
 They are divided into multiple files because a unique UML would have been too big. 

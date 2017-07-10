@@ -20,6 +20,14 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.stream.Collectors;
 
+/**
+ * The simplified version of the Match owned by the client.
+ * The CLI doesn't use it because it receives the data directly after sending queries to the server
+ * or from the possible actions received with the events.
+ * The GUI uses it to bind the MatchInstance representations with the elements of the GUI.
+ * In this way, when an element is updated in the MatchInstance through the execution of events, The GUI is updated too.
+ */
+
 public abstract class MatchInstance extends Observable {
 	protected Board board;
 	protected int roundNum;

@@ -16,6 +16,13 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * The ClientHandler is responsible for receiving (through socket or RMI) events from the Server
+ * and it implements a queue of events. A new event is performed only if the are no other events in the queue.
+ * When an event is executed, the next event will be handled.
+ *
+ */
+
 public abstract class ClientHandler extends UnicastRemoteObject {
 	protected MatchInstance match;
 	protected List<Action> actions = new ArrayList<>();
@@ -42,11 +49,17 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 		this.match = createMatchInstance();
 	}
 
+	/**
+	 * The events show the message to prompt to the view (CLI or GUI).
+	 * Then they are executed calling executeClientSide.
+	 */
+
 	public void handleEvent() {
 		Event event = events.peekFirst();
 		if(event == null)
 			return;
 
+		// send the events to the view if it has to interact directly with it.
 		if(event instanceof EventView)
 			notifyView((EventView) event);
 
@@ -57,6 +70,10 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 
 		event.executeClientSide(this);
 
+		/*
+		Part of the event queue mechanism.
+		If the event doesn't require any feedback from the user, it just executes it and removes it from the queue.
+		 */
 		if(event.getPlayer() != null && myTurn && !excluded) {
 			if(event.getActions().size() == 0) {
 				events.removeFirst();
