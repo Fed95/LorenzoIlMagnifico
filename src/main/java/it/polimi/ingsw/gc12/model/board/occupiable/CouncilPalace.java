@@ -12,8 +12,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * This class implements the council palace, with a placing of a family member in return you get a resource
+ */
 public class CouncilPalace extends Occupiable implements Zone, Serializable {
-
+    /**
+     * Constructor
+     * @param requiredValue required value to place the family member
+     */
     public CouncilPalace(int requiredValue){
         super(requiredValue, new ArrayList<>());
         Event event = new EventPlaceFamilyMember(new ArrayList<>(Collections.singletonList(this)));
@@ -21,10 +27,19 @@ public class CouncilPalace extends Occupiable implements Zone, Serializable {
         this.effects.add(new EffectChangeResource(event, resourceExchange, false));
     }
 
+    /**
+     * place a family member
+     * @param familyMember family member to place
+     */
     public void placeFamilyMember(FamilyMember familyMember){
         this.occupiers.add(familyMember);
     }
 
+    /**
+     * if can be occupied by a family member
+     * @param familyMember
+     * @return
+     */
     @Override
     public boolean canBeOccupiedBy(FamilyMember familyMember) {
         return true;

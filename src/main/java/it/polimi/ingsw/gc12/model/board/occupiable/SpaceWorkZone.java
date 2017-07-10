@@ -7,6 +7,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class contains reference to the space works in a list and
+ * check if the occupiables can be occupied
+ */
 public class SpaceWorkZone implements Zone, Serializable {
 
     private List<SpaceWork> spaceWorks = new ArrayList<>();
@@ -14,7 +18,9 @@ public class SpaceWorkZone implements Zone, Serializable {
     public SpaceWorkZone(){
     }
 
-    //Checks whether the workspace is already taken by a member of the same family
+    /**
+     * Checks whether the workspace is already taken by a member of the same family
+     */
     @Override
     public boolean canBeOccupiedBy(FamilyMember familyMember) {
         if(familyMember.getColor() == null || familyMember.getColor().equals(FamilyMemberColor.NEUTRAL))

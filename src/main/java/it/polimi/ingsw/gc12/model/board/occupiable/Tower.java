@@ -18,6 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This class represent the single tower and has a list of tower floor and a list of cardDeck
+ */
 public class Tower implements Zone, Serializable{
 	private final CardType type;
 	private final List<TowerFloor> floors = new ArrayList<>();
@@ -25,6 +28,10 @@ public class Tower implements Zone, Serializable{
 	// It will be loaded from JSON file
 	private final static Resource towerTakenMalus = new Money(3);
 
+    /**
+     * Constructor
+     * @param type type of the tower
+     */
 	public Tower(CardType type){
 		this.type = type;
 	}
@@ -41,6 +48,10 @@ public class Tower implements Zone, Serializable{
 		return floors.get(floorNum);
 	}
 
+    /**
+     * Get the cards on a tower from the floor
+     * @return List<CardDevelopment> cards
+     */
 	public List<CardDevelopment> getCards(){
 		List<CardDevelopment> cards = new ArrayList<>();
 		for(TowerFloor floor : floors)
@@ -70,13 +81,18 @@ public class Tower implements Zone, Serializable{
 		return occupiables;
 	}
 
-	//Fills all floors with new cards picked from the deck corresponding to the current period
+    /**Fills all floors with new cards picked from the deck corresponding to the current period
+     * @param period current period
+     */
 	public void refresh(int period){
 		for(TowerFloor floor : floors)
 			floor.setCard(decks.get(period).pickCard());
 		deactivateMalus();
 	}
 
+    /**
+     * If a tower is occupied, the malus of three money is activated and placing another family member it cost you three money more
+     */
 	public void activateMalus(){
 		List<Occupiable> floorList = new ArrayList<>();
 		floorList.addAll(floors);
@@ -88,6 +104,9 @@ public class Tower implements Zone, Serializable{
 		}
 	}
 
+    /**
+     * Deactivate the three money malus
+     */
 	public void deactivateMalus(){
 		for(TowerFloor floor : floors){
 			floor.getEffects().remove(towerTakenMalus);

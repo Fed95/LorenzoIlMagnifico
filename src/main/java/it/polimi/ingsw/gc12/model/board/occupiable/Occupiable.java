@@ -8,6 +8,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Abstract class that represent evry elements that can be occupied by a family member
+ * All the occupiables has effects,required value in common
+ */
 public abstract class Occupiable implements EffectProvider, Serializable {
 
 	protected List<Effect> effects = new ArrayList<>();
@@ -16,33 +20,55 @@ public abstract class Occupiable implements EffectProvider, Serializable {
 	public static final int DEFAULT_REQUIRED_VALUE = 1;
 	protected final int requiredValue;
 
-
+    /**
+     * Constructor
+     * @param requiredValue required value for place the family member on a certain occupiable
+     * @param effects effects of the occupiable
+     */
 	public Occupiable(int requiredValue, List<Effect> effects) {
 		this.requiredValue = requiredValue;
 		if(effects != null)
 			this.effects = effects;
 	}
 
+    /**
+     * Construtor with a default required value
+     * @param effects effects of the occupiable
+     */
 	public Occupiable(List<Effect> effects) {
 		this(DEFAULT_REQUIRED_VALUE, effects);
 	}
 
+    /**
+     * Constructor with a default required value and no effects
+     */
 	public Occupiable() {
 		this(DEFAULT_REQUIRED_VALUE, new ArrayList<>());
 	}
 
-
+    /**
+     * place a family member
+     * @param occupier family member to place
+     */
 	public void placeFamilyMember(FamilyMember occupier) {
 		if(occupier.getColor() != null)
 			this.occupiers.add(occupier);
 	}
 
+    /**
+     * Check i fthe required value is satisfied for place a family member
+     * @param occupier family member to check the value
+     * @return boolean
+     */
 	public boolean isRequiredValueSatisfied(FamilyMember occupier) {
 		if (requiredValue > occupier.getValue())
 			return false;
 		return true;
 	}
 
+    /**
+     * Revmoving the family member from the occpiers
+     */
 	public void free(){
 		this.occupiers.clear();
 	}

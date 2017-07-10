@@ -5,6 +5,9 @@ import it.polimi.ingsw.gc12.model.effect.Effect;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * Abstract class that implement the work spaces, is will be extended by workspaces multiple and workspaces single
+ */
 public abstract class SpaceWork extends Occupiable implements Serializable {
 	
 	protected WorkType workType;

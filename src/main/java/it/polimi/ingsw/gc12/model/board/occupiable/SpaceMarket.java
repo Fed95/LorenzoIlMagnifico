@@ -5,10 +5,20 @@ import it.polimi.ingsw.gc12.model.effect.Effect;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ *This class implements the single market
+ */
 public class SpaceMarket extends Occupiable implements Serializable{
 
 	private int marketNum;
 
+    /**
+     * Constructor
+     * @param marketNum number of the market
+     * @param requiredValue required value for place
+     *                     a family member on the marker
+     * @param effects effects of the market
+     */
 	public SpaceMarket( int marketNum, int requiredValue, List<Effect> effects){
 		super(requiredValue, effects);
 		this.marketNum = marketNum;

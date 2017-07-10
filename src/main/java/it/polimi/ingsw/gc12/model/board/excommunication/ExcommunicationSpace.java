@@ -6,6 +6,9 @@ import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * This class contains all the excommunication tile and is responsible for choose the three excommunication for the match
+ */
 public class ExcommunicationSpace implements Serializable{
 
 	private List<ExcommunicationTile> tilesDeck = new ArrayList<>();
@@ -14,11 +17,18 @@ public class ExcommunicationSpace implements Serializable{
 	public ExcommunicationSpace(){
 	}
 
+    /**
+     * setting the tiles when loaded from json
+     * @param tilesDeck list of tiles
+     */
 	public void setTilesDeck(List<ExcommunicationTile> tilesDeck) {
 		this.tilesDeck = tilesDeck;
 		chooseTiles();
 	}
 
+    /**
+     * Choosing the tile for the match
+     */
 	private void chooseTiles() {
 
 		int periodNum = Match.DEFAULT_TOTAL_PERIODS_NUM;

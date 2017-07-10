@@ -6,6 +6,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class contains all the markets
+ */
 public class Market implements Zone, Serializable{
 	
 	private List<SpaceMarket> spaceMarkets = new ArrayList<>();
@@ -15,6 +18,10 @@ public class Market implements Zone, Serializable{
 		return spaceMarkets;
 	}
 
+    /**
+     * set a market
+     * @param spaceMarkets
+     */
 	public void setSpaceMarkets(List<SpaceMarket> spaceMarkets) {
 		this.spaceMarkets = spaceMarkets;
 	}
