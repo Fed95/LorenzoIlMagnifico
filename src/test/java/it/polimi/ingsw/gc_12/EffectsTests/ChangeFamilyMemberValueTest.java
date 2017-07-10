@@ -79,8 +79,5 @@ public class ChangeFamilyMemberValueTest {
         effect.execute(match, event, false);
         for(FamilyMember familyMember : player.getFamilyMembers().values())
             assertEquals(java.util.Optional.of(4), java.util.Optional.ofNullable(familyMember.getValue()));
-
-
-        assertEquals(java.util.Optional.of(3), java.util.Optional.ofNullable(player.getResourceValue(ResourceType.MONEY)));
     }
 }

@@ -25,12 +25,13 @@ public class EventDiscardAction extends Event implements EventView{
                 actions.add(new ActionChooseFamilyMember(player, familyMember));
             }
         }
-        if(player.getPlayableLeaderCards().size() > 0)
-            actions.add(new ActionViewPlayableLeaderCards(player));
-        if(player.getAvailableLeaderCards().size() > 0)
-            actions.add(new ActionViewAvailableLeaderCards(player));
-        if(player.getPersonalBoard().getLeaderCardsSpace().getCards().size() > 0)
+        if(player.getPersonalBoard().getLeaderCardsSpace().getCards().size() > 0) {
+            if (player.getPlayableLeaderCards().size() > 0)
+                actions.add(new ActionViewPlayableLeaderCards(player));
+            if (player.getAvailableLeaderCards().size() > 0)
+                actions.add(new ActionViewAvailableLeaderCards(player));
             actions.add(new ActionViewDiscardableLeaderCards(player));
+        }
         if(match.getActionHandler().hasPlaced())
             actions.add(new ActionPassTurn(player));
         actions.add(new ActionRequestStatistics(player));

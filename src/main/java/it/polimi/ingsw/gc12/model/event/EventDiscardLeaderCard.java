@@ -48,6 +48,6 @@ public class EventDiscardLeaderCard extends Event{
 
 	@Override
 	public String toString() {
-		return null;
+		return "";
 	}
 }

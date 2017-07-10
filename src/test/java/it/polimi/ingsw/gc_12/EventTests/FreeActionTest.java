@@ -4,6 +4,7 @@ import it.polimi.ingsw.gc12.model.action.*;
 import it.polimi.ingsw.gc12.model.board.occupiable.CouncilPalace;
 import it.polimi.ingsw.gc12.model.board.occupiable.Occupiable;
 import it.polimi.ingsw.gc12.model.board.occupiable.TowerFloor;
+import it.polimi.ingsw.gc12.model.card.CardType;
 import it.polimi.ingsw.gc12.model.event.EventFreeAction;
 import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.player.Player;
@@ -27,7 +28,7 @@ public class FreeActionTest {
     Match match = InstanceCreator.createMatch(2);
     Player player = match.getPlayer("p0");
     FamilyMember familyMember = player.getFamilyMember(FamilyMemberColor.BLACK);
-    TowerFloor towerFloor = new TowerFloor(0);
+    TowerFloor towerFloor = match.getBoard().getTowerSet().getTower(CardType.TERRITORY).getFloor(0);
     List<Occupiable> occupiables = Collections.singletonList(towerFloor);
     List<Action> actions = new ArrayList<>();
     List<Resource> discounts = InstanceCreator.getResourceList();
@@ -39,6 +40,11 @@ public class FreeActionTest {
             event = new EventFreeAction(player, familyMember, occupiables, actions, discounts);
             event = new EventFreeAction(player, familyMember, occupiables, actions);
             event = new EventFreeAction(player, familyMember, occupiables);
+
+            assertEquals(familyMember, event.getFamilyMember());
+            assertEquals(occupiables, event.getOccupiables());
+
+            event.toString();
         }catch (Exception e){
             fail(e.getMessage());
         }
@@ -46,8 +52,9 @@ public class FreeActionTest {
 
     @Test
     public void testSetActions(){
-        familyMember.setValue(1);
+        familyMember.setValue(7);
         towerFloor.removeCard();
+        towerFloor.getEffects().clear();
         towerFloor.setCard(InstanceCreator.createEmptyDevelopmentCard());
         event = new EventFreeAction(player, familyMember, occupiables, actions, discounts);
         event.setActions(match);

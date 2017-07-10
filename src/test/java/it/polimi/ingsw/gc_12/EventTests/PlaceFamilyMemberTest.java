@@ -41,7 +41,6 @@ public class PlaceFamilyMemberTest {
             event.setMultiplier(1);
             assertEquals(1, event.getMultiplier());
             event.toString();
-            event.toStringClient();
         }catch(Exception e){
             fail(e.getMessage());
         }
@@ -55,7 +54,6 @@ public class PlaceFamilyMemberTest {
             event.setMultiplier(1);
             assertEquals(1, event.getMultiplier());
             event.toString();
-            event.toStringClient();
 
         }catch(Exception e){
             fail(e.getMessage());

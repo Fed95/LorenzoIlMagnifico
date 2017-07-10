@@ -31,7 +31,10 @@ public class EventCouncilPrivilegeReceived extends Event implements EventView {
 	}
 
 	/**
-	 * Generates all the ActionChooseExchange related to a CouncilPrivilege
+	 * Generates all the ActionChooseExchange related to a CouncilPrivilege.
+	 * The exchanges are stored in the ActionHandler,
+	 * this is to prevent the player from choosing more than once the same exchange
+	 * when the CouncilPrivilege has value > 1
 	 * @param match
 	 */
 	@Override
@@ -49,10 +52,6 @@ public class EventCouncilPrivilegeReceived extends Event implements EventView {
 
 	public CouncilPrivilege getCouncilPrivilege() {
 		return councilPrivilege;
-	}
-
-	public List<Integer> getChoices() {
-		return choices;
 	}
 
 	@Override

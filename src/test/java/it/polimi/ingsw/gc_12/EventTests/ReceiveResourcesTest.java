@@ -29,6 +29,7 @@ public class ReceiveResourcesTest {
             event = new EventReceiveResource(player, money);
             assertEquals(player, event.getPlayer());
             assertEquals(money, event.getResource());
+            event.toString();
 
             event = new EventReceiveResource(money);
             assertEquals(money, event.getResource());

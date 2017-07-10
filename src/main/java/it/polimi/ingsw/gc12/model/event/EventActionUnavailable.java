@@ -8,10 +8,6 @@ public class EventActionUnavailable extends Event {
 		this.isFMPlaced = isFMPlaced;
 	}
 
-	public boolean isFMPlaced() {
-		return isFMPlaced;
-	}
-
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

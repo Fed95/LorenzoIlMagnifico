@@ -142,7 +142,6 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		newPeriod();
 		newRound(false);
 		newTurn(false);
-		//System.out.println("Match: notifying EventStartMatch");
 		checkConnection();
 	}
 
@@ -296,6 +295,7 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		List<Player> players = new ArrayList<>();
 		players.addAll(this.players.values());
 		notifyObserver(new EventEndMatch(getBoard().getVictroyPointsTrack().getPlayerOrdered(players)));
+		setGameState(MatchState.ENDED);
 	}
 
     /**
@@ -492,5 +492,17 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		timer = new Timer();
 		//System.out.println("setup timer action");
 		timer.schedule(new TimerActionTask(this), TIMEOUT_ACTION);
+	}
+
+	public void setTurnCounter(int turnCounter) {
+		this.turnCounter = turnCounter;
+	}
+
+	public void setRoundNum(int roundNum) {
+		this.roundNum = roundNum;
+	}
+
+	public int getTurnCounter() {
+		return turnCounter;
 	}
 }

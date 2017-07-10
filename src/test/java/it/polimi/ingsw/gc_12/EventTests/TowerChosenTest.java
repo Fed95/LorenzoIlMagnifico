@@ -30,6 +30,8 @@ public class TowerChosenTest {
             assertEquals(player, event.getPlayer());
             assertEquals(familyMember, event.getFamilyMember());
             assertEquals(tower, event.getTower());
+
+            event.toString();
         }catch(Exception e){
             fail(e.getMessage());
         }

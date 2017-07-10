@@ -91,6 +91,6 @@ public class ChangeResourceTest {
         effect = new EffectChangeResource(event, exchange, false);
         effect.discard(match, event);
         for(ResourceType type : ResourceType.values())
-            assertEquals(java.util.Optional.of(4), java.util.Optional.ofNullable(player.getResourceValue(type)));
+            assertEquals(java.util.Optional.of(3), java.util.Optional.ofNullable(player.getResourceValue(type)));
     }
 }
