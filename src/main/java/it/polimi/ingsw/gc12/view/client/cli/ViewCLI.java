@@ -18,6 +18,10 @@ import java.util.NoSuchElementException;
 import java.util.Observable;
 import java.util.Scanner;
 
+/**
+ * View for the CLI. Sends information to the ClientSender (RMI or socket) based on the input of the player
+ * using the observer pattern.
+ */
 public class ViewCLI extends Observable implements ClientView {
 
 	private Scanner in;
@@ -29,10 +33,23 @@ public class ViewCLI extends Observable implements ClientView {
 		this.in = new Scanner(System.in);
 	}
 
+	/**
+	 * The main method of the view. It loops waiting for the player to insert a numeric input,
+	 * usually to choose the index of the action he/she wants to perform.
+	 * The user can send input at any time. The server is responsible of discarding the input if it's not valid.
+	 *
+	 * @throws IOException
+	 * @throws CloneNotSupportedException
+	 * @throws NotBoundException
+	 * @throws AlreadyBoundException
+	 */
+
 	public void start() throws IOException, CloneNotSupportedException, NotBoundException, AlreadyBoundException {
 		setup();
 
 		ready = true;
+
+		// If the match has been initialized, sends the notification to the server that the client is ready
 		if(clientHandler.isStarted()) {
 			setChanged();
 			notifyObservers(0);
@@ -57,6 +74,7 @@ public class ViewCLI extends Observable implements ClientView {
 			List<Action> actions = clientHandler.getActions();
 			int offset = clientHandler.getOffset();
 
+			// The player can choose only among the actions save in the clientHandler and received by the server
 			if(inputInt < offset || inputInt >= offset + actions.size()) {
 				System.out.println("The inserted number is not among the possible choices");
 			}
@@ -76,6 +94,15 @@ public class ViewCLI extends Observable implements ClientView {
 		}
 	}
 
+	/**
+	 * Performs the choice of the name by the player and the choice of the communication technology
+	 * and starts the right client based on the parameters written by the player.
+	 *
+	 * @throws NotBoundException
+	 * @throws AlreadyBoundException
+	 * @throws CloneNotSupportedException
+	 * @throws IOException
+	 */
 	private void setup() throws NotBoundException, AlreadyBoundException, CloneNotSupportedException, IOException {
 		System.out.println("Choose a name");
 		String name = "";
@@ -121,6 +148,11 @@ public class ViewCLI extends Observable implements ClientView {
 		clientHandler = ClientFactory.getClientHandler();
 	}
 
+	/**
+	 * If the player has been excluded for the action timeout's expiration,
+	 * as soon he/she writes any input, a notification to the server is sent.
+	 * In this way the server can understand when a player is back from the inactivity.
+	 */
 	private boolean checkExclusion() {
 		if(clientHandler.isExcluded()) {
 			clientHandler.setExcluded(false);
@@ -132,6 +164,13 @@ public class ViewCLI extends Observable implements ClientView {
 		return true;
 	}
 
+	/**
+	 * If the player is not authorized yet (the name it chose was already taken by another user),
+	 * if he/she writes an input, it is interpreted as the new name chosen by the player
+	 *
+	 * @param inputLine The name chosen by the player to log in
+	 * @throws IOException
+	 */
 	private boolean checkAuthorization(String inputLine) throws IOException {
 		if(!clientHandler.isAuthorized()) {
 			setChanged();
@@ -141,6 +180,10 @@ public class ViewCLI extends Observable implements ClientView {
 		return true;
 	}
 
+	/**
+	 * The player cannot write inputs if it's not his/her turn
+	 */
+
 	private boolean checkTurn() {
 		if(!clientHandler.isMyTurn()) {
 			System.out.println("It's not your turn!");
@@ -149,6 +192,15 @@ public class ViewCLI extends Observable implements ClientView {
 		return true;
 	}
 
+	/**
+	 * Shows the resources to choose from to exchange a council privilege.
+	 * Show the list of resources as many times as the council privilege value (i.e. the number of privileges received)
+	 * Every time a resource is chosen from the list, the next time it will not appear again.
+	 * This is because you cannot exchange two council privileges obtained at the same time with the same resources
+	 * @param inputInt The index of the resources to exchange
+	 * @param actions The action representing the exchange of resources the player can perform.
+	 * @param event The event related to receiving the council privilege
+	 */
 	private void handleCouncilPrivileges(int inputInt, List<Action> actions, EventCouncilPrivilegeReceived event) {
 		CouncilPrivilege councilPrivilege = event.getCouncilPrivilege();
 		if(councilPrivilege.getValue() > 1) {

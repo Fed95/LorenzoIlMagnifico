@@ -14,6 +14,12 @@ import it.polimi.ingsw.gc12.view.client.MatchInstance;
 
 import java.util.List;
 
+/**
+ * The simplified version of the match used by the CLI view.
+ * It's mostly unused because the client doesn't need to have the representation of the match
+ * because it receives the data directly after sending queries to the server
+ * or from the possible actions received along with the events.
+ */
 public class MatchInstanceCLI extends MatchInstance {
 
 	private static MatchInstanceCLI instance;
@@ -33,14 +39,10 @@ public class MatchInstanceCLI extends MatchInstance {
 	}
 
 	@Override
-    public void setCards(TowerSet towers) {
-
-    }
+    public void setCards(TowerSet towers) {}
 
 	@Override
-	protected void setFamilyMemberObservers() {
-
-	}
+	protected void setFamilyMemberObservers() {}
 
 	@Override
 	public void pickCard(CardDevelopment card, PlayerColor playerColor) {}
