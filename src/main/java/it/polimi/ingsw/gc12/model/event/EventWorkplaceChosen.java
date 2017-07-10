@@ -1,6 +1,5 @@
 package it.polimi.ingsw.gc12.model.event;
 
-import it.polimi.ingsw.gc12.controller.ActionHandler;
 import it.polimi.ingsw.gc12.model.action.*;
 import it.polimi.ingsw.gc12.model.player.familymember.FamilyMember;
 import it.polimi.ingsw.gc12.model.match.Match;
@@ -12,6 +11,9 @@ import javafx.application.Platform;
 
 import java.util.ArrayList;
 
+/**
+ * Generated from an ActionChooseWorkplace, contains all the possible placement actions on the SpaceWorks
+ */
 public class EventWorkplaceChosen extends Event implements EventView{
 
     private FamilyMember familyMember;

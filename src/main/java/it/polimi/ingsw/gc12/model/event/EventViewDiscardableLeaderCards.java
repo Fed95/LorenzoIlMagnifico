@@ -12,7 +12,9 @@ import javafx.application.Platform;
 
 import java.util.ArrayList;
 
-
+/**
+ * Contains an ActionActivateLeaderCard for every LeaderCard he can discard
+ */
 public class EventViewDiscardableLeaderCards extends Event implements EventView{
 
     public EventViewDiscardableLeaderCards(Player player) {

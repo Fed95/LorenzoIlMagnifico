@@ -5,11 +5,13 @@ import it.polimi.ingsw.gc12.model.card.CardDevelopment;
 import it.polimi.ingsw.gc12.model.card.CardType;
 import it.polimi.ingsw.gc12.view.client.ClientHandler;
 
+/**
+ * this event is saved in the card with the card ID.
+ * (In this case it is used to execute the immediate effects of the card)
+ * or with card type (for EffectCardDiscount).
+ * When created during the game it is created with a card so that the effects can be retrieved form the card
+ */
 
-/* this event is saved in the card with the card ID.
-(In this case it is used to execute the immediate effects of the card)
-or with card type (for EffectCardDiscount).
-When created during the game it is created with a card so that the effects can be retrieved form the card*/
 public class EventPickCard extends Event {
 
     private int cardID;

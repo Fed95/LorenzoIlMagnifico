@@ -3,6 +3,11 @@ package it.polimi.ingsw.gc12.model.event;
 import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.card.LeaderCard;
 
+/**
+ * When stored in a card effect, this event contains a cardId,
+ * when generated durong the game it stores a leader card.
+ * The equals compares the id of the leader card (game-generated event) with the stored id (event stored in the effect of a leader card)
+ */
 public class EventActivateLeaderCard extends Event {
 
     private int cardId;

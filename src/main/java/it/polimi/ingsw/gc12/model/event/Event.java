@@ -11,6 +11,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * When an event is initialised during the game, all the possible EffectProviders are associated to it.
+ * Every Effect of every Effect provider, which stored event equals this event, will be activated.
+ * (reminder: every Effect contains an event which allows the effect do be executed only when he is notified with an equal event).
+ *
+ * Furthermore, the server communicates with the client sending events, which contain the actions that the client can perform.
+ * These action are saved in the event just before it is sent to the client
+ * All events containing actions also contain a DiscardAction for CLI navigational purposes
+ */
 public abstract class Event implements Serializable{
 
 	protected Player player;

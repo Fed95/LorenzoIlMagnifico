@@ -30,6 +30,10 @@ public class EventCouncilPrivilegeReceived extends Event implements EventView {
 		this(player, councilPrivilege, new ArrayList<>());
 	}
 
+	/**
+	 * Generates all the ActionChooseExchange related to a CouncilPrivilege
+	 * @param match
+	 */
 	@Override
 	public void setActions(Match match) {
 		actions = new ArrayList<>();

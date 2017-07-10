@@ -10,6 +10,9 @@ import it.polimi.ingsw.gc12.view.client.ClientHandler;
 
 import java.util.ArrayList;
 
+/**
+ * Contains an ActionActivateLeaderCard for every LeaderCard he can activate
+ */
 public class EventViewAvailableLeaderCards extends Event {
 
     public EventViewAvailableLeaderCards(Player player) {

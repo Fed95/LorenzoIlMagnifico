@@ -17,6 +17,10 @@ public class EventViewStatistics extends Event {
         this.chosenPlayer = chosenPlayer;
     }
 
+    /**
+     * Prints the chosenPlayer's statistics
+     * @param client
+     */
     @Override
     public void executeClientSide(ClientHandler client) {
         if(client.isMyTurn()) {

@@ -12,6 +12,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Contains a multiplier to store Effects related to the value of Servants
+ */
 public class EventPlaceFamilyMember extends Event implements EventView{
 
     protected List<Occupiable> occupiables = new ArrayList<>();

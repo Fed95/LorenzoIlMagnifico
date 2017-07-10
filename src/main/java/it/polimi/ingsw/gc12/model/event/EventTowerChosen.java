@@ -1,6 +1,5 @@
 package it.polimi.ingsw.gc12.model.event;
 
-import it.polimi.ingsw.gc12.controller.ActionHandler;
 import it.polimi.ingsw.gc12.model.action.*;
 import it.polimi.ingsw.gc12.model.player.familymember.FamilyMember;
 import it.polimi.ingsw.gc12.model.match.Match;
@@ -13,7 +12,9 @@ import javafx.application.Platform;
 import java.util.ArrayList;
 import java.util.Collections;
 
-
+/**
+ * Generated from an ActionChooseTower, contains all the possible placement action on the floors of the specified tower
+ */
 public class EventTowerChosen extends Event implements EventView{
 
     private Tower tower;

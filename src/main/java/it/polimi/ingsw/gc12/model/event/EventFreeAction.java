@@ -1,6 +1,5 @@
 package it.polimi.ingsw.gc12.model.event;
 
-import it.polimi.ingsw.gc12.controller.ActionHandler;
 import it.polimi.ingsw.gc12.model.action.*;
 import it.polimi.ingsw.gc12.model.player.familymember.FamilyMember;
 import it.polimi.ingsw.gc12.model.match.Match;
@@ -13,6 +12,11 @@ import javafx.application.Platform;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * Presents the player with all the placement actions related to the specified occupiables
+ * (excluding the ones the player cannot perform in the moment the action is created)
+ */
 public class EventFreeAction extends Event implements EventView{
 
     private FamilyMember familyMember;

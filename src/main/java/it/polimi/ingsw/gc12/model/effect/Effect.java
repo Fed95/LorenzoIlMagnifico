@@ -12,6 +12,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * All Effects are related to some event and are activated when they are notified with an event
+ * which is equal to the one they contain.
+ */
 public abstract class Effect implements Serializable {
 	
 	protected Event event;

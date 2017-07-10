@@ -12,6 +12,9 @@ import javafx.application.Platform;
 
 import java.util.ArrayList;
 
+/**
+ * Contains an ActionActivateLeaderCard for every LeaderCard he can play
+ */
 public class EventViewPlayableLeaderCards extends Event implements EventView{
 
     public EventViewPlayableLeaderCards(Player player) {

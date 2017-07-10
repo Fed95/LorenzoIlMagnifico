@@ -11,7 +11,7 @@ import java.util.Map;
 
 
 /**
- * Activated before a Placement action, ith changes the value of the familyMember related to the placement action
+ * Activated before a Placement action, it changes the value of the familyMember related to the placement action
  */
 public class EffectChangeFamilyMemberValue extends Effect{
 	

@@ -3,7 +3,9 @@ package it.polimi.ingsw.gc12.model.event;
 import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.player.resource.Resource;
 
-
+/**
+ * Generated every time a player receives resources through a Card effect
+ */
 public class EventReceiveResource extends Event {
 
     private Resource resource;

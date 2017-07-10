@@ -5,6 +5,9 @@ import it.polimi.ingsw.gc12.model.player.resource.ResourceType;
 
 import java.util.List;
 
+/**
+ * Ends the match and displays the results of the game
+ */
 public class EventEndMatch extends Event {
 
     private List<Player> players;

@@ -1,6 +1,5 @@
 package it.polimi.ingsw.gc12.model.event;
 
-import it.polimi.ingsw.gc12.controller.ActionHandler;
 import it.polimi.ingsw.gc12.model.action.*;
 import it.polimi.ingsw.gc12.model.player.familymember.FamilyMember;
 import it.polimi.ingsw.gc12.model.match.Match;
@@ -12,6 +11,11 @@ import it.polimi.ingsw.gc12.model.board.occupiable.TowerFloor;
 
 import java.util.ArrayList;
 
+
+/**
+ * Contains ChooseTower, ChooseMarket, ChooseWorkplace and PlaceOnCouncil (+ DiscardAction) actions.
+ * When no floor of the tower is available, or no SpaceMarket, or no Workplace, the related Choose action is not created
+ */
 public class EventFamilyMemberChosen extends Event {
 
 	private FamilyMember familyMember;

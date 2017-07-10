@@ -1,6 +1,5 @@
 package it.polimi.ingsw.gc12.model.event;
 
-import it.polimi.ingsw.gc12.controller.ActionHandler;
 import it.polimi.ingsw.gc12.model.action.*;
 import it.polimi.ingsw.gc12.model.player.familymember.FamilyMember;
 import it.polimi.ingsw.gc12.model.match.Match;
@@ -17,6 +16,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Generated when the player expresses the intent of executing a placement (which can execute).
+ * It displays the player with the choice of Servants to use for the specified action.
+ * The choices are implemented as a separate action for every possible amount of servants used.
+ * The range of servants takes in to account the minimum number of servans required, the number of servants the player has
+ * and any possible "EffectMultiplyServants"
+ */
 public class EventServantsRequested extends EventPlaceFamilyMember implements EventView{
 
 	private int mult;

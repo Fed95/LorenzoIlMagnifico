@@ -10,6 +10,10 @@ import it.polimi.ingsw.gc12.view.client.ClientHandler;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Generated after playing a LeaderCard.
+ * Contains the actions that follow such event
+ */
 public class EventPlayLeaderCard extends Event {
 
 	private int cardId;
