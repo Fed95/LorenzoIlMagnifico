@@ -65,6 +65,9 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		this.gameState = MatchState.PENDING;
 	}
 
+	/**
+	 * Retrieves cards from Json file and stores Development cards and Leader cards separately
+	 */
 	private void handleCards(){
 		List<Card> cards = new LoaderCard().get(this);
 		for(Card card : cards) {
@@ -75,6 +78,11 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		}
 	}
 
+	/**
+	 * Sets the player, creates the board and shuffles cards and bonus tiles,
+	 * then initializes players
+	 * @param players
+	 */
 	public void init(Map<PlayerColor, Player> players) {
 		this.players = players;
 		this.bonusTiles = new LoaderBonusTile().get(this);
@@ -89,6 +97,10 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		initPlayers();
 	}
 
+	/**
+	 * Creates a new board (which will be different based on the number of players),
+	 * Sets the cards on the towers and the excommunications in the excomm. slots
+	 */
 	private void createBoard() {
 		board = new Board(new ArrayList<>(players.values()));
 		board.setTowerSet(new LoaderTowerSet().get(this));
@@ -98,6 +110,9 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		board.setTrackFaithPoints(trackFaithPointValues);
 	}
 
+	/**
+	 * Sets initial resources and LeaderCards and initializes the player
+	 */
 	private void initPlayers() {
 		Config config = new LoaderConfig().get(this);
 		List<Player> playerList = new ArrayList<>(players.values());
@@ -123,11 +138,18 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		checkConnection();
 	}
 
-	//Increments turn counter in TrackTurnOrder
+	/**
+	 * Checks if it is time for a new round and in that case starts a new round.
+	 * If the new Round detects it is time for a vaticanReport, the method returns.
+	 * In other cases the turn counter is incremented and passed to the EffectHandler to execute the related effects
+	 * If the game is not paused, the ActionHandler is updated with the event as well.
+	 * If the current player is excluded or disconnected a new turn starts,
+	 * if not the ActionTimer starts and the player can start the turn
+	 */
 	public void newTurn(boolean vaticanDone) {
 		if(turnCounter == (players.size()) * FamilyMemberColor.values().length) {
 			boolean stop = newRound(vaticanDone);
-			if(stop )
+			if(stop)
 				return;
 		}
 		Player player = board.getTrackTurnOrder().newTurn();
@@ -166,11 +188,10 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 	private boolean newRound(boolean vaticanDone){
 		boolean vatican = roundNum != 0 && roundNum%2 == 0 ;
 		if(vatican && !vaticanDone) {
-			boolean endMatch = endPeriod();
-			//if(endMatch)
+			endPeriod();
 			return true;
 		}
-		if(newPeriod())//EndMatch
+		if(vatican && newPeriod())
 			return true;
 		roundNum++;
 		turnCounter = 0;
@@ -202,9 +223,8 @@ public class Match extends Observable<Event> implements Serializable, EffectProv
 		}
 	}
 
-	private boolean endPeriod() {
+	private void endPeriod() {
 		vaticanReport(board.getTrackTurnOrder().getOrderedPlayers());
-		return false;
 	}
 
 	private boolean newPeriod() {
