@@ -59,6 +59,11 @@ public class Tower implements Zone, Serializable{
 		return cards;
 	}
 
+    /**
+     * If a tower can be occupied by a family member
+     * @param familyMember
+     * @return
+     */
 	@Override
 	public boolean canBeOccupiedBy(FamilyMember familyMember) {
 		if (familyMember.equals(new FamilyMember(FamilyMemberColor.NEUTRAL)))

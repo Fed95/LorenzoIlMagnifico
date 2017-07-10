@@ -9,9 +9,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This class contains all the towers divided by cardType
+ */
 public class TowerSet implements Serializable{
 	private Map<CardType, Tower> towers = new HashMap<>();
-	
+
+    /**
+     * Constructor
+     */
 	public TowerSet(){
 		for(CardType cardType: CardType.values()) {
 			towers.put(cardType, new Tower(cardType));
@@ -34,13 +40,19 @@ public class TowerSet implements Serializable{
 		return occupiables;
 	}
 
-	//Fills the towerfloors with new cards from the corresponding deck
-	//Deactivates malus if it has been activated during the turn
+    /**Fills the towerfloors with new cards from the corresponding deck
+     *Deactivates malus if it has been activated during the turn
+     * @param period
+     */
 	public void refresh(int period){
 		for(Tower tower : towers.values())
 			tower.refresh(period);
 	}
 
+    /**
+     * Set card in the towers
+     * @param cardDeckSet card deck containing the cards
+     */
 	public void setCards(CardDeckSet cardDeckSet) {
 		for(Tower tower: towers.values()) {
 			tower.setDecks(cardDeckSet.getDeck(tower.getType()));
