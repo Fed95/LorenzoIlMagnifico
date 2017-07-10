@@ -1,10 +1,8 @@
 package it.polimi.ingsw.gc12.model.action;
 
-import it.polimi.ingsw.gc12.model.card.LeaderCard;
 import it.polimi.ingsw.gc12.model.player.familymember.FamilyMember;
 import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.player.Player;
-import it.polimi.ingsw.gc12.model.effect.Effect;
 import it.polimi.ingsw.gc12.model.event.Event;
 import it.polimi.ingsw.gc12.model.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc12.model.event.EventPlacementEnded;
@@ -21,6 +19,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Every placement action starts here.
+ * The "isValid" method is used to present the player only with the actions he can perform.
+ * The "start" method encloses procedures common to all placements and calls the specific procedures.
+ */
 public abstract class ActionPlace extends Action {
 
 	protected FamilyMember familyMember;
@@ -46,6 +49,14 @@ public abstract class ActionPlace extends Action {
 		return familyMember;
 	}
 
+	/**
+	 * When a player first selects a placement action, this will be marker as "complete: false"
+	 * The non-complete action generates an EventServantsRequested which allows the player to choose the number of servants
+	 * he wishes to use for this placement (with relative restrictions).
+	 * After choice of the amount of servants activates a "complete: true" ActionPlace, containing the servants.
+	 * At this point the relative Effects and the placement are executed
+	 * @param match
+	 */
 	@Override
 	public void start(Match match) {
 		if(player.getName() == null)
@@ -87,18 +98,28 @@ public abstract class ActionPlace extends Action {
 
 	}
 
+	/**
+	 * Checks if the player can perform the action by setting the selected FamilyMember's value
+	 * (to the highest value the player could set it at using the servants he owns)
+	 * and executing all the related effects in "validation mode"
+	 * (this means that only the effects that should be executed before the action will be executed and then discarded
+	 * when the validation has ended).
+	 * The final checks are specific to the instance of the action.
+	 * @param match
+	 * @return
+	 */
 	@Override
 	public boolean isValid(Match match) {
 		if(player.getName() == null)
 			throw new IllegalArgumentException("Cannot call isValid on an action without a real player.");
 
-		setup(match);
+		setup(match);//Every placement action has a different implementation of this method
 		Event event = new EventPlaceFamilyMember(player, occupiable, familyMember);
 		int originalValue = familyMember.getValue();
 
 		try{
-			familyMember.setValue(originalValue + player.getResourceValue(ResourceType.SERVANT));
-
+			int increment = (multiplier > 1 ? ( player.getResourceValue(ResourceType.SERVANT) / multiplier) :  player.getResourceValue(ResourceType.SERVANT));
+			familyMember.setValue(originalValue + increment);
 			//Can throw exceptions (in which case all effects are discarded directly in EffectHandler)
 			match.getEffectHandler().executeEffects(match, event, true);
 			this.canBeExecuted(match);

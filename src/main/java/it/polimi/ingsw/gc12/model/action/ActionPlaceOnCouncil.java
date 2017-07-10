@@ -7,6 +7,9 @@ import it.polimi.ingsw.gc12.misc.exception.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc12.model.board.occupiable.CouncilPalace;
 import it.polimi.ingsw.gc12.model.player.resource.Servant;
 
+/**
+ * The only check specific to a placement on the Council Palace is the familyMember's value
+ */
 public class ActionPlaceOnCouncil extends ActionPlace {
 
     private CouncilPalace councilPalace;
