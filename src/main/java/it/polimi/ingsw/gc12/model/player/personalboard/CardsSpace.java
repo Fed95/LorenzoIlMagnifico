@@ -9,11 +9,18 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class contains card slot owned by the player
+ */
 public class CardsSpace implements Serializable{
     private CardType type;
     private List<CardSlot> slots = new ArrayList<>();
     private int spacesAvailable;
 
+    /**
+     * Constructor of the card space considering the type give
+     * @param type type of the cards in the card slots
+     */
     public CardsSpace(CardType type){
         this.type = type;
     }
@@ -30,6 +37,11 @@ public class CardsSpace implements Serializable{
             }
     }
 
+    /**
+     * retunr the first free cardSlot
+     * @return card slot
+     * @throws ActionNotAllowedException
+     */
     public CardSlot getFirstFreeSlot() throws ActionNotAllowedException {
         for(CardSlot slot : slots)
             if(slot.isEmpty())

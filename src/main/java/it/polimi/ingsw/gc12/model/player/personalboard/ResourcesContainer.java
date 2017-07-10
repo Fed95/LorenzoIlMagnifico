@@ -12,6 +12,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Class for the resource of the player used for the end of the match
+ */
 public class ResourcesContainer implements EffectProvider, Serializable{
 
     private Map<ResourceType, Resource> resources = new HashMap<>();

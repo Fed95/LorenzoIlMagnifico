@@ -6,6 +6,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class representing the card leader container
+ */
 public class LeaderCardsSpace implements Serializable {
 
     private List<LeaderCard> cards = new ArrayList<>();

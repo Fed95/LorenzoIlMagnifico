@@ -1,5 +1,8 @@
 package it.polimi.ingsw.gc12.model.player.resource;
 
+/**
+ * All the type of the rescources
+ */
 public enum ResourceType {
 	MONEY, 
 	WOOD, 

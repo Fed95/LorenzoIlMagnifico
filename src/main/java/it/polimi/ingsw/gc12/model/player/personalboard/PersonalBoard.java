@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * This class represent the personal board of the player with all his objects
+ */
 public class PersonalBoard implements Serializable{
     private Map<CardType, CardsSpace> cardsSpaces;
     private LeaderCardsSpace leaderCardsSpace = new LeaderCardsSpace();
@@ -20,6 +22,12 @@ public class PersonalBoard implements Serializable{
 
     public PersonalBoard(){ }
 
+    /**
+     * Check if a development card can be placed on the personal board
+     * @param owner
+     * @param card
+     * @return
+     */
     public boolean canPlaceCard(Player owner, CardDevelopment card) {
         //Can throw an exception
         CardSlot cardSlot;

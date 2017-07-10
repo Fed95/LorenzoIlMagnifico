@@ -2,10 +2,18 @@ package it.polimi.ingsw.gc12.model.player.resource;
 
 import java.io.Serializable;
 
+/**
+ * This class represent all the resource of the game including the points
+ */
 public abstract class Resource implements Serializable {
 	private final ResourceType type;
 	private int value;
-	
+
+    /**
+     * Constructor
+     * @param type resource type
+     * @param value value of the resource
+     */
 	public Resource(ResourceType type, int value){
 		this.value = value;
 		this.type = type;

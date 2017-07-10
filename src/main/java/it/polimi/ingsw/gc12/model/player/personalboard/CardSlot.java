@@ -9,6 +9,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Representing a card owned by the player
+ */
 public class CardSlot implements EffectProvider, Serializable{
     private CardDevelopment card;
     private List<Resource> requisites = new ArrayList<>();

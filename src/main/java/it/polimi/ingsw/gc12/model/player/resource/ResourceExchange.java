@@ -5,11 +5,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Resource that has a cost for gain it
+ */
 public class ResourceExchange implements Serializable {
 
 	private List<Resource> cost = new ArrayList<>();
 	private List<Resource> bonus = new ArrayList<>();
 
+    /**
+     * Constructor
+     * @param cost cost in recurces
+     * @param bonus bonus in resources
+     */
 	public ResourceExchange(List<Resource> cost, List<Resource> bonus) {
 		if(cost != null)
 			this.cost = cost;
@@ -17,6 +25,11 @@ public class ResourceExchange implements Serializable {
 			this.bonus = bonus;
 	}
 
+    /**
+     * Constructor for a single choice
+     * @param cost
+     * @param bonus
+     */
 	public ResourceExchange(Resource cost, Resource bonus) {
 		if(cost != null)
 			this.cost = new ArrayList<>(Arrays.asList(cost));

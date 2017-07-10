@@ -1,7 +1,7 @@
 package it.polimi.ingsw.gc12.model.player.resource;
 
 /**
- * Created by marco on 27/05/2017.
+ * Method for creating resource from json file
  */
 public class ResourceBuilder {
 
