@@ -23,6 +23,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * This class implements the player that has a personal board, initial resources, color, state
+ * and some other property of the player
+ */
 public class Player implements Serializable{
 	
 	private final String name;
@@ -34,7 +38,12 @@ public class Player implements Serializable{
 	private PlayerState state;
 	private boolean disconnected;
 	private boolean excluded;
-	
+
+    /**
+     * Constructor
+     * @param name name of the player
+     * @param playerColor color of the player
+     */
 	public Player(String name, PlayerColor playerColor){
 		this.name = name;
 		this.playerColor = playerColor;
@@ -49,6 +58,10 @@ public class Player implements Serializable{
 		this.state = PlayerState.ACTION;
 	}
 
+    /**
+     * Costructor with no name
+     * @param playerColor colorPlayer
+     */
 	public Player(PlayerColor playerColor) {
 		this.playerColor = playerColor;
 		this.name = null;
@@ -58,6 +71,10 @@ public class Player implements Serializable{
 		this.personalBoard = personalBoard;
 	}
 
+    /**
+     * Methods that creats the family member and add the observer to the die
+     * @param spaceDie
+     */
 	public void init(SpaceDie spaceDie) {
 		for(FamilyMemberColor color : FamilyMemberColor.values()) {
 			FamilyMember familyMember = new FamilyMember(this, color);
@@ -147,6 +164,12 @@ public class Player implements Serializable{
 		return hasResources(mergeResources(floorCost, discountedCardRequirements));
 	}
 
+    /**
+     * Merge two list of resource for type
+     * @param list1 list to merge
+     * @param list2 list to merge
+     * @return list unified
+     */
 	private List<Resource> mergeResources(List<Resource> list1, List<Resource> list2){
 		HashMap<ResourceType, Resource> merge = new HashMap<>();
 		for(ResourceType resourceType: ResourceType.values()) {
@@ -170,10 +193,21 @@ public class Player implements Serializable{
 		return merge;
 	}
 
+    /**
+     * Check if the player has the correct amount of card of the given type
+     * @param type type of the card to check quantity
+     * @param quantity quantity required
+     * @return boolean
+     */
 	private boolean hasEnoughCards(CardType type, int quantity){
 		return personalBoard.getCards(type).size() >= quantity;
 	}
 
+    /**
+     * Check if you can play a leader card
+     * @param card card to play
+     * @return boolean
+     */
 	private boolean canPlayLeaderCard(LeaderCard card){
 		if(!hasResources(card.getRequirements()))
 			return false;
@@ -187,6 +221,11 @@ public class Player implements Serializable{
 		return true;
 	}
 
+    /**
+     * Check if in the personal board there are the number of required cards
+     * @param numOfRequiredCards number of the cards required
+     * @return boolean
+     */
 	private boolean hasEnoughCards(int numOfRequiredCards) {
 		for(CardType type : CardType.values())
 			if(personalBoard.getCards(type).size() < numOfRequiredCards)

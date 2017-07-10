@@ -7,6 +7,9 @@ import java.io.Serializable;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * This class represent the family member of the player with all his characteristics
+ */
 public class FamilyMember implements Observer, Serializable {
 	
 	private Player owner;
@@ -15,7 +18,13 @@ public class FamilyMember implements Observer, Serializable {
 	private int value;
 	private boolean busy;
 	private boolean friendly = false;
-	
+
+    /**
+     * Constructor
+     * @param owner player owner of the family member
+     * @param color family memeber color
+     * @param value value of the family member
+     */
 	public FamilyMember(Player owner, FamilyMemberColor color, int value) {
 		this.owner = owner;
 		this.ownerColor = owner.getColor();
@@ -24,23 +33,46 @@ public class FamilyMember implements Observer, Serializable {
 		this.busy = false;
 	}
 
+    /**
+     * Constructor with default value 0
+     * @param owner player owner
+     * @param color color of the family
+     */
 	public FamilyMember(Player owner, FamilyMemberColor color) {
 		this(owner, color, 0);
 	}
 
+    /**
+     * Constructor with player color instead of the player
+     * @param ownerColor player color
+     * @param color family member color
+     */
 	public FamilyMember(PlayerColor ownerColor, FamilyMemberColor color) {
 		this(new Player(ownerColor), color);
 	}
 
+    /**
+     * Constructor of a family member with no color
+     * @param owner
+     * @param value
+     */
 	public FamilyMember(Player owner, int value) {
 		this(owner, null, value);
 	}
 
+    /**
+     * Constructor of a family member with no owner
+     * @param color family member color
+     * @param value value
+     */
 	public FamilyMember(FamilyMemberColor color, int value) {
 		this.color = color;
 		this.value = value;
 	}
-
+    /**
+     * Constructor of a family member with no owner with 0 value
+     * @param color family member color
+     */
 	public FamilyMember(FamilyMemberColor color) {
 		this(color, 0);
 	}

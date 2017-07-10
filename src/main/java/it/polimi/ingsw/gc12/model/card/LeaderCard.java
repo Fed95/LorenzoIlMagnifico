@@ -35,7 +35,7 @@ public class LeaderCard extends Card {
         this.permanent = permanent;
     }
 
-   
+
     public LeaderCard(int id, String name, List<Resource> requirements, int numOfRequiredCards, List<Effect> effects, boolean permanent) {
         this(id, name, requirements, null, effects, permanent);
         this.numOfRequiredCards = numOfRequiredCards;
