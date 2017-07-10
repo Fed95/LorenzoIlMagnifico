@@ -6,7 +6,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.image.Image;
 
 /**
- * It represent the card slot owned by the player, it's binded with the imageView in the GUI
+ * It represents the card slot owned by the player, it's binded with the imageView in the GUI
  */
 
 public class CardPlayerRepresentation {

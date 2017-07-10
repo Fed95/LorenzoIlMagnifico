@@ -5,17 +5,16 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.image.Image;
 
-/**
- * Created by rugge on 10/07/2017.
- */
 public class BonusTilesRepresentation {
     private ObjectProperty<Image> pathTile;
     private ObjectProperty<PlayerColor> owner;
+
     public BonusTilesRepresentation(String path, PlayerColor playerColor ){
         Image tile = new Image(path);
         this.pathTile = new SimpleObjectProperty<Image>(tile);
         this.owner = new SimpleObjectProperty<PlayerColor>(playerColor);
     }
+
     public ObjectProperty<Image> getPathTile(){
         return pathTile;
     }

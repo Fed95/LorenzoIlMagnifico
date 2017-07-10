@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.Observable;
 
+/**
+ * Class responsible of sending the chosen message to the ServerSocketView through sockets.
+ */
 
 public class ClientOutHandler implements Runnable, ClientSender {
 

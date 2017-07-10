@@ -9,6 +9,10 @@ import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.LinkedList;
 
+/**
+ * Receives objects from the ServerRMIView, mostly events.
+ */
+
 public class ClientRMIView extends ClientHandler implements ClientViewRemote, Serializable{
 
 	private String name;
@@ -18,14 +22,19 @@ public class ClientRMIView extends ClientHandler implements ClientViewRemote, Se
 		this.name = name;
 	}
 
+
 	@Override
 	public void updateClient(Event event) {
 
+		// If the event is of that king of type. Show it directly without wait for the event to be popped
+		// by the queue and executed by handleEvent.
 		if(event instanceof EventMessage || event instanceof EventPlayerReconnected || event instanceof EventExcluded || event instanceof EventMatchSuspended)
 			showMessage(event);
 
+		// Flush the queue of events for this kind of events
 		if(event instanceof EventExcluded || event instanceof EventMatchSuspended)
 			events = new LinkedList<>();
+
 		events.addLast(event);
 
 		if(events.size() <= 1) {
