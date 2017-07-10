@@ -1,10 +1,8 @@
 package it.polimi.ingsw.gc12.view.client.rmi;
 
-import it.polimi.ingsw.gc12.model.event.EventMatchSuspended;
+import it.polimi.ingsw.gc12.model.event.*;
 import it.polimi.ingsw.gc12.model.player.PlayerColor;
 import it.polimi.ingsw.gc12.view.client.ClientHandler;
-import it.polimi.ingsw.gc12.model.event.Event;
-import it.polimi.ingsw.gc12.model.event.EventExcluded;
 import it.polimi.ingsw.gc12.view.client.ClientView;
 
 import java.io.Serializable;
@@ -22,9 +20,9 @@ public class ClientRMIView extends ClientHandler implements ClientViewRemote, Se
 
 	@Override
 	public void updateClient(Event event) {
-		showMessage(event);
 
-		System.out.println("RECEIVED "+event.getClass().getSimpleName());
+		if(event instanceof EventMessage || event instanceof EventPlayerReconnected || event instanceof EventExcluded || event instanceof EventMatchSuspended)
+			showMessage(event);
 
 		if(event instanceof EventExcluded || event instanceof EventMatchSuspended)
 			events = new LinkedList<>();

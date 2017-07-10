@@ -1,9 +1,7 @@
 package it.polimi.ingsw.gc12.view.client;
 
 
-import it.polimi.ingsw.gc12.model.event.Event;
-import it.polimi.ingsw.gc12.model.event.EventEndMatch;
-import it.polimi.ingsw.gc12.model.event.EventView;
+import it.polimi.ingsw.gc12.model.event.*;
 import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.view.client.cli.MatchInstanceCLI;
 import it.polimi.ingsw.gc12.view.client.gui.MatchInstanceGUI;
@@ -51,6 +49,9 @@ public abstract class ClientHandler extends UnicastRemoteObject {
 
 		if(event instanceof EventView)
 			notifyView((EventView) event);
+
+		if(!(event instanceof EventMessage) && !(event instanceof EventPlayerReconnected) && !(event instanceof EventExcluded) && !(event instanceof EventMatchSuspended))
+			showMessage(event);
 
 		actions = event.getActions();
 

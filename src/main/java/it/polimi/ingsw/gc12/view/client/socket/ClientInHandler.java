@@ -1,10 +1,8 @@
 package it.polimi.ingsw.gc12.view.client.socket;
 
-import it.polimi.ingsw.gc12.model.event.EventMatchSuspended;
+import it.polimi.ingsw.gc12.model.event.*;
 import it.polimi.ingsw.gc12.model.player.PlayerColor;
 import it.polimi.ingsw.gc12.view.client.ClientHandler;
-import it.polimi.ingsw.gc12.model.event.Event;
-import it.polimi.ingsw.gc12.model.event.EventExcluded;
 import it.polimi.ingsw.gc12.view.client.ClientView;
 
 import java.io.IOException;
@@ -33,7 +31,8 @@ public class ClientInHandler extends ClientHandler implements Runnable {
 				Object object = socketIn.readObject();
 				if(object instanceof Event) {
 					Event event = (Event) object;
-					showMessage(event);
+					if(event instanceof EventMessage || event instanceof EventPlayerReconnected || event instanceof EventExcluded || event instanceof EventMatchSuspended)
+						showMessage(event);
 					if((event instanceof EventExcluded && color.equals(event.getPlayer().getColor())) || event instanceof EventMatchSuspended)
 						events = new LinkedList<>();
 					events.addLast(event);
