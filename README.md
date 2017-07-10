@@ -101,6 +101,8 @@ and after selecting the first exchange to do, the second popup will appear witho
 As specified in the game rules.
 - The reconnection mechanism works correctly with GUI too, but after the reconnection the interface is not updated
 completely based on the match state of the server.
+- If the GUI seems stuck, check in the command line what are the actions currently doable. 
+If you want to reset the action, select one of the available family members.
 
 
 ## UML
