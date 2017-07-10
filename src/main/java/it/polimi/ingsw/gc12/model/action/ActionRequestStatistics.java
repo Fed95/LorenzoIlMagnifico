@@ -4,6 +4,9 @@ import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.event.EventRequestStatistics;
 
+/**
+ * When activated, the player fill be presented with a list of ActionViewStatistics, one for each player (including himself)
+ */
 public class ActionRequestStatistics extends  Action {
 
     public ActionRequestStatistics(Player player) {

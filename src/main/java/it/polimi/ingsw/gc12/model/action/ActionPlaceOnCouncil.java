@@ -9,6 +9,7 @@ import it.polimi.ingsw.gc12.model.player.resource.Servant;
 
 /**
  * The only check specific to a placement on the Council Palace is the familyMember's value
+ * The placement itself happens int the ActionPlace
  */
 public class ActionPlaceOnCouncil extends ActionPlace {
 

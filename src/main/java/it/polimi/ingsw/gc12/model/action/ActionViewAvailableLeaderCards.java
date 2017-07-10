@@ -4,6 +4,10 @@ import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.event.EventViewAvailableLeaderCards;
 
+/**
+ * When performed, the player will be displayed with a set of ActionActivateLeaderCard,
+ * one for each LeaderCard he can activate
+ */
 public class ActionViewAvailableLeaderCards extends Action{
 
     public ActionViewAvailableLeaderCards(Player player) {

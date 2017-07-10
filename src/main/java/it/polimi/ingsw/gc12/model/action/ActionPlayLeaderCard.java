@@ -13,6 +13,11 @@ import it.polimi.ingsw.gc12.misc.exception.ActionDeniedException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This action allows the player to play a leader card (if he satisfies the requirements)
+ * The card is set to "played: true".
+ * Permanent Leader cards will also be activated at this point (set to "activated: true"), allowing their effects to become useful.
+ */
 public class ActionPlayLeaderCard extends Action {
 
     private LeaderCard card;
@@ -38,7 +43,6 @@ public class ActionPlayLeaderCard extends Action {
             } catch (ActionDeniedException e) {
                 e.printStackTrace();
             }
-
         for(Effect effect : executedEffects)
             if(effect instanceof EffectCopyLeaderCard)
                 return;
@@ -46,13 +50,8 @@ public class ActionPlayLeaderCard extends Action {
         EventPlayLeaderCard event = new EventPlayLeaderCard(player, card.getId());
         match.getActionHandler().update(event, match);
         match.notifyObserver(event);
-        /*EventStartTurn event = new EventStartTurn(player);
-
-        //Notifies the ServerRMIView
-        match.notifyObserver(event);*/
     }
 
-    //Used for testing
     public List<Effect> getExecutedEffects() {
         return executedEffects;
     }

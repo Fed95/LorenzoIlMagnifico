@@ -5,6 +5,11 @@ import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.card.LeaderCard;
 import it.polimi.ingsw.gc12.model.event.EventDiscardAction;
 
+
+/**
+ * When activated, the player will return to the set of actions he was presented at the start of the turn
+ * (this action has a CLI navigational purpose)
+ */
 public class DiscardAction extends Action {
 
     private LeaderCard leaderCard;

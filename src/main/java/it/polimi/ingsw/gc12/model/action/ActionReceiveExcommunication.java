@@ -8,6 +8,10 @@ import it.polimi.ingsw.gc12.model.board.excommunication.ExcommunicationTile;
 
 import java.util.List;
 
+/**
+ * Action that can be performed during the VaticanReport.
+ * Generates an EventSupportDenied
+ */
 public class ActionReceiveExcommunication extends Action {
 
     private ExcommunicationTile tile;

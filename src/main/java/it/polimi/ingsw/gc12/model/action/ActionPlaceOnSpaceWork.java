@@ -10,6 +10,13 @@ import it.polimi.ingsw.gc12.model.board.occupiable.SpaceWorkSingle;
 import it.polimi.ingsw.gc12.model.board.occupiable.SpaceWorkZone;
 import it.polimi.ingsw.gc12.model.player.resource.Servant;
 
+
+/**
+ * If the family member is coloured, checks if there is another family member with the same owner in the same workzone.
+ * Checks if the family member satisfies the required value
+ * If the spaceWork chosen is "Single", ith checks whether it is occupied
+ * The placement itself happens int the ActionPlace
+ */
 public class ActionPlaceOnSpaceWork extends ActionPlace {
 
     private SpaceWorkZone spaceWorkZone;

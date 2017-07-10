@@ -4,6 +4,10 @@ import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.event.EventViewDiscardableLeaderCards;
 
+/**
+ * When performed, the player will be displayed with a set of ActionDiscardLeaderCard,
+ * one for each LeaderCard he owns
+ */
 public class ActionViewDiscardableLeaderCards extends Action {
 
     public ActionViewDiscardableLeaderCards(Player player) {

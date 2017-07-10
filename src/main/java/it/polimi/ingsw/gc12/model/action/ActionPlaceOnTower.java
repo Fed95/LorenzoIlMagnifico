@@ -21,6 +21,11 @@ import it.polimi.ingsw.gc12.model.player.resource.Servant;
 
 import java.util.*;
 
+
+/**
+ * Handles almost entirely the placement and handles the related DevelopmentCard
+ *(Removing the requirements from the player's resources, executing the immediate effects, placing it in the player's personal board)
+ */
 public class ActionPlaceOnTower extends ActionPlace {
 
     protected Tower tower;
@@ -67,6 +72,14 @@ public class ActionPlaceOnTower extends ActionPlace {
             throw new ActionNotAllowedException("You can't place this card on your board!");
     }
 
+    /**
+     * Activates the MONEY: 3 tower malus if it hasn't been activated already,
+     * Handles the Card cost choice (if it has one) and applies discounts (if there are any to be applied) to the card requirements.
+     * Removes the card from the tower and places it on the player's personal board
+     * Removes card requirements from the players' resources (eventually with the discouns applied)
+     * Executes the immediate effects of the card
+     * @param match
+     */
     @Override
     protected void execute(Match match) {
         if (!tower.isTaken())

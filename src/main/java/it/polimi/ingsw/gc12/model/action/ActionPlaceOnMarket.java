@@ -8,6 +8,11 @@ import it.polimi.ingsw.gc12.misc.exception.RequiredValueNotSatisfiedException;
 import it.polimi.ingsw.gc12.model.board.occupiable.SpaceMarket;
 import it.polimi.ingsw.gc12.model.player.resource.Servant;
 
+/**
+ * The only check specific to a placement on the Council Palace is the familyMember's value
+ * and the "SpaceMarket occupied" check
+ * The placement itself happens int the ActionPlace
+ */
 public class ActionPlaceOnMarket extends ActionPlace {
 
     private SpaceMarket spaceMarket;

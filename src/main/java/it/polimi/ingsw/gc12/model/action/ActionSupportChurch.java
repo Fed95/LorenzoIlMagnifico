@@ -10,7 +10,12 @@ import it.polimi.ingsw.gc12.model.player.resource.ResourceType;
 
 import java.util.Collections;
 import java.util.List;
-
+/**
+ * Action that can be performed during the VaticanReport.
+ * Sets to 0 the players' FaithPoints and adds to his resources the relative VictoryPoints
+ * Notifies the match and the ActionHandler that the player has completed his vatican report
+ * so that the report can pass on to the next player
+ */
 public class ActionSupportChurch extends Action {
 
     public ActionSupportChurch(Player player) {

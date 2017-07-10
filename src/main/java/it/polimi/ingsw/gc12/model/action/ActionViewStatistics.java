@@ -4,6 +4,9 @@ import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.player.Player;
 import it.polimi.ingsw.gc12.model.event.EventViewStatistics;
 
+/**
+ * When performed, the player will be displayed with the chosenPlayer's statistics
+ */
 public class ActionViewStatistics extends Action {
 
     private Player chosenPlayer;
@@ -11,7 +14,6 @@ public class ActionViewStatistics extends Action {
     public ActionViewStatistics(Player player, Player chosenPlayer) {
         super(player);
         this.chosenPlayer = chosenPlayer;
-
     }
 
     @Override
