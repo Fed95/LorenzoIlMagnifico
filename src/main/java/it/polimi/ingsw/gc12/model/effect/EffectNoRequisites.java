@@ -7,7 +7,11 @@ import it.polimi.ingsw.gc12.model.event.Event;
 import it.polimi.ingsw.gc12.model.event.EventPickCard;
 import it.polimi.ingsw.gc12.misc.exception.ActionDeniedException;
 
-//The player does not have to satisfy the requisites set by the personal board to take the card
+/**
+ * Sets "noRequisites: true" in the card. In this way when the "canPlaceOnPersonalBoard "check is executed,
+ * the player does not have to satisfy the requisites set by the personal board to take the card
+ */
+
 public class EffectNoRequisites extends Effect{
 
     private String description;

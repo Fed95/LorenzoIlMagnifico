@@ -6,6 +6,10 @@ import it.polimi.ingsw.gc12.model.event.Event;
 import it.polimi.ingsw.gc12.model.event.EventCopyLeaderCard;
 import it.polimi.ingsw.gc12.misc.exception.ActionDeniedException;
 
+/**
+ * Generates an EventCopyLeaderCard which will allow the player to choose between the
+ * possible LeaderCards
+ */
 public class EffectCopyLeaderCard extends Effect {
 
     private int cardId;
@@ -22,7 +26,7 @@ public class EffectCopyLeaderCard extends Effect {
     @Override
     public void execute(Match match, Event event, boolean validation) throws ActionDeniedException {
         if(!validation) {
-            //Retrieves th original LeaderCard containing the CopyLeaderCard effect
+            //Retrieves the original LeaderCard containing the CopyLeaderCard effect
             LeaderCard myCard = event.getPlayer().getPersonalBoard().getLeaderCardsSpace().getLeaderCard(cardId);
 
             EventCopyLeaderCard e = new EventCopyLeaderCard(event.getPlayer(), myCard);

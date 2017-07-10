@@ -9,6 +9,10 @@ import it.polimi.ingsw.gc12.model.event.EventPlaceFamilyMember;
 import java.util.List;
 import java.util.Map;
 
+
+/**
+ * Activated before a Placement action, ith changes the value of the familyMember related to the placement action
+ */
 public class EffectChangeFamilyMemberValue extends Effect{
 	
 	private int amount;

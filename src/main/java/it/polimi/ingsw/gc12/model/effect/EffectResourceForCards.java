@@ -9,8 +9,11 @@ import it.polimi.ingsw.gc12.model.player.resource.ResourceExchange;
 
 import java.util.List;
 
-//Adds a specified resource to the player
-//for every card of the specified card type the player owns
+/**
+ * Adds a specified resource to the player
+ * for every card of the specified card type the player owns
+ */
+
 public class EffectResourceForCards extends Effect{
 
     private Player player;

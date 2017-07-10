@@ -8,6 +8,11 @@ import it.polimi.ingsw.gc12.model.player.resource.ResourceExchange;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * This effectd reverts a bonus or malus from all ResourceExchange effects of a specified EffectProvider.
+ * During a placement validation it is executed and at the end of the validation it is discarded (the effect is reverted)
+ */
 public class EffectDenyExchange extends Effect {
 
     private Match match;

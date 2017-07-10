@@ -12,6 +12,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * During validation this effect checks wheter the player has the speciied resources without actualli applying any change
+ * During execution instead the bonus of the exchange will be added to the players' resources and the malus will be subtracted.
+ * Exchanges can have a choice; in this case an EventChooseExchange is generated
+ * and the player will be presented with a set of actions relative to the possible choices
+ */
 public class EffectChangeResource extends Effect {
 
 	private List<ResourceExchange> exchanges = new ArrayList<>();

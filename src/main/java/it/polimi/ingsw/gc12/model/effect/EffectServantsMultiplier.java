@@ -5,8 +5,11 @@ import it.polimi.ingsw.gc12.model.event.Event;
 import it.polimi.ingsw.gc12.model.event.EventPlaceFamilyMember;
 import it.polimi.ingsw.gc12.model.event.EventServantsRequested;
 
-//Sets the multiplier inside the specified event.
-//The Servants amount that will then be selected by the user will be divided by the multiplier.
+/**
+ * Sets the multiplier inside the specified event.
+ * The Servants amount that will then be selected by the user will be divided by the multiplier.
+ */
+
 public class EffectServantsMultiplier extends Effect {
 
     private int value;

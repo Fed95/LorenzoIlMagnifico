@@ -5,6 +5,10 @@ import it.polimi.ingsw.gc12.model.event.Event;
 import it.polimi.ingsw.gc12.model.event.EventReceiveResource;
 import it.polimi.ingsw.gc12.model.player.resource.ResourceType;
 
+/**
+ * This effect, related to an EventReceiveResource, modifies the resources, of the specified type, contained in the event.
+ * In this way the player will receive the modified resources
+ */
 public class EffectReduceReceivedResource extends Effect {
 
     private int value;

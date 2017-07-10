@@ -13,6 +13,10 @@ import it.polimi.ingsw.gc12.model.player.resource.ResourceType;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * This effect, related to an EventPickCard, will add the card ResourceBonus to the player (multiplier -1) times
+ */
 public class EffectMultiplyCardResourceBonus extends Effect{
 
     List<ResourceType> types = new ArrayList<>();
