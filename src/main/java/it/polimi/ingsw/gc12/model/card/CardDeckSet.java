@@ -6,10 +6,18 @@ import java.util.List;
 import java.util.Map;
 
 public class CardDeckSet {
-
+    /**
+     * Contains all the decks of the game 3 decks for each CardType
+     */
     private List<CardDevelopment> cards = new ArrayList<>();
     private Map<CardType, Map<Integer, CardDeck>> decks = new HashMap<>();
 
+    /**
+     * Constructor that Creates DevelopmentDecks grouping them by type and period and
+     * sorts the development cards in the relative decks
+     * @param cards list of all the cards
+     * @param periods periods
+     */
     public CardDeckSet(List<CardDevelopment> cards, int periods){
 
         for(CardDevelopment card : cards)

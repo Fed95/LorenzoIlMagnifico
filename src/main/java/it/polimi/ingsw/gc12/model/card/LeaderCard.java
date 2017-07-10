@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This class represent leader cards
+ */
 public class LeaderCard extends Card {
 
     private Map<CardType, Integer> cardRequirements = new HashMap<>();
@@ -16,7 +19,15 @@ public class LeaderCard extends Card {
     private boolean permanent;
     private int numOfRequiredCards;
 
-
+    /**
+     * Constructor
+     * @param id id of the leader card
+     * @param name name of the leader card
+     * @param requirements requirements for getting the leader card in terms of resource
+     * @param cardRequirements requirements for getting the card leader in term of card owned
+     * @param effects immediate effects gained from the cards
+     * @param permanent permanent effects gained from the cards
+     */
     public LeaderCard(int id, String name, List<Resource> requirements, Map<CardType, Integer> cardRequirements, List<Effect> effects, boolean permanent) {
         super(id, name, requirements, effects);
         if(cardRequirements != null)
@@ -24,6 +35,7 @@ public class LeaderCard extends Card {
         this.permanent = permanent;
     }
 
+   
     public LeaderCard(int id, String name, List<Resource> requirements, int numOfRequiredCards, List<Effect> effects, boolean permanent) {
         this(id, name, requirements, null, effects, permanent);
         this.numOfRequiredCards = numOfRequiredCards;

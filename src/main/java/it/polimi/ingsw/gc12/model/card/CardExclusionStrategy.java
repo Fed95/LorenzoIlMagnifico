@@ -8,6 +8,9 @@ import it.polimi.ingsw.gc12.model.board.occupiable.Occupiable;
 import it.polimi.ingsw.gc12.model.board.occupiable.SpaceWork;
 import it.polimi.ingsw.gc12.model.board.occupiable.TowerFloor;
 
+/**
+ * Class needed for the cards json creation file
+ */
 public class CardExclusionStrategy implements ExclusionStrategy {
 
 	public boolean shouldSkipField(FieldAttributes f) {

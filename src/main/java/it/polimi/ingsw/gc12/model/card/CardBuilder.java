@@ -6,7 +6,7 @@ import it.polimi.ingsw.gc12.model.player.resource.Resource;
 import java.util.List;
 
 /**
- * Created by marco on 26/05/2017.
+ * This class is responsible for creates empty cards used for json file generation
  */
 public final class CardBuilder {
 

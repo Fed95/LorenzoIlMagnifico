@@ -8,6 +8,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class represent the card and has subclasses cardDevelopment, CardLeader for representing the cards
+ */
 public class Card implements EffectProvider, Serializable {
 
 	private final int id;
@@ -15,6 +18,13 @@ public class Card implements EffectProvider, Serializable {
 	protected List<Resource> requirements;
 	protected List<Effect> effects = new ArrayList<>();
 
+    /**
+     *Constructor
+     * @param id id of the card
+     * @param name name of the card
+     * @param requirements requirements for taking a card
+     * @param effects effects that the card provides
+     */
 	public Card(int id, String name, List<Resource> requirements, List<Effect> effects){
 		this.id = id;
 		this.name = name;

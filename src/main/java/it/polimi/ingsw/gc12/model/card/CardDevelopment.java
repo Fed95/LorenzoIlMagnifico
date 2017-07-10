@@ -10,11 +10,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * This class represent all the 4 CardType buildings, character, venture, territory.
+ */
 public abstract class CardDevelopment extends Card{
 	private final CardType cardType;
 	private final int period;
 	private boolean noRequisites;
-	
+
+    /**
+     * Constructor
+     * @param id id card
+     * @param cardType card type
+     * @param name ame of the card
+     * @param period period of the card
+     * @param requirements requirments for taking the card
+     * @param effects effects gained from the card
+     */
 	public CardDevelopment(int id, CardType cardType, String name, int period, List<Resource> requirements, List<Effect> effects) {
 		super(id, name, requirements, effects);
 		this.cardType = cardType;
