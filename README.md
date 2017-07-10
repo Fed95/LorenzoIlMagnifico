@@ -69,8 +69,8 @@ When you run clientCLI the CLI asks you to perform an action through integer inp
     + The excommunication cards can be configured from the json file `excommunication.json`
     + The leader cards can be configured in the json file `cards.json` (last 20 cards of the file).
 - Timeout
-    + The timeout before the start of the match after reaching the minimum amount of player is present and can be configurated from the json file `config` (now 1s).
-    + The timeout for a player move is present and can be configured from the json file `config.json` (now 20 minutes).
+    + The timeout before the start of the match after reaching the minimum amount of player is present and can be configurated from the json file `config` (now 20s).
+    + The timeout for a player move is present and can be configured from the json file `config.json` (now 2 minutes).
 
 ### Start of the Match
 - If there are no startup games, a new game is created, otherwise the user automatically enters the game at startup.

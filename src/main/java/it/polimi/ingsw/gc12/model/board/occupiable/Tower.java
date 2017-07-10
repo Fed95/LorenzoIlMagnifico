@@ -71,7 +71,7 @@ public class Tower implements Zone, Serializable{
 
 		for (TowerFloor floor : floors)
 			for (FamilyMember occupier : floor.getOccupiers())
-				if (!occupier.getColor().equals(FamilyMemberColor.NEUTRAL) && familyMember.getOwner().equals(occupier.getOwner()))
+				if (!occupier.equals(new FamilyMember(FamilyMemberColor.NEUTRAL)) &&  familyMember.getOwner() != null && occupier.getOwner() != null && familyMember.getOwner().equals(occupier.getOwner()))
 					return false;
 		return true;
 	}
