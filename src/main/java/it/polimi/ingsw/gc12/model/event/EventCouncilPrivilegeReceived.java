@@ -62,6 +62,7 @@ public class EventCouncilPrivilegeReceived extends Event implements EventView {
 
 	@Override
 	public void executeViewSide(MainBoard view) {
+		// Shows the council privilege popup from the GUI
 		Platform.runLater(() -> view.getControllerMainBoard().handleCouncilPrivilege(councilPrivilege));
 	}
 }

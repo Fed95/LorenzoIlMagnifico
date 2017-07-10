@@ -584,6 +584,10 @@ public class MainBoardController extends GUIController implements Initializable,
         return true;
     }
 
+    /**
+     * Shows a popup with the list of resources the player has to choose to exchange them with the council privilege
+     * @param councilPrivilege The Council Privilege to exchange for resources
+     */
     public void handleCouncilPrivilege(CouncilPrivilege councilPrivilege) {
 
         if(isMyTurn()) {
@@ -612,6 +616,14 @@ public class MainBoardController extends GUIController implements Initializable,
         }
     }
 
+    /**
+     * Shows the popup for the choice of resources as many times as the council privilege value
+     * Every time a resource is chosen from the list, the next time it will not appear again.
+     * This is because you cannot exchange two council privileges obtained at the same time with the same resources
+     * @param councilPrivilege
+     * @param dialogStage
+     * @param controller
+     */
     private void requestCouncilPrivileges(CouncilPrivilege councilPrivilege, Stage dialogStage, DialogCouncilPrivilegeController controller) {
         while(councilPrivilege.getValue() > 0) {
             int choice = askPrivilege(dialogStage, controller);

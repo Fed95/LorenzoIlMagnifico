@@ -38,6 +38,7 @@ public class EventPlayerReconnected extends Event implements EventView{
 	public void executeClientSide(ClientHandler client) {
 		if(client.getColor() == null) {
 			if(serverRMI != null) {
+				// Save the serverStub of the right match the player reconnected to
 				ClientSender clientSender = ClientFactory.getClientSender();
 				if(clientSender instanceof ClientRMI) {
 					ClientRMI clientRMI = (ClientRMI) clientSender;
@@ -46,6 +47,7 @@ public class EventPlayerReconnected extends Event implements EventView{
 				}
 			}
 
+			// Setup part of the MatchInstance after receiving it's state from the server
 			client.initMatch(match);
 			client.setColor(player.getColor());
 			client.getMatch().getBoard().setTowerSet(match.getBoard().getTowerSet());

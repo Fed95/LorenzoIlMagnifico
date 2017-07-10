@@ -245,7 +245,7 @@ public class MatchInstanceGUI extends MatchInstance {
 	}
 
     /**
-     * This method update a resource when the right event is received
+     * This method updates the resource representations based on the one of the players received as input
      * @param players
      */
 	@Override
@@ -287,7 +287,7 @@ public class MatchInstanceGUI extends MatchInstance {
 	}
 
     /**
-     * Remove the leader card from the personal board, so it will update the path of the image when the even is received
+     * Remove the leader card from the personal board, so it will update the path of the image when the event is received
      * @param playerColor player color discarding the leader card
      * @param id id of the leader card to discard
      */

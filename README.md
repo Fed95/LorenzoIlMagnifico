@@ -99,10 +99,12 @@ This fact is also visible from the fact that the family member previously select
 - If you receive multiple council privileges (e.g placing a family member on the market space) a popup is shown 
 and after selecting the first exchange to do, the second popup will appear without the exchange already performed. 
 As specified in the game rules.
+- The reconnection mechanism works correctly with GUI too, but after the reconnection the interface is not updated
+completely based on the match state of the server.
 
 
 ## UML
-The uml is inside the folder resources/uml.
+The UML diagrams are inside the folder resources/uml.
 They are divided into multiple files because a unique UML would have been too big. 
 The division is based on the packages.   
 There is a file called model.png that shows at a higher level the dependencies between among the packages and the main classes.

@@ -21,6 +21,11 @@ public class EventNewName extends Event implements EventView{
 	public void executeClientSide(ClientHandler client) {
 		System.out.println("This name is already taken from another active player.");
 		System.out.println("Choose another one.");
+		/*
+		The unauthorizedId is used to identify which one of the client is trying to choose a name
+		because it's not possible to identify it by the name because it has not been chosen
+		and not by the color because the match didn't started yet
+		 */
 		client.setUnauthorizedId(unauthorizedId);
 	}
 

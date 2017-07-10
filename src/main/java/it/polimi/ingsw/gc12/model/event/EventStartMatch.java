@@ -19,8 +19,10 @@ public class EventStartMatch extends Event{
 
 	@Override
 	public void executeClientSide(ClientHandler client) {
+		// Setup the simplified model of the match based on the copy of the real match received
 		client.initMatch(match);
 
+		// Add the notification to the section of the GUI
 		if(client.getMainBoardController()!= null) {
             Platform.runLater(() ->client.getMainBoardController().getChat().appendText("[SERVER]: Hi "+match.getPlayers().get(client.getColor()).getName()+" welcome to Lorenzo il Magnifico, your color is "+client.getColor() + "\n"));
         }

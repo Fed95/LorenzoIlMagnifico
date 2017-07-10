@@ -20,11 +20,18 @@ public class EventMatchInitialized extends Event implements EventView{
 
 	@Override
 	public void executeViewSide(MainBoard view) {
+		// If the client receives the event when has already finished loading,
+		// send to the server that the client is ready to play
 		if(view.isReady())
 			view.getControllerMainBoard().notifyObservers(0);
-		else
+		else {
+			// The view has not loaded completely, the notification of the client as ready will be send
+			// after the view has finished loading
 			ClientFactory.getClientHandler().setStarted(true);
+		}
 
+
+		// Load the main board of the GUI
 		Platform.runLater(() -> {
 			try {
 				view.changeScene("FXMLMainBoard", 1980, 1080, true, "Lorenzo il magnifico");

@@ -25,7 +25,6 @@ public abstract class Event implements Serializable{
 	protected Player player;
 	protected List<EffectProvider> effectProviders = new ArrayList<>();
 	protected List<Action> actions = new ArrayList<>();
-	protected ActionHandler actionHandler;
 
 	public Event(Player player) {
 		if(player != null) {
@@ -41,10 +40,11 @@ public abstract class Event implements Serializable{
 
 	public Event() {}
 
-	public void setActionHandler(ActionHandler actionHandler){
-		this.actionHandler = actionHandler;
-	}
-
+	/**
+	 * It is called by the client. It prints out the actions that the player can do, stored in the event.
+	 * It is often overridden to do more specific modifications.
+	 * @param client
+	 */
 	public void executeClientSide(ClientHandler client) {
 		if(client.isMyTurn()) {
 			if(actions.size() > 0) {
@@ -61,11 +61,7 @@ public abstract class Event implements Serializable{
 	}
 
 	public boolean equals(Object obj) {
-		if (this.getClass() != obj.getClass()) {
-			//System.out.println("Recieved: " + obj + ". I am: " + this + ". CLASS MISMATCH ");
-			return false;
-		}
-		return true;
+		return this.getClass() == obj.getClass();
 	}
 
 	public List<Action> getActions() {
@@ -80,9 +76,16 @@ public abstract class Event implements Serializable{
 		return effectProviders;
 	}
 
+	/**
+	 * String shown in command line for both GUI and CLI
+	 */
 	public String toStringClient() {
 		return null;
 	}
+
+	/**
+	 * Shown in the notification section of the GUI
+	 */
     public String toStringClientGUI() {
         return null;
     }

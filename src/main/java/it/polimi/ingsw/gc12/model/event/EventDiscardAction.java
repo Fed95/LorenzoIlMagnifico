@@ -41,6 +41,7 @@ public class EventDiscardAction extends Event implements EventView{
         return "Action discarded";
     }
 
+
     @Override
     public void executeViewSide(MainBoard view) {
         Platform.runLater(() -> view.getControllerMainBoard().sendAction());

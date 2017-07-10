@@ -69,6 +69,7 @@ public class EventPlaceFamilyMember extends Event implements EventView{
 
     @Override
     public void executeClientSide(ClientHandler client) {
+        // Show actions to perform only if it's my turn
         if(client.isMyTurn()) {
             super.executeClientSide(client);
         }
