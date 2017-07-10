@@ -4,6 +4,9 @@ import it.polimi.ingsw.gc12.model.match.Match;
 import it.polimi.ingsw.gc12.model.action.Action;
 import it.polimi.ingsw.gc12.misc.observer.Observer;
 
+/**
+ * The Controller executes the action that the Match has retrieved from the ActionController after receiving an input from the user.
+ */
 public class Controller implements Observer<Action>{
 	
 	private final Match match;
@@ -22,8 +25,6 @@ public class Controller implements Observer<Action>{
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

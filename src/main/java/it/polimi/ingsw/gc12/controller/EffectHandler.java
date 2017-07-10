@@ -9,6 +9,13 @@ import it.polimi.ingsw.gc12.misc.exception.ActionDeniedException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The EffectHandler's purpose is ti activate all effects relative to a certain event.
+ * When "executeEffects" is invoked, the handler collects all the possible effect providers of that particular moment.
+ * The event contained in every effect of every effect provider is compared with the received event and, if it is considered equal, the effect is executed.
+ * "executeEffects" can be invoked in validation mode (used by the match to determine which actions can be performed by the player).
+ * Every effect handles the validation mode differently: some effects will be executed and discarded at the end of the validation, others will simply not execute.
+ */
 public class EffectHandler {
 
 	public EffectHandler() {

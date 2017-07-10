@@ -12,6 +12,18 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Since the server only receives [int] values from the client, the main purpose of the ActionHandler is to retrieve the corresponding action.
+ *
+ * The ActionHandler receives Events from the Model and prompts them to initialize their actions.
+ * Once the event has initialized its actions, the ActionHandler stores a copy of them and adds the Event to its Event list
+ * When the server receives an input from the client, it can retrieve the correct action through ActionHandler.getAvailableAction.
+ *
+ * A specific rule is applied to EventReceiveCouncilPrivilege since, unlike other events, the player can perform more than one action for the single event.
+ * When an EventReceiveCouncilPrivilege is initialised, the value of the CouncilPrivilege is stored in the action handler.
+ * When the ActionHandler is asked for an action, if the amount of Privileges is still greater than 1, the event is not removed from the list.
+ * The selected action instead is removed. This is to prevent the player from choosing twice the same ResourceExchange offered by the CouncilPrivilege
+ */
 public class ActionHandler {
 	private List<Action> actions = new ArrayList<>();
 	private LinkedList<Event> events = new LinkedList<>();
